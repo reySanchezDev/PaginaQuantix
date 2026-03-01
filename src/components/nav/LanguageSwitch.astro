@@ -2,25 +2,45 @@
 const { currentLocale } = Astro;
 const { pathname } = Astro.url;
 
-// Lógica simple para switchear idioma en rutas equivalentes
-// Como tenemos rutas prefijadas /es/ y /en/, solo reemplazamos el prefijo.
-const targetLocale = currentLocale === 'es' ? 'en' : 'es';
+const locale = currentLocale === "es" ? "es" : "en";
+const targetLocale = locale === "es" ? "en" : "es";
+const ariaLabel =
+  locale === "es"
+    ? `Cambiar idioma a ${targetLocale.toUpperCase()}`
+    : `Change language to ${targetLocale.toUpperCase()}`;
 
-let targetPath = '';
-if (pathname.startsWith('/es/')) {
-    targetPath = pathname.replace('/es/', '/en/');
-} else if (pathname.startsWith('/en/')) {
-    targetPath = pathname.replace('/en/', '/es/');
-} else {
-    // Fallback simple
+const normalizePath = (value: string) => {
+  if (value === "/") return "/";
+  return value.endsWith("/") ? value : `${value}/`;
+};
+
+const routePairs: Record<string, string> = {
+  "/es/": "/en/",
+  "/en/": "/es/",
+  "/es/productos/quantix/": "/en/products/quantix/",
+  "/en/products/quantix/": "/es/productos/quantix/",
+  "/es/productos/nica-planilla/": "/en/products/nica-payroll/",
+  "/en/products/nica-payroll/": "/es/productos/nica-planilla/",
+};
+
+const normalizedPathname = normalizePath(pathname);
+
+let targetPath = routePairs[normalizedPathname];
+if (!targetPath) {
+  if (normalizedPathname.startsWith("/es/")) {
+    targetPath = normalizedPathname.replace("/es/", "/en/");
+  } else if (normalizedPathname.startsWith("/en/")) {
+    targetPath = normalizedPathname.replace("/en/", "/es/");
+  } else {
     targetPath = `/${targetLocale}/`;
+  }
 }
 ---
 
-<a href={targetPath} class="lang-switch" aria-label={`Change language to ${targetLocale.toUpperCase()}`}>
-  <span class:list={['lang-code', { active: currentLocale === 'es' }]}>ES</span>
+<a href={targetPath} class="lang-switch" aria-label={ariaLabel}>
+  <span class:list={["lang-code", { active: locale === "es" }]}>ES</span>
   <span class="divider">/</span>
-  <span class:list={['lang-code', { active: currentLocale === 'en' }]}>EN</span>
+  <span class:list={["lang-code", { active: locale === "en" }]}>EN</span>
 </a>
 
 <style>

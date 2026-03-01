@@ -9,17 +9,28 @@ interface Props {
   lang?: "es" | "en";
 }
 
-const { id, title, subtitle, lang = "es" } = Astro.props;
+const { id, title, subtitle, lang } = Astro.props;
+const inferredLocale = Astro.currentLocale === "es" ? "es" : "en";
+const resolvedLang = lang ?? inferredLocale;
+const isProductPage =
+  Astro.url.pathname.includes("/products/") ||
+  Astro.url.pathname.includes("/productos/");
 
 // Language-aware button configuration
 const ctaContact = {
-  href: lang === "es" ? "#contacto" : "#contact",
-  label: lang === "es" ? "Contactar" : "Contact Us",
+  href: resolvedLang === "es" ? "#contacto" : "#contact",
+  label: resolvedLang === "es" ? "Contactar" : "Contact Us",
 };
 
 const ctaProducts = {
-  href: lang === "es" ? "#productos" : "#products",
-  label: lang === "es" ? "Ver Productos" : "View Products",
+  href: isProductPage
+    ? resolvedLang === "es"
+      ? "/es/#productos"
+      : "/en/#products"
+    : resolvedLang === "es"
+      ? "#productos"
+      : "#products",
+  label: resolvedLang === "es" ? "Ver Productos" : "View Products",
 };
 ---
 

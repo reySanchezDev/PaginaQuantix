@@ -13,6 +13,7 @@ interface Props {
 
 const { id, lang } = Astro.props;
 const t = lang === "es" ? esTranslations : enTranslations;
+const contactHref = lang === "es" ? "#contacto" : "#contact";
 
 const translatedServices = services.map((service) => ({
     ...service,
@@ -69,7 +70,7 @@ const allCards = [
                         <div class="w-full sm:w-auto">
                             <Button
                                 variant="primary"
-                                href="#contacto"
+                                href={contactHref}
                                 class="w-full justify-center"
                             >
                                 {t["services.cta.schedule"]}
@@ -78,7 +79,7 @@ const allCards = [
                         <div class="w-full sm:w-auto">
                             <Button
                                 variant="secondary"
-                                href="#contacto"
+                                href={contactHref}
                                 class="w-full justify-center"
                             >
                                 {t["services.cta.proposal"]}

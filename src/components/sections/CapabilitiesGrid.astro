@@ -1,42 +1,67 @@
 ---
-import Container from '../ui/Container.astro';
-import Card from '../ui/Card.astro';
+import Container from "../ui/Container.astro";
 
 interface Props {
   id: string;
   title: string;
   description: string;
+  lang?: "es" | "en";
 }
 
-const { id, title, description } = Astro.props;
+const inferredLocale = Astro.currentLocale === "es" ? "es" : "en";
+const { id, title, description, lang = inferredLocale } = Astro.props;
 
-// Placeholder features - en un caso real podrían venir por props o config
-const features = [
-  { 
-    title: "Software a Medida", 
-    desc: "Creamos ecosistemas digitales escalables y de alto rendimiento adaptados a tu modelo de negocio.",
-    image: "/images/funcion1.jpg"
-  },
-  { 
-    title: "Automatización RPA", 
-    desc: "Optimizamos tus procesos operativos eliminando tareas repetitivas con bots de inteligencia avanzada.",
-    image: "/images/funcion2.jpg"
-  },
-  { 
-    title: "Infraestructura Cloud", 
-    desc: "Migración y gestión de entornos en la nube con máxima seguridad y disponibilidad 24/7.",
-    image: "/images/funcion3.jpg"
-  },
-  { 
-    title: "Consultoría Tech", 
-    desc: "Transformamos retos complejos en soluciones técnicas eficientes mediante arquitectura de software proactiva.",
-    image: "/images/funcion4.jpg"
-  },
-];
+const featuresByLocale = {
+  es: [
+    {
+      title: "Software a Medida",
+      desc: "Creamos ecosistemas digitales escalables y de alto rendimiento adaptados a tu modelo de negocio.",
+      image: "/images/funcion1.jpg",
+    },
+    {
+      title: "Automatizacion RPA",
+      desc: "Optimizamos tus procesos operativos eliminando tareas repetitivas con bots de inteligencia avanzada.",
+      image: "/images/funcion2.jpg",
+    },
+    {
+      title: "Infraestructura Cloud",
+      desc: "Migracion y gestion de entornos en la nube con maxima seguridad y disponibilidad 24/7.",
+      image: "/images/funcion3.jpg",
+    },
+    {
+      title: "Consultoria Tech",
+      desc: "Transformamos retos complejos en soluciones tecnicas eficientes mediante arquitectura de software proactiva.",
+      image: "/images/funcion4.jpg",
+    },
+  ],
+  en: [
+    {
+      title: "Custom Software",
+      desc: "We build scalable high-performance digital ecosystems tailored to your business model.",
+      image: "/images/funcion1.jpg",
+    },
+    {
+      title: "RPA Automation",
+      desc: "We optimize operations by removing repetitive work with advanced automation bots.",
+      image: "/images/funcion2.jpg",
+    },
+    {
+      title: "Cloud Infrastructure",
+      desc: "Cloud migration and environment management with maximum security and 24/7 availability.",
+      image: "/images/funcion3.jpg",
+    },
+    {
+      title: "Tech Consulting",
+      desc: "We turn complex challenges into efficient technical solutions through proactive architecture.",
+      image: "/images/funcion4.jpg",
+    },
+  ],
+};
+
+const features = featuresByLocale[lang];
 ---
 
 <section id={id} class="features-section">
-  <!-- Background Decoration -->
   <div class="background-decor">
     <div class="dot-matrix"></div>
     <div class="radial-glow"></div>
@@ -49,24 +74,23 @@ const features = [
     </div>
 
     <div class="features-grid">
-      {features.map(feature => (
-        <div class="feature-card">
-          <div class="card-bg" style={`background-image: url(${feature.image})`}></div>
-          <div class="card-overlay"></div>
-          
-          <!-- Premium Border Glow -->
-          <div class="card-border"></div>
-          
-          <div class="card-content">
-            <h3 class="feature-title">{feature.title}</h3>
-            <p class="feature-desc">{feature.desc}</p>
+      {
+        features.map((feature) => (
+          <div class="feature-card">
+            <div class="card-bg" style={`background-image: url(${feature.image})`}></div>
+            <div class="card-overlay"></div>
+            <div class="card-border"></div>
+
+            <div class="card-content">
+              <h3 class="feature-title">{feature.title}</h3>
+              <p class="feature-desc">{feature.desc}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </Container>
 
-  <!-- Bottom Section Separator -->
   <div class="section-separator"></div>
 </section>
 
@@ -78,7 +102,6 @@ const features = [
     overflow: hidden;
   }
 
-  /* Decorative elements */
   .background-decor {
     position: absolute;
     inset: 0;
@@ -122,7 +145,6 @@ const features = [
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
   }
 
-  /* Theme adjustments */
   :global([data-theme="light"]) .features-section {
     background-color: #f8fafc;
   }
@@ -150,7 +172,6 @@ const features = [
     color: #1e3a8a;
   }
 
-  /* Grid Layout */
   .features-grid {
     position: relative;
     z-index: 1;
@@ -160,14 +181,18 @@ const features = [
   }
 
   @media (min-width: 640px) {
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (min-width: 1024px) {
-    .features-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
   }
 
-  /* Card Premium Look */
   .feature-card {
     position: relative;
     height: 480px;
@@ -178,21 +203,20 @@ const features = [
     justify-content: flex-end;
     padding: var(--space-8);
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    background: #000; /* Base for contrast */
+    background: #000;
   }
 
   @media (max-width: 639px) {
     .feature-card {
-      height: 380px; /* More compact on mobile */
+      height: 380px;
       padding: var(--space-6);
     }
-    
+
     .features-section {
       padding: var(--space-16) 0;
     }
   }
 
-  /* Glass Glow Border */
   .card-border {
     position: absolute;
     inset: 0;
@@ -229,9 +253,9 @@ const features = [
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      to top, 
-      rgba(0, 0, 0, 0.9) 0%, 
-      rgba(0, 0, 0, 0.2) 50%, 
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
       transparent 100%
     );
     z-index: 2;
@@ -244,9 +268,9 @@ const features = [
 
   .feature-card:hover .card-overlay {
     background: linear-gradient(
-      to top, 
-      rgba(0, 0, 0, 0.95) 0%, 
-      rgba(0, 0, 0, 0.6) 60%, 
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.6) 60%,
       transparent 100%
     );
   }
@@ -282,5 +306,4 @@ const features = [
     max-height: 180px;
     margin-top: var(--space-3);
   }
-</style>
 </style>

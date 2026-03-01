@@ -4,16 +4,27 @@ import LanguageSwitch from "./LanguageSwitch.astro";
 
 interface Props {
   navItems: { label: string; href: string }[];
+  lang: "es" | "en";
 }
 
-const { navItems } = Astro.props;
+const { navItems, lang } = Astro.props;
+const texts =
+  lang === "es"
+    ? {
+        menu: "Menu",
+        closeMenu: "Cerrar menu",
+      }
+    : {
+        menu: "Menu",
+        closeMenu: "Close menu",
+      };
 ---
 
 <div id="mobile-menu-overlay" class="mobile-menu-overlay" aria-hidden="true">
   <div class="mobile-menu-content">
     <div class="mobile-menu-header">
-      <span class="logo-text">Menú</span>
-      <button id="close-menu-btn" class="close-btn" aria-label="Cerrar menú">
+      <span class="logo-text">{texts.menu}</span>
+      <button id="close-menu-btn" class="close-btn" aria-label={texts.closeMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -47,7 +58,6 @@ const { navItems } = Astro.props;
 
     <div class="mobile-menu-footer">
       <div class="actions-wrapper">
-        <!-- <ThemeToggle /> Por el momento estará en hide -->
         <div class="divider"></div>
         <LanguageSwitch />
       </div>
@@ -62,11 +72,8 @@ const { navItems } = Astro.props;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--bg); /* Use base bg directly first */
-    background: rgba(
-      var(--bg-rgb, 15, 23, 42),
-      0.7
-    ); /* Fallback or manual value */
+    background-color: var(--bg);
+    background: rgba(var(--bg-rgb, 15, 23, 42), 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 100;
@@ -113,7 +120,7 @@ const { navItems } = Astro.props;
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: var(--text-xl);
-    color: var(--text); /* Theme-aware color */
+    color: var(--text);
   }
 
   .close-btn {
@@ -173,7 +180,6 @@ const { navItems } = Astro.props;
   function setupMobileMenu() {
     const overlay = document.getElementById("mobile-menu-overlay");
     const closeBtn = document.getElementById("close-menu-btn");
-    // El botón open se maneja desde HeaderPremium
 
     if (closeBtn && overlay) {
       closeBtn.addEventListener("click", () => {
@@ -182,9 +188,6 @@ const { navItems } = Astro.props;
       });
     }
 
-    // Cerrar al hacer click fuera (en la parte blurreada si el content no cubre todo)
-    /* Como el diseño actual cubre todo el ancho en mobile pequeño, puede q no sea necesario,
-       pero si agrandamos el overlay, esto ayuda */
     if (overlay) {
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
@@ -194,7 +197,6 @@ const { navItems } = Astro.props;
       });
     }
 
-    // Close on ESC key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && overlay?.classList.contains("open")) {
         overlay.classList.remove("open");
@@ -203,7 +205,6 @@ const { navItems } = Astro.props;
     });
   }
 
-  // Ejecutar en navegación y view transitions
   setupMobileMenu();
   document.addEventListener("astro:page-load", setupMobileMenu);
 </script>

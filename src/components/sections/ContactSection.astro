@@ -1,203 +1,261 @@
 ---
-import Container from '../ui/Container.astro';
+import Container from "../ui/Container.astro";
 
 interface Props {
   id: string;
   title: string;
   description: string;
+  lang?: "es" | "en";
 }
 
-const { id, title, description } = Astro.props;
+const inferredLocale = Astro.currentLocale === "es" ? "es" : "en";
+const { id, title, description, lang = inferredLocale } = Astro.props;
+
+const t =
+  lang === "es"
+    ? {
+        emailCta: "Enviar correo",
+        whatsappCta: "Chatear ahora",
+        scheduleLabel: "Horario",
+        scheduleValue: "Lun - Vie, 9am - 6pm",
+        support: "Soporte 24/7 para emergencias",
+      }
+    : {
+        emailCta: "Send email",
+        whatsappCta: "Chat now",
+        scheduleLabel: "Schedule",
+        scheduleValue: "Mon - Fri, 9am - 6pm",
+        support: "24/7 support for emergencies",
+      };
 ---
 
 <section id={id} class="contact-section">
-  <!-- Dynamic Background -->
   <div class="bg-glow"></div>
 
   <Container>
     <div class="section-header">
-       <h2 class="section-title">{title}</h2>
-       <p class="section-desc">{description}</p>
+      <h2 class="section-title">{title}</h2>
+      <p class="section-desc">{description}</p>
     </div>
 
     <div class="contact-grid">
-       
-       <!-- Email Card -->
-       <a href="mailto:reynaldv12@gmail.com" class="contact-card group">
-           <div class="icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-           </div>
-           <div class="card-content">
-               <span class="label">Email</span>
-               <span class="value">reynaldv12@gmail.com</span>
-               <span class="cta">Enviar correo &rarr;</span>
-           </div>
-       </a>
+      <a href="mailto:reynaldv12@gmail.com" class="contact-card group">
+        <div class="icon-box">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+        </div>
+        <div class="card-content">
+          <span class="label">Email</span>
+          <span class="value">reynaldv12@gmail.com</span>
+          <span class="cta">{t.emailCta} &rarr;</span>
+        </div>
+      </a>
 
-       <!-- WhatsApp Card -->
-       <a href="https://wa.me/50585213462" target="_blank" rel="noopener noreferrer" class="contact-card group">
-           <div class="icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path></svg>
-           </div>
-           <div class="card-content">
-               <span class="label">WhatsApp</span>
-               <span class="value">+505 8521 3462</span>
-               <span class="cta">Chatear ahora &rarr;</span>
-           </div>
-       </a>
+      <a
+        href="https://wa.me/50585213462"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-card group"
+      >
+        <div class="icon-box">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path>
+          </svg>
+        </div>
+        <div class="card-content">
+          <span class="label">WhatsApp</span>
+          <span class="value">+505 8521 3462</span>
+          <span class="cta">{t.whatsappCta} &rarr;</span>
+        </div>
+      </a>
 
-       <!-- Schedule Card -->
-       <div class="contact-card group">
-           <div class="icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-           </div>
-           <div class="card-content">
-               <span class="label">Horario</span>
-               <span class="value">Lun - Vie, 9am - 6pm</span>
-               <span class="cta text-muted">Soporte 24/7 para emergencias</span>
-           </div>
-       </div>
-
+      <div class="contact-card group">
+        <div class="icon-box">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="card-content">
+          <span class="label">{t.scheduleLabel}</span>
+          <span class="value">{t.scheduleValue}</span>
+          <span class="cta text-muted">{t.support}</span>
+        </div>
+      </div>
     </div>
   </Container>
 </section>
 
 <style>
-    .contact-section {
-        padding: var(--space-24) 0;
-        background-color: #020617; /* Deepest dark for contrast */
-        color: #fff;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .bg-glow {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
-        pointer-events: none;
-        z-index: 1;
-    }
+  .contact-section {
+    padding: var(--space-24) 0;
+    background-color: #020617;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .section-header {
-        position: relative;
-        z-index: 10;
-        text-align: center;
-        max-width: 700px;
-        margin: 0 auto var(--space-16);
-    }
-    
-    .section-title {
-        font-size: var(--text-4xl);
-        font-weight: 800;
-        margin-bottom: var(--space-4);
-        letter-spacing: -0.02em;
-        color: white;
-    }
-    
-    .section-desc {
-        font-size: var(--text-lg);
-        color: #94A3B8;
-    }
-    
+  .bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at center,
+      rgba(37, 99, 235, 0.15) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section-header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-16);
+  }
+
+  .section-title {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+    color: white;
+  }
+
+  .section-desc {
+    font-size: var(--text-lg);
+    color: #94a3b8;
+  }
+
+  .contact-grid {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
     .contact-grid {
-        position: relative;
-        z-index: 10;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-        max-width: 1100px;
-        margin: 0 auto;
+      grid-template-columns: repeat(3, 1fr);
     }
-    
-    @media (min-width: 768px) {
-        .contact-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-    
-    .contact-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: var(--space-10) var(--space-6);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
-        backdrop-filter: blur(12px);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        text-decoration: none;
-        color: inherit;
-    }
-    
-    .contact-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .icon-box {
-        width: 64px;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(37, 99, 235, 0.1);
-        color: #3B82F6;
-        border-radius: 50%;
-        margin-bottom: var(--space-6);
-        transition: all 0.3s ease;
-    }
-    
-    .contact-card:hover .icon-box {
-        background: #3B82F6;
-        color: white;
-        transform: scale(1.1);
-    }
-    
-    .card-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-    }
-    
-    .label {
-        font-size: var(--text-sm);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        font-weight: 700;
-        color: #64748B;
-    }
-    
-    .value {
-        font-size: var(--text-lg);
-        font-weight: 600;
-        color: white;
-    }
-    
-    .cta {
-        margin-top: var(--space-4);
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: #3B82F6;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        transition: gap 0.2s ease;
-    }
-    
-    .contact-card:hover .cta {
-        gap: 8px;
-    }
-    
-    .text-muted {
-        color: #64748B;
-    }
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-10) var(--space-6);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  }
+
+  .icon-box {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.1);
+    color: #3b82f6;
+    border-radius: 50%;
+    margin-bottom: var(--space-6);
+    transition: all 0.3s ease;
+  }
+
+  .contact-card:hover .icon-box {
+    background: #3b82f6;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .label {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: #64748b;
+  }
+
+  .value {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: white;
+  }
+
+  .cta {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: #3b82f6;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
+  }
+
+  .contact-card:hover .cta {
+    gap: 8px;
+  }
+
+  .text-muted {
+    color: #64748b;
+  }
 </style>

@@ -3,10 +3,11 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   i18n: {
-    defaultLocale: "es",
-    locales: ["es", "en"],
+    defaultLocale: "en",
+    locales: ["en", "es"],
     routing: {
-        prefixDefaultLocale: true
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false
     }
   },
   server: {

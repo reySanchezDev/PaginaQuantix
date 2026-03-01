@@ -6,9 +6,14 @@ import MobileMenu from "./MobileMenu.astro";
 
 interface Props {
   navItems: { label: string; href: string }[];
+  lang: "es" | "en";
 }
 
-const { navItems } = Astro.props;
+const { navItems, lang } = Astro.props;
+const homeHref = lang === "es" ? "/es/" : "/en/";
+const homeAria =
+  lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
+const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
 ---
 
 <header id="main-header" class="header-premium">
@@ -17,7 +22,7 @@ const { navItems } = Astro.props;
     <nav class="desktop-nav">
       <div class="segmented-control">
         <!-- Logo Integrated on the left -->
-        <a href="/" class="brand-logo" aria-label="Quantix Software Home">
+        <a href={homeHref} class="brand-logo" aria-label={homeAria}>
           <svg
             class="logo"
             width="130"
@@ -69,7 +74,7 @@ const { navItems } = Astro.props;
 
     <!-- Mobile Header (Logo stays visible) -->
     <div class="mobile-header mobile-only">
-      <a href="/" class="brand-logo-mobile">
+      <a href={homeHref} class="brand-logo-mobile" aria-label={homeAria}>
         <svg
           width="32"
           height="32"
@@ -85,7 +90,7 @@ const { navItems } = Astro.props;
       <button
         id="mobile-menu-toggle"
         class="mobile-toggle"
-        aria-label="Abrir menú"
+        aria-label={openMenuAria}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +112,7 @@ const { navItems } = Astro.props;
   </Container>
 </header>
 
-<MobileMenu navItems={navItems} />
+<MobileMenu navItems={navItems} lang={lang} />
 
 <style>
   .header-premium {

@@ -1,141 +1,161 @@
 ---
-import ProductLayout from '../../../layouts/ProductLayout.astro';
-import HeroSection from '../../../components/sections/HeroSection.astro';
+import ProductLayout from "../../../layouts/ProductLayout.astro";
+import HeroSection from "../../../components/sections/HeroSection.astro";
 
-import ContactSection from '../../../components/sections/ContactSection.astro';
-import Container from '../../../components/ui/Container.astro';
-import Card from '../../../components/ui/Card.astro';
-import Button from '../../../components/ui/Button.astro';
-
+import ContactSection from "../../../components/sections/ContactSection.astro";
+import Container from "../../../components/ui/Container.astro";
+import Card from "../../../components/ui/Card.astro";
+import Button from "../../../components/ui/Button.astro";
 ---
 
-<ProductLayout 
-    title="Nica Planilla - Nómina y RRHH" 
-    description="Automatiza tu planilla y cumple con la ley nicaragüense."
-    lang="es"
+<ProductLayout
+  title="Nica Planilla - Nomina y RRHH"
+  description="Automatiza tu planilla y cumple con la ley nicaraguense."
+  lang="es"
 >
-    <!-- Product Hero -->
-    <HeroSection 
-        id="hero"
-        title="Nica Planilla"
-        subtitle="La forma más fácil y precisa de gestionar la nómina de tu empresa en Nicaragua."
-    />
+  <HeroSection
+    id="hero"
+    title="Nica Planilla"
+    subtitle="La forma mas facil y precisa de gestionar la nomina de tu empresa en Nicaragua."
+    lang="es"
+  />
 
-    <!-- Overview -->
-    <section class="section-padding">
-        <Container>
-            <div class="text-center mb-12">
-                <h2>100% Adaptado a la Ley</h2>
-                <p class="text-muted max-w-2xl mx-auto">
-                    Cálculos de INSS, IR, vacaciones y liquidaciones actualizados automáticamente.
-                </p>
-            </div>
-            
-            <div class="visual-placeholder large">
-               <span>Aca poner una imagen (Interfaz Nómina)</span>
-            </div>
-        </Container>
-    </section>
+  <section class="section-padding">
+    <Container>
+      <div class="text-center mb-12">
+        <h2>100% Adaptado a la Ley</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Calculos de INSS, IR, vacaciones y liquidaciones actualizados automaticamente.
+        </p>
+      </div>
 
-    <!-- Pricing -->
-    <section id="pricing" class="section-padding bg-surface-2">
-        <Container>
-            <div class="text-center mb-12">
-                <h2>Planes Flexibles</h2>
-                <p class="text-muted">Paga solo por lo que usas.</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <Card class="pricing-card">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pymes</h3>
-                        <div class="price mb-4">$XX / mes</div>
-                        <ul class="features-list">
-                            <li>Hasta 15 empleados</li>
-                            <li>Cálculos automáticos</li>
-                            <li>Exportación a DGI</li>
-                        </ul>
-                        <Button variant="secondary" class="w-full mt-6">Empezar</Button>
-                    </div>
-                </Card>
-                
-                <Card class="pricing-card border-primary">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Corporativo</h3>
-                        <div class="price mb-4">A medida</div>
-                        <ul class="features-list">
-                            <li>Empleados ilimitados</li>
-                            <li>Portal del colaborador</li>
-                            <li>API Access</li>
-                        </ul>
-                        <Button variant="primary" class="w-full mt-6">Contactar</Button>
-                    </div>
-                </Card>
-            </div>
-        </Container>
-    </section>
+      <div class="visual-placeholder large">
+        <span>Aca poner una imagen (Interfaz Nomina)</span>
+      </div>
+    </Container>
+  </section>
 
-    <ContactSection
-        id="contacto"
-        title="¿Dudas sobre tu planilla?"
-        description="Nuestros expertos están listos para ayudarte."
-    />
+  <section id="pricing" class="section-padding bg-surface-2">
+    <Container>
+      <div class="text-center mb-12">
+        <h2>Planes Flexibles</h2>
+        <p class="text-muted">Paga solo por lo que usas.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <Card class="pricing-card">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Pymes</h3>
+            <div class="price mb-4">$XX / mes</div>
+            <ul class="features-list">
+              <li>Hasta 15 empleados</li>
+              <li>Calculos automaticos</li>
+              <li>Exportacion a DGI</li>
+            </ul>
+            <Button variant="secondary" class="w-full mt-6">Empezar</Button>
+          </div>
+        </Card>
+
+        <Card class="pricing-card border-primary">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Corporativo</h3>
+            <div class="price mb-4">A medida</div>
+            <ul class="features-list">
+              <li>Empleados ilimitados</li>
+              <li>Portal del colaborador</li>
+              <li>API Access</li>
+            </ul>
+            <Button variant="primary" class="w-full mt-6">Contactar</Button>
+          </div>
+        </Card>
+      </div>
+    </Container>
+  </section>
+
+  <ContactSection
+    id="contacto"
+    title="Dudas sobre tu planilla?"
+    description="Nuestros expertos estan listos para ayudarte."
+    lang="es"
+  />
 </ProductLayout>
 
 <style>
-    /* Reutilización de estilos rápidos (en un proyecto real usaríamos clases globales o componentes) */
-    .section-padding { padding: var(--space-12) 0; }
-    .text-center { text-align: center; }
-    .mb-12 { margin-bottom: var(--space-12); }
-    .text-muted { color: var(--text-muted); }
-    .max-w-2xl { max-width: 42rem; }
-    .mx-auto { margin-left: auto; margin-right: auto; }
-    .bg-surface-2 { background-color: var(--surface-2); }
-    .w-full { width: 100%; }
-    .mt-6 { margin-top: var(--space-6); }
-    .p-6 { padding: var(--space-6); }
-    
-    .visual-placeholder {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        aspect-ratio: 16/9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-muted);
-    }
-    
+  .section-padding {
+    padding: var(--space-12) 0;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .mb-12 {
+    margin-bottom: var(--space-12);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .max-w-2xl {
+    max-width: 42rem;
+  }
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .bg-surface-2 {
+    background-color: var(--surface-2);
+  }
+  .w-full {
+    width: 100%;
+  }
+  .mt-6 {
+    margin-top: var(--space-6);
+  }
+  .p-6 {
+    padding: var(--space-6);
+  }
+
+  .visual-placeholder {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
     .pricing-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-8);
-        max-width: 800px;
-        margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
     }
-    
-    @media (min-width: 768px) {
-        .pricing-grid { grid-template-columns: 1fr 1fr; }
-    }
-    
-    .price {
-        font-size: var(--text-3xl);
-        font-weight: 700;
-        color: var(--text);
-    }
-    
-    .features-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-        color: var(--text-muted);
-    }
-    
-    .border-primary {
-        border-color: var(--primary);
-        box-shadow: var(--shadow-lg);
-    }
+  }
+
+  .price {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    color: var(--text-muted);
+  }
+
+  .border-primary {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+  }
 </style>

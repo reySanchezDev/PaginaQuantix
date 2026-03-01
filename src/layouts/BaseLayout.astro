@@ -11,22 +11,22 @@ interface Props {
   lang?: "es" | "en";
 }
 
-const { title, description, lang = "es" } = Astro.props;
+const { title, description, lang = "en" } = Astro.props;
 
-// Configuración de navegación por idioma
+const homePath = lang === "es" ? "/es/" : "/en/";
 const navItems =
   lang === "es"
     ? [
-        { label: "Inicio", href: "#inicio" },
-        { label: "Servicios", href: "#funciones" },
-        { label: "Productos", href: "#productos" },
-        { label: "Contacto", href: "#contacto" },
+        { label: "Inicio", href: `${homePath}#inicio` },
+        { label: "Servicios", href: `${homePath}#funciones` },
+        { label: "Productos", href: `${homePath}#productos` },
+        { label: "Contacto", href: `${homePath}#contacto` },
       ]
     : [
-        { label: "Home", href: "#home" },
-        { label: "Features", href: "#features" },
-        { label: "Products", href: "#products" },
-        { label: "Contact", href: "#contact" },
+        { label: "Home", href: `${homePath}#home` },
+        { label: "Features", href: `${homePath}#features` },
+        { label: "Products", href: `${homePath}#products` },
+        { label: "Contact", href: `${homePath}#contact` },
       ];
 ---
 
@@ -40,19 +40,17 @@ const navItems =
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Quantix Software</title>
 
-    <!-- View Transitions para navegación SPA-like suave -->
     <ViewTransitions />
   </head>
   <body>
-    <HeaderPremium navItems={navItems} />
+    <HeaderPremium navItems={navItems} lang={lang} />
 
     <main>
       <slot />
     </main>
 
-    <FooterPremium navItems={navItems} />
+    <FooterPremium navItems={navItems} lang={lang} />
 
-    <!-- Premium Floating "Back to Top" Button -->
     <ScrollToTop />
   </body>
 </html>
