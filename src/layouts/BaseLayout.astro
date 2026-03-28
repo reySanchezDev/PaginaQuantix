@@ -2,6 +2,7 @@
 import HeaderPremium from "../components/nav/HeaderPremium.astro";
 import FooterPremium from "../components/nav/FooterPremium.astro";
 import ScrollToTop from "../components/ui/ScrollToTop.astro";
+import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
 import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
 
@@ -41,6 +42,7 @@ const navItems =
     <title>{title} | Quantix Software</title>
 
     <ViewTransitions />
+    <VercelAnalytics />
   </head>
   <body>
     <HeaderPremium navItems={navItems} lang={lang} />

@@ -1,0 +1,37 @@
+---
+const params = JSON.stringify(Astro.params);
+const pathname = Astro.url.pathname;
+---
+
+<vercel-analytics data-params={params} data-pathname={pathname}></vercel-analytics>
+
+<script>
+  import { initVercelAnalytics, trackPageview } from "../../lib/vercelAnalytics";
+
+  function getBasePath() {
+    try {
+      return import.meta.env.PUBLIC_VERCEL_OBSERVABILITY_BASEPATH;
+    } catch {
+      return undefined;
+    }
+  }
+
+  if (!customElements.get("vercel-analytics")) {
+    customElements.define(
+      "vercel-analytics",
+      class VercelAnalytics extends HTMLElement {
+        connectedCallback() {
+          try {
+            const params = JSON.parse(this.dataset.params ?? "{}");
+            const path = this.dataset.pathname ?? window.location.pathname;
+
+            initVercelAnalytics({ basePath: getBasePath() });
+            trackPageview(path, params);
+          } catch (error) {
+            console.error("[Vercel Web Analytics] No se pudo registrar el pageview.", error);
+          }
+        }
+      },
+    );
+  }
+</script>
