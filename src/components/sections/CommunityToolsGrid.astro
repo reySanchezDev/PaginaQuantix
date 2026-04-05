@@ -94,7 +94,8 @@ const t = lang === "es" ? esTranslations : enTranslations;
                 href={tool.downloadUrl}
                 target="_blank"
                 variant="primary"
-                class="download-btn w-full"
+                class:list={["download-btn w-full"]}
+                data-tool-id={tool.id}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -342,3 +343,28 @@ const t = lang === "es" ? esTranslations : enTranslations;
     box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.3);
   }
 </style>
+
+<script>
+  import { track } from "../../lib/vercelAnalytics";
+
+  function setupTracking() {
+    const downloadButtons = document.querySelectorAll('.download-btn');
+    
+    downloadButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const toolId = (btn as HTMLElement).dataset.toolId;
+        if (toolId) {
+          track('community_download_click', {
+            toolId: toolId,
+            url: (btn as HTMLAnchorElement).href
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize tracking
+  setupTracking();
+  // Support Astro View Transitions
+  document.addEventListener('astro:page-load', setupTracking);
+</script>

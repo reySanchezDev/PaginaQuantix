@@ -153,3 +153,14 @@ export function trackPageview(path: string, params: Record<string, string | stri
     path,
   });
 }
+
+export function track(name: string, properties?: Record<string, string | number | boolean>): void {
+  if (!isBrowser()) {
+    return;
+  }
+
+  window.va?.("event", {
+    name,
+    data: properties,
+  });
+}
