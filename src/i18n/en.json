@@ -8,5 +8,9 @@
     "services.cta.schedule": "Schedule a call",
     "services.cta.proposal": "Request a proposal",
     "services.nav.prev": "Previous",
-    "services.nav.next": "Next"
+    "services.nav.next": "Next",
+    "nav.community": "Community",
+    "community.title": "In-house Tools & Community",
+    "community.description": "We share powerful tools, installers, and utilities designed to empower the workflows of professionals and businesses for free.",
+    "community.download": "Download"
 }

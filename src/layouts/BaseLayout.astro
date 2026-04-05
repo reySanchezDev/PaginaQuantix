@@ -10,9 +10,10 @@ interface Props {
   title: string;
   description: string;
   lang?: "es" | "en";
+  isHeaderTransparent?: boolean;
 }
 
-const { title, description, lang = "en" } = Astro.props;
+const { title, description, lang = "en", isHeaderTransparent = true } = Astro.props;
 
 const homePath = lang === "es" ? "/es/" : "/en/";
 const navItems =
@@ -21,12 +22,14 @@ const navItems =
         { label: "Inicio", href: `${homePath}#inicio` },
         { label: "Servicios", href: `${homePath}#funciones` },
         { label: "Productos", href: `${homePath}#productos` },
+        { label: "Comunidad", href: `${homePath}comunidad/` },
         { label: "Contacto", href: `${homePath}#contacto` },
       ]
     : [
         { label: "Home", href: `${homePath}#home` },
         { label: "Features", href: `${homePath}#features` },
         { label: "Products", href: `${homePath}#products` },
+        { label: "Community", href: `${homePath}community/` },
         { label: "Contact", href: `${homePath}#contact` },
       ];
 ---
@@ -45,7 +48,7 @@ const navItems =
     <VercelAnalytics />
   </head>
   <body>
-    <HeaderPremium navItems={navItems} lang={lang} />
+    <HeaderPremium navItems={navItems} lang={lang} isTransparent={isHeaderTransparent} />
 
     <main>
       <slot />

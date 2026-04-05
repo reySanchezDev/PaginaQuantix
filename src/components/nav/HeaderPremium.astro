@@ -1,22 +1,22 @@
 ---
 import Container from "../ui/Container.astro";
-// import ThemeToggle from "./ThemeToggle.astro";
 import LanguageSwitch from "./LanguageSwitch.astro";
 import MobileMenu from "./MobileMenu.astro";
 
 interface Props {
   navItems: { label: string; href: string }[];
   lang: "es" | "en";
+  isTransparent?: boolean;
 }
 
-const { navItems, lang } = Astro.props;
+const { navItems, lang, isTransparent = true } = Astro.props;
 const homeHref = lang === "es" ? "/es/" : "/en/";
 const homeAria =
   lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
 const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
 ---
 
-<header id="main-header" class="header-premium">
+<header id="main-header" class:list={["header-premium", { "scrolled": !isTransparent }]} data-transparent={isTransparent.toString()}>
   <Container class="header-container">
     <!-- Unified Super Pill Nav -->
     <nav class="desktop-nav">
@@ -66,7 +66,6 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
 
         <!-- Settings Integrated on the right -->
         <div class="nav-settings-integrated">
-          <!-- <ThemeToggle />  Por el momento estará en hide -->
           <LanguageSwitch />
         </div>
       </div>
@@ -111,7 +110,6 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     </div>
   </Container>
 </header>
-
 <MobileMenu navItems={navItems} lang={lang} />
 
 <style>
@@ -127,43 +125,46 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
 
   @media (max-width: 1023px) {
     .header-premium {
-      position: absolute; /* Not fixed on mobile to avoid blocking content */
+      position: absolute;
       padding: var(--space-4) 0;
     }
   }
 
-  /* Scrolled State (Transparent global bar, Pill becomes distinct) */
-  .header-premium.scrolled {
-    background: transparent;
-    border-bottom: none;
+  /* Solid state background Fix */
+  .header-premium.scrolled,
+  .header-premium[data-transparent="false"] {
     padding: var(--space-4) 0;
-    box-shadow: none;
   }
 
   .header-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
     width: 100%;
     position: relative;
     padding: 0 var(--space-4);
   }
 
-  /* Super Pill - Unified Navigation */
   .segmented-control {
     display: flex;
     align-items: center;
     padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.05); /* Pro glass background */
+    background: rgba(255, 255, 255, 0.05); /* Glass */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 9999px;
     position: relative;
-    margin: 0 auto; /* Extra centering safety */
-    box-shadow:
-      0 10px 40px rgba(0, 0, 0, 0.2),
-      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Solid logic for both scrolled and data attribute */
+  .header-premium.scrolled .segmented-control,
+  .header-premium[data-transparent="false"] .segmented-control {
+    background: var(--surface);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 0, 0, 0.05);
   }
 
   .brand-logo {
@@ -181,14 +182,6 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     width: 130px;
     height: 36px;
   }
-  /* Scrolled state: High contrast backplate for navigation */
-  .header-premium.scrolled .segmented-control {
-    background: var(--surface); /* Use solid theme surface */
-    border-color: var(--border-strong);
-    box-shadow:
-      var(--shadow-lg),
-      0 0 20px rgba(0, 0, 0, 0.05);
-  }
 
   .nav-links-wrapper {
     display: flex;
@@ -196,15 +189,14 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     align-items: center;
   }
 
-  /* Visibility Logic */
   .desktop-nav {
-    display: none; /* Hidden on mobile */
+    display: none;
   }
 
   .mobile-header {
     display: flex;
     width: 100%;
-    max-width: 450px; /* Slimmer for better center focus */
+    max-width: 450px;
     justify-content: space-between;
     align-items: center;
     padding: 6px 16px;
@@ -213,89 +205,67 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 9999px;
-    margin: 0 auto; /* Pure centering */
+    margin: 0 auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
-  .header-premium.scrolled .mobile-header {
-    background: var(--surface-1);
-    border-color: var(--border);
-  }
-
-  /* Desktop View Refresh - Hide Mobile Header */
   @media (min-width: 1024px) {
     .desktop-nav {
       display: flex;
     }
-
     .mobile-header {
       display: none;
     }
-
-    .header-premium {
-      padding: var(--space-6) 0;
-    }
   }
 
-  /* Link Styles (Used in Pill) */
   .nav-link {
     position: relative;
     z-index: 2;
     padding: 10px 24px;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.7); /* White at top of hero */
+    color: rgba(255, 255, 255, 0.7);
     font-size: var(--text-sm);
     font-weight: 600;
     transition: all 0.3s ease;
     border-radius: 9999px;
   }
 
-  .nav-link:hover {
-    color: #ffffff;
-  }
-  .nav-link.active {
-    color: white;
-  }
+  .nav-link:hover { color: #ffffff; }
+  .nav-link.active { color: white; }
 
-  /* Scroll State: Adapt to theme background */
-  .header-premium.scrolled .nav-link {
+  /* Text color override for solid state */
+  .header-premium.scrolled .nav-link,
+  .header-premium[data-transparent="false"] .nav-link {
     color: var(--text-muted);
   }
-  .header-premium.scrolled .nav-link:hover {
+  .header-premium.scrolled .nav-link:hover,
+  .header-premium[data-transparent="false"] .nav-link:hover {
     color: var(--text);
   }
-  .header-premium.scrolled .nav-link.active {
+  .header-premium.scrolled .nav-link.active,
+  .header-premium[data-transparent="false"] .nav-link.active {
     color: var(--primary);
   }
 
-  /* Glider Animation (The 'Indicator') */
   .nav-indicator {
     position: absolute;
     top: 4px;
     bottom: 4px;
     left: 0;
     width: 0;
-    background: rgba(255, 255, 255, 0.2); /* Subtle glass at top */
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
     z-index: 1;
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  .nav-indicator.visible {
-    opacity: 1;
-  }
-
-  /* Scrolled indicator: More prominent and theme-aware */
-  .header-premium.scrolled .nav-indicator {
+  .header-premium.scrolled .nav-indicator,
+  .header-premium[data-transparent="false"] .nav-indicator {
     background: var(--surface);
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
   }
-
-  /* Text color inside glided link must contrast against white indicator if light mode... 
-     For simple elegance, usually the indicator is white/surface and text uses primary color 
-     We already set .active color above. */
 
   .nav-pill-separator {
     width: 1px;
@@ -305,7 +275,8 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     flex-shrink: 0;
   }
 
-  .header-premium.scrolled .nav-pill-separator {
+  .header-premium.scrolled .nav-pill-separator,
+  .header-premium[data-transparent="false"] .nav-pill-separator {
     background: var(--border-strong);
     height: 20px;
   }
@@ -318,123 +289,63 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     padding-right: 4px;
   }
 
-  /* Reducir íconos para que quepan mejor en el nav */
-  .nav-settings-integrated :global(.theme-toggle),
-  .nav-settings-integrated :global(.lang-switch) {
-    padding: 6px 8px !important;
-    background: transparent !important;
-  }
-
-  /* Override internal items for Capsule Context */
-  .header-premium :global(.theme-toggle),
   .header-premium :global(.lang-switch) {
-    padding: 6px 10px; /* Tighter padding for capsule */
+    padding: 6px 10px;
     border-radius: 999px;
-  }
-
-  /* Actions Colors Override at top (Transparent Header) */
-  .header-premium:not(.scrolled) :global(.theme-toggle),
-  .header-premium:not(.scrolled) :global(.lang-switch) {
     color: rgba(255, 255, 255, 0.9);
   }
 
-  .header-premium:not(.scrolled) :global(.theme-toggle:hover),
-  .header-premium:not(.scrolled) :global(.lang-switch:hover) {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .header-premium:not(.scrolled) :global(.lang-code.active) {
-    color: white;
-  }
-
-  /* Scrolled State Overrides */
-  .header-premium.scrolled :global(.theme-toggle),
-  .header-premium.scrolled :global(.lang-switch) {
+  .header-premium.scrolled :global(.lang-switch),
+  .header-premium[data-transparent="false"] :global(.lang-switch) {
     color: var(--text-muted);
   }
 
-  .header-premium.scrolled :global(.theme-toggle:hover),
-  .header-premium.scrolled :global(.lang-switch:hover) {
-    color: var(--text);
-    background-color: var(--surface-3);
+  /* Logo text color fix */
+  .header-premium.scrolled .brand-logo :global(text),
+  .header-premium[data-transparent="false"] .brand-logo :global(text) {
+    fill: var(--text);
   }
 
-  /* Mobile Styles */
-  .mobile-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 var(--space-4);
-  }
-
-  .brand-logo-mobile {
-    display: flex;
-    align-items: center;
-  }
-
-  /* Logo adjustment for white/dark */
-  .header-premium.scrolled .brand-logo :global(text) {
-    fill: var(--text); /* Restore theme text color on scroll */
-  }
-
-  .header-premium:not(.scrolled) .brand-logo :global(path) {
-    fill: white; /* Force white text in logo at top */
-  }
-  .header-premium.scrolled .brand-logo :global(path) {
-    fill: var(--text); /* Restore theme text color on scroll */
-  }
-  .header-premium.scrolled .brand-logo :global(rect) {
-    fill: var(--primary);
+  .header-premium.scrolled .brand-logo :global(path),
+  .header-premium[data-transparent="false"] .brand-logo :global(path) {
+    fill: var(--text);
   }
 
   .mobile-toggle {
     background: none;
     border: none;
-    color: white; /* White at top */
+    color: white;
     padding: var(--space-2);
     cursor: pointer;
     transition: color 0.3s;
   }
 
-  .header-premium.scrolled .mobile-toggle {
+  .header-premium.scrolled .mobile-toggle,
+  .header-premium[data-transparent="false"] .mobile-toggle {
     color: var(--text);
   }
 
-  .desktop-only {
-    display: none;
-  }
-  .mobile-only {
-    display: flex;
-  }
-
   @media (min-width: 1024px) {
-    .desktop-nav {
-      display: flex;
-    }
-    .desktop-only {
-      display: flex;
-    }
-    .mobile-only {
-      display: none;
-    }
+    .mobile-only { display: none; }
   }
 </style>
 
 <script>
   function setupHeader() {
-    // Scroll Effect
     const header = document.getElementById("main-header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 20) {
-        header?.classList.add("scrolled");
-      } else {
-        header?.classList.remove("scrolled");
-      }
-    });
+    const isInitialTransparent = header?.dataset.transparent === "true";
 
-    // Mobile Menu Toggle
+    function updateScroll() {
+        if (window.scrollY > 20 || !isInitialTransparent) {
+            header?.classList.add("scrolled");
+        } else {
+            header?.classList.remove("scrolled");
+        }
+    }
+
+    window.addEventListener("scroll", updateScroll);
+    updateScroll();
+
     const toggleBtn = document.getElementById("mobile-menu-toggle");
     const overlay = document.getElementById("mobile-menu-overlay");
 
@@ -443,46 +354,27 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
       document.body.style.overflow = "hidden";
     });
 
-    // Segmented Control Indicator (Simple client side implementation)
     const links = document.querySelectorAll(".nav-link");
     const indicator = document.getElementById("nav-indicator");
 
     function updateIndicator(targetLink: Element | null) {
       if (!targetLink || !indicator) return;
-
       const linkRect = targetLink.getBoundingClientRect();
       const parentRect = targetLink.parentElement!.getBoundingClientRect();
-
       indicator.style.width = `${linkRect.width}px`;
       indicator.style.transform = `translateX(${linkRect.left - parentRect.left}px)`;
       indicator.classList.add("visible");
-
-      // Update Active text class
       links.forEach((l) => l.classList.remove("active"));
       targetLink.classList.add("active");
     }
 
-    // Init active state based on URL hash if possible or first item
-    /* Nota: Esto es ideal para One Page.
-       Si estamos en una página externa, quizás no queramos marcar nada o marcar un item "Productos"
-       si hacemos match con la ruta.
-    */
-
     links.forEach((link) => {
-      link.addEventListener("mouseenter", () => {
-        // Hover effect optional: mover indicador al hover?
-        // updateIndicator(link);
-      });
-
-      link.addEventListener("click", () => {
-        updateIndicator(link);
-      });
+      link.addEventListener("click", () => updateIndicator(link));
     });
 
-    // Intersection Observer for Scroll Spy
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px", // Trigger when section is near top
+      rootMargin: "-20% 0px -60% 0px",
       threshold: 0,
     };
 
@@ -491,13 +383,8 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute("id");
           if (!id) return;
-
-          const targetLink = document.querySelector(
-            `.nav-link[data-target="${id}"]`,
-          );
-          if (targetLink) {
-            updateIndicator(targetLink);
-          }
+          const targetLink = document.querySelector(`.nav-link[data-target="${id}"]`);
+          if (targetLink) updateIndicator(targetLink);
         }
       });
     }, observerOptions);

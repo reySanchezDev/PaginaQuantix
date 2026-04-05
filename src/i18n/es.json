@@ -8,5 +8,9 @@
     "services.cta.schedule": "Agendar una llamada",
     "services.cta.proposal": "Solicitar propuesta",
     "services.nav.prev": "Anterior",
-    "services.nav.next": "Siguiente"
+    "services.nav.next": "Siguiente",
+    "nav.community": "Comunidad",
+    "community.title": "Recursos Propios & Comunidad",
+    "community.description": "Compartimos herramientas potentes, instaladores y utilidades diseñadas para potenciar los flujos de trabajo de profesionales y empresas de forma gratuita.",
+    "community.download": "Descargar"
 }
