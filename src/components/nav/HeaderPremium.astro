@@ -23,6 +23,7 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
       <div class="segmented-control">
         <!-- Logo Integrated on the left -->
         <a href={homeHref} class="brand-logo" aria-label={homeAria}>
+          <img src="/favicon.svg" alt="Quantix Logo" width="32" height="32" class="header-favicon" />
           <svg
             class="logo"
             width="100"
@@ -71,7 +72,8 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
 
     <!-- Mobile Header (Logo stays visible) -->
     <div class="mobile-header mobile-only">
-      <a href={homeHref} class="brand-logo-mobile" aria-label={homeAria}>
+      <a href={homeHref} class="brand-logo-mobile" aria-label={homeAria} style="display: flex; align-items: center; gap: 0px;">
+        <img src="/favicon.svg" alt="Quantix Logo" width="28" height="28" class="header-favicon" />
         <span class="mobile-logo-text">Quantix</span>
       </a>
 
@@ -159,8 +161,15 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
   .brand-logo {
     display: flex;
     align-items: center;
+    gap: 0px;
     padding-left: var(--space-2);
     transition: transform 0.3s ease;
+  }
+
+  .header-favicon {
+    /* El ícono SVG tiene márgenes internos y el contenedor flex tiene gap cero.
+       Forzamos un margen negativo agresivo para solapar el ícono contra la letra Q */
+    margin-right: -14px;
   }
 
   .brand-logo:hover {

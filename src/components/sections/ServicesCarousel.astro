@@ -21,7 +21,7 @@ const translatedServices = services.map((service) => ({
     description: service.description[lang],
 }));
 
-const colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
+const colors = ["#3b82f6", "#10b981", "#06b6d4", "#ef4444", "#8b5cf6"];
 
 const allCards = [
     ...translatedServices,
@@ -308,28 +308,20 @@ const allCards = [
 
                         // Reflejo Premium en el Título ("Illumination")
                         if (servicesTitle) {
-                            const tWidth = servicesTitle.clientWidth;
-                            const relativeX = ptT.x + titleXOffset;
+                            // El láser se mueve en 2D. En el eje vertical, llega a y=0 en el techo.
+                            // Evaluamos qué tan alto está el cometa. Si está bajando por los lados (y > 80), la luz se apaga.
+                            let intensity = 1 - (ptT.y / 60);
+                            intensity = Math.max(0, Math.min(intensity, 1));
                             
-                            // Definimos un margen de influencia (cuándo empieza a iluminar antes de tocar las letras)
-                            const margin = 100; 
-                            const isNearTitle = relativeX > -margin && relativeX < tWidth + margin;
-
-                            if (progress > 0.02 && progress < 0.99 && isNearTitle) {
-                                // Calculamos una intensidad basada en la cercanía al centro del texto o los bordes
-                                let intensity = 1;
-                                if (relativeX < 0) intensity = (relativeX + margin) / margin;
-                                else if (relativeX > tWidth) intensity = 1 - (relativeX - tWidth) / margin;
+                            if (progress > 0.02 && progress < 0.99 && intensity > 0.01) {
+                                const relativeX = ptT.x + titleXOffset;
+                                const spread = intensity * 150; // El haz de luz crece conforme se acerca al techo
                                 
                                 servicesTitle.style.setProperty('--light-color', colorSet);
-                                servicesTitle.style.setProperty('--light-shadow', colorSet + "40"); // slightly softer
                                 servicesTitle.style.setProperty('--light-x', `${relativeX}px`);
-                                servicesTitle.style.setProperty('--light-intensity', intensity.toString());
-                                servicesTitle.classList.add('illuminated');
+                                servicesTitle.style.setProperty('--light-spread', `${spread}px`);
                             } else {
-                                servicesTitle.style.setProperty('--light-x', `-999px`);
-                                servicesTitle.style.setProperty('--light-intensity', '0');
-                                servicesTitle.classList.remove('illuminated');
+                                servicesTitle.style.setProperty('--light-spread', `0px`);
                             }
                         }
                     }
@@ -427,13 +419,14 @@ const allCards = [
     
     #services-title {
         --light-x: -999px;
+        --light-spread: 0px;
         --light-color: var(--text);
         
-        /* Teñido natural de la fuente: Las letras cambian al color del láser de forma amplia y suave */
+        /* Teñido natural de la fuente con alcance dinámico (2D simulación) */
         background: linear-gradient(to right, 
-            var(--text) calc(var(--light-x) - 150px), 
+            var(--text) calc(var(--light-x) - var(--light-spread)), 
             var(--light-color) var(--light-x), 
-            var(--text) calc(var(--light-x) + 150px)
+            var(--text) calc(var(--light-x) + var(--light-spread))
         );
         -webkit-background-clip: text;
         background-clip: text;
@@ -544,7 +537,7 @@ const allCards = [
     /* Colores per-card vinculados a atributos de datos (Inmunes al reciclaje DOM) */
     .carousel-slide[data-color="#3b82f6"] :global(.card-inner) { border-color: #3b82f6; }
     .carousel-slide[data-color="#10b981"] :global(.card-inner) { border-color: #10b981; }
-    .carousel-slide[data-color="#f59e0b"] :global(.card-inner) { border-color: #f59e0b; }
+    .carousel-slide[data-color="#06b6d4"] :global(.card-inner) { border-color: #06b6d4; }
     .carousel-slide[data-color="#ef4444"] :global(.card-inner) { border-color: #ef4444; }
     .carousel-slide[data-color="#8b5cf6"] :global(.card-inner) { border-color: #8b5cf6; }
 
