@@ -35,8 +35,10 @@ const allCards = [
     class="services-section relative overflow-hidden"
     aria-labelledby="services-title"
 >
+    <!-- Decor blobs with higher presence -->
     <div class="decor-blob decor-1"></div>
     <div class="decor-blob decor-2"></div>
+    <div class="decor-blob decor-3"></div>
 
     <Container>
         <h2
@@ -47,7 +49,7 @@ const allCards = [
         </h2>
         <div class="master-grid">
             <div class="main-column">
-                <div class="master-card glass-panel" id="master-card-container">
+                <div class="master-card" id="master-card-container">
                     <div class="master-content-wrapper" id="master-content">
                         <div
                             class="master-icon-container"
@@ -87,7 +89,9 @@ const allCards = [
                         </div>
                     </div>
 
+                    <!-- Enhanced Projection Ripple -->
                     <div class="collision-ripple" id="collision-ripple"></div>
+                    <div class="collision-glow" id="collision-glow"></div>
                 </div>
             </div>
 
@@ -227,13 +231,17 @@ const allCards = [
 
                 // 1. Detección de Proyección Estable (Last-Crossed Logic)
                 const slides = Array.from(track!.children) as HTMLElement[];
-                // Buscamos la ULTIMA carta (la más a la derecha) que ha cruzado el sensor
-                // Esto garantiza que el orden sea secuencial sin saltarse ninguna
+                
+                // Buscamos la más cercana al sensor
                 const newestImpact = slides
                     .reverse()
                     .find((s) => s.getBoundingClientRect().left < sensorX);
 
+                // Add focus class to the projected one
+                slides.forEach(s => s.classList.remove('in-focus'));
+
                 if (newestImpact) {
+                    newestImpact.classList.add('in-focus');
                     const id = newestImpact.dataset.id || "";
                     if (id !== lastProjectedId) {
                         lastProjectedId = id;
@@ -245,7 +253,7 @@ const allCards = [
                 const first = track!.firstElementChild as HTMLElement;
                 if (first) {
                     const rect = first.getBoundingClientRect();
-                    if (rect.right < trackRect.left - 50) {
+                    if (rect.right < trackRect.left - 100) {
                         track!.appendChild(first);
                         currentPos += rect.width + gap;
                         track!.style.transform = `translateX(${currentPos}px)`;
@@ -263,7 +271,7 @@ const allCards = [
             setTimeout(() => {
                 updateContent(slide);
                 masterCard?.classList.remove("absorbing");
-            }, 150); // Más rápido para evitar lag visual
+            }, 180); 
 
             if (ripple) {
                 ripple.classList.remove("active");
@@ -288,7 +296,7 @@ const allCards = [
 
             const cardW = first.offsetWidth + gap;
             const startPos = currentPos;
-            const duration = 400;
+            const duration = 500;
             let startT: number;
 
             function step(t: number) {
@@ -321,7 +329,7 @@ const allCards = [
             track!.style.transform = `translateX(${currentPos}px)`;
 
             const startPos = currentPos;
-            const duration = 400;
+            const duration = 500;
             let startT: number;
 
             function step(t: number) {
@@ -353,9 +361,10 @@ const allCards = [
 <style>
     .services-section {
         background: var(--bg);
-        padding: var(--space-12) 0;
+        padding: var(--space-24) 0;
         position: relative;
     }
+
     .master-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -364,107 +373,137 @@ const allCards = [
 
     @media (min-width: 1024px) {
         .master-grid {
-            grid-template-columns: 480px 1fr;
-            gap: var(--space-12);
+            grid-template-columns: 520px 1fr;
+            gap: var(--space-16);
             align-items: center;
         }
     }
 
     .section-title {
         font-family: "Space Grotesk", sans-serif;
-        font-size: clamp(2rem, 3vw, 2.5rem);
+        font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 800;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--space-12);
         color: var(--text);
+        letter-spacing: -0.03em;
+        line-height: 1;
     }
 
     .master-card {
-        background: var(--surface-2);
-        border: 1px solid var(--border);
-        border-radius: 24px;
-        padding: var(--space-8);
-        min-height: 550px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        padding: var(--space-12);
+        min-height: 600px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        box-shadow: 
+            0 30px 60px -12px rgba(0, 0, 0, 0.5),
+            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        transition: border-color 0.4s ease;
     }
 
     :global(.dark) .master-card {
-        background: linear-gradient(145deg, #1e293b, #0f172a);
+        background: linear-gradient(165deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.8));
+        border-color: rgba(255, 255, 255, 0.06);
     }
 
     .master-content-wrapper {
         transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
+            opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: opacity, transform;
     }
     .master-card.absorbing .master-content-wrapper {
         opacity: 0;
-        transform: translateY(5px);
+        transform: translateX(15px) scale(0.98);
     }
 
     .master-icon-container {
-        width: 64px;
-        height: 64px;
-        background: var(--primary);
+        width: 88px;
+        height: 88px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
         color: white;
-        border-radius: 16px;
+        border-radius: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: var(--space-6);
-        box-shadow: 0 8px 16px rgba(var(--primary-rgb), 0.3);
+        margin-bottom: var(--space-8);
+        box-shadow: 
+            0 20px 40px rgba(var(--primary-rgb), 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.2);
+        position: relative;
     }
+
+    .master-icon-container::after {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: inherit;
+        border-radius: inherit;
+        filter: blur(20px);
+        opacity: 0.5;
+        z-index: -1;
+    }
+
     .master-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: var(--space-4);
-        line-height: 1.2;
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin-bottom: var(--space-6);
+        line-height: 1.1;
         color: var(--text);
+        letter-spacing: -0.02em;
     }
     .master-description {
-        font-size: 1.125rem;
+        font-size: 1.35rem;
         color: var(--text-muted);
         line-height: 1.6;
+        font-weight: 400;
     }
     .master-actions {
-        margin-top: var(--space-8);
+        margin-top: var(--space-12);
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-4);
+        position: relative;
+        z-index: 2;
     }
 
     .collision-ripple {
         position: absolute;
         top: 0;
         left: 0;
-        width: 30px;
+        width: 100%;
         height: 100%;
-        background: linear-gradient(
-            90deg,
-            rgba(var(--primary-rgb), 0.3),
-            transparent
+        background: radial-gradient(
+            800px circle at left center,
+            rgba(var(--primary-rgb), 0.15),
+            transparent 80%
         );
-        transform: scaleX(0);
-        transform-origin: left;
         pointer-events: none;
         opacity: 0;
+        z-index: 1;
     }
     .collision-ripple.active {
-        animation: ripple-flash 0.6s ease-out forwards;
+        animation: ripple-pulse 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes ripple-flash {
+
+    @keyframes ripple-pulse {
         0% {
-            transform: scaleX(0);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        30% {
             opacity: 1;
         }
         100% {
-            transform: scaleX(50);
             opacity: 0;
+            transform: scale(1.1);
         }
     }
 
@@ -472,78 +511,103 @@ const allCards = [
         position: relative;
         width: 100%;
         overflow: hidden;
-        mask-image: linear-gradient(to right, transparent 0%, black 150px);
+        mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
         -webkit-mask-image: linear-gradient(
             to right,
             transparent 0%,
-            black 150px
+            black 10%,
+            black 90%,
+            transparent 100%
         );
     }
     .carousel-track {
         display: flex;
-        gap: 24px;
+        gap: 32px;
         will-change: transform;
-        padding: 20px 0;
+        padding: 50px 0;
     }
+
     .carousel-slide {
         flex: 0 0 320px;
         width: 320px;
         opacity: 0.4;
-        filter: grayscale(100%);
-        transition: all 0.5s ease;
-        scale: 0.95;
+        filter: grayscale(90%) blur(2px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        scale: 0.85;
+        transform-origin: center;
     }
+
     .carousel-slide:hover {
+        opacity: 1 !important;
+        filter: grayscale(0%) blur(0) !important;
+        scale: 1.08 !important;
+        z-index: 10;
+    }
+
+    .carousel-slide.in-focus {
         opacity: 1;
-        filter: grayscale(0%);
-        scale: 1;
+        filter: grayscale(0%) blur(0);
+        scale: 1.02;
     }
 
     .carousel-controls {
-        display: none;
+        display: flex;
         justify-content: center;
-        gap: var(--space-3);
-        margin-top: var(--space-8);
+        gap: var(--space-4);
+        margin-top: var(--space-10);
     }
+
     .nav-btn {
-        width: 48px;
-        height: 48px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--surface-2);
+        background: rgba(255, 255, 255, 0.05);
         color: var(--text);
-        border: 1px solid var(--border);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(12px);
     }
+
     .nav-btn:hover {
         background: var(--primary);
         color: white;
         border-color: var(--primary);
+        transform: scale(1.15);
+        box-shadow: 0 15px 30px rgba(var(--primary-rgb), 0.4);
     }
 
     .decor-blob {
         position: absolute;
         border-radius: 50%;
-        filter: blur(100px);
+        filter: blur(140px);
         z-index: 0;
-        opacity: 0.15;
+        opacity: 0.25;
         pointer-events: none;
     }
     .decor-1 {
-        top: -10%;
-        right: -5%;
-        width: 500px;
-        height: 500px;
+        top: -15%;
+        right: -10%;
+        width: 700px;
+        height: 700px;
         background: var(--primary);
     }
     .decor-2 {
-        bottom: -10%;
-        left: -5%;
-        width: 400px;
-        height: 400px;
+        bottom: -15%;
+        left: -10%;
+        width: 600px;
+        height: 600px;
         background: var(--accent);
+    }
+    .decor-3 {
+        top: 40%;
+        right: 30%;
+        width: 300px;
+        height: 300px;
+        background: var(--primary-soft);
+        opacity: 0.1;
     }
 </style>
