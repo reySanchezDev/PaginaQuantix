@@ -143,6 +143,7 @@ const allCards = [
         const masterDesc = document.getElementById("master-desc");
         const masterIcon = document.getElementById("master-icon");
         const impactRipple = document.getElementById("impact-ripple");
+        const servicesTitle = document.getElementById("services-title");
 
         const svg = document.getElementById("master-border-svg");
         const pathTop = document.getElementById("border-path-top") as unknown as SVGPathElement;
@@ -154,6 +155,7 @@ const allCards = [
         if (!masterCard || !track || !svg || !pathTop || !pathBottom) return;
 
         // --- 1. LÓGICA DE DIBUJO MATEMÁTICO PERFECTO ---
+        let titleXOffset = 0;
         function resizeSVG() {
             const pw = masterCard!.clientWidth;
             const ph = masterCard!.clientHeight;
@@ -183,10 +185,18 @@ const allCards = [
                     p.style.strokeDashoffset = `${len}`;
                 }
             });
+
+            if (servicesTitle && svg) {
+                const sRect = svg.getBoundingClientRect();
+                const tRect = servicesTitle.getBoundingClientRect();
+                titleXOffset = sRect.left - tRect.left;
+            }
         }
 
         const resizeObs = new ResizeObserver(resizeSVG);
         resizeObs.observe(masterCard);
+        const handleWindowResize = () => resizeSVG();
+        window.addEventListener("resize", handleWindowResize);
         resizeSVG();
 
 
@@ -272,16 +282,17 @@ const allCards = [
                     // --- SINCRONIZACIÓN LUZ LÁSER (COMETAS) ---
                     if (cometTop && cometBot) {
                         const pathLen = pathTop.getTotalLength();
+                        const colorSet = activeSlideElement.dataset.color || "#3b82f6";
                         
                         if (progress > 0.02 && progress < 0.99) {
                             cometTop.style.opacity = '1';
                             cometBot.style.opacity = '1';
-                            cometTop.style.color = activeSlideElement.dataset.color || "#3b82f6";
-                            cometBot.style.color = activeSlideElement.dataset.color || "#3b82f6";
+                            cometTop.style.color = colorSet;
+                            cometBot.style.color = colorSet;
                             
                             // Trazos asumen su propio color de borde puro dinámicamente
-                            pathTop.style.stroke = activeSlideElement.dataset.color || "#3b82f6";
-                            pathBottom.style.stroke = activeSlideElement.dataset.color || "#3b82f6";
+                            pathTop.style.stroke = colorSet;
+                            pathBottom.style.stroke = colorSet;
                         } else {
                             // Se desvanecen en el impacto o reinicio
                             cometTop.style.opacity = '0';
@@ -294,6 +305,33 @@ const allCards = [
 
                         const ptB = pathBottom.getPointAtLength(pathBottom.getTotalLength() * progress);
                         cometBot.style.transform = `translate(${ptB.x}px, ${ptB.y}px)`;
+
+                        // Reflejo Premium en el Título ("Illumination")
+                        if (servicesTitle) {
+                            const tWidth = servicesTitle.clientWidth;
+                            const relativeX = ptT.x + titleXOffset;
+                            
+                            // Definimos un margen de influencia (cuándo empieza a iluminar antes de tocar las letras)
+                            const margin = 100; 
+                            const isNearTitle = relativeX > -margin && relativeX < tWidth + margin;
+
+                            if (progress > 0.02 && progress < 0.99 && isNearTitle) {
+                                // Calculamos una intensidad basada en la cercanía al centro del texto o los bordes
+                                let intensity = 1;
+                                if (relativeX < 0) intensity = (relativeX + margin) / margin;
+                                else if (relativeX > tWidth) intensity = 1 - (relativeX - tWidth) / margin;
+                                
+                                servicesTitle.style.setProperty('--light-color', colorSet);
+                                servicesTitle.style.setProperty('--light-shadow', colorSet + "40"); // slightly softer
+                                servicesTitle.style.setProperty('--light-x', `${relativeX}px`);
+                                servicesTitle.style.setProperty('--light-intensity', intensity.toString());
+                                servicesTitle.classList.add('illuminated');
+                            } else {
+                                servicesTitle.style.setProperty('--light-x', `-999px`);
+                                servicesTitle.style.setProperty('--light-intensity', '0');
+                                servicesTitle.classList.remove('illuminated');
+                            }
+                        }
                     }
 
                     // IMPACTO: Justo cuando termina el progreso físico de recorrido, impactamos simultáneamente.
@@ -366,6 +404,7 @@ const allCards = [
         return () => {
             cancelAnimationFrame(animationId);
             resizeObs.disconnect();
+            window.removeEventListener("resize", handleWindowResize);
             nextBtn?.removeEventListener("click", handleNext);
             prevBtn?.removeEventListener("click", handlePrev);
             col?.removeEventListener("mouseenter", handleEnter);
@@ -385,6 +424,30 @@ const allCards = [
 
 <style>
     .services-section { background: var(--bg); padding: var(--space-20) 0; position: relative; }
+    
+    #services-title {
+        --light-x: -999px;
+        --light-color: var(--text);
+        
+        /* Teñido natural de la fuente: Las letras cambian al color del láser de forma amplia y suave */
+        background: linear-gradient(to right, 
+            var(--text) calc(var(--light-x) - 150px), 
+            var(--light-color) var(--light-x), 
+            var(--text) calc(var(--light-x) + 150px)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+
+    #services-title.illuminated {
+        /* Sin sombras exteriores (drop-shadow). 
+           Esto fuerza a que toda la percepción de la luz provenga estrictamente 
+           del relleno de las letras (interior), como si estuvieran hechas de cristal. */
+        filter: none;
+    }
+
     .master-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
     @media (min-width: 1024px) {
         .master-grid { grid-template-columns: 480px 1fr; gap: var(--space-12); align-items: center; }
