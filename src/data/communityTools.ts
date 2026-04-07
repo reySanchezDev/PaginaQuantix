@@ -21,7 +21,7 @@ export const communityTools: CommunityTool[] = [
         id: 'qavision',
         title: 'QAVision',
         type: 'Windows Installer (.exe)',
-        version: '0.1.0',
+        version: '1.0.1',
         description: {
             es: 'Potente herramienta de apoyo para equipos de QA que combina captura de pantalla de alta fidelidad, grabación de video por zona con FFmpeg y un visor profesional con edición enriquecida. Diseñada para documentar evidencia visual con precisión quirúrgica y organización automática por contextos de trabajo.',
             en: 'Powerful support tool for QA teams combining high-fidelity screen capture, zone video recording with FFmpeg, and a professional viewer with rich editing. Designed to document visual evidence with surgical precision and automatic organization by work context.'
@@ -47,7 +47,7 @@ export const communityTools: CommunityTool[] = [
                 'Floating Productivity: dockable window always visible for instant access'
             ]
         },
-        downloadUrl: 'https://pub-7f7968ed52f3476cb305c24354c4468d.r2.dev/QAVision-Setup-0.1.0.exe',
+        downloadUrl: 'https://pub-7f7968ed52f3476cb305c24354c4468d.r2.dev/QAVision-Setup-1.0.1.exe',
         icon: 'camera' // Use simple identifier for SVG rendering later
     }
 ];
