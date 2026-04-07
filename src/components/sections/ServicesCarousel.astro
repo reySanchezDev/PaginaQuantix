@@ -53,6 +53,10 @@ const allCards = [
                     <svg class="master-border-svg" id="master-border-svg">
                         <path id="border-path-top" class="dynamic-border" />
                         <path id="border-path-bottom" class="dynamic-border" />
+
+                        <!-- Láser (Cometa de Datos) -->
+                        <circle id="comet-top" class="comet-spark" cx="0" cy="0" r="2.5" fill="#ffffff" style="color: currentColor;" />
+                        <circle id="comet-bot" class="comet-spark" cx="0" cy="0" r="2.5" fill="#ffffff" style="color: currentColor;" />
                     </svg>
 
                     <!-- Efecto de Impacto en Centro-Izquierdo -->
@@ -143,6 +147,9 @@ const allCards = [
         const svg = document.getElementById("master-border-svg");
         const pathTop = document.getElementById("border-path-top") as unknown as SVGPathElement;
         const pathBottom = document.getElementById("border-path-bottom") as unknown as SVGPathElement;
+
+        const cometTop = document.getElementById("comet-top");
+        const cometBot = document.getElementById("comet-bot");
 
         if (!masterCard || !track || !svg || !pathTop || !pathBottom) return;
 
@@ -262,6 +269,33 @@ const allCards = [
                          p.style.strokeDashoffset = `${len * (1 - progress)}`;
                     });
 
+                    // --- SINCRONIZACIÓN LUZ LÁSER (COMETAS) ---
+                    if (cometTop && cometBot) {
+                        const pathLen = pathTop.getTotalLength();
+                        
+                        if (progress > 0.02 && progress < 0.99) {
+                            cometTop.style.opacity = '1';
+                            cometBot.style.opacity = '1';
+                            cometTop.style.color = activeSlideElement.dataset.color || "#3b82f6";
+                            cometBot.style.color = activeSlideElement.dataset.color || "#3b82f6";
+                            
+                            // Trazos asumen su propio color de borde puro dinámicamente
+                            pathTop.style.stroke = activeSlideElement.dataset.color || "#3b82f6";
+                            pathBottom.style.stroke = activeSlideElement.dataset.color || "#3b82f6";
+                        } else {
+                            // Se desvanecen en el impacto o reinicio
+                            cometTop.style.opacity = '0';
+                            cometBot.style.opacity = '0';
+                        }
+
+                        // Calcular punto exacto matemático en la curva
+                        const ptT = pathTop.getPointAtLength(pathLen * progress);
+                        cometTop.style.transform = `translate(${ptT.x}px, ${ptT.y}px)`;
+
+                        const ptB = pathBottom.getPointAtLength(pathBottom.getTotalLength() * progress);
+                        cometBot.style.transform = `translate(${ptB.x}px, ${ptB.y}px)`;
+                    }
+
                     // IMPACTO: Justo cuando termina el progreso físico de recorrido, impactamos simultáneamente.
                     if (progress >= 0.99 && !hasImpacted) {
                         hasImpacted = true;
@@ -349,7 +383,7 @@ const allCards = [
     .dynamic-border {
         fill: none;
         stroke: transparent;
-        stroke-width: 5px; /* Trazo grueso garantizado */
+        stroke-width: 2px; /* Trazo fino y elegante */
         stroke-linecap: round;
         will-change: stroke-dashoffset;
     }
@@ -432,6 +466,14 @@ const allCards = [
     .carousel-slide[data-color="#8b5cf6"] :global(.card-inner) { border-color: #8b5cf6; }
 
     .nav-btn { display: none; } /* Ocultar controles manuales si es full auto */
+
+    .comet-spark {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        will-change: transform, opacity;
+        /* Triple drop-shadow genera el "bloom" incandescente sin sobrecargar WebGL */
+        filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor);
+    }
 
     .decor-blob { position: absolute; border-radius: 50%; filter: blur(100px); z-index: 0; opacity: 0.15; pointer-events: none; }
     .decor-1 { top: -10%; right: -5%; width: 500px; height: 500px; background: var(--primary); }
