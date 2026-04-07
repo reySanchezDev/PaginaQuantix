@@ -339,27 +339,47 @@ const allCards = [
         }
 
         // Navegación Manual (Funciona perfecto con la nueva lógica vinculada)
-        document.getElementById("next-btn")?.addEventListener("click", () => {
+        const nextBtn = document.getElementById("next-btn");
+        const prevBtn = document.getElementById("prev-btn");
+        
+        const handleNext = () => {
              currentPos -= TOTAL_DISTANCE;
              track!.style.transform = `translateX(${currentPos}px)`;
-        });
-        document.getElementById("prev-btn")?.addEventListener("click", () => {
+        };
+        const handlePrev = () => {
              currentPos += TOTAL_DISTANCE;
              track!.style.transform = `translateX(${currentPos}px)`;
-        });
+        };
+        
+        nextBtn?.addEventListener("click", handleNext);
+        prevBtn?.addEventListener("click", handlePrev);
 
         // Pausa en Hover: Notarás que el pintado mágicamente pausa si pones el mouse
         const col = document.querySelector(".carousel-column");
-        col?.addEventListener("mouseenter", () => (isPaused = true));
-        col?.addEventListener("mouseleave", () => (isPaused = false));
+        
+        const handleEnter = () => (isPaused = true);
+        const handleLeave = () => (isPaused = false);
+        
+        col?.addEventListener("mouseenter", handleEnter);
+        col?.addEventListener("mouseleave", handleLeave);
+
+        return () => {
+            cancelAnimationFrame(animationId);
+            resizeObs.disconnect();
+            nextBtn?.removeEventListener("click", handleNext);
+            prevBtn?.removeEventListener("click", handlePrev);
+            col?.removeEventListener("mouseenter", handleEnter);
+            col?.removeEventListener("mouseleave", handleLeave);
+        };
     }
 
-    let isInit = false;
+    let cleanupCurrentCarousel: (() => void) | null | void = null;
+
     document.addEventListener("astro:page-load", () => {
-        if(!isInit){ initMasterCarousel(); isInit = true; }
-    });
-    document.addEventListener("DOMContentLoaded", () => {
-        if(!isInit){ initMasterCarousel(); isInit = true; }
+        if (typeof cleanupCurrentCarousel === 'function') {
+            cleanupCurrentCarousel();
+        }
+        cleanupCurrentCarousel = initMasterCarousel();
     });
 </script>
 

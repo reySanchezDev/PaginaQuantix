@@ -394,8 +394,19 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     document.querySelectorAll("section[id]").forEach((section) => {
       spyObserver.observe(section);
     });
+
+    return () => {
+        window.removeEventListener("scroll", updateScroll);
+        spyObserver.disconnect();
+    };
   }
 
-  setupHeader();
-  document.addEventListener("astro:page-load", setupHeader);
+  let cleanupHeader: (() => void) | null | void = null;
+  
+  document.addEventListener("astro:page-load", () => {
+      if (typeof cleanupHeader === 'function') {
+          cleanupHeader();
+      }
+      cleanupHeader = setupHeader();
+  });
 </script>
