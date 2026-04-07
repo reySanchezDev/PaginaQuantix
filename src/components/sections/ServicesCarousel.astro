@@ -21,7 +21,8 @@ const translatedServices = services.map((service) => ({
     description: service.description[lang],
 }));
 
-// Multiplicamos para loop infinito
+const colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
+
 const allCards = [
     ...translatedServices,
     ...translatedServices,
@@ -46,18 +47,20 @@ const allCards = [
             {t["services.title"]}
         </h2>
         <div class="master-grid">
-            <div class="main-column">
-                <div class="master-card glass-panel" id="master-card-container">
+            <div class="main-column relative">
+                <div class="master-card" id="master-card-container">
+                    <!-- Borde SVG Dinámico. Las dimensiones se calculan exactas en JS = Sin fragmentaciones -->
+                    <svg class="master-border-svg" id="master-border-svg">
+                        <path id="border-path-top" class="dynamic-border" />
+                        <path id="border-path-bottom" class="dynamic-border" />
+                    </svg>
+
+                    <!-- Efecto de Impacto en Centro-Izquierdo -->
+                    <div class="impact-ripple" id="impact-ripple"></div>
+
                     <div class="master-content-wrapper" id="master-content">
-                        <div
-                            class="master-icon-container"
-                            id="master-icon-wrap"
-                        >
-                            <div
-                                id="master-icon"
-                                class="master-icon"
-                                set:html={""}
-                            />
+                        <div class="master-icon-container" id="master-icon-wrap">
+                            <div id="master-icon" class="master-icon"></div>
                         </div>
 
                         <div class="master-text">
@@ -68,26 +71,12 @@ const allCards = [
 
                     <div class="master-actions">
                         <div class="w-full sm:w-auto">
-                            <Button
-                                variant="primary"
-                                href={contactHref}
-                                class="w-full justify-center"
-                            >
-                                {t["services.cta.schedule"]}
-                            </Button>
+                            <Button variant="primary" href={contactHref} class="w-full justify-center">{t["services.cta.schedule"]}</Button>
                         </div>
                         <div class="w-full sm:w-auto">
-                            <Button
-                                variant="secondary"
-                                href={contactHref}
-                                class="w-full justify-center"
-                            >
-                                {t["services.cta.proposal"]}
-                            </Button>
+                            <Button variant="secondary" href={contactHref} class="w-full justify-center">{t["services.cta.proposal"]}</Button>
                         </div>
                     </div>
-
-                    <div class="collision-ripple" id="collision-ripple"></div>
                 </div>
             </div>
 
@@ -95,66 +84,32 @@ const allCards = [
                 <div class="carousel-mask">
                     <div class="carousel-track" id="services-track">
                         {
-                            allCards.map((service, index) => (
-                                <div
-                                    class="carousel-slide"
-                                    data-id={`${index}-${service.title.substring(0, 3)}`}
-                                    data-title={service.title}
-                                    data-desc={service.description}
-                                    data-icon={service.icon}
-                                >
-                                    <ServiceCard
-                                        icon={service.icon}
-                                        title={service.title}
-                                        description={service.description}
-                                    />
-                                </div>
-                            ))
+                            allCards.map((service, index) => {
+                                const cardColor = colors[index % colors.length];
+                                return (
+                                    <div
+                                        class="carousel-slide"
+                                        data-id={`${index}-${service.title.substring(0, 4)}`}
+                                        data-title={service.title}
+                                        data-desc={service.description}
+                                        data-icon={service.icon}
+                                        data-color={cardColor}
+                                    >
+                                        <ServiceCard
+                                            icon={service.icon}
+                                            title={service.title}
+                                            description={service.description}
+                                        />
+                                    </div>
+                                );
+                            })
                         }
                     </div>
                 </div>
-
+                
                 <div class="carousel-controls">
-                    <button
-                        id="prev-btn"
-                        class="nav-btn"
-                        aria-label={t["services.nav.prev"]}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            ><line x1="19" y1="12" x2="5" y2="12"
-                            ></line><polyline points="12 19 5 12 12 5"
-                            ></polyline></svg
-                        >
-                    </button>
-                    <button
-                        id="next-btn"
-                        class="nav-btn"
-                        aria-label={t["services.nav.next"]}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            ><line x1="5" y1="12" x2="19" y2="12"
-                            ></line><polyline points="12 5 19 12 12 19"
-                            ></polyline></svg
-                        >
-                    </button>
+                    <button id="prev-btn" class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button id="next-btn" class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                 </div>
             </div>
         </div>
@@ -163,53 +118,85 @@ const allCards = [
 
 <script>
     const iconsMap: Record<string, string> = {
-        compass:
-            '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
-        palette:
-            '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.1 0-.9.7-1.6 1.6-1.6H17c2.8 0 5-2.2 5-5 0-5.5-4.5-10-10-10z"/>',
+        compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+        palette: '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.1 0-.9.7-1.6 1.6-1.6H17c2.8 0 5-2.2 5-5 0-5.5-4.5-10-10-10z"/>',
         layout: '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/>',
-        smartphone:
-            '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
+        smartphone: '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
         link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
-        "refresh-cw":
-            '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
+        "refresh-cw": '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
         cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-        database:
-            '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
+        database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
         cpu: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M12 2v2"/><path d="M9 2v2"/><path d="M2 15h2"/><path d="M2 12h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 12h2"/><path d="M20 9h2"/><path d="M15 20v2"/><path d="M12 20v2"/><path d="M9 20v2"/>',
-        "shield-check":
-            '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>',
-        "git-merge":
-            '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/>',
+        "shield-check": '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>',
+        "git-merge": '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/>',
         layers: '<polygon points="12 2 2 7 12 12 22 7 12 2"/> <polyline points="2 17 12 22 22 17"/> <polyline points="2 12 12 17 22 12"/>',
     };
 
     function initMasterCarousel() {
         const track = document.getElementById("services-track");
-        if (!track) return;
-
         const masterCard = document.getElementById("master-card-container");
         const masterTitle = document.getElementById("master-title");
         const masterDesc = document.getElementById("master-desc");
         const masterIcon = document.getElementById("master-icon");
-        const ripple = document.getElementById("collision-ripple");
+        const impactRipple = document.getElementById("impact-ripple");
 
-        if (!masterTitle || !masterDesc || !masterIcon) return;
+        const svg = document.getElementById("master-border-svg");
+        const pathTop = document.getElementById("border-path-top") as unknown as SVGPathElement;
+        const pathBottom = document.getElementById("border-path-bottom") as unknown as SVGPathElement;
 
-        // State
+        if (!masterCard || !track || !svg || !pathTop || !pathBottom) return;
+
+        // --- 1. LÓGICA DE DIBUJO MATEMÁTICO PERFECTO ---
+        function resizeSVG() {
+            const pw = masterCard!.clientWidth;
+            const ph = masterCard!.clientHeight;
+            if(pw === 0 || ph === 0) return;
+
+            const pad = 2; // Extra padding
+            const w = pw + pad * 2;
+            const h = ph + pad * 2;
+            const r = 24 + pad; // border-radius of the card
+            
+            svg!.setAttribute("viewBox", `0 0 ${w} ${h}`);
+            
+            // Path Top y Bottom milimétricos
+            const pTopD = `M ${w} ${h/2} L ${w} ${r} A ${r} ${r} 0 0 0 ${w-r} 0 L ${r} 0 A ${r} ${r} 0 0 0 0 ${r} L 0 ${h/2}`;
+            pathTop!.setAttribute("d", pTopD);
+
+            const pBotD = `M ${w} ${h/2} L ${w} ${h-r} A ${r} ${r} 0 0 1 ${w-r} ${h} L ${r} ${h} A ${r} ${r} 0 0 1 0 ${h-r} L 0 ${h/2}`;
+            pathBottom!.setAttribute("d", pBotD);
+
+            // ¡CRÍTICO! Configurar el patrón de guiones al total de la longitud para que empiece invisible.
+            // Si no seteamos dasharray, la línea se ve sólida o entrecortada.
+            [pathTop, pathBottom].forEach(p => {
+                const len = p.getTotalLength();
+                p.style.strokeDasharray = `${len} ${len}`;
+                // Iniciarlo escondido
+                if(p.style.strokeDashoffset === "") {
+                    p.style.strokeDashoffset = `${len}`;
+                }
+            });
+        }
+
+        const resizeObs = new ResizeObserver(resizeSVG);
+        resizeObs.observe(masterCard);
+        resizeSVG();
+
+
+        // --- 2. MOTOR DE SINCRONIZACIÓN FÍSICA (FRAME A FRAME) ---
+
         let currentPos = 0;
-        let speed = 0.5;
+        let speed = 0.5; // Velocidad. Una card demora aprox ~11.5 segundos en pasar.
         let isPaused = false;
         let animationId: number;
-        let lastProjectedId = "";
-        const gap = 24;
+        
+        let activeSlideId = "";
+        let activeSlideElement: HTMLElement | null = null;
+        let hasImpacted = false;
 
-        // Init
-        const first = track.firstElementChild as HTMLElement;
-        if (first) {
-            updateContent(first);
-            lastProjectedId = first.dataset.id || "";
-        }
+        const gap = 24;
+        const CARD_WIDTH = 320;
+        const TOTAL_DISTANCE = CARD_WIDTH + gap; // Distancia exacta entre ciclos = 344px
 
         start();
 
@@ -219,34 +206,81 @@ const allCards = [
 
         function animate() {
             if (!isPaused) {
+                // Mover carrusel
                 currentPos -= speed;
                 track!.style.transform = `translateX(${currentPos}px)`;
 
                 const trackRect = track!.parentElement!.getBoundingClientRect();
-                const sensorX = trackRect.left + 150; // Sensor Point estable
+                const sensorX = trackRect.left + 350; 
 
-                // 1. Detección de Proyección Estable (Last-Crossed Logic)
+                // Identificar la tarjeta que de cruzó el sensor
                 const slides = Array.from(track!.children) as HTMLElement[];
-                // Buscamos la ULTIMA carta (la más a la derecha) que ha cruzado el sensor
-                // Esto garantiza que el orden sea secuencial sin saltarse ninguna
-                const newestImpact = slides
-                    .reverse()
-                    .find((s) => s.getBoundingClientRect().left < sensorX);
+                const targetSlide = slides.slice().reverse().find(s => {
+                    return s.getBoundingClientRect().left <= sensorX;
+                });
 
-                if (newestImpact) {
-                    const id = newestImpact.dataset.id || "";
-                    if (id !== lastProjectedId) {
-                        lastProjectedId = id;
-                        triggerProjection(newestImpact);
+                if (targetSlide) {
+                    const id = targetSlide.dataset.id || "";
+                    // Si llega una nueva tarjeta (o es la primera)
+                    if (id !== activeSlideId) {
+                        activeSlideId = id;
+                        activeSlideElement = targetSlide;
+                        hasImpacted = false; // Reset impacto para la nueva carta
+                        
+                        // FADE de contenido veloz al cambiar de tarjeta
+                        masterCard?.classList.add("absorbing");
+                        setTimeout(() => {
+                            updateContent(targetSlide);
+                            masterCard?.classList.remove("absorbing");
+                        }, 200);
+
+                        // Asignar color inmediatamente
+                        const color = targetSlide.dataset.color || "#3b82f6";
+                        [pathTop, pathBottom].forEach(p => {
+                            p.style.stroke = color;
+                            p.style.transition = 'none'; // Quitar animaciones CSS, usaremos JS.
+                        });
                     }
                 }
 
-                // 2. Reciclaje DOM (Fuera de vista)
-                const first = track!.firstElementChild as HTMLElement;
-                if (first) {
-                    const rect = first.getBoundingClientRect();
+                // *** EL NÚCLEO MÁGICO: SINCRONIZACIÓN MILIMÉTRICA ***
+                // La línea se dibuja atada 100% a donde está físicamente la tarjeta calculando su avance
+                if (activeSlideElement) {
+                    const rect = activeSlideElement.getBoundingClientRect();
+                    // Cuánto avanzó la tarjeta desde que tocó el sensorX
+                    const distanceMoved = sensorX - rect.left;
+                    
+                    // Ratio de 0 a 1 coordinado con el recorrido total (344px)
+                    let progress = distanceMoved / TOTAL_DISTANCE;
+                    progress = Math.max(0, Math.min(progress, 1));
+
+                    [pathTop, pathBottom].forEach(p => {
+                         const len = p.getTotalLength();
+                         // Mantenemos el dasharray fijado al tamaño exacto
+                         p.style.strokeDasharray = `${len} ${len}`;
+                         // Si progress es 0, no dibuja. Si es 1, dibuja por completo (offset 0)
+                         p.style.strokeDashoffset = `${len * (1 - progress)}`;
+                    });
+
+                    // IMPACTO: Justo cuando termina el progreso físico de recorrido, impactamos simultáneamente.
+                    if (progress >= 0.99 && !hasImpacted) {
+                        hasImpacted = true;
+                        if (impactRipple) {
+                            impactRipple.style.background = 'transparent'; // Reset any old hard color
+                            impactRipple.style.setProperty('--ripple-color', activeSlideElement.dataset.color || "#3b82f6");
+                            impactRipple.classList.remove("active");
+                            void impactRipple.offsetWidth;
+                            impactRipple.classList.add("active");
+                        }
+                    }
+                }
+
+                // Reciclaje infinito DOM
+                const firstChild = track!.firstElementChild as HTMLElement;
+                if (firstChild) {
+                    const rect = firstChild.getBoundingClientRect();
                     if (rect.right < trackRect.left - 50) {
-                        track!.appendChild(first);
+                        track!.appendChild(firstChild);
                         currentPos += rect.width + gap;
                         track!.style.transform = `translateX(${currentPos}px)`;
                     }
@@ -255,132 +289,103 @@ const allCards = [
             animationId = requestAnimationFrame(animate);
         }
 
-        function triggerProjection(slide: HTMLElement) {
-            // Animación suave de entrada
-            masterCard?.classList.add("absorbing");
-
-            // Programar el cambio de texto a mitad del fade
-            setTimeout(() => {
-                updateContent(slide);
-                masterCard?.classList.remove("absorbing");
-            }, 150); // Más rápido para evitar lag visual
-
-            if (ripple) {
-                ripple.classList.remove("active");
-                void ripple.offsetWidth;
-                ripple.classList.add("active");
-            }
-        }
-
         function updateContent(slide: HTMLElement) {
             masterTitle!.innerText = slide.dataset.title || "";
             masterDesc!.innerText = slide.dataset.desc || "";
             const iconName = slide.dataset.icon || "compass";
             const svg = iconsMap[iconName] || iconsMap["compass"];
             masterIcon!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svg}</svg>`;
+            
+            const color = slide.dataset.color || "#3b82f6";
+            const iconCont = document.getElementById("master-icon-wrap");
+            if (iconCont) {
+                iconCont.style.background = color;
+                iconCont.style.boxShadow = `0 8px 16px rgba(0,0,0,0.15)`;
+            }
         }
 
-        // Navigation
+        // Navegación Manual (Funciona perfecto con la nueva lógica vinculada)
         document.getElementById("next-btn")?.addEventListener("click", () => {
-            isPaused = true;
-            const first = track!.firstElementChild as HTMLElement;
-            if (!first) return;
-
-            const cardW = first.offsetWidth + gap;
-            const startPos = currentPos;
-            const duration = 400;
-            let startT: number;
-
-            function step(t: number) {
-                if (!startT) startT = t;
-                const p = Math.min((t - startT) / duration, 1);
-                const ease = 1 - Math.pow(1 - p, 4);
-                currentPos = startPos - cardW * ease;
-                track!.style.transform = `translateX(${currentPos}px)`;
-
-                if (p < 1) {
-                    requestAnimationFrame(step);
-                } else {
-                    track!.appendChild(first);
-                    currentPos += cardW;
-                    track!.style.transform = `translateX(${currentPos}px)`;
-                    isPaused = false;
-                }
-            }
-            requestAnimationFrame(step);
+             currentPos -= TOTAL_DISTANCE;
+             track!.style.transform = `translateX(${currentPos}px)`;
         });
-
         document.getElementById("prev-btn")?.addEventListener("click", () => {
-            isPaused = true;
-            const last = track!.lastElementChild as HTMLElement;
-            if (!last) return;
-
-            const cardW = last.offsetWidth + gap;
-            track!.prepend(last);
-            currentPos -= cardW;
-            track!.style.transform = `translateX(${currentPos}px)`;
-
-            const startPos = currentPos;
-            const duration = 400;
-            let startT: number;
-
-            function step(t: number) {
-                if (!startT) startT = t;
-                const p = Math.min((t - startT) / duration, 1);
-                const ease = 1 - Math.pow(1 - p, 4);
-                track!.style.transform = `translateX(${startPos + cardW * ease}px)`;
-
-                if (p < 1) {
-                    requestAnimationFrame(step);
-                } else {
-                    currentPos += cardW;
-                    track!.style.transform = `translateX(${currentPos}px)`;
-                    isPaused = false;
-                }
-            }
-            requestAnimationFrame(step);
+             currentPos += TOTAL_DISTANCE;
+             track!.style.transform = `translateX(${currentPos}px)`;
         });
 
+        // Pausa en Hover: Notarás que el pintado mágicamente pausa si pones el mouse
         const col = document.querySelector(".carousel-column");
         col?.addEventListener("mouseenter", () => (isPaused = true));
         col?.addEventListener("mouseleave", () => (isPaused = false));
     }
 
-    document.addEventListener("astro:page-load", initMasterCarousel);
-    document.addEventListener("DOMContentLoaded", initMasterCarousel);
+    let isInit = false;
+    document.addEventListener("astro:page-load", () => {
+        if(!isInit){ initMasterCarousel(); isInit = true; }
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        if(!isInit){ initMasterCarousel(); isInit = true; }
+    });
 </script>
 
 <style>
-    .services-section {
-        background: var(--bg);
-        padding: var(--space-12) 0;
-        position: relative;
-    }
-    .master-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-8);
-    }
-
+    .services-section { background: var(--bg); padding: var(--space-20) 0; position: relative; }
+    .master-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
     @media (min-width: 1024px) {
-        .master-grid {
-            grid-template-columns: 480px 1fr;
-            gap: var(--space-12);
-            align-items: center;
-        }
+        .master-grid { grid-template-columns: 480px 1fr; gap: var(--space-12); align-items: center; }
     }
 
-    .section-title {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: clamp(2rem, 3vw, 2.5rem);
-        font-weight: 800;
-        margin-bottom: var(--space-6);
-        color: var(--text);
+    .master-border-svg {
+        position: absolute;
+        top: -2px; left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        pointer-events: none;
+        z-index: 50;
+        overflow: visible;
+    }
+
+    .dynamic-border {
+        fill: none;
+        stroke: transparent;
+        stroke-width: 5px; /* Trazo grueso garantizado */
+        stroke-linecap: round;
+        will-change: stroke-dashoffset;
+    }
+
+    .impact-ripple {
+        position: absolute;
+        left: -2px; /* Justo en la línea */
+        top: 50%;
+        width: 0px;
+        height: 0px;
+        pointer-events: none;
+        z-index: 60;
+    }
+    .impact-ripple::before, .impact-ripple::after {
+        content: "";
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 2px solid transparent;
+        opacity: 0;
+    }
+    .impact-ripple.active::before {
+        animation: wave-ripple 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    }
+    .impact-ripple.active::after {
+        animation: wave-ripple 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) 0.2s forwards;
+    }
+    @keyframes wave-ripple {
+        0% { width: 0px; height: 0px; border-color: var(--ripple-color); opacity: 0.6; border-width: 4px; }
+        100% { width: 140px; height: 140px; border-color: var(--ripple-color); opacity: 0; border-width: 1px; }
     }
 
     .master-card {
         background: var(--surface-2);
-        border: 1px solid var(--border);
+        border: 1px solid var(--border); /* Borde estático de fondo suave */
         border-radius: 24px;
         padding: var(--space-8);
         min-height: 550px;
@@ -388,7 +393,7 @@ const allCards = [
         flex-direction: column;
         justify-content: space-between;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
     }
 
@@ -396,161 +401,39 @@ const allCards = [
         background: linear-gradient(145deg, #1e293b, #0f172a);
     }
 
-    .master-content-wrapper {
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-        will-change: opacity, transform;
-    }
-    .master-card.absorbing .master-content-wrapper {
-        opacity: 0;
-        transform: translateY(5px);
-    }
+    .master-content-wrapper { transition: all 0.4s ease; }
+    .master-card.absorbing .master-content-wrapper { opacity: 0; transform: translateY(15px); }
 
     .master-icon-container {
-        width: 64px;
-        height: 64px;
-        background: var(--primary);
-        color: white;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 64px; height: 64px;
+        color: white; border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
         margin-bottom: var(--space-6);
-        box-shadow: 0 8px 16px rgba(var(--primary-rgb), 0.3);
+        transition: background 0.8s ease;
     }
-    .master-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: var(--space-4);
-        line-height: 1.2;
-        color: var(--text);
-    }
-    .master-description {
-        font-size: 1.125rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-    }
-    .master-actions {
-        margin-top: var(--space-8);
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-4);
-    }
-
-    .collision-ripple {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 30px;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            rgba(var(--primary-rgb), 0.3),
-            transparent
-        );
-        transform: scaleX(0);
-        transform-origin: left;
-        pointer-events: none;
-        opacity: 0;
-    }
-    .collision-ripple.active {
-        animation: ripple-flash 0.6s ease-out forwards;
-    }
-    @keyframes ripple-flash {
-        0% {
-            transform: scaleX(0);
-            opacity: 1;
-        }
-        100% {
-            transform: scaleX(50);
-            opacity: 0;
-        }
-    }
+    .master-title { font-size: 2.25rem; font-weight: 700; margin-bottom: var(--space-4); color: var(--text); line-height: 1.1; }
+    .master-description { font-size: 1.125rem; color: var(--text-muted); line-height: 1.6; }
+    .master-actions { margin-top: var(--space-8); display: flex; flex-wrap: wrap; gap: var(--space-4); }
 
     .carousel-column {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        mask-image: linear-gradient(to right, transparent 0%, black 150px);
-        -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 150px
-        );
+        position: relative; width: 100%; overflow: hidden;
+        mask-image: linear-gradient(to right, transparent 0%, black 150px, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 150px, black 90%, transparent 100%);
     }
-    .carousel-track {
-        display: flex;
-        gap: 24px;
-        will-change: transform;
-        padding: 20px 0;
-    }
-    .carousel-slide {
-        flex: 0 0 320px;
-        width: 320px;
-        opacity: 0.7; /* Más visible */
-        filter: none; /* Quitamos el gris para que se vean los colores */
-        transition: all 0.5s ease;
-        scale: 0.95;
-    }
-    .carousel-slide:hover {
-        opacity: 1;
-        filter: grayscale(0%);
-        scale: 1;
-    }
+    .carousel-track { display: flex; gap: 24px; padding: 40px 0; will-change: transform; }
+    .carousel-slide { flex: 0 0 320px; width: 320px; opacity: 0.6; scale: 0.93; transition: all 0.5s ease; }
+    .carousel-slide:hover { opacity: 1; scale: 1.02; filter: brightness(1.1); }
 
-    /* Colores en los bordes de las cards */
-    .carousel-slide:nth-child(5n+1) :global(.card-inner) { border-color: #3b82f6; } /* Blue */
-    .carousel-slide:nth-child(5n+2) :global(.card-inner) { border-color: #10b981; } /* Green */
-    .carousel-slide:nth-child(5n+3) :global(.card-inner) { border-color: #f59e0b; } /* Orange */
-    .carousel-slide:nth-child(5n+4) :global(.card-inner) { border-color: #ef4444; } /* Red */
-    .carousel-slide:nth-child(5n+5) :global(.card-inner) { border-color: #8b5cf6; } /* Purple */
+    /* Colores per-card vinculados a atributos de datos (Inmunes al reciclaje DOM) */
+    .carousel-slide[data-color="#3b82f6"] :global(.card-inner) { border-color: #3b82f6; }
+    .carousel-slide[data-color="#10b981"] :global(.card-inner) { border-color: #10b981; }
+    .carousel-slide[data-color="#f59e0b"] :global(.card-inner) { border-color: #f59e0b; }
+    .carousel-slide[data-color="#ef4444"] :global(.card-inner) { border-color: #ef4444; }
+    .carousel-slide[data-color="#8b5cf6"] :global(.card-inner) { border-color: #8b5cf6; }
 
-    .carousel-controls {
-        display: none;
-        justify-content: center;
-        gap: var(--space-3);
-        margin-top: var(--space-8);
-    }
-    .nav-btn {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--surface-2);
-        color: var(--text);
-        border: 1px solid var(--border);
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .nav-btn:hover {
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
-    }
+    .nav-btn { display: none; } /* Ocultar controles manuales si es full auto */
 
-    .decor-blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(100px);
-        z-index: 0;
-        opacity: 0.15;
-        pointer-events: none;
-    }
-    .decor-1 {
-        top: -10%;
-        right: -5%;
-        width: 500px;
-        height: 500px;
-        background: var(--primary);
-    }
-    .decor-2 {
-        bottom: -10%;
-        left: -5%;
-        width: 400px;
-        height: 400px;
-        background: var(--accent);
-    }
+    .decor-blob { position: absolute; border-radius: 50%; filter: blur(100px); z-index: 0; opacity: 0.15; pointer-events: none; }
+    .decor-1 { top: -10%; right: -5%; width: 500px; height: 500px; background: var(--primary); }
+    .decor-2 { bottom: -10%; left: -5%; width: 400px; height: 400px; background: var(--accent); }
 </style>
