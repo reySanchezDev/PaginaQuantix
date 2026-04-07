@@ -25,16 +25,14 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
         <a href={homeHref} class="brand-logo" aria-label={homeAria}>
           <svg
             class="logo"
-            width="130"
+            width="100"
             height="36"
-            viewBox="0 0 140 40"
+            viewBox="0 0 100 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="40" height="40" rx="10" fill="var(--primary)"></rect>
-            <path d="M20 10L30 20L20 30L10 20L20 10Z" fill="white"></path>
             <text
-              x="50"
+              x="0"
               y="27"
               font-family="var(--font-heading)"
               font-size="24"
@@ -74,16 +72,7 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     <!-- Mobile Header (Logo stays visible) -->
     <div class="mobile-header mobile-only">
       <a href={homeHref} class="brand-logo-mobile" aria-label={homeAria}>
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="32" height="32" rx="8" fill="var(--primary)"></rect>
-          <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"></path>
-        </svg>
+        <span class="mobile-logo-text">Quantix</span>
       </a>
 
       <button
@@ -207,6 +196,19 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
     border-radius: 9999px;
     margin: 0 auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobile-logo-text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.02em;
+  }
+
+  .header-premium.scrolled .mobile-logo-text,
+  .header-premium[data-transparent="false"] .mobile-logo-text {
+    color: var(--text);
   }
 
   @media (min-width: 1024px) {
