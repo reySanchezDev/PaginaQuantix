@@ -20,8 +20,7 @@ body {
     background-color: var(--bg);
     min-height: 100vh;
     transition: background-color 0.3s ease, color 0.3s ease;
-    overflow-x: hidden;
-    /* Guarantee no horizontal scroll */
+    overflow-x: clip;
 }
 
 /* Base Utility Classes */
@@ -64,4 +63,19 @@ body {
 ::selection {
     background-color: var(--primary-soft);
     color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

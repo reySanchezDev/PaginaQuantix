@@ -39,11 +39,11 @@ const t =
     </div>
 
     <div class="contact-grid">
-      <a href="mailto:reynaldv12@gmail.com" class="contact-card group">
+      <a href="mailto:reynaldv12@gmail.com" class="contact-card contact-card--link group">
         <div class="icon-box">
           <svg
-            width="32"
-            height="32"
+            width="26"
+            height="26"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -66,12 +66,12 @@ const t =
         href="https://wa.me/50585213462"
         target="_blank"
         rel="noopener noreferrer"
-        class="contact-card group"
+        class="contact-card contact-card--link group"
       >
         <div class="icon-box">
           <svg
-            width="32"
-            height="32"
+            width="26"
+            height="26"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -90,11 +90,11 @@ const t =
         </div>
       </a>
 
-      <div class="contact-card group">
+      <div class="contact-card contact-card--static">
         <div class="icon-box">
           <svg
-            width="32"
-            height="32"
+            width="26"
+            height="26"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -118,7 +118,7 @@ const t =
 
 <style>
   .contact-section {
-    padding: var(--space-24) 0;
+    padding: clamp(4.5rem, 9vw, var(--space-24)) 0;
     background-color: #020617;
     color: #fff;
     position: relative;
@@ -146,11 +146,11 @@ const t =
     z-index: 10;
     text-align: center;
     max-width: 700px;
-    margin: 0 auto var(--space-16);
+    margin: 0 auto clamp(var(--space-8), 6vw, var(--space-16));
   }
 
   .section-title {
-    font-size: var(--text-4xl);
+    font-size: clamp(2rem, 5vw, var(--text-4xl));
     font-weight: 800;
     margin-bottom: var(--space-4);
     letter-spacing: -0.02em;
@@ -158,7 +158,7 @@ const t =
   }
 
   .section-desc {
-    font-size: var(--text-lg);
+    font-size: clamp(1rem, 2.5vw, var(--text-lg));
     color: #94a3b8;
   }
 
@@ -167,8 +167,8 @@ const t =
     z-index: 10;
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-6);
-    max-width: 1100px;
+    gap: clamp(var(--space-4), 4vw, var(--space-6));
+    max-width: 1024px;
     margin: 0 auto;
   }
 
@@ -179,83 +179,138 @@ const t =
   }
 
   .contact-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: var(--space-10) var(--space-6);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    backdrop-filter: blur(12px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: clamp(var(--space-4), 3vw, var(--space-5));
+    padding: clamp(1.15rem, 3vw, 1.5rem);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.88) 0%,
+        rgba(15, 23, 42, 0.74) 100%
+      );
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 1.4rem;
+    backdrop-filter: blur(10px);
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease,
+      background-color 0.35s ease,
+      box-shadow 0.35s ease;
     text-decoration: none;
     color: inherit;
   }
 
-  .contact-card:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  .contact-card--link:hover {
+    transform: translateY(-4px);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.94) 0%,
+        rgba(15, 23, 42, 0.82) 100%
+      );
+    border-color: rgba(96, 165, 250, 0.28);
+    box-shadow: 0 16px 36px -16px rgba(2, 6, 23, 0.72);
+  }
+
+  .contact-card--static {
+    cursor: default;
   }
 
   .icon-box {
-    width: 64px;
-    height: 64px;
+    width: 3rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(37, 99, 235, 0.1);
-    color: #3b82f6;
-    border-radius: 50%;
-    margin-bottom: var(--space-6);
-    transition: all 0.3s ease;
+    background: rgba(37, 99, 235, 0.08);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    border-radius: 1rem;
+    transition:
+      transform 0.28s ease,
+      background-color 0.28s ease,
+      color 0.28s ease,
+      border-color 0.28s ease;
   }
 
-  .contact-card:hover .icon-box {
-    background: #3b82f6;
-    color: white;
-    transform: scale(1.1);
+  .contact-card--link:hover .icon-box {
+    background: rgba(37, 99, 235, 0.16);
+    color: #bfdbfe;
+    border-color: rgba(147, 197, 253, 0.32);
+    transform: translateY(-1px);
   }
 
   .card-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: 0.35rem;
+    min-width: 0;
   }
 
   .label {
-    font-size: var(--text-sm);
+    font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.16em;
     font-weight: 700;
-    color: #64748b;
+    color: #7c8aa5;
   }
 
   .value {
-    font-size: var(--text-lg);
-    font-weight: 600;
+    font-size: clamp(1.02rem, 2vw, 1.22rem);
+    font-weight: 650;
     color: white;
+    line-height: 1.25;
+    text-wrap: balance;
   }
 
   .cta {
-    margin-top: var(--space-4);
-    font-size: var(--text-sm);
+    margin-top: 0.45rem;
+    font-size: 0.92rem;
     font-weight: 600;
-    color: #3b82f6;
+    color: #93c5fd;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
-    transition: gap 0.2s ease;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    transition:
+      gap 0.2s ease,
+      color 0.2s ease;
   }
 
-  .contact-card:hover .cta {
-    gap: 8px;
+  .contact-card--link:hover .cta {
+    gap: 0.5rem;
+    color: #dbeafe;
   }
 
   .text-muted {
-    color: #64748b;
+    color: #72829c;
+  }
+
+  @media (max-width: 767px) {
+    .section-header {
+      text-align: left;
+      margin-bottom: var(--space-8);
+    }
+
+    .contact-grid {
+      gap: var(--space-4);
+    }
+
+    .contact-card {
+      gap: 0.95rem;
+      padding: 1.15rem 1rem;
+      border-radius: 1.25rem;
+    }
+
+    .icon-box {
+      width: 2.85rem;
+      height: 2.85rem;
+    }
+
+    .card-content {
+      width: 100%;
+    }
   }
 </style>

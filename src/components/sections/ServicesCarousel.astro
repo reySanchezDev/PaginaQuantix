@@ -5,10 +5,11 @@ import Button from "../ui/Button.astro";
 import { services } from "../../data/services";
 import esTranslations from "../../i18n/es.json";
 import enTranslations from "../../i18n/en.json";
+import { serviceIcons } from "../../lib/serviceIcons";
 
 interface Props {
-    id?: string;
-    lang: "es" | "en";
+  id?: string;
+  lang: "es" | "en";
 }
 
 const { id, lang } = Astro.props;
@@ -16,542 +17,916 @@ const t = lang === "es" ? esTranslations : enTranslations;
 const contactHref = lang === "es" ? "#contacto" : "#contact";
 
 const translatedServices = services.map((service) => ({
-    ...service,
-    title: service.title[lang],
-    description: service.description[lang],
+  ...service,
+  title: service.title[lang],
+  description: service.description[lang],
 }));
 
-const colors = ["#3b82f6", "#10b981", "#06b6d4", "#ef4444", "#8b5cf6"];
+const colors = ["#2563eb", "#0f766e", "#0284c7", "#475569"];
 
 const allCards = [
-    ...translatedServices,
-    ...translatedServices,
-    ...translatedServices,
-    ...translatedServices,
+  ...translatedServices,
+  ...translatedServices,
+  ...translatedServices,
+  ...translatedServices,
 ];
+
+const serviceIconsJson = JSON.stringify(serviceIcons);
 ---
 
 <section
-    id={id}
-    class="services-section relative overflow-hidden"
-    aria-labelledby="services-title"
+  id={id}
+  class="services-section relative overflow-hidden"
+  aria-labelledby="services-title"
 >
-    <div class="decor-blob decor-1"></div>
-    <div class="decor-blob decor-2"></div>
+  <div class="decor-blob decor-1"></div>
+  <div class="decor-blob decor-2"></div>
 
-    <Container>
-        <h2
-            id="services-title"
-            class="section-title text-center lg:text-left mb-12"
-        >
-            {t["services.title"]}
-        </h2>
-        <div class="master-grid">
-            <div class="main-column relative">
-                <div class="master-card" id="master-card-container">
-                    <!-- Borde SVG Dinámico. Las dimensiones se calculan exactas en JS = Sin fragmentaciones -->
-                    <svg class="master-border-svg" id="master-border-svg">
-                        <path id="border-path-top" class="dynamic-border" />
-                        <path id="border-path-bottom" class="dynamic-border" />
+  <Container>
+    <h2 id="services-title" class="section-title services-heading">
+      {t["services.title"]}
+    </h2>
 
-                        <!-- Láser (Cometa de Datos) -->
-                        <circle id="comet-top" class="comet-spark" cx="0" cy="0" r="2.5" fill="#ffffff" style="color: currentColor;" />
-                        <circle id="comet-bot" class="comet-spark" cx="0" cy="0" r="2.5" fill="#ffffff" style="color: currentColor;" />
-                    </svg>
+    <div class="master-grid">
+      <div class="main-column relative">
+        <div class="master-card" id="master-card-container">
+          <svg class="master-border-svg" id="master-border-svg">
+            <path id="border-path-top" class="dynamic-border" />
+            <path id="border-path-bottom" class="dynamic-border" />
+            <circle id="comet-top" class="comet-spark" cx="0" cy="0" r="2.5" fill="#ffffff" style="color: currentColor;" />
+            <circle id="comet-bot" class="comet-spark" cx="0" cy="0" r="2.5" fill="#ffffff" style="color: currentColor;" />
+          </svg>
 
-                    <!-- Efecto de Impacto en Centro-Izquierdo -->
-                    <div class="impact-ripple" id="impact-ripple"></div>
+          <div class="impact-ripple" id="impact-ripple"></div>
 
-                    <div class="master-content-wrapper" id="master-content">
-                        <div class="master-icon-container" id="master-icon-wrap">
-                            <div id="master-icon" class="master-icon"></div>
-                        </div>
-
-                        <div class="master-text">
-                            <h3 id="master-title" class="master-title"></h3>
-                            <p id="master-desc" class="master-description"></p>
-                        </div>
-                    </div>
-
-                    <div class="master-actions">
-                        <div class="w-full sm:w-auto">
-                            <Button variant="primary" href={contactHref} class="w-full justify-center">{t["services.cta.schedule"]}</Button>
-                        </div>
-                        <div class="w-full sm:w-auto">
-                            <Button variant="secondary" href={contactHref} class="w-full justify-center">{t["services.cta.proposal"]}</Button>
-                        </div>
-                    </div>
-                </div>
+          <div class="master-content-wrapper" id="master-content">
+            <div class="master-icon-container" id="master-icon-wrap">
+              <div id="master-icon" class="master-icon"></div>
             </div>
 
-            <div class="carousel-column">
-                <div class="carousel-mask">
-                    <div class="carousel-track" id="services-track">
-                        {
-                            allCards.map((service, index) => {
-                                const cardColor = colors[index % colors.length];
-                                return (
-                                    <div
-                                        class="carousel-slide"
-                                        data-id={`${index}-${service.title.substring(0, 4)}`}
-                                        data-title={service.title}
-                                        data-desc={service.description}
-                                        data-icon={service.icon}
-                                        data-color={cardColor}
-                                    >
-                                        <ServiceCard
-                                            icon={service.icon}
-                                            title={service.title}
-                                            description={service.description}
-                                        />
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                </div>
-                
-                <div class="carousel-controls">
-                    <button id="prev-btn" class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                    <button id="next-btn" class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                </div>
+            <div class="master-text">
+              <h3 id="master-title" class="master-title"></h3>
+              <p id="master-desc" class="master-description"></p>
             </div>
+          </div>
+
+          <div class="master-actions">
+            <div class="w-full sm:w-auto">
+              <Button variant="primary" href={contactHref} class="w-full justify-center">
+                {t["services.cta.schedule"]}
+              </Button>
+            </div>
+            <div class="w-full sm:w-auto">
+              <Button variant="secondary" href={contactHref} class="w-full justify-center">
+                {t["services.cta.proposal"]}
+              </Button>
+            </div>
+          </div>
+
+          <div class="mobile-service-nav" aria-label={lang === "es" ? "Navegacion de servicios" : "Services navigation"}>
+            <div class="mobile-service-status">
+              <span id="mobile-service-counter" class="mobile-service-counter">01 / {translatedServices.length.toString().padStart(2, "0")}</span>
+              <div class="mobile-service-progress">
+                <span id="mobile-service-progress-bar" class="mobile-service-progress-bar"></span>
+              </div>
+            </div>
+
+            <div class="mobile-service-actions">
+              <button
+                id="mobile-prev-btn"
+                type="button"
+                class="mobile-service-btn"
+                aria-label={lang === "es" ? "Servicio anterior" : "Previous service"}
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button
+                id="mobile-next-btn"
+                type="button"
+                class="mobile-service-btn"
+                aria-label={lang === "es" ? "Siguiente servicio" : "Next service"}
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
-    </Container>
+      </div>
+
+      <div class="carousel-column">
+        <div
+          class="carousel-mask"
+          id="services-carousel-mask"
+          tabindex="0"
+          aria-label={lang === "es" ? "Carrusel de servicios" : "Services carousel"}
+        >
+          <div class="carousel-track" id="services-track">
+            {
+              allCards.map((service, index) => {
+                const cardColor = colors[index % colors.length];
+
+                return (
+                  <div
+                    class="carousel-slide"
+                    data-id={`${index}-${service.title.substring(0, 4)}`}
+                    data-title={service.title}
+                    data-desc={service.description}
+                    data-icon={service.icon}
+                    data-color={cardColor}
+                  >
+                    <ServiceCard
+                      icon={service.icon}
+                      title={service.title}
+                      description={service.description}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button id="prev-btn" type="button" class="nav-btn" aria-label={lang === "es" ? "Anterior" : "Previous"}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button id="next-btn" type="button" class="nav-btn" aria-label={lang === "es" ? "Siguiente" : "Next"}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </Container>
 </section>
 
+<script type="application/json" id="services-icons-map" is:inline set:html={serviceIconsJson}></script>
+
 <script>
-    const iconsMap: Record<string, string> = {
-        compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
-        palette: '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.1 0-.9.7-1.6 1.6-1.6H17c2.8 0 5-2.2 5-5 0-5.5-4.5-10-10-10z"/>',
-        layout: '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/>',
-        smartphone: '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>',
-        link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
-        "refresh-cw": '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
-        cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-        database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
-        cpu: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M12 2v2"/><path d="M9 2v2"/><path d="M2 15h2"/><path d="M2 12h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 12h2"/><path d="M20 9h2"/><path d="M15 20v2"/><path d="M12 20v2"/><path d="M9 20v2"/>',
-        "shield-check": '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>',
-        "git-merge": '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/>',
-        layers: '<polygon points="12 2 2 7 12 12 22 7 12 2"/> <polyline points="2 17 12 22 22 17"/> <polyline points="2 12 12 17 22 12"/>',
-    };
+  const iconsMap = JSON.parse(
+    document.getElementById("services-icons-map")?.textContent || "{}",
+  ) as Record<string, string>;
 
-    function initMasterCarousel() {
-        const track = document.getElementById("services-track");
-        const masterCard = document.getElementById("master-card-container");
-        const masterTitle = document.getElementById("master-title");
-        const masterDesc = document.getElementById("master-desc");
-        const masterIcon = document.getElementById("master-icon");
-        const impactRipple = document.getElementById("impact-ripple");
-        const servicesTitle = document.getElementById("services-title");
+  function initMasterCarousel() {
+    const track = document.getElementById("services-track");
+    const scroller = document.getElementById("services-carousel-mask");
+    const masterCard = document.getElementById("master-card-container");
+    const masterTitle = document.getElementById("master-title");
+    const masterDesc = document.getElementById("master-desc");
+    const masterIcon = document.getElementById("master-icon");
+    const iconCont = document.getElementById("master-icon-wrap");
+    const impactRipple = document.getElementById("impact-ripple");
+    const servicesTitle = document.getElementById("services-title");
+    const svg = document.getElementById("master-border-svg");
+    const pathTop = document.getElementById("border-path-top");
+    const pathBottom = document.getElementById("border-path-bottom");
+    const cometTop = document.getElementById("comet-top");
+    const cometBot = document.getElementById("comet-bot");
+    const nextBtn = document.getElementById("next-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const mobilePrevBtn = document.getElementById("mobile-prev-btn");
+    const mobileNextBtn = document.getElementById("mobile-next-btn");
+    const mobileCounter = document.getElementById("mobile-service-counter");
+    const mobileProgressBar = document.getElementById("mobile-service-progress-bar");
+    const col = document.querySelector(".carousel-column");
 
-        const svg = document.getElementById("master-border-svg");
-        const pathTop = document.getElementById("border-path-top") as unknown as SVGPathElement;
-        const pathBottom = document.getElementById("border-path-bottom") as unknown as SVGPathElement;
-
-        const cometTop = document.getElementById("comet-top");
-        const cometBot = document.getElementById("comet-bot");
-
-        if (!masterCard || !track || !svg || !pathTop || !pathBottom) return;
-
-        // --- 1. LÓGICA DE DIBUJO MATEMÁTICO PERFECTO ---
-        let titleXOffset = 0;
-        function resizeSVG() {
-            const pw = masterCard!.clientWidth;
-            const ph = masterCard!.clientHeight;
-            if(pw === 0 || ph === 0) return;
-
-            const pad = 2; // Extra padding
-            const w = pw + pad * 2;
-            const h = ph + pad * 2;
-            const r = 24 + pad; // border-radius of the card
-            
-            svg!.setAttribute("viewBox", `0 0 ${w} ${h}`);
-            
-            // Path Top y Bottom milimétricos
-            const pTopD = `M ${w} ${h/2} L ${w} ${r} A ${r} ${r} 0 0 0 ${w-r} 0 L ${r} 0 A ${r} ${r} 0 0 0 0 ${r} L 0 ${h/2}`;
-            pathTop!.setAttribute("d", pTopD);
-
-            const pBotD = `M ${w} ${h/2} L ${w} ${h-r} A ${r} ${r} 0 0 1 ${w-r} ${h} L ${r} ${h} A ${r} ${r} 0 0 1 0 ${h-r} L 0 ${h/2}`;
-            pathBottom!.setAttribute("d", pBotD);
-
-            // ¡CRÍTICO! Configurar el patrón de guiones al total de la longitud para que empiece invisible.
-            // Si no seteamos dasharray, la línea se ve sólida o entrecortada.
-            [pathTop, pathBottom].forEach(p => {
-                const len = p.getTotalLength();
-                p.style.strokeDasharray = `${len} ${len}`;
-                // Iniciarlo escondido
-                if(p.style.strokeDashoffset === "") {
-                    p.style.strokeDashoffset = `${len}`;
-                }
-            });
-
-            if (servicesTitle && svg) {
-                const sRect = svg.getBoundingClientRect();
-                const tRect = servicesTitle.getBoundingClientRect();
-                titleXOffset = sRect.left - tRect.left;
-            }
-        }
-
-        const resizeObs = new ResizeObserver(resizeSVG);
-        resizeObs.observe(masterCard);
-        const handleWindowResize = () => resizeSVG();
-        window.addEventListener("resize", handleWindowResize);
-        resizeSVG();
-
-
-        // --- 2. MOTOR DE SINCRONIZACIÓN FÍSICA (FRAME A FRAME) ---
-
-        let currentPos = 0;
-        let speed = 0.5; // Velocidad. Una card demora aprox ~11.5 segundos en pasar.
-        let isPaused = false;
-        let animationId: number;
-        
-        let activeSlideId = "";
-        let activeSlideElement: HTMLElement | null = null;
-        let hasImpacted = false;
-
-        const gap = 24;
-        const CARD_WIDTH = 320;
-        const TOTAL_DISTANCE = CARD_WIDTH + gap; // Distancia exacta entre ciclos = 344px
-
-        start();
-
-        function start() {
-            animationId = requestAnimationFrame(animate);
-        }
-
-        function animate() {
-            if (!isPaused) {
-                // Mover carrusel
-                currentPos -= speed;
-                track!.style.transform = `translateX(${currentPos}px)`;
-
-                const trackRect = track!.parentElement!.getBoundingClientRect();
-                const sensorX = trackRect.left + 350; 
-
-                // Identificar la tarjeta que de cruzó el sensor
-                const slides = Array.from(track!.children) as HTMLElement[];
-                const targetSlide = slides.slice().reverse().find(s => {
-                    return s.getBoundingClientRect().left <= sensorX;
-                });
-
-                if (targetSlide) {
-                    const id = targetSlide.dataset.id || "";
-                    // Si llega una nueva tarjeta (o es la primera)
-                    if (id !== activeSlideId) {
-                        activeSlideId = id;
-                        activeSlideElement = targetSlide;
-                        hasImpacted = false; // Reset impacto para la nueva carta
-                        
-                        // FADE de contenido veloz al cambiar de tarjeta
-                        masterCard?.classList.add("absorbing");
-                        setTimeout(() => {
-                            updateContent(targetSlide);
-                            masterCard?.classList.remove("absorbing");
-                        }, 200);
-
-                        // Asignar color inmediatamente
-                        const color = targetSlide.dataset.color || "#3b82f6";
-                        [pathTop, pathBottom].forEach(p => {
-                            p.style.stroke = color;
-                            p.style.transition = 'none'; // Quitar animaciones CSS, usaremos JS.
-                        });
-                    }
-                }
-
-                // *** EL NÚCLEO MÁGICO: SINCRONIZACIÓN MILIMÉTRICA ***
-                // La línea se dibuja atada 100% a donde está físicamente la tarjeta calculando su avance
-                if (activeSlideElement) {
-                    const rect = activeSlideElement.getBoundingClientRect();
-                    // Cuánto avanzó la tarjeta desde que tocó el sensorX
-                    const distanceMoved = sensorX - rect.left;
-                    
-                    // Ratio de 0 a 1 coordinado con el recorrido total (344px)
-                    let progress = distanceMoved / TOTAL_DISTANCE;
-                    progress = Math.max(0, Math.min(progress, 1));
-
-                    [pathTop, pathBottom].forEach(p => {
-                         const len = p.getTotalLength();
-                         // Mantenemos el dasharray fijado al tamaño exacto
-                         p.style.strokeDasharray = `${len} ${len}`;
-                         // Si progress es 0, no dibuja. Si es 1, dibuja por completo (offset 0)
-                         p.style.strokeDashoffset = `${len * (1 - progress)}`;
-                    });
-
-                    // --- SINCRONIZACIÓN LUZ LÁSER (COMETAS) ---
-                    if (cometTop && cometBot) {
-                        const pathLen = pathTop.getTotalLength();
-                        const colorSet = activeSlideElement.dataset.color || "#3b82f6";
-                        
-                        if (progress > 0.02 && progress < 0.99) {
-                            cometTop.style.opacity = '1';
-                            cometBot.style.opacity = '1';
-                            cometTop.style.color = colorSet;
-                            cometBot.style.color = colorSet;
-                            
-                            // Trazos asumen su propio color de borde puro dinámicamente
-                            pathTop.style.stroke = colorSet;
-                            pathBottom.style.stroke = colorSet;
-                        } else {
-                            // Se desvanecen en el impacto o reinicio
-                            cometTop.style.opacity = '0';
-                            cometBot.style.opacity = '0';
-                        }
-
-                        // Calcular punto exacto matemático en la curva
-                        const ptT = pathTop.getPointAtLength(pathLen * progress);
-                        cometTop.style.transform = `translate(${ptT.x}px, ${ptT.y}px)`;
-
-                        const ptB = pathBottom.getPointAtLength(pathBottom.getTotalLength() * progress);
-                        cometBot.style.transform = `translate(${ptB.x}px, ${ptB.y}px)`;
-
-                        // Reflejo Premium en el Título ("Illumination")
-                        if (servicesTitle) {
-                            // El láser se mueve en 2D. En el eje vertical, llega a y=0 en el techo.
-                            // Evaluamos qué tan alto está el cometa. Si está bajando por los lados (y > 80), la luz se apaga.
-                            let intensity = 1 - (ptT.y / 60);
-                            intensity = Math.max(0, Math.min(intensity, 1));
-                            
-                            if (progress > 0.02 && progress < 0.99 && intensity > 0.01) {
-                                const relativeX = ptT.x + titleXOffset;
-                                const spread = intensity * 150; // El haz de luz crece conforme se acerca al techo
-                                
-                                servicesTitle.style.setProperty('--light-color', colorSet);
-                                servicesTitle.style.setProperty('--light-x', `${relativeX}px`);
-                                servicesTitle.style.setProperty('--light-spread', `${spread}px`);
-                            } else {
-                                servicesTitle.style.setProperty('--light-spread', `0px`);
-                            }
-                        }
-                    }
-
-                    // IMPACTO: Justo cuando termina el progreso físico de recorrido, impactamos simultáneamente.
-                    if (progress >= 0.99 && !hasImpacted) {
-                        hasImpacted = true;
-                        if (impactRipple) {
-                            impactRipple.style.background = 'transparent'; // Reset any old hard color
-                            impactRipple.style.setProperty('--ripple-color', activeSlideElement.dataset.color || "#3b82f6");
-                            impactRipple.classList.remove("active");
-                            void impactRipple.offsetWidth;
-                            impactRipple.classList.add("active");
-                        }
-                    }
-                }
-
-                // Reciclaje infinito DOM
-                const firstChild = track!.firstElementChild as HTMLElement;
-                if (firstChild) {
-                    const rect = firstChild.getBoundingClientRect();
-                    if (rect.right < trackRect.left - 50) {
-                        track!.appendChild(firstChild);
-                        currentPos += rect.width + gap;
-                        track!.style.transform = `translateX(${currentPos}px)`;
-                    }
-                }
-            }
-            animationId = requestAnimationFrame(animate);
-        }
-
-        function updateContent(slide: HTMLElement) {
-            masterTitle!.innerText = slide.dataset.title || "";
-            masterDesc!.innerText = slide.dataset.desc || "";
-            const iconName = slide.dataset.icon || "compass";
-            const svg = iconsMap[iconName] || iconsMap["compass"];
-            masterIcon!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svg}</svg>`;
-            
-            const color = slide.dataset.color || "#3b82f6";
-            const iconCont = document.getElementById("master-icon-wrap");
-            if (iconCont) {
-                iconCont.style.background = color;
-                iconCont.style.boxShadow = `0 8px 16px rgba(0,0,0,0.15)`;
-            }
-        }
-
-        // Navegación Manual (Funciona perfecto con la nueva lógica vinculada)
-        const nextBtn = document.getElementById("next-btn");
-        const prevBtn = document.getElementById("prev-btn");
-        
-        const handleNext = () => {
-             currentPos -= TOTAL_DISTANCE;
-             track!.style.transform = `translateX(${currentPos}px)`;
-        };
-        const handlePrev = () => {
-             currentPos += TOTAL_DISTANCE;
-             track!.style.transform = `translateX(${currentPos}px)`;
-        };
-        
-        nextBtn?.addEventListener("click", handleNext);
-        prevBtn?.addEventListener("click", handlePrev);
-
-        // Pausa en Hover: Notarás que el pintado mágicamente pausa si pones el mouse
-        const col = document.querySelector(".carousel-column");
-        
-        const handleEnter = () => (isPaused = true);
-        const handleLeave = () => (isPaused = false);
-        
-        col?.addEventListener("mouseenter", handleEnter);
-        col?.addEventListener("mouseleave", handleLeave);
-
-        return () => {
-            cancelAnimationFrame(animationId);
-            resizeObs.disconnect();
-            window.removeEventListener("resize", handleWindowResize);
-            nextBtn?.removeEventListener("click", handleNext);
-            prevBtn?.removeEventListener("click", handlePrev);
-            col?.removeEventListener("mouseenter", handleEnter);
-            col?.removeEventListener("mouseleave", handleLeave);
-        };
+    if (
+      !(track instanceof HTMLElement) ||
+      !(scroller instanceof HTMLElement) ||
+      !(masterCard instanceof HTMLElement) ||
+      !(masterTitle instanceof HTMLElement) ||
+      !(masterDesc instanceof HTMLElement) ||
+      !(masterIcon instanceof HTMLElement) ||
+      !(iconCont instanceof HTMLElement) ||
+      !(svg instanceof SVGSVGElement) ||
+      !(pathTop instanceof SVGPathElement) ||
+      !(pathBottom instanceof SVGPathElement)
+    ) {
+      return;
     }
 
-    let cleanupCurrentCarousel: (() => void) | null | void = null;
+    const slides = Array.from(track.children).filter(
+      (slide): slide is HTMLElement => slide instanceof HTMLElement,
+    );
+    const uniqueCount = Math.max(1, Math.floor(slides.length / 4));
+    const mobileSlides = slides.slice(0, uniqueCount);
 
-    document.addEventListener("astro:page-load", () => {
-        if (typeof cleanupCurrentCarousel === 'function') {
-            cleanupCurrentCarousel();
+    if (slides.length === 0) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchLayout = window.innerWidth < 1024;
+    const gap = 24;
+    const CARD_WIDTH = 320;
+    const TOTAL_DISTANCE = CARD_WIDTH + gap;
+
+    let currentPos = 0;
+    let animationId = 0;
+    let isPaused = false;
+    let activeSlideId = "";
+    let activeSlideElement: HTMLElement | null = null;
+    let hasImpacted = false;
+    let titleXOffset = 0;
+    let scrollFrame = 0;
+    let mobileIndex = 0;
+    let mobileInterval = 0;
+
+    const updateContent = (slide: HTMLElement) => {
+      masterTitle.innerText = slide.dataset.title || "";
+      masterDesc.innerText = slide.dataset.desc || "";
+
+      const iconName = slide.dataset.icon || "compass";
+      const svgMarkup = iconsMap[iconName] || iconsMap.compass;
+      masterIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${svgMarkup}</svg>`;
+
+      const color = slide.dataset.color || "#3b82f6";
+      iconCont.style.background = color;
+      iconCont.style.boxShadow = `0 12px 24px color-mix(in srgb, ${color} 28%, transparent)`;
+
+      slides.forEach((item) => item.classList.toggle("is-active", item === slide));
+
+      const slideIndex = slides.indexOf(slide);
+      const normalizedIndex = slideIndex >= 0 ? slideIndex % uniqueCount : 0;
+      mobileIndex = normalizedIndex;
+
+      if (mobileCounter instanceof HTMLElement) {
+        mobileCounter.textContent = `${String(normalizedIndex + 1).padStart(2, "0")} / ${String(uniqueCount).padStart(2, "0")}`;
+      }
+
+      if (mobileProgressBar instanceof HTMLElement) {
+        mobileProgressBar.style.transform = `scaleX(${(normalizedIndex + 1) / uniqueCount})`;
+      }
+    };
+
+    const resizeSVG = () => {
+      const pw = masterCard.clientWidth;
+      const ph = masterCard.clientHeight;
+
+      if (pw === 0 || ph === 0) {
+        return;
+      }
+
+      const pad = 2;
+      const w = pw + pad * 2;
+      const h = ph + pad * 2;
+      const r = 24 + pad;
+
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+      const topD = `M ${w} ${h / 2} L ${w} ${r} A ${r} ${r} 0 0 0 ${w - r} 0 L ${r} 0 A ${r} ${r} 0 0 0 0 ${r} L 0 ${h / 2}`;
+      const bottomD = `M ${w} ${h / 2} L ${w} ${h - r} A ${r} ${r} 0 0 1 ${w - r} ${h} L ${r} ${h} A ${r} ${r} 0 0 1 0 ${h - r} L 0 ${h / 2}`;
+
+      pathTop.setAttribute("d", topD);
+      pathBottom.setAttribute("d", bottomD);
+
+      [pathTop, pathBottom].forEach((path) => {
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = `${len} ${len}`;
+        if (path.style.strokeDashoffset === "") {
+          path.style.strokeDashoffset = `${len}`;
         }
-        cleanupCurrentCarousel = initMasterCarousel();
-    });
+      });
+
+      if (servicesTitle instanceof HTMLElement) {
+        const sRect = svg.getBoundingClientRect();
+        const tRect = servicesTitle.getBoundingClientRect();
+        titleXOffset = sRect.left - tRect.left;
+      }
+    };
+
+    const resizeObs = new ResizeObserver(resizeSVG);
+    resizeObs.observe(masterCard);
+    const handleWindowResize = () => resizeSVG();
+    window.addEventListener("resize", handleWindowResize);
+    resizeSVG();
+
+    activeSlideElement = slides[0];
+    activeSlideId = slides[0].dataset.id || "";
+    updateContent(slides[0]);
+
+    const cleanupCallbacks: Array<() => void> = [];
+
+    if (isTouchLayout) {
+      track.style.transform = "";
+      const setMobileSlide = (nextIndex: number) => {
+        const normalizedIndex = (nextIndex + uniqueCount) % uniqueCount;
+        const nextSlide = mobileSlides[normalizedIndex];
+
+        if (!(nextSlide instanceof HTMLElement)) {
+          return;
+        }
+
+        activeSlideId = nextSlide.dataset.id || "";
+        activeSlideElement = nextSlide;
+        masterCard.classList.add("absorbing");
+
+        window.setTimeout(() => {
+          updateContent(nextSlide);
+          masterCard.classList.remove("absorbing");
+        }, 150);
+      };
+
+      const restartMobileAutoplay = () => {
+        if (mobileInterval) {
+          window.clearInterval(mobileInterval);
+        }
+
+        if (prefersReducedMotion || uniqueCount <= 1) {
+          return;
+        }
+
+        mobileInterval = window.setInterval(() => {
+          setMobileSlide(mobileIndex + 1);
+        }, 4200);
+      };
+
+      const handleMobilePrev = () => {
+        setMobileSlide(mobileIndex - 1);
+        restartMobileAutoplay();
+      };
+
+      const handleMobileNext = () => {
+        setMobileSlide(mobileIndex + 1);
+        restartMobileAutoplay();
+      };
+
+      mobilePrevBtn?.addEventListener("click", handleMobilePrev);
+      mobileNextBtn?.addEventListener("click", handleMobileNext);
+      cleanupCallbacks.push(() => {
+        mobilePrevBtn?.removeEventListener("click", handleMobilePrev);
+        mobileNextBtn?.removeEventListener("click", handleMobileNext);
+        if (mobileInterval) {
+          window.clearInterval(mobileInterval);
+        }
+        if (scrollFrame) {
+          window.cancelAnimationFrame(scrollFrame);
+        }
+      });
+
+      setMobileSlide(0);
+      restartMobileAutoplay();
+    } else {
+      const animate = () => {
+        if (!isPaused) {
+          currentPos -= 0.5;
+          track.style.transform = `translateX(${currentPos}px)`;
+
+          const trackRect = scroller.getBoundingClientRect();
+          const sensorX = trackRect.left + 350;
+          const targetSlide = slides
+            .slice()
+            .reverse()
+            .find((slide) => slide.getBoundingClientRect().left <= sensorX);
+
+          if (targetSlide) {
+            const id = targetSlide.dataset.id || "";
+
+            if (id !== activeSlideId) {
+              activeSlideId = id;
+              activeSlideElement = targetSlide;
+              hasImpacted = false;
+              masterCard.classList.add("absorbing");
+
+              window.setTimeout(() => {
+                updateContent(targetSlide);
+                masterCard.classList.remove("absorbing");
+              }, 200);
+
+              const color = targetSlide.dataset.color || "#3b82f6";
+              [pathTop, pathBottom].forEach((path) => {
+                path.style.stroke = color;
+                path.style.transition = "none";
+              });
+            }
+          }
+
+          if (activeSlideElement) {
+            const rect = activeSlideElement.getBoundingClientRect();
+            let progress = (sensorX - rect.left) / TOTAL_DISTANCE;
+            progress = Math.max(0, Math.min(progress, 1));
+
+            [pathTop, pathBottom].forEach((path) => {
+              const len = path.getTotalLength();
+              path.style.strokeDasharray = `${len} ${len}`;
+              path.style.strokeDashoffset = `${len * (1 - progress)}`;
+            });
+
+            if (cometTop instanceof SVGElement && cometBot instanceof SVGElement) {
+              const pathLen = pathTop.getTotalLength();
+              const colorSet = activeSlideElement.dataset.color || "#3b82f6";
+
+              if (progress > 0.02 && progress < 0.99) {
+                cometTop.style.opacity = "1";
+                cometBot.style.opacity = "1";
+                cometTop.style.color = colorSet;
+                cometBot.style.color = colorSet;
+                pathTop.style.stroke = colorSet;
+                pathBottom.style.stroke = colorSet;
+              } else {
+                cometTop.style.opacity = "0";
+                cometBot.style.opacity = "0";
+              }
+
+              const ptT = pathTop.getPointAtLength(pathLen * progress);
+              cometTop.style.transform = `translate(${ptT.x}px, ${ptT.y}px)`;
+
+              const ptB = pathBottom.getPointAtLength(pathBottom.getTotalLength() * progress);
+              cometBot.style.transform = `translate(${ptB.x}px, ${ptB.y}px)`;
+
+              if (servicesTitle instanceof HTMLElement) {
+                let intensity = 1 - ptT.y / 60;
+                intensity = Math.max(0, Math.min(intensity, 1));
+
+                if (progress > 0.02 && progress < 0.99 && intensity > 0.01) {
+                  const relativeX = ptT.x + titleXOffset;
+                  const spread = intensity * 150;
+
+                  servicesTitle.style.setProperty("--light-color", colorSet);
+                  servicesTitle.style.setProperty("--light-x", `${relativeX}px`);
+                  servicesTitle.style.setProperty("--light-spread", `${spread}px`);
+                } else {
+                  servicesTitle.style.setProperty("--light-spread", "0px");
+                }
+              }
+            }
+
+            if (progress >= 0.99 && !hasImpacted && impactRipple instanceof HTMLElement) {
+              hasImpacted = true;
+              impactRipple.style.background = "transparent";
+              impactRipple.style.setProperty("--ripple-color", activeSlideElement.dataset.color || "#3b82f6");
+              impactRipple.classList.remove("active");
+              void impactRipple.offsetWidth;
+              impactRipple.classList.add("active");
+            }
+          }
+
+          const firstChild = track.firstElementChild;
+          if (firstChild instanceof HTMLElement) {
+            const rect = firstChild.getBoundingClientRect();
+            if (rect.right < scroller.getBoundingClientRect().left - 50) {
+              track.appendChild(firstChild);
+              currentPos += rect.width + gap;
+              track.style.transform = `translateX(${currentPos}px)`;
+            }
+          }
+        }
+
+        animationId = requestAnimationFrame(animate);
+      };
+
+      animationId = requestAnimationFrame(animate);
+
+      const handleNext = () => {
+        currentPos -= TOTAL_DISTANCE;
+        track.style.transform = `translateX(${currentPos}px)`;
+      };
+
+      const handlePrev = () => {
+        currentPos += TOTAL_DISTANCE;
+        track.style.transform = `translateX(${currentPos}px)`;
+      };
+
+      nextBtn?.addEventListener("click", handleNext);
+      prevBtn?.addEventListener("click", handlePrev);
+      cleanupCallbacks.push(() => {
+        nextBtn?.removeEventListener("click", handleNext);
+        prevBtn?.removeEventListener("click", handlePrev);
+      });
+
+      const handleEnter = () => {
+        isPaused = true;
+      };
+
+      const handleLeave = () => {
+        isPaused = false;
+      };
+
+      col?.addEventListener("mouseenter", handleEnter);
+      col?.addEventListener("mouseleave", handleLeave);
+      cleanupCallbacks.push(() => {
+        col?.removeEventListener("mouseenter", handleEnter);
+        col?.removeEventListener("mouseleave", handleLeave);
+      });
+    }
+
+    return () => {
+      cleanupCallbacks.forEach((cleanup) => cleanup());
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      resizeObs.disconnect();
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }
+
+  let cleanupCurrentCarousel: (() => void) | null | void = null;
+
+  document.addEventListener("astro:page-load", () => {
+    if (typeof cleanupCurrentCarousel === "function") {
+      cleanupCurrentCarousel();
+    }
+
+    cleanupCurrentCarousel = initMasterCarousel();
+  });
 </script>
 
 <style>
-    .services-section { background: var(--bg); padding: var(--space-20) 0; position: relative; }
-    
-    #services-title {
-        --light-x: -999px;
-        --light-spread: 0px;
-        --light-color: var(--text);
-        
-        /* Teñido natural de la fuente con alcance dinámico (2D simulación) */
-        background: linear-gradient(to right, 
-            var(--text) calc(var(--light-x) - var(--light-spread)), 
-            var(--light-color) var(--light-x), 
-            var(--text) calc(var(--light-x) + var(--light-spread))
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
+  .services-section {
+    background: var(--bg);
+    padding: clamp(5rem, 9vw, 7.5rem) 0;
+    position: relative;
+  }
+
+  #services-title {
+    --light-x: -999px;
+    --light-spread: 0px;
+    --light-color: var(--text);
+    background: linear-gradient(
+      to right,
+      var(--text) calc(var(--light-x) - var(--light-spread)),
+      var(--light-color) var(--light-x),
+      var(--text) calc(var(--light-x) + var(--light-spread))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .services-heading {
+    margin: 0 0 var(--space-8);
+    max-width: none;
+    font-size: clamp(1.2rem, 4.1vw, 3rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .master-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .master-border-svg {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    pointer-events: none;
+    z-index: 50;
+    overflow: visible;
+  }
+
+  .dynamic-border {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    will-change: stroke-dashoffset;
+  }
+
+  .impact-ripple {
+    position: absolute;
+    left: -2px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 60;
+  }
+
+  .impact-ripple::before,
+  .impact-ripple::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid transparent;
+    opacity: 0;
+  }
+
+  .impact-ripple.active::before {
+    animation: wave-ripple 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  }
+
+  .impact-ripple.active::after {
+    animation: wave-ripple 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) 0.2s forwards;
+  }
+
+  @keyframes wave-ripple {
+    0% {
+      width: 0;
+      height: 0;
+      border-color: var(--ripple-color);
+      opacity: 0.6;
+      border-width: 4px;
+    }
+    100% {
+      width: 140px;
+      height: 140px;
+      border-color: var(--ripple-color);
+      opacity: 0;
+      border-width: 1px;
+    }
+  }
+
+  .master-card {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 98%, white 2%), color-mix(in srgb, var(--surface-2) 92%, transparent)),
+      var(--surface-2);
+    border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
+    border-radius: 1.75rem;
+    padding: clamp(1.35rem, 5vw, 2rem);
+    min-height: clamp(22rem, 70vw, 28rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 20px 40px -12px rgba(2, 6, 23, 0.12);
+  }
+
+  .master-content-wrapper {
+    transition: all 0.35s ease;
+  }
+
+  .master-card.absorbing .master-content-wrapper {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .master-icon-container {
+    width: 4.25rem;
+    height: 4.25rem;
+    color: white;
+    border-radius: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-5);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition:
+      background 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  .master-icon {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .master-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .master-title {
+    margin: 0 0 var(--space-3);
+    font-size: clamp(1.85rem, 6vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+
+  .master-description {
+    margin: 0;
+    font-size: clamp(0.98rem, 2.8vw, 1.1rem);
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 34rem;
+  }
+
+  .master-actions {
+    margin-top: var(--space-7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .mobile-service-nav {
+    display: none;
+  }
+
+  .carousel-column {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 120px, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 120px, black 90%, transparent 100%);
+  }
+
+  .carousel-mask {
+    width: 100%;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 24px;
+    padding: 2.25rem 0;
+    will-change: transform;
+  }
+
+  .carousel-slide {
+    flex: 0 0 320px;
+    width: 320px;
+    opacity: 0.6;
+    scale: 0.93;
+    transition:
+      transform 0.35s ease,
+      opacity 0.35s ease,
+      filter 0.35s ease;
+  }
+
+  .carousel-slide:hover,
+  .carousel-slide.is-active {
+    opacity: 1;
+    scale: 1;
+    filter: brightness(1.03);
+  }
+
+  .carousel-slide[data-color="#2563eb"] :global(.card-inner) {
+    border-color: #2563eb;
+  }
+
+  .carousel-slide[data-color="#0f766e"] :global(.card-inner) {
+    border-color: #0f766e;
+  }
+
+  .carousel-slide[data-color="#0284c7"] :global(.card-inner) {
+    border-color: #0284c7;
+  }
+
+  .carousel-slide[data-color="#475569"] :global(.card-inner) {
+    border-color: #475569;
+  }
+
+  .carousel-controls {
+    display: none;
+  }
+
+  .nav-btn {
+    display: none;
+  }
+
+  .comet-spark {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor);
+  }
+
+  .decor-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    opacity: 0.14;
+    pointer-events: none;
+  }
+
+  .decor-1 {
+    top: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: var(--primary);
+  }
+
+  .decor-2 {
+    bottom: -10%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  @media (max-width: 1023px) {
+    .services-heading {
+      margin-bottom: var(--space-6);
+      font-size: clamp(1rem, 5vw, 2rem);
     }
 
-    #services-title.illuminated {
-        /* Sin sombras exteriores (drop-shadow). 
-           Esto fuerza a que toda la percepción de la luz provenga estrictamente 
-           del relleno de las letras (interior), como si estuvieran hechas de cristal. */
-        filter: none;
-    }
-
-    .master-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
-    @media (min-width: 1024px) {
-        .master-grid { grid-template-columns: 480px 1fr; gap: var(--space-12); align-items: center; }
-    }
-
-    .master-border-svg {
-        position: absolute;
-        top: -2px; left: -2px;
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
-        pointer-events: none;
-        z-index: 50;
-        overflow: visible;
-    }
-
-    .dynamic-border {
-        fill: none;
-        stroke: transparent;
-        stroke-width: 2px; /* Trazo fino y elegante */
-        stroke-linecap: round;
-        will-change: stroke-dashoffset;
-    }
-
-    .impact-ripple {
-        position: absolute;
-        left: -2px; /* Justo en la línea */
-        top: 50%;
-        width: 0px;
-        height: 0px;
-        pointer-events: none;
-        z-index: 60;
-    }
-    .impact-ripple::before, .impact-ripple::after {
-        content: "";
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        border: 2px solid transparent;
-        opacity: 0;
-    }
-    .impact-ripple.active::before {
-        animation: wave-ripple 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-    }
-    .impact-ripple.active::after {
-        animation: wave-ripple 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) 0.2s forwards;
-    }
-    @keyframes wave-ripple {
-        0% { width: 0px; height: 0px; border-color: var(--ripple-color); opacity: 0.6; border-width: 4px; }
-        100% { width: 140px; height: 140px; border-color: var(--ripple-color); opacity: 0; border-width: 1px; }
+    .master-grid {
+      gap: var(--space-6);
     }
 
     .master-card {
-        background: var(--surface-2);
-        border: 1px solid var(--border); /* Borde estático de fondo suave */
-        border-radius: 24px;
-        padding: var(--space-8);
-        min-height: 550px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: relative;
-        overflow: visible;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+      min-height: 0;
+      border-radius: 1.5rem;
     }
 
-    :global(.dark) .master-card {
-        background: linear-gradient(145deg, #1e293b, #0f172a);
+    .master-border-svg,
+    .impact-ripple,
+    .comet-spark {
+      display: none;
     }
 
-    .master-content-wrapper { transition: all 0.4s ease; }
-    .master-card.absorbing .master-content-wrapper { opacity: 0; transform: translateY(15px); }
-
-    .master-icon-container {
-        width: 64px; height: 64px;
-        color: white; border-radius: 16px;
-        display: flex; align-items: center; justify-content: center;
-        margin-bottom: var(--space-6);
-        transition: background 0.8s ease;
+    .master-actions {
+      flex-direction: column;
+      align-items: stretch;
     }
-    .master-title { font-size: 2.25rem; font-weight: 700; margin-bottom: var(--space-4); color: var(--text); line-height: 1.1; }
-    .master-description { font-size: 1.125rem; color: var(--text-muted); line-height: 1.6; }
-    .master-actions { margin-top: var(--space-8); display: flex; flex-wrap: wrap; gap: var(--space-4); }
+
+    .mobile-service-nav {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+    }
+
+    .mobile-service-status {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .mobile-service-counter {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    .mobile-service-progress {
+      position: relative;
+      inline-size: 100%;
+      block-size: 4px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface-3) 68%, transparent);
+    }
+
+    .mobile-service-progress-bar {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--primary) 72%, white 28%));
+      transform-origin: left center;
+      transform: scaleX(0.08);
+      transition: transform 0.35s ease;
+    }
+
+    .mobile-service-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .mobile-service-btn {
+      inline-size: 2.9rem;
+      block-size: 2.9rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+      background: color-mix(in srgb, var(--surface) 95%, transparent);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.25s ease;
+    }
+
+    .mobile-service-btn:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
+      background: color-mix(in srgb, var(--primary-soft) 60%, var(--surface));
+    }
 
     .carousel-column {
-        position: relative; width: 100%; overflow: hidden;
-        mask-image: linear-gradient(to right, transparent 0%, black 150px, black 90%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 150px, black 90%, transparent 100%);
+      display: none;
     }
-    .carousel-track { display: flex; gap: 24px; padding: 40px 0; will-change: transform; }
-    .carousel-slide { flex: 0 0 320px; width: 320px; opacity: 0.6; scale: 0.93; transition: all 0.5s ease; }
-    .carousel-slide:hover { opacity: 1; scale: 1.02; filter: brightness(1.1); }
+  }
 
-    /* Colores per-card vinculados a atributos de datos (Inmunes al reciclaje DOM) */
-    .carousel-slide[data-color="#3b82f6"] :global(.card-inner) { border-color: #3b82f6; }
-    .carousel-slide[data-color="#10b981"] :global(.card-inner) { border-color: #10b981; }
-    .carousel-slide[data-color="#06b6d4"] :global(.card-inner) { border-color: #06b6d4; }
-    .carousel-slide[data-color="#ef4444"] :global(.card-inner) { border-color: #ef4444; }
-    .carousel-slide[data-color="#8b5cf6"] :global(.card-inner) { border-color: #8b5cf6; }
-
-    .nav-btn { display: none; } /* Ocultar controles manuales si es full auto */
-
-    .comet-spark {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        will-change: transform, opacity;
-        /* Triple drop-shadow genera el "bloom" incandescente sin sobrecargar WebGL */
-        filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor);
+  @media (min-width: 1024px) {
+    .master-grid {
+      grid-template-columns: 480px 1fr;
+      gap: var(--space-12);
+      align-items: center;
     }
-
-    .decor-blob { position: absolute; border-radius: 50%; filter: blur(100px); z-index: 0; opacity: 0.15; pointer-events: none; }
-    .decor-1 { top: -10%; right: -5%; width: 500px; height: 500px; background: var(--primary); }
-    .decor-2 { bottom: -10%; left: -5%; width: 400px; height: 400px; background: var(--accent); }
+  }
 </style>

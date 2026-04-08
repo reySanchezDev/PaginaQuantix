@@ -1,5 +1,4 @@
 ---
-// import ThemeToggle from "./ThemeToggle.astro";
 import LanguageSwitch from "./LanguageSwitch.astro";
 
 interface Props {
@@ -8,27 +7,37 @@ interface Props {
 }
 
 const { navItems, lang } = Astro.props;
+
 const texts =
   lang === "es"
     ? {
-        menu: "Menu",
+        menu: "Explorar",
         closeMenu: "Cerrar menu",
+        summary: "Acceso rapido a secciones, idioma y apariencia.",
+        controls: "Controles",
       }
     : {
-        menu: "Menu",
+        menu: "Explore",
         closeMenu: "Close menu",
+        summary: "Quick access to sections, language, and appearance.",
+        controls: "Controls",
       };
 ---
 
 <div id="mobile-menu-overlay" class="mobile-menu-overlay" aria-hidden="true">
   <div class="mobile-menu-content">
     <div class="mobile-menu-header">
-      <span class="logo-text">{texts.menu}</span>
-      <button id="close-menu-btn" class="close-btn" aria-label={texts.closeMenu}>
+      <div class="mobile-menu-copy">
+        <span class="menu-kicker">Quantix Software</span>
+        <h2 class="logo-text">{texts.menu}</h2>
+        <p class="menu-summary">{texts.summary}</p>
+      </div>
+
+      <button id="close-menu-btn" type="button" class="close-btn" aria-label={texts.closeMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="22"
+          height="22"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -42,13 +51,14 @@ const texts =
       </button>
     </div>
 
-    <nav class="mobile-nav">
+    <nav class="mobile-nav" aria-label={lang === "es" ? "Navegacion movil" : "Mobile navigation"}>
       <ul>
         {
-          navItems.map((item) => (
+          navItems.map((item, index) => (
             <li>
               <a href={item.href} class="mobile-nav-link">
-                {item.label}
+                <span class="mobile-nav-index">{String(index + 1).padStart(2, "0")}</span>
+                <span class="mobile-nav-label">{item.label}</span>
               </a>
             </li>
           ))
@@ -57,9 +67,11 @@ const texts =
     </nav>
 
     <div class="mobile-menu-footer">
-      <div class="actions-wrapper">
-        <div class="divider"></div>
-        <LanguageSwitch />
+        <span class="footer-title">{texts.controls}</span>
+        <div class="actions-wrapper">
+        <div class="action-pill action-pill--wide">
+          <LanguageSwitch />
+        </div>
       </div>
     </div>
   </div>
@@ -68,67 +80,110 @@ const texts =
 <style>
   .mobile-menu-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--bg);
-    background: rgba(var(--bg-rgb, 15, 23, 42), 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    inset: 0;
     z-index: 100;
-    transform: translateX(100%);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background:
+      linear-gradient(180deg, rgba(var(--bg-rgb), 0.78), rgba(var(--bg-rgb), 0.9)),
+      rgba(var(--bg-rgb), 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     opacity: 0;
     pointer-events: none;
-  }
-
-  :global([data-theme="light"]) .mobile-menu-overlay {
-    background: rgba(255, 255, 255, 0.7);
-  }
-  :global([data-theme="dark"]) .mobile-menu-overlay {
-    background: rgba(2, 6, 23, 0.8);
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
   }
 
   .mobile-menu-overlay.open {
-    transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
   }
 
   .mobile-menu-content {
-    background-color: var(--surface);
-    height: 100%;
-    width: 100%;
-    max-width: 320px;
-    margin-left: auto;
+    inline-size: min(100% - 1rem, 26rem);
+    min-block-size: calc(100dvh - 1rem);
+    margin: 0.5rem 0.5rem 0.5rem auto;
     display: flex;
     flex-direction: column;
-    padding: var(--space-6);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-    border-left: 1px solid var(--border);
+    padding:
+      max(1rem, env(safe-area-inset-top))
+      1rem
+      max(1rem, env(safe-area-inset-bottom))
+      1rem;
+    border-radius: 1.75rem;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 97%, white 3%), color-mix(in srgb, var(--surface) 94%, transparent)),
+      var(--surface);
+    border: 1px solid color-mix(in srgb, var(--border-strong) 82%, transparent);
+    box-shadow:
+      0 24px 60px rgba(2, 6, 23, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateX(24px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: auto;
+  }
+
+  .mobile-menu-overlay.open .mobile-menu-content {
+    transform: translateX(0);
   }
 
   .mobile-menu-header {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
+    gap: var(--space-4);
     margin-bottom: var(--space-8);
   }
 
-  .logo-text {
-    font-family: var(--font-heading);
+  .mobile-menu-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-width: 15rem;
+  }
+
+  .menu-kicker {
+    font-size: 0.72rem;
     font-weight: 700;
-    font-size: var(--text-xl);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  .logo-text {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 7vw, 2.3rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--text);
   }
 
+  .menu-summary {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.55;
+  }
+
   .close-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
     color: var(--text);
-    padding: var(--space-2);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  .close-btn:hover {
+    transform: translateY(-1px);
   }
 
   .mobile-nav ul {
@@ -137,42 +192,112 @@ const texts =
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: 0.75rem;
   }
 
   .mobile-nav-link {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: var(--text-2xl);
-    font-weight: 600;
-    color: var(--text);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1rem 1rem 0.95rem;
     text-decoration: none;
-    transition: color 0.2s ease;
+    color: var(--text);
+    border-radius: 1.35rem;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-2) 90%, transparent));
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
   }
 
   .mobile-nav-link:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    box-shadow: var(--shadow-md);
+  }
+
+  .mobile-nav-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 2.4rem;
+    block-size: 2.4rem;
+    border-radius: 999px;
+    background: var(--primary-soft);
     color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .mobile-nav-label {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
   .mobile-menu-footer {
     margin-top: auto;
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--border);
+    padding-top: var(--space-8);
+  }
+
+  .footer-title {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
   }
 
   .actions-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--surface-2);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-full);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
-  .divider {
-    width: 1px;
-    height: 24px;
-    background-color: var(--border-strong);
+  .action-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-block-size: 3.5rem;
+    padding: 0.45rem 0.55rem 0.45rem 0.75rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    color: var(--text);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .action-pill--wide {
+    justify-content: center;
+    padding-inline: 0.9rem;
+  }
+
+  .action-pill :global(.lang-switch) {
+    inline-size: 100%;
+    justify-content: center;
+    color: var(--text);
+  }
+
+  @media (max-width: 479px) {
+    .mobile-menu-content {
+      inline-size: calc(100% - 0.75rem);
+      min-block-size: calc(100dvh - 0.75rem);
+      margin: 0.375rem 0.375rem 0.375rem auto;
+      border-radius: 1.5rem;
+    }
+
+    .mobile-nav-link {
+      padding: 0.95rem 0.9rem;
+    }
   }
 </style>
 
@@ -180,29 +305,48 @@ const texts =
   function setupMobileMenu() {
     const overlay = document.getElementById("mobile-menu-overlay");
     const closeBtn = document.getElementById("close-menu-btn");
+    const toggleBtn = document.getElementById("mobile-menu-toggle");
 
-    if (closeBtn && overlay) {
-      closeBtn.addEventListener("click", () => {
-        overlay.classList.remove("open");
-        document.body.style.overflow = "";
-      });
+    if (!overlay) {
+      return;
     }
 
-    if (overlay) {
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-          overlay.classList.remove("open");
-          document.body.style.overflow = "";
+    const closeMenu = () => {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+      toggleBtn?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+
+    if (closeBtn && closeBtn.dataset.bound !== "true") {
+      closeBtn.addEventListener("click", closeMenu);
+      closeBtn.dataset.bound = "true";
+    }
+
+    overlay.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      if (!(link instanceof HTMLElement) || link.dataset.bound === "true") {
+        return;
+      }
+
+      link.addEventListener("click", closeMenu);
+      link.dataset.bound = "true";
+    });
+
+    if (overlay.dataset.bound !== "true") {
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          closeMenu();
         }
       });
-    }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && overlay?.classList.contains("open")) {
-        overlay.classList.remove("open");
-        document.body.style.overflow = "";
-      }
-    });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && overlay.classList.contains("open")) {
+          closeMenu();
+        }
+      });
+
+      overlay.dataset.bound = "true";
+    }
   }
 
   setupMobileMenu();

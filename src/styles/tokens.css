@@ -3,6 +3,7 @@
      LIGHT THEME (Premium Cobalt + Aqua)
      ========================================= */
   --bg: #F8FAFC;
+  --bg-rgb: 248, 250, 252;
   /* Slate-50 - cleaner than previous */
   --surface: #FFFFFF;
   --surface-2: #F1F5F9;
@@ -98,6 +99,7 @@
      DARK THEME (Midnight + Electric Aqua)
      ========================================= */
   --bg: #020617;
+  --bg-rgb: 2, 6, 23;
   /* Slate-950 - Deepest Obsidian */
   --surface: #0F172A;
   /* Slate-900 */

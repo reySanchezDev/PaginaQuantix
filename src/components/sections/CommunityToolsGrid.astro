@@ -125,7 +125,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
 <style>
   .tools-section {
     position: relative;
-    padding: var(--space-32) 0 var(--space-40);
+    padding: clamp(5rem, 9vw, var(--space-32)) 0 clamp(5.5rem, 10vw, var(--space-40));
     background-color: var(--bg);
     min-height: 80vh;
   }
@@ -142,7 +142,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
   .section-header {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto var(--space-20);
+    margin: 0 auto clamp(var(--space-10), 7vw, var(--space-20));
     position: relative;
     z-index: 10;
   }
@@ -159,7 +159,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
 
   .section-desc {
     color: var(--text-muted);
-    font-size: var(--text-lg);
+    font-size: clamp(1rem, 2.4vw, var(--text-lg));
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;
@@ -168,7 +168,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
   .tools-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: clamp(var(--space-5), 4vw, var(--space-10));
     position: relative;
     z-index: 10;
     justify-content: center;
@@ -190,7 +190,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
-    padding: var(--space-6) var(--space-6) var(--space-8);
+    padding: clamp(var(--space-5), 4vw, var(--space-6)) clamp(var(--space-5), 4vw, var(--space-6)) clamp(var(--space-6), 5vw, var(--space-8));
     display: flex;
     flex-direction: column;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -208,12 +208,13 @@ const t = lang === "es" ? esTranslations : enTranslations;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: var(--space-6);
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
   }
 
   .tool-icon-wrapper {
-    width: 64px;
-    height: 64px;
+    width: 3.35rem;
+    height: 3.35rem;
     border-radius: var(--radius-lg);
     background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
     border: 1px solid var(--border);
@@ -250,7 +251,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
   }
 
   .tool-title {
-    font-size: var(--text-2xl);
+    font-size: clamp(1.45rem, 4vw, var(--text-2xl));
     margin-bottom: var(--space-3);
     color: var(--text);
   }
@@ -259,13 +260,13 @@ const t = lang === "es" ? esTranslations : enTranslations;
     color: var(--text-muted);
     font-size: var(--text-sm);
     line-height: 1.6;
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-5);
   }
 
   .tool-features {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--space-10) 0;
+    margin: 0 0 var(--space-8) 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-4);
@@ -323,7 +324,7 @@ const t = lang === "es" ? esTranslations : enTranslations;
 
   .tool-footer {
     margin-top: auto;
-    padding-top: var(--space-6);
+    padding-top: var(--space-5);
     border-top: 1px solid var(--border);
   }
 
@@ -341,6 +342,30 @@ const t = lang === "es" ? esTranslations : enTranslations;
 
   .download-btn:hover {
     box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.3);
+  }
+
+  @media (max-width: 767px) {
+    .section-header {
+      text-align: left;
+      margin-bottom: var(--space-8);
+    }
+
+    .section-desc {
+      margin: 0;
+      max-width: 34rem;
+    }
+
+    .tool-card {
+      border-radius: 1.4rem;
+    }
+
+    .tool-features {
+      gap: var(--space-3);
+    }
+
+    .tool-features li {
+      font-size: 0.92rem;
+    }
   }
 </style>
 
