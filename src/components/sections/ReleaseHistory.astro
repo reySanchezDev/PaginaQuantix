@@ -1,0 +1,522 @@
+---
+import Container from "../ui/Container.astro";
+import { releaseHistory } from "../../data/releaseHistory";
+
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+import esTranslations from "../../i18n/es.json";
+import enTranslations from "../../i18n/en.json";
+
+const t = lang === "es" ? esTranslations : enTranslations;
+
+// Pre-translate or format date if needed
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return "";
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+};
+---
+
+<section class="release-history">
+  <Container>
+    <div class="section-header">
+      <h2 class="section-title">{t["community.updates.title"]}</h2>
+      <p class="section-desc">{t["community.updates.subtitle"]}</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      
+      {releaseHistory.map((release, index) => (
+        <div class={`timeline-item ${release.status}`} data-aos="fade-up" data-aos-delay={index * 100}>
+          <div class="timeline-dot">
+            <div class="dot-inner"></div>
+            <div class="dot-ripple"></div>
+            <div class="dot-ripple delay-1"></div>
+          </div>
+
+          <div class="spine-connector">
+            <div class="spine-beam"></div>
+          </div>
+
+          <div class="curve-connector">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path class="curve-bg" d=""></path>
+              <path class="curve-beam" d=""></path>
+            </svg>
+          </div>
+          
+          <div class="timeline-content">
+            <div class="release-card">
+              <div class="release-header">
+                {release.status === 'released' && (
+                  <div class="version-badge">
+                    <span class="v-label">Version</span>
+                    <span class="v-number">{release.version}</span>
+                  </div>
+                )}
+                <div class={`status-badge ${release.status}`}>
+                  {release.status === 'released' ? (
+                    lang === 'es' ? 'Disponible' : 'Available'
+                  ) : (
+                    lang === 'es' ? 'Próximamente' : 'Upcoming'
+                  )}
+                </div>
+              </div>
+
+              <div class="release-tool">
+                <span class="tool-tag">{release.tool}</span>
+                {release.status === 'released' && (
+                  <time class="release-date">{formatDate(release.date)}</time>
+                )}
+              </div>
+
+              <ul class="change-list">
+                {release.changes[lang].map((change) => (
+                  <li class="change-item">
+                    <div class="change-bullet">
+                      <div class="bullet-inner"></div>
+                      <div class="bullet-ripple"></div>
+                    </div>
+                    <span class="change-text">{change}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style>
+  .release-history {
+    position: relative;
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto clamp(3rem, 6vw, 5rem);
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, var(--text) 30%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .timeline {
+      padding-left: 0;
+    }
+    
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 2.5rem;
+      bottom: 0;
+      width: 8px;
+      background: var(--border-strong);
+      transform: translateX(-50%);
+      border-radius: 99px;
+      opacity: 0.8;
+      box-shadow: 
+        inset 1px 1px 2px rgba(0,0,0,0.1),
+        0 0 15px rgba(var(--primary-rgb), 0.1);
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    --item-color: var(--primary);
+  }
+
+  .timeline-item.released {
+    --item-color: #10b981;
+    --item-glow: rgba(16, 185, 129, 0.5);
+  }
+
+  .timeline-item.upcoming {
+    --item-color: var(--primary);
+    --item-glow: rgba(var(--primary-rgb), 0.5);
+  }
+
+  @media (min-width: 768px) {
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 5rem;
+    }
+    
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .spine-connector {
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      width: 8px;
+      height: calc(100% + 5rem);
+      background: transparent;
+      z-index: 1;
+      overflow: hidden;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item:last-child .spine-connector {
+      display: block;
+      height: calc(100% + 1rem);
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+
+    .spine-beam {
+      position: absolute;
+      top: -150px;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(to bottom, transparent, var(--item-color), transparent);
+      filter: blur(2px);
+      animation: spine-move 3s infinite linear;
+      opacity: 0.8;
+    }
+
+    /* Conector curvo elegante (forma de media llave) */
+    .curve-connector {
+      position: absolute;
+      top: 2.5rem;
+      width: 3rem;
+      height: 4rem;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .curve-connector svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .curve-bg {
+      fill: none;
+      stroke: var(--border-strong);
+      stroke-width: 4px;
+      stroke-linecap: round;
+      opacity: 0.8;
+    }
+
+    .curve-beam {
+      fill: none;
+      stroke: var(--item-color);
+      stroke-width: 4px;
+      stroke-linecap: round;
+      stroke-dasharray: 20 150;
+      animation: curve-flow 2s infinite linear;
+      filter: drop-shadow(0 0 5px var(--item-color));
+    }
+
+    .timeline-item:nth-child(odd) .curve-connector {
+      right: 50%;
+    }
+    .timeline-item:nth-child(odd) .curve-bg,
+    .timeline-item:nth-child(odd) .curve-beam {
+      d: path("M 100 0 C 100 50, 0 50, 0 100");
+    }
+
+    .timeline-item:nth-child(even) .curve-connector {
+      left: 50%;
+    }
+    .timeline-item:nth-child(even) .curve-bg,
+    .timeline-item:nth-child(even) .curve-beam {
+      d: path("M 0 0 C 0 50, 100 50, 100 100");
+    }
+  }
+
+  @keyframes curve-flow {
+    from { stroke-dashoffset: 150; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes spine-move {
+    0% { top: -150px; }
+    100% { top: 100%; }
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.35rem;
+    top: 1.5rem;
+    width: 1rem;
+    height: 1rem;
+    z-index: 5;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-dot {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 2rem;
+    }
+  }
+
+  .dot-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--item-color);
+    border-radius: 50%;
+    border: 3px solid var(--bg);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
+  }
+
+  .timeline-item.released .dot-inner {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  }
+
+  .dot-ripple {
+    position: absolute;
+    inset: 0;
+    background: var(--item-color);
+    border-radius: 50%;
+    z-index: 1;
+    animation: ripple-wave 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+    opacity: 0;
+  }
+
+  .dot-ripple.delay-1 {
+    animation-delay: 1s;
+  }
+
+  @keyframes ripple-wave {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(4.5);
+      opacity: 0;
+    }
+  }
+
+  .timeline-content {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-content {
+      width: calc(50% - 3rem);
+    }
+  }
+
+  .release-card {
+    background: rgba(var(--surface-rgb), 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .release-card:hover {
+    border-color: var(--item-color);
+    box-shadow: 0 10px 30px -10px rgba(var(--primary-rgb), 0.15);
+    background: rgba(var(--surface-rgb), 0.6);
+  }
+
+  .timeline-item.released .release-card:hover {
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+  }
+
+  .release-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .version-badge {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+
+  .v-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .v-number {
+    color: var(--text);
+    font-size: 1.1rem;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+  }
+
+  .status-badge.released {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .status-badge.upcoming {
+    background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+  }
+
+  .release-date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .release-tool {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+
+  .tool-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--item-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: color-mix(in srgb, var(--item-color) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--item-color) 20%, transparent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+  }
+
+  .change-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .change-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .change-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .change-bullet {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    margin-top: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .bullet-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--item-color);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--item-color);
+    position: relative;
+    z-index: 2;
+  }
+
+  .bullet-ripple {
+    position: absolute;
+    inset: 0;
+    background: var(--item-color);
+    border-radius: 50%;
+    z-index: 1;
+    animation: ripple-wave-small 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+    opacity: 0;
+  }
+
+  @keyframes ripple-wave-small {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  .change-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .release-card {
+      padding: 1.5rem;
+    }
+    
+    .release-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

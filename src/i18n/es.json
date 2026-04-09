@@ -12,5 +12,7 @@
     "nav.community": "Comunidad",
     "community.title": "Recursos Propios & Comunidad",
     "community.description": "Compartimos herramientas potentes, instaladores y utilidades diseñadas para potenciar los flujos de trabajo de profesionales y empresas de forma gratuita.",
-    "community.download": "Descargar"
+    "community.download": "Descargar",
+    "community.updates.title": "Historial de Actualizaciones",
+    "community.updates.subtitle": "Seguimiento detallado de las mejoras, correcciones y nuevas capacidades añadidas a nuestras herramientas."
 }

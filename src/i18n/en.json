@@ -12,5 +12,7 @@
     "nav.community": "Community",
     "community.title": "In-house Tools & Community",
     "community.description": "We share powerful tools, installers, and utilities designed to empower the workflows of professionals and businesses for free.",
-    "community.download": "Download"
+    "community.download": "Download",
+    "community.updates.title": "Update History",
+    "community.updates.subtitle": "Detailed tracking of improvements, fixes, and new features added to our tools."
 }
