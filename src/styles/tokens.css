@@ -1,52 +1,40 @@
 :root {
   /* =========================================
-     LIGHT THEME (Premium Cobalt + Aqua)
+     LIGHT THEME (Corporate Azure + Teal)
      ========================================= */
-  --bg: #F8FAFC;
-  --bg-rgb: 248, 250, 252;
-  /* Slate-50 - cleaner than previous */
+  --bg: #F5F9FD;
+  --bg-rgb: 245, 249, 253;
   --surface: #FFFFFF;
-  --surface-2: #F1F5F9;
-  /* Slate-100 */
-  --surface-3: #E2E8F0;
-  /* Slate-200 */
+  --surface-rgb: 255, 255, 255;
+  --surface-light: #FBFDFF;
+  --surface-2: #EEF5FB;
+  --surface-3: #DCE8F4;
 
-  --text: #0F172A;
-  /* Slate-900 */
-  --text-muted: #64748B;
-  /* Slate-500 */
-  --text-subtle: #94A3B8;
-  /* Slate-400 */
+  --text: #17324A;
+  --text-muted: #5E748D;
+  --text-subtle: #8BA0B6;
 
-  --border: #E2E8F0;
-  --border-strong: #CBD5E1;
+  --border: #D8E4EF;
+  --border-strong: #C0D2E3;
 
-  /* Primary: Cobalt */
-  --primary: #2563EB;
-  /* Blue-600 */
-  --primary-hover: #1D4ED8;
-  /* Blue-700 */
-  --primary-soft: #EFF6FF;
-  /* Blue-50 */
-  --primary-rgb: 37, 99, 235;
-  /* For glass/shadows */
+  --primary: #2D6CDF;
+  --primary-hover: #2459BC;
+  --primary-soft: #EAF2FF;
+  --primary-rgb: 45, 108, 223;
 
-  /* Accent: Aqua */
-  --accent: #0D9488;
-  /* Teal-600 */
-  --accent-hover: #0F766E;
-  /* Teal-700 */
-  --accent-soft: #F0FDFA;
-  /* Teal-50 */
+  --accent: #1FA4A2;
+  --accent-rgb: 31, 164, 162;
+  --accent-hover: #177F7E;
+  --accent-soft: #E8FBFA;
 
-  --success: #10B981;
-  --warning: #F59E0B;
-  --danger: #EF4444;
-  --info: #0EA5E9;
+  --success: #1FA97A;
+  --warning: #D59B28;
+  --danger: #D46767;
+  --info: #3190C5;
 
-  --focus-ring: rgba(37, 99, 235, 0.3);
-  --link: #2563EB;
-  --link-hover: #1D4ED8;
+  --focus-ring: rgba(45, 108, 223, 0.22);
+  --link: #2D6CDF;
+  --link-hover: #2459BC;
 
   /* =========================================
      DESIGN TOKENS (Premium 8px Grid & Smooth UI)
@@ -96,53 +84,41 @@
 
 [data-theme="dark"] {
   /* =========================================
-     DARK THEME (Midnight + Electric Aqua)
+     DARK THEME (Corporate Dusk)
      ========================================= */
-  --bg: #020617;
-  --bg-rgb: 2, 6, 23;
-  /* Slate-950 - Deepest Obsidian */
-  --surface: #0F172A;
-  /* Slate-900 */
-  --surface-2: #1E293B;
-  /* Slate-800 */
-  --surface-3: #334155;
-  /* Slate-700 */
+  --bg: #10263A;
+  --bg-rgb: 16, 38, 58;
+  --surface: #17324A;
+  --surface-rgb: 23, 50, 74;
+  --surface-light: #21415C;
+  --surface-2: #23425F;
+  --surface-3: #31526F;
 
-  --text: #F1F5F9;
-  /* Slate-100 */
-  --text-muted: #94A3B8;
-  /* Slate-400 */
-  --text-subtle: #64748B;
-  /* Slate-500 */
+  --text: #EDF5FB;
+  --text-muted: #B7C8D8;
+  --text-subtle: #87A1B8;
 
-  --border: #1E293B;
-  --border-strong: #334155;
+  --border: #274966;
+  --border-strong: #3B5E7E;
 
-  /* Primary: Electric Cobalt */
-  --primary: #3B82F6;
-  /* Blue-500 */
-  --primary-hover: #60A5FA;
-  /* Blue-400 */
-  --primary-soft: #1E3A8A;
-  /* Blue-900 */
-  --primary-rgb: 59, 130, 246;
+  --primary: #7AB3FF;
+  --primary-hover: #9BC8FF;
+  --primary-soft: #1D446E;
+  --primary-rgb: 122, 179, 255;
 
-  /* Accent: Electric Aqua */
-  --accent: #14B8A6;
-  /* Teal-500 */
-  --accent-hover: #2DD4BF;
-  /* Teal-400 */
-  --accent-soft: #115E59;
-  /* Teal-800 */
+  --accent: #68D1C8;
+  --accent-rgb: 104, 209, 200;
+  --accent-hover: #8EE1DA;
+  --accent-soft: #1F6865;
 
-  --success: #34D399;
-  --warning: #FBBF24;
-  --danger: #F87171;
-  --info: #38BDF8;
+  --success: #53D0A0;
+  --warning: #F0C15D;
+  --danger: #F08A8A;
+  --info: #6BC8EE;
 
-  --focus-ring: rgba(59, 130, 246, 0.5);
-  --link: #3B82F6;
-  --link-hover: #60A5FA;
+  --focus-ring: rgba(122, 179, 255, 0.35);
+  --link: #7AB3FF;
+  --link-hover: #9BC8FF;
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);

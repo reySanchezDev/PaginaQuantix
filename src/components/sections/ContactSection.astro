@@ -119,8 +119,9 @@ const t =
 <style>
   .contact-section {
     padding: clamp(4.5rem, 9vw, var(--space-24)) 0;
-    background-color: #020617;
-    color: #fff;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 42%, var(--bg)) 0%, color-mix(in srgb, var(--accent-soft) 20%, var(--bg)) 100%);
+    color: var(--text);
     position: relative;
     overflow: hidden;
   }
@@ -134,7 +135,7 @@ const t =
     height: 100%;
     background: radial-gradient(
       circle at center,
-      rgba(37, 99, 235, 0.15) 0%,
+      rgba(var(--primary-rgb), 0.12) 0%,
       transparent 60%
     );
     pointer-events: none;
@@ -154,12 +155,14 @@ const t =
     font-weight: 800;
     margin-bottom: var(--space-4);
     letter-spacing: -0.02em;
-    color: white;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .section-desc {
     font-size: clamp(1rem, 2.5vw, var(--text-lg));
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .contact-grid {
@@ -187,10 +190,10 @@ const t =
     background:
       linear-gradient(
         180deg,
-        rgba(15, 23, 42, 0.88) 0%,
-        rgba(15, 23, 42, 0.74) 100%
+        color-mix(in srgb, var(--surface) 98%, white 2%) 0%,
+        color-mix(in srgb, var(--surface-2) 92%, transparent) 100%
       );
-    border: 1px solid rgba(148, 163, 184, 0.14);
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
     border-radius: 1.4rem;
     backdrop-filter: blur(10px);
     transition:
@@ -207,11 +210,11 @@ const t =
     background:
       linear-gradient(
         180deg,
-        rgba(15, 23, 42, 0.94) 0%,
-        rgba(15, 23, 42, 0.82) 100%
+        color-mix(in srgb, var(--surface-light) 98%, white 2%) 0%,
+        color-mix(in srgb, var(--primary-soft) 58%, var(--surface)) 100%
       );
-    border-color: rgba(96, 165, 250, 0.28);
-    box-shadow: 0 16px 36px -16px rgba(2, 6, 23, 0.72);
+    border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+    box-shadow: 0 20px 40px -20px rgba(var(--primary-rgb), 0.24);
   }
 
   .contact-card--static {
@@ -224,9 +227,9 @@ const t =
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(37, 99, 235, 0.08);
-    color: #60a5fa;
-    border: 1px solid rgba(96, 165, 250, 0.18);
+    background: color-mix(in srgb, var(--primary-soft) 86%, white 14%);
+    color: var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
     border-radius: 1rem;
     transition:
       transform 0.28s ease,
@@ -236,9 +239,9 @@ const t =
   }
 
   .contact-card--link:hover .icon-box {
-    background: rgba(37, 99, 235, 0.16);
-    color: #bfdbfe;
-    border-color: rgba(147, 197, 253, 0.32);
+    background: color-mix(in srgb, var(--accent-soft) 78%, white 22%);
+    color: var(--accent-hover);
+    border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
     transform: translateY(-1px);
   }
 
@@ -254,13 +257,13 @@ const t =
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-weight: 700;
-    color: #7c8aa5;
+    color: var(--text-subtle);
   }
 
   .value {
     font-size: clamp(1.02rem, 2vw, 1.22rem);
     font-weight: 650;
-    color: white;
+    color: var(--text);
     line-height: 1.25;
     text-wrap: balance;
   }
@@ -269,7 +272,7 @@ const t =
     margin-top: 0.45rem;
     font-size: 0.92rem;
     font-weight: 600;
-    color: #93c5fd;
+    color: var(--primary);
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
@@ -281,11 +284,11 @@ const t =
 
   .contact-card--link:hover .cta {
     gap: 0.5rem;
-    color: #dbeafe;
+    color: var(--accent-hover);
   }
 
   .text-muted {
-    color: #72829c;
+    color: var(--text-muted);
   }
 
   @media (max-width: 767px) {

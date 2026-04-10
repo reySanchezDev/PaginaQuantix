@@ -34,7 +34,7 @@ export const products: Product[] = [
             en: 'Flawless inventory and billing, with total control. Define your rules and operate with precise, real-time data.'
         },
         tags: ['Inventario', 'Facturación', 'Caja', 'Reportes', 'Seguridad'],
-        gradient: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+        gradient: 'linear-gradient(135deg, #EEF4FF 0%, #D9E7FF 52%, #C7F1F1 100%)',
         href: {
             es: '/es/productos/quantix/',
             en: '/en/products/quantix/',
@@ -69,7 +69,7 @@ export const products: Product[] = [
             en: 'The ultimate solution for payroll and HR management tailored to local regulations.'
         },
         tags: ['HR', 'Payroll', 'Legal'],
-        gradient: 'linear-gradient(135deg, #1e3a8a 0%, #172554 100%)',
+        gradient: 'linear-gradient(135deg, #EAFBF7 0%, #D4F2E9 48%, #D9E7FF 100%)',
         href: {
             es: '/es/productos/nica-planilla/',
             en: '/en/products/nica-payroll/',
