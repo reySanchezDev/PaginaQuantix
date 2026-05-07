@@ -9,7 +9,7 @@ trigger: always_on
 # Proyecto Web Astro (Sitio corporativo + portafolio) — Estándares de código, arquitectura y calidad
 
 > **Crítico**: Estas reglas son **obligatorias** para todo aporte. Cualquier violación se corrige **antes** de integrar cambios.
-> Alcance: Sitio en **Astro** con **i18n (/es, /en)**, **tema claro/oscuro**, **100% responsive**, performance alto y UI “premium”.
+> Alcance: Sitio en **Astro** con **i18n (/es, /en)**, **tema claro fijo**, **100% responsive**, performance alto y UI “premium”.
 
 ---
 
@@ -29,7 +29,7 @@ Aplica a cualquier persona/IA que entregue trabajo para este proyecto.
 
 ### 1.1 “Content-first” + “Islands” (JS mínimo)
 - Astro se usa para **render estático** por defecto.
-- JS en cliente solo cuando aporta valor (toggle tema, menú mobile, scroll-spy, animaciones sutiles).
+- JS en cliente solo cuando aporta valor (menú mobile, scroll-spy, animaciones sutiles).
 - Evitar frameworks de UI completos si no son necesarios. Preferir componentes Astro + “islas” pequeñas.
 
 ### 1.2 Separación clara: Pages / Layouts / Components / Content
@@ -57,7 +57,7 @@ Estructura recomendada y obligatoria (nombres exactos sugeridos; se aceptan equi
 - `src/components/`
   - `ui/` (botones, cards, badges, inputs)
   - `sections/` (Hero, Features, Products, Trust, Contact)
-  - `nav/` (HeaderPremium, MobileOverlay, LanguageSwitch, ThemeToggle)
+  - `nav/` (HeaderPremium, MobileOverlay, LanguageSwitch)
 - `src/content/` o `src/data/`
   - `products.*` (lista de productos)
   - `site.*` (marca, contacto, redes)
@@ -105,7 +105,7 @@ Reglas:
   - Espaciado (escala 8px)
   - Radios (cards/buttons/pills)
   - Sombras (sutiles)
-- Tema claro/oscuro debe ser únicamente un cambio de tokens, no estilos duplicados.
+- El tema visual debe vivir en tokens claros, no en estilos duplicados.
 
 ### 4.2 Tipografía
 - Reglas:
@@ -118,7 +118,7 @@ Reglas:
 - `Card` (base)
 - `Badge`
 - `Input`, `Textarea` con focus ring y errores inline
-- `ThemeToggle`, `LanguageSwitch`
+- `LanguageSwitch`
 - `Container` (max-width + padding responsivo)
 
 ### 4.4 Microinteracciones “premium”
@@ -174,16 +174,12 @@ Reglas:
 
 ---
 
-## 7) Tema claro/oscuro (MANDATORIO)
+## 7) Tema visual claro (MANDATORIO)
 
-- Toggle visible en header (ubicación consistente).
-- Persistencia de selección (almacenamiento local).
-- Fallback a preferencia del sistema cuando no hay selección previa.
-- Evitar “flash” de tema al cargar:
-  - El tema debe aplicarse lo más temprano posible.
-- Logo swap:
-  - `logo-light` en tema claro
-  - `logo-dark` en tema oscuro
+- No implementar toggle de tema ni persistencia de selección.
+- No depender de preferencia del sistema para cambiar colores.
+- Mantener una experiencia clara, consistente y accesible.
+- Usar una sola versión de logo compatible con el tema claro.
 
 ---
 

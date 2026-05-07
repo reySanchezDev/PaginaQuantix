@@ -1,6 +1,6 @@
 # Quantix Software — Requerimientos de Rediseño Web (Astro) v1.1
 > Documento maestro para implementar el sitio corporativo + portafolio.  
-> Idiomas: **/es/** y **/en/**. Tema: **claro/oscuro** con toggle y persistencia.  
+> Idiomas: **/es/** y **/en/**. Tema: **claro fijo**, sin toggle ni persistencia.
 > Contenido: **placeholders** (Lorem Ipsum) + “Aca poner una imagen”.  
 > Nota clave: **NO incluir sección ni opción de “Precios” en Home**. Los precios vivirán **dentro de cada página de producto** cuando existan.  
 > **RESPONSIVE 100% OBLIGATORIO**: mobile/tablet/desktop sin excepciones y sin scroll horizontal.
@@ -11,7 +11,7 @@
 - Rediseñar quantix.software como sitio corporativo premium para **Quantix Software** con catálogo de productos.
 - Home tipo “one-page premium” con navegación a secciones: **INICIO / FUNCIONES / PRODUCTOS / CONTACTO** (look no tradicional).
 - Portafolio inicial: Quantix y Nica Planilla en tarjetas premium con enlaces **configurables** (internos hoy, externos mañana) sin refactor.
-- Soporte completo de i18n (`/es/`, `/en/`) + tema claro/oscuro con swap automático de logo.
+- Soporte completo de i18n (`/es/`, `/en/`) + tema claro fijo.
 - Contacto global: formulario + email + WhatsApp con estados y validación.
 - **Responsive 100%** como requisito de aceptación de entrega.
 
@@ -21,7 +21,7 @@
 - Sitio global: no mencionar países, normativas o nichos por defecto.
 - Textos: Lorem Ipsum (ES/EN).
 - Imágenes: insertar literalmente “Aca poner una imagen”; el componente queda listo para recibir el nombre del asset.
-- Header/footer: “Quantix Software” y logo (2 versiones: light/dark).
+- Header/footer: “Quantix Software” y logo compatible con tema claro.
 - Menú principal: **INICIO / FUNCIONES / PRODUCTOS / CONTACTO** (exactamente estos 4).
 - Home: **NO** mostrar “Precios”. Precios solo en páginas de producto.
 - Tecnología: Astro. Se permite Tailwind o CSS modular, respetando este sistema de diseño.
@@ -41,10 +41,9 @@
   - Scroll-to-section suave + scroll-spy.
 - Acciones:
   - Selector ES/EN minimalista.
-  - Toggle tema sol/luna con persistencia y fallback a preferencia del sistema.
 - Mobile:
   - Menú abre overlay/panel premium con blur.
-  - Acciones de idioma/tema accesibles.
+  - Acciones de idioma accesibles.
   - Cierre con ESC y click fuera.
 - Accesibilidad: navegación teclado + focus visible.
 
@@ -205,11 +204,6 @@ Paleta tokens premium:
   - `--bg` #F7F8FA, `--surface` #FFF, `--surface-2` #F1F3F6
   - `--text` #0B1220, `--text-muted` #4B5565, `--border` #E2E8F0
   - `--primary` #2F6BFF, `--primary-2` #00BFA6, `--accent` #7C5CFF
-- Dark:
-  - `--bg` #070A0F, `--surface` #0B1220, `--surface-2` #0F1A2E
-  - `--text` #EAF0FF, `--text-muted` #A6B2C8, `--border` #1C2A44
-  - `--primary` #5B8CFF, `--primary-2` #24D6C0, `--accent` #9B87FF
-
 Iconografía:
 - Lineal consistente (tipo Lucide/Feather).
 
@@ -217,7 +211,7 @@ Iconografía:
 
 ## 6) Componentes UI
 - Botones: Primary/Secondary/Ghost/Link con estados (hover/active/disabled/loading).
-- Cards: borde 1px, hover lift -2px, sombra sutil, consistentes light/dark.
+- Cards: borde 1px, hover lift -2px, sombra sutil, consistentes en tema claro.
 - Header: glass capsule + segmented control con indicador animado.
 - Formularios: focus ring, mensajes inline error/success, accesibilidad completa.
 
@@ -227,7 +221,7 @@ Iconografía:
 - Textos: Lorem Ipsum.
 - Imágenes: “Aca poner una imagen”.
 - Assets sugeridos:
-  - `logo-light.svg`, `logo-dark.svg`, `hero-main.webp`, thumbs y shots por producto.
+  - `logo-light.svg`, `hero-main.webp`, thumbs y shots por producto.
 
 ---
 
@@ -242,8 +236,8 @@ Iconografía:
 Épica A: i18n
 - Rutas `/es/` y `/en/`, cambio idioma mantiene ruta equivalente.
 
-Épica B: Tema
-- Toggle persistente + swap de logo.
+Épica B: Tema claro
+- Tema claro fijo y consistente.
 
 Épica C: Header premium + scroll spy
 - Segmented control, indicador animado, overlay mobile premium.
@@ -274,7 +268,7 @@ Fase 3: Refinamiento pro (SEO/perf/QA)
 
 ## 11) Plan de pruebas (incluye responsive explícito)
 - E2E:
-  - Scroll a secciones, scroll-spy, cambio idioma, cambio tema.
+  - Scroll a secciones, scroll-spy, cambio idioma.
   - Links productos interno/externo según config.
 - Responsive:
   - Validar 360/390/430, 768, 1024, 1280+.

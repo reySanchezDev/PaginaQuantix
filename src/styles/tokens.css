@@ -1,6 +1,6 @@
 :root {
   /* =========================================
-     LIGHT THEME (Corporate Azure + Teal)
+     BRAND THEME (Corporate Azure + Teal)
      ========================================= */
   --bg: #F5F9FD;
   --bg-rgb: 245, 249, 253;
@@ -80,48 +80,4 @@
   /* 128px */
   --space-40: 10rem;
   /* 160px */
-}
-
-[data-theme="dark"] {
-  /* =========================================
-     DARK THEME (Corporate Dusk)
-     ========================================= */
-  --bg: #10263A;
-  --bg-rgb: 16, 38, 58;
-  --surface: #17324A;
-  --surface-rgb: 23, 50, 74;
-  --surface-light: #21415C;
-  --surface-2: #23425F;
-  --surface-3: #31526F;
-
-  --text: #EDF5FB;
-  --text-muted: #B7C8D8;
-  --text-subtle: #87A1B8;
-
-  --border: #274966;
-  --border-strong: #3B5E7E;
-
-  --primary: #7AB3FF;
-  --primary-hover: #9BC8FF;
-  --primary-soft: #1D446E;
-  --primary-rgb: 122, 179, 255;
-
-  --accent: #68D1C8;
-  --accent-rgb: 104, 209, 200;
-  --accent-hover: #8EE1DA;
-  --accent-soft: #1F6865;
-
-  --success: #53D0A0;
-  --warning: #F0C15D;
-  --danger: #F08A8A;
-  --info: #6BC8EE;
-
-  --focus-ring: rgba(122, 179, 255, 0.35);
-  --link: #7AB3FF;
-  --link-hover: #9BC8FF;
-
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
 }

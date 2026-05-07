@@ -183,7 +183,7 @@ const t =
 
   .contact-card {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: start;
     gap: clamp(var(--space-4), 3vw, var(--space-5));
     padding: clamp(1.15rem, 3vw, 1.5rem);
@@ -266,6 +266,9 @@ const t =
     color: var(--text);
     line-height: 1.25;
     text-wrap: balance;
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .cta {

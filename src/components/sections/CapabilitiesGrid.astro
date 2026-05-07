@@ -98,6 +98,7 @@ const features = featuresByLocale[lang];
   .features-section {
     position: relative;
     padding: var(--space-32) 0 var(--space-40);
+    background-color: #f8fafc;
     transition: background-color 0.3s ease;
     overflow: hidden;
   }
@@ -112,13 +113,9 @@ const features = featuresByLocale[lang];
   .dot-matrix {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(var(--primary-rgb), 0.09) 1px, transparent 1px);
     background-size: 32px 32px;
     opacity: 0.5;
-  }
-
-  :global([data-theme="light"]) .dot-matrix {
-    background-image: radial-gradient(rgba(var(--primary-rgb), 0.09) 1px, transparent 1px);
   }
 
   .radial-glow {
@@ -141,18 +138,6 @@ const features = featuresByLocale[lang];
     background: linear-gradient(to right, transparent, var(--border), transparent);
   }
 
-  :global([data-theme="dark"]) .section-separator {
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-  }
-
-  :global([data-theme="light"]) .features-section {
-    background-color: #f8fafc;
-  }
-
-  :global([data-theme="dark"]) .features-section {
-    background-color: var(--bg);
-  }
-
   .section-header {
     position: relative;
     z-index: 1;
@@ -166,9 +151,6 @@ const features = featuresByLocale[lang];
     font-weight: 800;
     margin-bottom: var(--space-4);
     letter-spacing: -0.03em;
-  }
-
-  :global([data-theme="light"]) .section-title {
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
