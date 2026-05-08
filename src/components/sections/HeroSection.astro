@@ -7,9 +7,26 @@ interface Props {
   title: string;
   subtitle: string;
   lang?: "es" | "en";
+  primaryCtaHref?: string;
+  primaryCtaLabel?: string;
+  primaryCtaTarget?: string;
+  secondaryCtaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaTarget?: string;
 }
 
-const { id, title, subtitle, lang } = Astro.props;
+const {
+  id,
+  title,
+  subtitle,
+  lang,
+  primaryCtaHref,
+  primaryCtaLabel,
+  primaryCtaTarget,
+  secondaryCtaHref,
+  secondaryCtaLabel,
+  secondaryCtaTarget,
+} = Astro.props;
 const inferredLocale = Astro.currentLocale === "es" ? "es" : "en";
 const resolvedLang = lang ?? inferredLocale;
 const isProductPage =
@@ -17,19 +34,23 @@ const isProductPage =
   Astro.url.pathname.includes("/productos/");
 
 const ctaContact = {
-  href: resolvedLang === "es" ? "#contacto" : "#contact",
-  label: resolvedLang === "es" ? "Contactar" : "Contact Us",
+  href: primaryCtaHref ?? (resolvedLang === "es" ? "#contacto" : "#contact"),
+  label: primaryCtaLabel ?? (resolvedLang === "es" ? "Contactar" : "Contact Us"),
+  target: primaryCtaTarget,
 };
 
 const ctaProducts = {
-  href: isProductPage
-    ? resolvedLang === "es"
-      ? "/es/#productos"
-      : "/en/#products"
-    : resolvedLang === "es"
-      ? "#productos"
-      : "#products",
-  label: resolvedLang === "es" ? "Ver Productos" : "View Products",
+  href:
+    secondaryCtaHref ??
+    (isProductPage
+      ? resolvedLang === "es"
+        ? "/es/#productos"
+        : "/en/#products"
+      : resolvedLang === "es"
+        ? "#productos"
+        : "#products"),
+  label: secondaryCtaLabel ?? (resolvedLang === "es" ? "Ver Productos" : "View Products"),
+  target: secondaryCtaTarget,
 };
 ---
 
@@ -54,10 +75,10 @@ const ctaProducts = {
       <p class="hero-subtitle">{subtitle}</p>
 
       <div class="hero-actions">
-        <Button href={ctaContact.href} size="lg" variant="glow">
+        <Button href={ctaContact.href} target={ctaContact.target} size="lg" variant="glow">
           {ctaContact.label}
         </Button>
-        <Button href={ctaProducts.href} size="lg" variant="secondary">
+        <Button href={ctaProducts.href} target={ctaProducts.target} size="lg" variant="secondary">
           {ctaProducts.label}
         </Button>
       </div>

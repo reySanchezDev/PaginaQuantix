@@ -1,6 +1,7 @@
 ---
 import ProductLayout from "../../../layouts/ProductLayout.astro";
 import HeroSection from "../../../components/sections/HeroSection.astro";
+import CapabilitiesGrid from "../../../components/sections/CapabilitiesGrid.astro";
 
 import ContactSection from "../../../components/sections/ContactSection.astro";
 import Container from "../../../components/ui/Container.astro";
@@ -9,66 +10,74 @@ import Button from "../../../components/ui/Button.astro";
 ---
 
 <ProductLayout
-  title="Nica Planilla - Nómina y RRHH"
-  description="Producto regional para gestión de planilla y recursos humanos en Nicaragua."
+  title="Takofy - Gestión de Restaurantes"
+  description="Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina."
   lang="es"
 >
   <HeroSection
     id="hero"
-    title="Nica Planilla"
-    subtitle="Un producto localizado de planilla y recursos humanos para empresas que operan en Nicaragua."
+    title="Takofy Gestión de Restaurantes"
+    subtitle="Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina."
     lang="es"
+    primaryCtaHref="https://takofy.app/es/"
+    primaryCtaLabel="Visitar sitio web"
+    primaryCtaTarget="_blank"
   />
 
   <section class="section-padding">
     <Container>
       <div class="text-center mb-12">
-        <h2>Flujos de planilla localizados</h2>
+        <h2>Visión general</h2>
         <p class="text-muted max-w-2xl mx-auto">
-          Nica Planilla se enfoca en cálculos de planilla, gestión de vacaciones, expedientes de colaboradores y reportes para operaciones locales.
-        </p>
-        <p class="availability-note max-w-2xl mx-auto">
-          Este producto se encuentra actualmente en beta privada y aún no está disponible públicamente.
+          Takofy ayuda a equipos de restaurantes a mantener la operación en movimiento con flujos offline-first para comandas, mesas, pagos, reportes, cocina e inventario.
         </p>
       </div>
 
       <div class="visual-placeholder large">
-        <span>Vista previa del producto en beta privada</span>
+        <span>Software publicado para gestión de restaurantes</span>
       </div>
     </Container>
   </section>
 
+  <CapabilitiesGrid
+    id="features"
+    title="Características principales"
+    description="Herramientas potentes para decisiones inteligentes."
+    lang="es"
+  />
+
   <section id="pricing" class="section-padding bg-surface-2">
     <Container>
       <div class="text-center mb-12">
-        <h2>Estado de beta privada</h2>
-        <p class="text-muted">Los paquetes comerciales se definirán después de validar la beta privada.</p>
+        <h2>Empaquetado comercial</h2>
+        <p class="text-muted">Visita el sitio público para conocer detalles y disponibilidad del producto.</p>
       </div>
 
       <div class="pricing-grid">
         <Card class="pricing-card">
           <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Información de beta</h3>
-            <div class="price mb-4">Precio en revisión</div>
+            <h3 class="text-xl font-bold mb-2">Operación de restaurantes</h3>
+            <div class="price mb-4">Sitio público</div>
             <ul class="features-list">
-              <li>Hasta 15 empleados</li>
-              <li>Cálculos automáticos</li>
-              <li>Exportación a DGI</li>
+              <li>Flujos de comandas offline-first</li>
+              <li>Mesas y pagos</li>
+              <li>Reportes operativos</li>
             </ul>
-            <Button href="#contacto" variant="secondary" class="w-full mt-6">Solicitar información</Button>
+            <Button href="https://takofy.app/es/" target="_blank" variant="secondary" class="w-full mt-6">Visitar sitio web</Button>
           </div>
         </Card>
 
         <Card class="pricing-card border-primary">
           <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Corporativo</h3>
-            <div class="price mb-4">A medida</div>
+            <div class="badge-featured">Recomendado</div>
+            <h3 class="text-xl font-bold mb-2">Cocina e inventario</h3>
+            <div class="price mb-4">Sitio público</div>
             <ul class="features-list">
-              <li>Empleados ilimitados</li>
-              <li>Portal del colaborador</li>
-              <li>Integraciones API según alcance</li>
+              <li>Flujos de cocina KDS</li>
+              <li>Control de inventario</li>
+              <li>Analítica para restaurantes</li>
             </ul>
-            <Button href="#contacto" variant="primary" class="w-full mt-6">Contactarnos</Button>
+            <Button href="https://takofy.app/es/" target="_blank" variant="primary" class="w-full mt-6">Visitar sitio web</Button>
           </div>
         </Card>
       </div>
@@ -78,7 +87,7 @@ import Button from "../../../components/ui/Button.astro";
   <ContactSection
     id="contacto"
     title="¿Necesitas más información?"
-    description="Contáctanos para conversar sobre disponibilidad de beta privada y requerimientos locales de planilla."
+    description="Visita el sitio de Takofy o contáctanos para conversar sobre software para operaciones de restaurantes."
     lang="es"
   />
 </ProductLayout>
@@ -95,16 +104,6 @@ import Button from "../../../components/ui/Button.astro";
   }
   .text-muted {
     color: var(--text-muted);
-  }
-  .availability-note {
-    color: color-mix(in srgb, var(--text) 82%, var(--text-muted));
-    font-size: var(--text-sm);
-    line-height: 1.6;
-    margin-top: var(--space-4);
-    padding: 0.9rem 1rem;
-    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
   }
   .max-w-2xl {
     max-width: 42rem;
@@ -170,5 +169,15 @@ import Button from "../../../components/ui/Button.astro";
   .border-primary {
     border-color: var(--primary);
     box-shadow: var(--shadow-lg);
+  }
+
+  .badge-featured {
+    background: var(--primary);
+    color: white;
+    font-size: var(--text-xs);
+    padding: 4px 8px;
+    border-radius: var(--radius-full);
+    display: inline-block;
+    margin-bottom: var(--space-2);
   }
 </style>

@@ -14,13 +14,14 @@ export interface Product {
         es: string;
         en: string;
     };
+    publicUrl?: string;
     target: '_self' | '_blank';
     isExternal: boolean;
     status: {
         es: string;
         en: string;
     };
-    availabilityNote: {
+    availabilityNote?: {
         es: string;
         en: string;
     };
@@ -32,84 +33,74 @@ export interface Product {
 
 export const products: Product[] = [
     {
-        id: 'quantix',
+        id: 'takofy',
         title: {
-            es: 'Quantix',
-            en: 'Quantix'
+            es: 'Takofy',
+            en: 'Takofy'
         },
         description: {
-            es: 'Plataforma operacional para inventario, facturación, caja, reportes y control de permisos.',
-            en: 'Operational platform for inventory, billing, cash control, reporting, and permissions.'
+            es: 'Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina.',
+            en: 'Restaurant management software built for fast, offline-first operations, orders, tables, payments, reporting and kitchen workflows.'
         },
-        tags: ['Inventory', 'Billing', 'POS', 'Reporting', 'Security'],
+        tags: ['Restaurants', 'POS', 'KDS', 'Inventory', 'Analytics'],
         gradient: 'linear-gradient(135deg, #EEF4FF 0%, #D9E7FF 52%, #C7F1F1 100%)',
         href: {
-            es: '/es/productos/quantix/',
-            en: '/en/products/quantix/',
+            es: '/es/productos/takofy/',
+            en: '/en/products/takofy/',
         },
+        publicUrl: 'https://takofy.app/es/',
         target: '_self',
         isExternal: false,
         status: {
-            es: 'En desarrollo',
-            en: 'In Development'
-        },
-        availabilityNote: {
-            es: 'Este producto se encuentra actualmente en desarrollo privado y aún no está disponible públicamente.',
-            en: 'This product is currently in private development and is not publicly available yet.'
+            es: 'Publicado',
+            en: 'Published'
         },
         features: {
             es: [
-                'Inventario en tiempo real con alertas operativas',
-                'Facturación ágil para impuestos, descuentos y reglas de negocio',
-                'Reportes inteligentes y datos disponibles al instante',
-                'Control de caja y transacciones con mayor precisión',
-                'Seguridad y permisos para proteger la operación'
+                'Operación offline-first para restaurantes',
+                'Control de comandas, mesas y pagos',
+                'KDS, analítica e inventario integrado'
             ],
             en: [
-                'Real-time inventory with operational alerts',
-                'Billing workflows for taxes, discounts, and business rules',
-                'Smart reports and data available instantly',
-                'Cash control and transactions with greater precision',
-                'Security and permissions to protect operations'
+                'Offline-first restaurant operations',
+                'Orders, tables, and payments control',
+                'KDS, analytics, and integrated inventory'
             ]
         }
     },
     {
-        id: 'nica-planilla',
+        id: 'nica-finanzas',
         title: {
-            es: 'Nica Planilla',
-            en: 'Nica Payroll'
+            es: 'Nica Finanzas',
+            en: 'Nica Finanzas'
         },
         description: {
-            es: 'Producto regional para gestión de planilla y recursos humanos adaptado al mercado nicaragüense.',
-            en: 'Regional payroll and HR product tailored for Nicaraguan business operations.'
+            es: 'Calculadoras financieras para Nicaragua, incluyendo salario, préstamos y liquidación laboral.',
+            en: 'Financial calculators for Nicaragua, including salary, loan and employment settlement calculations.'
         },
-        tags: ['HR', 'Payroll', 'Nicaragua'],
+        tags: ['Finance', 'Calculators', 'Salary', 'Loans', 'Nicaragua'],
         gradient: 'linear-gradient(135deg, #EAFBF7 0%, #D4F2E9 48%, #D9E7FF 100%)',
         href: {
-            es: '/es/productos/nica-planilla/',
-            en: '/en/products/nica-payroll/',
+            es: '/es/productos/nica-finanzas/',
+            en: '/en/products/nica-finanzas/',
         },
+        publicUrl: 'https://nicafinanzas.com/',
         target: '_self',
         isExternal: false,
         status: {
-            es: 'Beta privada',
-            en: 'Private Beta'
-        },
-        availabilityNote: {
-            es: 'Este producto se encuentra actualmente en beta privada y aún no está disponible públicamente.',
-            en: 'This product is currently in private beta and is not publicly available yet.'
+            es: 'Publicado',
+            en: 'Published'
         },
         features: {
             es: [
-                'Cálculo automático de INSS/IR',
-                'Gestión de vacaciones',
-                'Reportes para DGI'
+                'Calculadora salarial para Nicaragua',
+                'Cálculos de préstamos',
+                'Liquidación laboral'
             ],
             en: [
-                'Automatic INSS/IR calculation',
-                'Vacation management',
-                'DGI-ready reports'
+                'Salary calculator for Nicaragua',
+                'Loan calculations',
+                'Employment settlement calculations'
             ]
         }
     }

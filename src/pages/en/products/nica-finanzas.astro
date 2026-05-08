@@ -10,33 +10,33 @@ import Button from '../../../components/ui/Button.astro';
 ---
 
 <ProductLayout 
-    title="Nica Payroll - Payroll & HR" 
-    description="Regional payroll and HR software for Nicaraguan business operations."
+    title="Nica Finanzas - Financial Calculators for Nicaragua" 
+    description="Financial calculators for Nicaragua, including salary, loan and employment settlement calculations."
     lang="en"
 >
     <!-- Product Hero -->
     <HeroSection 
         id="hero"
-        title="Nica Payroll"
-        subtitle="A localized payroll and HR product designed for companies operating in Nicaragua."
+        title="Nica Finanzas"
+        subtitle="Financial calculators for Nicaragua, including salary, loan and employment settlement calculations."
         lang="en"
+        primaryCtaHref="https://nicafinanzas.com/"
+        primaryCtaLabel="Visit website"
+        primaryCtaTarget="_blank"
     />
 
     <!-- Overview -->
     <section class="section-padding">
         <Container>
             <div class="text-center mb-12">
-                <h2>Localized Payroll Workflows</h2>
+                <h2>Financial Calculators for Nicaragua</h2>
                 <p class="text-muted max-w-2xl mx-auto">
-                    Nica Payroll focuses on payroll calculations, vacation management, employee records, and reporting for local operations.
-                </p>
-                <p class="availability-note max-w-2xl mx-auto">
-                    This product is currently in private beta and is not publicly available yet.
+                    Nica Finanzas provides practical calculators for salary, loan, and employment settlement scenarios in Nicaragua.
                 </p>
             </div>
             
             <div class="visual-placeholder large">
-               <span>Product preview in private beta</span>
+               <span>Published financial calculators for Nicaragua</span>
             </div>
         </Container>
     </section>
@@ -45,34 +45,34 @@ import Button from '../../../components/ui/Button.astro';
     <section id="pricing" class="section-padding bg-surface-2">
         <Container>
             <div class="text-center mb-12">
-                <h2>Private Beta Status</h2>
-                <p class="text-muted">Commercial packages will be finalized after private beta validation.</p>
+                <h2>Product Availability</h2>
+                <p class="text-muted">Visit the public website for product details and availability.</p>
             </div>
             
             <div class="pricing-grid">
                 <Card class="pricing-card">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Beta Information</h3>
-                        <div class="price mb-4">Pricing in review</div>
+                        <h3 class="text-xl font-bold mb-2">Salary Calculator</h3>
+                        <div class="price mb-4">Public website</div>
                         <ul class="features-list">
-                            <li>Up to 15 employees</li>
-                            <li>Automatic calculations</li>
-                            <li>Export to DGI</li>
+                            <li>Salary calculations</li>
+                            <li>Nicaragua-specific inputs</li>
+                            <li>Clear calculation outputs</li>
                         </ul>
-                        <Button href="#contact" variant="secondary" class="w-full mt-6">Request information</Button>
+                        <Button href="https://nicafinanzas.com/" target="_blank" variant="secondary" class="w-full mt-6">Visit website</Button>
                     </div>
                 </Card>
                 
                 <Card class="pricing-card border-primary">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Corporate</h3>
-                        <div class="price mb-4">Custom</div>
+                        <h3 class="text-xl font-bold mb-2">Loan and Settlement Tools</h3>
+                        <div class="price mb-4">Public website</div>
                         <ul class="features-list">
-                            <li>Unlimited employees</li>
-                            <li>Employee portal</li>
-                            <li>API integrations by scope</li>
+                            <li>Loan calculations</li>
+                            <li>Employment settlement calculations</li>
+                            <li>Reference tools for local users</li>
                         </ul>
-                        <Button href="#contact" variant="primary" class="w-full mt-6">Contact us</Button>
+                        <Button href="https://nicafinanzas.com/" target="_blank" variant="primary" class="w-full mt-6">Visit website</Button>
                     </div>
                 </Card>
             </div>
@@ -82,7 +82,7 @@ import Button from '../../../components/ui/Button.astro';
     <ContactSection
         id="contact"
         title="Need more information?"
-        description="Contact us to discuss private beta availability and local payroll requirements."
+        description="Visit the Nica Finanzas website or contact us to discuss financial calculator tools for Nicaragua."
         lang="en"
     />
 </ProductLayout>
@@ -92,16 +92,6 @@ import Button from '../../../components/ui/Button.astro';
     .text-center { text-align: center; }
     .mb-12 { margin-bottom: var(--space-12); }
     .text-muted { color: var(--text-muted); }
-    .availability-note {
-        color: color-mix(in srgb, var(--text) 82%, var(--text-muted));
-        font-size: var(--text-sm);
-        line-height: 1.6;
-        margin-top: var(--space-4);
-        padding: 0.9rem 1rem;
-        border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
-        border-radius: var(--radius-md);
-        background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
-    }
     .max-w-2xl { max-width: 42rem; }
     .mx-auto { margin-left: auto; margin-right: auto; }
     .bg-surface-2 { background-color: var(--surface-2); }

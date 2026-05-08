@@ -11,16 +11,19 @@ import Button from '../../../components/ui/Button.astro';
 ---
 
 <ProductLayout 
-    title="Quantix - Operations Platform"
-    description="Operational software platform for inventory, billing, reporting, and business control."
+    title="Takofy - Restaurant Management"
+    description="Restaurant management software built for fast, offline-first operations, orders, tables, payments, reporting and kitchen workflows."
     lang="en"
 >
     <!-- Product Hero -->
     <HeroSection 
         id="hero"
-        title="Quantix Operations Platform"
-        subtitle="Total control over your operations, finances, and resources in a single unified platform."
+        title="Takofy Restaurant Management"
+        subtitle="Restaurant management software built for fast, offline-first operations, orders, tables, payments, reporting and kitchen workflows."
         lang="en"
+        primaryCtaHref="https://takofy.app/es/"
+        primaryCtaLabel="Visit website"
+        primaryCtaTarget="_blank"
     />
 
     <!-- Overview / Screenshots -->
@@ -29,15 +32,12 @@ import Button from '../../../components/ui/Button.astro';
             <div class="text-center mb-12">
                 <h2>Overview</h2>
                 <p class="text-muted max-w-2xl mx-auto">
-                    Quantix is being developed as an operational platform for inventory, billing, cash control, reporting, and role-based access.
-                </p>
-                <p class="availability-note max-w-2xl mx-auto">
-                    This product is currently in private development and is not publicly available yet.
+                    Takofy helps restaurant teams keep service moving with offline-first workflows for orders, tables, payments, reporting, kitchen display operations, and inventory control.
                 </p>
             </div>
             
             <div class="visual-placeholder large">
-               <span>Product preview in development</span>
+               <span>Published restaurant management software</span>
             </div>
         </Container>
     </section>
@@ -55,21 +55,21 @@ import Button from '../../../components/ui/Button.astro';
         <Container>
             <div class="text-center mb-12">
                 <h2>Commercial Packaging</h2>
-                <p class="text-muted">Implementation packages will be scoped based on operational needs when the product is ready for selected engagements.</p>
+                <p class="text-muted">Visit the public website for product details and availability.</p>
             </div>
             
             <div class="pricing-grid">
                 <!-- Plan Basic -->
                 <Card class="pricing-card">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Operational Pilot</h3>
-                        <div class="price mb-4">Scoping required</div>
+                        <h3 class="text-xl font-bold mb-2">Restaurant Operations</h3>
+                        <div class="price mb-4">Public website</div>
                         <ul class="features-list">
-                            <li>Core inventory and billing workflows</li>
-                            <li>User roles and permissions</li>
-                            <li>Implementation support</li>
+                            <li>Offline-first order workflows</li>
+                            <li>Tables and payments</li>
+                            <li>Operational reporting</li>
                         </ul>
-                        <Button href="#contact" variant="secondary" class="w-full mt-6">Request information</Button>
+                        <Button href="https://takofy.app/es/" target="_blank" variant="secondary" class="w-full mt-6">Visit website</Button>
                     </div>
                 </Card>
                 
@@ -77,14 +77,14 @@ import Button from '../../../components/ui/Button.astro';
                 <Card class="pricing-card border-primary">
                     <div class="p-6">
                         <div class="badge-featured">Recommended</div>
-                        <h3 class="text-xl font-bold mb-2">Custom Implementation</h3>
-                        <div class="price mb-4">Custom</div>
+                        <h3 class="text-xl font-bold mb-2">Kitchen and Inventory</h3>
+                        <div class="price mb-4">Public website</div>
                         <ul class="features-list">
-                            <li>Advanced operational modules</li>
-                            <li>Reporting and integrations</li>
-                            <li>Support model defined by scope</li>
+                            <li>Kitchen display workflows</li>
+                            <li>Inventory control</li>
+                            <li>Restaurant analytics</li>
                         </ul>
-                        <Button href="#contact" variant="primary" class="w-full mt-6">Contact us</Button>
+                        <Button href="https://takofy.app/es/" target="_blank" variant="primary" class="w-full mt-6">Visit website</Button>
                     </div>
                 </Card>
             </div>
@@ -94,7 +94,7 @@ import Button from '../../../components/ui/Button.astro';
     <ContactSection
         id="contact"
         title="Need more information?"
-        description="Contact us to discuss product availability and implementation scope."
+        description="Visit the Takofy website or contact us to discuss restaurant operations software."
         lang="en"
     />
 </ProductLayout>
@@ -104,16 +104,6 @@ import Button from '../../../components/ui/Button.astro';
     .text-center { text-align: center; }
     .mb-12 { margin-bottom: var(--space-12); }
     .text-muted { color: var(--text-muted); }
-    .availability-note {
-        color: color-mix(in srgb, var(--text) 82%, var(--text-muted));
-        font-size: var(--text-sm);
-        line-height: 1.6;
-        margin-top: var(--space-4);
-        padding: 0.9rem 1rem;
-        border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
-        border-radius: var(--radius-md);
-        background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
-    }
     .max-w-2xl { max-width: 42rem; }
     .mx-auto { margin-left: auto; margin-right: auto; }
     .bg-surface-2 { background-color: var(--surface-2); }
