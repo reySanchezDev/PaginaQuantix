@@ -11,6 +11,7 @@ const year = new Date().getFullYear();
 const homeHref = lang === "es" ? "/es/" : "/en/";
 const privacyHref = lang === "es" ? "/es/privacidad/" : "/en/privacy/";
 const termsHref = lang === "es" ? "/es/terminos/" : "/en/terms/";
+const communityHref = lang === "es" ? "/es/comunidad/" : "/en/community/";
 const homeAria =
   lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
 const texts =
@@ -18,6 +19,8 @@ const texts =
     ? {
         tagline: "Soluciones de software de nivel empresarial.",
         navTitle: "Navegación",
+        resourcesTitle: "Recursos profesionales",
+        community: "Comunidad",
         legalTitle: "Legal",
         privacy: "Privacidad",
         terms: "Términos",
@@ -26,6 +29,8 @@ const texts =
     : {
         tagline: "Enterprise-grade software solutions.",
         navTitle: "Navigation",
+        resourcesTitle: "Professional Resources",
+        community: "Community",
         legalTitle: "Legal",
         privacy: "Privacy",
         terms: "Terms",
@@ -70,6 +75,13 @@ const texts =
         </ul>
       </div>
 
+      <div class="resources-col">
+        <h4 class="col-title">{texts.resourcesTitle}</h4>
+        <ul class="footer-nav">
+          <li><a href={communityHref}>{texts.community}</a></li>
+        </ul>
+      </div>
+
       <div class="legal-col">
         <h4 class="col-title">{texts.legalTitle}</h4>
         <ul class="footer-nav">
@@ -102,7 +114,7 @@ const texts =
 
   @media (min-width: 768px) {
     .footer-content {
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
     }
   }
 

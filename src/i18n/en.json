@@ -11,9 +11,9 @@
     "services.nav.prev": "Previous",
     "services.nav.next": "Next",
     "nav.community": "Community",
-    "community.title": "In-house Tools & Community",
-    "community.description": "We share tools, installers, and utilities designed to support professional and business workflows.",
+    "community.title": "Community",
+    "community.description": "Free tools and resources for professionals building, testing and operating software.",
     "community.download": "Download",
-    "community.updates.title": "Update History",
-    "community.updates.subtitle": "Tracking of improvements, fixes, and new capabilities added to our tools."
+    "community.updates.title": "QAVision roadmap",
+    "community.updates.subtitle": "Released updates and planned improvements for QAVision."
 }
