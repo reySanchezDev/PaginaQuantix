@@ -44,17 +44,14 @@ const ariaLabel = lang === "es" ? "Volver al inicio" : "Back to top";
     right: var(--space-8);
     z-index: 99;
     
-    /* Premium Glass Design */
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
-    background: color-mix(in srgb, var(--surface) 84%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 
-      0 12px 30px rgba(var(--primary-rgb), 0.18),
-      0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-md);
     
     /* Icon */
     color: var(--primary);
@@ -86,16 +83,12 @@ const ariaLabel = lang === "es" ? "Volver al inicio" : "Back to top";
     transform: translateY(0) scale(1);
   }
   
-  /* Hover State - Pro Glow Effect */
   .scroll-to-top:hover {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: var(--primary);
     border-color: transparent;
-    box-shadow: 
-      0 14px 36px rgba(var(--primary-rgb), 0.28),
-      0 0 20px rgba(var(--accent-rgb), 0.18),
-      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    box-shadow: var(--shadow-lg);
     color: white;
-    transform: translateY(-4px) scale(1.05);
+    transform: translateY(-2px);
   }
   
   .scroll-to-top:active {

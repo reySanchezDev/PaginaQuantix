@@ -1,55 +1,55 @@
 :root {
   /* =========================================
-     BRAND THEME (Corporate Azure + Teal)
+     BRAND THEME (Enterprise Azure + Controlled Teal)
      ========================================= */
-  --bg: #F5F9FD;
-  --bg-rgb: 245, 249, 253;
+  --bg: #F7FAFC;
+  --bg-rgb: 247, 250, 252;
   --surface: #FFFFFF;
   --surface-rgb: 255, 255, 255;
-  --surface-light: #FBFDFF;
-  --surface-2: #EEF5FB;
-  --surface-3: #DCE8F4;
+  --surface-light: #FCFDFE;
+  --surface-2: #F0F5F9;
+  --surface-3: #E3EBF3;
 
-  --text: #17324A;
-  --text-muted: #5E748D;
-  --text-subtle: #8BA0B6;
+  --text: #142D42;
+  --text-muted: #5A6D80;
+  --text-subtle: #8A99A8;
 
-  --border: #D8E4EF;
-  --border-strong: #C0D2E3;
+  --border: #DCE5EE;
+  --border-strong: #C7D4E0;
 
-  --primary: #2D6CDF;
-  --primary-hover: #2459BC;
-  --primary-soft: #EAF2FF;
-  --primary-rgb: 45, 108, 223;
+  --primary: #245BC8;
+  --primary-hover: #1D499F;
+  --primary-soft: #EDF4FF;
+  --primary-rgb: 36, 91, 200;
 
-  --accent: #1FA4A2;
-  --accent-rgb: 31, 164, 162;
-  --accent-hover: #177F7E;
-  --accent-soft: #E8FBFA;
+  --accent: #168B8A;
+  --accent-rgb: 22, 139, 138;
+  --accent-hover: #106F70;
+  --accent-soft: #EAF8F7;
 
   --success: #1FA97A;
   --warning: #D59B28;
   --danger: #D46767;
   --info: #3190C5;
 
-  --focus-ring: rgba(45, 108, 223, 0.22);
-  --link: #2D6CDF;
-  --link-hover: #2459BC;
+  --focus-ring: rgba(36, 91, 200, 0.24);
+  --link: #245BC8;
+  --link-hover: #1D499F;
 
   /* =========================================
-     DESIGN TOKENS (Premium 8px Grid & Smooth UI)
+     DESIGN TOKENS (Enterprise 8px Grid & Calm UI)
      ========================================= */
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
   --radius-full: 9999px;
 
-  /* Premium Shadows (Layered for depth) */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* Enterprise shadows: present, but restrained */
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.05);
+  --shadow-md: 0 8px 18px -14px rgb(15 23 42 / 0.26);
+  --shadow-lg: 0 16px 34px -24px rgb(15 23 42 / 0.30);
+  --shadow-xl: 0 24px 48px -34px rgb(15 23 42 / 0.34);
 
   /* Spacing Scale (Strict 4px/8px base) */
   --space-1: 0.25rem;

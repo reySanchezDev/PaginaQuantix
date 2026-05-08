@@ -19,7 +19,6 @@ body {
     padding: 0;
     background-color: var(--bg);
     min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: clip;
 }
 
@@ -64,7 +63,7 @@ body {
     padding: var(--space-3) var(--space-4);
     font-weight: 700;
     text-decoration: none;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     transition: transform 0.2s ease;
 }
 
@@ -107,9 +106,9 @@ body {
 }
 
 .page-hero {
-    padding: clamp(8rem, 15vw, 11rem) 0 clamp(4rem, 8vw, 6rem);
+    padding: clamp(7.5rem, 14vw, 10rem) 0 clamp(3.75rem, 7vw, 5.5rem);
     background:
-        linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 46%, var(--bg)) 0%, var(--bg) 100%);
+        linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 28%, var(--bg)) 0%, var(--bg) 82%);
 }
 
 .page-hero__content {
@@ -122,24 +121,25 @@ body {
     min-height: 1.75rem;
     margin-bottom: var(--space-4);
     padding: 0.35rem 0.75rem;
-    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
+    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
     border-radius: var(--radius-full);
-    background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
+    background: color-mix(in srgb, var(--surface) 92%, var(--primary-soft));
     color: var(--primary);
     font-size: var(--text-xs);
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
 .page-title {
     margin: 0 0 var(--space-5);
-    font-size: clamp(2.4rem, 7vw, 4.8rem);
-    line-height: 1;
-    font-weight: 900;
-    letter-spacing: -0.04em;
+    font-size: clamp(2.3rem, 6.4vw, 4.4rem);
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.025em;
     color: var(--text);
     text-wrap: balance;
+    overflow-wrap: break-word;
 }
 
 .page-lead {
@@ -158,7 +158,7 @@ body {
 }
 
 .page-section {
-    padding: clamp(4rem, 8vw, 6.5rem) 0;
+    padding: clamp(3.75rem, 7vw, 6rem) 0;
 }
 
 .page-section--surface {
@@ -173,8 +173,9 @@ body {
 .section-heading h2 {
     margin: 0 0 var(--space-3);
     font-size: clamp(1.9rem, 4vw, 3rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -0.018em;
 }
 
 .section-heading p {
@@ -207,17 +208,17 @@ body {
 .content-card {
     min-height: 100%;
     padding: clamp(1.25rem, 3vw, 1.75rem);
-    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--surface) 96%, white 4%);
-    box-shadow: 0 14px 32px rgba(23, 50, 74, 0.07);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
 }
 
 .content-card h3 {
     margin: 0 0 var(--space-3);
     font-size: var(--text-xl);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
 }
 
 .content-card p {
@@ -252,17 +253,18 @@ body {
 
 .page-cta-band {
     padding: clamp(2rem, 5vw, 3rem);
-    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
-    border-radius: var(--radius-xl);
+    border: 1px solid color-mix(in srgb, var(--primary) 9%, var(--border));
+    border-radius: var(--radius-lg);
     background:
-        linear-gradient(135deg, color-mix(in srgb, var(--surface) 86%, var(--primary-soft)), var(--surface));
+        linear-gradient(135deg, color-mix(in srgb, var(--surface) 94%, var(--primary-soft)), var(--surface));
 }
 
 .page-cta-band h2,
 .page-cta-band h3 {
     margin: 0 0 var(--space-3);
     font-size: clamp(1.7rem, 4vw, 2.5rem);
-    line-height: 1.1;
+    line-height: 1.14;
+    letter-spacing: -0.015em;
 }
 
 .page-cta-band p {
@@ -292,6 +294,12 @@ body {
 }
 
 @media (max-width: 640px) {
+    .page-title {
+        font-size: clamp(1.78rem, 7.6vw, 2.2rem);
+        line-height: 1.08;
+        letter-spacing: -0.012em;
+    }
+
     .page-actions {
         flex-direction: column;
         align-items: stretch;
