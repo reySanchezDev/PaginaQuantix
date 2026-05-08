@@ -20,6 +20,10 @@ export interface Product {
         es: string;
         en: string;
     };
+    availabilityNote: {
+        es: string;
+        en: string;
+    };
     features: {
         es: string[];
         en: string[];
@@ -48,6 +52,10 @@ export const products: Product[] = [
         status: {
             es: 'En desarrollo',
             en: 'In Development'
+        },
+        availabilityNote: {
+            es: 'Este producto se encuentra actualmente en desarrollo privado y aún no está disponible públicamente.',
+            en: 'This product is currently in private development and is not publicly available yet.'
         },
         features: {
             es: [
@@ -87,6 +95,10 @@ export const products: Product[] = [
         status: {
             es: 'Beta privada',
             en: 'Private Beta'
+        },
+        availabilityNote: {
+            es: 'Este producto se encuentra actualmente en beta privada y aún no está disponible públicamente.',
+            en: 'This product is currently in private beta and is not publicly available yet.'
         },
         features: {
             es: [

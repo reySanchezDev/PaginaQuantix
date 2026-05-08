@@ -30,6 +30,9 @@ import Button from '../../../components/ui/Button.astro';
                 <p class="text-muted max-w-2xl mx-auto">
                     Nica Payroll focuses on payroll calculations, vacation management, employee records, and reporting for local operations.
                 </p>
+                <p class="availability-note max-w-2xl mx-auto">
+                    This product is currently in private beta and is not publicly available yet.
+                </p>
             </div>
             
             <div class="visual-placeholder large">
@@ -42,21 +45,21 @@ import Button from '../../../components/ui/Button.astro';
     <section id="pricing" class="section-padding bg-surface-2">
         <Container>
             <div class="text-center mb-12">
-                <h2>Access Options</h2>
-                <p class="text-muted">Commercial packages will be finalized after beta validation.</p>
+                <h2>Private Beta Status</h2>
+                <p class="text-muted">Commercial packages will be finalized after private beta validation.</p>
             </div>
             
             <div class="pricing-grid">
                 <Card class="pricing-card">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pilot Access</h3>
+                        <h3 class="text-xl font-bold mb-2">Beta Information</h3>
                         <div class="price mb-4">Pricing in review</div>
                         <ul class="features-list">
                             <li>Up to 15 employees</li>
                             <li>Automatic calculations</li>
                             <li>Export to DGI</li>
                         </ul>
-                        <Button href="#contact" variant="secondary" class="w-full mt-6">Request Access</Button>
+                        <Button href="#contact" variant="secondary" class="w-full mt-6">Request information</Button>
                     </div>
                 </Card>
                 
@@ -67,9 +70,9 @@ import Button from '../../../components/ui/Button.astro';
                         <ul class="features-list">
                             <li>Unlimited employees</li>
                             <li>Employee portal</li>
-                            <li>API Access</li>
+                            <li>API integrations by scope</li>
                         </ul>
-                        <Button href="#contact" variant="primary" class="w-full mt-6">Contact Us</Button>
+                        <Button href="#contact" variant="primary" class="w-full mt-6">Contact us</Button>
                     </div>
                 </Card>
             </div>
@@ -78,8 +81,8 @@ import Button from '../../../components/ui/Button.astro';
 
     <ContactSection
         id="contact"
-        title="Questions about payroll?"
-        description="Our experts are ready to help you."
+        title="Need more information?"
+        description="Contact us to discuss private beta availability and local payroll requirements."
         lang="en"
     />
 </ProductLayout>
@@ -89,6 +92,16 @@ import Button from '../../../components/ui/Button.astro';
     .text-center { text-align: center; }
     .mb-12 { margin-bottom: var(--space-12); }
     .text-muted { color: var(--text-muted); }
+    .availability-note {
+        color: color-mix(in srgb, var(--text) 82%, var(--text-muted));
+        font-size: var(--text-sm);
+        line-height: 1.6;
+        margin-top: var(--space-4);
+        padding: 0.9rem 1rem;
+        border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+        border-radius: var(--radius-md);
+        background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
+    }
     .max-w-2xl { max-width: 42rem; }
     .mx-auto { margin-left: auto; margin-right: auto; }
     .bg-surface-2 { background-color: var(--surface-2); }

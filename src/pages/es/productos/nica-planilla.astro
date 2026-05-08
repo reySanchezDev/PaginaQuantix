@@ -27,6 +27,9 @@ import Button from "../../../components/ui/Button.astro";
         <p class="text-muted max-w-2xl mx-auto">
           Nica Planilla se enfoca en cálculos de planilla, gestión de vacaciones, expedientes de colaboradores y reportes para operaciones locales.
         </p>
+        <p class="availability-note max-w-2xl mx-auto">
+          Este producto se encuentra actualmente en beta privada y aún no está disponible públicamente.
+        </p>
       </div>
 
       <div class="visual-placeholder large">
@@ -38,21 +41,21 @@ import Button from "../../../components/ui/Button.astro";
   <section id="pricing" class="section-padding bg-surface-2">
     <Container>
       <div class="text-center mb-12">
-        <h2>Opciones de acceso</h2>
-        <p class="text-muted">Los paquetes comerciales se definirán después de validar la beta.</p>
+        <h2>Estado de beta privada</h2>
+        <p class="text-muted">Los paquetes comerciales se definirán después de validar la beta privada.</p>
       </div>
 
       <div class="pricing-grid">
         <Card class="pricing-card">
           <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Acceso piloto</h3>
+            <h3 class="text-xl font-bold mb-2">Información de beta</h3>
             <div class="price mb-4">Precio en revisión</div>
             <ul class="features-list">
               <li>Hasta 15 empleados</li>
               <li>Cálculos automáticos</li>
               <li>Exportación a DGI</li>
             </ul>
-            <Button href="#contacto" variant="secondary" class="w-full mt-6">Solicitar acceso</Button>
+            <Button href="#contacto" variant="secondary" class="w-full mt-6">Solicitar información</Button>
           </div>
         </Card>
 
@@ -63,9 +66,9 @@ import Button from "../../../components/ui/Button.astro";
             <ul class="features-list">
               <li>Empleados ilimitados</li>
               <li>Portal del colaborador</li>
-              <li>API Access</li>
+              <li>Integraciones API según alcance</li>
             </ul>
-            <Button href="#contacto" variant="primary" class="w-full mt-6">Contactar</Button>
+            <Button href="#contacto" variant="primary" class="w-full mt-6">Contactarnos</Button>
           </div>
         </Card>
       </div>
@@ -74,8 +77,8 @@ import Button from "../../../components/ui/Button.astro";
 
   <ContactSection
     id="contacto"
-    title="¿Dudas sobre tu planilla?"
-    description="Podemos revisar tu operación y orientarte sobre el mejor camino."
+    title="¿Necesitas más información?"
+    description="Contáctanos para conversar sobre disponibilidad de beta privada y requerimientos locales de planilla."
     lang="es"
   />
 </ProductLayout>
@@ -92,6 +95,16 @@ import Button from "../../../components/ui/Button.astro";
   }
   .text-muted {
     color: var(--text-muted);
+  }
+  .availability-note {
+    color: color-mix(in srgb, var(--text) 82%, var(--text-muted));
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    margin-top: var(--space-4);
+    padding: 0.9rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
   }
   .max-w-2xl {
     max-width: 42rem;
