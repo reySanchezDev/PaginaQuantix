@@ -4,15 +4,15 @@
     "nav.products": "Products",
     "nav.contact": "Contact",
     "services.title": "Custom development services",
-    "services.subtitle": "We design, build and integrate production-ready software: fast, secure and scalable. We prioritize modernization, data, security and AI capabilities because today it is what companies are pushing the most.",
+    "services.subtitle": "We design, build, and integrate production-ready software: fast, secure, and scalable. We focus on modernization, data, security, and AI capabilities where they create practical business value.",
     "services.cta.schedule": "Schedule a call",
     "services.cta.proposal": "Request a proposal",
     "services.nav.prev": "Previous",
     "services.nav.next": "Next",
     "nav.community": "Community",
     "community.title": "In-house Tools & Community",
-    "community.description": "We share powerful tools, installers, and utilities designed to empower the workflows of professionals and businesses for free.",
+    "community.description": "We share tools, installers, and utilities designed to support professional and business workflows.",
     "community.download": "Download",
     "community.updates.title": "Update History",
-    "community.updates.subtitle": "Detailed tracking of improvements, fixes, and new features added to our tools."
+    "community.updates.subtitle": "Tracking of improvements, fixes, and new capabilities added to our tools."
 }

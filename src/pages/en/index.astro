@@ -3,7 +3,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroSection from "../../components/sections/HeroSection.astro";
 import ServicesCarousel from "../../components/sections/ServicesCarousel.astro";
 import ProductsGrid from "../../components/sections/ProductsGrid.astro";
-import TrustSection from "../../components/sections/TrustSection.astro";
 import ContactSection from "../../components/sections/ContactSection.astro";
 ---
 
@@ -14,8 +13,8 @@ import ContactSection from "../../components/sections/ContactSection.astro";
 >
   <HeroSection
     id="home"
-    title="Transforming your companys digital future"
-    subtitle="We drive business efficiency with tailored technological solutions. Strategy, innovation, and tangible results for the digital era."
+    title="Building reliable software for business operations"
+    subtitle="We help companies improve operations with tailored software, integrations, automation, and actionable data."
     lang="en"
   />
 
@@ -24,20 +23,14 @@ import ContactSection from "../../components/sections/ContactSection.astro";
   <ProductsGrid
     id="products"
     title="Our Products"
-    description="Specific solutions designed for complex problems."
+    description="Operational software products designed for real business workflows."
     lang="en"
   />
 
-  {
-    /* <TrustSection
-    title="Companies that trust us"
-  /> */
-  }
-
   <ContactSection
     id="contact"
-    title="Lets talk about your project"
-    description="We are ready to take your company to the next level. Contact us today."
+    title="Let’s talk about your project"
+    description="Tell us what you are building, improving, or trying to automate."
     lang="en"
   />
 </BaseLayout>

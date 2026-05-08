@@ -16,6 +16,10 @@ export interface Product {
     };
     target: '_self' | '_blank';
     isExternal: boolean;
+    status: {
+        es: string;
+        en: string;
+    };
     features: {
         es: string[];
         en: string[];
@@ -30,10 +34,10 @@ export const products: Product[] = [
             en: 'Quantix'
         },
         description: {
-            es: 'Inventario y facturación sin errores, con control total. Define tus reglas y opera con datos precisos en tiempo real.',
-            en: 'Flawless inventory and billing, with total control. Define your rules and operate with precise, real-time data.'
+            es: 'Plataforma operacional para inventario, facturación, caja, reportes y control de permisos.',
+            en: 'Operational platform for inventory, billing, cash control, reporting, and permissions.'
         },
-        tags: ['Inventario', 'Facturación', 'Caja', 'Reportes', 'Seguridad'],
+        tags: ['Inventory', 'Billing', 'POS', 'Reporting', 'Security'],
         gradient: 'linear-gradient(135deg, #EEF4FF 0%, #D9E7FF 52%, #C7F1F1 100%)',
         href: {
             es: '/es/productos/quantix/',
@@ -41,20 +45,24 @@ export const products: Product[] = [
         },
         target: '_self',
         isExternal: false,
+        status: {
+            es: 'En desarrollo',
+            en: 'In Development'
+        },
         features: {
             es: [
-                'Inventario en tiempo real con alertas inteligentes',
-                'Facturación ágil: automatiza cálculos, impuestos y descuentos',
+                'Inventario en tiempo real con alertas operativas',
+                'Facturación ágil para impuestos, descuentos y reglas de negocio',
                 'Reportes inteligentes y datos disponibles al instante',
                 'Control de caja y transacciones con mayor precisión',
-                'Seguridad y permisos: controla accesos y protege la operación'
+                'Seguridad y permisos para proteger la operación'
             ],
             en: [
-                'Real-time inventory with smart alerts',
-                'Agile billing: automate calculations, taxes, and discounts',
+                'Real-time inventory with operational alerts',
+                'Billing workflows for taxes, discounts, and business rules',
                 'Smart reports and data available instantly',
                 'Cash control and transactions with greater precision',
-                'Security and permissions: control access and protect operations'
+                'Security and permissions to protect operations'
             ]
         }
     },
@@ -65,10 +73,10 @@ export const products: Product[] = [
             en: 'Nica Payroll'
         },
         description: {
-            es: 'La solución definitiva para la gestión de nómina y recursos humanos adaptada a la normativa local.',
-            en: 'The ultimate solution for payroll and HR management tailored to local regulations.'
+            es: 'Producto regional para gestión de planilla y recursos humanos adaptado al mercado nicaragüense.',
+            en: 'Regional payroll and HR product tailored for Nicaraguan business operations.'
         },
-        tags: ['HR', 'Payroll', 'Legal'],
+        tags: ['HR', 'Payroll', 'Nicaragua'],
         gradient: 'linear-gradient(135deg, #EAFBF7 0%, #D4F2E9 48%, #D9E7FF 100%)',
         href: {
             es: '/es/productos/nica-planilla/',
@@ -76,6 +84,10 @@ export const products: Product[] = [
         },
         target: '_self',
         isExternal: false,
+        status: {
+            es: 'Beta privada',
+            en: 'Private Beta'
+        },
         features: {
             es: [
                 'Cálculo automático de INSS/IR',
@@ -85,7 +97,7 @@ export const products: Product[] = [
             en: [
                 'Automatic INSS/IR calculation',
                 'Vacation management',
-                'DGI-compliant reports'
+                'DGI-ready reports'
             ]
         }
     }

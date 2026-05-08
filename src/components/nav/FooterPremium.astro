@@ -9,16 +9,18 @@ interface Props {
 const { navItems, lang } = Astro.props;
 const year = new Date().getFullYear();
 const homeHref = lang === "es" ? "/es/" : "/en/";
+const privacyHref = lang === "es" ? "/es/privacidad/" : "/en/privacy/";
+const termsHref = lang === "es" ? "/es/terminos/" : "/en/terms/";
 const homeAria =
   lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
 const texts =
   lang === "es"
     ? {
         tagline: "Soluciones de software de nivel empresarial.",
-        navTitle: "Navegacion",
+        navTitle: "Navegación",
         legalTitle: "Legal",
         privacy: "Privacidad",
-        terms: "Terminos",
+        terms: "Términos",
         rights: "Todos los derechos reservados.",
       }
     : {
@@ -71,8 +73,8 @@ const texts =
       <div class="legal-col">
         <h4 class="col-title">{texts.legalTitle}</h4>
         <ul class="footer-nav">
-          <li><a href="#">{texts.privacy}</a></li>
-          <li><a href="#">{texts.terms}</a></li>
+          <li><a href={privacyHref}>{texts.privacy}</a></li>
+          <li><a href={termsHref}>{texts.terms}</a></li>
         </ul>
       </div>
     </div>

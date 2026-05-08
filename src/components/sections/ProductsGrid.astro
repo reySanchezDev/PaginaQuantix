@@ -11,24 +11,9 @@ interface Props {
 }
 
 const { id, title, description, lang } = Astro.props;
-const constructionNotice =
-  lang === "es"
-    ? {
-        title: "Seccion en mantenimiento",
-        message:
-          "Esta solucion se encuentra temporalmente en mantenimiento para mejorar rendimiento y estabilidad. Puedes contactarnos para mas informacion.",
-        closeLabel: "Entendido",
-      }
-    : {
-        title: "Section under maintenance",
-        message:
-          "This solution is temporarily under maintenance to improve performance and stability. Please contact us for more information.",
-        closeLabel: "Understood",
-      };
 ---
 
 <section id={id} class="products-section">
-  <!-- Subtle tech background -->
   <div class="section-bg-overlay"></div>
 
   <Container>
@@ -41,16 +26,15 @@ const constructionNotice =
       {
         products.map((product) => (
           <div class="product-card">
-            <div
-              class="product-thumb"
-              style={`background: ${product.gradient}`}
-            >
-              <div class="thumb-overlay" />
-              {/* Removed Badges Overlay */}
+            <div class="product-thumb" style={`background: ${product.gradient}`}>
+              <div class="thumb-overlay"></div>
             </div>
 
             <div class="product-info">
               <div class="info-content">
+                <div class="product-meta">
+                  <span class="product-status">{product.status[lang]}</span>
+                </div>
                 <h3 class="product-title">{product.title[lang]}</h3>
                 <p class="product-desc">{product.description[lang]}</p>
 
@@ -67,6 +51,7 @@ const constructionNotice =
                         stroke-width="3"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        aria-hidden="true"
                       >
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
@@ -82,12 +67,8 @@ const constructionNotice =
                   target={product.target}
                   variant="glow"
                   class="w-full"
-                  data-product-under-construction="true"
-                  data-notice-title={constructionNotice.title}
-                  data-notice-message={constructionNotice.message}
-                  data-notice-close={constructionNotice.closeLabel}
                 >
-                  {lang === "es" ? "Explorar Solución" : "Explore Solution"}
+                  {lang === "es" ? "Explorar solución" : "Explore solution"}
                 </Button>
               </div>
             </div>
@@ -96,90 +77,7 @@ const constructionNotice =
       }
     </div>
   </Container>
-
-  <div id="construction-toast" class="construction-toast" aria-hidden="true">
-    <div class="construction-toast-card" role="status" aria-live="polite">
-      <p id="construction-toast-title" class="construction-toast-title">
-        {constructionNotice.title}
-      </p>
-      <p id="construction-toast-message" class="construction-toast-message">
-        {constructionNotice.message}
-      </p>
-      <button
-        id="construction-toast-close"
-        type="button"
-        class="construction-toast-close"
-      >
-        {constructionNotice.closeLabel}
-      </button>
-    </div>
-  </div>
 </section>
-
-<script>
-  function setupConstructionNotice() {
-    const toast = document.getElementById("construction-toast");
-    const title = document.getElementById("construction-toast-title");
-    const message = document.getElementById("construction-toast-message");
-    const closeBtn = document.getElementById("construction-toast-close");
-
-    if (!toast || !title || !message || !closeBtn) return;
-
-    let hideTimeout: number | undefined;
-
-    const hideToast = () => {
-      toast.classList.remove("open");
-      toast.setAttribute("aria-hidden", "true");
-    };
-
-    const showToast = (
-      nextTitle: string,
-      nextMessage: string,
-      nextClose: string,
-    ) => {
-      title.textContent = nextTitle;
-      message.textContent = nextMessage;
-      closeBtn.textContent = nextClose;
-      toast.classList.add("open");
-      toast.setAttribute("aria-hidden", "false");
-
-      if (hideTimeout !== undefined) {
-        window.clearTimeout(hideTimeout);
-      }
-      hideTimeout = window.setTimeout(hideToast, 11000);
-    };
-
-    if (closeBtn.dataset.noticeBound !== "true") {
-      closeBtn.addEventListener("click", hideToast);
-      closeBtn.dataset.noticeBound = "true";
-    }
-
-    document
-      .querySelectorAll('[data-product-under-construction="true"]')
-      .forEach((trigger) => {
-        if (!(trigger instanceof HTMLElement)) return;
-        if (trigger.dataset.noticeBound === "true") return;
-
-        trigger.addEventListener("click", (event) => {
-          event.preventDefault();
-
-          const nextTitle =
-            trigger.dataset.noticeTitle || title.textContent || "";
-          const nextMessage =
-            trigger.dataset.noticeMessage || message.textContent || "";
-          const nextClose =
-            trigger.dataset.noticeClose || closeBtn.textContent || "OK";
-
-          showToast(nextTitle, nextMessage, nextClose);
-        });
-
-        trigger.dataset.noticeBound = "true";
-      });
-  }
-
-  setupConstructionNotice();
-  document.addEventListener("astro:page-load", setupConstructionNotice);
-</script>
 
 <style>
   .products-section {
@@ -228,7 +126,6 @@ const constructionNotice =
     line-height: 1.6;
   }
 
-  /* Grid Layout: Horizontal List (Side-by-Side) */
   .products-list {
     position: relative;
     z-index: 10;
@@ -242,13 +139,12 @@ const constructionNotice =
 
   @media (min-width: 1024px) {
     .products-list {
-      grid-template-columns: repeat(2, 1fr); /* 2 Columns on Desktop */
+      grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: 1fr;
       gap: var(--space-12);
     }
   }
 
-  /* Vertical Pro Card for Grid */
   .product-card {
     position: relative;
     display: grid;
@@ -283,17 +179,6 @@ const constructionNotice =
     border-bottom: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
   }
 
-  .thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .product-card:hover .thumb-img {
-    transform: scale(1.1);
-  }
-
   .thumb-overlay {
     position: absolute;
     inset: 0;
@@ -302,28 +187,6 @@ const constructionNotice =
       linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.08)),
       linear-gradient(180deg, rgba(var(--primary-rgb), 0.02), rgba(var(--accent-rgb), 0.14));
     z-index: 1;
-  }
-
-  .badges-overlay {
-    position: absolute;
-    top: var(--space-6);
-    left: var(--space-6);
-    display: flex;
-    gap: var(--space-2);
-    z-index: 2;
-  }
-
-  .compact-badge {
-    padding: 6px 16px;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
-    backdrop-filter: blur(8px);
-    color: var(--primary);
-    border: 1px solid color-mix(in srgb, var(--primary) 16%, var(--border));
-    border-radius: 99px;
   }
 
   .product-info {
@@ -349,6 +212,28 @@ const constructionNotice =
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
+  }
+
+  .product-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .product-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    background: color-mix(in srgb, var(--primary-soft) 80%, white 20%);
+    color: var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .product-title {
@@ -400,6 +285,10 @@ const constructionNotice =
     margin-top: auto;
   }
 
+  .w-full {
+    width: 100%;
+  }
+
   @media (max-width: 767px) {
     .section-header {
       text-align: left;
@@ -439,69 +328,5 @@ const constructionNotice =
     .product-features li {
       font-size: 0.76rem;
     }
-  }
-
-  .w-full {
-    width: 100%;
-  }
-
-  .construction-toast {
-    position: fixed;
-    right: var(--space-4);
-    bottom: var(--space-4);
-    width: min(420px, calc(100vw - 2rem));
-    z-index: 120;
-    opacity: 0;
-    transform: translateY(16px);
-    pointer-events: none;
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease;
-  }
-
-  .construction-toast.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .construction-toast-card {
-    background: color-mix(in srgb, var(--surface) 96%, white 4%);
-    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
-    border-radius: 16px;
-    box-shadow: 0 18px 36px rgba(var(--primary-rgb), 0.16);
-    backdrop-filter: blur(10px);
-    padding: var(--space-5);
-    color: var(--text);
-  }
-
-  .construction-toast-title {
-    margin: 0 0 var(--space-2) 0;
-    font-size: var(--text-base);
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .construction-toast-message {
-    margin: 0;
-    font-size: var(--text-sm);
-    line-height: 1.55;
-    color: color-mix(in srgb, var(--text-muted) 92%, var(--text));
-  }
-
-  .construction-toast-close {
-    margin-top: var(--space-4);
-    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
-    background: color-mix(in srgb, var(--primary-soft) 72%, var(--surface));
-    color: var(--primary);
-    border-radius: 999px;
-    padding: 0.45rem 0.9rem;
-    font-size: var(--text-xs);
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .construction-toast-close:hover {
-    background: color-mix(in srgb, var(--accent-soft) 66%, var(--surface));
   }
 </style>

@@ -83,7 +83,7 @@ const serviceIconsJson = JSON.stringify(serviceIcons);
             </div>
           </div>
 
-          <div class="mobile-service-nav" aria-label={lang === "es" ? "Navegacion de servicios" : "Services navigation"}>
+          <div class="mobile-service-nav" aria-label={lang === "es" ? "Navegación de servicios" : "Services navigation"}>
             <div class="mobile-service-status">
               <span id="mobile-service-counter" class="mobile-service-counter">01 / {translatedServices.length.toString().padStart(2, "0")}</span>
               <div class="mobile-service-progress">
@@ -374,6 +374,39 @@ const serviceIconsJson = JSON.stringify(serviceIcons);
       setMobileSlide(0);
       restartMobileAutoplay();
     } else {
+      if (prefersReducedMotion) {
+        let reducedMotionIndex = 0;
+
+        const setReducedMotionSlide = (nextIndex: number) => {
+          reducedMotionIndex = (nextIndex + uniqueCount) % uniqueCount;
+          const nextSlide = slides[reducedMotionIndex];
+
+          if (nextSlide instanceof HTMLElement) {
+            activeSlideId = nextSlide.dataset.id || "";
+            activeSlideElement = nextSlide;
+            updateContent(nextSlide);
+          }
+        };
+
+        const handleReducedNext = () => setReducedMotionSlide(reducedMotionIndex + 1);
+        const handleReducedPrev = () => setReducedMotionSlide(reducedMotionIndex - 1);
+
+        nextBtn?.addEventListener("click", handleReducedNext);
+        prevBtn?.addEventListener("click", handleReducedPrev);
+        setReducedMotionSlide(0);
+
+        cleanupCallbacks.push(() => {
+          nextBtn?.removeEventListener("click", handleReducedNext);
+          prevBtn?.removeEventListener("click", handleReducedPrev);
+        });
+
+        return () => {
+          cleanupCallbacks.forEach((cleanup) => cleanup());
+          resizeObs.disconnect();
+          window.removeEventListener("resize", handleWindowResize);
+        };
+      }
+
       const animate = () => {
         if (!isPaused) {
           currentPos -= 0.5;

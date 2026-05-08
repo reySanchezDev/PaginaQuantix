@@ -9,15 +9,17 @@
 interface Props {
   /** Offset en pixeles antes de mostrar el botón */
   showAfter?: number;
+  lang?: "es" | "en";
 }
 
-const { showAfter = 300 } = Astro.props;
+const { showAfter = 300, lang = "es" } = Astro.props;
+const ariaLabel = lang === "es" ? "Volver al inicio" : "Back to top";
 ---
 
 <button 
   id="scroll-to-top" 
   class="scroll-to-top" 
-  aria-label="Volver al inicio"
+  aria-label={ariaLabel}
   data-show-after={showAfter}
 >
   <svg 

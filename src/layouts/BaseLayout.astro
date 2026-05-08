@@ -3,7 +3,7 @@ import HeaderPremium from "../components/nav/HeaderPremium.astro";
 import FooterPremium from "../components/nav/FooterPremium.astro";
 import ScrollToTop from "../components/ui/ScrollToTop.astro";
 import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
@@ -16,6 +16,37 @@ interface Props {
 const { title, description, lang = "en", isHeaderTransparent = true } = Astro.props;
 
 const homePath = lang === "es" ? "/es/" : "/en/";
+const site = Astro.site ?? new URL("https://quantix.software");
+const pageTitle = `${title} | Quantix Software`;
+const canonicalUrl = new URL(Astro.url.pathname, site);
+const normalizedPath = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const alternateLocale = lang === "es" ? "en" : "es";
+const routePairs: Record<string, string> = {
+  "/es/": "/en/",
+  "/en/": "/es/",
+  "/es/productos/quantix/": "/en/products/quantix/",
+  "/en/products/quantix/": "/es/productos/quantix/",
+  "/es/productos/nica-planilla/": "/en/products/nica-payroll/",
+  "/en/products/nica-payroll/": "/es/productos/nica-planilla/",
+  "/es/comunidad/": "/en/community/",
+  "/en/community/": "/es/comunidad/",
+  "/es/privacidad/": "/en/privacy/",
+  "/en/privacy/": "/es/privacidad/",
+  "/es/terminos/": "/en/terms/",
+  "/en/terms/": "/es/terminos/",
+};
+const alternatePath =
+  routePairs[normalizedPath] ??
+  (normalizedPath.startsWith("/es/")
+    ? normalizedPath.replace("/es/", "/en/")
+    : normalizedPath.startsWith("/en/")
+      ? normalizedPath.replace("/en/", "/es/")
+      : `/${alternateLocale}/`);
+const alternateUrl = new URL(alternatePath, site);
+const xDefaultUrl = new URL("/en/", site);
+const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
 const navItems =
   lang === "es"
     ? [
@@ -39,23 +70,39 @@ const navItems =
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F5F9FD" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title} | Quantix Software</title>
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="alternate" hreflang={lang} href={canonicalUrl.href} />
+    <link rel="alternate" hreflang={alternateLocale} href={alternateUrl.href} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl.href} />
+    <meta property="og:site_name" content="Quantix Software" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <title>{pageTitle}</title>
 
-    <ViewTransitions />
+    <ClientRouter />
     <VercelAnalytics />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">{skipLabel}</a>
+
     <HeaderPremium navItems={navItems} lang={lang} isTransparent={isHeaderTransparent} />
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
     <FooterPremium navItems={navItems} lang={lang} />
 
-    <ScrollToTop />
+    <ScrollToTop lang={lang} />
   </body>
 </html>

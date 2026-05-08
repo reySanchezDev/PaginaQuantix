@@ -32,8 +32,8 @@ export const services: Service[] = [
             en: 'UX/UI & Design Systems'
         },
         description: {
-            es: 'Interfaces claras y consistentes, con accesibilidad y experiencia “premium” desde el día 1.',
-            en: 'Clear and consistent interfaces, with accessibility and a "premium" experience from day 1.'
+            es: 'Interfaces claras y consistentes, con accesibilidad y experiencia premium desde el día 1.',
+            en: 'Clear and consistent interfaces, with accessibility and a premium experience from day 1.'
         }
     },
     {
@@ -44,8 +44,8 @@ export const services: Service[] = [
             en: 'Web Development & PWA'
         },
         description: {
-            es: 'Apps web modernas (interna o pública) optimizadas para performance y escalabilidad.',
-            en: 'Modern web apps (internal or public) optimized for performance and scalability.'
+            es: 'Apps web modernas, internas o públicas, optimizadas para performance y escalabilidad.',
+            en: 'Modern web apps, internal or public, optimized for performance and scalability.'
         }
     },
     {
@@ -57,7 +57,7 @@ export const services: Service[] = [
         },
         description: {
             es: 'Desarrollo nativo o multiplataforma con enfoque en estabilidad, rendimiento y releases controlados.',
-            en: 'Native or cross-platform development focusing on stability, performance, and controlled releases.'
+            en: 'Native or cross-platform development focused on stability, performance, and controlled releases.'
         }
     },
     {
@@ -76,12 +76,12 @@ export const services: Service[] = [
         id: 'modernization',
         icon: 'refresh-cw',
         title: {
-            es: 'Modernización de sistemas (Legacy → Modern)',
-            en: 'System Modernization (Legacy → Modern)'
+            es: 'Modernización de sistemas (Legacy to Modern)',
+            en: 'System Modernization (Legacy to Modern)'
         },
         description: {
-            es: 'Refactor/migración de monolitos y sistemas críticos para reducir deuda técnica y acelerar delivery.',
-            en: 'Refactor/migration of monoliths and critical systems to reduce technical debt and accelerate delivery.'
+            es: 'Refactorización y migración de monolitos y sistemas críticos para reducir deuda técnica y acelerar delivery.',
+            en: 'Refactoring and migration of monoliths and critical systems to reduce technical debt and accelerate delivery.'
         }
     },
     {
@@ -92,7 +92,7 @@ export const services: Service[] = [
             en: 'Cloud-native & Microservices'
         },
         description: {
-            es: 'Arquitecturas modulares, contenedores, serverless cuando aplica, y despliegues seguros.',
+            es: 'Arquitecturas modulares, contenedores, serverless cuando aplica y despliegues seguros.',
             en: 'Modular architectures, containers, serverless when applicable, and secure deployments.'
         }
     },
@@ -152,8 +152,8 @@ export const services: Service[] = [
             en: 'Microsoft Dynamics 365 BC / LS Central (AL)'
         },
         description: {
-            es: 'Extensiones en AL, integraciones, optimización y soporte experto para retail/operación.',
-            en: 'AL extensions, integrations, optimization, and expert support for retail/operations.'
+            es: 'Extensiones en AL, integraciones, optimización y soporte experto para retail y operación.',
+            en: 'AL extensions, integrations, optimization, and expert support for retail and operations.'
         }
     }
 ];

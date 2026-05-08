@@ -13,7 +13,7 @@ const { navItems, lang, isTransparent = true } = Astro.props;
 const homeHref = lang === "es" ? "/es/" : "/en/";
 const homeAria =
   lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
-const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
+const openMenuAria = lang === "es" ? "Abrir menú" : "Open menu";
 ---
 
 <header
@@ -22,7 +22,7 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
   data-transparent={isTransparent.toString()}
 >
   <Container class="header-container">
-    <nav class="desktop-nav" aria-label={lang === "es" ? "Navegacion principal" : "Primary navigation"}>
+    <nav class="desktop-nav" aria-label={lang === "es" ? "Navegación principal" : "Primary navigation"}>
       <div class="segmented-control">
         <a href={homeHref} class="brand-logo" aria-label={homeAria}>
           <img src="/favicon.svg" alt="Quantix Logo" width="32" height="32" class="header-favicon" />
@@ -377,6 +377,7 @@ const openMenuAria = lang === "es" ? "Abrir menu" : "Open menu";
 
     const openMenu = () => {
       overlay?.classList.add("open");
+      overlay?.setAttribute("aria-hidden", "false");
       toggleBtn?.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
     };

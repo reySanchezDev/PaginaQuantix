@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy information for visitors and prospective clients of Quantix Software."
+  lang="en"
+  isHeaderTransparent={false}
+>
+  <section class="legal-page">
+    <div class="legal-container">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: May 8, 2026</p>
+
+      <div class="legal-content">
+        <p>
+          This Privacy Policy explains how Quantix Software handles information
+          submitted through this website. It is an initial website policy and may
+          be updated as our products, contact flows, and service processes evolve.
+        </p>
+
+        <h2>Information We Collect</h2>
+        <p>
+          We may collect contact details you choose to provide, such as your
+          name, email address, company, phone number, project details, or messages
+          sent through email, WhatsApp, or future website forms.
+        </p>
+
+        <h2>How We Use Information</h2>
+        <p>
+          We use submitted information to respond to inquiries, evaluate project
+          fit, prepare proposals, provide support, and improve our website and
+          services.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          This site may use privacy-conscious analytics to understand aggregate
+          traffic and interaction patterns. Analytics data is used to improve the
+          website experience and does not replace direct business communication.
+        </p>
+
+        <h2>Sharing</h2>
+        <p>
+          We do not sell personal information. We may share limited information
+          with service providers only when needed to operate the website, respond
+          to inquiries, or deliver requested services.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For privacy questions, contact us at
+          <a href="mailto:contact@quantix.software">contact@quantix.software</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: clamp(7rem, 14vw, 9rem) 0 clamp(4rem, 10vw, 7rem);
+    background: var(--bg);
+  }
+
+  .legal-container {
+    width: min(100% - 2rem, 820px);
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .updated {
+    color: var(--text-muted);
+    margin: 0 0 var(--space-10);
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--space-5);
+    color: var(--text-muted);
+  }
+
+  .legal-content h2 {
+    margin: var(--space-5) 0 0;
+    color: var(--text);
+    font-size: var(--text-2xl);
+  }
+
+  .legal-content p {
+    margin: 0;
+  }
+</style>

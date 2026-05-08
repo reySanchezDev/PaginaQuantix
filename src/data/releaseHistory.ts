@@ -19,7 +19,7 @@ export const releaseHistory: ReleaseLog[] = [
         'Soporte para grabación de video en pantallas y monitores específicos.'
       ],
       en: [
-        'New advanced editing tools will be incorporated into the pro visor.',
+        'New advanced editing tools will be added to the pro viewer.',
         'Support for video recording on specific screens and monitors.'
       ]
     }
@@ -32,21 +32,21 @@ export const releaseHistory: ReleaseLog[] = [
     changes: {
       es: [
         'Nuevo flujo de modo clip con selección de área exacta para mayor precisión.',
-        'Implementación de nomenclatura automática para secuencias de capturas consecutivas.',
+        'Nomenclatura automática para secuencias de capturas consecutivas.',
         'Ventana dedicada para nombrar capturas con opciones de omitir o cancelar.',
-        'Aviso de finalizacion de capturas continuas con boton OK y cierre automático.',
+        'Aviso de finalización de capturas continuas con botón OK y cierre automático.',
         'Optimización del cierre del sistema para evitar bloqueos por clics múltiples.',
         'Corrección en la sustitución de carpetas en los slots de la ventana flotante.',
-        'Mejoras visuales y de enfoque en las ventanas de interfaz en entornos Windows.'
+        'Mejoras visuales y de enfoque en ventanas de interfaz para Windows.'
       ],
       en: [
         'New clip mode flow with exact area selection for higher precision.',
-        'Automatic nomenclature implementation for consecutive capture sequences.',
+        'Automatic naming for consecutive capture sequences.',
         'Dedicated naming window with options to skip or cancel.',
-        'Continuous capture completion notification with OK button and automatic closing.',
+        'Continuous capture completion notice with OK button and automatic closing.',
         'System shutdown optimization to prevent locks from multiple clicks.',
-        'Fixed folder substitution in floating window slots.',
-        'Visual and focus improvements for UI windows in Windows environments.'
+        'Fixed folder replacement in floating window slots.',
+        'Visual and focus improvements for Windows interface windows.'
       ]
     }
   }

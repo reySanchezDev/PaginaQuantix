@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Términos de Servicio"
+  description="Términos generales del sitio web para visitantes y clientes potenciales de Quantix Software."
+  lang="es"
+  isHeaderTransparent={false}
+>
+  <section class="legal-page">
+    <div class="legal-container">
+      <p class="eyebrow">Legal</p>
+      <h1>Términos de Servicio</h1>
+      <p class="updated">Última actualización: 8 de mayo de 2026</p>
+
+      <div class="legal-content">
+        <p>
+          Estos Términos de Servicio aplican al uso de este sitio web. Son
+          términos generales del sitio y no reemplazan una propuesta firmada,
+          contrato, alcance de trabajo o acuerdo comercial específico.
+        </p>
+
+        <h2>Contenido Del Sitio</h2>
+        <p>
+          La información del sitio se ofrece para evaluación general de negocio y
+          productos. Procuramos mantenerla actualizada, pero los detalles,
+          disponibilidad y alcance de servicios pueden cambiar.
+        </p>
+
+        <h2>Productos Y Servicios</h2>
+        <p>
+          Todo proyecto, implementación, suscripción, soporte o desarrollo a
+          medida requiere condiciones comerciales separadas aprobadas por ambas
+          partes.
+        </p>
+
+        <h2>Propiedad Intelectual</h2>
+        <p>
+          Los nombres de Quantix Software, contenido del sitio, nombres de
+          productos, conceptos de interfaz y materiales relacionados pertenecen a
+          Quantix Software salvo que se indique lo contrario.
+        </p>
+
+        <h2>Servicios De Terceros</h2>
+        <p>
+          El sitio puede enlazar servicios externos como email, WhatsApp,
+          analítica o alojamiento de descargas. Esos servicios se rigen por sus
+          propios términos y políticas.
+        </p>
+
+        <h2>Contacto</h2>
+        <p>
+          Para preguntas sobre estos términos, escríbenos a
+          <a href="mailto:contact@quantix.software">contact@quantix.software</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: clamp(7rem, 14vw, 9rem) 0 clamp(4rem, 10vw, 7rem);
+    background: var(--bg);
+  }
+
+  .legal-container {
+    width: min(100% - 2rem, 820px);
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .updated {
+    color: var(--text-muted);
+    margin: 0 0 var(--space-10);
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--space-5);
+    color: var(--text-muted);
+  }
+
+  .legal-content h2 {
+    margin: var(--space-5) 0 0;
+    color: var(--text);
+    font-size: var(--text-2xl);
+  }
+
+  .legal-content p {
+    margin: 0;
+  }
+</style>

@@ -27,6 +27,7 @@ const Element = href ? "a" : "button";
   href={href}
   type={!href ? type : undefined}
   target={target}
+  rel={href && target === "_blank" ? "noopener noreferrer" : undefined}
   class:list={[
     "btn",
     `btn--${variant}`,

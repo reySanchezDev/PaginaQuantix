@@ -3,19 +3,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroSection from "../../components/sections/HeroSection.astro";
 import ServicesCarousel from "../../components/sections/ServicesCarousel.astro";
 import ProductsGrid from "../../components/sections/ProductsGrid.astro";
-import TrustSection from "../../components/sections/TrustSection.astro";
 import ContactSection from "../../components/sections/ContactSection.astro";
 ---
 
 <BaseLayout
   title="Inicio"
-  description="Software de gestion empresarial premium adaptado a tus necesidades."
+  description="Software empresarial premium adaptado a tus necesidades."
   lang="es"
 >
   <HeroSection
     id="inicio"
-    title="Transformando el futuro digital de tu empresa"
-    subtitle="Impulsamos la eficiencia de tu negocio con soluciones tecnologicas a medida. Estrategia, innovacion y resultados tangibles en la era digital."
+    title="Construimos software confiable para operaciones empresariales"
+    subtitle="Ayudamos a empresas a mejorar sus operaciones con software a medida, integraciones, automatización y datos accionables."
     lang="es"
   />
 
@@ -24,20 +23,14 @@ import ContactSection from "../../components/sections/ContactSection.astro";
   <ProductsGrid
     id="productos"
     title="Nuestros Productos"
-    description="Soluciones especificas disenadas para problemas complejos."
+    description="Productos de software operativo diseñados para flujos reales de negocio."
     lang="es"
   />
-
-  {
-    /* <TrustSection
-    title="Empresas que confian en nosotros"
-  /> */
-  }
 
   <ContactSection
     id="contacto"
     title="Hablemos de tu proyecto"
-    description="Estamos listos para llevar tu empresa al siguiente nivel. Contactanos hoy mismo."
+    description="Estamos listos para entender tus necesidades y evaluar cómo podemos ayudarte."
     lang="es"
   />
 </BaseLayout>

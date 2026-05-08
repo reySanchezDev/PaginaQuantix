@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="General website terms for Quantix Software visitors and prospective clients."
+  lang="en"
+  isHeaderTransparent={false}
+>
+  <section class="legal-page">
+    <div class="legal-container">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms of Service</h1>
+      <p class="updated">Last updated: May 8, 2026</p>
+
+      <div class="legal-content">
+        <p>
+          These Terms of Service apply to the use of this website. They are
+          general website terms and do not replace a signed proposal, statement
+          of work, product agreement, or service contract.
+        </p>
+
+        <h2>Website Content</h2>
+        <p>
+          The information on this website is provided for general business and
+          product evaluation. We work to keep it accurate, but product details,
+          availability, and service scope may change as offerings mature.
+        </p>
+
+        <h2>Products and Services</h2>
+        <p>
+          Any project, implementation, subscription, support arrangement, or
+          custom software engagement requires separate commercial terms approved
+          by both parties.
+        </p>
+
+        <h2>Intellectual Property</h2>
+        <p>
+          Quantix Software names, website content, product names, interface
+          concepts, and related materials belong to Quantix Software unless
+          otherwise stated.
+        </p>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          The website may link to third-party services such as email, WhatsApp,
+          analytics providers, or download hosting. Those services are governed by
+          their own terms and policies.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For questions about these terms, contact
+          <a href="mailto:contact@quantix.software">contact@quantix.software</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: clamp(7rem, 14vw, 9rem) 0 clamp(4rem, 10vw, 7rem);
+    background: var(--bg);
+  }
+
+  .legal-container {
+    width: min(100% - 2rem, 820px);
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .updated {
+    color: var(--text-muted);
+    margin: 0 0 var(--space-10);
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--space-5);
+    color: var(--text-muted);
+  }
+
+  .legal-content h2 {
+    margin: var(--space-5) 0 0;
+    color: var(--text);
+    font-size: var(--text-2xl);
+  }
+
+  .legal-content p {
+    margin: 0;
+  }
+</style>
