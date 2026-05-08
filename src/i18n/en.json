@@ -1,7 +1,8 @@
 {
-    "nav.home": "Home",
-    "nav.features": "Features",
+    "nav.solutions": "Solutions",
     "nav.products": "Products",
+    "nav.work": "Work",
+    "nav.about": "About",
     "nav.contact": "Contact",
     "services.title": "Custom development services",
     "services.subtitle": "We design, build, and integrate production-ready software: fast, secure, and scalable. We focus on modernization, data, security, and AI capabilities where they create practical business value.",

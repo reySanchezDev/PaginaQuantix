@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+
+const areas = [
+  "Retail operations",
+  "Restaurant operations",
+  "Financial tools",
+  "Inventory control",
+  "Billing workflows",
+  "POS-related systems",
+  "Internal business platforms",
+  "Reporting dashboards",
+  "Automation tools",
+];
+
+const practiceAreas = [
+  {
+    title: "Operational Platforms",
+    text: "Systems that organize business workflows, users, permissions, transactions, inventory, and reporting around daily operations.",
+  },
+  {
+    title: "Published Product Experience",
+    text: "Experience building and maintaining focused product websites and software tools such as Takofy and Nica Finanzas.",
+  },
+  {
+    title: "Integration and Data Workflows",
+    text: "Practical experience connecting systems, structuring data, and making operational information easier to use.",
+  },
+];
+---
+
+<BaseLayout
+  title="Work"
+  description="Selected work and operational software experience across retail, restaurants, financial tools, inventory, billing, POS-related systems, reporting and automation."
+  lang="en"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Work</span>
+          <h1 class="page-title">Selected work and operational software experience</h1>
+          <p class="page-lead">
+            A structured view of the business software areas Quantix Software is prepared to support, without inventing client names, metrics, or case studies.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="split-layout">
+          <div class="section-heading">
+            <h2>Experience areas</h2>
+            <p>
+              This page is prepared for future case studies. For now, it presents the operational categories that shape our software work.
+            </p>
+          </div>
+
+          <div class="content-card">
+            <h3>Operational categories</h3>
+            <ul>
+              {areas.map((area) => <li>{area}</li>)}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="section-heading">
+          <h2>How this will evolve</h2>
+          <p>
+            As real case studies are documented, this page can expand into deeper project pages with scope, constraints, technical decisions, and outcomes.
+          </p>
+        </div>
+
+        <div class="content-grid content-grid--3">
+          {practiceAreas.map((area) => (
+            <article class="content-card">
+              <h3>{area.title}</h3>
+              <p>{area.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="page-cta-band">
+          <h2>Have a real operational challenge to discuss?</h2>
+          <p>
+            Bring the workflow, constraints, and goals. We can help define a practical path before committing to a build.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/contact/" variant="glow">Book a consultation</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

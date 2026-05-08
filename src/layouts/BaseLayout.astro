@@ -15,7 +15,6 @@ interface Props {
 
 const { title, description, lang = "en", isHeaderTransparent = true } = Astro.props;
 
-const homePath = lang === "es" ? "/es/" : "/en/";
 const site = Astro.site ?? new URL("https://quantix.software");
 const pageTitle = `${title} | Quantix Software`;
 const canonicalUrl = new URL(Astro.url.pathname, site);
@@ -30,6 +29,16 @@ const routePairs: Record<string, string> = {
   "/en/products/takofy/": "/es/productos/takofy/",
   "/es/productos/nica-finanzas/": "/en/products/nica-finanzas/",
   "/en/products/nica-finanzas/": "/es/productos/nica-finanzas/",
+  "/es/soluciones/": "/en/solutions/",
+  "/en/solutions/": "/es/soluciones/",
+  "/es/productos/": "/en/products/",
+  "/en/products/": "/es/productos/",
+  "/es/trabajo/": "/en/work/",
+  "/en/work/": "/es/trabajo/",
+  "/es/nosotros/": "/en/about/",
+  "/en/about/": "/es/nosotros/",
+  "/es/contacto/": "/en/contact/",
+  "/en/contact/": "/es/contacto/",
   "/es/comunidad/": "/en/community/",
   "/en/community/": "/es/comunidad/",
   "/es/privacidad/": "/en/privacy/",
@@ -50,18 +59,18 @@ const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
 const navItems =
   lang === "es"
     ? [
-        { label: "Inicio", href: `${homePath}#inicio` },
-        { label: "Servicios", href: `${homePath}#funciones` },
-        { label: "Productos", href: `${homePath}#productos` },
-        { label: "Comunidad", href: `${homePath}comunidad/` },
-        { label: "Contacto", href: `${homePath}#contacto` },
+        { label: "Soluciones", href: "/es/soluciones/" },
+        { label: "Productos", href: "/es/productos/" },
+        { label: "Trabajo", href: "/es/trabajo/" },
+        { label: "Nosotros", href: "/es/nosotros/" },
+        { label: "Contacto", href: "/es/contacto/" },
       ]
     : [
-        { label: "Home", href: `${homePath}#home` },
-        { label: "Features", href: `${homePath}#features` },
-        { label: "Products", href: `${homePath}#products` },
-        { label: "Community", href: `${homePath}community/` },
-        { label: "Contact", href: `${homePath}#contact` },
+        { label: "Solutions", href: "/en/solutions/" },
+        { label: "Products", href: "/en/products/" },
+        { label: "Work", href: "/en/work/" },
+        { label: "About", href: "/en/about/" },
+        { label: "Contact", href: "/en/contact/" },
       ];
 ---
 

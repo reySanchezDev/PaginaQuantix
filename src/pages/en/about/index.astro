@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+
+const principles = [
+  {
+    title: "Production-minded engineering",
+    text: "We approach software as something that has to keep working after launch: maintainable, observable, and clear enough to operate.",
+  },
+  {
+    title: "Operational understanding",
+    text: "We focus on business workflows such as inventory, billing, reporting, internal tools, integrations, and process automation.",
+  },
+  {
+    title: "Practical technical strategy",
+    text: "We value decisions that reduce risk, clarify scope, and create systems that can evolve with the business.",
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Quantix Software builds reliable software systems for companies that need operational control, data clarity and scalable digital processes."
+  lang="en"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">About</span>
+          <h1 class="page-title">Reliable software systems for companies that operate in the real world</h1>
+          <p class="page-lead">
+            Quantix Software builds reliable software systems for companies that need operational control, data clarity and scalable digital processes.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/solutions/" variant="secondary" size="lg">Explore solutions</Button>
+            <Button href="/en/contact/" variant="glow" size="lg">Book a consultation</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="section-heading">
+          <h2>Built around systems, not just screens</h2>
+          <p>
+            We care about the operational layer behind the interface: data models, integrations, user permissions, reporting, deployment, and the workflows people rely on every day.
+          </p>
+        </div>
+
+        <div class="content-grid content-grid--3">
+          {principles.map((principle) => (
+            <article class="content-card">
+              <h3>{principle.title}</h3>
+              <p>{principle.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="page-cta-band">
+          <h2>Software for businesses that need control and clarity</h2>
+          <p>
+            Quantix Software is positioned for companies that need dependable systems, not short-lived experiments or generic websites.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/work/" variant="secondary">View experience areas</Button>
+            <Button href="/en/contact/" variant="glow">Start a conversation</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

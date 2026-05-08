@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+import ProductsGrid from "../../../components/sections/ProductsGrid.astro";
+---
+
+<BaseLayout
+  title="Products"
+  description="Published software products from Quantix Software, including Takofy for restaurant operations and Nica Finanzas for financial calculators in Nicaragua."
+  lang="en"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Products</span>
+          <h1 class="page-title">Published software products for operational workflows</h1>
+          <p class="page-lead">
+            Quantix Software builds and operates focused software products for real business and financial workflows.
+          </p>
+          <div class="page-actions">
+            <Button href="https://takofy.app/es/" target="_blank" variant="glow" size="lg">Visit Takofy</Button>
+            <Button href="https://nicafinanzas.com/" target="_blank" variant="secondary" size="lg">Visit Nica Finanzas</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <ProductsGrid
+      id="products-list"
+      title="Current products"
+      description="Published products with dedicated websites and active product positioning."
+      lang="en"
+    />
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="page-cta-band">
+          <h2>Need a product or internal platform of your own?</h2>
+          <p>
+            We also help companies scope and build custom SaaS platforms, internal systems, integrations, and automation tools.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/solutions/" variant="secondary">Explore solutions</Button>
+            <Button href="/en/contact/" variant="glow">Book a consultation</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

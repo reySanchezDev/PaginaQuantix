@@ -11,9 +11,16 @@ interface Props {
 
 const { navItems, lang, isTransparent = true } = Astro.props;
 const homeHref = lang === "es" ? "/es/" : "/en/";
+const normalizedPath = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
 const homeAria =
   lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
 const openMenuAria = lang === "es" ? "Abrir menú" : "Open menu";
+const normalizeHrefPath = (href: string) => {
+  const path = href.split("#")[0] || homeHref;
+  return path.endsWith("/") ? path : `${path}/`;
+};
 ---
 
 <header
@@ -53,8 +60,8 @@ const openMenuAria = lang === "es" ? "Abrir menú" : "Open menu";
             navItems.map((item) => (
               <a
                 href={item.href}
-                class="nav-link"
-                data-target={item.href.split("#")[1]}
+                class:list={["nav-link", { active: normalizeHrefPath(item.href) === normalizedPath }]}
+                data-target={item.href.includes("#") ? item.href.split("#")[1] : undefined}
               >
                 {item.label}
               </a>
@@ -417,6 +424,8 @@ const openMenuAria = lang === "es" ? "Abrir menú" : "Open menu";
       link.addEventListener("click", () => updateIndicator(link));
       link.dataset.bound = "true";
     });
+
+    updateIndicator(document.querySelector(".nav-link.active"));
 
     const observerOptions = {
       root: null,

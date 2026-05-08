@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+import ContactSection from "../../../components/sections/ContactSection.astro";
+
+const projectTypes = [
+  "Sistemas operativos empresariales",
+  "Plataformas SaaS",
+  "Herramientas internas de negocio",
+  "Integraciones y APIs",
+  "Dashboards de reportería y BI",
+  "Flujos de inventario y facturación",
+  "Automatización de procesos",
+  "Modernización de sistemas existentes",
+];
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contacta a Quantix Software para conversar sobre software a medida, plataformas SaaS, herramientas internas, integraciones, reportería, automatización y sistemas operativos."
+  lang="es"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Contacto</span>
+          <h1 class="page-title">Solicita una consulta para tu proyecto de software</h1>
+          <p class="page-lead">
+            Cuéntanos qué estás construyendo, mejorando, integrando o intentando automatizar. Podemos ayudarte a aclarar el siguiente paso práctico.
+          </p>
+          <div class="page-actions">
+            <Button href="mailto:contact@quantix.software" variant="glow" size="lg">Solicitar consulta</Button>
+            <Button href="https://wa.me/50585213462" target="_blank" variant="secondary" size="lg">WhatsApp</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="split-layout">
+          <div class="section-heading">
+            <h2>Tipos de proyectos que podemos revisar</h2>
+            <p>
+              Una buena primera conversación se enfoca en alcance, restricciones, contexto del negocio y qué debe volverse más confiable.
+            </p>
+          </div>
+
+          <div class="content-card">
+            <h3>Áreas relevantes</h3>
+            <ul>
+              {projectTypes.map((type) => <li>{type}</li>)}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <ContactSection
+      id="canales-directos"
+      title="Canales directos de contacto"
+      description="Usa email o WhatsApp para iniciar una conversación clara sobre tu proyecto."
+      lang="es"
+    />
+  </div>
+</BaseLayout>

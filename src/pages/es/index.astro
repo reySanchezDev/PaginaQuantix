@@ -1,14 +1,41 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroSection from "../../components/sections/HeroSection.astro";
-import ServicesCarousel from "../../components/sections/ServicesCarousel.astro";
 import ProductsGrid from "../../components/sections/ProductsGrid.astro";
-import ContactSection from "../../components/sections/ContactSection.astro";
+import Container from "../../components/ui/Container.astro";
+import Button from "../../components/ui/Button.astro";
+
+const positioning = [
+  "Sistemas operativos empresariales",
+  "Plataformas SaaS y herramientas internas",
+  "Integraciones, automatización y reportería",
+];
+
+const solutionPreview = [
+  {
+    title: "Operaciones de negocio",
+    text: "Sistemas para inventario, facturación, permisos, control de flujos y visibilidad operativa.",
+  },
+  {
+    title: "Datos y reportería",
+    text: "Dashboards y flujos de reporte que ayudan a tomar decisiones con datos más claros.",
+  },
+  {
+    title: "Integraciones y automatización",
+    text: "Conexiones API-first y automatización para procesos que no deberían depender de trabajo manual.",
+  },
+];
+
+const process = [
+  "Aclarar objetivos, flujos y restricciones",
+  "Definir arquitectura y alcance de implementación",
+  "Construir, validar y preparar para uso en producción",
+];
 ---
 
 <BaseLayout
-  title="Inicio"
-  description="Software empresarial premium adaptado a tus necesidades."
+  title="Software Empresarial para Operaciones de Negocio"
+  description="Quantix Software construye software operativo confiable, plataformas SaaS, herramientas internas, integraciones, automatización y sistemas de reportería para negocios reales."
   lang="es"
 >
   <HeroSection
@@ -16,21 +43,86 @@ import ContactSection from "../../components/sections/ContactSection.astro";
     title="Construimos software confiable para operaciones empresariales"
     subtitle="Ayudamos a empresas a mejorar sus operaciones con software a medida, integraciones, automatización y datos accionables."
     lang="es"
+    primaryCtaHref="/es/contacto/"
+    primaryCtaLabel="Solicitar consulta"
+    secondaryCtaHref="/es/soluciones/"
+    secondaryCtaLabel="Explorar soluciones"
   />
 
-  <ServicesCarousel id="funciones" lang="es" />
+  <section class="page-section page-section--surface">
+    <Container>
+      <ul class="pill-list" aria-label="Posicionamiento de Quantix Software">
+        {positioning.map((item) => <li>{item}</li>)}
+      </ul>
+    </Container>
+  </section>
+
+  <section class="page-section">
+    <Container>
+      <div class="section-heading">
+        <h2>Construido para operaciones reales de negocio</h2>
+        <p>
+          Quantix Software se enfoca en sistemas con mentalidad de producción para empresas que necesitan control operativo, claridad de datos y procesos escalables.
+        </p>
+      </div>
+
+      <div class="content-grid content-grid--3">
+        {solutionPreview.map((item) => (
+          <article class="content-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="page-actions">
+        <Button href="/es/soluciones/" variant="secondary">Ver todas las soluciones</Button>
+      </div>
+    </Container>
+  </section>
 
   <ProductsGrid
-    id="productos"
-    title="Nuestros Productos"
-    description="Productos de software operativo diseñados para flujos reales de negocio."
+    id="vista-productos"
+    title="Productos publicados"
+    description="Productos enfocados construidos y publicados por Quantix Software."
     lang="es"
   />
 
-  <ContactSection
-    id="contacto"
-    title="Hablemos de tu proyecto"
-    description="Estamos listos para entender tus necesidades y evaluar cómo podemos ayudarte."
-    lang="es"
-  />
+  <section class="page-section page-section--surface">
+    <Container>
+      <div class="split-layout">
+        <div class="section-heading">
+          <h2>Experiencia en categorías de software operativo</h2>
+          <p>
+            Áreas de trabajo incluyen operaciones de restaurantes, herramientas financieras, control de inventario, facturación, sistemas relacionados con POS, plataformas internas, dashboards y automatización.
+          </p>
+          <div class="page-actions">
+            <Button href="/es/trabajo/" variant="secondary">Ver áreas de trabajo</Button>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h3>Cómo trabajamos</h3>
+          <ul>
+            {process.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="page-section">
+    <Container>
+      <div class="page-cta-band">
+        <h2>Hablemos de tu proyecto</h2>
+        <p>
+          Cuéntanos qué estás construyendo, mejorando, integrando o intentando automatizar.
+        </p>
+        <div class="page-actions">
+          <Button href="/es/contacto/" variant="glow">Solicitar consulta</Button>
+          <Button href="/es/nosotros/" variant="secondary">Sobre Quantix Software</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
 </BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+
+const areas = [
+  "Operaciones retail",
+  "Operaciones de restaurantes",
+  "Herramientas financieras",
+  "Control de inventario",
+  "Flujos de facturación",
+  "Sistemas relacionados con POS",
+  "Plataformas internas de negocio",
+  "Dashboards de reportería",
+  "Herramientas de automatización",
+];
+
+const practiceAreas = [
+  {
+    title: "Plataformas operativas",
+    text: "Sistemas que organizan flujos de negocio, usuarios, permisos, transacciones, inventario y reportes alrededor de la operación diaria.",
+  },
+  {
+    title: "Experiencia con productos publicados",
+    text: "Experiencia construyendo y manteniendo productos y herramientas de software enfocadas como Takofy y Nica Finanzas.",
+  },
+  {
+    title: "Integraciones y datos",
+    text: "Experiencia práctica conectando sistemas, estructurando datos y haciendo que la información operativa sea más útil.",
+  },
+];
+---
+
+<BaseLayout
+  title="Trabajo"
+  description="Trabajo seleccionado y experiencia en software operativo para retail, restaurantes, herramientas financieras, inventario, facturación, sistemas POS, reportería y automatización."
+  lang="es"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Trabajo</span>
+          <h1 class="page-title">Trabajo seleccionado y experiencia en software operativo</h1>
+          <p class="page-lead">
+            Una vista estructurada de las áreas de software empresarial que Quantix Software puede apoyar, sin inventar clientes, métricas ni casos de estudio.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="split-layout">
+          <div class="section-heading">
+            <h2>Áreas de experiencia</h2>
+            <p>
+              Esta página queda preparada para futuros casos reales. Por ahora, presenta las categorías operativas que orientan nuestro trabajo de software.
+            </p>
+          </div>
+
+          <div class="content-card">
+            <h3>Categorías operativas</h3>
+            <ul>
+              {areas.map((area) => <li>{area}</li>)}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="section-heading">
+          <h2>Cómo evolucionará esta página</h2>
+          <p>
+            Cuando se documenten casos reales, esta página podrá expandirse con alcance, restricciones, decisiones técnicas y resultados.
+          </p>
+        </div>
+
+        <div class="content-grid content-grid--3">
+          {practiceAreas.map((area) => (
+            <article class="content-card">
+              <h3>{area.title}</h3>
+              <p>{area.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="page-cta-band">
+          <h2>¿Tienes un reto operativo real para revisar?</h2>
+          <p>
+            Trae el flujo, restricciones y objetivos. Podemos ayudarte a definir un camino práctico antes de comprometerte con el desarrollo.
+          </p>
+          <div class="page-actions">
+            <Button href="/es/contacto/" variant="glow">Solicitar consulta</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

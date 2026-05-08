@@ -1,7 +1,8 @@
 {
-    "nav.home": "Inicio",
-    "nav.features": "Servicios",
+    "nav.solutions": "Soluciones",
     "nav.products": "Productos",
+    "nav.work": "Trabajo",
+    "nav.about": "Nosotros",
     "nav.contact": "Contacto",
     "services.title": "Servicios de desarrollo a medida",
     "services.subtitle": "Diseñamos, construimos e integramos software listo para producción: rápido, seguro y escalable. Priorizamos modernización, datos, seguridad y capacidades de IA porque hoy es lo que más presionan las empresas.",

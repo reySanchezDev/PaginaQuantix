@@ -1,14 +1,41 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroSection from "../../components/sections/HeroSection.astro";
-import ServicesCarousel from "../../components/sections/ServicesCarousel.astro";
 import ProductsGrid from "../../components/sections/ProductsGrid.astro";
-import ContactSection from "../../components/sections/ContactSection.astro";
+import Container from "../../components/ui/Container.astro";
+import Button from "../../components/ui/Button.astro";
+
+const positioning = [
+  "Operational software systems",
+  "SaaS and internal platforms",
+  "Integrations, automation and reporting",
+];
+
+const solutionPreview = [
+  {
+    title: "Business operations",
+    text: "Systems for inventory, billing, permissions, workflow control, and operational visibility.",
+  },
+  {
+    title: "Data and reporting",
+    text: "Dashboards and reporting workflows that help teams make decisions from clearer business data.",
+  },
+  {
+    title: "Integrations and automation",
+    text: "API-first connections and automation for processes that should not depend on manual work.",
+  },
+];
+
+const process = [
+  "Clarify goals, workflows and constraints",
+  "Define architecture and implementation scope",
+  "Build, validate and prepare for production use",
+];
 ---
 
 <BaseLayout
-  title="Home"
-  description="Premium enterprise management software tailored to your needs."
+  title="Enterprise Software for Business Operations"
+  description="Quantix Software builds reliable operational software, SaaS platforms, internal tools, integrations, automation and reporting systems for real businesses."
   lang="en"
 >
   <HeroSection
@@ -16,21 +43,86 @@ import ContactSection from "../../components/sections/ContactSection.astro";
     title="Building reliable software for business operations"
     subtitle="We help companies improve operations with tailored software, integrations, automation, and actionable data."
     lang="en"
+    primaryCtaHref="/en/contact/"
+    primaryCtaLabel="Book a consultation"
+    secondaryCtaHref="/en/solutions/"
+    secondaryCtaLabel="Explore solutions"
   />
 
-  <ServicesCarousel id="features" lang="en" />
+  <section class="page-section page-section--surface">
+    <Container>
+      <ul class="pill-list" aria-label="Quantix Software positioning">
+        {positioning.map((item) => <li>{item}</li>)}
+      </ul>
+    </Container>
+  </section>
+
+  <section class="page-section">
+    <Container>
+      <div class="section-heading">
+        <h2>Built for real business operations</h2>
+        <p>
+          Quantix Software focuses on production-minded systems for companies that need operational control, data clarity, and scalable processes.
+        </p>
+      </div>
+
+      <div class="content-grid content-grid--3">
+        {solutionPreview.map((item) => (
+          <article class="content-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="page-actions">
+        <Button href="/en/solutions/" variant="secondary">View all solutions</Button>
+      </div>
+    </Container>
+  </section>
 
   <ProductsGrid
-    id="products"
-    title="Our Products"
-    description="Operational software products designed for real business workflows."
+    id="product-preview"
+    title="Published Products"
+    description="Focused products built and published by Quantix Software."
     lang="en"
   />
 
-  <ContactSection
-    id="contact"
-    title="Let’s talk about your project"
-    description="Tell us what you are building, improving, or trying to automate."
-    lang="en"
-  />
+  <section class="page-section page-section--surface">
+    <Container>
+      <div class="split-layout">
+        <div class="section-heading">
+          <h2>Experience across operational software categories</h2>
+          <p>
+            Work areas include restaurant operations, financial tools, inventory control, billing workflows, POS-related systems, internal platforms, dashboards, and automation tools.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/work/" variant="secondary">View work areas</Button>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h3>How we work</h3>
+          <ul>
+            {process.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="page-section">
+    <Container>
+      <div class="page-cta-band">
+        <h2>Let's talk about your project</h2>
+        <p>
+          Tell us what you are building, improving, integrating, or trying to automate.
+        </p>
+        <div class="page-actions">
+          <Button href="/en/contact/" variant="glow">Book a consultation</Button>
+          <Button href="/en/about/" variant="secondary">About Quantix Software</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
 </BaseLayout>

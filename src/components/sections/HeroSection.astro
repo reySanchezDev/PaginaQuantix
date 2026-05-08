@@ -29,12 +29,8 @@ const {
 } = Astro.props;
 const inferredLocale = Astro.currentLocale === "es" ? "es" : "en";
 const resolvedLang = lang ?? inferredLocale;
-const isProductPage =
-  Astro.url.pathname.includes("/products/") ||
-  Astro.url.pathname.includes("/productos/");
-
 const ctaContact = {
-  href: primaryCtaHref ?? (resolvedLang === "es" ? "#contacto" : "#contact"),
+  href: primaryCtaHref ?? (resolvedLang === "es" ? "/es/contacto/" : "/en/contact/"),
   label: primaryCtaLabel ?? (resolvedLang === "es" ? "Contactar" : "Contact Us"),
   target: primaryCtaTarget,
 };
@@ -42,13 +38,7 @@ const ctaContact = {
 const ctaProducts = {
   href:
     secondaryCtaHref ??
-    (isProductPage
-      ? resolvedLang === "es"
-        ? "/es/#productos"
-        : "/en/#products"
-      : resolvedLang === "es"
-        ? "#productos"
-        : "#products"),
+    (resolvedLang === "es" ? "/es/productos/" : "/en/products/"),
   label: secondaryCtaLabel ?? (resolvedLang === "es" ? "Ver Productos" : "View Products"),
   target: secondaryCtaTarget,
 };

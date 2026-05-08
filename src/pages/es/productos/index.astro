@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+import ProductsGrid from "../../../components/sections/ProductsGrid.astro";
+---
+
+<BaseLayout
+  title="Productos"
+  description="Productos de software publicados por Quantix Software, incluyendo Takofy para operaciones de restaurantes y Nica Finanzas para calculadoras financieras en Nicaragua."
+  lang="es"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Productos</span>
+          <h1 class="page-title">Productos de software publicados para flujos operativos</h1>
+          <p class="page-lead">
+            Quantix Software construye y opera productos de software enfocados en flujos reales de negocio y herramientas financieras.
+          </p>
+          <div class="page-actions">
+            <Button href="https://takofy.app/es/" target="_blank" variant="glow" size="lg">Visitar Takofy</Button>
+            <Button href="https://nicafinanzas.com/" target="_blank" variant="secondary" size="lg">Visitar Nica Finanzas</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <ProductsGrid
+      id="lista-productos"
+      title="Productos actuales"
+      description="Productos publicados con sitios dedicados y posicionamiento activo."
+      lang="es"
+    />
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="page-cta-band">
+          <h2>¿Necesitas construir un producto o plataforma interna?</h2>
+          <p>
+            También ayudamos a empresas a definir y construir plataformas SaaS, sistemas internos, integraciones y herramientas de automatización.
+          </p>
+          <div class="page-actions">
+            <Button href="/es/soluciones/" variant="secondary">Explorar soluciones</Button>
+            <Button href="/es/contacto/" variant="glow">Solicitar consulta</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

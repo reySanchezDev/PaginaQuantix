@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+
+const solutions = [
+  {
+    title: "Sistemas operativos empresariales",
+    text: "Sistemas a medida para equipos que necesitan controlar flujos diarios, aprobaciones, transacciones, usuarios y datos operativos.",
+  },
+  {
+    title: "Plataformas SaaS",
+    text: "Plataformas web orientadas a producto, con flujos claros, arquitectura mantenible y espacio para evolucionar.",
+  },
+  {
+    title: "Herramientas internas de negocio",
+    text: "Herramientas enfocadas para equipos que necesitan mayor visibilidad, menos pasos manuales y una operación más confiable.",
+  },
+  {
+    title: "Integraciones y APIs",
+    text: "Integraciones API-first entre sistemas de negocio, flujos de pago, herramientas de reportería y servicios externos.",
+  },
+  {
+    title: "Reportería e inteligencia de negocio",
+    text: "Dashboards, modelos de datos y flujos de reporte que ayudan a entender qué está pasando en el negocio.",
+  },
+  {
+    title: "Sistemas de inventario y facturación",
+    text: "Módulos operativos para control de inventario, facturación, seguimiento de transacciones y reglas de negocio.",
+  },
+  {
+    title: "Automatización de procesos",
+    text: "Automatización para procesos repetitivos donde importan la confiabilidad, trazabilidad y valor práctico para el negocio.",
+  },
+  {
+    title: "Modernización de sistemas existentes",
+    text: "Modernización incremental para sistemas que necesitan mejor mantenibilidad, rendimiento o integraciones.",
+  },
+];
+---
+
+<BaseLayout
+  title="Soluciones"
+  description="Soluciones de software para sistemas operativos, plataformas SaaS, herramientas internas, integraciones, reportería, inventario, facturación, automatización y modernización."
+  lang="es"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Soluciones</span>
+          <h1 class="page-title">Sistemas de software para operaciones reales de negocio</h1>
+          <p class="page-lead">
+            Quantix Software diseña y construye software confiable para empresas que necesitan control operativo, claridad de datos y flujos digitales escalables.
+          </p>
+          <div class="page-actions">
+            <Button href="/es/contacto/" variant="glow" size="lg">Solicitar consulta</Button>
+            <Button href="/es/productos/" variant="secondary" size="lg">Ver productos</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="section-heading">
+          <h2>Capacidades diseñadas alrededor de la operación</h2>
+          <p>
+            Nos enfocamos en software que soporta cómo trabajan realmente las empresas: inventario, facturación, datos, plataformas internas, integraciones y automatización.
+          </p>
+        </div>
+
+        <div class="content-grid content-grid--2">
+          {solutions.map((solution) => (
+            <article class="content-card">
+              <h3>{solution.title}</h3>
+              <p>{solution.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="page-cta-band">
+          <h2>¿Necesitas definir el alcance de un sistema operativo?</h2>
+          <p>
+            Podemos ayudarte a ordenar flujos, restricciones técnicas, integraciones necesarias y un camino de implementación realista antes de iniciar desarrollo.
+          </p>
+          <div class="page-actions">
+            <Button href="/es/contacto/" variant="glow">Solicitar consulta</Button>
+            <Button href="/es/trabajo/" variant="secondary">Ver áreas de experiencia</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

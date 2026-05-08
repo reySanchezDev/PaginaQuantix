@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Button from "../../../components/ui/Button.astro";
+
+const solutions = [
+  {
+    title: "Operational Software Systems",
+    text: "Custom systems for teams that need control over daily workflows, approvals, transactions, users, and operational data.",
+  },
+  {
+    title: "SaaS Platforms",
+    text: "Product-oriented web platforms designed with clear workflows, maintainable architecture, and room to evolve.",
+  },
+  {
+    title: "Internal Business Tools",
+    text: "Focused tools for teams that need better visibility, fewer manual steps, and a more reliable way to run operations.",
+  },
+  {
+    title: "Integrations & APIs",
+    text: "API-first integrations between business systems, payment flows, reporting tools, and third-party services.",
+  },
+  {
+    title: "Reporting & Business Intelligence",
+    text: "Dashboards, data models, and reporting workflows that help teams understand what is happening in the business.",
+  },
+  {
+    title: "Inventory & Billing Systems",
+    text: "Operational modules for stock control, billing workflows, transaction tracking, and business rule execution.",
+  },
+  {
+    title: "Process Automation",
+    text: "Automation for repetitive processes where reliability, traceability, and practical business value matter.",
+  },
+  {
+    title: "Modernization of Legacy Systems",
+    text: "Incremental modernization for existing systems that need better maintainability, performance, or integrations.",
+  },
+];
+---
+
+<BaseLayout
+  title="Solutions"
+  description="Software solutions for operational systems, SaaS platforms, internal tools, integrations, reporting, inventory, billing, automation and modernization."
+  lang="en"
+  isHeaderTransparent={false}
+>
+  <div class="page-shell">
+    <section class="page-hero">
+      <Container>
+        <div class="page-hero__content">
+          <span class="page-kicker">Solutions</span>
+          <h1 class="page-title">Software systems for real business operations</h1>
+          <p class="page-lead">
+            Quantix Software designs and builds reliable software for companies that need operational control, clear data, and scalable digital workflows.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/contact/" variant="glow" size="lg">Book a consultation</Button>
+            <Button href="/en/products/" variant="secondary" size="lg">View products</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section">
+      <Container>
+        <div class="section-heading">
+          <h2>Capabilities built around operations</h2>
+          <p>
+            We focus on software that supports the way companies actually work: inventory, billing, data, internal platforms, integrations, and automation.
+          </p>
+        </div>
+
+        <div class="content-grid content-grid--2">
+          {solutions.map((solution) => (
+            <article class="content-card">
+              <h3>{solution.title}</h3>
+              <p>{solution.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="page-section page-section--surface">
+      <Container>
+        <div class="page-cta-band">
+          <h2>Need to scope an operational system?</h2>
+          <p>
+            We can help you clarify workflows, technical constraints, integration needs, and a practical implementation path before development starts.
+          </p>
+          <div class="page-actions">
+            <Button href="/en/contact/" variant="glow">Book a consultation</Button>
+            <Button href="/en/work/" variant="secondary">See experience areas</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>

@@ -14,7 +14,7 @@ interface Props {
 
 const { id, lang } = Astro.props;
 const t = lang === "es" ? esTranslations : enTranslations;
-const contactHref = lang === "es" ? "#contacto" : "#contact";
+const contactHref = lang === "es" ? "/es/contacto/" : "/en/contact/";
 
 const translatedServices = services.map((service) => ({
   ...service,
