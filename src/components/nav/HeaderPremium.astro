@@ -33,23 +33,7 @@ const normalizeHrefPath = (href: string) => {
       <div class="segmented-control">
         <a href={homeHref} class="brand-logo" aria-label={homeAria}>
           <img src="/favicon.svg" alt="Quantix Logo" width="32" height="32" class="header-favicon" />
-          <svg
-            class="logo"
-            width="100"
-            height="36"
-            viewBox="0 0 100 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <text
-              x="0"
-              y="27"
-              font-family="var(--font-heading)"
-              font-size="24"
-              font-weight="bold"
-              fill="white">Quantix</text
-            >
-          </svg>
+          <span class="brand-wordmark">Quantix</span>
         </a>
 
         <div class="nav-pill-separator"></div>
@@ -120,8 +104,8 @@ const normalizeHrefPath = (href: string) => {
     z-index: 50;
     padding: clamp(0.85rem, 2.5vw, 1.5rem) 0;
     transition:
-      padding 0.3s ease,
-      transform 0.3s ease;
+      padding 0.25s ease,
+      transform 0.25s ease;
   }
 
   .header-premium.scrolled,
@@ -145,45 +129,46 @@ const normalizeHrefPath = (href: string) => {
   .segmented-control {
     display: flex;
     align-items: center;
-    padding: 0.45rem 0.75rem;
-    background: color-mix(in srgb, var(--surface) 86%, transparent);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
-    border-radius: 999px;
+    padding: 0.45rem 0.65rem;
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--border-strong) 84%, transparent);
+    border-radius: var(--radius-xl);
     position: relative;
     margin: 0 auto;
-    box-shadow:
-      0 16px 48px rgba(var(--primary-rgb), 0.14),
-      inset 0 1px 1px rgba(255, 255, 255, 0.18);
+    box-shadow: var(--shadow-md);
   }
 
   .header-premium.scrolled .segmented-control,
   .header-premium[data-transparent="false"] .segmented-control {
     background: color-mix(in srgb, var(--surface) 88%, transparent);
     border-color: color-mix(in srgb, var(--border-strong) 88%, transparent);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
   }
 
   .brand-logo,
   .brand-logo-mobile {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 0.45rem;
     text-decoration: none;
   }
 
   .brand-logo {
-    padding-left: var(--space-2);
-    transition: transform 0.3s ease;
+    padding: 0.45rem 0.65rem 0.45rem 0.45rem;
+    border-radius: var(--radius-lg);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
 
   .brand-logo:hover {
-    transform: scale(1.03);
+    background: color-mix(in srgb, var(--primary-soft) 34%, transparent);
   }
 
   .header-favicon {
-    margin-right: -14px;
+    flex: 0 0 auto;
   }
 
   .mobile-favicon {
@@ -191,12 +176,15 @@ const normalizeHrefPath = (href: string) => {
   }
 
   .brand-logo-mobile {
-    gap: 0.1rem;
+    gap: 0.45rem;
   }
 
-  .logo {
-    width: 130px;
-    height: 36px;
+  .brand-wordmark {
+    font-family: var(--font-heading);
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
   }
 
   .nav-links-wrapper {
@@ -208,19 +196,20 @@ const normalizeHrefPath = (href: string) => {
   .nav-link {
     position: relative;
     z-index: 2;
-    padding: 0.7rem 1.35rem;
+    padding: 0.65rem 1.05rem;
     text-decoration: none;
     color: var(--text-muted);
     font-size: var(--text-sm);
     font-weight: 600;
     transition:
-      color 0.25s ease,
-      transform 0.25s ease;
-    border-radius: 999px;
+      color 0.2s ease,
+      background-color 0.2s ease;
+    border-radius: var(--radius-md);
   }
 
   .nav-link:hover {
     color: var(--text);
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
   }
 
   .nav-link.active {
@@ -229,29 +218,33 @@ const normalizeHrefPath = (href: string) => {
 
   .nav-indicator {
     position: absolute;
-    top: 4px;
-    bottom: 4px;
+    top: 5px;
+    bottom: 5px;
     left: 0;
     width: 0;
-    background: color-mix(in srgb, var(--primary-soft) 70%, white 30%);
-    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary-soft) 62%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+    border-radius: var(--radius-md);
     z-index: 1;
     opacity: 0;
-    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition:
+      transform 0.25s ease,
+      width 0.25s ease,
+      opacity 0.2s ease;
   }
 
   .header-premium.scrolled .nav-indicator,
   .header-premium[data-transparent="false"] .nav-indicator {
     background: var(--surface);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border);
   }
 
   .nav-pill-separator {
     width: 1px;
-    height: 24px;
+    height: 22px;
     background: color-mix(in srgb, var(--border-strong) 86%, transparent);
-    margin: 0 8px;
+    margin: 0 6px;
     flex-shrink: 0;
   }
 
@@ -263,19 +256,15 @@ const normalizeHrefPath = (href: string) => {
   .nav-settings-integrated {
     display: flex;
     align-items: center;
-    gap: 0.2rem;
+    gap: var(--space-1);
     z-index: 10;
-    padding-right: 0.15rem;
+    padding-right: 0.1rem;
   }
 
   .header-premium :global(.lang-switch) {
     padding: 0.5rem 0.7rem;
-    border-radius: 999px;
+    border-radius: var(--radius-md);
     color: var(--text-muted);
-  }
-
-  .header-premium .brand-logo :global(text) {
-    fill: var(--text);
   }
 
   .mobile-header {
@@ -284,17 +273,13 @@ const normalizeHrefPath = (href: string) => {
     justify-content: space-between;
     gap: var(--space-3);
     width: 100%;
-    padding: 0.75rem 0.9rem;
-    border-radius: 1.5rem;
-    background:
-      linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, white 6%), color-mix(in srgb, var(--surface) 98%, transparent)),
-      color-mix(in srgb, var(--surface) 92%, transparent);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
-    box-shadow:
-      0 18px 40px rgba(var(--primary-rgb), 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    padding: 0.7rem 0.75rem;
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--border-strong) 84%, transparent);
+    box-shadow: var(--shadow-md);
   }
 
   .mobile-logo-text {
@@ -302,24 +287,24 @@ const normalizeHrefPath = (href: string) => {
     font-size: clamp(1.05rem, 3.8vw, 1.2rem);
     font-weight: 700;
     color: var(--text);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
   }
 
   .mobile-toggle {
-    inline-size: 2.75rem;
-    block-size: 2.75rem;
-    border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
-    background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    inline-size: 2.65rem;
+    block-size: 2.65rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
     color: var(--text);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition:
-      transform 0.25s ease,
-      background-color 0.25s ease,
-      border-color 0.25s ease;
+      transform 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .mobile-toggle:hover {
@@ -332,8 +317,7 @@ const normalizeHrefPath = (href: string) => {
     }
 
     .mobile-header {
-      border-radius: 1.35rem;
-      padding: 0.7rem 0.75rem;
+      border-radius: var(--radius-xl);
     }
   }
 

@@ -43,23 +43,8 @@ const texts =
     <div class="footer-content">
       <div class="brand-col">
         <a href={homeHref} class="brand-logo" aria-label={homeAria}>
-          <svg
-            class="logo"
-            width="100"
-            height="40"
-            viewBox="0 0 100 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <text
-              x="0"
-              y="26"
-              font-family="var(--font-heading)"
-              font-size="20"
-              font-weight="bold"
-              fill="var(--text)">Quantix</text
-            >
-          </svg>
+          <img src="/favicon.svg" alt="Quantix Logo" width="28" height="28" />
+          <span class="brand-wordmark">Quantix</span>
         </a>
         <p class="tagline">{texts.tagline}</p>
       </div>
@@ -99,22 +84,24 @@ const texts =
 
 <style>
   .footer-premium {
-    background-color: var(--surface);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 78%, var(--bg)) 0%, var(--surface) 100%);
     border-top: 1px solid var(--border);
-    padding: var(--space-12) 0 var(--space-8);
+    padding: clamp(var(--space-10), 7vw, var(--space-16)) 0 var(--space-8);
     margin-top: auto;
   }
 
   .footer-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: var(--space-8);
     margin-bottom: var(--space-12);
   }
 
   @media (min-width: 768px) {
     .footer-content {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-template-columns: minmax(16rem, 2fr) repeat(3, minmax(8rem, 1fr));
+      align-items: start;
     }
   }
 
@@ -124,20 +111,36 @@ const texts =
     gap: var(--space-4);
   }
 
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: fit-content;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .brand-wordmark {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
   .tagline {
     color: var(--text-muted);
     font-size: var(--text-sm);
     max-width: 300px;
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
   .col-title {
     font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.09em;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: var(--space-6);
+    margin: 0 0 var(--space-4);
   }
 
   .footer-nav {
@@ -146,19 +149,19 @@ const texts =
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
   }
 
   .footer-nav a {
     color: var(--text-muted);
     text-decoration: none;
     font-size: var(--text-sm);
-    transition: all 0.2s ease;
+    line-height: 1.5;
+    transition: color 0.2s ease;
   }
 
   .footer-nav a:hover {
     color: var(--primary);
-    transform: translateX(2px);
   }
 
   .footer-bottom {
@@ -170,6 +173,10 @@ const texts =
     gap: var(--space-4);
     color: var(--text-subtle);
     font-size: var(--text-xs);
+  }
+
+  .footer-bottom p {
+    margin: 0;
   }
 
   @media (min-width: 768px) {
