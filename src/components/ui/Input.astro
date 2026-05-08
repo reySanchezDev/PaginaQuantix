@@ -3,13 +3,12 @@ interface Props {
   id: string;
   label: string;
   type?: 'text' | 'email' | 'tel' | 'textarea';
-  placeholder?: string;
   required?: boolean;
   error?: string;
   name?: string;
 }
 
-const { id, label, type = 'text', placeholder, required = false, error, name } = Astro.props;
+const { id, label, type = 'text', required = false, error, name } = Astro.props;
 ---
 
 <div class="form-group">
@@ -21,7 +20,6 @@ const { id, label, type = 'text', placeholder, required = false, error, name } =
     <textarea
       id={id}
       name={name || id}
-      placeholder={placeholder}
       required={required}
       class:list={['input', 'textarea', { 'input--error': error }]}
       rows="4"
@@ -31,7 +29,6 @@ const { id, label, type = 'text', placeholder, required = false, error, name } =
       type={type}
       id={id}
       name={name || id}
-      placeholder={placeholder}
       required={required}
       class:list={['input', { 'input--error': error }]}
     />

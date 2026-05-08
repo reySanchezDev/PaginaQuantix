@@ -16,12 +16,12 @@ export const services: Service[] = [
         id: 'discovery',
         icon: 'compass',
         title: {
-            es: 'Discovery & Roadmap (Producto)',
-            en: 'Discovery & Roadmap (Product)'
+            es: 'Discovery & Planning (Producto)',
+            en: 'Discovery & Planning (Product)'
         },
         description: {
-            es: 'Alineamos objetivos, alcance y entregables. Definimos roadmap, riesgos y estimación realista.',
-            en: 'We align objectives, scope, and deliverables. We define roadmaps, risks, and realistic estimation.'
+            es: 'Alineamos objetivos, alcance y entregables. Definimos plan de trabajo, riesgos y estimación realista.',
+            en: 'We align objectives, scope, and deliverables. We define delivery plans, risks, and realistic estimation.'
         }
     },
     {
