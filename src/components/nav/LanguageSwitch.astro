@@ -79,8 +79,19 @@ if (!targetPath) {
 
   .lang-switch:hover {
     color: var(--text);
-    background-color: var(--surface);
+    background-color: color-mix(in srgb, var(--surface-2) 54%, transparent);
     border-color: var(--border);
+  }
+
+  .lang-switch:focus {
+    outline: none;
+  }
+
+  .lang-switch:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    background: transparent;
+    border-color: transparent;
   }
 
   .lang-code {

@@ -39,7 +39,6 @@ const normalizeHrefPath = (href: string) => {
         <div class="nav-pill-separator"></div>
 
         <div class="nav-links-wrapper">
-          <div id="nav-indicator" class="nav-indicator"></div>
           {
             navItems.map((item) => (
               <a
@@ -203,41 +202,51 @@ const normalizeHrefPath = (href: string) => {
     font-weight: 600;
     transition:
       color 0.2s ease,
-      background-color 0.2s ease;
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
     border-radius: var(--radius-md);
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 1.05rem;
+    right: 1.05rem;
+    bottom: 0.36rem;
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    opacity: 0;
+    transform: scaleX(0.72);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   .nav-link:hover {
     color: var(--text);
-    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    background: transparent;
+  }
+
+  .nav-link:focus {
+    outline: none;
+  }
+
+  .nav-link:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    background: transparent;
+    box-shadow: none;
   }
 
   .nav-link.active {
     color: var(--primary);
+    font-weight: 700;
   }
 
-  .nav-indicator {
-    position: absolute;
-    top: 5px;
-    bottom: 5px;
-    left: 0;
-    width: 0;
-    background: color-mix(in srgb, var(--primary-soft) 62%, var(--surface));
-    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
-    border-radius: var(--radius-md);
-    z-index: 1;
-    opacity: 0;
-    transition:
-      transform 0.25s ease,
-      width 0.25s ease,
-      opacity 0.2s ease;
-  }
-
-  .header-premium.scrolled .nav-indicator,
-  .header-premium[data-transparent="false"] .nav-indicator {
-    background: var(--surface);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border);
+  .nav-link.active::after {
+    opacity: 1;
+    transform: scaleX(1);
   }
 
   .nav-pill-separator {
@@ -383,23 +392,12 @@ const normalizeHrefPath = (href: string) => {
     }
 
     const links = document.querySelectorAll(".nav-link");
-    const indicator = document.getElementById("nav-indicator");
 
-    const updateIndicator = (targetLink: Element | null) => {
-      if (!(targetLink instanceof HTMLElement) || !indicator) {
+    const setActiveLink = (targetLink: Element | null) => {
+      if (!(targetLink instanceof HTMLElement)) {
         return;
       }
 
-      const linkRect = targetLink.getBoundingClientRect();
-      const parentRect = targetLink.parentElement?.getBoundingClientRect();
-
-      if (!parentRect) {
-        return;
-      }
-
-      indicator.style.width = `${linkRect.width}px`;
-      indicator.style.transform = `translateX(${linkRect.left - parentRect.left}px)`;
-      indicator.style.opacity = "1";
       links.forEach((link) => link.classList.remove("active"));
       targetLink.classList.add("active");
     };
@@ -409,11 +407,11 @@ const normalizeHrefPath = (href: string) => {
         return;
       }
 
-      link.addEventListener("click", () => updateIndicator(link));
+      link.addEventListener("click", () => setActiveLink(link));
       link.dataset.bound = "true";
     });
 
-    updateIndicator(document.querySelector(".nav-link.active"));
+    setActiveLink(document.querySelector(".nav-link.active"));
 
     const observerOptions = {
       root: null,
@@ -433,7 +431,7 @@ const normalizeHrefPath = (href: string) => {
         }
 
         const targetLink = document.querySelector(`.nav-link[data-target="${id}"]`);
-        updateIndicator(targetLink);
+        setActiveLink(targetLink);
       });
     }, observerOptions);
 
