@@ -1,8 +1,5 @@
 ---
 import ProductLayout from "../../../layouts/ProductLayout.astro";
-import HeroSection from "../../../components/sections/HeroSection.astro";
-import CapabilitiesGrid from "../../../components/sections/CapabilitiesGrid.astro";
-
 import ContactSection from "../../../components/sections/ContactSection.astro";
 import Container from "../../../components/ui/Container.astro";
 import Card from "../../../components/ui/Card.astro";
@@ -14,17 +11,38 @@ import Button from "../../../components/ui/Button.astro";
   description="Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina."
   lang="es"
 >
-  <HeroSection
-    id="hero"
-    title="Takofy Gestión de Restaurantes"
-    subtitle="Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina."
-    lang="es"
-    primaryCtaHref="https://takofy.app/es/"
-    primaryCtaLabel="Visitar sitio web"
-    primaryCtaTarget="_blank"
-    secondaryCtaHref="/es/productos/"
-    secondaryCtaLabel="Ver productos"
-  />
+  <section id="hero" class="product-hero product-hero--takofy">
+    <Container>
+      <div class="product-hero__grid">
+        <div class="product-hero__content">
+          <span class="product-kicker">Software publicado para restaurantes</span>
+          <h1>Takofy Gestión de Restaurantes</h1>
+          <p>
+            Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina.
+          </p>
+          <div class="hero-actions-local">
+            <Button href="https://takofy.app/es/" target="_blank" variant="primary">Visitar sitio web</Button>
+            <Button href="/es/productos/" variant="secondary">Ver productos</Button>
+          </div>
+        </div>
+
+        <div class="hero-product-panel" aria-label="Módulos operativos de Takofy">
+          <div class="panel-row panel-row--strong">
+            <span>Offline-first</span>
+            <strong>Flujo de servicio para restaurantes</strong>
+          </div>
+          <div class="panel-modules">
+            <span>Comandas</span>
+            <span>Mesas</span>
+            <span>Pagos</span>
+            <span>Cocina / KDS</span>
+            <span>Reportes</span>
+            <span>Inventario</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
 
   <section class="section-padding">
     <Container>
@@ -35,18 +53,52 @@ import Button from "../../../components/ui/Button.astro";
         </p>
       </div>
 
-      <div class="product-visual large">
-        <span>Software publicado para gestión de restaurantes</span>
+      <div class="product-console" aria-label="Áreas de operación de restaurantes en Takofy">
+        <div class="console-main">
+          <span class="console-kicker">Operación de restaurantes</span>
+          <h3>Servicio, cocina y control en un flujo operativo</h3>
+          <p>
+            Takofy se presenta alrededor del trabajo que un restaurante necesita sostener: comandas, mesas, pagos, coordinación de cocina, reportes, inventario y continuidad offline-first.
+          </p>
+        </div>
+        <div class="console-grid">
+          <span>Comandas</span>
+          <span>Mesas</span>
+          <span>Pagos</span>
+          <span>Cocina / KDS</span>
+          <span>Reportes</span>
+          <span>Inventario</span>
+          <span>Offline-first</span>
+        </div>
       </div>
     </Container>
   </section>
 
-  <CapabilitiesGrid
-    id="features"
-    title="Características principales"
-    description="Herramientas potentes para decisiones inteligentes."
-    lang="es"
-  />
+  <section id="features" class="section-padding product-section">
+    <Container>
+      <div class="text-center mb-12">
+        <h2>Flujos de restaurante soportados por Takofy</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          El producto se enfoca en el flujo operativo entre servicio, cocina, pago, inventario y reportería.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article>
+          <h3>Flujo de servicio</h3>
+          <p>Comandas, mesas y pagos organizados para operación rápida de restaurante.</p>
+        </article>
+        <article>
+          <h3>Coordinación de cocina</h3>
+          <p>Flujos KDS que ayudan a mantener visible y ordenada la preparación.</p>
+        </article>
+        <article>
+          <h3>Control y reportería</h3>
+          <p>Inventario y reportes operativos para decisiones diarias del restaurante.</p>
+        </article>
+      </div>
+    </Container>
+  </section>
 
   <section id="pricing" class="section-padding bg-surface-2">
     <Container>
@@ -59,7 +111,7 @@ import Button from "../../../components/ui/Button.astro";
         <Card class="pricing-card">
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">Operación de restaurantes</h3>
-            <div class="price mb-4">Sitio público</div>
+            <div class="price mb-4">Producto publicado</div>
             <ul class="features-list">
               <li>Flujos de comandas offline-first</li>
               <li>Mesas y pagos</li>
@@ -71,9 +123,8 @@ import Button from "../../../components/ui/Button.astro";
 
         <Card class="pricing-card border-primary">
           <div class="p-6">
-            <div class="badge-featured">Recomendado</div>
             <h3 class="text-xl font-bold mb-2">Cocina e inventario</h3>
-            <div class="price mb-4">Sitio público</div>
+            <div class="price mb-4">Producto publicado</div>
             <ul class="features-list">
               <li>Flujos de cocina KDS</li>
               <li>Control de inventario</li>
@@ -127,15 +178,178 @@ import Button from "../../../components/ui/Button.astro";
     padding: var(--space-6);
   }
 
-  .product-visual {
+  .product-hero {
+    padding: clamp(8rem, 14vw, 10rem) 0 clamp(4rem, 7vw, 5.5rem);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 34%, var(--bg)) 0%, var(--bg) 86%);
+  }
+
+  .product-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(21rem, 1.05fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .product-hero__content {
+    min-width: 0;
+  }
+
+  .product-kicker {
+    display: inline-flex;
+    margin-bottom: var(--space-4);
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .product-hero h1 {
+    max-width: 44rem;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(2.45rem, 5.5vw, 4.45rem);
+    line-height: 1.03;
+    letter-spacing: -0.02em;
+  }
+
+  .product-hero p {
+    max-width: 42rem;
+    margin: var(--space-5) 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.03rem, 2vw, 1.22rem);
+    line-height: 1.65;
+  }
+
+  .hero-actions-local {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .hero-product-panel {
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 16%, var(--border));
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .panel-row {
+    padding: var(--space-5);
+    border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 34%, var(--surface));
+  }
+
+  .panel-row span,
+  .panel-modules span {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .panel-row strong {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .panel-modules {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .panel-modules span {
+    min-height: 4.3rem;
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    color: var(--text);
+  }
+
+  .product-console {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--space-6);
+    align-items: stretch;
+    padding: clamp(1.25rem, 4vw, 2rem);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    aspect-ratio: 16/9;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .console-main {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 30%, var(--surface));
+  }
+
+  .console-kicker {
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .console-main h3 {
+    margin: var(--space-3) 0;
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    line-height: 1.12;
+  }
+
+  .console-main p {
+    margin: 0;
     color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .console-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .console-grid span,
+  .feature-grid article {
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    color: var(--text);
+    font-weight: 750;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .feature-grid h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xl);
+  }
+
+  .feature-grid p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
   }
 
   .pricing-grid {
@@ -153,7 +367,7 @@ import Button from "../../../components/ui/Button.astro";
   }
 
   .price {
-    font-size: var(--text-3xl);
+    font-size: var(--text-xl);
     font-weight: 700;
     color: var(--text);
   }
@@ -170,16 +384,66 @@ import Button from "../../../components/ui/Button.astro";
 
   .border-primary {
     border-color: var(--primary);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
   }
 
-  .badge-featured {
-    background: var(--primary);
-    color: white;
-    font-size: var(--text-xs);
-    padding: 4px 8px;
-    border-radius: var(--radius-full);
-    display: inline-block;
-    margin-bottom: var(--space-2);
+  @media (max-width: 767px) {
+    .product-hero {
+      padding-top: 7rem;
+    }
+
+    .product-hero__grid,
+    .panel-modules {
+      grid-template-columns: 1fr;
+    }
+
+    .product-hero__grid,
+    .product-hero__content,
+    .product-hero p,
+    .hero-actions-local,
+    .hero-product-panel {
+      max-width: 22.5rem;
+    }
+
+    .product-hero h1 {
+      font-size: clamp(2rem, 8vw, 2.55rem);
+      line-height: 1.08;
+    }
+
+    .hero-actions-local {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-actions-local :global(.btn) {
+      width: 100%;
+    }
+
+    .product-console,
+    .feature-grid,
+    .pricing-grid {
+      max-width: 22.5rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .product-console,
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .console-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .text-center {
+      text-align: left;
+    }
+
+    .max-w-2xl {
+      max-width: 22.5rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 </style>

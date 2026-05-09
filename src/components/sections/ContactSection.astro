@@ -57,7 +57,9 @@ const t =
         </div>
         <div class="card-content">
           <span class="label">Email</span>
-          <span class="value">contact@quantix.software</span>
+          <span class="value value--email">
+            <span>contact@</span><span>quantix.software</span>
+          </span>
           <span class="cta">{t.emailCta} &rarr;</span>
         </div>
       </a>
@@ -268,7 +270,15 @@ const t =
     text-wrap: balance;
     display: block;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .value--email {
+    display: inline-flex;
+    flex-wrap: wrap;
+    column-gap: 0;
+    row-gap: 0.12rem;
   }
 
   .cta {
@@ -298,6 +308,21 @@ const t =
     .section-header {
       text-align: left;
       margin-bottom: var(--space-8);
+      max-width: 22.5rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .section-title,
+    .section-desc {
+      max-width: 22.5rem;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      text-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: clamp(1.85rem, 8vw, 2.35rem);
     }
 
     .contact-grid {

@@ -1,147 +1,425 @@
 ---
-import ProductLayout from '../../../layouts/ProductLayout.astro';
-import HeroSection from '../../../components/sections/HeroSection.astro';
-
-import ContactSection from '../../../components/sections/ContactSection.astro';
-import Container from '../../../components/ui/Container.astro';
-import Card from '../../../components/ui/Card.astro';
-import Button from '../../../components/ui/Button.astro';
-
+import ProductLayout from "../../../layouts/ProductLayout.astro";
+import ContactSection from "../../../components/sections/ContactSection.astro";
+import Container from "../../../components/ui/Container.astro";
+import Card from "../../../components/ui/Card.astro";
+import Button from "../../../components/ui/Button.astro";
 ---
 
-<ProductLayout 
-    title="Nica Finanzas - Financial Calculators for Nicaragua" 
-    description="Financial calculators for Nicaragua, including salary, loan and employment settlement calculations."
-    lang="en"
+<ProductLayout
+  title="Nica Finanzas - Financial Calculators for Nicaragua"
+  description="Financial calculators for Nicaragua, including salary, loan and employment settlement calculations."
+  lang="en"
 >
-    <!-- Product Hero -->
-    <HeroSection 
-        id="hero"
-        title="Nica Finanzas"
-        subtitle="Financial calculators for Nicaragua, including salary, loan and employment settlement calculations."
-        lang="en"
-        primaryCtaHref="https://nicafinanzas.com/"
-        primaryCtaLabel="Visit website"
-        primaryCtaTarget="_blank"
-        secondaryCtaHref="/en/products/"
-        secondaryCtaLabel="View products"
-    />
+  <section id="hero" class="product-hero product-hero--finance">
+    <Container>
+      <div class="product-hero__grid">
+        <div class="product-hero__content">
+          <span class="product-kicker">Published financial calculators</span>
+          <h1>Nica Finanzas</h1>
+          <p>
+            Financial calculators for Nicaragua, including salary, loan and employment settlement calculations.
+          </p>
+          <div class="hero-actions-local">
+            <Button href="https://nicafinanzas.com/" target="_blank" variant="primary">Visit website</Button>
+            <Button href="/en/products/" variant="secondary">View products</Button>
+          </div>
+        </div>
 
-    <!-- Overview -->
-    <section class="section-padding">
-        <Container>
-            <div class="text-center mb-12">
-                <h2>Financial Calculators for Nicaragua</h2>
-                <p class="text-muted max-w-2xl mx-auto">
-                    Nica Finanzas provides practical calculators for salary, loan, and employment settlement scenarios in Nicaragua.
-                </p>
-            </div>
-            
-            <div class="product-visual large">
-               <span>Published financial calculators for Nicaragua</span>
-            </div>
-        </Container>
-    </section>
+        <div class="hero-product-panel" aria-label="Nica Finanzas calculator areas">
+          <div class="panel-row panel-row--strong">
+            <span>Nicaragua finance</span>
+            <strong>Salary, loans and employment settlement tools</strong>
+          </div>
+          <div class="panel-modules">
+            <span>Salary</span>
+            <span>Loans</span>
+            <span>Settlement</span>
+            <span>Local inputs</span>
+            <span>Clear outputs</span>
+            <span>Reference tools</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="section-padding bg-surface-2">
-        <Container>
-            <div class="text-center mb-12">
-                <h2>Product Availability</h2>
-                <p class="text-muted">Visit the public website for product details and availability.</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <Card class="pricing-card">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Salary Calculator</h3>
-                        <div class="price mb-4">Public website</div>
-                        <ul class="features-list">
-                            <li>Salary calculations</li>
-                            <li>Nicaragua-specific inputs</li>
-                            <li>Clear calculation outputs</li>
-                        </ul>
-                        <Button href="https://nicafinanzas.com/" target="_blank" variant="secondary" class="w-full mt-6">Visit website</Button>
-                    </div>
-                </Card>
-                
-                <Card class="pricing-card border-primary">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Loan and Settlement Tools</h3>
-                        <div class="price mb-4">Public website</div>
-                        <ul class="features-list">
-                            <li>Loan calculations</li>
-                            <li>Employment settlement calculations</li>
-                            <li>Reference tools for local users</li>
-                        </ul>
-                        <Button href="https://nicafinanzas.com/" target="_blank" variant="primary" class="w-full mt-6">Visit website</Button>
-                    </div>
-                </Card>
-            </div>
-        </Container>
-    </section>
+  <section class="section-padding">
+    <Container>
+      <div class="text-center mb-12">
+        <h2>Financial calculators for Nicaragua</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Nica Finanzas provides practical calculators for salary, loan, and employment settlement scenarios in Nicaragua.
+        </p>
+      </div>
 
-    <ContactSection
-        id="contact"
-        title="Need more information?"
-        description="Visit the Nica Finanzas website or contact us to discuss financial calculator tools for Nicaragua."
-        lang="en"
-    />
+      <div class="product-console" aria-label="Nica Finanzas calculator areas">
+        <div class="console-main">
+          <span class="console-kicker">Local financial utilities</span>
+          <h3>Clear calculations for everyday financial decisions</h3>
+          <p>
+            Nica Finanzas organizes common local financial calculations into focused tools for salary, loans, employment settlement and practical reference use.
+          </p>
+        </div>
+        <div class="console-grid">
+          <span>Salary</span>
+          <span>Loans</span>
+          <span>Employment settlement</span>
+          <span>Local inputs</span>
+          <span>Calculation outputs</span>
+          <span>Financial clarity</span>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section id="features" class="section-padding product-section">
+    <Container>
+      <div class="text-center mb-12">
+        <h2>Calculator areas</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          The product focuses on practical financial tools for Nicaragua, with clear inputs and outputs for common scenarios.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article>
+          <h3>Salary calculations</h3>
+          <p>Tools for salary scenarios with Nicaragua-specific inputs.</p>
+        </article>
+        <article>
+          <h3>Loan calculations</h3>
+          <p>Reference calculations for loan scenarios and payment clarity.</p>
+        </article>
+        <article>
+          <h3>Employment settlement</h3>
+          <p>Utilities for employment settlement calculations and local financial reference.</p>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section id="pricing" class="section-padding bg-surface-2">
+    <Container>
+      <div class="text-center mb-12">
+        <h2>Product Availability</h2>
+        <p class="text-muted">Visit the public website for product details and availability.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <Card class="pricing-card">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Salary Calculator</h3>
+            <div class="price mb-4">Published product</div>
+            <ul class="features-list">
+              <li>Salary calculations</li>
+              <li>Nicaragua-specific inputs</li>
+              <li>Clear calculation outputs</li>
+            </ul>
+            <Button href="https://nicafinanzas.com/" target="_blank" variant="secondary" class="w-full mt-6">Visit website</Button>
+          </div>
+        </Card>
+
+        <Card class="pricing-card border-primary">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Loan and Settlement Tools</h3>
+            <div class="price mb-4">Published product</div>
+            <ul class="features-list">
+              <li>Loan calculations</li>
+              <li>Employment settlement calculations</li>
+              <li>Reference tools for local users</li>
+            </ul>
+            <Button href="https://nicafinanzas.com/" target="_blank" variant="primary" class="w-full mt-6">Visit website</Button>
+          </div>
+        </Card>
+      </div>
+    </Container>
+  </section>
+
+  <ContactSection
+    id="contact"
+    title="Need more information?"
+    description="Visit the Nica Finanzas website or contact us to discuss financial calculator tools for Nicaragua."
+    lang="en"
+  />
 </ProductLayout>
 
 <style>
-    .section-padding { padding: var(--space-12) 0; }
-    .text-center { text-align: center; }
-    .mb-12 { margin-bottom: var(--space-12); }
-    .text-muted { color: var(--text-muted); }
-    .max-w-2xl { max-width: 42rem; }
-    .mx-auto { margin-left: auto; margin-right: auto; }
-    .bg-surface-2 { background-color: var(--surface-2); }
-    .w-full { width: 100%; }
-    .mt-6 { margin-top: var(--space-6); }
-    .p-6 { padding: var(--space-6); }
-    
-    .product-visual {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        aspect-ratio: 16/9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-muted);
+  .section-padding { padding: var(--space-12) 0; }
+  .text-center { text-align: center; }
+  .mb-12 { margin-bottom: var(--space-12); }
+  .text-muted { color: var(--text-muted); }
+  .max-w-2xl { max-width: 42rem; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .bg-surface-2 { background-color: var(--surface-2); }
+  .w-full { width: 100%; }
+  .mt-6 { margin-top: var(--space-6); }
+  .p-6 { padding: var(--space-6); }
+
+  .product-hero {
+    padding: clamp(8rem, 14vw, 10rem) 0 clamp(4rem, 7vw, 5.5rem);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 34%, var(--bg)) 0%, var(--bg) 86%);
+  }
+
+  .product-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(21rem, 1.05fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .product-hero__content {
+    min-width: 0;
+  }
+
+  .product-kicker {
+    display: inline-flex;
+    margin-bottom: var(--space-4);
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .product-hero h1 {
+    max-width: 44rem;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(2.45rem, 5.5vw, 4.45rem);
+    line-height: 1.03;
+    letter-spacing: -0.02em;
+  }
+
+  .product-hero p {
+    max-width: 42rem;
+    margin: var(--space-5) 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.03rem, 2vw, 1.22rem);
+    line-height: 1.65;
+  }
+
+  .hero-actions-local {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .hero-product-panel {
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 16%, var(--border));
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .panel-row {
+    padding: var(--space-5);
+    border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 34%, var(--surface));
+  }
+
+  .panel-row span,
+  .panel-modules span {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .panel-row strong {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .panel-modules {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .panel-modules span {
+    min-height: 4.3rem;
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    color: var(--text);
+  }
+
+  .product-console {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--space-6);
+    align-items: stretch;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .console-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 30%, var(--surface));
+  }
+
+  .console-kicker {
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .console-main h3 {
+    margin: var(--space-3) 0;
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    line-height: 1.12;
+  }
+
+  .console-main p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .console-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .console-grid span,
+  .feature-grid article {
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    color: var(--text);
+    font-weight: 750;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .feature-grid h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xl);
+  }
+
+  .feature-grid p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .price {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    color: var(--text-muted);
+  }
+
+  .border-primary {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (max-width: 767px) {
+    .product-hero {
+      padding-top: 7rem;
     }
-    
+
+    .product-hero__grid,
+    .panel-modules {
+      grid-template-columns: 1fr;
+    }
+
+    .product-hero__grid,
+    .product-hero__content,
+    .product-hero p,
+    .hero-actions-local,
+    .hero-product-panel {
+      max-width: 22.5rem;
+    }
+
+    .product-hero h1 {
+      font-size: clamp(2rem, 8vw, 2.55rem);
+      line-height: 1.08;
+    }
+
+    .hero-actions-local {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-actions-local :global(.btn) {
+      width: 100%;
+    }
+
+    .product-console,
+    .feature-grid,
     .pricing-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-8);
-        max-width: 800px;
-        margin: 0 auto;
+      max-width: 22.5rem;
+      margin-left: 0;
+      margin-right: 0;
     }
-    
-    @media (min-width: 768px) {
-        .pricing-grid { grid-template-columns: 1fr 1fr; }
+
+    .product-console,
+    .feature-grid {
+      grid-template-columns: 1fr;
     }
-    
-    .price {
-        font-size: var(--text-3xl);
-        font-weight: 700;
-        color: var(--text);
+
+    .console-grid {
+      grid-template-columns: 1fr;
     }
-    
-    .features-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-        color: var(--text-muted);
+
+    .text-center {
+      text-align: left;
     }
-    
-    .border-primary {
-        border-color: var(--primary);
-        box-shadow: var(--shadow-lg);
+
+    .max-w-2xl {
+      max-width: 22.5rem;
+      margin-left: 0;
+      margin-right: 0;
     }
+  }
 </style>
