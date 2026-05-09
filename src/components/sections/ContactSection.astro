@@ -16,105 +16,162 @@ const t =
     ? {
         emailCta: "Enviar correo",
         whatsappCta: "Chatear ahora",
+        editorialTitle: "Contacto directo",
+        availabilityLabel: "Disponibilidad",
         scheduleLabel: "Horario",
         scheduleValue: "Lun - Vie, 9am - 6pm",
+        scheduleDays: "Lunes a viernes",
+        scheduleHours: "9:00 AM - 6:00 PM",
         support: "Soporte prioritario para clientes activos",
       }
     : {
         emailCta: "Send email",
         whatsappCta: "Chat now",
+        editorialTitle: "Direct contact",
+        availabilityLabel: "Availability",
         scheduleLabel: "Schedule",
         scheduleValue: "Mon - Fri, 9am - 6pm",
+        scheduleDays: "Monday to Friday",
+        scheduleHours: "9:00 AM - 6:00 PM",
         support: "Priority support for active clients",
       };
+
+const isContactChannels = id === "direct-contact" || id === "canales-directos";
 ---
 
-<section id={id} class="contact-section">
+<section id={id} class:list={["contact-section", isContactChannels && "contact-section--channels"]}>
   <div class="bg-glow"></div>
 
   <Container>
-    <div class="section-header">
-      <h2 class="section-title">{title}</h2>
-      <p class="section-desc">{description}</p>
-    </div>
+    {
+      isContactChannels ? (
+        <div class="contact-editorial">
+          <div class="editorial-intro">
+            <span class="editorial-kicker">{lang === "es" ? "Contacto" : "Contact"}</span>
+            <h2 class="editorial-title">{t.editorialTitle}</h2>
+            <p class="editorial-desc">{description}</p>
+          </div>
 
-    <div class="contact-grid">
-      <a href="mailto:contact@quantix.software" class="contact-card contact-card--link group">
-        <div class="icon-box">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-          </svg>
-        </div>
-        <div class="card-content">
-          <span class="label">Email</span>
-          <span class="value value--email">
-            <span>contact@</span><span>quantix.software</span>
-          </span>
-          <span class="cta">{t.emailCta} &rarr;</span>
-        </div>
-      </a>
+          <div class="contact-list" aria-label={t.editorialTitle}>
+            <div class="contact-row">
+              <div class="contact-row__label">Email</div>
+              <div class="contact-row__body">
+                <span class="contact-value contact-value--email">contact@quantix.software</span>
+                <a href="mailto:contact@quantix.software" class="contact-link">{t.emailCta} &rarr;</a>
+              </div>
+            </div>
 
-      <a
-        href="https://wa.me/50585213462"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="contact-card contact-card--link group"
-      >
-        <div class="icon-box">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
-            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path>
-          </svg>
-        </div>
-        <div class="card-content">
-          <span class="label">WhatsApp</span>
-          <span class="value">+505 8521 3462</span>
-          <span class="cta">{t.whatsappCta} &rarr;</span>
-        </div>
-      </a>
+            <div class="contact-row">
+              <div class="contact-row__label">WhatsApp</div>
+              <div class="contact-row__body">
+                <span class="contact-value">+505 8521 3462</span>
+                <a
+                  href="https://wa.me/50585213462"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-link"
+                >
+                  {t.whatsappCta} &rarr;
+                </a>
+              </div>
+            </div>
 
-      <div class="contact-card contact-card--static">
-        <div class="icon-box">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
+            <div class="contact-row contact-row--availability">
+              <div class="contact-row__label">{t.availabilityLabel}</div>
+              <div class="contact-row__body">
+                <span class="contact-value">{t.scheduleDays}</span>
+                <span class="contact-note">{t.scheduleHours}</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <span class="label">{t.scheduleLabel}</span>
-          <span class="value">{t.scheduleValue}</span>
-          <span class="cta text-muted">{t.support}</span>
-        </div>
-      </div>
-    </div>
+      ) : (
+        <>
+          <div class="section-header">
+            <h2 class="section-title">{title}</h2>
+            <p class="section-desc">{description}</p>
+          </div>
+
+          <div class="contact-grid">
+            <a href="mailto:contact@quantix.software" class="contact-card contact-card--link group">
+              <div class="icon-box">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="label">Email</span>
+                <span class="value value--email">
+                  <span>contact@</span><span>quantix.software</span>
+                </span>
+                <span class="cta">{t.emailCta} &rarr;</span>
+              </div>
+            </a>
+
+            <a
+              href="https://wa.me/50585213462"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-card contact-card--link group"
+            >
+              <div class="icon-box">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+                  <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="label">WhatsApp</span>
+                <span class="value">+505 8521 3462</span>
+                <span class="cta">{t.whatsappCta} &rarr;</span>
+              </div>
+            </a>
+
+            <div class="contact-card contact-card--static">
+              <div class="icon-box">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="card-content">
+                <span class="label">{t.scheduleLabel}</span>
+                <span class="value">{t.scheduleValue}</span>
+                <span class="cta text-muted">{t.support}</span>
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    }
   </Container>
 </section>
 
@@ -165,6 +222,56 @@ const t =
   .section-desc {
     font-size: clamp(1rem, 2.5vw, var(--text-lg));
     color: var(--text-muted);
+  }
+
+  .contact-section--channels {
+    padding: clamp(3.75rem, 8vw, var(--space-16)) 0;
+    background: color-mix(in srgb, var(--bg) 94%, var(--surface) 6%);
+  }
+
+  .contact-section--channels .bg-glow {
+    display: none;
+  }
+
+  .contact-editorial {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: clamp(var(--space-8), 8vw, var(--space-16));
+    align-items: start;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .editorial-intro {
+    max-width: 24rem;
+  }
+
+  .editorial-kicker {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .editorial-title {
+    margin: 0 0 var(--space-3);
+    color: var(--text);
+    font-size: clamp(1.85rem, 4vw, var(--text-3xl));
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+  }
+
+  .editorial-desc {
+    margin: 0;
+    font-size: clamp(0.98rem, 2vw, var(--text-base));
+    color: var(--text-muted);
+    line-height: 1.75;
   }
 
   .contact-grid {
@@ -221,6 +328,77 @@ const t =
     cursor: default;
   }
 
+  .contact-list {
+    position: relative;
+    border-top: 1px solid color-mix(in srgb, var(--primary) 15%, var(--border));
+    border-bottom: 1px solid color-mix(in srgb, var(--primary) 15%, var(--border));
+  }
+
+  .contact-row {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 0.38fr) minmax(0, 1fr);
+    gap: clamp(var(--space-4), 4vw, var(--space-8));
+    align-items: start;
+    padding: 1.15rem 0;
+  }
+
+  .contact-row + .contact-row {
+    border-top: 1px solid color-mix(in srgb, var(--primary) 9%, var(--border));
+  }
+
+  .contact-row__label {
+    padding-top: 0.15rem;
+    color: var(--text-subtle);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .contact-row__body {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.22rem;
+  }
+
+  .contact-value {
+    color: var(--text);
+    font-size: clamp(1rem, 2vw, var(--text-lg));
+    font-weight: 750;
+    line-height: 1.28;
+  }
+
+  .contact-value--email {
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .contact-link {
+    margin-top: 0.12rem;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-decoration: none;
+    text-underline-offset: 0.22em;
+    transition: color 0.18s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+
+  .contact-note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
   .icon-box {
     width: 2.25rem;
     height: 2.25rem;
@@ -251,30 +429,47 @@ const t =
   }
 
   .label {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     font-weight: 700;
     color: var(--text-subtle);
   }
 
+  .contact-card .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
   .value {
-    font-size: clamp(0.98rem, 1.7vw, 1.08rem);
-    font-weight: 650;
+    font-size: clamp(0.94rem, 1.5vw, 1.02rem);
+    font-weight: 700;
     color: var(--text);
     line-height: 1.25;
-    text-wrap: balance;
     display: block;
     max-width: 100%;
     overflow-wrap: normal;
     word-break: normal;
   }
 
+  .contact-card .value {
+    font-size: clamp(0.98rem, 1.7vw, 1.08rem);
+    font-weight: 650;
+    text-wrap: balance;
+  }
+
   .value--email {
+    white-space: nowrap;
+    font-size: clamp(0.9rem, 1.35vw, 0.98rem);
+  }
+
+  .contact-card .value--email {
     display: inline-flex;
     flex-wrap: wrap;
     column-gap: 0;
     row-gap: 0.12rem;
+    white-space: normal;
+    font-size: clamp(0.98rem, 1.7vw, 1.08rem);
   }
 
   .cta {
@@ -286,8 +481,7 @@ const t =
     align-items: center;
     justify-content: flex-start;
     gap: 0.3rem;
-    transition:
-      color 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .contact-card--link:hover .cta {
@@ -317,6 +511,39 @@ const t =
 
     .section-title {
       font-size: clamp(1.85rem, 8vw, 2.35rem);
+    }
+
+    .contact-editorial {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      margin: 0;
+    }
+
+    .editorial-intro {
+      max-width: 22.5rem;
+    }
+
+    .editorial-title {
+      font-size: clamp(1.85rem, 8vw, 2.35rem);
+    }
+
+    .editorial-desc {
+      max-width: 22.5rem;
+    }
+
+    .contact-row {
+      grid-template-columns: 1fr;
+      gap: 0.45rem;
+      padding: 1rem 0;
+    }
+
+    .contact-row__label {
+      padding-top: 0;
+    }
+
+    .contact-value--email {
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .contact-grid {
