@@ -3,6 +3,15 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
 
+const focusAreas = [
+  "Sistemas operativos",
+  "Plataformas SaaS",
+  "Herramientas internas",
+  "Integraciones",
+  "Reportería & BI",
+  "Automatización",
+];
+
 const solutions = [
   {
     title: "Sistemas operativos empresariales",
@@ -37,6 +46,12 @@ const solutions = [
     text: "Modernización incremental para sistemas que necesitan mejor mantenibilidad, rendimiento o integraciones.",
   },
 ];
+
+const operatingPrinciples = [
+  "Partir de la operación del negocio, no de una plantilla.",
+  "Diseñar flujos, datos e integraciones como un solo sistema.",
+  "Construir software que pueda mantenerse, medirse y mejorar.",
+];
 ---
 
 <BaseLayout
@@ -45,35 +60,53 @@ const solutions = [
   lang="es"
   isHeaderTransparent={false}
 >
-  <div class="page-shell">
-    <section class="page-hero">
+  <main class="solutions-page">
+    <section class="solutions-hero" aria-labelledby="solutions-title">
       <Container>
-        <div class="page-hero__content">
-          <span class="page-kicker">Soluciones</span>
-          <h1 class="page-title">Sistemas de software para operaciones reales de negocio</h1>
-          <p class="page-lead">
-            Quantix Software diseña y construye software confiable para empresas que necesitan control operativo, claridad de datos y flujos digitales escalables.
-          </p>
-          <div class="page-actions">
-            <Button href="/es/contacto/" variant="glow" size="lg">Solicitar consulta</Button>
-            <Button href="/es/productos/" variant="secondary" size="lg">Ver productos</Button>
+        <div class="solutions-hero__grid">
+          <div class="solutions-hero__content">
+            <p class="page-kicker">Soluciones</p>
+            <h1 id="solutions-title">Capacidades de software para operaciones reales de negocio</h1>
+            <p>
+              Quantix Software diseña y construye sistemas confiables para empresas que necesitan control operativo, claridad de datos y flujos digitales escalables.
+            </p>
+            <div class="page-actions">
+              <Button href="/es/contacto/" variant="primary" size="lg">Solicitar consulta</Button>
+              <Button href="/es/productos/" variant="secondary" size="lg">Ver productos</Button>
+            </div>
           </div>
+
+          <aside class="solutions-panel" aria-label="Áreas de enfoque">
+            <span>Áreas de enfoque</span>
+            <ul>
+              {focusAreas.map((item) => <li>{item}</li>)}
+            </ul>
+          </aside>
         </div>
       </Container>
     </section>
 
-    <section class="page-section">
+    <section class="positioning-band" aria-label="Cómo Quantix aborda las soluciones">
+      <Container>
+        <div class="positioning-band__grid">
+          {operatingPrinciples.map((item) => <p>{item}</p>)}
+        </div>
+      </Container>
+    </section>
+
+    <section class="solutions-section" aria-labelledby="capabilities-title">
       <Container>
         <div class="section-heading">
-          <h2>Capacidades diseñadas alrededor de la operación</h2>
+          <p class="page-kicker">Capacidades</p>
+          <h2 id="capabilities-title">Construidas alrededor de operación, datos y ejecución</h2>
           <p>
-            Nos enfocamos en software que soporta cómo trabajan realmente las empresas: inventario, facturación, datos, plataformas internas, integraciones y automatización.
+            El trabajo es práctico por diseño: ordenar el proceso, conectar sistemas, hacer utilizables los datos y reducir trabajo manual donde la automatización aporta valor.
           </p>
         </div>
 
-        <div class="content-grid content-grid--2">
+        <div class="solutions-grid">
           {solutions.map((solution) => (
-            <article class="content-card">
+            <article class="solution-card">
               <h3>{solution.title}</h3>
               <p>{solution.text}</p>
             </article>
@@ -82,19 +115,271 @@ const solutions = [
       </Container>
     </section>
 
-    <section class="page-section page-section--surface">
+    <section class="solutions-section solutions-section--surface" aria-labelledby="scoping-title">
       <Container>
-        <div class="page-cta-band">
-          <h2>¿Necesitas definir el alcance de un sistema operativo?</h2>
-          <p>
-            Podemos ayudarte a ordenar flujos, restricciones técnicas, integraciones necesarias y un camino de implementación realista antes de iniciar desarrollo.
-          </p>
+        <div class="cta-panel">
+          <div>
+            <p class="page-kicker">Definición de proyecto</p>
+            <h2 id="scoping-title">¿Necesitas definir un sistema operativo?</h2>
+            <p>
+              Podemos ayudarte a ordenar flujos, restricciones técnicas, integraciones necesarias y un camino de implementación realista antes de iniciar desarrollo.
+            </p>
+          </div>
           <div class="page-actions">
-            <Button href="/es/contacto/" variant="glow">Solicitar consulta</Button>
-            <Button href="/es/trabajo/" variant="secondary">Ver áreas de experiencia</Button>
+            <Button href="/es/contacto/" variant="primary" size="lg">Solicitar consulta</Button>
+            <Button href="/es/trabajo/" variant="secondary" size="lg">Ver áreas de experiencia</Button>
           </div>
         </div>
       </Container>
     </section>
-  </div>
+  </main>
 </BaseLayout>
+
+<style>
+  .solutions-page {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .solutions-hero {
+    padding: clamp(8rem, 13vw, 10rem) 0 clamp(4rem, 7vw, 5.5rem);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 24%, var(--bg)) 0%, var(--bg) 76%);
+  }
+
+  .solutions-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.44fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: end;
+  }
+
+  .solutions-hero__content,
+  .section-heading,
+  .cta-panel > div {
+    min-width: 0;
+  }
+
+  .page-kicker {
+    margin: 0 0 var(--space-4);
+    color: var(--primary);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .solutions-hero h1 {
+    max-width: 54rem;
+    margin: 0;
+    font-size: clamp(2.55rem, 6.4vw, 5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.024em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .solutions-hero__content > p:not(.page-kicker) {
+    max-width: 45rem;
+    margin: var(--space-6) 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.7;
+  }
+
+  .page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .solutions-panel {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .solutions-panel span {
+    display: block;
+    margin-bottom: var(--space-4);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .solutions-panel ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .solutions-panel li {
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--border);
+    font-weight: 800;
+  }
+
+  .positioning-band {
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .positioning-band__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .positioning-band p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    line-height: 1.55;
+  }
+
+  .solutions-section {
+    padding: clamp(4rem, 7vw, 6rem) 0;
+  }
+
+  .solutions-section--surface {
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+
+  .section-heading {
+    max-width: 58rem;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-heading h2,
+  .cta-panel h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  .section-heading p:not(.page-kicker),
+  .cta-panel p:not(.page-kicker) {
+    max-width: 48rem;
+    margin: var(--space-4) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .solution-card {
+    min-height: 100%;
+    padding: clamp(1.2rem, 2.5vw, 1.6rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .solution-card h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-lg);
+    line-height: 1.25;
+  }
+
+  .solution-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+  }
+
+  .cta-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding: clamp(2rem, 5vw, 3rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 94%, var(--primary-soft)), var(--surface));
+  }
+
+  .cta-panel > div {
+    max-width: 46rem;
+  }
+
+  @media (max-width: 1080px) {
+    .solutions-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 820px) {
+    .solutions-hero__grid,
+    .positioning-band__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .solutions-panel {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .solutions-hero {
+      padding-top: 7.5rem;
+    }
+
+    .solutions-hero h1 {
+      max-width: 20rem;
+      font-size: clamp(2rem, 9.6vw, 2.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.014em;
+      text-wrap: wrap;
+    }
+
+    .solutions-hero__content > p:not(.page-kicker),
+    .section-heading p:not(.page-kicker),
+    .cta-panel p:not(.page-kicker),
+    .positioning-band p {
+      max-width: 20rem;
+    }
+
+    .page-actions,
+    .cta-panel {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .page-actions :global(.btn),
+    .cta-panel :global(.btn) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .solutions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading h2,
+    .cta-panel h2 {
+      max-width: 20rem;
+      font-size: clamp(1.8rem, 8vw, 2.35rem);
+    }
+  }
+</style>

@@ -2,7 +2,43 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
-import ProductsGrid from "../../../components/sections/ProductsGrid.astro";
+
+const products = [
+  {
+    title: "Takofy",
+    category: "Operaciones de restaurantes",
+    status: "Publicado",
+    description:
+      "Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina.",
+    internalHref: "/es/productos/takofy/",
+    publicUrl: "https://takofy.app/es/",
+    features: [
+      "Operación offline-first para restaurantes",
+      "Control de comandas, mesas y pagos",
+      "KDS, analítica e inventario integrado",
+    ],
+  },
+  {
+    title: "Nica Finanzas",
+    category: "Herramientas financieras",
+    status: "Publicado",
+    description:
+      "Calculadoras financieras para Nicaragua, incluyendo salario, préstamos y liquidación laboral.",
+    internalHref: "/es/productos/nica-finanzas/",
+    publicUrl: "https://nicafinanzas.com/",
+    features: [
+      "Calculadora salarial para Nicaragua",
+      "Cálculos de préstamos",
+      "Liquidación laboral",
+    ],
+  },
+];
+
+const productPrinciples = [
+  "Productos publicados con sitios públicos dedicados.",
+  "Construidos alrededor de flujos operativos o financieros específicos.",
+  "Mantenidos como software enfocado, no como demos genéricos.",
+];
 ---
 
 <BaseLayout
@@ -11,43 +47,341 @@ import ProductsGrid from "../../../components/sections/ProductsGrid.astro";
   lang="es"
   isHeaderTransparent={false}
 >
-  <div class="page-shell">
-    <section class="page-hero">
+  <main class="products-page">
+    <section class="products-hero" aria-labelledby="products-title">
       <Container>
-        <div class="page-hero__content">
-          <span class="page-kicker">Productos</span>
-          <h1 class="page-title">Productos de software publicados para flujos operativos</h1>
-          <p class="page-lead">
-            Quantix Software construye y opera productos de software enfocados en flujos reales de negocio y herramientas financieras.
-          </p>
-          <div class="page-actions">
-            <Button href="https://takofy.app/es/" target="_blank" variant="glow" size="lg">Visitar Takofy</Button>
-            <Button href="https://nicafinanzas.com/" target="_blank" variant="secondary" size="lg">Visitar Nica Finanzas</Button>
-          </div>
-        </div>
-      </Container>
-    </section>
-
-    <ProductsGrid
-      id="lista-productos"
-      title="Productos actuales"
-      description="Productos publicados con sitios dedicados y posicionamiento activo."
-      lang="es"
-    />
-
-    <section class="page-section page-section--surface">
-      <Container>
-        <div class="page-cta-band">
-          <h2>¿Necesitas construir un producto o plataforma interna?</h2>
+        <div class="products-hero__content">
+          <p class="page-kicker">Productos</p>
+          <h1 id="products-title">Productos de software publicados para flujos reales</h1>
           <p>
-            También ayudamos a empresas a definir y construir plataformas SaaS, sistemas internos, integraciones y herramientas de automatización.
+            Quantix Software construye y opera productos enfocados en operaciones de restaurantes, cálculos financieros y flujos prácticos de negocio.
           </p>
           <div class="page-actions">
-            <Button href="/es/soluciones/" variant="secondary">Explorar soluciones</Button>
-            <Button href="/es/contacto/" variant="glow">Solicitar consulta</Button>
+            <Button href="#productos-publicados" variant="primary" size="lg">Ver productos</Button>
+            <Button href="/es/soluciones/" variant="secondary" size="lg">Explorar soluciones</Button>
           </div>
         </div>
       </Container>
     </section>
-  </div>
+
+    <section class="product-principles" aria-label="Principios de producto">
+      <Container>
+        <div class="product-principles__grid">
+          {productPrinciples.map((item) => <p>{item}</p>)}
+        </div>
+      </Container>
+    </section>
+
+    <section id="productos-publicados" class="products-section" aria-labelledby="published-products-title">
+      <Container>
+        <div class="section-heading">
+          <p class="page-kicker">Productos publicados</p>
+          <h2 id="published-products-title">Productos de software construidos y operados por Quantix</h2>
+          <p>
+            Cada producto tiene un flujo específico, sitio público y página de producto para contexto.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          {products.map((product) => (
+            <article class="product-card">
+              <div class="product-card__header">
+                <div>
+                  <span class="product-category">{product.category}</span>
+                  <h3>{product.title}</h3>
+                </div>
+                <span class="product-status">{product.status}</span>
+              </div>
+
+              <p>{product.description}</p>
+
+              <ul>
+                {product.features.map((feature) => <li>{feature}</li>)}
+              </ul>
+
+              <div class="product-actions">
+                <Button href={product.internalHref} variant="secondary">Ver producto</Button>
+                <Button href={product.publicUrl} target="_blank" variant="primary">Visitar sitio web</Button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="products-section products-section--surface" aria-labelledby="platform-title">
+      <Container>
+        <div class="cta-panel">
+          <div>
+            <p class="page-kicker">Plataformas a medida</p>
+            <h2 id="platform-title">¿Necesitas construir un producto o plataforma interna?</h2>
+            <p>
+              También ayudamos a empresas a definir y construir plataformas SaaS, sistemas internos, integraciones y herramientas de automatización.
+            </p>
+          </div>
+          <div class="page-actions">
+            <Button href="/es/soluciones/" variant="secondary" size="lg">Explorar soluciones</Button>
+            <Button href="/es/contacto/" variant="primary" size="lg">Solicitar consulta</Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
 </BaseLayout>
+
+<style>
+  .products-page {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .products-hero {
+    padding: clamp(8rem, 13vw, 10rem) 0 clamp(4rem, 7vw, 5.5rem);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 24%, var(--bg)) 0%, var(--bg) 76%);
+  }
+
+  .products-hero__content,
+  .section-heading,
+  .cta-panel > div {
+    min-width: 0;
+  }
+
+  .page-kicker {
+    margin: 0 0 var(--space-4);
+    color: var(--primary);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .products-hero h1 {
+    max-width: 54rem;
+    margin: 0;
+    font-size: clamp(2.55rem, 6.4vw, 5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.024em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .products-hero__content > p:not(.page-kicker) {
+    max-width: 45rem;
+    margin: var(--space-6) 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.7;
+  }
+
+  .page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .product-principles {
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .product-principles__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .product-principles p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    line-height: 1.55;
+  }
+
+  .products-section {
+    padding: clamp(4rem, 7vw, 6rem) 0;
+  }
+
+  .products-section--surface {
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+
+  .section-heading {
+    max-width: 58rem;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-heading h2,
+  .cta-panel h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  .section-heading p:not(.page-kicker),
+  .cta-panel p:not(.page-kicker) {
+    max-width: 48rem;
+    margin: var(--space-4) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .product-card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .product-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .product-category,
+  .product-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    border-radius: var(--radius-full);
+    padding: 0.34rem 0.7rem;
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .product-category {
+    margin-bottom: var(--space-4);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text-muted);
+  }
+
+  .product-status {
+    flex: 0 0 auto;
+    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
+    background: color-mix(in srgb, var(--primary-soft) 34%, var(--surface));
+    color: var(--primary);
+  }
+
+  .product-card h3 {
+    margin: 0;
+    font-size: clamp(1.7rem, 4vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  .product-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-base);
+    line-height: 1.68;
+  }
+
+  .product-card ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .product-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: auto;
+  }
+
+  .cta-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding: clamp(2rem, 5vw, 3rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 94%, var(--primary-soft)), var(--surface));
+  }
+
+  .cta-panel > div {
+    max-width: 46rem;
+  }
+
+  @media (max-width: 820px) {
+    .product-principles__grid,
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .products-hero {
+      padding-top: 7.5rem;
+    }
+
+    .products-hero h1 {
+      max-width: 20rem;
+      font-size: clamp(2rem, 9.6vw, 2.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.014em;
+      text-wrap: wrap;
+    }
+
+    .products-hero__content > p:not(.page-kicker),
+    .section-heading p:not(.page-kicker),
+    .cta-panel p:not(.page-kicker),
+    .product-principles p {
+      max-width: 20rem;
+    }
+
+    .page-actions,
+    .product-actions,
+    .cta-panel {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .page-actions :global(.btn),
+    .product-actions :global(.btn),
+    .cta-panel :global(.btn) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .product-card__header {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .section-heading h2,
+    .cta-panel h2 {
+      max-width: 20rem;
+      font-size: clamp(1.8rem, 8vw, 2.35rem);
+    }
+  }
+</style>
