@@ -1,128 +1,694 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HeroSection from "../../components/sections/HeroSection.astro";
-import ProductsGrid from "../../components/sections/ProductsGrid.astro";
 import Container from "../../components/ui/Container.astro";
 import Button from "../../components/ui/Button.astro";
+import { products } from "../../data/products";
 
 const positioning = [
-  "Operational software systems",
-  "SaaS and internal platforms",
-  "Integrations, automation and reporting",
+  "Operational systems",
+  "SaaS platforms",
+  "Integrations",
+  "Reporting & BI",
+  "Automation",
 ];
 
-const solutionPreview = [
+const operations = [
   {
-    title: "Business operations",
-    text: "Systems for inventory, billing, permissions, workflow control, and operational visibility.",
+    title: "Operational clarity",
+    text: "Software shaped around real workflows, roles, approvals, data movement and day-to-day execution.",
   },
   {
-    title: "Data and reporting",
-    text: "Dashboards and reporting workflows that help teams make decisions from clearer business data.",
+    title: "Reliable execution",
+    text: "Platforms and tools built to support teams that need dependable systems, not decorative interfaces.",
   },
   {
-    title: "Integrations and automation",
-    text: "API-first connections and automation for processes that should not depend on manual work.",
+    title: "Scalable control",
+    text: "Integrations, reporting and automation designed to reduce manual work as the operation grows.",
   },
+];
+
+const solutions = [
+  "Operational software systems",
+  "SaaS platforms",
+  "Integrations & APIs",
+  "Reporting & Business Intelligence",
+  "Process automation",
+];
+
+const workAreas = [
+  "Restaurant operations",
+  "Financial tools",
+  "Inventory control",
+  "Billing workflows",
+  "POS-related systems",
+  "Reporting dashboards",
+  "Automation tools",
 ];
 
 const process = [
-  "Clarify goals, workflows and constraints",
-  "Define architecture and implementation scope",
-  "Build, validate and prepare for production use",
+  {
+    title: "Understand the operation",
+    text: "We clarify workflows, constraints, users, data and the business outcome the system must support.",
+  },
+  {
+    title: "Design the system",
+    text: "We define the product structure, integrations, data model and implementation path before building.",
+  },
+  {
+    title: "Build and integrate",
+    text: "We develop the platform, tool or automation workflow with production use and maintainability in mind.",
+  },
+  {
+    title: "Support evolution",
+    text: "We help improve the system as requirements, teams and operating conditions change.",
+  },
 ];
 ---
 
 <BaseLayout
-  title="Enterprise Software for Business Operations"
-  description="Quantix Software builds reliable operational software, SaaS platforms, internal tools, integrations, automation and reporting systems for real businesses."
+  title="Software Systems for Real Business Operations"
+  description="Quantix Software designs and builds reliable digital platforms, operational tools, integrations, reporting systems and automation workflows for companies that need clarity, control and scalable execution."
   lang="en"
 >
-  <HeroSection
-    id="home"
-    title="Building reliable software for business operations"
-    subtitle="We help companies improve operations with tailored software, integrations, automation, and actionable data."
-    lang="en"
-    primaryCtaHref="/en/contact/"
-    primaryCtaLabel="Book a consultation"
-    secondaryCtaHref="/en/solutions/"
-    secondaryCtaLabel="Explore solutions"
-  />
-
-  <section class="page-section page-section--surface">
-    <Container>
-      <ul class="pill-list" aria-label="Quantix Software positioning">
-        {positioning.map((item) => <li>{item}</li>)}
-      </ul>
-    </Container>
-  </section>
-
-  <section class="page-section">
-    <Container>
-      <div class="section-heading">
-        <h2>Built for real business operations</h2>
-        <p>
-          Quantix Software focuses on production-minded systems for companies that need operational control, data clarity, and scalable processes.
-        </p>
-      </div>
-
-      <div class="content-grid content-grid--3">
-        {solutionPreview.map((item) => (
-          <article class="content-card">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-
-      <div class="page-actions">
-        <Button href="/en/solutions/" variant="secondary">View all solutions</Button>
-      </div>
-    </Container>
-  </section>
-
-  <ProductsGrid
-    id="product-preview"
-    title="Published Products"
-    description="Focused products built and published by Quantix Software."
-    lang="en"
-  />
-
-  <section class="page-section page-section--surface">
-    <Container>
-      <div class="split-layout">
-        <div class="section-heading">
-          <h2>Experience across operational software categories</h2>
-          <p>
-            Work areas include restaurant operations, financial tools, inventory control, billing workflows, POS-related systems, internal platforms, dashboards, and automation tools.
+  <main class="home-page">
+    <section class="home-hero" aria-labelledby="home-hero-title">
+      <Container class="home-hero__container">
+        <div class="home-hero__content">
+          <p class="home-kicker">Quantix Software</p>
+          <h1 id="home-hero-title">Software systems for real business operations</h1>
+          <p class="home-hero__lead">
+            Quantix Software designs and builds reliable digital platforms, operational tools, integrations, reporting systems and automation workflows for companies that need clarity, control and scalable execution.
           </p>
-          <div class="page-actions">
-            <Button href="/en/work/" variant="secondary">View work areas</Button>
+          <div class="home-actions">
+            <Button href="/en/contact/" variant="primary" size="lg">Book a consultation</Button>
+            <Button href="/en/solutions/" variant="secondary" size="lg">Explore solutions</Button>
           </div>
         </div>
 
-        <div class="content-card">
-          <h3>How we work</h3>
-          <ul>
-            {process.map((item) => <li>{item}</li>)}
-          </ul>
+        <div class="home-system-panel" aria-label="Operational software map">
+          <div class="system-panel__header">
+            <span>Business operations</span>
+            <strong>Systems layer</strong>
+          </div>
+          <div class="system-flow">
+            <div class="system-node system-node--primary">
+              <span>Operations</span>
+              <strong>Core workflows</strong>
+            </div>
+            <div class="system-node">
+              <span>Data</span>
+              <strong>Reporting</strong>
+            </div>
+            <div class="system-node">
+              <span>APIs</span>
+              <strong>Integrations</strong>
+            </div>
+            <div class="system-node">
+              <span>Teams</span>
+              <strong>Automation</strong>
+            </div>
+          </div>
         </div>
-      </div>
-    </Container>
-  </section>
+      </Container>
+    </section>
 
-  <section class="page-section">
-    <Container>
-      <div class="page-cta-band">
-        <h2>Let's talk about your project</h2>
-        <p>
-          Tell us what you are building, improving, integrating, or trying to automate.
-        </p>
-        <div class="page-actions">
-          <Button href="/en/contact/" variant="glow">Book a consultation</Button>
-          <Button href="/en/about/" variant="secondary">About Quantix Software</Button>
+    <section class="positioning-strip" aria-label="Quantix Software focus areas">
+      <Container>
+        <ul>
+          {positioning.map((item) => <li>{item}</li>)}
+        </ul>
+      </Container>
+    </section>
+
+    <section class="home-section" aria-labelledby="operations-title">
+      <Container>
+        <div class="section-heading section-heading--wide">
+          <p class="section-eyebrow">Operational software</p>
+          <h2 id="operations-title">Built for real business operations</h2>
+          <p>
+            Quantix Software focuses on software that brings structure to processes, data and execution: systems teams can use every day to operate with less friction and more control.
+          </p>
         </div>
-      </div>
-    </Container>
-  </section>
+
+        <div class="editorial-grid">
+          {operations.map((item) => (
+            <article class="editorial-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="home-section home-section--surface" aria-labelledby="solutions-title">
+      <Container>
+        <div class="section-split">
+          <div class="section-heading">
+            <p class="section-eyebrow">Solutions</p>
+            <h2 id="solutions-title">Software capabilities for operations, data and execution</h2>
+            <p>
+              We design systems that connect operational workflows with the data, integrations and automation needed to run them with confidence.
+            </p>
+            <div class="home-actions">
+              <Button href="/en/solutions/" variant="secondary">Explore solutions</Button>
+            </div>
+          </div>
+
+          <div class="capability-list">
+            {solutions.map((item) => (
+              <a href="/en/solutions/" class="capability-item">
+                <span>{item}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="home-section" aria-labelledby="products-title">
+      <Container>
+        <div class="section-heading section-heading--wide">
+          <p class="section-eyebrow">Products</p>
+          <h2 id="products-title">Published software products</h2>
+          <p>
+            Quantix Software builds and operates focused products for real business and financial workflows.
+          </p>
+        </div>
+
+        <div class="product-preview-grid">
+          {products.map((product) => (
+            <article class="product-preview-card">
+              <div>
+                <span class="product-status">{product.status.en}</span>
+                <h3>{product.title.en}</h3>
+                <p>{product.description.en}</p>
+              </div>
+              <ul>
+                {product.features.en.map((feature) => <li>{feature}</li>)}
+              </ul>
+              <div class="card-actions">
+                <Button href={product.href.en} variant="secondary">View product</Button>
+                {product.publicUrl && (
+                  <Button href={product.publicUrl} target="_blank" variant="primary">Visit website</Button>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="home-section home-section--surface" aria-labelledby="work-title">
+      <Container>
+        <div class="section-split section-split--reverse">
+          <div class="work-panel">
+            {workAreas.map((item) => <span>{item}</span>)}
+          </div>
+
+          <div class="section-heading">
+            <p class="section-eyebrow">Work experience</p>
+            <h2 id="work-title">Experience across operational software areas</h2>
+            <p>
+              Our work is organized around the types of systems businesses need to operate, control information and reduce repetitive work.
+            </p>
+            <div class="home-actions">
+              <Button href="/en/work/" variant="secondary">View work areas</Button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <section class="home-section" aria-labelledby="process-title">
+      <Container>
+        <div class="section-heading section-heading--wide">
+          <p class="section-eyebrow">How we work</p>
+          <h2 id="process-title">From operational context to working software</h2>
+        </div>
+
+        <div class="process-grid">
+          {process.map((step, index) => (
+            <article class="process-card">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <section class="home-section home-section--closing" aria-labelledby="closing-title">
+      <Container>
+        <div class="closing-panel">
+          <div>
+            <p class="section-eyebrow">Start a conversation</p>
+            <h2 id="closing-title">Let&rsquo;s talk about your software project</h2>
+            <p>
+              Bring the operational context. We can help shape the system, integration or automation path that fits it.
+            </p>
+          </div>
+          <Button href="/en/contact/" variant="primary" size="lg">Contact Quantix</Button>
+        </div>
+      </Container>
+    </section>
+  </main>
 </BaseLayout>
+
+<style>
+  .home-page {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .home-hero {
+    padding: clamp(8rem, 13vw, 10.5rem) 0 clamp(4rem, 7vw, 6rem);
+    border-bottom: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--primary-soft) 24%, var(--bg)) 0%, var(--bg) 72%);
+  }
+
+  :global(.home-hero__container) {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.92fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .home-hero__content,
+  .section-heading,
+  .home-system-panel,
+  .closing-panel > div {
+    min-width: 0;
+  }
+
+  .home-kicker,
+  .section-eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--primary);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .home-hero h1 {
+    max-width: 48rem;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(2.75rem, 7vw, 5.4rem);
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.026em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .home-hero__lead {
+    max-width: 46rem;
+    margin: var(--space-6) 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 2vw, 1.28rem);
+    line-height: 1.72;
+  }
+
+  .home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .home-system-panel {
+    position: relative;
+    overflow: hidden;
+    min-height: 31rem;
+    padding: var(--space-6);
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--surface) 94%, var(--primary-soft)), var(--surface));
+    box-shadow: var(--shadow-md);
+  }
+
+  .home-system-panel::before {
+    content: "";
+    position: absolute;
+    inset: 4rem -18% auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 26%, transparent), transparent);
+  }
+
+  .system-panel__header {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .system-panel__header strong {
+    color: var(--text);
+  }
+
+  .system-flow {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+  }
+
+  .system-node {
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 90%, white);
+  }
+
+  .system-node--primary {
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    background: color-mix(in srgb, var(--primary-soft) 38%, var(--surface));
+  }
+
+  .system-node span {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .system-node strong {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--text-xl);
+    line-height: 1.25;
+  }
+
+  .positioning-strip {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .positioning-strip ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .positioning-strip li {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    background: var(--surface-2);
+  }
+
+  .home-section {
+    padding: clamp(4rem, 7vw, 6.5rem) 0;
+  }
+
+  .home-section--surface {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+
+  .section-heading {
+    max-width: 42rem;
+  }
+
+  .section-heading--wide {
+    max-width: 58rem;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-heading h2,
+  .closing-panel h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(2rem, 4.4vw, 3.35rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  .section-heading p,
+  .closing-panel p {
+    margin: var(--space-4) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .editorial-grid,
+  .product-preview-grid,
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .editorial-card,
+  .product-preview-card,
+  .process-card {
+    min-height: 100%;
+    padding: clamp(1.35rem, 3vw, 1.75rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .editorial-card h3,
+  .product-preview-card h3,
+  .process-card h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xl);
+    line-height: 1.25;
+  }
+
+  .editorial-card p,
+  .product-preview-card p,
+  .process-card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.66;
+  }
+
+  .section-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .section-split--reverse {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+
+  .capability-list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .capability-item {
+    display: flex;
+    align-items: center;
+    min-height: 4.4rem;
+    padding: 0 var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .capability-item:hover {
+    border-color: var(--border-strong);
+    color: var(--primary);
+    background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
+  }
+
+  .product-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-preview-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .product-status {
+    display: inline-flex;
+    margin-bottom: var(--space-4);
+    padding: 0.32rem 0.62rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
+    border-radius: var(--radius-full);
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary-soft) 34%, var(--surface));
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .product-preview-card ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .product-preview-card li + li {
+    margin-top: var(--space-2);
+  }
+
+  .card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: auto;
+  }
+
+  .work-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-content: flex-start;
+    padding: clamp(1.5rem, 4vw, 2rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .work-panel span {
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text);
+    background: var(--surface-2);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .process-card span {
+    display: block;
+    margin-bottom: var(--space-5);
+    color: var(--primary);
+    font-size: var(--text-sm);
+    font-weight: 800;
+  }
+
+  .home-section--closing {
+    padding-top: 0;
+  }
+
+  .closing-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding: clamp(2rem, 5vw, 3rem);
+    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 94%, var(--primary-soft)), var(--surface));
+  }
+
+  .closing-panel > div {
+    max-width: 45rem;
+  }
+
+  @media (max-width: 980px) {
+    :global(.home-hero__container),
+    .section-split,
+    .section-split--reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .home-system-panel {
+      min-height: auto;
+    }
+
+    .editorial-grid,
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .home-hero {
+      padding-top: 7.5rem;
+    }
+
+    .home-hero h1 {
+      font-size: clamp(2.05rem, 9.5vw, 2.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.018em;
+      text-wrap: wrap;
+      max-width: 19rem;
+    }
+
+    .home-hero__content,
+    .home-hero__lead,
+    .home-actions,
+    .home-system-panel {
+      width: min(100%, calc(100vw - 2rem));
+      max-width: calc(100vw - 2rem);
+    }
+
+    .home-system-panel {
+      padding: var(--space-4);
+    }
+
+    .system-panel__header {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .home-actions,
+    .card-actions,
+    .closing-panel {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .home-actions :global(.btn),
+    .card-actions :global(.btn),
+    .closing-panel :global(.btn) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .editorial-grid,
+    .product-preview-grid,
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .positioning-strip ul {
+      justify-content: flex-start;
+    }
+
+    .section-heading h2,
+    .closing-panel h2 {
+      font-size: clamp(1.85rem, 9vw, 2.45rem);
+    }
+  }
+</style>
