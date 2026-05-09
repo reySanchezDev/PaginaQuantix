@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://quantix.software",
+  site: "https://www.quantix.software",
   i18n: {
     defaultLocale: "en",
     locales: ["en", "es"],

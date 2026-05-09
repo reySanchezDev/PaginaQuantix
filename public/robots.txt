@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://quantix.software/sitemap.xml
+Sitemap: https://www.quantix.software/sitemap.xml
