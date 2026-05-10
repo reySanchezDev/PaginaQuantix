@@ -5,25 +5,28 @@ import Button from "../../components/ui/Button.astro";
 import { products } from "../../data/products";
 
 const positioning = [
-  "Sistemas operativos",
-  "Plataformas SaaS",
-  "Integraciones",
-  "Reportería & BI",
-  "Automatización",
+  "Sistemas ya creados",
+  "Plataformas personalizables",
+  "Sistemas a medida",
+  "Asesoría de software",
 ];
 
 const operations = [
   {
-    title: "Claridad operativa",
-    text: "Software diseñado alrededor de flujos reales, roles, aprobaciones, movimiento de datos y ejecución diaria.",
+    title: "Usar software ya creado",
+    text: "Encontrar herramientas, plataformas y sistemas creados por Quantix para operaciones específicas de negocio.",
   },
   {
-    title: "Ejecución confiable",
-    text: "Plataformas y herramientas para equipos que necesitan sistemas dependibles, no interfaces decorativas.",
+    title: "Adaptar una plataforma existente",
+    text: "Ajustar una herramienta o plataforma de Quantix alrededor de los flujos, módulos y reglas de tu operación.",
   },
   {
-    title: "Control escalable",
-    text: "Integraciones, reportería y automatización pensadas para reducir trabajo manual mientras la operación crece.",
+    title: "Construir un sistema a medida",
+    text: "Crear un sistema nuevo cuando la necesidad del negocio no encaja con una herramienta, plataforma o flujo existente.",
+  },
+  {
+    title: "Definir el software antes de construir",
+    text: "Ayudamos a las empresas a convertir ideas iniciales de software en requerimientos claros y estructurados, ya sea para continuar el desarrollo con Quantix o para tomar mejores decisiones internas.",
   },
 ];
 
@@ -77,9 +80,10 @@ const getProduct = (id: string) => {
 const productProof = [
   {
     product: getProduct("takofy"),
-    domain: "Operación de restaurantes",
+    domain: "Plataforma SaaS de Quantix",
+    railLabel: "Plataforma SaaS",
     proofLine:
-      "Producto publicado para operación de restaurantes: comandas, mesas, pagos, cocina, reportería e inventario con flujos offline-first.",
+      "Takofy es una plataforma SaaS de Quantix para operación de restaurantes, creada alrededor de comandas, mesas, pagos, cocina, reportería, inventario y ejecución offline-first.",
     areas: [
       {
         label: "Operación",
@@ -98,9 +102,10 @@ const productProof = [
   },
   {
     product: getProduct("nica-finanzas"),
-    domain: "Herramientas financieras para Nicaragua",
+    domain: "Herramienta financiera gratuita",
+    railLabel: "Herramienta gratuita",
     proofLine:
-      "Producto publicado para cálculos salariales, préstamos y liquidación laboral con parámetros locales y salidas claras.",
+      "Nica Finanzas es una herramienta financiera gratuita creada por Quantix para Nicaragua, con calculadoras para salario, préstamos y liquidación laboral.",
     areas: [
       {
         label: "Cálculos",
@@ -121,8 +126,8 @@ const productProof = [
 ---
 
 <BaseLayout
-  title="Software empresarial para controlar operación, datos y procesos"
-  description="Quantix Software construye sistemas a medida, plataformas SaaS, integraciones, herramientas de reportería y flujos de automatización para empresas que necesitan procesos más claros, datos confiables y ejecución escalable."
+  title="Software listo, adaptable y a medida para operar tu empresa"
+  description="Quantix Software ofrece herramientas ya creadas, plataformas personalizables, sistemas a medida y asesoría de software para empresas que necesitan flujos más claros, datos confiables y ejecución escalable."
   lang="es"
 >
   <main class="home-page">
@@ -130,9 +135,9 @@ const productProof = [
       <Container class="home-hero__container">
         <div class="home-hero__content">
           <p class="home-kicker">Quantix Software</p>
-          <h1 id="home-hero-title">Software empresarial para controlar operación, datos y procesos</h1>
+          <h1 id="home-hero-title">Software listo, adaptable y a medida para operar tu empresa</h1>
           <p class="home-hero__lead">
-            Quantix Software construye sistemas a medida, plataformas SaaS, integraciones, herramientas de reportería y flujos de automatización para empresas que necesitan procesos más claros, datos confiables y ejecución escalable.
+            Quantix Software ofrece herramientas ya creadas, plataformas personalizables, sistemas a medida y asesoría de software para empresas que necesitan flujos más claros, datos confiables y ejecución escalable.
           </p>
           <div class="home-actions">
             <Button href="/es/contacto/" variant="primary">Solicitar consulta</Button>
@@ -207,14 +212,14 @@ const productProof = [
     <section class="home-section" aria-labelledby="operations-title">
       <Container>
         <div class="section-heading section-heading--wide">
-          <p class="section-eyebrow">Software operativo</p>
-          <h2 id="operations-title">Construido para operaciones reales de negocio</h2>
+          <p class="section-eyebrow">Modelo comercial</p>
+          <h2 id="operations-title">Cuatro formas en que Quantix ayuda a las empresas a avanzar</h2>
           <p>
-            Quantix Software se enfoca en software que ordena procesos, datos y ejecución: sistemas que los equipos pueden usar cada día para operar con menos fricción y más control.
+            Desde herramientas existentes hasta sistemas a medida, Quantix ayuda a las empresas a elegir el camino correcto para su operación.
           </p>
         </div>
 
-        <div class="editorial-grid">
+        <div class="editorial-grid editorial-grid--four">
           {operations.map((item) => (
             <article class="editorial-card">
               <h3>{item.title}</h3>
@@ -254,9 +259,9 @@ const productProof = [
       <Container>
         <div class="section-heading section-heading--wide">
           <p class="section-eyebrow">Productos</p>
-          <h2 id="products-title">Productos creados desde necesidades reales de operación</h2>
+          <h2 id="products-title">Productos y herramientas creadas por Quantix</h2>
           <p>
-            Takofy y Nica Finanzas convierten problemas operativos concretos en productos de software enfocados para restaurantes y cálculos financieros.
+            Quantix crea sus propias plataformas y herramientas para necesidades operativas específicas, desde ejecución de restaurantes hasta cálculos financieros para Nicaragua.
           </p>
         </div>
 
@@ -282,7 +287,7 @@ const productProof = [
 
               <div class="product-proof-map" aria-label={`Áreas del producto ${proof.product.title.es}`}>
                 <div class="product-proof-map__rail">
-                  <span>Prueba de producto</span>
+                  <span>{proof.railLabel}</span>
                   <strong>{proof.product.title.es}</strong>
                 </div>
                 <div class="product-proof-map__areas">
@@ -692,6 +697,10 @@ const productProof = [
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-5);
+  }
+
+  .editorial-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .editorial-card,

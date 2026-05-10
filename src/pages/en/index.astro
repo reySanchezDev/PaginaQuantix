@@ -5,25 +5,28 @@ import Button from "../../components/ui/Button.astro";
 import { products } from "../../data/products";
 
 const positioning = [
-  "Operational systems",
-  "SaaS platforms",
-  "Integrations",
-  "Reporting & BI",
-  "Automation",
+  "Ready-made software",
+  "Customizable platforms",
+  "Custom-built systems",
+  "Software advisory",
 ];
 
 const operations = [
   {
-    title: "Operational clarity",
-    text: "Software shaped around real workflows, roles, approvals, data movement and day-to-day execution.",
+    title: "Use ready-made software",
+    text: "Find existing tools, platforms and systems created by Quantix for specific business operations.",
   },
   {
-    title: "Reliable execution",
-    text: "Platforms and tools built to support teams that need dependable systems, not decorative interfaces.",
+    title: "Adapt an existing platform",
+    text: "Adjust an existing Quantix tool or platform around the workflows, modules and rules of your operation.",
   },
   {
-    title: "Scalable control",
-    text: "Integrations, reporting and automation designed to reduce manual work as the operation grows.",
+    title: "Build a custom system",
+    text: "Create a new system when the business need does not fit an existing tool, platform or workflow.",
+  },
+  {
+    title: "Define the software before building",
+    text: "We help companies turn early software ideas into clear, structured requirements — whether they continue with Quantix for development or use the documentation to support their internal decision-making process.",
   },
 ];
 
@@ -77,9 +80,10 @@ const getProduct = (id: string) => {
 const productProof = [
   {
     product: getProduct("takofy"),
-    domain: "Restaurant operations",
+    domain: "Quantix SaaS platform",
+    railLabel: "SaaS platform",
     proofLine:
-      "Published restaurant operations product for orders, tables, payments, kitchen workflows, reporting and inventory with offline-first flows.",
+      "Takofy is a Quantix SaaS platform for restaurant operations, built around orders, tables, payments, kitchen workflows, reporting, inventory and offline-first execution.",
     areas: [
       {
         label: "Operation",
@@ -98,9 +102,10 @@ const productProof = [
   },
   {
     product: getProduct("nica-finanzas"),
-    domain: "Financial utilities for Nicaragua",
+    domain: "Free financial utility",
+    railLabel: "Free utility",
     proofLine:
-      "Published financial utility product for salary, loan and employment settlement calculations with local parameters and clear outputs.",
+      "Nica Finanzas is a free financial utility created by Quantix for Nicaragua, with calculators for salary, loans and employment settlement scenarios.",
     areas: [
       {
         label: "Calculations",
@@ -121,8 +126,8 @@ const productProof = [
 ---
 
 <BaseLayout
-  title="Business Software for Operational Control"
-  description="Quantix Software builds custom systems, SaaS platforms, integrations, reporting tools and automation workflows for companies that need clearer processes, reliable data and scalable execution."
+  title="Ready-made, adaptable and custom software for business operations"
+  description="Quantix Software offers ready-made tools, customizable platforms, custom-built systems and software advisory for companies that need clearer workflows, reliable data and scalable execution."
   lang="en"
 >
   <main class="home-page">
@@ -130,9 +135,9 @@ const productProof = [
       <Container class="home-hero__container">
         <div class="home-hero__content">
           <p class="home-kicker">Quantix Software</p>
-          <h1 id="home-hero-title">Business software for operational control</h1>
+          <h1 id="home-hero-title">Ready-made, adaptable and custom software for business operations</h1>
           <p class="home-hero__lead">
-            Quantix Software builds custom systems, SaaS platforms, integrations, reporting tools and automation workflows for companies that need clearer processes, reliable data and scalable execution.
+            Quantix Software offers ready-made tools, customizable platforms, custom-built systems and software advisory for companies that need clearer workflows, reliable data and scalable execution.
           </p>
           <div class="home-actions">
             <Button href="/en/contact/" variant="primary">Book a consultation</Button>
@@ -207,14 +212,14 @@ const productProof = [
     <section class="home-section" aria-labelledby="operations-title">
       <Container>
         <div class="section-heading section-heading--wide">
-          <p class="section-eyebrow">Operational software</p>
-          <h2 id="operations-title">Built for real business operations</h2>
+          <p class="section-eyebrow">Business model</p>
+          <h2 id="operations-title">Four ways Quantix helps companies move forward</h2>
           <p>
-            Quantix Software focuses on software that brings structure to processes, data and execution: systems teams can use every day to operate with less friction and more control.
+            From existing tools to custom systems, Quantix helps companies choose the right path for their operation.
           </p>
         </div>
 
-        <div class="editorial-grid">
+        <div class="editorial-grid editorial-grid--four">
           {operations.map((item) => (
             <article class="editorial-card">
               <h3>{item.title}</h3>
@@ -254,9 +259,9 @@ const productProof = [
       <Container>
         <div class="section-heading section-heading--wide">
           <p class="section-eyebrow">Products</p>
-          <h2 id="products-title">Products built from real operating needs</h2>
+          <h2 id="products-title">Products and tools created by Quantix</h2>
           <p>
-            Takofy and Nica Finanzas turn operational problems into focused software products for restaurants and financial calculations.
+            Quantix creates its own platforms and utilities for specific operating needs, from restaurant execution to financial calculations for Nicaragua.
           </p>
         </div>
 
@@ -282,7 +287,7 @@ const productProof = [
 
               <div class="product-proof-map" aria-label={`${proof.product.title.en} product areas`}>
                 <div class="product-proof-map__rail">
-                  <span>Product proof</span>
+                  <span>{proof.railLabel}</span>
                   <strong>{proof.product.title.en}</strong>
                 </div>
                 <div class="product-proof-map__areas">
@@ -692,6 +697,10 @@ const productProof = [
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-5);
+  }
+
+  .editorial-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .editorial-card,
