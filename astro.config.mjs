@@ -3,6 +3,10 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.quantix.software",
+  redirects: {
+    "/en/community/": "/en/products/qavision/",
+    "/es/comunidad/": "/es/productos/qavision/"
+  },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "es"],

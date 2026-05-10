@@ -2,6 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
+import { qavisionTool } from "../../../data/qavisionTool";
 
 const products = [
   {
@@ -12,6 +13,7 @@ const products = [
       "Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina.",
     internalHref: "/es/productos/takofy/",
     publicUrl: "https://takofy.app/es/",
+    externalLabel: "Visitar sitio web",
     features: [
       "Operación offline-first para restaurantes",
       "Control de comandas, mesas y pagos",
@@ -26,24 +28,40 @@ const products = [
       "Calculadoras financieras para Nicaragua, incluyendo salario, préstamos y liquidación laboral.",
     internalHref: "/es/productos/nica-finanzas/",
     publicUrl: "https://nicafinanzas.com/",
+    externalLabel: "Visitar sitio web",
     features: [
       "Calculadora salarial para Nicaragua",
       "Cálculos de préstamos",
       "Liquidación laboral",
     ],
   },
+  {
+    title: "QAVision",
+    category: "Herramienta de evidencia QA",
+    status: "Herramienta gratuita",
+    description:
+      "Herramienta gratuita de evidencia QA creada por Quantix para captura visual, grabación por zona, anotaciones y organización de evidencia.",
+    internalHref: "/es/productos/qavision/",
+    publicUrl: qavisionTool.downloadUrl,
+    externalLabel: "Descargar",
+    features: [
+      "Captura de pantalla multi-modo",
+      "Grabación de video por zona con FFmpeg",
+      "Visor Pro con anotaciones y edición enriquecida",
+    ],
+  },
 ];
 
 const productPrinciples = [
-  "Productos publicados con sitios públicos dedicados.",
+  "Productos y herramientas publicados con puntos de acceso públicos.",
   "Construidos alrededor de flujos operativos o financieros específicos.",
-  "Mantenidos como software enfocado, no como demos genéricos.",
+  "Incluye plataformas SaaS comerciales y herramientas gratuitas.",
 ];
 ---
 
 <BaseLayout
   title="Productos"
-  description="Productos de software publicados por Quantix Software, incluyendo Takofy para operaciones de restaurantes y Nica Finanzas para calculadoras financieras en Nicaragua."
+  description="Productos de software y herramientas gratuitas de Quantix Software, incluyendo Takofy, Nica Finanzas y QAVision."
   lang="es"
   isHeaderTransparent={false}
 >
@@ -54,7 +72,7 @@ const productPrinciples = [
           <p class="page-kicker">Productos</p>
           <h1 id="products-title">Productos de software publicados para flujos reales</h1>
           <p>
-            Quantix Software construye y opera productos enfocados en operaciones de restaurantes, cálculos financieros y flujos prácticos de negocio.
+            Quantix Software construye y opera productos y herramientas enfocados en operaciones de restaurantes, cálculos financieros, evidencia QA y flujos prácticos de negocio.
           </p>
           <div class="page-actions">
             <Button href="#productos-publicados" variant="primary" size="lg">Ver productos</Button>
@@ -78,7 +96,7 @@ const productPrinciples = [
           <p class="page-kicker">Productos publicados</p>
           <h2 id="published-products-title">Productos de software construidos y operados por Quantix</h2>
           <p>
-            Cada producto tiene un flujo específico, sitio público y página de producto para contexto.
+            Cada producto o herramienta tiene un flujo específico, punto de acceso público y página de producto para contexto.
           </p>
         </div>
 
@@ -101,7 +119,7 @@ const productPrinciples = [
 
               <div class="product-actions">
                 <Button href={product.internalHref} variant="secondary">Ver producto</Button>
-                <Button href={product.publicUrl} target="_blank" variant="primary">Visitar sitio web</Button>
+                <Button href={product.publicUrl} target="_blank" variant="primary">{product.externalLabel}</Button>
               </div>
             </article>
           ))}
@@ -237,7 +255,7 @@ const productPrinciples = [
 
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-5);
   }
 
@@ -330,6 +348,12 @@ const productPrinciples = [
 
   .cta-panel > div {
     max-width: 46rem;
+  }
+
+  @media (max-width: 1100px) {
+    .products-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 820px) {

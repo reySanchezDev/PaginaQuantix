@@ -1,3 +1,5 @@
+import { qavisionTool } from "./qavisionTool";
+
 export interface Product {
     id: string;
     title: {
@@ -101,6 +103,42 @@ export const products: Product[] = [
                 'Salary calculator for Nicaragua',
                 'Loan calculations',
                 'Employment settlement calculations'
+            ]
+        }
+    },
+    {
+        id: 'qavision',
+        title: {
+            es: 'QAVision',
+            en: 'QAVision'
+        },
+        description: {
+            es: 'Herramienta gratuita de evidencia QA creada por Quantix para captura visual, grabación por zona, anotaciones y organización de evidencia.',
+            en: 'Free QA evidence tool created by Quantix for visual capture, zone recording, annotations and evidence organization.'
+        },
+        tags: ['QA', 'Evidence', 'Screen Capture', 'Video Recording', 'Windows'],
+        gradient: 'linear-gradient(135deg, #F3F7FF 0%, #E2ECFF 48%, #EAFBF7 100%)',
+        href: {
+            es: '/es/productos/qavision/',
+            en: '/en/products/qavision/',
+        },
+        publicUrl: qavisionTool.downloadUrl,
+        target: '_self',
+        isExternal: false,
+        status: {
+            es: 'Herramienta gratuita',
+            en: 'Free tool'
+        },
+        features: {
+            es: [
+                'Captura de pantalla multi-modo',
+                'Grabación de video por zona con FFmpeg',
+                'Visor Pro con anotaciones y edición enriquecida'
+            ],
+            en: [
+                'Multi-mode screen capture',
+                'Zone video recording with FFmpeg',
+                'Pro Viewer with annotations and rich editing'
             ]
         }
     }

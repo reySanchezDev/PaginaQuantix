@@ -41,6 +41,7 @@ const solutions = [
 const workAreas = [
   "Operaciones de restaurantes",
   "Herramientas financieras",
+  "Evidencia QA",
   "Control de inventario",
   "Flujos de facturación",
   "Sistemas relacionados con POS",
@@ -121,6 +122,28 @@ const productProof = [
       },
     ],
     visitLabel: "Visitar Nica Finanzas",
+  },
+  {
+    product: getProduct("qavision"),
+    domain: "Herramienta gratuita de evidencia QA",
+    railLabel: "Herramienta gratuita",
+    proofLine:
+      "QAVision es una herramienta gratuita de evidencia QA creada por Quantix para captura visual, grabación por zona, anotaciones y flujos organizados de evidencia.",
+    areas: [
+      {
+        label: "Captura",
+        items: ["Pantallas", "Modo clip", "Video por zona"],
+      },
+      {
+        label: "Revisión",
+        items: ["Visor Pro", "Anotaciones", "Edición enriquecida"],
+      },
+      {
+        label: "Evidencia",
+        items: ["Autosave", "Carpetas", "Contexto de trabajo"],
+      },
+    ],
+    visitLabel: "Descargar QAVision",
   },
 ];
 ---
@@ -261,7 +284,7 @@ const productProof = [
           <p class="section-eyebrow">Productos</p>
           <h2 id="products-title">Productos y herramientas creadas por Quantix</h2>
           <p>
-            Quantix crea sus propias plataformas y herramientas para necesidades operativas específicas, desde ejecución de restaurantes hasta cálculos financieros para Nicaragua.
+            Quantix crea sus propias plataformas y herramientas para necesidades operativas específicas, desde ejecución de restaurantes y cálculos financieros hasta flujos de evidencia QA.
           </p>
         </div>
 

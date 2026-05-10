@@ -4,6 +4,16 @@
       "source": "/",
       "destination": "/en/",
       "permanent": true
+    },
+    {
+      "source": "/en/community/",
+      "destination": "/en/products/qavision/",
+      "permanent": true
+    },
+    {
+      "source": "/es/comunidad/",
+      "destination": "/es/productos/qavision/",
+      "permanent": true
     }
   ]
 }

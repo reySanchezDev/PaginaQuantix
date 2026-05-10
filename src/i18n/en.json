@@ -9,11 +9,5 @@
     "services.cta.schedule": "Schedule a call",
     "services.cta.proposal": "Request a proposal",
     "services.nav.prev": "Previous",
-    "services.nav.next": "Next",
-    "nav.community": "Community",
-    "community.title": "Community",
-    "community.description": "Free tools and resources for professionals building, testing and operating software.",
-    "community.download": "Download",
-    "community.updates.title": "QAVision roadmap",
-    "community.updates.subtitle": "Released updates and planned improvements for QAVision."
+    "services.nav.next": "Next"
 }
