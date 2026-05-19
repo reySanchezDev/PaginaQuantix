@@ -4,59 +4,73 @@ import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
 
 const focusAreas = [
-  "Operational systems",
-  "SaaS platforms",
-  "Internal tools",
-  "Integrations",
-  "Reporting & BI",
-  "Automation",
+  "Restaurants & POS",
+  "Billing",
+  "Inventory",
+  "Customers & access",
+  "Dashboards",
+  "APIs & automation",
+];
+
+const solutionPaths = [
+  {
+    title: "Ready-made software",
+    text: "Use an existing Quantix tool or platform when the operating need already has a focused product path.",
+  },
+  {
+    title: "Customizable platforms",
+    text: "Adapt an existing platform around company workflows, rules, modules and integrations.",
+  },
+  {
+    title: "Custom-built systems",
+    text: "Build a new operational system when the need does not fit an existing product or platform.",
+  },
+  {
+    title: "Software advisory and requirements definition",
+    text: "Turn an early software idea into structured scope, modules, flows, business rules and technical deliverables.",
+  },
 ];
 
 const solutions = [
   {
-    title: "Operational software systems",
-    text: "Custom systems for teams that need control over daily workflows, approvals, transactions, users and operational data.",
+    title: "Restaurants and point of sale",
+    text: "Solutions for orders, tables, payments, kitchen workflows, inventory, reporting and daily restaurant operations.",
   },
   {
-    title: "SaaS platforms",
-    text: "Product-oriented web platforms designed with clear workflows, maintainable architecture and room to evolve.",
+    title: "Billing and commercial control",
+    text: "Workflows for sales, documents, payments, customers, commercial rules and operating cycle tracking.",
   },
   {
-    title: "Internal business tools",
-    text: "Focused tools for teams that need better visibility, fewer manual steps and a more reliable way to run operations.",
+    title: "Inventory and operations",
+    text: "Modules for stock, movements, traceability, approvals, operating tasks and day-to-day control.",
   },
   {
-    title: "Integrations & APIs",
-    text: "API-first integrations between business systems, payment flows, reporting tools and third-party services.",
+    title: "Customers, memberships and access",
+    text: "Profile, membership, permission, validation and digital experience management for users or customers.",
   },
   {
     title: "Reporting & BI",
-    text: "Dashboards, data models and reporting workflows that help teams understand what is happening in the business.",
-  },
-  {
-    title: "Inventory & billing systems",
-    text: "Operational modules for stock control, billing workflows, transaction tracking and business rule execution.",
+    text: "Dashboards, data models and reporting workflows to understand performance, operations and control points.",
   },
   {
     title: "Process automation",
-    text: "Automation for repetitive processes where reliability, traceability and practical business value matter.",
+    text: "Reliable workflows to reduce manual steps, coordinate approvals, issue alerts and connect teams.",
   },
   {
-    title: "Legacy modernization",
-    text: "Incremental modernization for existing systems that need better maintainability, performance or integrations.",
+    title: "APIs and integrations",
+    text: "Connections between POS, ERP, payments, external services, legacy systems and new platforms.",
+  },
+  {
+    title: "QA tools and visual evidence",
+    text: "Tools to capture, organize and review visual evidence in testing and quality control processes.",
   },
 ];
 
-const operatingPrinciples = [
-  "Start from the business operation, not from a template.",
-  "Design workflows, data and integrations as one system.",
-  "Build software that can be maintained, measured and improved.",
-];
 ---
 
 <BaseLayout
-  title="Solutions"
-  description="Software solutions for operational systems, SaaS platforms, internal tools, integrations, reporting, inventory, billing, automation and modernization."
+  title="Solutions for Operational Software"
+  description="Quantix helps companies use ready-made software, adapt existing platforms, build custom systems and define software requirements before development."
   lang="en"
   isHeaderTransparent={false}
 >
@@ -66,9 +80,9 @@ const operatingPrinciples = [
         <div class="solutions-hero__grid">
           <div class="solutions-hero__content">
             <p class="page-kicker">Solutions</p>
-            <h1 id="solutions-title">Software capabilities for real business operations</h1>
+            <h1 id="solutions-title">Find, adapt, define or build operational software</h1>
             <p>
-              Quantix Software designs and builds reliable systems for companies that need operational control, clear data and scalable digital workflows.
+              Quantix Software helps companies choose the right path for business operations: use an existing tool, adapt a platform, define requirements or build a custom system.
             </p>
             <div class="page-actions">
               <Button href="/en/contact/" variant="primary" size="lg">Book a consultation</Button>
@@ -86,10 +100,15 @@ const operatingPrinciples = [
       </Container>
     </section>
 
-    <section class="positioning-band" aria-label="How Quantix approaches solutions">
+    <section class="positioning-band" aria-label="Ways Quantix helps companies move forward">
       <Container>
         <div class="positioning-band__grid">
-          {operatingPrinciples.map((item) => <p>{item}</p>)}
+          {solutionPaths.map((item) => (
+            <article class="solution-path-card">
+              <h2>{item.title}</h2>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
       </Container>
     </section>
@@ -119,10 +138,10 @@ const operatingPrinciples = [
       <Container>
         <div class="cta-panel">
           <div>
-            <p class="page-kicker">Project scoping</p>
-            <h2 id="scoping-title">Need to define an operational system?</h2>
+            <p class="page-kicker">Advisory</p>
+            <h2 id="scoping-title">Software advisory and requirements definition</h2>
             <p>
-              We can help clarify workflows, technical constraints, integration needs and a practical implementation path before development starts.
+              We can help clarify scope, modules, workflows, business rules, technical constraints, integration needs and a practical implementation path before development starts.
             </p>
           </div>
           <div class="page-actions">
@@ -235,16 +254,34 @@ const operatingPrinciples = [
 
   .positioning-band__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-4);
   }
 
-  .positioning-band p {
+  .solution-path-card {
+    min-width: 0;
+    min-height: 100%;
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+
+  .solution-path-card h2 {
+    margin: 0 0 var(--space-3);
+    color: var(--text);
+    font-size: var(--text-lg);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-path-card p {
     margin: 0;
     color: var(--text-muted);
     font-size: var(--text-sm);
-    font-weight: 700;
     line-height: 1.55;
+    overflow-wrap: anywhere;
   }
 
   .solutions-section {
@@ -287,18 +324,21 @@ const operatingPrinciples = [
   }
 
   .solution-card {
+    min-width: 0;
     min-height: 100%;
     padding: clamp(1.2rem, 2.5vw, 1.6rem);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface);
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
   }
 
   .solution-card h3 {
     margin: 0 0 var(--space-3);
     font-size: var(--text-lg);
     line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 
   .solution-card p {
@@ -306,6 +346,7 @@ const operatingPrinciples = [
     color: var(--text-muted);
     font-size: var(--text-sm);
     line-height: 1.65;
+    overflow-wrap: anywhere;
   }
 
   .cta-panel {
@@ -324,7 +365,8 @@ const operatingPrinciples = [
   }
 
   @media (max-width: 1080px) {
-    .solutions-grid {
+    .solutions-grid,
+    .positioning-band__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
@@ -356,7 +398,7 @@ const operatingPrinciples = [
     .solutions-hero__content > p:not(.page-kicker),
     .section-heading p:not(.page-kicker),
     .cta-panel p:not(.page-kicker),
-    .positioning-band p {
+    .solution-path-card p {
       max-width: 20rem;
     }
 
@@ -370,6 +412,12 @@ const operatingPrinciples = [
     .cta-panel :global(.btn) {
       width: 100%;
       justify-content: center;
+    }
+
+    .solution-path-card,
+    .solution-card,
+    .solutions-panel {
+      max-width: 22.5rem;
     }
 
     .solutions-grid {

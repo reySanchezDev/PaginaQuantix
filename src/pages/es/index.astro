@@ -5,37 +5,73 @@ import Button from "../../components/ui/Button.astro";
 import { products } from "../../data/products";
 
 const positioning = [
-  "Sistemas ya creados",
-  "Plataformas personalizables",
+  "Productos listos",
+  "Soluciones adaptables",
   "Sistemas a medida",
-  "Asesoría de software",
+  "Acompañamiento técnico",
 ];
 
 const operations = [
   {
-    title: "Usar software ya creado",
-    text: "Encontrar herramientas, plataformas y sistemas creados por Quantix para operaciones específicas de negocio.",
+    title: "Usa una solución lista",
+    text: "Adopta productos y herramientas de Quantix que ya existen para resolver necesidades operativas concretas.",
   },
   {
-    title: "Adaptar una plataforma existente",
-    text: "Ajustar una herramienta o plataforma de Quantix alrededor de los flujos, módulos y reglas de tu operación.",
+    title: "Adapta una solución existente",
+    text: "Ajusta módulos, flujos, reglas e integraciones cuando una herramienta existente necesita encajar mejor con tu operación.",
   },
   {
-    title: "Construir un sistema a medida",
-    text: "Crear un sistema nuevo cuando la necesidad del negocio no encaja con una herramienta, plataforma o flujo existente.",
+    title: "Define tu idea con asesoría técnica",
+    text: "Convierte una necesidad inicial en alcance, prioridades, módulos y una ruta realista antes de invertir en desarrollo.",
   },
   {
-    title: "Definir el software antes de construir",
-    text: "Ayudamos a las empresas a convertir ideas iniciales de software en requerimientos claros y estructurados, ya sea para continuar el desarrollo con Quantix o para tomar mejores decisiones internas.",
+    title: "Construye un sistema a medida",
+    text: "Crea una plataforma nueva desde cero cuando no existe una solución adecuada para el proceso, datos o modelo de negocio.",
   },
 ];
 
-const solutions = [
-  "Sistemas de software operativo",
-  "Plataformas SaaS",
-  "Integraciones & APIs",
-  "Reportería e inteligencia de negocio",
-  "Automatización de procesos",
+const operatingSolutions = [
+  {
+    title: "Restaurantes y punto de venta",
+    text: "Ordena comandas, mesas, pagos, cocina, inventario y operación diaria con flujos listos para restaurantes.",
+  },
+  {
+    title: "Facturación y control comercial",
+    text: "Centraliza ventas, documentos, pagos, clientes y reglas comerciales para tener más control del ciclo operativo.",
+  },
+  {
+    title: "Inventario y operaciones",
+    text: "Controla movimientos, stock, trazabilidad y tareas repetitivas que sostienen la ejecución del negocio.",
+  },
+  {
+    title: "Clientes, membresías y accesos",
+    text: "Gestiona perfiles, membresías, permisos, validaciones y experiencias digitales para usuarios o clientes.",
+  },
+  {
+    title: "Reportería y dashboards",
+    text: "Convierte datos operativos en vistas claras para seguimiento, decisiones y control gerencial.",
+  },
+  {
+    title: "Automatización de procesos",
+    text: "Reduce pasos manuales con flujos confiables, alertas, aprobaciones y tareas conectadas entre equipos.",
+  },
+  {
+    title: "APIs e integraciones",
+    text: "Conecta POS, ERP, pagos, sistemas legados, servicios externos y nuevas plataformas con contratos claros.",
+  },
+  {
+    title: "Herramientas QA y evidencia visual",
+    text: "Documenta pruebas, incidencias y evidencia visual con herramientas creadas para equipos técnicos y de calidad.",
+  },
+];
+
+const heroPanelSolutions = [
+  "Restaurantes y POS",
+  "Facturación",
+  "Inventario",
+  "Dashboards",
+  "Automatización",
+  "APIs",
 ];
 
 const workAreas = [
@@ -81,6 +117,7 @@ const getProduct = (id: string) => {
 const productProof = [
   {
     product: getProduct("takofy"),
+    statusLabel: "SaaS comercial",
     domain: "Plataforma SaaS de Quantix",
     railLabel: "Plataforma SaaS",
     proofLine:
@@ -103,6 +140,7 @@ const productProof = [
   },
   {
     product: getProduct("nica-finanzas"),
+    statusLabel: "Herramienta gratuita para Nicaragua",
     domain: "Herramienta financiera gratuita",
     railLabel: "Herramienta gratuita",
     proofLine:
@@ -125,6 +163,7 @@ const productProof = [
   },
   {
     product: getProduct("qavision"),
+    statusLabel: "Herramienta QA gratuita",
     domain: "Herramienta gratuita de evidencia QA",
     railLabel: "Herramienta gratuita",
     proofLine:
@@ -149,8 +188,8 @@ const productProof = [
 ---
 
 <BaseLayout
-  title="Software listo, adaptable y a medida para operar tu empresa"
-  description="Quantix Software ofrece herramientas ya creadas, plataformas personalizables, sistemas a medida y asesoría de software para empresas que necesitan flujos más claros, datos confiables y ejecución escalable."
+  title="Software empresarial listo, adaptable y a medida"
+  description="Quantix ofrece productos y herramientas de software listas para producción, adapta soluciones existentes y construye sistemas a medida cuando una empresa necesita algo único."
   lang="es"
 >
   <main class="home-page">
@@ -158,66 +197,53 @@ const productProof = [
       <Container class="home-hero__container">
         <div class="home-hero__content">
           <p class="home-kicker">Quantix Software</p>
-          <h1 id="home-hero-title">Software listo, adaptable y a medida para operar tu empresa</h1>
+          <h1 id="home-hero-title">Software empresarial listo, adaptable y construido a la medida cuando tu negocio lo necesita</h1>
           <p class="home-hero__lead">
-            Quantix Software ofrece herramientas ya creadas, plataformas personalizables, sistemas a medida y asesoría de software para empresas que necesitan flujos más claros, datos confiables y ejecución escalable.
+            Encuentra soluciones ya desarrolladas por Quantix, adapta una herramienta existente a tu operación o construye un sistema desde cero con un equipo técnico especializado.
           </p>
           <div class="home-actions">
-            <Button href="/es/contacto/" variant="primary">Solicitar consulta</Button>
-            <Button href="/es/soluciones/" variant="secondary">Explorar soluciones</Button>
+            <Button href="/es/contacto/" variant="primary">Evaluar mi necesidad</Button>
+            <Button href="/es/productos/" variant="secondary">Ver productos</Button>
           </div>
         </div>
 
-        <div class="home-system-panel" aria-label="Command center conceptual de operaciones">
-          <div class="command-center__header">
-            <span>Command center operativo</span>
-            <strong>Sistemas conectados</strong>
+        <div class="hero-solutions-panel" aria-label="Soluciones y productos de Quantix">
+          <div class="hero-solutions-panel__header">
+            <span>Listo para adoptar o adaptar</span>
+            <strong>Soluciones empresariales</strong>
           </div>
 
-          <div class="command-center__map">
-            <div class="command-center__flow-line" aria-hidden="true"></div>
+          <div class="hero-products">
+            <a href="/es/productos/takofy/">
+              <span>Takofy</span>
+              <strong>SaaS para restaurantes</strong>
+            </a>
+            <a href="/es/productos/nica-finanzas/">
+              <span>Nica Finanzas</span>
+              <strong>Herramienta gratuita</strong>
+            </a>
+            <a href="/es/productos/qavision/">
+              <span>QAVision</span>
+              <strong>Evidencia QA gratuita</strong>
+            </a>
+          </div>
 
-            <section class="command-layer command-layer--operation" aria-label="Capa de operación de negocio">
-              <div class="command-layer__title">
-                <span>Operación de negocio</span>
-                <strong>Trabajo en movimiento</strong>
-              </div>
-              <div class="command-chips">
-                <span>Flujos</span>
-                <span>Equipos</span>
-                <span>Aprobación</span>
-              </div>
-            </section>
+          <div class="hero-solution-tags" aria-label="Áreas que Quantix puede resolver">
+            {heroPanelSolutions.map((item) => <span>{item}</span>)}
+          </div>
 
-            <section class="command-layer command-layer--systems" aria-label="Capa de sistemas">
-              <div class="command-layer__title">
-                <span>Capa de sistemas</span>
-                <strong>Datos, integración y automatización</strong>
-              </div>
-              <div class="command-modules">
-                <span>APIs</span>
-                <span>Datos</span>
-                <span>Automatización</span>
-                <span>Reportería</span>
-              </div>
-            </section>
-
-            <section class="command-layer command-layer--control" aria-label="Capa de control operativo">
-              <div class="command-layer__title">
-                <span>Control operativo</span>
-                <strong>Visibilidad hacia ejecución</strong>
-              </div>
-              <div class="command-chips command-chips--control">
-                <span>Visibilidad</span>
-                <span>Decisiones</span>
-                <span>Ejecución</span>
-              </div>
-            </section>
-
-            <div class="command-center__rail" aria-hidden="true">
-              <span>Operación</span>
-              <span>Sistemas</span>
-              <span>Control</span>
+          <div class="hero-delivery-path">
+            <div>
+              <span>01</span>
+              <strong>Usar producto</strong>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Adaptar solución</strong>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>Construir a medida</strong>
             </div>
           </div>
         </div>
@@ -232,19 +258,19 @@ const productProof = [
       </Container>
     </section>
 
-    <section class="home-section" aria-labelledby="operations-title">
+    <section class="home-section home-section--solutions" aria-labelledby="solutions-title">
       <Container>
         <div class="section-heading section-heading--wide">
-          <p class="section-eyebrow">Modelo comercial</p>
-          <h2 id="operations-title">Cuatro formas en que Quantix ayuda a las empresas a avanzar</h2>
+          <p class="section-eyebrow">Soluciones para operar tu empresa</p>
+          <h2 id="solutions-title">Aplicaciones, herramientas e integraciones para áreas reales del negocio</h2>
           <p>
-            Desde herramientas existentes hasta sistemas a medida, Quantix ayuda a las empresas a elegir el camino correcto para su operación.
+            Quantix no empieza cada conversación desde una hoja en blanco. Partimos de productos, herramientas y experiencia en flujos empresariales concretos para acelerar decisiones y ejecución.
           </p>
         </div>
 
-        <div class="editorial-grid editorial-grid--four">
-          {operations.map((item) => (
-            <article class="editorial-card">
+        <div class="solutions-card-grid">
+          {operatingSolutions.map((item) => (
+            <article class="solution-business-card">
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </article>
@@ -253,27 +279,29 @@ const productProof = [
       </Container>
     </section>
 
-    <section class="home-section home-section--surface" aria-labelledby="solutions-title">
+    <section class="home-section home-section--surface" aria-labelledby="operations-title">
       <Container>
-        <div class="section-split">
-          <div class="section-heading">
-            <p class="section-eyebrow">Soluciones</p>
-            <h2 id="solutions-title">Capacidades de software para operación, datos y ejecución</h2>
-            <p>
-              Diseñamos sistemas que conectan flujos operativos con los datos, integraciones y automatización necesarios para ejecutarlos con confianza.
-            </p>
-            <div class="home-actions">
-              <Button href="/es/soluciones/" variant="secondary">Explorar soluciones</Button>
-            </div>
-          </div>
+        <div class="section-heading section-heading--wide">
+          <p class="section-eyebrow">Modelo de trabajo</p>
+          <h2 id="operations-title">Cuatro formas de llevar software a producción con Quantix</h2>
+          <p>
+            Puedes adoptar una solución existente, adaptarla a tu operación, definir una idea con acompañamiento técnico o construir un sistema nuevo cuando el negocio lo requiere.
+          </p>
+        </div>
 
-          <div class="capability-list">
-            {solutions.map((item) => (
-              <a href="/es/soluciones/" class="capability-item">
-                <span>{item}</span>
-              </a>
-            ))}
-          </div>
+        <div class="delivery-model-grid">
+          {operations.map((item, index) => (
+            <article class="delivery-model-card">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="model-cta">
+          <p>El objetivo es elegir el camino con mejor retorno: producto listo cuando existe, adaptación cuando conviene y desarrollo a medida cuando hace falta.</p>
+          <Button href="/es/soluciones/" variant="secondary">Explorar soluciones</Button>
         </div>
       </Container>
     </section>
@@ -293,7 +321,7 @@ const productProof = [
             <article class="product-proof-card">
               <div class="product-proof-card__content">
                 <div class="product-proof-card__header">
-                  <span class="product-status">{proof.product.status.es}</span>
+                  <span class="product-status">{proof.statusLabel}</span>
                   <span class="product-domain">{proof.domain}</span>
                 </div>
                 <h3>{proof.product.title.es}</h3>
@@ -375,9 +403,9 @@ const productProof = [
         <div class="closing-panel">
           <div>
             <p class="section-eyebrow">Iniciar conversación</p>
-            <h2 id="closing-title">Hablemos sobre tu proyecto de software</h2>
+            <h2 id="closing-title">Hablemos sobre tu necesidad de software</h2>
             <p>
-              Trae el contexto operativo. Podemos ayudar a definir el sistema, integración o automatización que mejor encaja.
+              Trae el contexto operativo. Podemos ayudarte a evaluar una herramienta existente, adaptar una plataforma, definir requerimientos o construir el sistema adecuado.
             </p>
           </div>
           <Button href="/es/contacto/" variant="primary">Contactar a Quantix</Button>
@@ -409,7 +437,7 @@ const productProof = [
 
   .home-hero__content,
   .section-heading,
-  .home-system-panel,
+  .hero-solutions-panel,
   .closing-panel > div {
     min-width: 0;
   }
@@ -451,11 +479,12 @@ const productProof = [
     margin-top: var(--space-8);
   }
 
-  .home-system-panel {
+  .hero-solutions-panel {
     position: relative;
     overflow: hidden;
-    min-height: 31rem;
-    padding: clamp(1.1rem, 2.6vw, 1.55rem);
+    display: grid;
+    gap: var(--space-5);
+    padding: clamp(1.15rem, 2.8vw, 1.65rem);
     border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
     border-radius: var(--radius-lg);
     background:
@@ -463,15 +492,7 @@ const productProof = [
     box-shadow: var(--shadow-lg);
   }
 
-  .home-system-panel::before {
-    content: "";
-    position: absolute;
-    inset: 3.65rem -18% auto;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 24%, transparent), transparent);
-  }
-
-  .home-system-panel::after {
+  .hero-solutions-panel::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -483,140 +504,91 @@ const productProof = [
     pointer-events: none;
   }
 
-  .command-center__header,
-  .command-center__map {
+  .hero-solutions-panel__header,
+  .hero-products,
+  .hero-solution-tags,
+  .hero-delivery-path {
     position: relative;
     z-index: 1;
   }
 
-  .command-center__header {
+  .hero-solutions-panel__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid color-mix(in srgb, var(--border-strong) 68%, transparent);
     color: var(--text-muted);
     font-size: var(--text-sm);
   }
 
-  .command-center__header span {
+  .hero-solutions-panel__header span {
     font-weight: 700;
   }
 
-  .command-center__header strong {
+  .hero-solutions-panel__header strong {
     color: var(--text);
     font-weight: 800;
   }
 
-  .command-center__map {
+  .hero-products {
     display: grid;
     gap: var(--space-3);
-    margin-top: var(--space-6);
-    padding-left: 1.35rem;
   }
 
-  .command-center__flow-line {
-    position: absolute;
-    top: 0.85rem;
-    bottom: 2.65rem;
-    left: 0.32rem;
-    width: 1px;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 34%, transparent), color-mix(in srgb, var(--accent) 28%, transparent), color-mix(in srgb, var(--primary) 22%, transparent));
-  }
-
-  .command-layer {
-    position: relative;
-    padding: clamp(0.95rem, 2.2vw, 1.2rem);
-    border: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+  .hero-products a {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: center;
+    min-height: 4.4rem;
+    padding: var(--space-4);
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
     border-radius: var(--radius-md);
     background: color-mix(in srgb, var(--surface) 92%, white);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .command-layer--operation,
-  .command-layer--control {
-    display: grid;
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-    gap: var(--space-4);
-    align-items: center;
-  }
-
-  .command-layer::before {
-    content: "";
-    position: absolute;
-    top: 1.3rem;
-    left: -1.55rem;
-    width: 0.55rem;
-    height: 0.55rem;
-    border: 2px solid var(--surface);
-    border-radius: var(--radius-full);
-    background: var(--primary);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 30%, transparent);
-  }
-
-  .command-layer--systems {
-    border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
-    background: color-mix(in srgb, var(--accent-soft) 26%, var(--surface));
-  }
-
-  .command-layer--systems::before {
-    background: var(--accent);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
-  }
-
-  .command-layer--control {
-    border-color: color-mix(in srgb, var(--primary) 20%, var(--border));
-    background: color-mix(in srgb, var(--primary-soft) 34%, var(--surface));
-  }
-
-  .command-layer__title span {
-    display: block;
-    color: var(--text-muted);
-    font-size: var(--text-xs);
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .command-layer__title strong {
-    display: block;
-    margin-top: var(--space-1);
     color: var(--text);
-    font-size: clamp(1rem, 2vw, 1.18rem);
-    line-height: 1.25;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
   }
 
-  .command-chips,
-  .command-modules,
-  .command-center__rail {
+  .hero-products a:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    background: color-mix(in srgb, var(--surface) 84%, var(--primary-soft));
+  }
+
+  .hero-products span {
+    display: block;
+    color: var(--primary);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .hero-products strong {
+    display: block;
+    color: var(--text);
+    font-size: var(--text-sm);
+    line-height: 1.35;
+  }
+
+  .hero-solution-tags {
     display: grid;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
-  }
-
-  .command-chips {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .command-layer--operation .command-chips,
-  .command-layer--control .command-chips {
-    margin-top: 0;
-  }
-
-  .command-modules {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
   }
 
-  .command-chips span,
-  .command-modules span,
-  .command-center__rail span {
+  .hero-solution-tags span {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.3rem;
-    padding: 0.45rem 0.35rem;
+    min-height: 2.45rem;
+    padding: 0.45rem 0.55rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    background: color-mix(in srgb, var(--surface) 86%, transparent);
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
     color: var(--text-muted);
     font-size: var(--text-xs);
     font-weight: 800;
@@ -624,31 +596,36 @@ const productProof = [
     text-align: center;
   }
 
-  .command-chips span {
-    font-size: 0.7rem;
-  }
-
-  .command-modules span {
-    background: color-mix(in srgb, var(--surface) 86%, var(--accent-soft));
-    color: var(--text);
-  }
-
-  .command-chips--control span {
-    color: var(--primary);
-    background: color-mix(in srgb, var(--primary-soft) 42%, var(--surface));
-  }
-
-  .command-center__rail {
+  .hero-delivery-path {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    padding-top: var(--space-2);
-    border-top: 1px solid color-mix(in srgb, var(--primary) 10%, var(--border));
+    gap: var(--space-2);
+    padding-top: var(--space-4);
+    border-top: 1px solid color-mix(in srgb, var(--border-strong) 68%, transparent);
   }
 
-  .command-center__rail span {
-    min-height: 2rem;
-    background: var(--surface-2);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+  .hero-delivery-path div {
+    min-width: 0;
+    padding: var(--space-3);
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 30%, var(--surface));
+  }
+
+  .hero-delivery-path span {
+    display: block;
+    color: var(--primary);
+    font-size: var(--text-xs);
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .hero-delivery-path strong {
+    display: block;
+    margin-top: var(--space-2);
+    color: var(--text);
+    font-size: var(--text-xs);
+    line-height: 1.25;
   }
 
   .positioning-strip {
@@ -685,6 +662,10 @@ const productProof = [
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--surface-2);
+  }
+
+  .home-section--solutions {
+    padding-top: clamp(3.5rem, 6vw, 5.5rem);
   }
 
   .section-heading {
@@ -726,6 +707,79 @@ const productProof = [
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .solutions-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .solution-business-card,
+  .delivery-model-card {
+    min-width: 0;
+    min-height: 100%;
+    padding: clamp(1.2rem, 2.5vw, 1.6rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .solution-business-card h3,
+  .delivery-model-card h3 {
+    margin: 0 0 var(--space-3);
+    color: var(--text);
+    font-size: var(--text-lg);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-business-card p,
+  .delivery-model-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .delivery-model-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .delivery-model-card {
+    background: var(--surface);
+  }
+
+  .delivery-model-card > span {
+    display: block;
+    margin-bottom: var(--space-5);
+    color: var(--primary);
+    font-size: var(--text-sm);
+    font-weight: 900;
+  }
+
+  .model-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
+  }
+
+  .model-cta p {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
   .editorial-card,
   .process-card {
     min-height: 100%;
@@ -759,32 +813,6 @@ const productProof = [
 
   .section-split--reverse {
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  }
-
-  .capability-list {
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .capability-item {
-    display: flex;
-    align-items: center;
-    min-height: 4.4rem;
-    padding: 0 var(--space-5);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    background: var(--surface);
-    color: var(--text);
-    font-weight: 800;
-    text-decoration: none;
-    box-shadow: var(--shadow-sm);
-    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
-  }
-
-  .capability-item:hover {
-    border-color: var(--border-strong);
-    color: var(--primary);
-    background: color-mix(in srgb, var(--surface) 88%, var(--primary-soft));
   }
 
   .product-proof-stack {
@@ -1010,12 +1038,14 @@ const productProof = [
       grid-template-columns: 1fr;
     }
 
-    .home-system-panel {
+    .hero-solutions-panel {
       min-height: auto;
     }
 
     .editorial-grid,
-    .process-grid {
+    .process-grid,
+    .solutions-card-grid,
+    .delivery-model-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
@@ -1044,7 +1074,7 @@ const productProof = [
     .home-hero__content,
     .home-hero__lead,
     .home-actions,
-    .home-system-panel {
+    .hero-solutions-panel {
       width: 100%;
       max-width: 22.5rem;
     }
@@ -1054,51 +1084,27 @@ const productProof = [
       word-break: normal;
     }
 
-    .home-system-panel {
+    .hero-solutions-panel {
       padding: var(--space-4);
     }
 
-    .command-center__header {
+    .hero-solutions-panel__header {
       flex-direction: column;
       gap: var(--space-1);
     }
 
-    .command-center__map {
-      padding-left: 1rem;
-      gap: var(--space-2);
+    .hero-products a,
+    .hero-delivery-path {
+      grid-template-columns: 1fr;
     }
 
-    .command-center__flow-line {
-      left: 0.16rem;
-    }
-
-    .command-layer {
-      padding: var(--space-3);
-    }
-
-    .command-layer--operation,
-    .command-layer--control {
-      display: block;
-    }
-
-    .command-layer::before {
-      left: -1.2rem;
-    }
-
-    .command-layer--operation .command-chips,
-    .command-layer--control .command-chips {
-      margin-top: var(--space-4);
-    }
-
-    .command-chips span,
-    .command-modules span,
-    .command-center__rail span {
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
+    .hero-solution-tags {
+      grid-template-columns: 1fr;
     }
 
     .home-actions,
     .card-actions,
+    .model-cta,
     .closing-panel {
       flex-direction: column;
       align-items: stretch;
@@ -1106,14 +1112,23 @@ const productProof = [
 
     .home-actions :global(.btn),
     .card-actions :global(.btn),
+    .model-cta :global(.btn),
     .closing-panel :global(.btn) {
       width: 100%;
       justify-content: center;
     }
 
     .editorial-grid,
-    .process-grid {
+    .process-grid,
+    .solutions-card-grid,
+    .delivery-model-grid {
       grid-template-columns: 1fr;
+    }
+
+    .solution-business-card,
+    .delivery-model-card,
+    .model-cta {
+      max-width: 22.5rem;
     }
 
     .product-proof-card {

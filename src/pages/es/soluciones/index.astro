@@ -4,59 +4,73 @@ import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
 
 const focusAreas = [
-  "Sistemas operativos",
-  "Plataformas SaaS",
-  "Herramientas internas",
-  "Integraciones",
-  "Reportería & BI",
-  "Automatización",
+  "Restaurantes y POS",
+  "Facturación",
+  "Inventario",
+  "Clientes y accesos",
+  "Dashboards",
+  "APIs y automatización",
+];
+
+const solutionPaths = [
+  {
+    title: "Sistemas ya creados",
+    text: "Usar una herramienta o plataforma existente de Quantix cuando la necesidad operativa ya tiene un camino de producto.",
+  },
+  {
+    title: "Plataformas personalizables",
+    text: "Adaptar una plataforma existente alrededor de flujos, reglas, módulos e integraciones de la empresa.",
+  },
+  {
+    title: "Sistemas construidos a la medida",
+    text: "Construir un sistema operativo nuevo cuando la necesidad no encaja con un producto o plataforma existente.",
+  },
+  {
+    title: "Asesoría y definición de requerimientos de software",
+    text: "Convertir una idea inicial en alcance, módulos, flujos, reglas de negocio y entregables técnicos estructurados.",
+  },
 ];
 
 const solutions = [
   {
-    title: "Sistemas operativos empresariales",
-    text: "Sistemas a medida para equipos que necesitan controlar flujos diarios, aprobaciones, transacciones, usuarios y datos operativos.",
+    title: "Restaurantes y punto de venta",
+    text: "Soluciones para comandas, mesas, pagos, cocina, inventario, reportería y operación diaria de restaurantes.",
   },
   {
-    title: "Plataformas SaaS",
-    text: "Plataformas web orientadas a producto, con flujos claros, arquitectura mantenible y espacio para evolucionar.",
+    title: "Facturación y control comercial",
+    text: "Flujos para ventas, documentos, pagos, clientes, reglas comerciales y seguimiento del ciclo operativo.",
   },
   {
-    title: "Herramientas internas de negocio",
-    text: "Herramientas enfocadas para equipos que necesitan mayor visibilidad, menos pasos manuales y una operación más confiable.",
+    title: "Inventario y operaciones",
+    text: "Módulos para stock, movimientos, trazabilidad, aprobaciones, tareas operativas y control diario.",
   },
   {
-    title: "Integraciones y APIs",
-    text: "Integraciones API-first entre sistemas de negocio, flujos de pago, herramientas de reportería y servicios externos.",
+    title: "Clientes, membresías y accesos",
+    text: "Gestión de perfiles, membresías, permisos, validaciones y experiencias digitales para usuarios o clientes.",
   },
   {
     title: "Reportería e inteligencia de negocio",
-    text: "Dashboards, modelos de datos y flujos de reporte que ayudan a entender qué está pasando en el negocio.",
-  },
-  {
-    title: "Sistemas de inventario y facturación",
-    text: "Módulos operativos para control de inventario, facturación, seguimiento de transacciones y reglas de negocio.",
+    text: "Dashboards, modelos de datos y flujos de reporte para entender desempeño, operación y puntos de control.",
   },
   {
     title: "Automatización de procesos",
-    text: "Automatización para procesos repetitivos donde importan la confiabilidad, trazabilidad y valor práctico para el negocio.",
+    text: "Flujos confiables para reducir pasos manuales, coordinar aprobaciones, emitir alertas y conectar equipos.",
   },
   {
-    title: "Modernización de sistemas existentes",
-    text: "Modernización incremental para sistemas que necesitan mejor mantenibilidad, rendimiento o integraciones.",
+    title: "APIs e integraciones",
+    text: "Conexiones entre POS, ERP, pagos, servicios externos, sistemas legados y nuevas plataformas.",
+  },
+  {
+    title: "Herramientas QA y evidencia visual",
+    text: "Herramientas para capturar, organizar y revisar evidencia visual en procesos de prueba y control de calidad.",
   },
 ];
 
-const operatingPrinciples = [
-  "Partir de la operación del negocio, no de una plantilla.",
-  "Diseñar flujos, datos e integraciones como un solo sistema.",
-  "Construir software que pueda mantenerse, medirse y mejorar.",
-];
 ---
 
 <BaseLayout
-  title="Soluciones"
-  description="Soluciones de software para sistemas operativos, plataformas SaaS, herramientas internas, integraciones, reportería, inventario, facturación, automatización y modernización."
+  title="Soluciones para software operativo"
+  description="Quantix ayuda a empresas a usar software ya creado, adaptar plataformas existentes, construir sistemas a medida y definir requerimientos antes del desarrollo."
   lang="es"
   isHeaderTransparent={false}
 >
@@ -66,9 +80,9 @@ const operatingPrinciples = [
         <div class="solutions-hero__grid">
           <div class="solutions-hero__content">
             <p class="page-kicker">Soluciones</p>
-            <h1 id="solutions-title">Capacidades de software para operaciones reales de negocio</h1>
+            <h1 id="solutions-title">Encuentra, adapta, define o construye software operativo</h1>
             <p>
-              Quantix Software diseña y construye sistemas confiables para empresas que necesitan control operativo, claridad de datos y flujos digitales escalables.
+              Quantix Software ayuda a las empresas a elegir el camino correcto para su operación: usar una herramienta existente, adaptar una plataforma, definir requerimientos o construir un sistema a medida.
             </p>
             <div class="page-actions">
               <Button href="/es/contacto/" variant="primary" size="lg">Solicitar consulta</Button>
@@ -86,10 +100,15 @@ const operatingPrinciples = [
       </Container>
     </section>
 
-    <section class="positioning-band" aria-label="Cómo Quantix aborda las soluciones">
+    <section class="positioning-band" aria-label="Formas en que Quantix ayuda a las empresas a avanzar">
       <Container>
         <div class="positioning-band__grid">
-          {operatingPrinciples.map((item) => <p>{item}</p>)}
+          {solutionPaths.map((item) => (
+            <article class="solution-path-card">
+              <h2>{item.title}</h2>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
       </Container>
     </section>
@@ -119,10 +138,10 @@ const operatingPrinciples = [
       <Container>
         <div class="cta-panel">
           <div>
-            <p class="page-kicker">Definición de proyecto</p>
-            <h2 id="scoping-title">¿Necesitas definir un sistema operativo?</h2>
+            <p class="page-kicker">Asesoría</p>
+            <h2 id="scoping-title">Asesoría y definición de requerimientos de software</h2>
             <p>
-              Podemos ayudarte a ordenar flujos, restricciones técnicas, integraciones necesarias y un camino de implementación realista antes de iniciar desarrollo.
+              Podemos ayudarte a ordenar alcance, módulos, flujos, reglas de negocio, restricciones técnicas, integraciones necesarias y un camino de implementación realista antes de iniciar desarrollo.
             </p>
           </div>
           <div class="page-actions">
@@ -235,16 +254,34 @@ const operatingPrinciples = [
 
   .positioning-band__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-4);
   }
 
-  .positioning-band p {
+  .solution-path-card {
+    min-width: 0;
+    min-height: 100%;
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+
+  .solution-path-card h2 {
+    margin: 0 0 var(--space-3);
+    color: var(--text);
+    font-size: var(--text-lg);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-path-card p {
     margin: 0;
     color: var(--text-muted);
     font-size: var(--text-sm);
-    font-weight: 700;
     line-height: 1.55;
+    overflow-wrap: anywhere;
   }
 
   .solutions-section {
@@ -287,18 +324,21 @@ const operatingPrinciples = [
   }
 
   .solution-card {
+    min-width: 0;
     min-height: 100%;
     padding: clamp(1.2rem, 2.5vw, 1.6rem);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface);
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
   }
 
   .solution-card h3 {
     margin: 0 0 var(--space-3);
     font-size: var(--text-lg);
     line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 
   .solution-card p {
@@ -306,6 +346,7 @@ const operatingPrinciples = [
     color: var(--text-muted);
     font-size: var(--text-sm);
     line-height: 1.65;
+    overflow-wrap: anywhere;
   }
 
   .cta-panel {
@@ -324,7 +365,8 @@ const operatingPrinciples = [
   }
 
   @media (max-width: 1080px) {
-    .solutions-grid {
+    .solutions-grid,
+    .positioning-band__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
@@ -356,7 +398,7 @@ const operatingPrinciples = [
     .solutions-hero__content > p:not(.page-kicker),
     .section-heading p:not(.page-kicker),
     .cta-panel p:not(.page-kicker),
-    .positioning-band p {
+    .solution-path-card p {
       max-width: 20rem;
     }
 
@@ -370,6 +412,12 @@ const operatingPrinciples = [
     .cta-panel :global(.btn) {
       width: 100%;
       justify-content: center;
+    }
+
+    .solution-path-card,
+    .solution-card,
+    .solutions-panel {
+      max-width: 22.5rem;
     }
 
     .solutions-grid {
