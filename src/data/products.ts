@@ -54,8 +54,8 @@ export const products: Product[] = [
             en: 'VIGGO'
         },
         description: {
-            es: 'Plataforma integral para negocios que venden servicios, productos o ambos: clientes, cobros, caja, inventario, credenciales, accesos e historial en una sola operación.',
-            en: 'Integrated operations platform for businesses that sell services, products, or both: customers, payments, cash desk, inventory, credentials, access control, and history in one operating flow.'
+            es: 'Plataforma integral para negocios que venden servicios, productos o ambos: clientes, caja, facturación, inventario avanzado, credenciales, accesos e historial en una sola operación.',
+            en: 'Integrated operations platform for businesses that sell services, products, or both: customers, cash desk, invoicing, advanced inventory, credentials, access control, and history in one operating flow.'
         },
         tags: ['Operations', 'Customers', 'Cash Desk', 'Inventory', 'Access Control'],
         category: {
@@ -90,13 +90,13 @@ export const products: Product[] = [
             es: [
                 'Clientes, servicios, vigencias y renovaciones',
                 'Caja, cobros, transacciones e historial',
-                'Inventario, productos, stock y movimientos',
+                'Inventario avanzado con compras, stock por sede y Kardex',
                 'Credencial digital y validación operativa'
             ],
             en: [
                 'Customers, services, validity periods, and renewals',
                 'Cash desk, payments, transactions, and history',
-                'Inventory, products, stock, and movements',
+                'Advanced inventory with purchases, branch stock, and Kardex',
                 'Digital credential and operational validation'
             ]
         }

@@ -50,8 +50,26 @@ const copy = isEs
       heroMetrics: [
         ["Clientes", "Activos, vencidos y por renovar"],
         ["Caja", "Cobros, turnos y cierres"],
-        ["Inventario", "Stock, compras y movimientos"],
+        ["Inventario", "Compras, stock por sede y Kardex"],
         ["Acceso", "Credencial y validación operativa"],
+      ],
+      inventoryKicker: "Inventario conectado",
+      inventoryTitle: "Inventario que opera al mismo nivel que caja",
+      inventoryLead:
+        "VIGGO trata el inventario como parte central de la operación: productos, compras, inventario inicial, stock por sede, ubicaciones, transferencias, conteos físicos, transacciones, auditoría y Kardex quedan conectados con caja y facturación.",
+      inventoryHighlights: [
+        ["Catálogos completos", "Unidades, marcas, categorías, subcategorías, proveedores, ubicaciones y tipos de movimiento para ordenar la base operativa."],
+        ["Stock por sede", "Existencias visibles por producto, sede y ubicación, con mínimos de referencia para detectar reposición a tiempo."],
+        ["Compras y movimientos", "Entradas, salidas, ajustes y documentos de inventario quedan registrados con trazabilidad."],
+        ["Transferencias y conteos", "Mueve inventario entre sedes o ubicaciones y compara la existencia real contra el registro operativo."],
+        ["Kardex por producto", "Consulta entradas, salidas, documentos y saldo por sede en una línea de tiempo clara."],
+        ["Auditoría de consistencia", "Revisa diferencias entre stock, ubicaciones y Kardex para actuar antes de que afecten la operación."],
+      ],
+      inventoryFlow: [
+        "Configura productos, proveedores, unidades y ubicaciones.",
+        "Registra inventario inicial, compras, ajustes o transferencias.",
+        "Vende desde caja y el stock se actualiza dentro del mismo flujo.",
+        "Consulta Kardex, transacciones, saldos y auditoría para tomar decisiones.",
       ],
       painsTitle: "Controles críticos que VIGGO ayuda a ordenar",
       painsLead:
@@ -88,7 +106,7 @@ const copy = isEs
       capabilities: [
         ["Clientes y servicios", "Registro, perfiles, planes, vigencias, renovaciones y estados visibles."],
         ["Caja y cobros", "Transacciones, pagos, turnos, cierres, historial y control diario."],
-        ["Inventario y productos", "Productos, compras, stock por sede, movimientos, transferencias y kardex."],
+        ["Inventario avanzado", "Productos, compras, inventario inicial, stock por sede, transferencias, conteos, auditoría y Kardex."],
         ["Credencial y validación", "Identificación digital para consultar, validar y actuar según el estado del cliente."],
         ["Usuarios y permisos", "Roles para que cada persona opere solo lo que corresponde."],
         ["Historial operativo", "Pagos, vigencias, accesos, caja e inventario con seguimiento consultable."],
@@ -99,7 +117,7 @@ const copy = isEs
       differentiators: [
         ["Operación integral", "Atención, caja, inventario y control de acceso no viven en pantallas aisladas."],
         ["Trazabilidad real", "Cada cobro, venta, movimiento y cambio conserva contexto para revisión posterior."],
-        ["Preparado para crecer", "Usuarios, roles, sedes y stock se ordenan sin perder control operativo."],
+        ["Preparado para crecer", "Usuarios, roles, sedes, ubicaciones y stock se ordenan sin perder control operativo."],
         ["Información para decidir", "El dashboard convierte el trabajo diario en ventas, cobros, ticket promedio y alertas."],
       ],
       outcomeTitle: "Impacto para el negocio",
@@ -110,14 +128,14 @@ const copy = isEs
         "VIGGO reduce fricción operativa y convierte la rutina diaria en control medible para equipos que necesitan atender mejor y crecer con orden.",
       results: [
         ["Menos diferencias al cierre", "Caja e historial se revisan con datos conectados."],
-        ["Inventario más confiable", "Ventas y Kardex cuentan la misma historia."],
+        ["Inventario más confiable", "Ventas, compras, transferencias, conteos y Kardex cuentan la misma historia."],
         ["Atención más rápida", "El equipo consulta estado, vigencias y registros sin buscar en listas externas."],
         ["Más control para crecer", "La operación queda preparada para más clientes, productos, servicios y sedes."],
       ],
       flow: [
         "Registra clientes, productos, servicios y reglas de operación.",
         "Cobra servicios, productos o combinaciones desde caja.",
-        "Controla vigencias, renovaciones, stock y movimientos.",
+        "Controla vigencias, renovaciones, stock por sede, compras, transferencias y movimientos.",
         "Valida credenciales, consulta estados y conserva historial.",
       ],
       contactTitle: "¿Quieres conocer VIGGO antes del lanzamiento?",
@@ -147,8 +165,26 @@ const copy = isEs
       heroMetrics: [
         ["Customers", "Active, expired, and up for renewal"],
         ["Cash desk", "Payments, shifts, and closings"],
-        ["Inventory", "Stock, purchases, and movements"],
+        ["Inventory", "Purchases, branch stock, and Kardex"],
         ["Access", "Credential and operational validation"],
+      ],
+      inventoryKicker: "Connected inventory",
+      inventoryTitle: "Inventory that operates at the same level as the cash desk",
+      inventoryLead:
+        "VIGGO treats inventory as a core part of the operation: products, purchases, initial inventory, stock by branch, locations, transfers, physical counts, transactions, audit, and Kardex stay connected to cash desk and invoicing.",
+      inventoryHighlights: [
+        ["Complete catalogs", "Units, brands, categories, subcategories, suppliers, locations, and movement types to organize the operating base."],
+        ["Stock by branch", "Visible stock by product, branch, and location, with reference minimums to detect replenishment needs on time."],
+        ["Purchases and movements", "Entries, exits, adjustments, and inventory documents remain recorded with traceability."],
+        ["Transfers and counts", "Move inventory between branches or locations and compare real stock against operational records."],
+        ["Product Kardex", "Review entries, exits, documents, and branch balance in a clear timeline."],
+        ["Consistency audit", "Review differences between stock, locations, and Kardex to act before they affect operations."],
+      ],
+      inventoryFlow: [
+        "Configure products, suppliers, units, and locations.",
+        "Register initial inventory, purchases, adjustments, or transfers.",
+        "Sell from the cash desk and stock updates inside the same flow.",
+        "Review Kardex, transactions, balances, and audit to make decisions.",
       ],
       painsTitle: "Critical controls VIGGO helps organize",
       painsLead:
@@ -185,7 +221,7 @@ const copy = isEs
       capabilities: [
         ["Customers and services", "Profiles, plans, validity periods, renewals, and visible status."],
         ["Cash desk and payments", "Transactions, payments, shifts, closings, history, and daily control."],
-        ["Inventory and products", "Products, purchases, stock by branch, movements, transfers, and kardex."],
+        ["Advanced inventory", "Products, purchases, initial inventory, stock by branch, transfers, counts, audit, and Kardex."],
         ["Credential and validation", "Digital identification to consult, validate, and act based on customer status."],
         ["Users and permissions", "Roles so each person operates only what they should."],
         ["Operational history", "Payments, validity periods, access, cash desk, and inventory with searchable follow-up."],
@@ -196,7 +232,7 @@ const copy = isEs
       differentiators: [
         ["Integrated operation", "Service, cash desk, inventory, and access control do not live in isolated screens."],
         ["Real traceability", "Every payment, sale, movement, and change keeps context for later review."],
-        ["Ready to grow", "Users, roles, branches, and stock stay organized without losing operational control."],
+        ["Ready to grow", "Users, roles, branches, locations, and stock stay organized without losing operational control."],
         ["Information for decisions", "The dashboard turns daily work into sales, payments, average ticket, and alerts."],
       ],
       outcomeTitle: "Business impact",
@@ -207,14 +243,14 @@ const copy = isEs
         "VIGGO reduces operational friction and turns daily routines into measurable control for teams that need better service and organized growth.",
       results: [
         ["Fewer closing differences", "Cash desk and history are reviewed with connected data."],
-        ["More reliable inventory", "Sales and Kardex tell the same story."],
+        ["More reliable inventory", "Sales, purchases, transfers, counts, and Kardex tell the same story."],
         ["Faster service", "The team reviews status, validity periods, and records without searching external lists."],
         ["More control to grow", "The operation is prepared for more customers, products, services, and branches."],
       ],
       flow: [
         "Register customers, products, services, and operating rules.",
         "Charge services, products, or combinations from the cash desk.",
-        "Control validity periods, renewals, stock, and movements.",
+        "Control validity periods, renewals, branch stock, purchases, transfers, and movements.",
         "Validate credentials, review status, and keep history.",
       ],
       contactTitle: "Want to know VIGGO before launch?",
@@ -461,6 +497,31 @@ const copy = isEs
             <span>{text}</span>
           </article>
         ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="inventory-focus" aria-labelledby="inventory-focus-title">
+    <Container>
+      <div class="inventory-focus__layout">
+        <div class="inventory-focus__intro">
+          <span class="viggo-kicker">{copy.inventoryKicker}</span>
+          <h2 id="inventory-focus-title">{copy.inventoryTitle}</h2>
+          <p>{copy.inventoryLead}</p>
+
+          <ol class="inventory-flow">
+            {copy.inventoryFlow.map((item) => <li>{item}</li>)}
+          </ol>
+        </div>
+
+        <div class="inventory-highlight-grid">
+          {copy.inventoryHighlights.map(([title, text]) => (
+            <article>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </Container>
   </section>
@@ -986,6 +1047,107 @@ const copy = isEs
     line-height: 1.45;
   }
 
+  .inventory-focus {
+    padding: clamp(4rem, 7vw, 6rem) 0;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(circle at 88% 18%, color-mix(in srgb, #22d3ee 18%, transparent), transparent 28%),
+      linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--surface-2) 74%, var(--bg)));
+  }
+
+  .inventory-focus__layout {
+    display: grid;
+    grid-template-columns: minmax(20rem, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .inventory-focus__intro {
+    min-width: 0;
+    padding: clamp(1.35rem, 3vw, 2rem);
+    border: 1px solid color-mix(in srgb, #6366f1 16%, var(--border));
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #eef2ff 52%, var(--surface)), var(--surface) 62%),
+      var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .inventory-focus__intro h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(2.1rem, 4.2vw, 3.15rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .inventory-focus__intro p {
+    margin: var(--space-5) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .inventory-flow {
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-7) 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: inventory-flow;
+  }
+
+  .inventory-flow li {
+    counter-increment: inventory-flow;
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: start;
+    padding: var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 88%, white);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.55;
+  }
+
+  .inventory-flow li::before {
+    content: counter(inventory-flow, decimal-leading-zero);
+    color: #4f46e5;
+    font-size: var(--text-xs);
+    font-weight: 900;
+  }
+
+  .inventory-highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .inventory-highlight-grid article {
+    min-width: 0;
+    padding: clamp(1.2rem, 2.4vw, 1.55rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .inventory-highlight-grid h3 {
+    margin: 0 0 var(--space-3);
+    color: var(--text);
+    font-size: var(--text-lg);
+    line-height: 1.25;
+  }
+
+  .inventory-highlight-grid p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+  }
+
   .viggo-section {
     padding: clamp(4rem, 7vw, 6rem) 0;
   }
@@ -1118,12 +1280,17 @@ const copy = isEs
       grid-template-columns: 1fr;
     }
 
+    .inventory-focus__layout {
+      grid-template-columns: 1fr;
+    }
+
     .showcase-heading {
       max-width: 48rem;
     }
 
     .positioning-grid,
     .viggo-strip__grid,
+    .inventory-highlight-grid,
     .pain-grid,
     .capability-grid,
     .value-grid,
@@ -1147,6 +1314,8 @@ const copy = isEs
     .showcase-heading p,
     .positioning-panel,
     .positioning-grid,
+    .inventory-focus__intro,
+    .inventory-highlight-grid,
     .pain-grid,
     .capability-grid,
     .value-grid,
@@ -1194,6 +1363,7 @@ const copy = isEs
 
     .positioning-grid,
     .viggo-strip__grid,
+    .inventory-highlight-grid,
     .pain-grid,
     .capability-grid,
     .value-grid,
