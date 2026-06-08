@@ -2,66 +2,55 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
-import { qavisionTool } from "../../../data/qavisionTool";
+import { products } from "../../../data/products";
 
-const products = [
-  {
-    title: "Takofy",
-    category: "Operaciones de restaurantes",
-    status: "Publicado",
-    description:
-      "Software de gestión para restaurantes diseñado para operación rápida, offline-first, comandas, mesas, pagos, reportes y flujos de cocina.",
-    internalHref: "/es/productos/takofy/",
-    publicUrl: "https://takofy.app/es/",
-    externalLabel: "Visitar sitio web",
-    features: [
-      "Operación offline-first para restaurantes",
-      "Control de comandas, mesas y pagos",
-      "KDS, analítica e inventario integrado",
-    ],
-  },
-  {
-    title: "Nica Finanzas",
-    category: "Herramientas financieras",
-    status: "Publicado",
-    description:
-      "Calculadoras financieras para Nicaragua, incluyendo salario, préstamos y liquidación laboral.",
-    internalHref: "/es/productos/nica-finanzas/",
-    publicUrl: "https://nicafinanzas.com/",
-    externalLabel: "Visitar sitio web",
-    features: [
-      "Calculadora salarial para Nicaragua",
-      "Cálculos de préstamos",
-      "Liquidación laboral",
-    ],
-  },
-  {
-    title: "QAVision",
-    category: "Herramienta de evidencia QA",
-    status: "Herramienta gratuita",
-    description:
-      "Herramienta gratuita de evidencia QA creada por Quantix para captura visual, grabación por zona, anotaciones y organización de evidencia.",
-    internalHref: "/es/productos/qavision/",
-    publicUrl: qavisionTool.downloadUrl,
-    externalLabel: "Descargar",
-    features: [
-      "Captura de pantalla multi-modo",
-      "Grabación de video por zona con FFmpeg",
-      "Visor Pro con anotaciones y edición enriquecida",
-    ],
-  },
-];
+const contactHref = "/es/contacto/";
+const getProductCta = (product: (typeof products)[number]) => {
+  if (product.publicUrl) {
+    return {
+      href: product.publicUrl,
+      target: "_blank",
+      label: product.externalLabel?.es ?? "Visitar sitio web",
+    };
+  }
+
+  return {
+    href: contactHref,
+    target: undefined,
+    label: product.externalLabel?.es ?? "Solicitar información",
+  };
+};
 
 const productPrinciples = [
-  "Productos y herramientas publicados con puntos de acceso públicos.",
+  "Productos reales creados para ordenar flujos diarios de negocio.",
   "Construidos alrededor de flujos operativos o financieros específicos.",
-  "Incluye plataformas SaaS comerciales y herramientas gratuitas.",
+  "Incluye plataformas comerciales, herramientas gratuitas y próximos lanzamientos.",
 ];
+
+const getProductCardContent = (product: (typeof products)[number]) => {
+  if (product.id === "viggo") {
+    return {
+      description: "La próxima plataforma de Quantix para operar servicios, productos, caja e inventario desde un solo lugar.",
+      features: [
+        "Servicios y productos en una misma operación",
+        "Caja e inventario conectados",
+        "Credencial digital para validación",
+      ],
+      showAvailability: false,
+    };
+  }
+
+  return {
+    description: product.description.es,
+    features: product.features.es,
+    showAvailability: Boolean(product.availabilityNote),
+  };
+};
 ---
 
 <BaseLayout
   title="Productos"
-  description="Productos de software y herramientas gratuitas de Quantix Software, incluyendo Takofy, Nica Finanzas y QAVision."
+  description="Productos de software y herramientas de Quantix Software, incluyendo VIGGO, Takofy, Nica Finanzas y QAVision."
   lang="es"
   isHeaderTransparent={false}
 >
@@ -72,7 +61,7 @@ const productPrinciples = [
           <p class="page-kicker">Productos</p>
           <h1 id="products-title">Productos de software publicados para flujos reales</h1>
           <p>
-            Quantix Software construye y opera productos y herramientas enfocados en operaciones de restaurantes, cálculos financieros, evidencia QA y flujos prácticos de negocio.
+            Quantix Software construye y opera productos enfocados en operación integral, restaurantes, cálculos financieros, evidencia QA y flujos prácticos de negocio.
           </p>
           <div class="page-actions">
             <Button href="#productos-publicados" variant="primary" size="lg">Ver productos</Button>
@@ -93,36 +82,49 @@ const productPrinciples = [
     <section id="productos-publicados" class="products-section" aria-labelledby="published-products-title">
       <Container>
         <div class="section-heading">
-          <p class="page-kicker">Productos publicados</p>
+          <p class="page-kicker">Productos de Quantix</p>
           <h2 id="published-products-title">Productos de software construidos y operados por Quantix</h2>
           <p>
-            Cada producto o herramienta tiene un flujo específico, punto de acceso público y página de producto para contexto.
+            Cada producto tiene un flujo específico, página de producto y una ruta clara para conocerlo, solicitar información o usarlo cuando está publicado.
           </p>
         </div>
 
         <div class="products-grid">
-          {products.map((product) => (
-            <article class="product-card">
+          {products.map((product) => {
+            const cta = getProductCta(product);
+            const card = getProductCardContent(product);
+            const isViggo = product.id === "viggo";
+
+            return (
+            <article class:list={["product-card", { "product-card--featured": product.featured }]}>
               <div class="product-card__header">
                 <div>
-                  <span class="product-category">{product.category}</span>
-                  <h3>{product.title}</h3>
+                  <span class="product-category">{product.category?.es ?? product.tags[0]}</span>
+                  <h3>{product.title.es}</h3>
                 </div>
-                <span class="product-status">{product.status}</span>
+                <span class="product-status">{product.status.es}</span>
               </div>
 
-              <p>{product.description}</p>
+              <p>{card.description}</p>
+              {card.showAvailability && product.availabilityNote && <p class="product-availability">{product.availabilityNote.es}</p>}
 
               <ul>
-                {product.features.map((feature) => <li>{feature}</li>)}
+                {card.features.map((feature) => <li>{feature}</li>)}
               </ul>
 
               <div class="product-actions">
-                <Button href={product.internalHref} variant="secondary">Ver producto</Button>
-                <Button href={product.publicUrl} target="_blank" variant="primary">{product.externalLabel}</Button>
+                {isViggo ? (
+                  <Button href={product.href.es} variant="primary">Conocer VIGGO</Button>
+                ) : (
+                  <>
+                    <Button href={product.href.es} variant="secondary">Ver producto</Button>
+                    <Button href={cta.href} target={cta.target} variant="primary">{cta.label}</Button>
+                  </>
+                )}
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>
@@ -134,7 +136,7 @@ const productPrinciples = [
             <p class="page-kicker">Plataformas a medida</p>
             <h2 id="platform-title">¿Necesitas construir un producto o plataforma interna?</h2>
             <p>
-              También ayudamos a empresas a definir y construir plataformas SaaS, sistemas internos, integraciones y herramientas de automatización.
+              También ayudamos a empresas a definir y construir plataformas comerciales, sistemas internos, integraciones y herramientas de automatización.
             </p>
           </div>
           <div class="page-actions">
@@ -271,6 +273,13 @@ const productPrinciples = [
     box-shadow: var(--shadow-sm);
   }
 
+  .product-card--featured {
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, #eef2ff), var(--surface));
+    box-shadow: var(--shadow-sm);
+  }
+
   .product-card__header {
     display: flex;
     align-items: flex-start;
@@ -317,6 +326,17 @@ const productPrinciples = [
     color: var(--text-muted);
     font-size: var(--text-base);
     line-height: 1.68;
+  }
+
+  .product-availability {
+    padding: 0.8rem 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 22%, var(--surface));
+    color: var(--text);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    line-height: 1.5;
   }
 
   .product-card ul {

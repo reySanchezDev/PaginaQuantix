@@ -66,15 +66,17 @@ const operatingSolutions = [
 ];
 
 const heroPanelSolutions = [
+  "Integrated operations",
+  "Customers & cash desk",
+  "Inventory",
   "Restaurants & POS",
   "Billing",
-  "Inventory",
   "Dashboards",
   "Automation",
-  "APIs",
 ];
 
 const workAreas = [
+  "Integrated business operations",
   "Restaurant operations",
   "Financial tools",
   "QA evidence",
@@ -116,12 +118,35 @@ const getProduct = (id: string) => {
 
 const productProof = [
   {
-    product: getProduct("takofy"),
-    statusLabel: "Commercial SaaS",
-    domain: "Quantix SaaS platform",
-    railLabel: "SaaS platform",
+    product: getProduct("viggo"),
+    statusLabel: "Coming soon",
+    domain: "Featured Quantix product",
+    railLabel: "Integrated operations",
     proofLine:
-      "Takofy is a Quantix SaaS platform for restaurant operations, built around orders, tables, payments, kitchen workflows, reporting, inventory and offline-first execution.",
+      "VIGGO is the new Quantix platform for businesses that need to control customers, services, products, cash desk, inventory, credentials, access and history from one operating flow.",
+    areas: [
+      {
+        label: "Operation",
+        items: ["Customers", "Services", "Validity"],
+      },
+      {
+        label: "Daily control",
+        items: ["Cash desk", "Payments", "History"],
+      },
+      {
+        label: "Products",
+        items: ["Inventory", "Stock", "Movements"],
+      },
+    ],
+    visitLabel: "Request information",
+  },
+  {
+    product: getProduct("takofy"),
+    statusLabel: "Commercial platform",
+    domain: "Quantix platform",
+    railLabel: "Commercial platform",
+    proofLine:
+      "Takofy is a Quantix commercial platform for restaurant operations, built around orders, tables, payments, kitchen workflows, reporting, inventory and continuity without connection.",
     areas: [
       {
         label: "Operation",
@@ -129,7 +154,7 @@ const productProof = [
       },
       {
         label: "Kitchen and stock",
-        items: ["KDS", "Inventory", "Offline-first"],
+        items: ["Kitchen", "Inventory", "No connection"],
       },
       {
         label: "Control",
@@ -214,9 +239,13 @@ const productProof = [
           </div>
 
           <div class="hero-products">
+            <a href="/en/products/viggo/">
+              <span>VIGGO</span>
+              <strong>Integrated operations</strong>
+            </a>
             <a href="/en/products/takofy/">
               <span>Takofy</span>
-              <strong>SaaS for restaurants</strong>
+              <strong>Restaurant operations</strong>
             </a>
             <a href="/en/products/nica-finanzas/">
               <span>Nica Finanzas</span>
@@ -312,7 +341,7 @@ const productProof = [
           <p class="section-eyebrow">Products</p>
           <h2 id="products-title">Products and tools created by Quantix</h2>
           <p>
-            Quantix creates its own platforms and utilities for specific operating needs, from restaurant execution and financial calculations to QA evidence workflows.
+            Quantix creates its own platforms and utilities for specific operating needs, from integrated business operations and restaurant execution to financial calculations and QA evidence workflows.
           </p>
         </div>
 

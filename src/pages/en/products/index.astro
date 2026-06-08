@@ -2,66 +2,55 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import Button from "../../../components/ui/Button.astro";
-import { qavisionTool } from "../../../data/qavisionTool";
+import { products } from "../../../data/products";
 
-const products = [
-  {
-    title: "Takofy",
-    category: "Restaurant operations",
-    status: "Published",
-    description:
-      "Restaurant management software built for fast, offline-first operations, orders, tables, payments, reporting and kitchen workflows.",
-    internalHref: "/en/products/takofy/",
-    publicUrl: "https://takofy.app/es/",
-    externalLabel: "Visit website",
-    features: [
-      "Offline-first restaurant operations",
-      "Orders, tables and payments control",
-      "KDS, analytics and integrated inventory",
-    ],
-  },
-  {
-    title: "Nica Finanzas",
-    category: "Financial tools",
-    status: "Published",
-    description:
-      "Financial calculators for Nicaragua, including salary, loan and employment settlement calculations.",
-    internalHref: "/en/products/nica-finanzas/",
-    publicUrl: "https://nicafinanzas.com/",
-    externalLabel: "Visit website",
-    features: [
-      "Salary calculator for Nicaragua",
-      "Loan calculations",
-      "Employment settlement calculations",
-    ],
-  },
-  {
-    title: "QAVision",
-    category: "QA evidence tool",
-    status: "Free tool",
-    description:
-      "Free QA evidence tool created by Quantix for visual capture, zone video recording, annotations and evidence organization.",
-    internalHref: "/en/products/qavision/",
-    publicUrl: qavisionTool.downloadUrl,
-    externalLabel: "Download",
-    features: [
-      "Multi-mode screen capture",
-      "Zone video recording with FFmpeg",
-      "Pro Viewer with annotations and rich editing",
-    ],
-  },
-];
+const contactHref = "/en/contact/";
+const getProductCta = (product: (typeof products)[number]) => {
+  if (product.publicUrl) {
+    return {
+      href: product.publicUrl,
+      target: "_blank",
+      label: product.externalLabel?.en ?? "Visit website",
+    };
+  }
+
+  return {
+    href: contactHref,
+    target: undefined,
+    label: product.externalLabel?.en ?? "Request information",
+  };
+};
 
 const productPrinciples = [
-  "Published products and tools with public entry points.",
+  "Real products created to organize daily business workflows.",
   "Built around specific operational or financial workflows.",
-  "Includes commercial SaaS platforms and free practical tools.",
+  "Includes commercial platforms, free tools, and upcoming launches.",
 ];
+
+const getProductCardContent = (product: (typeof products)[number]) => {
+  if (product.id === "viggo") {
+    return {
+      description: "The next Quantix platform for operating services, products, cash desk, and inventory from one place.",
+      features: [
+        "Services and products in one operation",
+        "Connected cash desk and inventory",
+        "Digital credential for validation",
+      ],
+      showAvailability: false,
+    };
+  }
+
+  return {
+    description: product.description.en,
+    features: product.features.en,
+    showAvailability: Boolean(product.availabilityNote),
+  };
+};
 ---
 
 <BaseLayout
   title="Products"
-  description="Software products and free tools from Quantix Software, including Takofy, Nica Finanzas and QAVision."
+  description="Software products and tools from Quantix Software, including VIGGO, Takofy, Nica Finanzas and QAVision."
   lang="en"
   isHeaderTransparent={false}
 >
@@ -72,7 +61,7 @@ const productPrinciples = [
           <p class="page-kicker">Products</p>
           <h1 id="products-title">Published software products for real workflows</h1>
           <p>
-            Quantix Software builds and operates focused products and tools for restaurant operations, financial calculations, QA evidence and practical business workflows.
+            Quantix Software builds and operates focused products for integrated operations, restaurants, financial calculations, QA evidence and practical business workflows.
           </p>
           <div class="page-actions">
             <Button href="#published-products" variant="primary" size="lg">View products</Button>
@@ -93,36 +82,49 @@ const productPrinciples = [
     <section id="published-products" class="products-section" aria-labelledby="published-products-title">
       <Container>
         <div class="section-heading">
-          <p class="page-kicker">Published products</p>
+          <p class="page-kicker">Quantix products</p>
           <h2 id="published-products-title">Software products built and operated by Quantix</h2>
           <p>
-            Each product or tool has a specific workflow, public entry point and product page for context.
+            Each product has a specific workflow, product page and clear path to learn more, request information or use it when published.
           </p>
         </div>
 
         <div class="products-grid">
-          {products.map((product) => (
-            <article class="product-card">
+          {products.map((product) => {
+            const cta = getProductCta(product);
+            const card = getProductCardContent(product);
+            const isViggo = product.id === "viggo";
+
+            return (
+            <article class:list={["product-card", { "product-card--featured": product.featured }]}>
               <div class="product-card__header">
                 <div>
-                  <span class="product-category">{product.category}</span>
-                  <h3>{product.title}</h3>
+                  <span class="product-category">{product.category?.en ?? product.tags[0]}</span>
+                  <h3>{product.title.en}</h3>
                 </div>
-                <span class="product-status">{product.status}</span>
+                <span class="product-status">{product.status.en}</span>
               </div>
 
-              <p>{product.description}</p>
+              <p>{card.description}</p>
+              {card.showAvailability && product.availabilityNote && <p class="product-availability">{product.availabilityNote.en}</p>}
 
               <ul>
-                {product.features.map((feature) => <li>{feature}</li>)}
+                {card.features.map((feature) => <li>{feature}</li>)}
               </ul>
 
               <div class="product-actions">
-                <Button href={product.internalHref} variant="secondary">View product</Button>
-                <Button href={product.publicUrl} target="_blank" variant="primary">{product.externalLabel}</Button>
+                {isViggo ? (
+                  <Button href={product.href.en} variant="primary">Explore VIGGO</Button>
+                ) : (
+                  <>
+                    <Button href={product.href.en} variant="secondary">View product</Button>
+                    <Button href={cta.href} target={cta.target} variant="primary">{cta.label}</Button>
+                  </>
+                )}
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>
@@ -134,7 +136,7 @@ const productPrinciples = [
             <p class="page-kicker">Custom platforms</p>
             <h2 id="platform-title">Need a product or internal platform of your own?</h2>
             <p>
-              We also help companies scope and build custom SaaS platforms, internal systems, integrations and automation tools.
+              We also help companies scope and build commercial platforms, internal systems, integrations and automation tools.
             </p>
           </div>
           <div class="page-actions">
@@ -271,6 +273,13 @@ const productPrinciples = [
     box-shadow: var(--shadow-sm);
   }
 
+  .product-card--featured {
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, #eef2ff), var(--surface));
+    box-shadow: var(--shadow-sm);
+  }
+
   .product-card__header {
     display: flex;
     align-items: flex-start;
@@ -317,6 +326,17 @@ const productPrinciples = [
     color: var(--text-muted);
     font-size: var(--text-base);
     line-height: 1.68;
+  }
+
+  .product-availability {
+    padding: 0.8rem 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 12%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--primary-soft) 22%, var(--surface));
+    color: var(--text);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    line-height: 1.5;
   }
 
   .product-card ul {

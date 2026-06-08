@@ -1,0 +1,1241 @@
+﻿---
+import ProductLayout from "../../layouts/ProductLayout.astro";
+import ContactSection from "../sections/ContactSection.astro";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import { products } from "../../data/products";
+
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props as Props;
+const product = products.find((item) => item.id === "viggo");
+
+if (!product) {
+  throw new Error("Producto no encontrado: viggo");
+}
+
+const isEs = lang === "es";
+const contactHref = isEs ? "/es/contacto/" : "/en/contact/";
+const flowHref = "#viggo-flow";
+const primaryCtaHref = product.publicUrl ?? contactHref;
+const primaryCtaLabel = product.publicUrl
+  ? isEs
+    ? "Ir a VIGGO"
+    : "Go to VIGGO"
+  : product.externalLabel?.[lang] ?? (isEs ? "Solicitar información" : "Request information");
+
+const copy = isEs
+  ? {
+      title: "VIGGO - Operación integral para negocios",
+      description:
+        "VIGGO ayuda a negocios que venden servicios, productos o ambos a controlar clientes, cobros, caja, inventario, accesos e historial desde una sola operación.",
+      launchLabel: "Próximo lanzamiento",
+      launchText: "Disponible el miércoles 10 de junio de 2026",
+      h1: "VIGGO",
+      lead:
+        "VIGGO convierte ventas, servicios, caja, inventario y clientes en una operación controlada desde el primer día. Diseñado para negocios que necesitan trazabilidad real, atención ágil y datos confiables para crecer.",
+      secondaryCta: "Ver flujo operativo",
+      positioningKicker: "Operación conectada",
+      positioningTitle: "Todo lo que pasa en el negocio, conectado en una misma operación",
+      positioningLead:
+        "VIGGO no se limita a registrar ventas: une clientes, servicios, productos, cobros, stock, accesos, roles e historial para que cada atención deje evidencia y cada decisión tenga contexto.",
+      positioningCards: [
+        ["Vende servicios, productos o ambos", "Arma operaciones mixtas sin separar caja, atención e inventario."],
+        ["Caja con trazabilidad diaria", "Aperturas, cobros, métodos de pago, cierres e historial quedan conectados."],
+        ["Inventario que responde a la venta", "Cada producto vendido actualiza movimientos, existencias y Kardex."],
+        ["Clientes con estado visible", "Vigencias, renovaciones, accesos y condiciones operativas quedan al alcance del equipo."],
+      ],
+      heroMetrics: [
+        ["Clientes", "Activos, vencidos y por renovar"],
+        ["Caja", "Cobros, turnos y cierres"],
+        ["Inventario", "Stock, compras y movimientos"],
+        ["Acceso", "Credencial y validación operativa"],
+      ],
+      painsTitle: "Controles críticos que VIGGO ayuda a ordenar",
+      painsLead:
+        "A medida que un negocio crece, los registros separados, los controles manuales y los cobros sin seguimiento pueden afectar la eficiencia, la rentabilidad y la confianza operativa.",
+      pains: [
+        {
+          title: "Clientes sin estado claro",
+          text: "Saber quién está activo, vencido, moroso, bloqueado o pendiente deja de depender de memoria, mensajes o listas sueltas.",
+        },
+        {
+          title: "Cobros dispersos",
+          text: "Los pagos, renovaciones, transacciones y cierres quedan conectados a la operación real del cliente y del negocio.",
+        },
+        {
+          title: "Inventario separado",
+          text: "Productos, compras, stock, movimientos y ventas dejan de vivir aparte de caja y atención.",
+        },
+        {
+          title: "Accesos sin control",
+          text: "La credencial digital ayuda a validar clientes, localizar perfiles y tomar decisiones operativas con información visible.",
+        },
+        {
+          title: "Caja sin trazabilidad",
+          text: "Aperturas, cierres, métodos de pago, diferencias y transacciones quedan disponibles para revisión.",
+        },
+        {
+          title: "Decisiones sin historia",
+          text: "Pagos, vigencias, accesos, inventario y movimientos dejan registro para consultar lo que realmente pasó.",
+        },
+      ],
+      capabilitiesTitle: "Una operación completa, no herramientas aisladas",
+      capabilitiesLead:
+        "VIGGO conecta las áreas que normalmente terminan divididas entre registros manuales, hojas de cálculo, mensajes, procesos de caja y controles no estandarizados.",
+      capabilities: [
+        ["Clientes y servicios", "Registro, perfiles, planes, vigencias, renovaciones y estados visibles."],
+        ["Caja y cobros", "Transacciones, pagos, turnos, cierres, historial y control diario."],
+        ["Inventario y productos", "Productos, compras, stock por sede, movimientos, transferencias y kardex."],
+        ["Credencial y validación", "Identificación digital para consultar, validar y actuar según el estado del cliente."],
+        ["Usuarios y permisos", "Roles para que cada persona opere solo lo que corresponde."],
+        ["Historial operativo", "Pagos, vigencias, accesos, caja e inventario con seguimiento consultable."],
+      ],
+      differentiatorsTitle: "Por qué VIGGO marca diferencia en la operación",
+      differentiatorsLead:
+        "Su valor está en conectar áreas que normalmente trabajan por separado, sin obligar al negocio a perder visibilidad entre caja, atención, inventario y control.",
+      differentiators: [
+        ["Operación integral", "Atención, caja, inventario y control de acceso no viven en pantallas aisladas."],
+        ["Trazabilidad real", "Cada cobro, venta, movimiento y cambio conserva contexto para revisión posterior."],
+        ["Preparado para crecer", "Usuarios, roles, sedes y stock se ordenan sin perder control operativo."],
+        ["Información para decidir", "El dashboard convierte el trabajo diario en ventas, cobros, ticket promedio y alertas."],
+      ],
+      outcomeTitle: "Impacto para el negocio",
+      outcomeText:
+        "Mayor orden operativo, más claridad en atención y caja, mejor visibilidad sobre lo que se vende, lo que se cobra, lo que queda en inventario y quién puede utilizar cada servicio.",
+      resultsTitle: "Beneficios para el negocio",
+      resultsLead:
+        "VIGGO reduce fricción operativa y convierte la rutina diaria en control medible para equipos que necesitan atender mejor y crecer con orden.",
+      results: [
+        ["Menos diferencias al cierre", "Caja e historial se revisan con datos conectados."],
+        ["Inventario más confiable", "Ventas y Kardex cuentan la misma historia."],
+        ["Atención más rápida", "El equipo consulta estado, vigencias y registros sin buscar en listas externas."],
+        ["Más control para crecer", "La operación queda preparada para más clientes, productos, servicios y sedes."],
+      ],
+      flow: [
+        "Registra clientes, productos, servicios y reglas de operación.",
+        "Cobra servicios, productos o combinaciones desde caja.",
+        "Controla vigencias, renovaciones, stock y movimientos.",
+        "Valida credenciales, consulta estados y conserva historial.",
+      ],
+      contactTitle: "¿Quieres conocer VIGGO antes del lanzamiento?",
+      contactDescription:
+        "Solicita información a Quantix y conversemos sobre cómo VIGGO puede ordenar la operación de tu negocio antes de su salida oficial.",
+    }
+  : {
+      title: "VIGGO - Integrated business operations",
+      description:
+        "VIGGO helps businesses that sell services, products, or both control customers, payments, cash desk, inventory, access, and history from one operating flow.",
+      launchLabel: "Coming soon",
+      launchText: "Available Wednesday, June 10, 2026",
+      h1: "VIGGO",
+      lead:
+        "VIGGO turns sales, services, cash desk, inventory, and customers into a controlled operation from day one. Built for businesses that need real traceability, faster service, and reliable data to grow.",
+      secondaryCta: "View operating flow",
+      positioningKicker: "Connected operations",
+      positioningTitle: "Everything that happens in the business, connected in one operating flow",
+      positioningLead:
+        "VIGGO goes beyond recording sales: it connects customers, services, products, payments, stock, access, roles, and history so every interaction leaves evidence and every decision has context.",
+      positioningCards: [
+        ["Sell services, products, or both", "Run mixed operations without separating cash desk, service, and inventory."],
+        ["Daily cash traceability", "Openings, payments, payment methods, closings, and history remain connected."],
+        ["Inventory that responds to sales", "Each product sold updates movements, stock, and Kardex."],
+        ["Visible customer status", "Validity periods, renewals, access, and operating conditions remain available to the team."],
+      ],
+      heroMetrics: [
+        ["Customers", "Active, expired, and up for renewal"],
+        ["Cash desk", "Payments, shifts, and closings"],
+        ["Inventory", "Stock, purchases, and movements"],
+        ["Access", "Credential and operational validation"],
+      ],
+      painsTitle: "Critical controls VIGGO helps organize",
+      painsLead:
+        "As a business grows, separated records, manual controls, and payments without follow-up can affect efficiency, profitability, and operational confidence.",
+      pains: [
+        {
+          title: "Unclear customer status",
+          text: "Knowing who is active, expired, delinquent, blocked, or pending no longer depends on memory, messages, or loose lists.",
+        },
+        {
+          title: "Scattered payments",
+          text: "Payments, renewals, transactions, and closings connect to the real operation of the customer and business.",
+        },
+        {
+          title: "Separate inventory",
+          text: "Products, purchases, stock, movements, and sales stop living apart from cash desk and customer service.",
+        },
+        {
+          title: "Access without control",
+          text: "The digital credential helps validate customers, locate profiles, and act with visible operating information.",
+        },
+        {
+          title: "Cash desk without traceability",
+          text: "Openings, closings, payment methods, differences, and transactions remain available for review.",
+        },
+        {
+          title: "Decisions without history",
+          text: "Payments, validity periods, access, inventory, and movements leave a record of what really happened.",
+        },
+      ],
+      capabilitiesTitle: "A complete operation, not isolated tools",
+      capabilitiesLead:
+        "VIGGO connects areas that often end up split across manual records, spreadsheets, messages, cash desk processes, and non-standardized controls.",
+      capabilities: [
+        ["Customers and services", "Profiles, plans, validity periods, renewals, and visible status."],
+        ["Cash desk and payments", "Transactions, payments, shifts, closings, history, and daily control."],
+        ["Inventory and products", "Products, purchases, stock by branch, movements, transfers, and kardex."],
+        ["Credential and validation", "Digital identification to consult, validate, and act based on customer status."],
+        ["Users and permissions", "Roles so each person operates only what they should."],
+        ["Operational history", "Payments, validity periods, access, cash desk, and inventory with searchable follow-up."],
+      ],
+      differentiatorsTitle: "What makes VIGGO different in day-to-day operations",
+      differentiatorsLead:
+        "Its value is connecting areas that usually work separately, without forcing the business to lose visibility across cash desk, service, inventory, and control.",
+      differentiators: [
+        ["Integrated operation", "Service, cash desk, inventory, and access control do not live in isolated screens."],
+        ["Real traceability", "Every payment, sale, movement, and change keeps context for later review."],
+        ["Ready to grow", "Users, roles, branches, and stock stay organized without losing operational control."],
+        ["Information for decisions", "The dashboard turns daily work into sales, payments, average ticket, and alerts."],
+      ],
+      outcomeTitle: "Business impact",
+      outcomeText:
+        "Greater operational order, clearer service and cash desk processes, and better visibility into what is sold, what is collected, what remains in inventory, and who can use each service.",
+      resultsTitle: "Business benefits",
+      resultsLead:
+        "VIGGO reduces operational friction and turns daily routines into measurable control for teams that need better service and organized growth.",
+      results: [
+        ["Fewer closing differences", "Cash desk and history are reviewed with connected data."],
+        ["More reliable inventory", "Sales and Kardex tell the same story."],
+        ["Faster service", "The team reviews status, validity periods, and records without searching external lists."],
+        ["More control to grow", "The operation is prepared for more customers, products, services, and branches."],
+      ],
+      flow: [
+        "Register customers, products, services, and operating rules.",
+        "Charge services, products, or combinations from the cash desk.",
+        "Control validity periods, renewals, stock, and movements.",
+        "Validate credentials, review status, and keep history.",
+      ],
+      contactTitle: "Want to know VIGGO before launch?",
+      contactDescription:
+        "Request information from Quantix and let us talk about how VIGGO can organize your business operation before its official release.",
+    };
+---
+
+<ProductLayout title={copy.title} description={copy.description} lang={lang}>
+  <section class="viggo-hero" aria-labelledby="viggo-title">
+    <Container>
+      <div class="viggo-hero__grid">
+        <div class="viggo-hero__content">
+          <div class="launch-banner" aria-label={`${copy.launchLabel}: ${copy.launchText}`}>
+            <span>{copy.launchLabel}</span>
+            <strong>{copy.launchText}</strong>
+          </div>
+          <h1 id="viggo-title">{copy.h1}</h1>
+          <p>{copy.lead}</p>
+          <div class="viggo-actions">
+            <Button href={primaryCtaHref} target={product.publicUrl ? "_blank" : undefined} variant="primary" size="lg">
+              {primaryCtaLabel}
+            </Button>
+            <Button href={flowHref} variant="secondary" size="lg">{copy.secondaryCta}</Button>
+          </div>
+        </div>
+
+        <div class="viggo-hero__preview" aria-hidden="true">
+          <div class="hero-video-shell">
+            <div class="hero-video-shell__top">
+              <i></i><i></i><i></i>
+              <span>VIGGO Dashboard</span>
+            </div>
+            <video
+              src="/videos/viggo/dashboard-video.mp4"
+              poster="/images/viggo/viggo-dashboard.png"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-positioning" aria-labelledby="viggo-positioning-title">
+    <Container>
+      <div class="positioning-panel">
+        <div class="section-heading section-heading--wide">
+          <span class="viggo-kicker">{copy.positioningKicker}</span>
+          <h2 id="viggo-positioning-title">{copy.positioningTitle}</h2>
+          <p>{copy.positioningLead}</p>
+        </div>
+
+        <div class="positioning-grid">
+          {copy.positioningCards.map(([title, text]) => (
+            <article>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section id="viggo-flow" class="viggo-showcase" aria-labelledby="viggo-showcase-title">
+    <Container>
+      <div class="showcase-heading">
+        <span class="viggo-kicker">{isEs ? "VIGGO en operación" : "VIGGO in operation"}</span>
+        <h2 id="viggo-showcase-title">{isEs ? "Caja, transacciones e inventario conectados" : "Cash desk, transactions, and inventory connected"}</h2>
+        <p>
+          {isEs
+            ? "Desde la apertura de caja hasta el historial de transacciones y el Kardex, VIGGO deja visible cada paso operativo de la venta."
+            : "From cash desk opening to transaction history and Kardex, VIGGO keeps each operational step of the sale visible."}
+        </p>
+      </div>
+
+      <div class="showcase-flow" aria-label={isEs ? "Flujo de caja hacia Kardex" : "Cash desk to Kardex flow"}>
+        <article class="pos-mockup pos-mockup--cash">
+          <div class="pos-mockup__label">
+            <span>01</span>
+            <strong>{isEs ? "Caja abierta y bajo control" : "Cash desk open and controlled"}</strong>
+          </div>
+          <div class="pos-device">
+            <div class="pos-device__top">
+              <i></i><i></i><i></i>
+              <span>{isEs ? "Gestión de caja" : "Cash desk management"}</span>
+            </div>
+            <div class="pos-screen">
+              <img
+                src="/images/viggo/viggo-caja-gestion-2.png"
+                alt={isEs ? "Pantalla de VIGGO mostrando apertura y gestión de caja" : "VIGGO screen showing cash desk opening and management"}
+                loading="eager"
+                width="1916"
+                height="940"
+              />
+            </div>
+          </div>
+        </article>
+
+        <div class="showcase-connector" aria-hidden="true">
+          <span>{isEs ? "caja lista" : "cash ready"}</span>
+        </div>
+
+        <article class="pos-mockup pos-mockup--sales">
+          <div class="pos-mockup__label">
+            <span>02</span>
+            <strong>{isEs ? "Caja factura la venta" : "Cash desk invoices the sale"}</strong>
+          </div>
+          <div class="pos-device">
+            <div class="pos-device__top">
+              <i></i><i></i><i></i>
+              <span>{isEs ? "Factura en VIGGO" : "Invoice in VIGGO"}</span>
+            </div>
+            <div class="pos-screen">
+              <img
+                src="/images/viggo/viggo-caja-factura.png"
+                alt={isEs ? "Pantalla de VIGGO Caja creando una factura" : "VIGGO Cash desk screen creating an invoice"}
+                loading="eager"
+                width="1919"
+                height="944"
+              />
+            </div>
+          </div>
+        </article>
+
+        <div class="showcase-connector" aria-hidden="true">
+          <span>{isEs ? "primera venta" : "first sale"}</span>
+        </div>
+
+        <article class="pos-mockup pos-mockup--sales">
+          <div class="pos-mockup__label">
+            <span>03</span>
+            <strong>{isEs ? "Caja registra una segunda factura" : "Cash desk records a second invoice"}</strong>
+          </div>
+          <div class="pos-device">
+            <div class="pos-device__top">
+              <i></i><i></i><i></i>
+              <span>{isEs ? "Factura ampliada" : "Expanded invoice"}</span>
+            </div>
+            <div class="pos-screen">
+              <img
+                src="/images/viggo/viggo-caja-factura-2.png"
+                alt={isEs ? "Pantalla de VIGGO Caja creando una segunda factura con más productos" : "VIGGO Cash desk screen creating a second invoice with more products"}
+                loading="lazy"
+                width="1918"
+                height="944"
+              />
+            </div>
+          </div>
+        </article>
+
+        <div class="showcase-connector" aria-hidden="true">
+          <span>{isEs ? "ventas registradas" : "sales recorded"}</span>
+        </div>
+
+        <article class="pos-mockup pos-mockup--history">
+          <div class="pos-mockup__label">
+            <span>04</span>
+            <strong>{isEs ? "Historial de transacciones" : "Transaction history"}</strong>
+          </div>
+          <div class="pos-device">
+            <div class="pos-device__top">
+              <i></i><i></i><i></i>
+              <span>{isEs ? "Historial de caja" : "Cash desk history"}</span>
+            </div>
+            <div class="pos-screen">
+              <img
+                src="/images/viggo/viggo-caja-historial-transacciones-2.png"
+                alt={isEs ? "Pantalla de VIGGO mostrando historial de transacciones de ambas facturas" : "VIGGO screen showing transaction history from both invoices"}
+                loading="eager"
+                width="1918"
+                height="936"
+              />
+            </div>
+          </div>
+        </article>
+
+        <div class="showcase-connector" aria-hidden="true">
+          <span>{isEs ? "movimiento visible" : "movement visible"}</span>
+        </div>
+
+        <article class="pos-mockup pos-mockup--kardex">
+          <div class="pos-mockup__label">
+            <span>05</span>
+            <strong>{isEs ? "Kardex registra el movimiento" : "Kardex records the movement"}</strong>
+          </div>
+          <div class="pos-device">
+            <div class="pos-device__top">
+              <i></i><i></i><i></i>
+              <span>Kardex</span>
+            </div>
+            <div class="pos-screen">
+              <img
+                src="/images/viggo/viggo-kardex-2.png"
+                alt={isEs ? "Pantalla de VIGGO Kardex mostrando movimientos de inventario de ambas ventas" : "VIGGO Kardex screen showing inventory movements from both sales"}
+                loading="eager"
+                width="1917"
+                height="941"
+              />
+            </div>
+          </div>
+        </article>
+
+        <div class="showcase-connector" aria-hidden="true">
+          <span>{isEs ? "operación resumida" : "operation summarized"}</span>
+        </div>
+
+        <article class="pos-mockup pos-mockup--dashboard">
+          <div class="pos-mockup__label">
+            <span>06</span>
+            <strong>{isEs ? "Dashboard resume la operación" : "Dashboard summarizes the operation"}</strong>
+          </div>
+          <div class="pos-device">
+            <div class="pos-device__top">
+              <i></i><i></i><i></i>
+              <span>Dashboard</span>
+            </div>
+            <div class="pos-screen">
+              <img
+                src="/images/viggo/viggo-dashboard.png"
+                alt={isEs ? "Dashboard de VIGGO resumiendo ventas, cobros e indicadores del día" : "VIGGO dashboard summarizing daily sales, payments, and indicators"}
+                loading="eager"
+                width="1917"
+                height="945"
+              />
+            </div>
+          </div>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-strip" aria-label={isEs ? "Áreas principales de VIGGO" : "VIGGO main areas"}>
+    <Container>
+      <div class="viggo-strip__grid">
+        {copy.heroMetrics.map(([label, text]) => (
+          <article>
+            <strong>{label}</strong>
+            <span>{text}</span>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-section viggo-section--surface" aria-labelledby="differentiators-title">
+    <Container>
+      <div class="section-heading section-heading--wide">
+        <span class="viggo-kicker">{isEs ? "Diferenciadores" : "Differentiators"}</span>
+        <h2 id="differentiators-title">{copy.differentiatorsTitle}</h2>
+        <p>{copy.differentiatorsLead}</p>
+      </div>
+
+      <div class="value-grid">
+        {copy.differentiators.map(([title, text]) => (
+          <article>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-section" aria-labelledby="pains-title">
+    <Container>
+      <div class="section-heading">
+        <span class="viggo-kicker">{isEs ? "Retos operativos" : "Operational challenges"}</span>
+        <h2 id="pains-title">{copy.painsTitle}</h2>
+        <p>{copy.painsLead}</p>
+      </div>
+
+      <div class="pain-grid">
+        {copy.pains.map((item) => (
+          <article>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-section viggo-section--surface" aria-labelledby="capabilities-title">
+    <Container>
+      <div class="section-heading section-heading--wide">
+        <span class="viggo-kicker">{isEs ? "Capacidades" : "Capabilities"}</span>
+        <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
+        <p>{copy.capabilitiesLead}</p>
+      </div>
+
+      <div class="capability-grid">
+        {copy.capabilities.map(([title, text]) => (
+          <article>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-section" aria-labelledby="results-title">
+    <Container>
+      <div class="section-heading section-heading--wide">
+        <span class="viggo-kicker">{isEs ? "Valor operativo" : "Operational value"}</span>
+        <h2 id="results-title">{copy.resultsTitle}</h2>
+        <p>{copy.resultsLead}</p>
+      </div>
+
+      <div class="result-grid">
+        {copy.results.map(([title, text]) => (
+          <article>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="viggo-section" aria-labelledby="outcome-title">
+    <Container>
+      <div class="outcome-panel">
+        <div>
+          <span class="viggo-kicker">{isEs ? "Resultado" : "Outcome"}</span>
+          <h2 id="outcome-title">{copy.outcomeTitle}</h2>
+          <p>{copy.outcomeText}</p>
+        </div>
+
+        <ol class="flow-list">
+          {copy.flow.map((item) => <li>{item}</li>)}
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <ContactSection
+    id={isEs ? "contacto" : "contact"}
+    title={copy.contactTitle}
+    description={copy.contactDescription}
+    lang={lang}
+  />
+</ProductLayout>
+
+<style>
+  .viggo-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: clamp(39rem, 76vh, 52rem);
+    padding: clamp(8rem, 13vw, 10rem) 0 clamp(4rem, 7vw, 5.75rem);
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(circle at 78% 30%, color-mix(in srgb, #6366f1 18%, transparent), transparent 34%),
+      radial-gradient(circle at 14% 20%, color-mix(in srgb, #22d3ee 15%, transparent), transparent 28%),
+      linear-gradient(180deg, color-mix(in srgb, #eef2ff 78%, var(--bg)) 0%, var(--bg) 86%);
+  }
+
+  .viggo-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    z-index: -1;
+    height: 38%;
+    background:
+      linear-gradient(180deg, transparent, color-mix(in srgb, var(--surface-2) 72%, transparent));
+  }
+
+  .viggo-hero :global(.container) {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: min(100%, 86rem);
+  }
+
+  .viggo-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(20rem, 0.72fr) minmax(34rem, 1.28fr);
+    gap: clamp(1.75rem, 3vw, 3.5rem);
+    align-items: center;
+  }
+
+  .viggo-hero__content,
+  .viggo-hero__preview,
+  .section-heading,
+  .outcome-panel > div {
+    min-width: 0;
+  }
+
+  .viggo-hero__content {
+    max-width: 43rem;
+  }
+
+  .viggo-hero__preview {
+    position: relative;
+    width: min(58vw, 66rem);
+    max-width: none;
+    justify-self: end;
+    margin-right: calc((min(100vw, 86rem) - 100vw) / 2);
+  }
+
+  .viggo-hero__preview::before {
+    content: "";
+    position: absolute;
+    inset: 12% -4% -7% 9%;
+    z-index: -1;
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 70% 42%, rgba(99, 102, 241, 0.3), transparent 52%),
+      rgba(15, 23, 42, 0.08);
+    filter: blur(12px);
+  }
+
+  .hero-video-shell {
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid rgba(148, 163, 184, 0.36);
+    border-radius: clamp(1.1rem, 2vw, 1.65rem);
+    background: #0f172a;
+    box-shadow:
+      0 34px 95px rgba(15, 23, 42, 0.28),
+      0 8px 30px rgba(99, 102, 241, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  .hero-video-shell__top {
+    display: flex;
+    align-items: center;
+    gap: 0.46rem;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(180deg, #172033, #0f172a);
+  }
+
+  .hero-video-shell__top i {
+    display: block;
+    inline-size: 0.62rem;
+    block-size: 0.62rem;
+    border-radius: var(--radius-full);
+  }
+
+  .hero-video-shell__top i:first-child {
+    background: #f43f5e;
+  }
+
+  .hero-video-shell__top i:nth-child(2) {
+    background: #c5a059;
+  }
+
+  .hero-video-shell__top i:nth-child(3) {
+    background: #10b981;
+  }
+
+  .hero-video-shell__top span {
+    margin-left: auto;
+    color: #cbd5e1;
+    font-size: var(--text-xs);
+    font-weight: 800;
+  }
+
+  .hero-video-shell video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1917 / 945;
+    object-fit: cover;
+    background: #f8fafc;
+  }
+
+  .viggo-kicker {
+    display: inline-flex;
+    margin-bottom: var(--space-4);
+    color: #4f46e5;
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .launch-banner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: var(--space-5);
+    padding: 0.75rem 0.9rem;
+    border: 1px solid color-mix(in srgb, #c5a059 42%, var(--border));
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, #fff7dd 72%, var(--surface));
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .launch-banner span,
+  .launch-banner strong {
+    line-height: 1.25;
+  }
+
+  .launch-banner span {
+    color: #7c5b17;
+    font-size: var(--text-xs);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .launch-banner strong {
+    color: var(--text);
+    font-size: var(--text-sm);
+  }
+
+  .viggo-hero h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: 4.4rem;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .viggo-hero p,
+  .section-heading p,
+  .outcome-panel p {
+    max-width: 43rem;
+    margin: var(--space-5) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .viggo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .viggo-positioning {
+    padding: clamp(3.75rem, 6vw, 5.5rem) 0;
+    background: var(--bg);
+  }
+
+  .positioning-panel {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid color-mix(in srgb, #6366f1 14%, var(--border));
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #eef2ff 48%, var(--surface)), var(--surface) 58%),
+      var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .positioning-panel .section-heading {
+    margin-bottom: var(--space-7);
+  }
+
+  .positioning-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .positioning-grid article {
+    min-width: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 88%, white);
+  }
+
+  .positioning-grid h3 {
+    margin: 0 0 var(--space-2);
+    color: var(--text);
+    font-size: var(--text-base);
+    line-height: 1.25;
+  }
+
+  .positioning-grid p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .viggo-showcase {
+    padding: clamp(4rem, 7vw, 6rem) 0;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(circle at 16% 12%, color-mix(in srgb, #c7d2fe 32%, transparent), transparent 32%),
+      linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--surface-2) 70%, var(--bg)));
+  }
+
+  .showcase-heading {
+    max-width: 62rem;
+    margin-bottom: var(--space-10);
+  }
+
+  .showcase-heading h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(2.1rem, 4.8vw, 3.65rem);
+    line-height: 1.06;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .showcase-heading p {
+    max-width: 48rem;
+    margin: var(--space-4) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .showcase-flow {
+    display: grid;
+    gap: clamp(1.4rem, 3vw, 2.2rem);
+  }
+
+  .pos-mockup {
+    min-width: 0;
+  }
+
+  .pos-mockup__label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .pos-mockup__label span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.15rem;
+    block-size: 2.15rem;
+    border-radius: var(--radius-full);
+    background: #6366f1;
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 900;
+  }
+
+  .pos-mockup__label strong {
+    color: var(--text);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+  }
+
+  .pos-device {
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, #6366f1 22%, var(--border));
+    border-radius: clamp(1rem, 2vw, 1.5rem);
+    background: #0f172a;
+    box-shadow:
+      0 28px 70px color-mix(in srgb, #0f172a 18%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  .pos-device__top {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.72rem 0.9rem;
+    background: linear-gradient(180deg, #172033, #0f172a);
+  }
+
+  .pos-device__top i {
+    display: block;
+    inline-size: 0.62rem;
+    block-size: 0.62rem;
+    border-radius: var(--radius-full);
+    background: #475569;
+  }
+
+  .pos-device__top i:first-child {
+    background: #f43f5e;
+  }
+
+  .pos-device__top i:nth-child(2) {
+    background: #c5a059;
+  }
+
+  .pos-device__top i:nth-child(3) {
+    background: #10b981;
+  }
+
+  .pos-device__top span {
+    margin-left: auto;
+    color: #cbd5e1;
+    font-size: var(--text-xs);
+    font-weight: 800;
+  }
+
+  .pos-screen {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(0.35rem, 1vw, 0.75rem);
+    background:
+      linear-gradient(135deg, rgba(99, 102, 241, 0.22), transparent 36%),
+      #111827;
+  }
+
+  .pos-screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: clamp(0.55rem, 1.2vw, 0.95rem);
+    background: #f8fafc;
+  }
+
+  .showcase-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    color: #4f46e5;
+    font-size: var(--text-xs);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .showcase-connector::before,
+  .showcase-connector::after {
+    content: "";
+    display: block;
+    block-size: 1px;
+    inline-size: min(12rem, 22vw);
+    background: color-mix(in srgb, #6366f1 42%, var(--border));
+  }
+
+  .viggo-strip {
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .viggo-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .viggo-strip article {
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+  }
+
+  .viggo-strip strong {
+    display: block;
+    color: var(--text);
+    font-size: var(--text-sm);
+  }
+
+  .viggo-strip span {
+    display: block;
+    margin-top: var(--space-2);
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+    line-height: 1.45;
+  }
+
+  .viggo-section {
+    padding: clamp(4rem, 7vw, 6rem) 0;
+  }
+
+  .viggo-section--surface {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+
+  .section-heading {
+    max-width: 56rem;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-heading--wide {
+    max-width: 62rem;
+  }
+
+  .section-heading h2,
+  .outcome-panel h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 3.1rem;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .pain-grid,
+  .capability-grid,
+  .value-grid,
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .pain-grid article,
+  .capability-grid article,
+  .value-grid article,
+  .result-grid article {
+    min-width: 0;
+    padding: clamp(1.25rem, 2.5vw, 1.65rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pain-grid h3,
+  .capability-grid h3,
+  .value-grid h3,
+  .result-grid h3 {
+    margin: 0 0 var(--space-3);
+    color: var(--text);
+    font-size: var(--text-lg);
+    line-height: 1.25;
+  }
+
+  .pain-grid p,
+  .capability-grid p,
+  .value-grid p,
+  .result-grid p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.65;
+  }
+
+  .outcome-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 1.05fr);
+    gap: var(--space-8);
+    align-items: center;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid color-mix(in srgb, #6366f1 14%, var(--border));
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 92%, #eef2ff), var(--surface));
+    box-shadow: var(--shadow-sm);
+  }
+
+  .flow-list {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: flow;
+  }
+
+  .flow-list li {
+    counter-increment: flow;
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: start;
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  .flow-list li::before {
+    content: counter(flow, decimal-leading-zero);
+    color: #4f46e5;
+    font-size: var(--text-xs);
+    font-weight: 900;
+  }
+
+  @media (max-width: 980px) {
+    .viggo-hero__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .viggo-hero__content {
+      max-width: 42rem;
+    }
+
+    .viggo-hero__preview {
+      width: 100%;
+      max-width: 48rem;
+      justify-self: start;
+      margin-right: 0;
+    }
+
+    .outcome-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .showcase-heading {
+      max-width: 48rem;
+    }
+
+    .positioning-grid,
+    .viggo-strip__grid,
+    .pain-grid,
+    .capability-grid,
+    .value-grid,
+    .result-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .viggo-hero {
+      min-height: auto;
+      padding-top: 7rem;
+    }
+
+    .viggo-hero__grid,
+    .viggo-hero__content,
+    .viggo-hero__preview,
+    .viggo-hero p,
+    .viggo-actions,
+    .showcase-heading,
+    .showcase-heading p,
+    .positioning-panel,
+    .positioning-grid,
+    .pain-grid,
+    .capability-grid,
+    .value-grid,
+    .result-grid,
+    .outcome-panel,
+    .section-heading,
+    .section-heading p {
+      max-width: 22.5rem;
+    }
+
+    .viggo-hero__grid {
+      gap: var(--space-8);
+    }
+
+    .hero-video-shell {
+      border-radius: 1rem;
+    }
+
+    .hero-video-shell__top span {
+      max-width: 10rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viggo-hero h1 {
+      font-size: 2.7rem;
+      line-height: 1.04;
+    }
+
+    .section-heading h2,
+    .outcome-panel h2 {
+      font-size: 2.25rem;
+      line-height: 1.12;
+    }
+
+    .viggo-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .viggo-actions :global(.btn) {
+      width: 100%;
+    }
+
+    .positioning-grid,
+    .viggo-strip__grid,
+    .pain-grid,
+    .capability-grid,
+    .value-grid,
+    .result-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .viggo-showcase {
+      padding: 3.5rem 0;
+    }
+
+    .showcase-flow {
+      gap: var(--space-8);
+    }
+
+    .pos-mockup__label {
+      align-items: flex-start;
+    }
+
+    .pos-device {
+      border-radius: 1rem;
+    }
+
+    .pos-device__top span {
+      max-width: 12rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pos-screen {
+      padding: 0.35rem;
+    }
+
+    .showcase-connector {
+      gap: var(--space-2);
+    }
+
+    .showcase-connector::before,
+    .showcase-connector::after {
+      inline-size: min(5rem, 18vw);
+    }
+  }
+</style>
+
