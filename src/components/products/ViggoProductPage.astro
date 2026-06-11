@@ -31,8 +31,6 @@ const copy = isEs
       title: "VIGGO - Operación integral para negocios",
       description:
         "VIGGO ayuda a negocios que gestionan servicios, inventario o ambos a controlar clientes, ventas, cobros, accesos e historial desde una sola operación.",
-      launchLabel: "Próximo lanzamiento",
-      launchText: "Disponible el miércoles 10 de junio de 2026",
       h1: "VIGGO",
       lead:
         "VIGGO conecta clientes, servicios, inventario y ventas en una operación controlada desde el primer día. No importa dónde estés: puedes ver cómo avanza tu negocio en tiempo real y administrarlo con información confiable.",
@@ -141,16 +139,14 @@ const copy = isEs
         "Controla vigencias, renovaciones, stock por sede, compras, transferencias y movimientos.",
         "Valida credenciales, consulta estados y conserva historial.",
       ],
-      contactTitle: "¿Quieres conocer VIGGO antes del lanzamiento?",
+      contactTitle: "¿Quieres implementar VIGGO en tu operación?",
       contactDescription:
-        "Solicita información a Quantix y conversemos sobre cómo VIGGO puede ordenar la operación de tu negocio antes de su salida oficial.",
+        "Conoce cómo VIGGO puede ordenar la operación de tu negocio y llevar clientes, servicios, inventario, ventas y control diario a un mismo flujo.",
     }
   : {
       title: "VIGGO - Integrated business operations",
       description:
         "VIGGO helps businesses that manage services, inventory, or both control customers, sales, payments, access, and history from one operating flow.",
-      launchLabel: "Coming soon",
-      launchText: "Available Wednesday, June 10, 2026",
       h1: "VIGGO",
       lead:
         "VIGGO connects customers, services, inventory, and sales into a controlled operation from day one. Wherever you are, you can see how your business is moving in real time and manage it with reliable information.",
@@ -259,9 +255,9 @@ const copy = isEs
         "Control validity periods, renewals, branch stock, purchases, transfers, and movements.",
         "Validate credentials, review status, and keep history.",
       ],
-      contactTitle: "Want to know VIGGO before launch?",
+      contactTitle: "Want to bring VIGGO into your operation?",
       contactDescription:
-        "Request information from Quantix and let us talk about how VIGGO can organize your business operation before its official release.",
+        "See how VIGGO can organize your business operation and bring customers, services, inventory, sales, and daily control into one flow.",
     };
 ---
 
@@ -270,10 +266,6 @@ const copy = isEs
     <Container>
       <div class="viggo-hero__grid">
         <div class="viggo-hero__content">
-          <div class="launch-banner" aria-label={`${copy.launchLabel}: ${copy.launchText}`}>
-            <span>{copy.launchLabel}</span>
-            <strong>{copy.launchText}</strong>
-          </div>
           <h1 id="viggo-title">{copy.h1}</h1>
           <p>{copy.lead}</p>
           <div class="viggo-actions">

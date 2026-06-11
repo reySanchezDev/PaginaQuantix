@@ -67,7 +67,7 @@ const operatingSolutions = [
 
 const heroPanelSolutions = [
   "Integrated operations",
-  "Customers & cash desk",
+  "Customers & sales",
   "Inventory",
   "Restaurants & POS",
   "Billing",
@@ -119,11 +119,11 @@ const getProduct = (id: string) => {
 const productProof = [
   {
     product: getProduct("viggo"),
-    statusLabel: "Coming soon",
-    domain: "Featured Quantix product",
+    statusLabel: "Published product",
+    domain: "Quantix platform",
     railLabel: "Integrated operations",
     proofLine:
-      "VIGGO is the new Quantix platform for businesses that need to control customers, services, products, cash desk, inventory, credentials, access and history from one operating flow.",
+      "VIGGO is the Quantix platform for businesses that need to control customers, services, inventory, sales, payments, credentials, access, and history from one operating flow.",
     areas: [
       {
         label: "Operation",
@@ -131,14 +131,14 @@ const productProof = [
       },
       {
         label: "Daily control",
-        items: ["Cash desk", "Payments", "History"],
+        items: ["Sales", "Payments", "History"],
       },
       {
-        label: "Products",
+        label: "Inventory",
         items: ["Inventory", "Stock", "Movements"],
       },
     ],
-    visitLabel: "Request information",
+    visitLabel: "Go to VIGGO",
   },
   {
     product: getProduct("takofy"),

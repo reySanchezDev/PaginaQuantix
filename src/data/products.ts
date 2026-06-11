@@ -54,10 +54,10 @@ export const products: Product[] = [
             en: 'VIGGO'
         },
         description: {
-            es: 'Plataforma integral para negocios que venden servicios, productos o ambos: clientes, caja, facturación, inventario avanzado, credenciales, accesos e historial en una sola operación.',
-            en: 'Integrated operations platform for businesses that sell services, products, or both: customers, cash desk, invoicing, advanced inventory, credentials, access control, and history in one operating flow.'
+            es: 'Plataforma integral para negocios que gestionan clientes, servicios, inventario, ventas, cobros, credenciales, accesos e historial en una sola operación.',
+            en: 'Integrated operations platform for businesses that manage customers, services, inventory, sales, payments, credentials, access control, and history in one operating flow.'
         },
-        tags: ['Operations', 'Customers', 'Cash Desk', 'Inventory', 'Access Control'],
+        tags: ['Operations', 'Customers', 'Sales', 'Inventory', 'Access Control'],
         category: {
             es: 'Operación integral',
             en: 'Integrated operations'
@@ -67,35 +67,28 @@ export const products: Product[] = [
             es: '/es/productos/viggo/',
             en: '/en/products/viggo/',
         },
+        publicUrl: 'https://facturaystock.com/viggo/',
         externalLabel: {
-            es: 'Solicitar información',
-            en: 'Request information'
-        },
-        launchDate: {
-            es: 'Miércoles 10 de junio de 2026',
-            en: 'Wednesday, June 10, 2026'
+            es: 'Ir a VIGGO',
+            en: 'Go to VIGGO'
         },
         target: '_self',
         isExternal: false,
         featured: true,
         status: {
-            es: 'Próximo lanzamiento',
-            en: 'Coming soon'
-        },
-        availabilityNote: {
-            es: 'VIGGO estará disponible el miércoles 10 de junio de 2026. Mientras tanto, puedes conocer el producto y solicitar información a Quantix.',
-            en: 'VIGGO launches on Wednesday, June 10, 2026. Until then, you can explore the product and request information from Quantix.'
+            es: 'Publicado',
+            en: 'Published'
         },
         features: {
             es: [
                 'Clientes, servicios, vigencias y renovaciones',
-                'Caja, cobros, transacciones e historial',
+                'Ventas, cobros, transacciones e historial',
                 'Inventario avanzado con compras, stock por sede y Kardex',
                 'Credencial digital y validación operativa'
             ],
             en: [
                 'Customers, services, validity periods, and renewals',
-                'Cash desk, payments, transactions, and history',
+                'Sales, payments, transactions, and history',
                 'Advanced inventory with purchases, branch stock, and Kardex',
                 'Digital credential and operational validation'
             ]

@@ -22,17 +22,17 @@ const getProductCta = (product: (typeof products)[number]) => {
 };
 
 const productPrinciples = [
-  "Real products created to organize daily business workflows.",
-  "Built around specific operational or financial workflows.",
-  "Includes commercial platforms, free tools, and upcoming launches.",
+  "Ready solutions to organize daily business workflows.",
+  "Clear control over operations, sales, inventory, finance, or evidence.",
+  "Tools designed for practical use from day one.",
 ];
 
 const getProductCardContent = (product: (typeof products)[number]) => {
   if (product.id === "viggo") {
     return {
-      description: "The next Quantix platform for operating services, products, cash desk, and advanced inventory from one place.",
+      description: "Quantix platform for operating customers, services, inventory, sales, and payments from one place.",
       features: [
-        "Services and products in one operation",
+        "Customers, services, and inventory in one operation",
         "Purchases, branch stock, and Kardex",
         "Digital credential for validation",
       ],
@@ -59,9 +59,9 @@ const getProductCardContent = (product: (typeof products)[number]) => {
       <Container>
         <div class="products-hero__content">
           <p class="page-kicker">Products</p>
-          <h1 id="products-title">Published software products for real workflows</h1>
+          <h1 id="products-title">Digital solutions for more controlled operations</h1>
           <p>
-            Quantix Software builds and operates focused products for integrated operations, restaurants, financial calculations, QA evidence and practical business workflows.
+            Choose ready tools to organize daily processes, control key information, and make better decisions across operational, commercial, financial, and technical areas.
           </p>
           <div class="page-actions">
             <Button href="#published-products" variant="primary" size="lg">View products</Button>
@@ -83,9 +83,9 @@ const getProductCardContent = (product: (typeof products)[number]) => {
       <Container>
         <div class="section-heading">
           <p class="page-kicker">Quantix products</p>
-          <h2 id="published-products-title">Software products built and operated by Quantix</h2>
+          <h2 id="published-products-title">Ready tools for concrete business needs</h2>
           <p>
-            Each product has a specific workflow, product page and clear path to learn more, request information or use it when published.
+            Find the solution that best fits your operation: integrated control, restaurants, finance, or QA evidence, with clear information to evaluate its scope and start using it.
           </p>
         </div>
 
@@ -114,7 +114,10 @@ const getProductCardContent = (product: (typeof products)[number]) => {
 
               <div class="product-actions">
                 {isViggo ? (
-                  <Button href={product.href.en} variant="primary">Explore VIGGO</Button>
+                  <>
+                    <Button href={product.href.en} variant="secondary">Explore VIGGO</Button>
+                    <Button href={cta.href} target={cta.target} variant="primary">{cta.label}</Button>
+                  </>
                 ) : (
                   <>
                     <Button href={product.href.en} variant="secondary">View product</Button>

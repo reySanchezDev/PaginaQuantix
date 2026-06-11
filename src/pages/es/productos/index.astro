@@ -22,17 +22,17 @@ const getProductCta = (product: (typeof products)[number]) => {
 };
 
 const productPrinciples = [
-  "Productos reales creados para ordenar flujos diarios de negocio.",
-  "Construidos alrededor de flujos operativos o financieros específicos.",
-  "Incluye plataformas comerciales, herramientas gratuitas y próximos lanzamientos.",
+  "Soluciones listas para ordenar flujos diarios de negocio.",
+  "Control claro sobre operación, ventas, inventario, finanzas o evidencia.",
+  "Herramientas pensadas para uso práctico desde el primer día.",
 ];
 
 const getProductCardContent = (product: (typeof products)[number]) => {
   if (product.id === "viggo") {
     return {
-      description: "La próxima plataforma de Quantix para operar servicios, productos, caja e inventario avanzado desde un solo lugar.",
+      description: "Plataforma de Quantix para operar clientes, servicios, inventario, ventas y cobros desde un solo lugar.",
       features: [
-        "Servicios y productos en una misma operación",
+        "Clientes, servicios e inventario en una misma operación",
         "Compras, stock por sede y Kardex",
         "Credencial digital para validación",
       ],
@@ -59,9 +59,9 @@ const getProductCardContent = (product: (typeof products)[number]) => {
       <Container>
         <div class="products-hero__content">
           <p class="page-kicker">Productos</p>
-          <h1 id="products-title">Productos de software publicados para flujos reales</h1>
+          <h1 id="products-title">Soluciones digitales para operar con más control</h1>
           <p>
-            Quantix Software construye y opera productos enfocados en operación integral, restaurantes, cálculos financieros, evidencia QA y flujos prácticos de negocio.
+            Elige herramientas listas para ordenar procesos diarios, controlar información clave y tomar mejores decisiones en áreas operativas, comerciales, financieras y técnicas.
           </p>
           <div class="page-actions">
             <Button href="#productos-publicados" variant="primary" size="lg">Ver productos</Button>
@@ -83,9 +83,9 @@ const getProductCardContent = (product: (typeof products)[number]) => {
       <Container>
         <div class="section-heading">
           <p class="page-kicker">Productos de Quantix</p>
-          <h2 id="published-products-title">Productos de software construidos y operados por Quantix</h2>
+          <h2 id="published-products-title">Herramientas listas para resolver necesidades concretas</h2>
           <p>
-            Cada producto tiene un flujo específico, página de producto y una ruta clara para conocerlo, solicitar información o usarlo cuando está publicado.
+            Encuentra la solución que mejor se adapta a tu operación: control integral, restaurantes, finanzas o evidencia QA, con información clara para evaluar su alcance y empezar a usarla.
           </p>
         </div>
 
@@ -114,7 +114,10 @@ const getProductCardContent = (product: (typeof products)[number]) => {
 
               <div class="product-actions">
                 {isViggo ? (
-                  <Button href={product.href.es} variant="primary">Conocer VIGGO</Button>
+                  <>
+                    <Button href={product.href.es} variant="secondary">Conocer VIGGO</Button>
+                    <Button href={cta.href} target={cta.target} variant="primary">{cta.label}</Button>
+                  </>
                 ) : (
                   <>
                     <Button href={product.href.es} variant="secondary">Ver producto</Button>

@@ -17,7 +17,7 @@ const getProductCta = (product: (typeof products)[number]) => {
     return {
       href: product.publicUrl,
       target: "_blank",
-      label: lang === "es" ? "Visitar sitio web" : "Visit website",
+      label: product.externalLabel?.[lang] ?? (lang === "es" ? "Visitar sitio web" : "Visit website"),
     };
   }
 
