@@ -6,6 +6,7 @@ import ProductCard from "../products/ProductCard.astro";
 import ContentBlock from "../sections/ContentSection.astro";
 import CtaSection from "../sections/CtaSection.astro";
 import PageHero from "../sections/PageHero.astro";
+import Button from "../ui/Button.astro";
 import Container from "../ui/Container.astro";
 
 interface Props {
@@ -15,38 +16,18 @@ const { locale } = Astro.props as Props;
 const content = getHomeContent(locale);
 const productsTitleId = "featured-products";
 
-const toSection = (
-  source: typeof content.solutions | typeof content.model,
-  variant?: "soft",
-): ContentSection => ({
+const toSection = (source: typeof content.model): ContentSection => ({
   eyebrow: source.eyebrow,
   title: source.title,
   lead: "lead" in source ? source.lead : undefined,
-  variant,
   items: source.items.map(([title, text]) => ({ title, text })),
 });
 ---
 
 <BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
-  <PageHero content={content.hero} highlights={content.proof} />
+  <PageHero content={content.hero} />
 
-  <section class="proof-bar" aria-label={content.proofLabel}>
-    <Container>
-      <ul>
-        {
-          content.proof.map((item) => (
-            <li>
-              <span aria-hidden="true" />
-              {item}
-            </li>
-          ))
-        }
-      </ul>
-    </Container>
-  </section>
-
-  <ContentBlock content={toSection(content.solutions)} />
-  <ContentBlock content={toSection(content.model, "soft")} />
+  <ContentBlock content={toSection(content.model)} />
 
   <section class="section products-showcase" aria-labelledby={productsTitleId}>
     <Container>
@@ -55,12 +36,24 @@ const toSection = (
         <h2 id={productsTitleId}>{content.productsSection.title}</h2>
         <p>{content.productsSection.lead}</p>
       </div>
-      <div class="products-grid">
+      <div class="products-list">
         {
-          content.products.map((product) => (
-            <ProductCard product={product} viewLabel={content.productsSection.viewLabel} />
-          ))
+          content.products
+            .slice(0, 2)
+            .map((product, index) => (
+              <ProductCard
+                product={product}
+                viewLabel={content.productsSection.viewLabel}
+                index={index}
+              />
+            ))
         }
+      </div>
+      <div class="products-showcase__more">
+        <Button href={content.productsSection.allHref} variant="link">
+          {content.productsSection.allLabel}
+          <span aria-hidden="true">→</span>
+        </Button>
       </div>
     </Container>
   </section>
@@ -69,56 +62,22 @@ const toSection = (
 </BaseLayout>
 
 <style>
-  .proof-bar {
-    padding-block: var(--space-5);
-    border-bottom: 1px solid var(--color-border);
+  .products-showcase {
+    border-top: 1px solid var(--color-border);
     background: var(--color-surface);
   }
 
-  .proof-bar ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-4) var(--space-8);
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .section-intro {
+    max-width: 52rem;
   }
 
-  .proof-bar li {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--color-ink-muted);
-    font-size: var(--text-sm);
-    font-weight: 700;
-  }
-
-  .proof-bar span {
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-  }
-
-  .products-showcase {
-    background: var(--color-canvas);
-  }
-
-  .products-grid {
+  .products-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-5);
   }
 
-  @media (max-width: 46rem) {
-    .proof-bar ul {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .products-grid {
-      grid-template-columns: 1fr;
-    }
+  .products-showcase__more {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-8);
   }
 </style>

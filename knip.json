@@ -1,10 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": [
-    "src/pages/**/*.astro",
-    "src/components/ui/Input.astro",
-    "src/components/ui/Textarea.astro"
-  ],
+  "entry": ["src/pages/**/*.astro"],
   "project": ["src/**/*.{astro,ts}", "scripts/**/*.mjs", "*.{js,mjs}"],
-  "ignoreDependencies": ["@fontsource-variable/inter", "@fontsource-variable/space-grotesk"]
+  "ignoreDependencies": ["@fontsource-variable/ibm-plex-sans"]
 }

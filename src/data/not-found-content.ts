@@ -4,12 +4,12 @@ export const notFoundContent = {
     description: "The requested page could not be found.",
   },
   code: "404",
-  eyebrow: "Página no encontrada",
-  title: "That route does not exist",
-  message: "The page may have moved. Choose a language to continue.",
-  messageEs: "La página pudo cambiar de ubicación.",
+  title: "Page not found.",
+  titleEs: "Página no encontrada.",
+  message: "The address may be incorrect or the page may have moved.",
+  messageEs: "La dirección puede ser incorrecta o la página pudo cambiar de ubicación.",
   actions: {
-    en: { label: "Continue in English", href: "/en/" },
-    es: { label: "Continuar en español", href: "/es/" },
+    en: { label: "Go to the English site", href: "/en/" },
+    es: { label: "Ir al sitio en español", href: "/es/" },
   },
 } as const;

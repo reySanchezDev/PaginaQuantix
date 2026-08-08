@@ -1,7 +1,7 @@
 ---
 import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
-import FooterPremium from "../components/nav/FooterPremium.astro";
-import HeaderPremium from "../components/nav/HeaderPremium.astro";
+import SiteFooter from "../components/nav/SiteFooter.astro";
+import SiteHeader from "../components/nav/SiteHeader.astro";
 import { getLegalNavigation, getPrimaryNavigation, sharedUi } from "../data/navigation";
 import { siteConfig } from "../data/site-config";
 import { getAlternatePath, getRoute, normalizePath } from "../i18n/routes";
@@ -93,13 +93,13 @@ const organizationSchema = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">{labels.skip}</a>
-    <HeaderPremium navItems={navigation} locale={locale} labels={labels} />
+    <SiteHeader navItems={navigation} locale={locale} labels={labels} />
 
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
-    <FooterPremium
+    <SiteFooter
       navItems={navigation}
       legalItems={legalNavigation}
       locale={locale}

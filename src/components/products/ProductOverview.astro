@@ -5,34 +5,40 @@ import Container from "../ui/Container.astro";
 interface Props {
   content: ProductPageContent["overview"];
 }
+
 const { content } = Astro.props as Props;
+const hasMetrics = content.metrics.length > 0;
 ---
 
 <section class="section product-overview" aria-labelledby="overview-title">
-  <Container>
-    <div class="product-overview__layout">
-      <div class="section-intro">
-        <p class="eyebrow">{content.eyebrow}</p>
-        <h2 id="overview-title">{content.title}</h2>
-        <p>{content.lead}</p>
-      </div>
-      <dl>
-        {
-          content.metrics.map((metric) => (
-            <div>
-              <>
-                <dt>{metric.title}</dt>
-                <dd>{metric.text}</dd>
-              </>
-            </div>
-          ))
-        }
-      </dl>
+  <Container
+    class:list={["product-overview__layout", { "product-overview__layout--single": !hasMetrics }]}
+  >
+    <div class="section-intro">
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h2 id="overview-title">{content.title}</h2>
+      <p>{content.lead}</p>
     </div>
+    {
+      hasMetrics && (
+        <dl>
+          {content.metrics.map((metric) => (
+            <div>
+              <dt>{metric.title}</dt>
+              <dd>{metric.text}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
   </Container>
 </section>
 
 <style>
+  .product-overview {
+    background: var(--color-surface);
+  }
+
   .product-overview__layout {
     display: grid;
     gap: var(--space-10);
@@ -43,42 +49,41 @@ const { content } = Astro.props as Props;
     margin-bottom: 0;
   }
 
+  .product-overview__layout--single .section-intro {
+    max-width: 48rem;
+  }
+
   dl {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-3);
     margin: 0;
+    border-top: 1px solid var(--color-border-strong);
   }
 
   dl div {
-    padding: var(--space-5);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.65fr) minmax(0, 1.35fr);
+    gap: var(--space-5);
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
   }
 
   dt {
-    margin-bottom: var(--space-2);
     color: var(--color-ink);
-    font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   dd {
     margin: 0;
     color: var(--color-ink-muted);
-    font-size: var(--text-sm);
     line-height: var(--leading-normal);
   }
 
-  @media (min-width: 56rem) {
+  @media (min-width: 60rem) {
     .product-overview__layout {
-      grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.8fr);
+      grid-template-columns: minmax(0, 1fr) minmax(25rem, 0.9fr);
+      gap: var(--space-20);
     }
-  }
 
-  @media (max-width: 34rem) {
-    dl {
+    .product-overview__layout--single {
       grid-template-columns: 1fr;
     }
   }

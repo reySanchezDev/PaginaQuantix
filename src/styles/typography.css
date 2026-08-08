@@ -13,23 +13,23 @@ h4 {
   margin-block: 0;
   color: var(--color-ink);
   font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  letter-spacing: -0.035em;
   line-height: var(--leading-tight);
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.65rem, 7vw, 5.5rem);
+  font-size: clamp(2.75rem, 6.2vw, 4.75rem);
 }
 
 h2 {
-  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
 }
 
 h3 {
-  font-size: clamp(1.2rem, 2vw, 1.45rem);
-  letter-spacing: -0.015em;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  letter-spacing: -0.02em;
 }
 
 p {

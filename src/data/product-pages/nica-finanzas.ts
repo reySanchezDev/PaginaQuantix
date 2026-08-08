@@ -10,94 +10,42 @@ export function getNicaFinanzasPage(locale: Locale): ProductPageContent {
     id: "nica-finanzas",
     seo: {
       title: isEs
-        ? "Nica Finanzas — Calculadoras para Nicaragua"
-        : "Nica Finanzas — Calculators for Nicaragua",
+        ? "Nica Finanzas | Calculadoras para Nicaragua"
+        : "Nica Finanzas | Calculators for Nicaragua",
       description: product.description,
     },
     hero: {
       eyebrow: isEs ? "Herramientas financieras gratuitas" : "Free financial tools",
-      title: isEs ? "Cálculos locales, resultados claros" : "Local calculations, clear results",
-      lead: product.description,
+      title: isEs
+        ? "Calculadoras financieras para Nicaragua."
+        : "Financial calculators for Nicaragua.",
+      lead: isEs
+        ? "Calcula salario, cuotas de préstamo y liquidación laboral con parámetros locales."
+        : "Estimate salaries, loan payments, and employment settlements using local inputs.",
       primary: product.external,
       secondary: {
         label: isEs ? "Ver productos" : "View products",
         href: getRoute("products", locale),
       },
-      highlights: isEs
-        ? ["Salario", "Préstamos", "Liquidación laboral", "Parámetros de Nicaragua"]
-        : ["Salary", "Loans", "Employment settlement", "Nicaragua-specific inputs"],
     },
     overview: {
-      eyebrow: isEs ? "Utilidad local" : "Local utility",
+      eyebrow: isEs ? "Calculadoras" : "Calculators",
       title: isEs
-        ? "Herramientas prácticas para decisiones cotidianas"
-        : "Practical tools for everyday decisions",
+        ? "Tres cálculos frecuentes en un solo sitio"
+        : "Three common calculations in one place",
       lead: isEs
-        ? "Nica Finanzas reúne cálculos frecuentes en una experiencia enfocada, con entradas comprensibles y resultados fáciles de revisar."
-        : "Nica Finanzas brings common calculations into a focused experience with understandable inputs and results that are easy to review.",
-      metrics: isEs
-        ? [
-            { title: "Salario", text: "Escenarios laborales" },
-            { title: "Préstamos", text: "Cuotas y referencia" },
-            { title: "Liquidación", text: "Cálculo laboral" },
-            { title: "Contexto", text: "Parámetros locales" },
-          ]
-        : [
-            { title: "Salary", text: "Employment scenarios" },
-            { title: "Loans", text: "Payments and reference" },
-            { title: "Settlement", text: "Employment calculation" },
-            { title: "Context", text: "Local parameters" },
-          ],
+        ? "Cada herramienta solicita únicamente los datos necesarios y presenta un resultado fácil de revisar."
+        : "Each tool asks for the required inputs and presents a result that is easy to review.",
+      metrics: [],
     },
-    sections: [
-      {
-        eyebrow: isEs ? "Calculadoras" : "Calculators",
-        title: isEs ? "Tres áreas financieras frecuentes" : "Three common financial areas",
-        lead: isEs
-          ? "Cada herramienta reduce el cálculo a los datos necesarios para el escenario."
-          : "Each tool reduces the calculation to the data needed for the scenario.",
-        items: isEs
-          ? [
-              {
-                title: "Cálculo salarial",
-                text: "Escenarios de salario con entradas específicas para Nicaragua.",
-              },
-              {
-                title: "Cálculo de préstamos",
-                text: "Referencia de cuotas y escenarios de financiamiento.",
-              },
-              {
-                title: "Liquidación laboral",
-                text: "Utilidad para revisar cálculos de liquidación con parámetros locales.",
-              },
-            ]
-          : [
-              {
-                title: "Salary calculation",
-                text: "Salary scenarios with Nicaragua-specific inputs.",
-              },
-              {
-                title: "Loan calculation",
-                text: "Reference for payments and financing scenarios.",
-              },
-              {
-                title: "Employment settlement",
-                text: "A utility for reviewing settlement calculations with local parameters.",
-              },
-            ],
-      },
-    ],
+    sections: [],
     cta: {
       eyebrow: "Nica Finanzas",
-      title: isEs ? "Consulta las calculadoras gratuitas" : "Explore the free calculators",
+      title: isEs ? "Utiliza las calculadoras gratuitas." : "Use the free calculators.",
       text: isEs
-        ? "Visita Nica Finanzas o conversa con Quantix sobre herramientas financieras."
-        : "Visit Nica Finanzas or talk to Quantix about financial tools.",
+        ? "Abre Nica Finanzas para utilizar las calculadoras."
+        : "Open Nica Finanzas to use the calculators.",
       primary: product.external!,
-      secondary: {
-        label: isEs ? "Contactar a Quantix" : "Contact Quantix",
-        href: getRoute("contact", locale),
-      },
     },
   };
 }

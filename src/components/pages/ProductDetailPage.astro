@@ -26,7 +26,7 @@ const product = getProduct(productId, locale);
   productName={product.name}
   operatingSystem={productId === "qavision" ? "Windows" : undefined}
 >
-  <ProductHero locale={locale} content={content} />
+  <ProductHero content={content} product={product} />
   <ProductOverview content={content.overview} />
   {content.sections.map((section) => <ContentSection content={section} />)}
   {content.gallery && <ProductGallery content={content.gallery} />}

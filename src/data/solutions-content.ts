@@ -4,148 +4,98 @@ import type { Locale, StandardPageContent } from "../types/site";
 const content: Record<Locale, StandardPageContent> = {
   es: {
     seo: {
-      title: "Soluciones de software empresarial",
+      title: "Soluciones de software para empresas",
       description:
-        "Productos listos, adaptación de plataformas, definición técnica y desarrollo de sistemas empresariales a medida.",
+        "Diseño, integración y desarrollo de sistemas internos, automatización y plataformas empresariales.",
     },
     hero: {
       eyebrow: "Soluciones",
-      title: "Encuentra, adapta, define o construye software operativo",
-      lead: "Partimos del contexto real del negocio para elegir una solución existente, adaptarla o diseñar un sistema nuevo con alcance y riesgos claros.",
-      primary: { label: "Revisar mi necesidad", href: getRoute("contact", "es") },
+      title: "Diseño, integración y desarrollo de software empresarial.",
+      lead: "Partimos del proceso actual, los sistemas existentes y los datos que deben conectarse. Después definimos alcance y entrega.",
+      primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
       secondary: { label: "Ver productos", href: getRoute("products", "es") },
     },
     sections: [
       {
         eyebrow: "Capacidades",
-        title: "Construidas alrededor de operación, datos y ejecución",
-        lead: "El valor no está en sumar pantallas, sino en conectar procesos con información confiable y responsabilidades claras.",
+        title: "Software para procesos que no pueden quedar aislados",
         items: [
           {
-            title: "Plataformas operativas",
-            text: "Clientes, servicios, ventas, pagos, inventario, usuarios y permisos en flujos coherentes.",
+            title: "Sistemas internos",
+            text: "Clientes, ventas, inventario, pagos, usuarios y permisos en una plataforma común.",
           },
           {
-            title: "Integraciones y APIs",
-            text: "Conexiones mantenibles entre ERP, POS, pagos, identidad, mensajería y sistemas legados.",
+            title: "Integraciones",
+            text: "Conexiones entre ERP, POS, pagos, identidad, mensajería y sistemas existentes.",
           },
           {
-            title: "Datos y BI",
-            text: "Pipelines, modelos y tableros para convertir actividad diaria en señales de decisión.",
+            title: "Datos y reportes",
+            text: "Modelos y tableros construidos sobre la actividad diaria del negocio.",
           },
           {
             title: "Automatización",
-            text: "Alertas, aprobaciones y tareas conectadas para reducir trabajo repetitivo y errores.",
+            text: "Alertas, aprobaciones y tareas que eliminan pasos repetitivos.",
           },
           {
             title: "Modernización",
-            text: "Evolución gradual de sistemas críticos para reducir deuda sin perder continuidad operativa.",
-          },
-          {
-            title: "Calidad y seguridad",
-            text: "Arquitectura, pruebas, observabilidad y controles integrados desde la definición.",
-          },
-        ],
-      },
-      {
-        eyebrow: "Definición",
-        title: "Asesoría y requerimientos antes de construir",
-        lead: "Cuando una idea todavía está abierta, ayudamos a convertirla en decisiones verificables antes de comprometer presupuesto y calendario.",
-        variant: "soft",
-        items: [
-          {
-            title: "Descubrimiento",
-            text: "Usuarios, procesos, reglas, restricciones, datos e integraciones del contexto real.",
-          },
-          {
-            title: "Alcance",
-            text: "Módulos, prioridades, dependencias, entregables y criterios de aceptación claros.",
-          },
-          {
-            title: "Ruta técnica",
-            text: "Arquitectura, riesgos, fases y una estimación alineada con la complejidad.",
+            text: "Evolución gradual de sistemas que no pueden detenerse.",
           },
         ],
       },
     ],
     cta: {
       eyebrow: "Siguiente paso",
-      title: "La mejor solución empieza por entender bien el problema",
-      text: "Comparte el flujo, las restricciones y el resultado que necesitas sostener.",
-      primary: { label: "Agendar una conversación", href: getRoute("contact", "es") },
+      title: "Revisemos el proceso que necesitas mejorar.",
+      text: "En una primera conversación revisamos el alcance inicial y las principales dependencias.",
+      primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
     },
   },
   en: {
     seo: {
       title: "Business software solutions",
       description:
-        "Ready products, platform adaptation, technical definition, and custom business-system development.",
+        "Design, integration, and development of internal systems, automation, and business platforms.",
     },
     hero: {
       eyebrow: "Solutions",
-      title: "Find, adapt, define, or build operational software",
-      lead: "We start from the real business context to choose an existing solution, adapt it, or design a new system with clear scope and risks.",
-      primary: { label: "Review my need", href: getRoute("contact", "en") },
+      title: "Business software design, integration, and development.",
+      lead: "We start with the current process, existing systems, and the data that needs to connect. Then we define scope and delivery.",
+      primary: { label: "Discuss a project", href: getRoute("contact", "en") },
       secondary: { label: "View products", href: getRoute("products", "en") },
     },
     sections: [
       {
         eyebrow: "Capabilities",
-        title: "Built around operations, data, and execution",
-        lead: "The value is not in adding screens. It is in connecting processes with reliable information and clear ownership.",
+        title: "Software for processes that cannot remain isolated",
         items: [
           {
-            title: "Operational platforms",
-            text: "Customers, services, sales, payments, inventory, users, and permissions in coherent workflows.",
+            title: "Internal systems",
+            text: "Customers, sales, inventory, payments, users, and permissions in one platform.",
           },
           {
-            title: "Integrations and APIs",
-            text: "Maintainable connections across ERP, POS, payments, identity, messaging, and legacy systems.",
+            title: "Integrations",
+            text: "Connections across ERP, POS, payments, identity, messaging, and existing systems.",
           },
           {
-            title: "Data and BI",
-            text: "Pipelines, models, and dashboards that turn daily activity into decision signals.",
+            title: "Data and reporting",
+            text: "Models and dashboards built on the company’s daily activity.",
           },
           {
             title: "Automation",
-            text: "Alerts, approvals, and connected tasks that reduce repetitive work and errors.",
+            text: "Alerts, approvals, and tasks that remove repetitive steps.",
           },
           {
             title: "Modernization",
-            text: "Gradual evolution of critical systems to reduce debt without losing operational continuity.",
-          },
-          {
-            title: "Quality and security",
-            text: "Architecture, testing, observability, and controls integrated from definition.",
-          },
-        ],
-      },
-      {
-        eyebrow: "Definition",
-        title: "Software advisory and requirements before building",
-        lead: "When an idea is still open, we turn it into verifiable decisions before budget and schedule are committed.",
-        variant: "soft",
-        items: [
-          {
-            title: "Discovery",
-            text: "Users, processes, rules, constraints, data, and integrations from the real context.",
-          },
-          {
-            title: "Scope",
-            text: "Modules, priorities, dependencies, deliverables, and clear acceptance criteria.",
-          },
-          {
-            title: "Technical path",
-            text: "Architecture, risks, phases, and an estimate aligned with complexity.",
+            text: "Gradual improvement of systems that cannot stop operating.",
           },
         ],
       },
     ],
     cta: {
       eyebrow: "Next step",
-      title: "The best solution starts with a well-understood problem",
-      text: "Share the workflow, constraints, and outcome you need to sustain.",
-      primary: { label: "Book a conversation", href: getRoute("contact", "en") },
+      title: "Let’s review the process you need to improve.",
+      text: "In an initial conversation, we review the initial scope and key dependencies.",
+      primary: { label: "Discuss a project", href: getRoute("contact", "en") },
     },
   },
 };

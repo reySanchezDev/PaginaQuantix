@@ -6,8 +6,8 @@ const labels: Record<Locale, Record<RouteId, string>> = {
     home: "Inicio",
     solutions: "Soluciones",
     products: "Productos",
-    work: "Trabajo",
-    about: "Nosotros",
+    work: "Cómo trabajamos",
+    about: "Empresa",
     contact: "Contacto",
     privacy: "Privacidad",
     terms: "Términos",
@@ -20,8 +20,8 @@ const labels: Record<Locale, Record<RouteId, string>> = {
     home: "Home",
     solutions: "Solutions",
     products: "Products",
-    work: "Work",
-    about: "About",
+    work: "How we work",
+    about: "Company",
     contact: "Contact",
     privacy: "Privacy",
     terms: "Terms",
@@ -32,7 +32,7 @@ const labels: Record<Locale, Record<RouteId, string>> = {
   },
 };
 
-const primaryRouteIds: RouteId[] = ["solutions", "products", "work", "about", "contact"];
+const primaryRouteIds: RouteId[] = ["solutions", "products", "about", "contact"];
 const legalRouteIds: RouteId[] = ["privacy", "terms"];
 
 function buildLinks(routeIds: RouteId[], locale: Locale): LinkItem[] {
@@ -60,11 +60,10 @@ export const sharedUi = {
     language: "Cambiar idioma a inglés",
     navigation: "Navegación",
     legal: "Legal",
+    process: "Cómo trabajamos",
     copyright: "Todos los derechos reservados.",
-    footerText:
-      "Productos de software listos para operar, adaptables y construidos a medida cuando el negocio lo necesita.",
+    footerText: "Productos propios y desarrollo de software para empresas.",
     brandHome: "Inicio de Quantix Software",
-    productAreas: "Áreas del producto",
   },
   en: {
     skip: "Skip to content",
@@ -75,10 +74,9 @@ export const sharedUi = {
     language: "Change language to Spanish",
     navigation: "Navigation",
     legal: "Legal",
+    process: "How we work",
     copyright: "All rights reserved.",
-    footerText:
-      "Ready-to-operate software products, adaptable and custom-built when the business needs it.",
+    footerText: "Software products and custom development for businesses.",
     brandHome: "Quantix Software home",
-    productAreas: "Product areas",
   },
 } as const;

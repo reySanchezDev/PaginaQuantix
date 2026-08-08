@@ -72,9 +72,7 @@ export interface ProductSummary {
   description: string;
   href: string;
   status: string;
-  tags: string[];
   external?: LinkItem;
-  featured?: boolean;
 }
 
 export type ProductId = "viggo" | "takofy" | "nica-finanzas" | "qavision";
@@ -92,7 +90,6 @@ export interface ProductPageContent {
   id: ProductId;
   seo: PageSeo;
   hero: HeroContent & {
-    highlights: string[];
     video?: {
       src: string;
       poster: string;

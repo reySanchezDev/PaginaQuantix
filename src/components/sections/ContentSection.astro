@@ -1,6 +1,5 @@
 ---
 import type { ContentSection as SectionContent } from "../../types/site";
-import Card from "../ui/Card.astro";
 import Container from "../ui/Container.astro";
 
 interface Props {
@@ -13,37 +12,82 @@ const headingId = content.id ? `${content.id}-title` : undefined;
 
 <section
   id={content.id}
-  class:list={["section", { "section--soft": content.variant === "soft" }]}
+  class:list={["section", "content-section", { "section--soft": content.variant === "soft" }]}
   aria-labelledby={headingId}
 >
-  <Container>
+  <Container class="content-section__layout">
     <div class="section-intro">
       {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}
       <h2 id={headingId}>{content.title}</h2>
       {content.lead && <p>{content.lead}</p>}
     </div>
 
-    <div class="feature-grid">
+    <ol class="content-list">
       {
         content.items.map((item, index) => (
-          <Card>
+          <li>
             <span>{String(index + 1).padStart(2, "0")}</span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-          </Card>
+          </li>
         ))
       }
-    </div>
+    </ol>
   </Container>
 </section>
 
 <style>
-  .feature-card span {
-    display: inline-block;
-    margin-bottom: var(--space-8);
-    color: var(--color-primary);
+  .content-section__layout {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .section-intro {
+    margin-bottom: 0;
+  }
+
+  .content-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border-strong);
+    list-style: none;
+  }
+
+  .content-list li {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .content-list span {
+    color: var(--color-ink-subtle);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    font-weight: 800;
-    letter-spacing: 0.08em;
+  }
+
+  .content-list h3 {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: var(--text-xl);
+  }
+
+  .content-list p {
+    max-width: 36rem;
+    margin: 0;
+    color: var(--color-ink-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (min-width: 64rem) {
+    .content-section__layout {
+      grid-template-columns: minmax(18rem, 0.75fr) minmax(0, 1.25fr);
+      gap: clamp(var(--space-12), 8vw, var(--space-24));
+    }
+
+    .content-list li {
+      grid-template-columns: 2rem minmax(10rem, 0.7fr) minmax(16rem, 1.3fr);
+      gap: var(--space-5);
+    }
   }
 </style>

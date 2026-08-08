@@ -8,15 +8,17 @@ import { notFoundContent as content } from "../data/not-found-content";
 <BaseLayout title={content.seo.title} description={content.seo.description} locale="en" noindex>
   <section class="not-found">
     <Container narrow>
-      <p class="eyebrow">{content.code} · <span lang="es">{content.eyebrow}</span></p>
-      <h1>{content.title}</h1>
+      <p class="eyebrow">{content.code}</p>
+      <h1>{content.title}<br /><span lang="es">{content.titleEs}</span></h1>
       <p>
-        {content.message}
+        {content.message}<br />
         <span lang="es">{content.messageEs}</span>
       </p>
       <div>
-        <Button href={content.actions.en.href} size="lg">{content.actions.en.label}</Button>
-        <Button href={content.actions.es.href} variant="secondary" size="lg">
+        <Button href={content.actions.en.href} hreflang="en" size="lg">
+          {content.actions.en.label}
+        </Button>
+        <Button href={content.actions.es.href} hreflang="es" variant="secondary" size="lg">
           <span lang="es">{content.actions.es.label}</span>
         </Button>
       </div>
@@ -27,15 +29,18 @@ import { notFoundContent as content } from "../data/not-found-content";
 <style>
   .not-found {
     display: grid;
-    min-height: 75vh;
+    min-height: 68vh;
     place-items: center;
-    padding: 9rem 0 var(--space-16);
+    padding: var(--space-20) 0;
+    background: var(--color-surface);
   }
 
   h1 {
-    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    max-width: 12ch;
+    font-size: clamp(3rem, 8vw, 5.5rem);
   }
   p:not(.eyebrow) {
+    max-width: 36rem;
     color: var(--color-ink-muted);
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);

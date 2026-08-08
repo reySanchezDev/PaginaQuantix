@@ -3,6 +3,7 @@ export const siteConfig = {
   siteUrl: "https://www.quantix.software",
   email: "contact@quantix.software",
   whatsappUrl: "https://wa.me/50585213462",
+  whatsappDisplay: "+505 8521 3462",
   productUrls: {
     viggo: "https://facturaystock.com/viggo/",
     takofy: {

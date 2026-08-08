@@ -13,7 +13,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
       updatedLabel: "Última actualización",
       updated: "8 de agosto de 2026",
       intro:
-        "Esta política explica qué información puede procesarse cuando visitas el sitio de Quantix Software y cómo puedes contactarnos sobre privacidad.",
+        "Esta política explica qué información procesamos cuando visitas el sitio de Quantix Software y cómo puedes contactarnos sobre privacidad.",
       sections: [
         {
           title: "Información que recopilamos",
@@ -30,7 +30,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Analítica",
           paragraphs: [
-            "Podemos utilizar analítica de tráfico con datos agregados para entender el uso del sitio. No utilizamos esa información para construir perfiles sensibles ni vender datos personales.",
+            "Este sitio utiliza Vercel Web Analytics para medir visitas y uso agregado. No utilizamos esa información para construir perfiles sensibles ni vender datos personales.",
           ],
         },
         {
@@ -57,7 +57,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
       updatedLabel: "Last updated",
       updated: "August 8, 2026",
       intro:
-        "This policy explains which information may be processed when you visit the Quantix Software website and how to contact us about privacy.",
+        "This policy explains which information we process when you visit the Quantix Software website and how to contact us about privacy.",
       sections: [
         {
           title: "Information we collect",
@@ -74,7 +74,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Analytics",
           paragraphs: [
-            "We may use aggregated traffic analytics to understand website usage. We do not use that information to build sensitive profiles or sell personal data.",
+            "This website uses Vercel Web Analytics to measure visits and aggregated usage. We do not use that information to build sensitive profiles or sell personal data.",
           ],
         },
         {
@@ -95,11 +95,11 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
   terms: {
     es: {
       seo: {
-        title: "Términos de servicio",
+        title: "Términos de uso",
         description: "Términos aplicables al uso del sitio web de Quantix Software.",
       },
       eyebrow: "Legal",
-      title: "Términos de servicio",
+      title: "Términos de uso",
       updatedLabel: "Última actualización",
       updated: "8 de agosto de 2026",
       intro:
@@ -143,11 +143,11 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
     },
     en: {
       seo: {
-        title: "Terms of service",
+        title: "Website terms",
         description: "Terms that apply to use of the Quantix Software website.",
       },
       eyebrow: "Legal",
-      title: "Terms of service",
+      title: "Website terms",
       updatedLabel: "Last updated",
       updated: "August 8, 2026",
       intro:
@@ -156,7 +156,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Website content",
           paragraphs: [
-            "Information is provided for general purposes and may change as our products and services evolve. We aim to keep it accurate but do not guarantee that it is free from omissions.",
+            "Information is provided for general purposes and may change as our products and services evolve. We aim to keep it accurate but do not guarantee that it is complete or error-free.",
           ],
         },
         {
@@ -180,7 +180,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Limitation of liability",
           paragraphs: [
-            "To the extent permitted by law, Quantix will not be liable for indirect damages arising from use of this website or reliance on its general content.",
+            "To the extent permitted by law, Quantix will not be liable for indirect damages arising from use of this website or reliance on information published here.",
           ],
         },
         {

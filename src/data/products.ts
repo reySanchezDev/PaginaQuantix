@@ -8,14 +8,11 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "viggo",
       name: "VIGGO",
-      category: "Operación integral",
-      description:
-        "Plataforma para gestionar clientes, servicios, inventario, ventas, cobros, credenciales, accesos e historial en una sola operación.",
-      status: "Producto publicado",
-      tags: ["Clientes", "Ventas", "Inventario", "Accesos"],
-      featured: true,
+      category: "Operación empresarial",
+      description: "Centraliza clientes, servicios, ventas, cobros, inventario y accesos.",
+      status: "Disponible",
       external: {
-        label: "Ir a VIGGO",
+        label: "Conocer VIGGO",
         href: siteConfig.productUrls.viggo,
         target: "_blank",
       },
@@ -23,11 +20,9 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "takofy",
       name: "Takofy",
-      category: "Operación de restaurantes",
-      description:
-        "Software de gestión para restaurantes con comandas, mesas, pagos, cocina, reportes, inventario y continuidad sin conexión.",
-      status: "Producto publicado",
-      tags: ["Restaurantes", "POS", "KDS", "Inventario"],
+      category: "Restaurantes",
+      description: "Coordina salón, cocina, caja e inventario, incluso cuando no hay conexión.",
+      status: "Disponible",
       external: {
         label: "Visitar Takofy",
         href: siteConfig.productUrls.takofy.es,
@@ -39,11 +34,10 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       name: "Nica Finanzas",
       category: "Herramientas financieras",
       description:
-        "Calculadoras gratuitas para Nicaragua, incluyendo salario, préstamos y liquidación laboral.",
-      status: "Herramienta gratuita",
-      tags: ["Finanzas", "Salario", "Préstamos", "Nicaragua"],
+        "Calculadoras gratuitas de salario, préstamos y liquidación laboral para Nicaragua.",
+      status: "Acceso gratuito",
       external: {
-        label: "Visitar Nica Finanzas",
+        label: "Abrir Nica Finanzas",
         href: siteConfig.productUrls["nica-finanzas"],
         target: "_blank",
       },
@@ -51,13 +45,11 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "qavision",
       name: "QAVision",
-      category: "Evidencia QA",
-      description:
-        "Herramienta gratuita para captura visual, grabación por zona, anotaciones y organización de evidencia de pruebas.",
-      status: `Versión ${qavisionTool.version}`,
-      tags: ["QA", "Capturas", "Video", "Windows"],
+      category: "Evidencia de pruebas",
+      description: "Captura, anota y organiza evidencia de pruebas en Windows.",
+      status: `Windows · v${qavisionTool.version}`,
       external: {
-        label: "Descargar QAVision",
+        label: "Descargar para Windows",
         href: qavisionTool.downloadUrl,
         target: "_blank",
       },
@@ -67,14 +59,12 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "viggo",
       name: "VIGGO",
-      category: "Integrated operations",
+      category: "Business operations",
       description:
-        "A platform for managing customers, services, inventory, sales, payments, credentials, access, and history in one operation.",
-      status: "Published product",
-      tags: ["Customers", "Sales", "Inventory", "Access"],
-      featured: true,
+        "Manage customers, services, sales, payments, inventory, and access in one system.",
+      status: "Available",
       external: {
-        label: "Go to VIGGO",
+        label: "Visit VIGGO",
         href: siteConfig.productUrls.viggo,
         target: "_blank",
       },
@@ -82,11 +72,10 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "takofy",
       name: "Takofy",
-      category: "Restaurant operations",
+      category: "Restaurants",
       description:
-        "Restaurant management software for orders, tables, payments, kitchen workflows, reporting, inventory, and offline continuity.",
-      status: "Published product",
-      tags: ["Restaurants", "POS", "KDS", "Inventory"],
+        "Connect front of house, kitchen, point of sale, and inventory, even when internet access is unavailable.",
+      status: "Available",
       external: {
         label: "Visit Takofy",
         href: siteConfig.productUrls.takofy.en,
@@ -97,12 +86,10 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       id: "nica-finanzas",
       name: "Nica Finanzas",
       category: "Financial tools",
-      description:
-        "Free calculators for Nicaragua, including salary, loans, and employment settlement.",
-      status: "Free tool",
-      tags: ["Finance", "Salary", "Loans", "Nicaragua"],
+      description: "Free salary, loan, and employment-settlement calculators for Nicaragua.",
+      status: "Free access",
       external: {
-        label: "Visit Nica Finanzas",
+        label: "Open Nica Finanzas",
         href: siteConfig.productUrls["nica-finanzas"],
         target: "_blank",
       },
@@ -110,13 +97,11 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "qavision",
       name: "QAVision",
-      category: "QA evidence",
-      description:
-        "A free tool for visual capture, zone recording, annotations, and organized software-testing evidence.",
-      status: `Version ${qavisionTool.version}`,
-      tags: ["QA", "Capture", "Video", "Windows"],
+      category: "Testing evidence",
+      description: "Capture, annotate, and organize software-testing evidence on Windows.",
+      status: `Windows · v${qavisionTool.version}`,
       external: {
-        label: "Download QAVision",
+        label: "Download for Windows",
         href: qavisionTool.downloadUrl,
         target: "_blank",
       },
@@ -125,18 +110,11 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
 };
 
 export function getProducts(locale: Locale): ProductSummary[] {
-  return content[locale].map((product) => ({
-    ...product,
-    href: getRoute(product.id, locale),
-  }));
+  return content[locale].map((product) => ({ ...product, href: getRoute(product.id, locale) }));
 }
 
 export function getProduct(id: ProductId, locale: Locale): ProductSummary {
   const product = getProducts(locale).find((item) => item.id === id);
-
-  if (!product) {
-    throw new Error(`Product not found: ${id}`);
-  }
-
+  if (!product) throw new Error(`Product not found: ${id}`);
   return product;
 }

@@ -9,217 +9,134 @@ export function getViggoPage(locale: Locale): ProductPageContent {
   return {
     id: "viggo",
     seo: {
-      title: isEs ? "VIGGO — Control integral del negocio" : "VIGGO — Integrated business control",
+      title: isEs ? "VIGGO | Gestión empresarial" : "VIGGO | Business management",
       description: product.description,
     },
     hero: {
-      eyebrow: isEs ? "Plataforma operativa de Quantix" : "Operational platform by Quantix",
+      eyebrow: isEs ? "Plataforma de gestión empresarial" : "Business management platform",
       title: isEs
-        ? "Tu negocio, conectado de principio a fin"
-        : "Your business, connected from end to end",
-      lead: product.description,
+        ? "Clientes, servicios, ventas e inventario en un mismo sistema."
+        : "Customers, services, sales, and inventory in one system.",
+      lead: isEs
+        ? "Cada movimiento queda relacionado con el cliente, el servicio y el historial correspondiente."
+        : "Each transaction stays connected to the customer, service, and related history.",
       primary: product.external,
-      secondary: { label: isEs ? "Ver el flujo" : "View the workflow", href: "#flujo" },
-      highlights: isEs
-        ? [
-            "Clientes y servicios",
-            "Ventas y cobros",
-            "Inventario y Kardex",
-            "Credenciales y accesos",
-          ]
-        : [
-            "Customers and services",
-            "Sales and payments",
-            "Inventory and Kardex",
-            "Credentials and access",
-          ],
+      secondary: {
+        label: isEs ? "Ver funciones" : "View features",
+        href: "#capabilities",
+      },
       video: {
         src: "/videos/viggo/dashboard-video.mp4",
         poster: "/images/viggo/viggo-dashboard.webp",
-        label: isEs ? "Demostración del dashboard de VIGGO" : "VIGGO dashboard demonstration",
+        label: isEs ? "Demostración del panel de VIGGO" : "VIGGO dashboard demonstration",
       },
     },
     overview: {
-      eyebrow: isEs ? "Una sola operación" : "One operation",
+      eyebrow: isEs ? "Áreas del producto" : "Product areas",
       title: isEs
-        ? "Control visible, incluso cuando no estás presente"
-        : "Visible control, even when you are not on site",
+        ? "Información conectada a la operación diaria"
+        : "Information connected to daily operations",
       lead: isEs
-        ? "VIGGO conecta lo que suele quedar separado: clientes, vigencias, ventas, pagos, inventario, accesos e historial. El equipo trabaja con contexto y la dirección conserva visibilidad."
-        : "VIGGO connects what often stays separate: customers, validity periods, sales, payments, inventory, access, and history. The team works with context while management keeps visibility.",
+        ? "VIGGO reúne la actividad comercial y de inventario para que el equipo trabaje sobre un registro común."
+        : "VIGGO brings commercial and inventory activity together so the team works from a shared record.",
       metrics: isEs
         ? [
-            { title: "Clientes", text: "Activos, vencidos y próximos a renovar" },
-            { title: "Servicios", text: "Planes, vigencias y renovaciones" },
-            { title: "Inventario", text: "Compras, existencias por sede y Kardex" },
+            { title: "Clientes", text: "Perfiles, servicios y renovaciones" },
             { title: "Ventas", text: "Cobros, comprobantes y cierres" },
+            { title: "Inventario", text: "Compras, existencias y Kardex" },
+            { title: "Accesos", text: "Credenciales, validación e historial" },
           ]
         : [
-            { title: "Customers", text: "Active, expired, and up for renewal" },
-            { title: "Services", text: "Plans, validity periods, and renewals" },
-            { title: "Inventory", text: "Purchases, branch stock, and Kardex" },
-            { title: "Sales", text: "Payments, receipts, and closings" },
+            { title: "Customers", text: "Profiles, services, and renewals" },
+            { title: "Sales", text: "Payments, receipts, and daily closeouts" },
+            { title: "Inventory", text: "Purchases, stock, and inventory ledger" },
+            { title: "Access", text: "Credentials, validation, and history" },
           ],
     },
     sections: [
       {
-        id: "flujo",
-        eyebrow: isEs ? "Capacidades" : "Capabilities",
+        id: "capabilities",
+        eyebrow: isEs ? "Funciones" : "Features",
         title: isEs
-          ? "Una operación completa, no módulos aislados"
-          : "A complete operation, not isolated modules",
-        lead: isEs
-          ? "Cada movimiento mantiene relación con el cliente, el servicio y el historial que le da contexto."
-          : "Each movement stays connected to the customer, service, and history that gives it context.",
+          ? "Un registro común para cada movimiento"
+          : "A shared record for every transaction",
         items: isEs
           ? [
               {
                 title: "Clientes y servicios",
-                text: "Perfiles, planes, vigencias, renovaciones y estado visible.",
+                text: "Perfiles, planes, vigencias, renovaciones y estados disponibles para consulta.",
               },
               {
-                title: "Ventas y pagos",
-                text: "Transacciones, cobros, recibos, cierres e historial diario.",
+                title: "Ventas y cobros",
+                text: "Transacciones, pagos, comprobantes, cierres e historial diario.",
               },
               {
-                title: "Inventario avanzado",
-                text: "Catálogo, compras, stock por sede, transferencias, conteos, auditoría y Kardex.",
+                title: "Inventario trazable",
+                text: "Compras, existencias por sede, transferencias, conteos, auditoría y Kardex.",
               },
               {
-                title: "Credencial y validación",
-                text: "Identificación digital para consultar, validar y actuar según el estado del cliente.",
-              },
-              {
-                title: "Usuarios y permisos",
-                text: "Roles para que cada persona opere únicamente lo necesario.",
-              },
-              {
-                title: "Historial operativo",
-                text: "Pagos, vigencias, accesos, ventas y movimientos listos para seguimiento.",
+                title: "Usuarios y accesos",
+                text: "Roles, credenciales y permisos para cada responsabilidad.",
               },
             ]
           : [
               {
                 title: "Customers and services",
-                text: "Profiles, plans, validity periods, renewals, and visible status.",
+                text: "Profiles, plans, service periods, renewals, and status available for review.",
               },
               {
                 title: "Sales and payments",
-                text: "Transactions, payments, receipts, closings, and daily history.",
+                text: "Transactions, payments, receipts, closing, and daily history.",
               },
               {
-                title: "Advanced inventory",
-                text: "Catalog, purchases, branch stock, transfers, counts, audit, and Kardex.",
+                title: "Traceable inventory",
+                text: "Purchases, branch stock, transfers, counts, audits, and inventory ledger.",
               },
               {
-                title: "Credential and validation",
-                text: "Digital identification to review, validate, and act on customer status.",
-              },
-              {
-                title: "Users and permissions",
-                text: "Roles so each person operates only what they need.",
-              },
-              {
-                title: "Operational history",
-                text: "Payments, validity periods, access, sales, and movements ready for follow-up.",
-              },
-            ],
-      },
-      {
-        eyebrow: isEs ? "Inventario conectado" : "Connected inventory",
-        title: isEs
-          ? "Inventario al mismo nivel que las ventas"
-          : "Inventory at the same level as sales",
-        lead: isEs
-          ? "Compras, existencias, ubicaciones y movimientos permanecen conectados al flujo comercial."
-          : "Purchases, stock, locations, and movements remain connected to the commercial flow.",
-        variant: "soft",
-        items: isEs
-          ? [
-              {
-                title: "Stock por sede",
-                text: "Existencias por artículo, sede y ubicación con mínimos de referencia.",
-              },
-              {
-                title: "Movimientos trazables",
-                text: "Entradas, salidas, ajustes, ventas y documentos con contexto.",
-              },
-              {
-                title: "Transferencias y conteos",
-                text: "Comparación entre stock real y registro operativo.",
-              },
-              {
-                title: "Kardex y auditoría",
-                text: "Balance, historial y diferencias visibles para actuar a tiempo.",
-              },
-            ]
-          : [
-              {
-                title: "Stock by branch",
-                text: "Inventory by item, branch, and location with reference minimums.",
-              },
-              {
-                title: "Traceable movements",
-                text: "Entries, exits, adjustments, sales, and documents with context.",
-              },
-              {
-                title: "Transfers and counts",
-                text: "Comparison between real stock and the operating record.",
-              },
-              {
-                title: "Kardex and audit",
-                text: "Balance, history, and differences visible in time to act.",
+                title: "Users and access",
+                text: "Roles, credentials, and permissions for each responsibility.",
               },
             ],
       },
     ],
     gallery: {
-      eyebrow: isEs ? "Producto en operación" : "Product in operation",
+      eyebrow: isEs ? "Interfaz del producto" : "Product interface",
       title: isEs
-        ? "De la venta al Kardex, cada paso queda visible"
-        : "From the sale to Kardex, every step stays visible",
+        ? "Ventas e inventario dentro del mismo registro"
+        : "Sales and inventory in the same record",
       lead: isEs
-        ? "Capturas reales del flujo comercial y de inventario de VIGGO."
-        : "Real captures from VIGGO’s commercial and inventory flow.",
+        ? "Capturas del flujo comercial y de inventario de VIGGO."
+        : "Screens from VIGGO’s sales and inventory workflows.",
       items: [
         {
           src: "/images/viggo/viggo-caja-gestion-2.webp",
           alt: isEs ? "Gestión de ventas en VIGGO" : "Sales management in VIGGO",
           width: 1916,
           height: 940,
-          caption: isEs ? "Preparación de ventas" : "Sales preparation",
+          caption: isEs ? "Preparación de una venta" : "Preparing a sale",
         },
         {
           src: "/images/viggo/viggo-caja-factura.webp",
           alt: isEs ? "Factura de venta en VIGGO" : "Sales invoice in VIGGO",
           width: 1919,
           height: 944,
-          caption: isEs ? "Facturación conectada" : "Connected invoicing",
-        },
-        {
-          src: "/images/viggo/viggo-caja-historial-transacciones-2.webp",
-          alt: isEs ? "Historial de transacciones en VIGGO" : "Transaction history in VIGGO",
-          width: 1918,
-          height: 936,
-          caption: isEs ? "Historial comercial" : "Commercial history",
+          caption: isEs ? "Facturación" : "Invoicing",
         },
         {
           src: "/images/viggo/viggo-kardex-2.webp",
-          alt: isEs ? "Kardex de inventario en VIGGO" : "Inventory Kardex in VIGGO",
+          alt: isEs ? "Kardex de inventario en VIGGO" : "Inventory ledger in VIGGO",
           width: 1917,
           height: 941,
-          caption: isEs ? "Movimiento en Kardex" : "Kardex movement",
+          caption: isEs ? "Movimientos de inventario" : "Inventory movements",
         },
       ],
     },
     cta: {
-      eyebrow: isEs ? "VIGGO para tu operación" : "VIGGO for your operation",
-      title: isEs
-        ? "Conecta clientes, ventas e inventario en un solo flujo"
-        : "Connect customers, sales, and inventory in one flow",
+      eyebrow: "VIGGO",
+      title: isEs ? "Conoce VIGGO." : "Visit VIGGO.",
       text: isEs
-        ? "Conoce el producto o conversa con Quantix sobre tu contexto."
-        : "Explore the product or talk to Quantix about your context.",
+        ? "Visita VIGGO o contacta a Quantix para conversar sobre la implementación."
+        : "Visit VIGGO or contact Quantix to discuss implementation.",
       primary: product.external!,
       secondary: {
         label: isEs ? "Contactar a Quantix" : "Contact Quantix",

@@ -16,7 +16,7 @@ const id = content.section.id;
 ---
 
 <BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
-  <PageHero content={content.hero} highlights={content.principles} compact />
+  <PageHero content={content.hero} compact />
   <section id={id} class="section" aria-labelledby={`${id}-title`}>
     <Container>
       <div class="section-intro">
@@ -24,10 +24,10 @@ const id = content.section.id;
         <h2 id={`${id}-title`}>{content.section.title}</h2>
         <p>{content.section.lead}</p>
       </div>
-      <div class="products-grid">
+      <div class="products-list">
         {
-          content.products.map((product) => (
-            <ProductCard product={product} viewLabel={content.section.viewLabel} />
+          content.products.map((product, index) => (
+            <ProductCard product={product} viewLabel={content.section.viewLabel} index={index} />
           ))
         }
       </div>
@@ -37,15 +37,7 @@ const id = content.section.id;
 </BaseLayout>
 
 <style>
-  .products-grid {
+  .products-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-5);
-  }
-
-  @media (max-width: 46rem) {
-    .products-grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

@@ -12,89 +12,65 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
   return {
     id: "qavision",
     seo: {
-      title: isEs ? "QAVision — Evidencia visual para QA" : "QAVision — Visual evidence for QA",
+      title: isEs ? "QAVision | Evidencia visual para QA" : "QAVision | Visual evidence for QA",
       description: product.description,
     },
     hero: {
-      eyebrow: isEs ? "Herramienta gratuita de Quantix" : "Free tool by Quantix",
+      eyebrow: isEs ? "Aplicación gratuita para Windows" : "Free Windows application",
       title: isEs
-        ? "Captura, revisa y organiza evidencia QA"
-        : "Capture, review, and organize QA evidence",
-      lead: qavisionTool.description[locale],
+        ? "Captura, anota y organiza evidencia de pruebas."
+        : "Capture, annotate, and organize testing evidence.",
+      lead: isEs
+        ? `QAVision combina capturas, grabación por zona y un visor con anotaciones. La versión ${qavisionTool.version} está disponible para Windows.`
+        : `QAVision combines screenshots, zone recording, and an annotation viewer. Version ${qavisionTool.version} is available for Windows.`,
       primary: product.external,
       secondary: {
         label: isEs ? "Ver productos" : "View products",
         href: getRoute("products", locale),
       },
-      highlights: isEs
-        ? ["Captura multimodo", "Grabación por zona", "Anotaciones", "Organización por contexto"]
-        : ["Multi-mode capture", "Zone recording", "Annotations", "Context organization"],
     },
     overview: {
-      eyebrow: isEs ? "Versión actual" : "Current release",
+      eyebrow: isEs ? "Especificaciones" : "Specifications",
       title: `QAVision ${qavisionTool.version}`,
       lead: isEs
-        ? "Aplicación para Windows enfocada en evidencia visual precisa y flujos de revisión más claros."
-        : "A Windows application focused on precise visual evidence and clearer review workflows.",
+        ? "Aplicación de escritorio enfocada en producir evidencia visual precisa para revisión de software."
+        : "A desktop application for producing precise visual evidence during software review.",
       metrics: isEs
         ? [
             { title: "Sistema", text: "Windows" },
-            { title: "Formato", text: "Instalador .exe" },
+            { title: "Instalador", text: ".exe" },
             { title: "Captura", text: "PNG y video" },
-            { title: "Licencia", text: "Herramienta gratuita" },
+            { title: "Licencia", text: "Uso gratuito" },
           ]
         : [
             { title: "System", text: "Windows" },
-            { title: "Format", text: ".exe installer" },
+            { title: "Installer", text: ".exe" },
             { title: "Capture", text: "PNG and video" },
-            { title: "License", text: "Free tool" },
+            { title: "License", text: "Free to use" },
           ],
     },
     sections: [
       {
-        eyebrow: isEs ? "Capacidades" : "Capabilities",
-        title: isEs
-          ? "Evidencia con más contexto y menos fricción"
-          : "Evidence with more context and less friction",
+        eyebrow: isEs ? "Funciones" : "Features",
+        title: isEs ? "Herramientas para documentar una prueba" : "Tools for documenting a test",
         items: isEs
           ? [
-              {
-                title: "Captura flexible",
-                text: "Pantalla completa, región y modo clip con nomenclatura automática.",
-              },
-              {
-                title: "Grabación por zona",
-                text: "Video con HUD de control y soporte de FFmpeg.",
-              },
-              {
-                title: "Visor Pro",
-                text: "Anotaciones vectoriales, capas, texto enriquecido y resaltado.",
-              },
-              {
-                title: "Organización",
-                text: "Carpetas por cliente, ambiente o contexto de trabajo, con autosave.",
-              },
+              { title: "Captura flexible", text: "Pantalla completa, región y modo clip." },
+              { title: "Grabación por zona", text: "Video con controles y soporte de FFmpeg." },
+              { title: "Visor con anotaciones", text: "Capas, texto, formas y resaltado." },
+              { title: "Organización", text: "Carpetas por cliente, ambiente o trabajo." },
             ]
           : [
-              {
-                title: "Flexible capture",
-                text: "Full screen, region, and clip mode with automatic naming.",
-              },
-              { title: "Zone recording", text: "Video with a control HUD and FFmpeg support." },
-              {
-                title: "Pro Viewer",
-                text: "Vector annotations, layers, rich text, and highlighting.",
-              },
-              {
-                title: "Organization",
-                text: "Folders by client, environment, or work context, with autosave.",
-              },
+              { title: "Flexible capture", text: "Full screen, region, and clip mode." },
+              { title: "Zone recording", text: "Video controls with FFmpeg support." },
+              { title: "Annotation viewer", text: "Layers, text, shapes, and highlighting." },
+              { title: "Organization", text: "Folders by client, environment, or task." },
             ],
       },
     ],
     release: release
       ? {
-          label: isEs ? "Notas de la versión" : "Release notes",
+          label: isEs ? "Versión actual" : "Current release",
           version: release.version ?? qavisionTool.version,
           date: release.date,
           changes: release.changes[locale],
@@ -108,10 +84,10 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
       : undefined,
     cta: {
       eyebrow: "QAVision",
-      title: isEs ? "Mejora tu flujo de evidencia QA" : "Improve your QA evidence workflow",
+      title: isEs ? "Descarga la versión para Windows." : "Download the Windows release.",
       text: isEs
-        ? "Descarga la versión actual o conversa con Quantix sobre herramientas de calidad."
-        : "Download the current release or talk to Quantix about quality tools.",
+        ? "Verifica el checksum SHA-256 antes de instalar."
+        : "Verify the SHA-256 checksum before installation.",
       primary: product.external!,
       secondary: {
         label: isEs ? "Contactar a Quantix" : "Contact Quantix",
