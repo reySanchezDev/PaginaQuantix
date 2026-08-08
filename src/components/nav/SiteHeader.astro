@@ -69,8 +69,7 @@ const pathname = Astro.url.pathname;
     inset: 0 0 auto;
     z-index: 80;
     border-bottom: 1px solid var(--color-border);
-    background: color-mix(in srgb, var(--color-canvas) 96%, transparent);
-    backdrop-filter: blur(12px);
+    background: var(--color-canvas);
   }
 
   .site-header__inner {
@@ -97,6 +96,7 @@ const pathname = Astro.url.pathname;
   }
 
   .desktop-nav a:not(.language-switch) {
+    position: relative;
     display: inline-flex;
     min-height: 2.75rem;
     align-items: center;
@@ -113,6 +113,24 @@ const pathname = Astro.url.pathname;
   .desktop-nav a:not(.language-switch):hover,
   .desktop-nav a.active:not(.language-switch) {
     color: var(--color-primary);
+  }
+
+  .desktop-nav a:not(.language-switch, .contact-link)::after {
+    position: absolute;
+    inset: auto var(--space-4) 0.4rem;
+    height: 2px;
+    background: var(--color-primary);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-base);
+  }
+
+  .desktop-nav a:not(.language-switch, .contact-link):hover::after,
+  .desktop-nav a.active:not(.language-switch, .contact-link)::after,
+  .desktop-nav a:not(.language-switch, .contact-link):focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   .desktop-nav a.contact-link:not(.language-switch) {

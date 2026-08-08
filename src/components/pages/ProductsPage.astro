@@ -19,7 +19,7 @@ const id = content.section.id;
   <PageHero content={content.hero} compact />
   <section id={id} class="section" aria-labelledby={`${id}-title`}>
     <Container>
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
         <p class="eyebrow">{content.section.eyebrow}</p>
         <h2 id={`${id}-title`}>{content.section.title}</h2>
         <p>{content.section.lead}</p>

@@ -63,7 +63,9 @@ const safeHref = href && !isDisabled ? href : undefined;
     transition:
       background var(--transition-fast),
       border-color var(--transition-fast),
-      color var(--transition-fast);
+      box-shadow var(--transition-fast),
+      color var(--transition-fast),
+      transform var(--transition-fast);
   }
 
   .button[aria-disabled="true"] {
@@ -80,6 +82,8 @@ const safeHref = href && !isDisabled ? href : undefined;
   .button--primary:hover:not([aria-disabled="true"]) {
     border-color: var(--color-primary-hover);
     background: var(--color-primary-hover);
+    box-shadow: 0 0.55rem 1.4rem -0.85rem rgb(15 81 72 / 0.72);
+    transform: translateY(-2px);
   }
 
   .button--secondary {
@@ -92,6 +96,7 @@ const safeHref = href && !isDisabled ? href : undefined;
   .button--ghost:hover:not([aria-disabled="true"]) {
     border-color: var(--color-ink);
     color: var(--color-ink);
+    transform: translateY(-2px);
   }
 
   .button--ghost {
@@ -110,6 +115,12 @@ const safeHref = href && !isDisabled ? href : undefined;
   .button--link:hover:not([aria-disabled="true"]) {
     text-decoration: underline;
     text-underline-offset: 0.25em;
+    transform: translateX(0.2rem);
+  }
+
+  .button:active:not([aria-disabled="true"]) {
+    box-shadow: none;
+    transform: translateY(0);
   }
 
   .button--sm {

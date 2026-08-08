@@ -1,0 +1,100 @@
+<div class="quantix-signal" aria-hidden="true">
+  <svg viewBox="0 0 160 160" role="presentation">
+    <rect class="signal-frame" x="1" y="1" width="158" height="158"></rect>
+    <path class="signal-route signal-route--muted" d="M1 52h36M123 108h36M52 1v26M108 133v26"
+    ></path>
+    <path class="signal-route signal-route--active" pathLength="1" d="M30 42h86v72H78v22"></path>
+    <circle class="signal-node signal-node--one" cx="30" cy="42" r="5"></circle>
+    <circle class="signal-node signal-node--two" cx="116" cy="42" r="5"></circle>
+    <circle class="signal-node signal-node--three" cx="116" cy="114" r="5"></circle>
+    <rect class="signal-cursor" x="70" y="128" width="16" height="16"></rect>
+  </svg>
+</div>
+
+<style>
+  .quantix-signal {
+    width: min(8rem, 70%);
+    color: var(--signal-color, var(--color-primary));
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .signal-frame,
+  .signal-route {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .signal-frame,
+  .signal-route--muted {
+    stroke: var(--color-border-strong);
+    stroke-width: 1;
+  }
+
+  .signal-route--active {
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-route 1.4s 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .signal-node {
+    fill: var(--color-canvas);
+    stroke: currentColor;
+    stroke-width: 2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: resolve-node 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .signal-node--one {
+    animation-delay: 120ms;
+  }
+
+  .signal-node--two {
+    animation-delay: 520ms;
+  }
+
+  .signal-node--three {
+    animation-delay: 900ms;
+  }
+
+  .signal-cursor {
+    fill: currentColor;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation:
+      resolve-node 480ms 1.18s cubic-bezier(0.22, 1, 0.36, 1) both,
+      signal-pulse 3.6s 1.8s ease-in-out infinite;
+  }
+
+  @keyframes draw-route {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes resolve-node {
+    from {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+  }
+
+  @keyframes signal-pulse {
+    0%,
+    84%,
+    100% {
+      transform: scale(1);
+    }
+    92% {
+      transform: scale(0.65);
+    }
+  }
+</style>

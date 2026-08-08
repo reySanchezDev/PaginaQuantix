@@ -10,7 +10,7 @@ const { content } = Astro.props as Props;
 ---
 
 <section class="release-notes" aria-labelledby="release-title">
-  <Container class="release-notes__layout">
+  <Container class="release-notes__layout" data-reveal>
     <div>
       <p class="eyebrow">{content.label}</p>
       <h2 id="release-title">v{content.version}</h2>

@@ -14,14 +14,14 @@ const hasMetrics = content.metrics.length > 0;
   <Container
     class:list={["product-overview__layout", { "product-overview__layout--single": !hasMetrics }]}
   >
-    <div class="section-intro">
+    <div class="section-intro" data-reveal>
       <p class="eyebrow">{content.eyebrow}</p>
       <h2 id="overview-title">{content.title}</h2>
       <p>{content.lead}</p>
     </div>
     {
       hasMetrics && (
-        <dl>
+        <dl data-reveal>
           {content.metrics.map((metric) => (
             <div>
               <dt>{metric.title}</dt>

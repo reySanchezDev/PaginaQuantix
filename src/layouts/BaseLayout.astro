@@ -2,6 +2,7 @@
 import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
 import SiteFooter from "../components/nav/SiteFooter.astro";
 import SiteHeader from "../components/nav/SiteHeader.astro";
+import MotionController from "../components/system/MotionController.astro";
 import { getLegalNavigation, getPrimaryNavigation, sharedUi } from "../data/navigation";
 import { siteConfig } from "../data/site-config";
 import { getAlternatePath, getRoute, normalizePath } from "../i18n/routes";
@@ -105,5 +106,6 @@ const organizationSchema = {
       locale={locale}
       labels={labels}
     />
+    <MotionController />
   </body>
 </html>

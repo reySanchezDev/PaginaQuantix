@@ -31,7 +31,7 @@ const toSection = (source: typeof content.model): ContentSection => ({
 
   <section class="section products-showcase" aria-labelledby={productsTitleId}>
     <Container>
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
         <p class="eyebrow">{content.productsSection.eyebrow}</p>
         <h2 id={productsTitleId}>{content.productsSection.title}</h2>
         <p>{content.productsSection.lead}</p>
@@ -49,7 +49,7 @@ const toSection = (source: typeof content.model): ContentSection => ({
             ))
         }
       </div>
-      <div class="products-showcase__more">
+      <div class="products-showcase__more" data-reveal>
         <Button href={content.productsSection.allHref} variant="link">
           {content.productsSection.allLabel}
           <span aria-hidden="true">→</span>

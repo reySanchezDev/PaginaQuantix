@@ -2,6 +2,7 @@
 import type { ProductPageContent, ProductSummary } from "../../types/site";
 import Button from "../ui/Button.astro";
 import Container from "../ui/Container.astro";
+import QuantixSignal from "../ui/QuantixSignal.astro";
 
 interface Props {
   content: ProductPageContent;
@@ -59,7 +60,10 @@ const { hero } = content;
           </figure>
         ) : (
           <div class="product-sheet">
-            <p>{product.category}</p>
+            <div class="product-sheet__header">
+              <p>{product.category}</p>
+              <QuantixSignal />
+            </div>
             <strong>{product.name}</strong>
             <div class="product-sheet__meta">
               <span>{product.status}</span>
@@ -97,6 +101,21 @@ const { hero } = content;
     display: grid;
     gap: clamp(var(--space-10), 7vw, var(--space-20));
     align-items: center;
+  }
+
+  .product-hero__content {
+    animation: product-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .product-hero__visual {
+    animation: product-enter 760ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes product-enter {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
   }
 
   .eyebrow {
@@ -165,13 +184,30 @@ const { hero } = content;
   }
 
   .product-sheet {
+    position: relative;
     padding: clamp(var(--space-6), 5vw, var(--space-10));
+    overflow: hidden;
     background: var(--color-surface);
     color: var(--color-ink);
   }
 
-  .product-sheet > p {
-    margin: 0 0 var(--space-12);
+  .product-sheet__header {
+    display: flex;
+    min-height: clamp(4.5rem, 10vw, 7rem);
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  .product-sheet__header :global(.quantix-signal) {
+    width: clamp(4.5rem, 10vw, 7rem);
+    flex: 0 0 auto;
+    opacity: 0.72;
+  }
+
+  .product-sheet__header > p {
+    margin: 0;
     color: var(--color-ink-subtle);
     font-family: var(--font-mono);
     font-size: var(--text-xs);

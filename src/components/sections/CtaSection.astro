@@ -11,7 +11,7 @@ const { content } = Astro.props as Props;
 ---
 
 <section class="cta-section" aria-labelledby="cta-title">
-  <Container class="cta-section__layout">
+  <Container class="cta-section__layout" data-reveal>
     <p class="eyebrow">{content.eyebrow}</p>
     <div class="cta-section__content">
       <h2 id="cta-title">{content.title}</h2>

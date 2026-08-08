@@ -22,6 +22,10 @@ body {
   background: var(--color-canvas);
 }
 
+:where(.product-hero, .cta-section, .release-notes, .site-footer) {
+  --color-focus: var(--color-focus-inverse);
+}
+
 body[data-menu-open="true"] {
   overflow: hidden;
 }
@@ -63,6 +67,24 @@ a {
 ::selection {
   background: var(--color-primary-soft);
   color: var(--color-ink);
+}
+
+[data-reveal][data-reveal-ready="true"] {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity var(--transition-reveal),
+    transform var(--transition-reveal);
+}
+
+[data-reveal][data-reveal-ready="true"][data-reveal-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal][data-reveal-ready="true"]:focus-within {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .container {
@@ -171,5 +193,12 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  [data-reveal][data-reveal-ready="true"] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

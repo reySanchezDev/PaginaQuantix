@@ -12,7 +12,7 @@ const { locale, content } = Astro.props as Props;
 
 <BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
   <header class="legal-hero">
-    <Container narrow>
+    <Container narrow data-reveal>
       <p class="eyebrow">{content.eyebrow}</p>
       <h1>{content.title}</h1>
       <p class="legal-hero__meta">{content.updatedLabel}: {content.updated}</p>
@@ -25,7 +25,7 @@ const { locale, content } = Astro.props as Props;
       <div class="prose">
         {
           content.sections.map((section) => (
-            <section>
+            <section data-reveal>
               <h2>{section.title}</h2>
               {section.paragraphs.map((paragraph) => (
                 <p>{paragraph}</p>
