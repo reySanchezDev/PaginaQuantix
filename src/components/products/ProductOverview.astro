@@ -1,0 +1,85 @@
+---
+import type { ProductPageContent } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  content: ProductPageContent["overview"];
+}
+const { content } = Astro.props as Props;
+---
+
+<section class="section product-overview" aria-labelledby="overview-title">
+  <Container>
+    <div class="product-overview__layout">
+      <div class="section-intro">
+        <p class="eyebrow">{content.eyebrow}</p>
+        <h2 id="overview-title">{content.title}</h2>
+        <p>{content.lead}</p>
+      </div>
+      <dl>
+        {
+          content.metrics.map((metric) => (
+            <div>
+              <>
+                <dt>{metric.title}</dt>
+                <dd>{metric.text}</dd>
+              </>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .product-overview__layout {
+    display: grid;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .section-intro {
+    margin-bottom: 0;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  dl div {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  dt {
+    margin-bottom: var(--space-2);
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+  }
+
+  @media (min-width: 56rem) {
+    .product-overview__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.8fr);
+    }
+  }
+
+  @media (max-width: 34rem) {
+    dl {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

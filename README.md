@@ -1,14 +1,14 @@
-# Quantix Software Website
+# Quantix Software
 
-Corporate website for Quantix Software, built with Astro and maintained as a bilingual static site.
+Corporate website built with Astro 7 as a bilingual, fully static site.
 
 ## Project Structure
 
 ```text
 src/
-  components/   Shared UI, navigation, analytics and page sections
-  data/         Product, services and release data
-  i18n/         English and Spanish translation strings
+  components/   Reusable UI, navigation, sections and page compositions
+  data/         Localized content and product configuration
+  i18n/         Canonical bilingual route manifest
   layouts/      Base and product layouts
   pages/        Public routes for English and Spanish content
   styles/       Global styles, design tokens and typography
@@ -17,20 +17,33 @@ public/
   videos/       Static video assets
 ```
 
-## Available Scripts
+## Local development
 
 ```sh
-npm install
+npm ci
 npm run dev
-npm run check
-npm run build
-npm run preview
 ```
 
-## Production Notes
+The development server runs at `http://localhost:4321`.
 
-- Default locale: English (`/en/`)
-- Spanish locale: `/es/`
-- Deployment target: static Astro build
-- Legal pages are available in both English and Spanish
-- Product pages are intentionally conservative until final commercial packaging is approved
+## Quality gates
+
+```sh
+npm run quality
+```
+
+This verifies formatting, lint rules, unused code, the 300-line source limit, Astro types, the production build, generated HTML, internal links, sitemap integrity, and dependency security.
+
+## Architecture
+
+- English routes use `/en/`; Spanish routes use `/es/`.
+- Route translations, navigation state, language switching, canonicals, and hreflang derive from one manifest.
+- Products and page content are configuration-driven and shared by both languages.
+- Each route is a small composition over reusable layouts and components.
+- Design values live in `src/styles/tokens.css`; component styles consume those tokens.
+- The site ships as static HTML with a generated sitemap and production security headers.
+
+## Runtime
+
+- Node.js 22.21.1 or newer compatible release
+- npm 10 or newer

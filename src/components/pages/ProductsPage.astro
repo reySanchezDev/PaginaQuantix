@@ -1,0 +1,51 @@
+---
+import { getProductsPageContent } from "../../data/products-page-content";
+import type { Locale } from "../../types/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProductCard from "../products/ProductCard.astro";
+import CtaSection from "../sections/CtaSection.astro";
+import PageHero from "../sections/PageHero.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props as Props;
+const content = getProductsPageContent(locale);
+const id = content.section.id;
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
+  <PageHero content={content.hero} highlights={content.principles} compact />
+  <section id={id} class="section" aria-labelledby={`${id}-title`}>
+    <Container>
+      <div class="section-intro">
+        <p class="eyebrow">{content.section.eyebrow}</p>
+        <h2 id={`${id}-title`}>{content.section.title}</h2>
+        <p>{content.section.lead}</p>
+      </div>
+      <div class="products-grid">
+        {
+          content.products.map((product) => (
+            <ProductCard product={product} viewLabel={content.section.viewLabel} />
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+  <CtaSection content={content.cta} />
+</BaseLayout>
+
+<style>
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 46rem) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

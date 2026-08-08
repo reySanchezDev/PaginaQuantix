@@ -1,27 +1,29 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import type { Locale } from "../types/site";
+import { siteConfig } from "../data/site-config";
+import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
   title: string;
   description: string;
-  lang?: 'es' | 'en';
+  locale: Locale;
+  productName: string;
+  operatingSystem?: string;
 }
 
-const { title, description, lang = 'en' } = Astro.props as Props;
+const { title, description, locale, productName, operatingSystem } = Astro.props as Props;
+const site = Astro.site ?? new URL(siteConfig.siteUrl);
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: productName,
+  description,
+  url: new URL(Astro.url.pathname, site).href,
+  applicationCategory: "BusinessApplication",
+  ...(operatingSystem ? { operatingSystem } : {}),
+};
 ---
 
-<BaseLayout title={title} description={description} lang={lang}>
-  <div class="product-page-wrapper">
-    <slot />
-  </div>
+<BaseLayout title={title} description={description} locale={locale} structuredData={schema}>
+  <slot />
 </BaseLayout>
-
-<style>
-  /* Wrapper opcional por si necesitamos estilos específicos de producto
-     que no afecten al home (ej. padding-top extra si el header tape contenido) */
-  .product-page-wrapper {
-      /* El header es sticky y tiene padding, pero en producto 
-         a veces queremos un hero full screen o con padding top */
-      width: 100%;
-  }
-</style>

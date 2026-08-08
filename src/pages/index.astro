@@ -1,17 +1,3 @@
 ---
+return Astro.redirect("/en/", 308);
 ---
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0;url=/en/" />
-    <script is:inline>
-      window.location.replace("/en/");
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to <a href="/en/">/en/</a>...</p>
-  </body>
-</html>

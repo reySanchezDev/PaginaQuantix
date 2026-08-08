@@ -1,0 +1,104 @@
+---
+import type { ProductPageContent } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  content: NonNullable<ProductPageContent["release"]>;
+}
+const { content } = Astro.props as Props;
+---
+
+<section class="section" aria-labelledby="release-title">
+  <Container>
+    <div class="release-panel">
+      <div>
+        <p class="eyebrow">{content.label}</p>
+        <h2 id="release-title">v{content.version}</h2>
+        {content.date && <time datetime={content.date}>{content.date}</time>}
+      </div>
+      <div>
+        <ul>{content.changes.map((change) => <li>{change}</li>)}</ul>
+        {
+          content.checksum && (
+            <dl>
+              <div>
+                <dt>{content.checksum.label}</dt>
+                <dd>
+                  <span>{content.checksum.algorithm}</span>
+                  <code>{content.checksum.value}</code>
+                  <small>{content.checksum.size}</small>
+                </dd>
+              </div>
+            </dl>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .release-panel {
+    display: grid;
+    gap: var(--space-8);
+    padding: clamp(var(--space-6), 5vw, var(--space-12));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+  }
+
+  h2 {
+    font-size: var(--text-5xl);
+  }
+  time {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding-left: var(--space-5);
+    color: var(--color-ink-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  dl {
+    margin: var(--space-6) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  dt,
+  dd span,
+  small {
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xs);
+    font-weight: 700;
+  }
+
+  dd {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  code {
+    overflow-wrap: anywhere;
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 56rem) {
+    .release-panel {
+      grid-template-columns: 12rem minmax(0, 1fr);
+    }
+  }
+</style>

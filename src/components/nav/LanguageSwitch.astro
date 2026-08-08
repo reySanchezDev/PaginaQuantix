@@ -1,115 +1,49 @@
 ---
-const { currentLocale } = Astro;
-const { pathname } = Astro.url;
+import { getAlternatePath } from "../../i18n/routes";
+import type { Locale } from "../../types/site";
 
-const locale = currentLocale === "es" ? "es" : "en";
-const targetLocale = locale === "es" ? "en" : "es";
-const ariaLabel =
-  locale === "es"
-    ? `Cambiar idioma a ${targetLocale.toUpperCase()}`
-    : `Change language to ${targetLocale.toUpperCase()}`;
-
-const normalizePath = (value: string) => {
-  if (value === "/") return "/";
-  return value.endsWith("/") ? value : `${value}/`;
-};
-
-const routePairs: Record<string, string> = {
-  "/es/": "/en/",
-  "/en/": "/es/",
-  "/es/productos/viggo/": "/en/products/viggo/",
-  "/en/products/viggo/": "/es/productos/viggo/",
-  "/es/productos/takofy/": "/en/products/takofy/",
-  "/en/products/takofy/": "/es/productos/takofy/",
-  "/es/productos/nica-finanzas/": "/en/products/nica-finanzas/",
-  "/en/products/nica-finanzas/": "/es/productos/nica-finanzas/",
-  "/es/productos/qavision/": "/en/products/qavision/",
-  "/en/products/qavision/": "/es/productos/qavision/",
-  "/es/soluciones/": "/en/solutions/",
-  "/en/solutions/": "/es/soluciones/",
-  "/es/productos/": "/en/products/",
-  "/en/products/": "/es/productos/",
-  "/es/trabajo/": "/en/work/",
-  "/en/work/": "/es/trabajo/",
-  "/es/nosotros/": "/en/about/",
-  "/en/about/": "/es/nosotros/",
-  "/es/contacto/": "/en/contact/",
-  "/en/contact/": "/es/contacto/",
-  "/es/privacidad/": "/en/privacy/",
-  "/en/privacy/": "/es/privacidad/",
-  "/es/terminos/": "/en/terms/",
-  "/en/terms/": "/es/terminos/",
-};
-
-const normalizedPathname = normalizePath(pathname);
-
-let targetPath = routePairs[normalizedPathname];
-if (!targetPath) {
-  if (normalizedPathname.startsWith("/es/")) {
-    targetPath = normalizedPathname.replace("/es/", "/en/");
-  } else if (normalizedPathname.startsWith("/en/")) {
-    targetPath = normalizedPathname.replace("/en/", "/es/");
-  } else {
-    targetPath = `/${targetLocale}/`;
-  }
+interface Props {
+  locale: Locale;
+  label: string;
 }
+
+const { locale, label } = Astro.props as Props;
+const targetLocale: Locale = locale === "es" ? "en" : "es";
+const targetPath = getAlternatePath(Astro.url.pathname, targetLocale);
 ---
 
-<a href={targetPath} class="lang-switch" aria-label={ariaLabel}>
-  <span class:list={["lang-code", { active: locale === "es" }]}>ES</span>
-  <span class="divider">/</span>
-  <span class:list={["lang-code", { active: locale === "en" }]}>EN</span>
+<a
+  class="language-switch"
+  href={targetPath}
+  lang={targetLocale}
+  hreflang={targetLocale}
+  aria-label={label}
+>
+  <span aria-hidden="true">{targetLocale.toUpperCase()}</span>
 </a>
 
 <style>
-  .lang-switch {
-    display: flex;
+  .language-switch {
+    display: inline-flex;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
     align-items: center;
-    gap: 0.3rem;
-    font-size: var(--text-sm);
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--text-muted);
-    padding: 0.45rem 0.6rem;
+    justify-content: center;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    border: 1px solid transparent;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    text-decoration: none;
     transition:
-      color 0.2s ease,
-      background-color 0.2s ease,
-      border-color 0.2s ease;
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      background var(--transition-fast);
   }
 
-  .lang-switch:hover {
-    color: var(--text);
-    background-color: color-mix(in srgb, var(--surface-2) 54%, transparent);
-    border-color: var(--border);
-  }
-
-  .lang-switch:focus {
-    outline: none;
-  }
-
-  .lang-switch:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: 2px;
-    background: transparent;
-    border-color: transparent;
-  }
-
-  .lang-code {
-    opacity: 0.58;
-    transition:
-      color 0.2s ease,
-      opacity 0.2s ease;
-  }
-
-  .lang-code.active {
-    opacity: 1;
-    font-weight: 700;
-    color: var(--primary);
-  }
-
-  .divider {
-    color: var(--border-strong);
+  .language-switch:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
   }
 </style>

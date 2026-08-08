@@ -1,177 +1,131 @@
 ---
+import type { Locale, NavItem } from "../../types/site";
+import type { LinkItem } from "../../types/site";
+import { siteConfig } from "../../data/site-config";
+import Brand from "../ui/Brand.astro";
 import Container from "../ui/Container.astro";
 
 interface Props {
-  navItems: { label: string; href: string }[];
-  lang: "es" | "en";
+  navItems: NavItem[];
+  legalItems: LinkItem[];
+  locale: Locale;
+  labels: {
+    navigation: string;
+    legal: string;
+    footerText: string;
+    copyright: string;
+  };
 }
 
-const { navItems, lang } = Astro.props;
-const year = new Date().getFullYear();
-const homeHref = lang === "es" ? "/es/" : "/en/";
-const privacyHref = lang === "es" ? "/es/privacidad/" : "/en/privacy/";
-const termsHref = lang === "es" ? "/es/terminos/" : "/en/terms/";
-const homeAria =
-  lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
-const texts =
-  lang === "es"
-    ? {
-        tagline: "Productos de software listos para operar, adaptables y a medida cuando el negocio lo necesita.",
-        navTitle: "Navegación",
-        legalTitle: "Legal",
-        privacy: "Privacidad",
-        terms: "Términos",
-        rights: "Todos los derechos reservados.",
-      }
-    : {
-        tagline: "Ready-to-operate software products, adaptable and custom-built when the business needs it.",
-        navTitle: "Navigation",
-        legalTitle: "Legal",
-        privacy: "Privacy",
-        terms: "Terms",
-        rights: "All rights reserved.",
-      };
+const { navItems, legalItems, locale, labels } = Astro.props as Props;
 ---
 
-<footer class="footer-premium">
-  <Container>
-    <div class="footer-content">
-      <div class="brand-col">
-        <a href={homeHref} class="brand-logo" aria-label={homeAria}>
-          <img src="/favicon.svg" alt="Quantix Logo" width="28" height="28" />
-          <span class="brand-wordmark">Quantix</span>
-        </a>
-        <p class="tagline">{texts.tagline}</p>
-      </div>
-
-      <div class="nav-col">
-        <h4 class="col-title">{texts.navTitle}</h4>
-        <ul class="footer-nav">
-          {
-            navItems.map((item) => (
-              <li><a href={item.href}>{item.label}</a></li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <div class="legal-col">
-        <h4 class="col-title">{texts.legalTitle}</h4>
-        <ul class="footer-nav">
-          <li><a href={privacyHref}>{texts.privacy}</a></li>
-          <li><a href={termsHref}>{texts.terms}</a></li>
-        </ul>
-      </div>
+<footer class="site-footer">
+  <Container class="site-footer__grid">
+    <div class="site-footer__brand">
+      <Brand locale={locale} />
+      <p>{labels.footerText}</p>
     </div>
 
-    <div class="footer-bottom">
-      <p>&copy; {year} Quantix Software. {texts.rights}</p>
-    </div>
+    <nav aria-label={labels.navigation}>
+      <h2>{labels.navigation}</h2>
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <nav aria-label={labels.legal}>
+      <h2>{labels.legal}</h2>
+      <ul>
+        {
+          legalItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </Container>
+
+  <Container class="site-footer__bottom">
+    <p>© {new Date().getFullYear()} {siteConfig.name}. {labels.copyright}</p>
   </Container>
 </footer>
 
 <style>
-  .footer-premium {
-    background:
-      linear-gradient(180deg, color-mix(in srgb, var(--surface) 78%, var(--bg)) 0%, var(--surface) 100%);
-    border-top: 1px solid var(--border);
-    padding: clamp(var(--space-10), 7vw, var(--space-16)) 0 var(--space-8);
-    margin-top: auto;
+  .site-footer {
+    padding: var(--space-16) 0 var(--space-6);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
   }
 
-  .footer-content {
+  .site-footer__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    margin-bottom: var(--space-12);
+    grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(8rem, 0.5fr));
+    gap: var(--space-12);
   }
 
-  @media (min-width: 768px) {
-    .footer-content {
-      grid-template-columns: minmax(16rem, 2fr) repeat(2, minmax(8rem, 1fr));
-      align-items: start;
-    }
+  .site-footer__brand p {
+    max-width: 26rem;
+    margin: var(--space-5) 0 0;
+    color: var(--color-ink-muted);
   }
 
-  .brand-col {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .brand-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    width: fit-content;
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .brand-wordmark {
-    font-family: var(--font-heading);
-    font-size: var(--text-xl);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  .tagline {
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-    max-width: 300px;
-    line-height: 1.65;
-  }
-
-  .col-title {
+  h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-ink-subtle);
+    font-family: var(--font-body);
     font-size: var(--text-xs);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
-    font-weight: 700;
-    color: var(--text);
-    margin: 0 0 var(--space-4);
   }
 
-  .footer-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+  ul {
+    display: grid;
     gap: var(--space-2);
-  }
-
-  .footer-nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: var(--text-sm);
-    line-height: 1.5;
-    transition: color 0.2s ease;
-  }
-
-  .footer-nav a:hover {
-    color: var(--primary);
-  }
-
-  .footer-bottom {
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-4);
-    color: var(--text-subtle);
-    font-size: var(--text-xs);
-  }
-
-  .footer-bottom p {
     margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  @media (min-width: 768px) {
-    .footer-bottom {
-      flex-direction: row;
-      justify-content: space-between;
-      text-align: left;
+  nav a {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .site-footer__bottom {
+    margin-top: var(--space-12);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .site-footer__bottom p {
+    margin: 0;
+    color: var(--color-ink-subtle);
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 44rem) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+
+    .site-footer__brand {
+      grid-column: 1 / -1;
     }
   }
 </style>

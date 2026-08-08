@@ -1,119 +1,109 @@
 ---
-import HeaderPremium from "../components/nav/HeaderPremium.astro";
-import FooterPremium from "../components/nav/FooterPremium.astro";
-import ScrollToTop from "../components/ui/ScrollToTop.astro";
 import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
-import { ClientRouter } from "astro:transitions";
+import FooterPremium from "../components/nav/FooterPremium.astro";
+import HeaderPremium from "../components/nav/HeaderPremium.astro";
+import { getLegalNavigation, getPrimaryNavigation, sharedUi } from "../data/navigation";
+import { siteConfig } from "../data/site-config";
+import { getAlternatePath, getRoute, normalizePath } from "../i18n/routes";
+import type { Locale } from "../types/site";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description: string;
-  lang?: "es" | "en";
-  isHeaderTransparent?: boolean;
+  locale?: Locale;
+  image?: string;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description, lang = "en", isHeaderTransparent = true } = Astro.props;
+const {
+  title,
+  description,
+  locale = "en",
+  image = "/images/og-default.png",
+  noindex = false,
+  structuredData,
+} = Astro.props as Props;
 
-const site = Astro.site ?? new URL("https://quantix.software");
-const pageTitle = `${title} | Quantix Software`;
-const canonicalUrl = new URL(Astro.url.pathname, site);
-const normalizedPath = Astro.url.pathname.endsWith("/")
-  ? Astro.url.pathname
-  : `${Astro.url.pathname}/`;
-const alternateLocale = lang === "es" ? "en" : "es";
-const routePairs: Record<string, string> = {
-  "/es/": "/en/",
-  "/en/": "/es/",
-  "/es/productos/viggo/": "/en/products/viggo/",
-  "/en/products/viggo/": "/es/productos/viggo/",
-  "/es/productos/takofy/": "/en/products/takofy/",
-  "/en/products/takofy/": "/es/productos/takofy/",
-  "/es/productos/nica-finanzas/": "/en/products/nica-finanzas/",
-  "/en/products/nica-finanzas/": "/es/productos/nica-finanzas/",
-  "/es/productos/qavision/": "/en/products/qavision/",
-  "/en/products/qavision/": "/es/productos/qavision/",
-  "/es/soluciones/": "/en/solutions/",
-  "/en/solutions/": "/es/soluciones/",
-  "/es/productos/": "/en/products/",
-  "/en/products/": "/es/productos/",
-  "/es/trabajo/": "/en/work/",
-  "/en/work/": "/es/trabajo/",
-  "/es/nosotros/": "/en/about/",
-  "/en/about/": "/es/nosotros/",
-  "/es/contacto/": "/en/contact/",
-  "/en/contact/": "/es/contacto/",
-  "/es/privacidad/": "/en/privacy/",
-  "/en/privacy/": "/es/privacidad/",
-  "/es/terminos/": "/en/terms/",
-  "/en/terms/": "/es/terminos/",
+const site = Astro.site ?? new URL(siteConfig.siteUrl);
+const canonicalUrl = new URL(normalizePath(Astro.url.pathname), site);
+const alternateLocale: Locale = locale === "es" ? "en" : "es";
+const alternateUrl = new URL(getAlternatePath(Astro.url.pathname, alternateLocale), site);
+const defaultUrl = new URL(getRoute("home", "en"), site);
+const imageUrl = new URL(image, site);
+const pageTitle = title.includes("Quantix") ? title : `${title} | Quantix Software`;
+const labels = sharedUi[locale];
+const navigation = getPrimaryNavigation(locale);
+const legalNavigation = getLegalNavigation(locale);
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: site.href,
+  logo: new URL("/favicon.svg", site).href,
+  email: siteConfig.email,
 };
-const alternatePath =
-  routePairs[normalizedPath] ??
-  (normalizedPath.startsWith("/es/")
-    ? normalizedPath.replace("/es/", "/en/")
-    : normalizedPath.startsWith("/en/")
-      ? normalizedPath.replace("/en/", "/es/")
-      : `/${alternateLocale}/`);
-const alternateUrl = new URL(alternatePath, site);
-const xDefaultUrl = new URL("/en/", site);
-const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
-const navItems =
-  lang === "es"
-    ? [
-        { label: "Soluciones", href: "/es/soluciones/" },
-        { label: "Productos", href: "/es/productos/" },
-        { label: "Trabajo", href: "/es/trabajo/" },
-        { label: "Nosotros", href: "/es/nosotros/" },
-        { label: "Contacto", href: "/es/contacto/" },
-      ]
-    : [
-        { label: "Solutions", href: "/en/solutions/" },
-        { label: "Products", href: "/en/products/" },
-        { label: "Work", href: "/en/work/" },
-        { label: "About", href: "/en/about/" },
-        { label: "Contact", href: "/en/contact/" },
-      ];
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#F5F9FD" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <meta name="generator" content={Astro.generator} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalUrl.href} />
-    <link rel="alternate" hreflang={lang} href={canonicalUrl.href} />
-    <link rel="alternate" hreflang={alternateLocale} href={alternateUrl.href} />
-    <link rel="alternate" hreflang="x-default" href={xDefaultUrl.href} />
+    {
+      !noindex && (
+        <>
+          <link rel="canonical" href={canonicalUrl.href} />
+          <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
+          <link rel="alternate" hreflang={alternateLocale} href={alternateUrl.href} />
+          <link rel="alternate" hreflang="x-default" href={defaultUrl.href} />
+        </>
+      )
+    }
     <meta property="og:site_name" content="Quantix Software" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
-    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={imageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={siteConfig.name} />
+    <meta property="og:locale" content={locale === "es" ? "es_NI" : "en_US"} />
+    <meta property="og:locale:alternate" content={locale === "es" ? "en_US" : "es_NI"} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <title>{pageTitle}</title>
+    <meta name="twitter:image" content={imageUrl.href} />
 
-    <ClientRouter />
+    <title>{pageTitle}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    {
+      structuredData && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
     <VercelAnalytics />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">{skipLabel}</a>
-
-    <HeaderPremium navItems={navItems} lang={lang} isTransparent={isHeaderTransparent} />
+    <a class="skip-link" href="#main-content">{labels.skip}</a>
+    <HeaderPremium navItems={navigation} locale={locale} labels={labels} />
 
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
-    <FooterPremium navItems={navItems} lang={lang} />
-
-    <ScrollToTop lang={lang} />
+    <FooterPremium
+      navItems={navigation}
+      legalItems={legalNavigation}
+      locale={locale}
+      labels={labels}
+    />
   </body>
 </html>

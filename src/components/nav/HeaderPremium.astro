@@ -1,457 +1,156 @@
 ---
+import { isRouteActive } from "../../i18n/routes";
+import type { Locale, NavItem } from "../../types/site";
+import Brand from "../ui/Brand.astro";
 import Container from "../ui/Container.astro";
 import LanguageSwitch from "./LanguageSwitch.astro";
 import MobileMenu from "./MobileMenu.astro";
 
 interface Props {
-  navItems: { label: string; href: string }[];
-  lang: "es" | "en";
-  isTransparent?: boolean;
+  navItems: NavItem[];
+  locale: Locale;
+  labels: {
+    primaryNav: string;
+    mobileNav: string;
+    openMenu: string;
+    closeMenu: string;
+    language: string;
+  };
 }
 
-const { navItems, lang, isTransparent = true } = Astro.props;
-const homeHref = lang === "es" ? "/es/" : "/en/";
-const normalizedPath = Astro.url.pathname.endsWith("/")
-  ? Astro.url.pathname
-  : `${Astro.url.pathname}/`;
-const homeAria =
-  lang === "es" ? "Inicio de Quantix Software" : "Quantix Software Home";
-const openMenuAria = lang === "es" ? "Abrir menú" : "Open menu";
-const normalizeHrefPath = (href: string) => {
-  const path = href.split("#")[0] || homeHref;
-  return path.endsWith("/") ? path : `${path}/`;
-};
+const { navItems, locale, labels } = Astro.props as Props;
+const pathname = Astro.url.pathname;
 ---
 
-<header
-  id="main-header"
-  class:list={["header-premium", { scrolled: !isTransparent }]}
-  data-transparent={isTransparent.toString()}
->
-  <Container class="header-container">
-    <nav class="desktop-nav" aria-label={lang === "es" ? "Navegación principal" : "Primary navigation"}>
-      <div class="segmented-control">
-        <a href={homeHref} class="brand-logo" aria-label={homeAria}>
-          <img src="/favicon.svg" alt="Quantix Logo" width="32" height="32" class="header-favicon" />
-          <span class="brand-wordmark">Quantix</span>
-        </a>
+<header class="site-header">
+  <Container class="site-header__inner">
+    <Brand locale={locale} compact />
 
-        <div class="nav-pill-separator"></div>
-
-        <div class="nav-links-wrapper">
-          {
-            navItems.map((item) => (
+    <nav class="desktop-nav" aria-label={labels.primaryNav}>
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
               <a
                 href={item.href}
-                class:list={["nav-link", { active: normalizeHrefPath(item.href) === normalizedPath }]}
-                data-target={item.href.includes("#") ? item.href.split("#")[1] : undefined}
+                class:list={{ active: isRouteActive(pathname, item.id) }}
+                aria-current={isRouteActive(pathname, item.id) ? "page" : undefined}
               >
                 {item.label}
               </a>
-            ))
-          }
-        </div>
-
-        <div class="nav-pill-separator"></div>
-
-        <div class="nav-settings-integrated">
-          <LanguageSwitch />
-        </div>
-      </div>
+            </li>
+          ))
+        }
+      </ul>
+      <LanguageSwitch locale={locale} label={labels.language} />
     </nav>
 
-    <div class="mobile-header mobile-only">
-      <a href={homeHref} class="brand-logo-mobile" aria-label={homeAria}>
-        <img src="/favicon.svg" alt="Quantix Logo" width="28" height="28" class="header-favicon mobile-favicon" />
-        <span class="mobile-logo-text">Quantix</span>
-      </a>
-
-      <button
-        id="mobile-menu-toggle"
-        type="button"
-        class="mobile-toggle"
-        aria-label={openMenuAria}
-        aria-controls="mobile-menu-overlay"
-        aria-expanded="false"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
+    <button
+      id="mobile-menu-toggle"
+      class="menu-toggle"
+      type="button"
+      aria-label={labels.openMenu}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
   </Container>
 </header>
 
-<MobileMenu navItems={navItems} lang={lang} />
+<MobileMenu navItems={navItems} locale={locale} labels={labels} pathname={pathname} />
 
 <style>
-  .header-premium {
+  .site-header {
     position: fixed;
-    inset: 0 0 auto 0;
-    z-index: 50;
-    padding: clamp(0.85rem, 2.5vw, 1.5rem) 0;
-    transition:
-      padding 0.25s ease,
-      transform 0.25s ease;
+    inset: 0 0 auto;
+    z-index: 80;
+    padding-block: var(--space-3);
+    pointer-events: none;
   }
 
-  .header-premium.scrolled,
-  .header-premium[data-transparent="false"] {
-    padding: 0.7rem 0;
-  }
-
-  .header-container {
+  .site-header__inner {
     display: flex;
+    min-height: 3.75rem;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-    padding-inline: clamp(0.9rem, 3vw, 1.5rem);
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4);
+    border: 1px solid color-mix(in srgb, var(--color-border-strong) 80%, transparent);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(18px);
+    pointer-events: auto;
   }
 
   .desktop-nav {
     display: none;
-  }
-
-  .segmented-control {
-    display: flex;
     align-items: center;
-    padding: 0.45rem 0.65rem;
-    background: color-mix(in srgb, var(--surface) 94%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--border-strong) 84%, transparent);
-    border-radius: var(--radius-xl);
-    position: relative;
-    margin: 0 auto;
-    box-shadow: var(--shadow-md);
+    gap: var(--space-3);
   }
 
-  .header-premium.scrolled .segmented-control,
-  .header-premium[data-transparent="false"] .segmented-control {
-    background: color-mix(in srgb, var(--surface) 88%, transparent);
-    border-color: color-mix(in srgb, var(--border-strong) 88%, transparent);
-    box-shadow: var(--shadow-md);
-  }
-
-  .brand-logo,
-  .brand-logo-mobile {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    text-decoration: none;
-  }
-
-  .brand-logo {
-    padding: 0.45rem 0.65rem 0.45rem 0.45rem;
-    border-radius: var(--radius-lg);
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease;
-  }
-
-  .brand-logo:hover {
-    background: color-mix(in srgb, var(--primary-soft) 34%, transparent);
-  }
-
-  .header-favicon {
-    flex: 0 0 auto;
-  }
-
-  .mobile-favicon {
-    margin-right: 0.18rem;
-  }
-
-  .brand-logo-mobile {
-    gap: 0.45rem;
-  }
-
-  .brand-wordmark {
-    font-family: var(--font-heading);
-    font-size: 1.12rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text);
-  }
-
-  .nav-links-wrapper {
-    display: flex;
-    position: relative;
-    align-items: center;
-  }
-
-  .nav-link {
-    position: relative;
-    z-index: 2;
-    padding: 0.65rem 1.05rem;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    transition:
-      color 0.2s ease,
-      background-color 0.2s ease,
-      box-shadow 0.2s ease;
-    border-radius: var(--radius-md);
-  }
-
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 1.05rem;
-    right: 1.05rem;
-    bottom: 0.36rem;
-    height: 2px;
-    border-radius: var(--radius-full);
-    background: var(--primary);
-    opacity: 0;
-    transform: scaleX(0.72);
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .nav-link:hover {
-    color: var(--text);
-    background: transparent;
-  }
-
-  .nav-link:focus {
-    outline: none;
-  }
-
-  .nav-link:focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: 2px;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .nav-link.active {
-    color: var(--primary);
-    font-weight: 700;
-  }
-
-  .nav-link.active::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-
-  .nav-pill-separator {
-    width: 1px;
-    height: 22px;
-    background: color-mix(in srgb, var(--border-strong) 86%, transparent);
-    margin: 0 6px;
-    flex-shrink: 0;
-  }
-
-  .header-premium.scrolled .nav-pill-separator,
-  .header-premium[data-transparent="false"] .nav-pill-separator {
-    background: var(--border-strong);
-  }
-
-  .nav-settings-integrated {
+  .desktop-nav ul {
     display: flex;
     align-items: center;
     gap: var(--space-1);
-    z-index: 10;
-    padding-right: 0.1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .header-premium :global(.lang-switch) {
-    padding: 0.5rem 0.7rem;
-    border-radius: var(--radius-md);
-    color: var(--text-muted);
-  }
-
-  .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
-    width: 100%;
-    padding: 0.7rem 0.75rem;
-    border-radius: var(--radius-xl);
-    background: color-mix(in srgb, var(--surface) 94%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--border-strong) 84%, transparent);
-    box-shadow: var(--shadow-md);
-  }
-
-  .mobile-logo-text {
-    font-family: var(--font-heading);
-    font-size: clamp(1.05rem, 3.8vw, 1.2rem);
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.01em;
-  }
-
-  .mobile-toggle {
-    inline-size: 2.65rem;
-    block-size: 2.65rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    color: var(--text);
+  .desktop-nav a:not(.language-switch) {
     display: inline-flex;
+    min-height: 2.75rem;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-md);
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-decoration: none;
     transition:
-      transform 0.2s ease,
-      background-color 0.2s ease,
-      border-color 0.2s ease;
+      color var(--transition-fast),
+      background var(--transition-fast);
   }
 
-  .mobile-toggle:hover {
-    transform: translateY(-1px);
+  .desktop-nav a:not(.language-switch):hover,
+  .desktop-nav a.active:not(.language-switch) {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
   }
 
-  @media (max-width: 767px) {
-    .header-container {
-      padding-inline: 0.9rem;
-      justify-content: flex-start;
+  .menu-toggle {
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-content: center;
+    gap: 0.28rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-muted);
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    width: 1.15rem;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: currentColor;
+  }
+
+  @media (min-width: 60rem) {
+    .site-header__inner {
+      padding-left: var(--space-5);
     }
 
-    .mobile-header {
-      border-radius: var(--radius-xl);
-      width: 100%;
-      max-width: 22.5rem;
-      margin: 0;
-    }
-  }
-
-  @media (min-width: 1024px) {
     .desktop-nav {
       display: flex;
     }
 
-    .mobile-header {
-      display: none;
-    }
-  }
-
-  @media (max-width: 1023px) {
-    .desktop-nav {
-      display: none;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .mobile-only {
+    .menu-toggle {
       display: none;
     }
   }
 </style>
-
-<script>
-  function setupHeader() {
-    const header = document.getElementById("main-header");
-    const isInitialTransparent = header?.dataset.transparent === "true";
-    const toggleBtn = document.getElementById("mobile-menu-toggle");
-    const overlay = document.getElementById("mobile-menu-overlay");
-
-    if (!header) {
-      return;
-    }
-
-    const updateScroll = () => {
-      if (window.scrollY > 20 || !isInitialTransparent) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    };
-
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    updateScroll();
-
-    const openMenu = () => {
-      overlay?.classList.add("open");
-      overlay?.setAttribute("aria-hidden", "false");
-      toggleBtn?.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    };
-
-    if (toggleBtn && toggleBtn.dataset.bound !== "true") {
-      toggleBtn.addEventListener("click", openMenu);
-      toggleBtn.dataset.bound = "true";
-    }
-
-    const links = document.querySelectorAll(".nav-link");
-
-    const setActiveLink = (targetLink: Element | null) => {
-      if (!(targetLink instanceof HTMLElement)) {
-        return;
-      }
-
-      links.forEach((link) => link.classList.remove("active"));
-      targetLink.classList.add("active");
-    };
-
-    links.forEach((link) => {
-      if (!(link instanceof HTMLElement) || link.dataset.bound === "true") {
-        return;
-      }
-
-      link.addEventListener("click", () => setActiveLink(link));
-      link.dataset.bound = "true";
-    });
-
-    setActiveLink(document.querySelector(".nav-link.active"));
-
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -60% 0px",
-      threshold: 0,
-    };
-
-    const spyObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        const id = entry.target.getAttribute("id");
-        if (!id) {
-          return;
-        }
-
-        const targetLink = document.querySelector(`.nav-link[data-target="${id}"]`);
-        setActiveLink(targetLink);
-      });
-    }, observerOptions);
-
-    document.querySelectorAll("section[id]").forEach((section) => {
-      spyObserver.observe(section);
-    });
-
-    return () => {
-      window.removeEventListener("scroll", updateScroll);
-      spyObserver.disconnect();
-    };
-  }
-
-  let cleanupHeader: (() => void) | null = null;
-
-  document.addEventListener("astro:page-load", () => {
-    if (typeof cleanupHeader === "function") {
-      cleanupHeader();
-    }
-
-    cleanupHeader = setupHeader() || null;
-  });
-</script>

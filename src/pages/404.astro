@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
+import Container from "../components/ui/Container.astro";
+import { notFoundContent as content } from "../data/not-found-content";
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale="en" noindex>
+  <section class="not-found">
+    <Container narrow>
+      <p class="eyebrow">{content.code} · <span lang="es">{content.eyebrow}</span></p>
+      <h1>{content.title}</h1>
+      <p>
+        {content.message}
+        <span lang="es">{content.messageEs}</span>
+      </p>
+      <div>
+        <Button href={content.actions.en.href} size="lg">{content.actions.en.label}</Button>
+        <Button href={content.actions.es.href} variant="secondary" size="lg">
+          <span lang="es">{content.actions.es.label}</span>
+        </Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    min-height: 75vh;
+    place-items: center;
+    padding: 9rem 0 var(--space-16);
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+  }
+  p:not(.eyebrow) {
+    color: var(--color-ink-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+  div div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import { getHomeContent } from "../../data/home-content";
+import type { ContentSection, Locale } from "../../types/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProductCard from "../products/ProductCard.astro";
+import ContentBlock from "../sections/ContentSection.astro";
+import CtaSection from "../sections/CtaSection.astro";
+import PageHero from "../sections/PageHero.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props as Props;
+const content = getHomeContent(locale);
+const productsTitleId = "featured-products";
+
+const toSection = (
+  source: typeof content.solutions | typeof content.model,
+  variant?: "soft",
+): ContentSection => ({
+  eyebrow: source.eyebrow,
+  title: source.title,
+  lead: "lead" in source ? source.lead : undefined,
+  variant,
+  items: source.items.map(([title, text]) => ({ title, text })),
+});
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
+  <PageHero content={content.hero} highlights={content.proof} />
+
+  <section class="proof-bar" aria-label={content.proofLabel}>
+    <Container>
+      <ul>
+        {
+          content.proof.map((item) => (
+            <li>
+              <span aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <ContentBlock content={toSection(content.solutions)} />
+  <ContentBlock content={toSection(content.model, "soft")} />
+
+  <section class="section products-showcase" aria-labelledby={productsTitleId}>
+    <Container>
+      <div class="section-intro">
+        <p class="eyebrow">{content.productsSection.eyebrow}</p>
+        <h2 id={productsTitleId}>{content.productsSection.title}</h2>
+        <p>{content.productsSection.lead}</p>
+      </div>
+      <div class="products-grid">
+        {
+          content.products.map((product) => (
+            <ProductCard product={product} viewLabel={content.productsSection.viewLabel} />
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <CtaSection content={content.cta} />
+</BaseLayout>
+
+<style>
+  .proof-bar {
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .proof-bar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4) var(--space-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .proof-bar li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .proof-bar span {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .products-showcase {
+    background: var(--color-canvas);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 46rem) {
+    .proof-bar ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

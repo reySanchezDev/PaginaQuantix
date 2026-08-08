@@ -1,0 +1,20 @@
+---
+import type { Locale, StandardPageContent } from "../../types/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentSection from "../sections/ContentSection.astro";
+import CtaSection from "../sections/CtaSection.astro";
+import PageHero from "../sections/PageHero.astro";
+
+interface Props {
+  locale: Locale;
+  content: StandardPageContent;
+}
+
+const { locale, content } = Astro.props as Props;
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
+  <PageHero content={content.hero} compact />
+  {content.sections.map((section) => <ContentSection content={section} />)}
+  {content.cta && <CtaSection content={content.cta} />}
+</BaseLayout>

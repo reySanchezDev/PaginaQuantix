@@ -1,47 +1,30 @@
 ---
 interface Props {
-  variant?: 'primary' | 'accent' | 'outline' | 'surface';
+  tone?: "neutral" | "accent";
   class?: string;
 }
 
-const { variant = 'primary', class: className } = Astro.props;
+const { tone = "neutral", class: className } = Astro.props as Props;
 ---
 
-<span class:list={['badge', `badge--${variant}`, className]}>
-  <slot />
-</span>
+<span class:list={["badge", `badge--${tone}`, className]}><slot /></span>
 
 <style>
   .badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-md); /* Consistent small rounding */
+    padding: 0.35rem var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--color-ink-muted);
     font-size: var(--text-xs);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .badge--primary {
-    background-color: var(--primary-soft);
-    color: var(--primary);
+    font-weight: 800;
+    line-height: 1.2;
   }
 
   .badge--accent {
-    background-color: var(--accent-soft);
-    color: var(--accent-hover);
-  }
-
-  .badge--outline {
-    background-color: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-  }
-
-  .badge--surface {
-    background-color: var(--surface-2);
-    color: var(--text);
+    border-color: transparent;
+    background: var(--product-soft, var(--color-primary-soft));
+    color: var(--product-accent, var(--color-primary));
   }
 </style>

@@ -1,0 +1,7 @@
+dist/
+node_modules/
+.agent/
+MisRecursos/
+Requerimiento/
+evidencias/
+check_log*.txt

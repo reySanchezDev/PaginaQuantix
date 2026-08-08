@@ -9,11 +9,33 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "lint": "eslint . --max-warnings=0",
+    "deadcode": "knip --no-progress",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:size": "node scripts/check-source-size.mjs",
+    "test:build": "node scripts/validate-build.mjs",
+    "audit": "npm audit --audit-level=high",
+    "quality": "npm run format:check && npm run lint && npm run deadcode && npm run check:size && npm run check && npm run build && npm run test:build && npm run audit",
     "astro": "astro"
   },
-  "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "astro": "^5.16.15",
-    "typescript": "^5.9.3"
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.0.0"
+  },
+  "packageManager": "npm@10.9.4",
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "astro": "^7.2.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-astro": "^1.7.0",
+    "knip": "^6.32.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.66.0"
   }
 }

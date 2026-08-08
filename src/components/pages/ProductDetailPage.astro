@@ -1,0 +1,35 @@
+---
+import { getProductPage } from "../../data/product-pages";
+import { getProduct } from "../../data/products";
+import type { Locale, ProductId } from "../../types/site";
+import ProductLayout from "../../layouts/ProductLayout.astro";
+import ProductGallery from "../products/ProductGallery.astro";
+import ProductHero from "../products/ProductHero.astro";
+import ProductOverview from "../products/ProductOverview.astro";
+import ReleaseNotes from "../products/ReleaseNotes.astro";
+import ContentSection from "../sections/ContentSection.astro";
+import CtaSection from "../sections/CtaSection.astro";
+
+interface Props {
+  locale: Locale;
+  productId: ProductId;
+}
+const { locale, productId } = Astro.props as Props;
+const content = getProductPage(productId, locale);
+const product = getProduct(productId, locale);
+---
+
+<ProductLayout
+  title={content.seo.title}
+  description={content.seo.description}
+  locale={locale}
+  productName={product.name}
+  operatingSystem={productId === "qavision" ? "Windows" : undefined}
+>
+  <ProductHero locale={locale} content={content} />
+  <ProductOverview content={content.overview} />
+  {content.sections.map((section) => <ContentSection content={section} />)}
+  {content.gallery && <ProductGallery content={content.gallery} />}
+  {content.release && <ReleaseNotes content={content.release} />}
+  <CtaSection content={content.cta} />
+</ProductLayout>

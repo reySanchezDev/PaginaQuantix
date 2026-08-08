@@ -1,0 +1,65 @@
+---
+import type { LegalPageContent, Locale } from "../../types/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+  content: LegalPageContent;
+}
+const { locale, content } = Astro.props as Props;
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
+  <header class="legal-hero">
+    <Container narrow>
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h1>{content.title}</h1>
+      <p class="legal-hero__meta">{content.updatedLabel}: {content.updated}</p>
+      <p class="legal-hero__intro">{content.intro}</p>
+    </Container>
+  </header>
+
+  <section class="section">
+    <Container narrow>
+      <div class="prose">
+        {
+          content.sections.map((section) => (
+            <section>
+              <h2>{section.title}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </section>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    padding: clamp(8rem, 13vw, 11rem) 0 var(--space-16);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-primary-soft);
+  }
+
+  h1 {
+    font-size: clamp(2.75rem, 7vw, 4.8rem);
+  }
+
+  .legal-hero__meta {
+    margin: var(--space-4) 0 0;
+    color: var(--color-ink-subtle);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  .legal-hero__intro {
+    margin: var(--space-6) 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+</style>

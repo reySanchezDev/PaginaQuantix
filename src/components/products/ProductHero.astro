@@ -1,0 +1,255 @@
+---
+import type { Locale, ProductPageContent } from "../../types/site";
+import { sharedUi } from "../../data/navigation";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+  content: ProductPageContent;
+}
+
+const { locale, content } = Astro.props as Props;
+const { hero } = content;
+---
+
+<section class="product-hero" data-product={content.id} aria-labelledby="product-title">
+  <Container class="product-hero__layout">
+    <div class="product-hero__content">
+      <p class="eyebrow">{hero.eyebrow}</p>
+      <h1 id="product-title">{hero.title}</h1>
+      <p class="product-hero__lead">{hero.lead}</p>
+      <div class="product-hero__actions">
+        {
+          hero.primary && (
+            <Button href={hero.primary.href} target={hero.primary.target} size="lg">
+              {hero.primary.label}
+            </Button>
+          )
+        }
+        {
+          hero.secondary && (
+            <Button
+              href={hero.secondary.href}
+              target={hero.secondary.target}
+              variant="secondary"
+              size="lg"
+            >
+              {hero.secondary.label}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="product-hero__visual">
+      {
+        hero.video ? (
+          <div class="video-shell">
+            <div class="video-shell__bar" aria-hidden="true">
+              <>
+                <i />
+                <i />
+                <i />
+                <span>{hero.video.label}</span>
+              </>
+            </div>
+            <video
+              src={hero.video.src}
+              poster={hero.video.poster}
+              controls
+              playsinline
+              preload="none"
+              aria-label={hero.video.label}
+            />
+          </div>
+        ) : (
+          <div class="product-console" aria-label={sharedUi[locale].productAreas}>
+            <div class="product-console__header">
+              <>
+                <span>{content.id}</span>
+                <i />
+              </>
+            </div>
+            <div class="product-console__grid">
+              {hero.highlights.map((item, index) => (
+                <div>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{item}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .product-hero {
+    --product-accent: var(--color-primary);
+    --product-soft: var(--color-primary-soft);
+    padding: clamp(7.5rem, 10vw, 8.5rem) 0 clamp(var(--space-16), 8vw, var(--space-24));
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    background: linear-gradient(180deg, var(--product-soft), var(--color-canvas) 82%);
+  }
+
+  .product-hero[data-product="viggo"] {
+    --product-accent: var(--product-viggo);
+    --product-soft: var(--product-viggo-soft);
+  }
+  .product-hero[data-product="takofy"] {
+    --product-accent: var(--product-takofy);
+    --product-soft: var(--product-takofy-soft);
+  }
+  .product-hero[data-product="nica-finanzas"] {
+    --product-accent: var(--product-finance);
+    --product-soft: var(--product-finance-soft);
+  }
+  .product-hero[data-product="qavision"] {
+    --product-accent: var(--product-qavision);
+    --product-soft: var(--product-qavision-soft);
+  }
+
+  .product-hero :global(.eyebrow) {
+    color: var(--product-accent);
+  }
+
+  .product-hero__layout {
+    display: grid;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  h1 {
+    max-width: 13ch;
+    font-size: clamp(2.65rem, 5.3vw, 4.25rem);
+  }
+
+  .product-hero__lead {
+    max-width: 43rem;
+    margin: var(--space-6) 0 0;
+    color: var(--color-ink-muted);
+    font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+    line-height: var(--leading-relaxed);
+  }
+
+  .product-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .video-shell,
+  .product-console {
+    max-width: 38rem;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .video-shell__bar,
+  .product-console__header {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: var(--space-2);
+    padding-inline: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .video-shell__bar i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--color-border-strong);
+  }
+
+  .video-shell__bar span {
+    margin-left: var(--space-2);
+    color: var(--color-ink-subtle);
+    font-size: var(--text-xs);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  video {
+    width: 100%;
+    aspect-ratio: 1.95 / 1;
+    background: var(--color-ink);
+  }
+
+  .product-console {
+    padding-bottom: var(--space-4);
+  }
+
+  .product-console__header {
+    justify-content: space-between;
+    color: var(--product-accent);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .product-console__header i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--color-success);
+  }
+
+  .product-console__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .product-console__grid div {
+    min-height: 7rem;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--product-soft);
+  }
+
+  .product-console__grid span {
+    display: block;
+    margin-bottom: var(--space-4);
+    color: var(--product-accent);
+    font-size: var(--text-xs);
+    font-weight: 800;
+  }
+
+  .product-console__grid strong {
+    line-height: var(--leading-snug);
+  }
+
+  @media (min-width: 84rem) {
+    .product-hero__layout {
+      grid-template-columns: minmax(0, 0.95fr) minmax(28rem, 1.05fr);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .product-hero {
+      padding-top: 7.5rem;
+    }
+    h1 {
+      font-size: clamp(2.45rem, 13vw, 3.65rem);
+    }
+    .product-hero__actions {
+      display: grid;
+    }
+    .product-console__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
