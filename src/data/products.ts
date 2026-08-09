@@ -21,7 +21,8 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       id: "takofy",
       name: "Takofy",
       category: "Restaurantes",
-      description: "Coordina salón, cocina, caja e inventario, incluso cuando no hay conexión.",
+      description:
+        "Coordina salón, cocina, caja e inventario, incluso cuando no hay conexión a internet.",
       status: "Disponible",
       external: {
         label: "Visitar Takofy",
@@ -74,7 +75,7 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       name: "Takofy",
       category: "Restaurants",
       description:
-        "Connect front of house, kitchen, point of sale, and inventory, even when internet access is unavailable.",
+        "Coordinate front of house, kitchen, point of sale, and inventory, even without internet access.",
       status: "Available",
       external: {
         label: "Visit Takofy",
@@ -98,7 +99,7 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       id: "qavision",
       name: "QAVision",
       category: "Testing evidence",
-      description: "Capture, annotate, and organize software-testing evidence on Windows.",
+      description: "Capture, annotate, and organize test evidence on Windows.",
       status: `Windows · v${qavisionTool.version}`,
       external: {
         label: "Download for Windows",

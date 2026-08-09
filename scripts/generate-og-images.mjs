@@ -84,7 +84,7 @@ const cards = [
     file: "qavision-en",
     eyebrow: "QUANTIX PRODUCT",
     title: ["QAVision"],
-    description: "Capture and annotate software-testing evidence on Windows",
+    description: "Capture and annotate test evidence on Windows",
     accent: "#335f87",
   },
 ];

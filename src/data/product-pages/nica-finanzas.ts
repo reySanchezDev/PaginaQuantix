@@ -20,7 +20,7 @@ export function getNicaFinanzasPage(locale: Locale): ProductPageContent {
         ? "Calculadoras financieras para Nicaragua."
         : "Financial calculators for Nicaragua.",
       lead: isEs
-        ? "Calcula salario, cuotas de préstamo y liquidación laboral con parámetros locales."
+        ? "Estima salarios, cuotas de préstamo y liquidaciones laborales con parámetros locales."
         : "Estimate salaries, loan payments, and employment settlements using local inputs.",
       primary: product.external,
       secondary: {
@@ -31,20 +31,20 @@ export function getNicaFinanzasPage(locale: Locale): ProductPageContent {
     overview: {
       eyebrow: isEs ? "Calculadoras" : "Calculators",
       title: isEs
-        ? "Tres cálculos frecuentes en un solo sitio"
-        : "Three common calculations in one place",
+        ? "Tres cálculos frecuentes, sin pasos innecesarios"
+        : "Straightforward tools for three common calculations",
       lead: isEs
-        ? "Cada herramienta solicita únicamente los datos necesarios y presenta un resultado fácil de revisar."
-        : "Each tool asks for the required inputs and presents a result that is easy to review.",
+        ? "Cada calculadora pide solo los datos necesarios y presenta un resultado fácil de revisar."
+        : "Each calculator asks only for the information it needs and returns a clear result.",
       metrics: [],
     },
     sections: [],
     cta: {
       eyebrow: "Nica Finanzas",
-      title: isEs ? "Utiliza las calculadoras gratuitas." : "Use the free calculators.",
+      title: isEs ? "Abre Nica Finanzas." : "Open Nica Finanzas.",
       text: isEs
-        ? "Abre Nica Finanzas para utilizar las calculadoras."
-        : "Open Nica Finanzas to use the calculators.",
+        ? "Calcula salarios, préstamos o liquidaciones directamente en el sitio."
+        : "Calculate salaries, loan payments, or employment settlements directly on the site.",
       primary: product.external!,
     },
   };

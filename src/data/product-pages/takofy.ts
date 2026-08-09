@@ -18,8 +18,8 @@ export function getTakofyPage(locale: Locale): ProductPageContent {
         ? "Salón, cocina, caja e inventario coordinados."
         : "Front of house, kitchen, point of sale, and inventory in one system.",
       lead: isEs
-        ? "Takofy gestiona comandas, mesas, pagos, KDS, reportes e inventario, incluso cuando no hay conexión."
-        : "Takofy manages orders, tables, payments, KDS workflows, reporting, and inventory, even when internet access is unavailable.",
+        ? "Takofy gestiona comandas, mesas, pagos, KDS, reportes e inventario, incluso sin conexión a internet."
+        : "Takofy manages orders, tables, payments, KDS workflows, reporting, and inventory, even without internet access.",
       primary: product.external,
       secondary: {
         label: isEs ? "Ver productos" : "View products",
@@ -27,34 +27,34 @@ export function getTakofyPage(locale: Locale): ProductPageContent {
       },
     },
     overview: {
-      eyebrow: isEs ? "Áreas del producto" : "Product areas",
+      eyebrow: isEs ? "Operación diaria" : "Daily operations",
       title: isEs
-        ? "Diseñado para mantener el servicio en movimiento"
-        : "Designed to keep service moving",
+        ? "Cada pedido conectado de principio a fin"
+        : "Every order connected from start to finish",
       lead: isEs
-        ? "Takofy mantiene conectados los pedidos y la información operativa entre salón, cocina, caja e inventario."
-        : "Takofy keeps orders and operating data connected across front of house, kitchen, point of sale, and inventory.",
+        ? "La información acompaña al pedido desde el salón hasta la cocina, la caja y el inventario."
+        : "Order information moves from front of house to the kitchen, point of sale, and inventory.",
       metrics: isEs
         ? [
             { title: "Salón", text: "Mesas y comandas" },
             { title: "Cocina", text: "Flujo KDS" },
-            { title: "Caja", text: "Pagos y cierres" },
+            { title: "Caja", text: "Pagos y cierres diarios" },
             { title: "Control", text: "Inventario y reportes" },
           ]
         : [
             { title: "Front of house", text: "Tables and orders" },
             { title: "Kitchen", text: "KDS workflow" },
-            { title: "Point of sale", text: "Payments and closing" },
+            { title: "Point of sale", text: "Payments and daily closeouts" },
             { title: "Oversight", text: "Inventory and reporting" },
           ],
     },
     sections: [],
     cta: {
       eyebrow: "Takofy",
-      title: isEs ? "Conoce Takofy." : "Explore Takofy.",
+      title: isEs ? "Visita Takofy." : "Visit Takofy.",
       text: isEs
-        ? "Visita Takofy o contacta a Quantix para conversar sobre software para restaurantes."
-        : "Visit Takofy or contact Quantix to discuss restaurant software.",
+        ? "Visita Takofy o habla con Quantix sobre cómo podría encajar en tu restaurante."
+        : "Visit Takofy or talk to Quantix about how it could fit your restaurant.",
       primary: product.external!,
       secondary: {
         label: isEs ? "Contactar a Quantix" : "Contact Quantix",

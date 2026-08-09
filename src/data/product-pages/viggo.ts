@@ -18,8 +18,8 @@ export function getViggoPage(locale: Locale): ProductPageContent {
         ? "Clientes, servicios, ventas e inventario en un mismo sistema."
         : "Customers, services, sales, and inventory in one system.",
       lead: isEs
-        ? "Cada movimiento queda relacionado con el cliente, el servicio y el historial correspondiente."
-        : "Each transaction stays connected to the customer, service, and related history.",
+        ? "Cada movimiento conserva la relación con el cliente, el servicio y su historial."
+        : "Every transaction stays linked to the customer, service, and full history.",
       primary: product.external,
       secondary: {
         label: isEs ? "Ver funciones" : "View features",
@@ -34,13 +34,13 @@ export function getViggoPage(locale: Locale): ProductPageContent {
       },
     },
     overview: {
-      eyebrow: isEs ? "Áreas del producto" : "Product areas",
+      eyebrow: isEs ? "Operación conectada" : "Connected operations",
       title: isEs
-        ? "Información conectada a la operación diaria"
-        : "Information connected to daily operations",
+        ? "Un solo registro para el trabajo diario"
+        : "One shared record for day-to-day work",
       lead: isEs
-        ? "VIGGO reúne la actividad comercial y de inventario para que el equipo trabaje sobre un registro común."
-        : "VIGGO brings commercial and inventory activity together so the team works from a shared record.",
+        ? "VIGGO reúne la actividad comercial y de inventario para que todo el equipo trabaje con la misma información."
+        : "VIGGO brings sales and inventory activity together so the entire team works from the same information.",
       metrics: isEs
         ? [
             { title: "Clientes", text: "Perfiles, servicios y renovaciones" },
@@ -59,9 +59,7 @@ export function getViggoPage(locale: Locale): ProductPageContent {
       {
         id: "capabilities",
         eyebrow: isEs ? "Funciones" : "Features",
-        title: isEs
-          ? "Un registro común para cada movimiento"
-          : "A shared record for every transaction",
+        title: isEs ? "Lo que puedes gestionar en VIGGO" : "What you can manage in VIGGO",
         items: isEs
           ? [
               {
@@ -70,7 +68,7 @@ export function getViggoPage(locale: Locale): ProductPageContent {
               },
               {
                 title: "Ventas y cobros",
-                text: "Transacciones, pagos, comprobantes, cierres e historial diario.",
+                text: "Transacciones, pagos, comprobantes, cierres diarios e historial.",
               },
               {
                 title: "Inventario trazable",
@@ -84,11 +82,11 @@ export function getViggoPage(locale: Locale): ProductPageContent {
           : [
               {
                 title: "Customers and services",
-                text: "Profiles, plans, service periods, renewals, and status available for review.",
+                text: "Profiles, plans, active periods, renewals, and service status.",
               },
               {
                 title: "Sales and payments",
-                text: "Transactions, payments, receipts, closing, and daily history.",
+                text: "Transactions, payments, receipts, daily closeouts, and history.",
               },
               {
                 title: "Traceable inventory",
@@ -137,8 +135,8 @@ export function getViggoPage(locale: Locale): ProductPageContent {
       eyebrow: "VIGGO",
       title: isEs ? "Visita VIGGO." : "Visit VIGGO.",
       text: isEs
-        ? "Visita VIGGO o contacta a Quantix para conversar sobre la implementación."
-        : "Visit VIGGO or contact Quantix to discuss implementation.",
+        ? "Visita VIGGO o habla con Quantix sobre cómo podría integrarse a tu operación."
+        : "Visit VIGGO or talk to Quantix about how it could fit your operation.",
       primary: product.external!,
       secondary: {
         label: isEs ? "Contactar a Quantix" : "Contact Quantix",

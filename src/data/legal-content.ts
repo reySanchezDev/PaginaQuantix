@@ -30,7 +30,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Analítica",
           paragraphs: [
-            "Este sitio utiliza Vercel Web Analytics para medir visitas y uso agregado. No utilizamos esa información para construir perfiles sensibles ni vender datos personales.",
+            "Este sitio utiliza Vercel Web Analytics para medir visitas y patrones de uso de forma agregada. No utilizamos esa información para crear perfiles sensibles ni vender datos personales.",
           ],
         },
         {
@@ -57,7 +57,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
       updatedLabel: "Last updated",
       updated: "August 8, 2026",
       intro:
-        "This policy explains which information we process when you visit the Quantix Software website and how to contact us about privacy.",
+        "This policy explains what information we process when you visit the Quantix Software website and how to contact us about privacy.",
       sections: [
         {
           title: "Information we collect",
@@ -108,7 +108,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Contenido del sitio",
           paragraphs: [
-            "La información se ofrece con fines generales y puede cambiar conforme evolucionan nuestros productos y servicios. Procuramos mantenerla precisa, pero no garantizamos que esté libre de omisiones.",
+            "La información se ofrece con fines generales y puede cambiar conforme evolucionan nuestros productos y servicios. Procuramos mantenerla precisa, pero no garantizamos que esté completa o libre de errores.",
           ],
         },
         {
@@ -132,7 +132,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Limitación de responsabilidad",
           paragraphs: [
-            "En la medida permitida por la ley, Quantix no será responsable por daños indirectos derivados del uso de este sitio o de la confianza depositada en su contenido general.",
+            "En la medida permitida por la ley, Quantix no será responsable por daños indirectos derivados del uso de este sitio o de decisiones basadas en la información publicada aquí.",
           ],
         },
         {

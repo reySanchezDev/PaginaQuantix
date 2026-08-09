@@ -11,25 +11,25 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       },
       hero: {
         eyebrow: "Empresa",
-        title: "Quantix diseña y construye software empresarial.",
-        lead: "Creamos productos y sistemas a medida con atención al proceso, los datos, la seguridad y el mantenimiento.",
+        title: "Diseñamos software para operaciones reales.",
+        lead: "Construimos productos y sistemas a medida que los equipos pueden usar, mantener y mejorar con el tiempo.",
       },
       sections: [
         {
-          eyebrow: "Principios",
-          title: "Criterios que guían el trabajo",
+          eyebrow: "Cómo decidimos",
+          title: "Lo que guía nuestro trabajo",
           items: [
             {
-              title: "Primero el proceso",
-              text: "La tecnología se define después de entender usuarios, reglas y excepciones.",
+              title: "Entender antes de construir",
+              text: "Antes de elegir tecnología, entendemos a los usuarios, las reglas y las excepciones del proceso.",
             },
             {
-              title: "Complejidad justificada",
-              text: "Cada componente debe resolver una necesidad concreta y poder mantenerse.",
+              title: "Solo la complejidad necesaria",
+              text: "Cada decisión técnica debe resolver una necesidad concreta y facilitar el mantenimiento.",
             },
             {
-              title: "Preparado para operar",
-              text: "Pruebas, despliegue, documentación y mantenimiento forman parte de la solución.",
+              title: "Listo para el día a día",
+              text: "Las pruebas, el despliegue, la documentación y el mantenimiento forman parte del trabajo.",
             },
           ],
         },
@@ -37,7 +37,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       cta: {
         eyebrow: "Quantix",
         title: "Productos propios y desarrollo a medida.",
-        text: "Conoce lo que ya hemos construido o conversa con el equipo sobre tu proyecto.",
+        text: "Mira lo que ya construimos o cuéntanos en qué estás trabajando.",
         primary: { label: "Ver productos", href: getRoute("products", "es") },
         secondary: { label: "Hablar con el equipo", href: getRoute("contact", "es") },
       },
@@ -49,25 +49,25 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       },
       hero: {
         eyebrow: "Company",
-        title: "Quantix designs and builds business software.",
-        lead: "We create software products and custom systems with close attention to process, data, security, and maintenance.",
+        title: "We design software for real business operations.",
+        lead: "We build products and custom systems that teams can use, maintain, and improve over time.",
       },
       sections: [
         {
-          eyebrow: "Principles",
-          title: "How we make technical decisions",
+          eyebrow: "How we decide",
+          title: "What guides our work",
           items: [
             {
-              title: "Process first",
-              text: "Technology choices follow an understanding of users, rules, and exceptions.",
+              title: "Understand before building",
+              text: "Before choosing technology, we learn how users, rules, and exceptions shape the process.",
             },
             {
-              title: "Justified complexity",
-              text: "Every component must solve a concrete need and remain maintainable.",
+              title: "Only the complexity the work requires",
+              text: "Every technical decision must solve a concrete need and make the system easier to maintain.",
             },
             {
-              title: "Ready to operate",
-              text: "Testing, deployment, documentation, and maintenance are part of the solution.",
+              title: "Ready for day-to-day use",
+              text: "Testing, deployment, documentation, and maintenance are part of the work.",
             },
           ],
         },
@@ -75,7 +75,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       cta: {
         eyebrow: "Quantix",
         title: "Software products and custom development.",
-        text: "Review what we have built or discuss your project with the team.",
+        text: "See what we’ve built, or tell us what you’re working on.",
         primary: { label: "View products", href: getRoute("products", "en") },
         secondary: { label: "Talk to the team", href: getRoute("contact", "en") },
       },
@@ -86,18 +86,18 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       seo: {
         title: "Cómo trabajamos",
         description:
-          "Un proceso de software definido desde el requerimiento hasta el despliegue y mantenimiento.",
+          "Así llevamos un proyecto de software desde la definición del problema hasta el despliegue y el mantenimiento.",
       },
       hero: {
         eyebrow: "Cómo trabajamos",
-        title: "Un proceso definido de principio a fin.",
-        lead: "Acordamos el problema, el alcance y los criterios de aceptación antes de construir. Entregamos por etapas y documentamos las decisiones.",
-        primary: { label: "Hablar sobre el proyecto", href: getRoute("contact", "es") },
+        title: "De una necesidad concreta a software en producción.",
+        lead: "Antes de escribir código, acordamos el problema, el alcance y cómo sabremos que la solución funciona. Después entregamos por etapas y documentamos las decisiones importantes.",
+        primary: { label: "Hablar sobre tu proyecto", href: getRoute("contact", "es") },
       },
       sections: [
         {
           eyebrow: "Proceso",
-          title: "Cuatro etapas con entregables concretos",
+          title: "Cuatro etapas, cada una con un resultado claro",
           items: [
             {
               title: "Entender",
@@ -120,51 +120,51 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       ],
       cta: {
         eyebrow: "Proyecto",
-        title: "Hablemos sobre el proyecto.",
-        text: "Comparte el proceso, las herramientas actuales y el resultado que esperas obtener.",
-        primary: { label: "Hablar sobre el proyecto", href: getRoute("contact", "es") },
+        title: "¿Tienes un proyecto en mente?",
+        text: "Cuéntanos cómo funciona el proceso hoy, qué herramientas utiliza tu equipo y qué quieres conseguir.",
+        primary: { label: "Hablar sobre tu proyecto", href: getRoute("contact", "es") },
       },
     },
     en: {
       seo: {
         title: "How we work",
         description:
-          "A defined software process from requirements through deployment and maintenance.",
+          "How Quantix takes a software project from problem definition through deployment and maintenance.",
       },
       hero: {
         eyebrow: "How we work",
-        title: "A defined process from start to finish.",
-        lead: "We agree on the problem, scope, and acceptance criteria before development. We deliver in stages and document key decisions.",
+        title: "From a real business need to working software.",
+        lead: "Before we write code, we agree on the problem, the scope, and how we will know the solution works. Then we deliver in stages and document the decisions that matter.",
         primary: { label: "Discuss your project", href: getRoute("contact", "en") },
       },
       sections: [
         {
           eyebrow: "Process",
-          title: "Four stages with concrete deliverables",
+          title: "Four stages, each with a clear outcome",
           items: [
             {
               title: "Understand",
-              text: "Review the current process, users, rules, data, and exceptions.",
+              text: "We review the current process, its users, rules, data, and exceptions.",
             },
             {
               title: "Define",
-              text: "Agree on priorities, scope, dependencies, and acceptance criteria.",
+              text: "We agree on priorities, scope, dependencies, and acceptance criteria.",
             },
             {
               title: "Build",
-              text: "Deliver in increments and validate each process before expanding it.",
+              text: "We deliver in increments and validate each process before expanding it.",
             },
             {
               title: "Operate",
-              text: "Prepare deployment, documentation, handover, and maintenance.",
+              text: "We prepare the deployment, documentation, handover, and maintenance plan.",
             },
           ],
         },
       ],
       cta: {
         eyebrow: "Project",
-        title: "Let’s discuss your project.",
-        text: "Share the process, current tools, and the outcome you expect.",
+        title: "Have a project in mind?",
+        text: "Tell us how the process works today, which tools your team uses, and what you want to achieve.",
         primary: { label: "Discuss your project", href: getRoute("contact", "en") },
       },
     },
@@ -177,8 +177,8 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       },
       hero: {
         eyebrow: "Contacto",
-        title: "Hablemos de lo que necesitas resolver.",
-        lead: "Cuéntanos cómo funciona hoy el proceso, qué herramientas utilizan y qué resultado necesitas. Puedes contactarnos por correo o WhatsApp.",
+        title: "Conversemos sobre tu proyecto.",
+        lead: "Cuéntanos qué quieres mejorar, cómo funciona hoy y qué resultado esperas. Respondemos por correo o WhatsApp.",
         primary: { label: siteConfig.email, href: contactLinks.email },
         secondary: {
           label: `WhatsApp · ${siteConfig.whatsappDisplay}`,
@@ -195,8 +195,8 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       },
       hero: {
         eyebrow: "Contact",
-        title: "Tell us about the software problem you need to solve.",
-        lead: "Tell us how the process works today, which tools you use, and what outcome you need. Contact us by email or WhatsApp.",
+        title: "Let’s talk about your project.",
+        lead: "Tell us what you want to improve, how it works today, and what outcome you need. Reach us by email or WhatsApp.",
         primary: { label: siteConfig.email, href: contactLinks.email },
         secondary: {
           label: `WhatsApp · ${siteConfig.whatsappDisplay}`,

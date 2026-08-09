@@ -21,8 +21,8 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
         ? "Captura, anota y organiza evidencia de pruebas."
         : "Capture, annotate, and organize testing evidence.",
       lead: isEs
-        ? `QAVision combina capturas, grabación por zona y un visor con anotaciones. La versión ${qavisionTool.version} está disponible para Windows.`
-        : `QAVision combines screenshots, zone recording, and an annotation viewer. Version ${qavisionTool.version} is available for Windows.`,
+        ? `QAVision reúne capturas, grabaciones de áreas seleccionadas de la pantalla y herramientas de anotación. La versión ${qavisionTool.version} está disponible para Windows.`
+        : `QAVision brings together screenshots, recordings of selected screen areas, and annotation tools. Version ${qavisionTool.version} is available for Windows.`,
       primary: product.external,
       secondary: {
         label: isEs ? "Ver productos" : "View products",
@@ -30,11 +30,11 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
       },
     },
     overview: {
-      eyebrow: isEs ? "Especificaciones" : "Specifications",
+      eyebrow: isEs ? "Versión y compatibilidad" : "Release and compatibility",
       title: `QAVision ${qavisionTool.version}`,
       lead: isEs
-        ? "Aplicación de escritorio enfocada en producir evidencia visual precisa para revisión de software."
-        : "A desktop application for producing precise visual evidence during software review.",
+        ? "Una aplicación de escritorio para documentar revisiones de software con capturas, grabaciones y anotaciones."
+        : "A desktop application for documenting software reviews with screenshots, recordings, and annotations.",
       metrics: isEs
         ? [
             { title: "Sistema", text: "Windows" },
@@ -55,15 +55,18 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
         title: isEs ? "Herramientas para documentar una prueba" : "Tools for documenting a test",
         items: isEs
           ? [
-              { title: "Captura flexible", text: "Pantalla completa, región y modo clip." },
-              { title: "Grabación por zona", text: "Video con controles y soporte de FFmpeg." },
-              { title: "Visor con anotaciones", text: "Capas, texto, formas y resaltado." },
-              { title: "Organización", text: "Carpetas por cliente, ambiente o trabajo." },
+              { title: "Capturas", text: "Pantalla completa, región o modo clip." },
+              {
+                title: "Grabación",
+                text: "Video de un área seleccionada, con controles de reproducción.",
+              },
+              { title: "Anotaciones", text: "Capas, texto, formas y resaltado." },
+              { title: "Organización", text: "Carpetas por cliente, entorno o tarea." },
             ]
           : [
-              { title: "Flexible capture", text: "Full screen, region, and clip mode." },
-              { title: "Zone recording", text: "Video controls with FFmpeg support." },
-              { title: "Annotation viewer", text: "Layers, text, shapes, and highlighting." },
+              { title: "Screenshots", text: "Full screen, region, or clip mode." },
+              { title: "Recording", text: "Video of a selected area, with playback controls." },
+              { title: "Annotations", text: "Layers, text, shapes, and highlighting." },
               { title: "Organization", text: "Folders by client, environment, or task." },
             ],
       },
@@ -84,10 +87,10 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
       : undefined,
     cta: {
       eyebrow: "QAVision",
-      title: isEs ? "Descarga la versión para Windows." : "Download the Windows release.",
+      title: isEs ? "Descarga QAVision para Windows." : "Download QAVision for Windows.",
       text: isEs
-        ? "Verifica el checksum SHA-256 antes de instalar."
-        : "Verify the SHA-256 checksum before installation.",
+        ? "Antes de instalar, compara el checksum SHA-256 con el valor publicado."
+        : "Before installing, compare the SHA-256 checksum with the published value.",
       primary: product.external!,
       secondary: {
         label: isEs ? "Contactar a Quantix" : "Contact Quantix",

@@ -10,43 +10,43 @@ const content: Record<Locale, StandardPageContent> = {
     },
     hero: {
       eyebrow: "Soluciones",
-      title: "Diseño, integración y desarrollo de software empresarial.",
-      lead: "Partimos del proceso actual, los sistemas existentes y los datos que deben conectarse. Después definimos alcance y entrega.",
+      title: "Hacemos que tus sistemas y datos trabajen juntos.",
+      lead: "Antes de proponer tecnología, revisamos cómo trabaja tu equipo, qué herramientas usa y dónde se pierde tiempo o información.",
       primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
       secondary: { label: "Ver productos", href: getRoute("products", "es") },
     },
     sections: [
       {
-        eyebrow: "Capacidades",
-        title: "Software para procesos que no pueden quedar aislados",
+        eyebrow: "Qué resolvemos",
+        title: "Sistemas que trabajan juntos, no por separado",
         items: [
           {
             title: "Sistemas internos",
-            text: "Clientes, ventas, inventario, pagos, usuarios y permisos en una plataforma común.",
+            text: "Reunimos la gestión de clientes, ventas, inventario, pagos, usuarios y permisos en una plataforma común.",
           },
           {
             title: "Integraciones",
-            text: "Conexiones entre ERP, POS, pagos, identidad, mensajería y sistemas existentes.",
+            text: "Conectamos ERP, POS, pagos, identidad, mensajería y otros sistemas existentes.",
           },
           {
             title: "Datos y reportes",
-            text: "Modelos y tableros construidos sobre la actividad diaria del negocio.",
+            text: "Convertimos los datos de la operación diaria en reportes y tableros que tu equipo puede usar.",
           },
           {
             title: "Automatización",
-            text: "Alertas, aprobaciones y tareas que eliminan pasos repetitivos.",
+            text: "Automatizamos alertas, aprobaciones y tareas que hoy requieren pasos repetitivos.",
           },
           {
             title: "Modernización",
-            text: "Evolución gradual de sistemas que no pueden detenerse.",
+            text: "Actualizamos sistemas críticos por etapas para evitar interrupciones innecesarias.",
           },
         ],
       },
     ],
     cta: {
       eyebrow: "Siguiente paso",
-      title: "Revisemos el proceso que necesitas mejorar.",
-      text: "En la primera conversación identificamos el alcance y las dependencias principales.",
+      title: "Hablemos del proceso que quieres mejorar.",
+      text: "Con ese contexto podremos recomendar el camino adecuado: un producto existente, una adaptación o un desarrollo a medida.",
       primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
     },
   },
@@ -58,43 +58,43 @@ const content: Record<Locale, StandardPageContent> = {
     },
     hero: {
       eyebrow: "Solutions",
-      title: "Business software design, integration, and development.",
-      lead: "We start with the current process, existing systems, and the data that needs to connect. Then we define scope and delivery.",
+      title: "We make your systems and data work together.",
+      lead: "Before proposing technology, we look at how your team works, what tools it uses, and where time or information gets lost.",
       primary: { label: "Discuss a project", href: getRoute("contact", "en") },
       secondary: { label: "View products", href: getRoute("products", "en") },
     },
     sections: [
       {
-        eyebrow: "Capabilities",
-        title: "Software for processes that cannot remain isolated",
+        eyebrow: "What we solve",
+        title: "Systems that work together, not in isolation",
         items: [
           {
             title: "Internal systems",
-            text: "Customers, sales, inventory, payments, users, and permissions in one platform.",
+            text: "We bring customer management, sales, inventory, payments, users, and permissions into one platform.",
           },
           {
             title: "Integrations",
-            text: "Connections across ERP, POS, payments, identity, messaging, and existing systems.",
+            text: "We connect ERP, POS, payments, identity, messaging, and other existing systems.",
           },
           {
             title: "Data and reporting",
-            text: "Models and dashboards built on the company’s daily activity.",
+            text: "We turn day-to-day operating data into reports and dashboards your team can use.",
           },
           {
             title: "Automation",
-            text: "Alerts, approvals, and tasks that remove repetitive steps.",
+            text: "We automate alerts, approvals, and tasks that currently involve repetitive steps.",
           },
           {
             title: "Modernization",
-            text: "Gradual improvement of systems that cannot stop operating.",
+            text: "We update critical systems in stages to avoid unnecessary disruption.",
           },
         ],
       },
     ],
     cta: {
       eyebrow: "Next step",
-      title: "Let’s review the process you need to improve.",
-      text: "In the first conversation, we identify scope and key dependencies.",
+      title: "Let’s talk about the process you want to improve.",
+      text: "With that context, we can recommend the right path: an existing product, a tailored version, or a custom build.",
       primary: { label: "Discuss a project", href: getRoute("contact", "en") },
     },
   },
