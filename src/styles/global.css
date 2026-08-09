@@ -27,6 +27,8 @@ body {
 }
 
 body[data-menu-open="true"] {
+  position: fixed;
+  inset-inline: 0;
   overflow: hidden;
 }
 

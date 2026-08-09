@@ -210,11 +210,12 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const focusableSelector = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
   let closeFallback: number | undefined;
+  let scrollPosition = 0;
 
   function closeMenu({ immediate = false, restoreFocus = true } = {}) {
     if (!overlay || overlay.hidden || overlay.dataset.state === "closing") return;
     toggle?.setAttribute("aria-expanded", "false");
-    if (restoreFocus) toggle?.focus();
+    if (restoreFocus) toggle?.focus({ preventScroll: true });
     overlay.setAttribute("aria-hidden", "true");
     overlay.inert = true;
     overlay.dataset.state = "closing";
@@ -224,7 +225,12 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
       overlay.hidden = true;
       overlay.inert = false;
       overlay.dataset.state = "closed";
+      const scrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
       document.body.removeAttribute("data-menu-open");
+      document.body.style.removeProperty("top");
+      window.scrollTo(0, scrollPosition);
+      document.documentElement.style.scrollBehavior = scrollBehavior;
     };
     window.clearTimeout(closeFallback);
     if (immediate || reducedMotion.matches) return finish();
@@ -238,6 +244,8 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
     overlay.inert = false;
     overlay.setAttribute("aria-hidden", "false");
     toggle?.setAttribute("aria-expanded", "true");
+    scrollPosition = window.scrollY;
+    document.body.style.top = `-${scrollPosition}px`;
     document.body.dataset.menuOpen = "true";
     overlay.dataset.state = reducedMotion.matches ? "open" : "opening";
     if (!reducedMotion.matches) {
@@ -245,14 +253,14 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
         if (overlay.dataset.state === "opening") overlay.dataset.state = "open";
       });
     }
-    closeButton?.focus();
+    closeButton?.focus({ preventScroll: true });
   }
 
   toggle?.addEventListener("click", openMenu);
   desktopViewport.addEventListener("change", (event) => {
     if (!event.matches || overlay?.hidden) return;
     closeMenu({ immediate: true, restoreFocus: false });
-    document.querySelector<HTMLElement>(".site-header a")?.focus();
+    document.querySelector<HTMLElement>(".site-header a")?.focus({ preventScroll: true });
   });
   overlay?.querySelectorAll<HTMLElement>("[data-menu-close]").forEach((element) => {
     element.addEventListener("click", () => closeMenu());
@@ -277,10 +285,10 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
 
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
-      last.focus();
+      last.focus({ preventScroll: true });
     } else if (!event.shiftKey && document.activeElement === last) {
       event.preventDefault();
-      first.focus();
+      first.focus({ preventScroll: true });
     }
   });
 </script>
