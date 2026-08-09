@@ -28,7 +28,7 @@ const companyLinks = [
 <footer class="site-footer">
   <Container>
     <div class="site-footer__statement">
-      <Brand locale={locale} />
+      <Brand locale={locale} inverse />
       <p>{labels.footerText}</p>
       <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
     </div>
@@ -82,8 +82,6 @@ const companyLinks = [
   }
 
   .site-footer__statement :global(.brand) {
-    --brand-mark-end: #eff2ed;
-    --brand-mark-start: #82dfcf;
     color: var(--color-inverse);
   }
 
