@@ -28,6 +28,17 @@ export interface HeroContent {
   secondary?: LinkItem;
 }
 
+export interface SystemMapContent {
+  label: string;
+  status: string;
+  core: string;
+  stream: string;
+  items: ReadonlyArray<{
+    name: string;
+    area: string;
+  }>;
+}
+
 export interface ContentSection {
   id?: string;
   eyebrow?: string;

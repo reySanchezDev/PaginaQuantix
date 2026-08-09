@@ -16,6 +16,18 @@ const localized = {
       primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       secondary: { label: "Ver productos", href: getRoute("products", "es") },
     },
+    visual: {
+      label: "Ecosistema Quantix",
+      status: "Sistemas activos",
+      core: "Productos + desarrollo",
+      stream: "Procesos conectados",
+      items: [
+        { name: "VIGGO", area: "Operación" },
+        { name: "Takofy", area: "Restaurantes" },
+        { name: "Nica", area: "Finanzas" },
+        { name: "QAVision", area: "Captura" },
+      ],
+    },
     model: {
       eyebrow: "Qué hacemos",
       title: "La mejor solución no siempre empieza desde cero",
@@ -62,6 +74,18 @@ const localized = {
       lead: "We build products and custom systems that connect processes, organize information, and reduce manual work.",
       primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
       secondary: { label: "View products", href: getRoute("products", "en") },
+    },
+    visual: {
+      label: "Quantix ecosystem",
+      status: "Systems active",
+      core: "Products + development",
+      stream: "Connected processes",
+      items: [
+        { name: "VIGGO", area: "Operations" },
+        { name: "Takofy", area: "Restaurants" },
+        { name: "Nica", area: "Finance" },
+        { name: "QAVision", area: "Capture" },
+      ],
     },
     model: {
       eyebrow: "What we do",
