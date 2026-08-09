@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f0e8" />
+  <rect width="300" height="630" fill="#102c32" />
+
+  <rect x="72" y="72" width="64" height="64" rx="5" fill="#fbfaf6" />
+  <g transform="translate(79 79) scale(2.05)">
+    <path
+      d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+      fill="none"
+      stroke="#123f46"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2.5"
+    />
+    <path
+      d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+      fill="none"
+      stroke="#a94f2f"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2.5"
+    />
+  </g>
+
+  <text
+    x="72"
+    y="507"
+    fill="#f2f4f1"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="20"
+    font-weight="700"
+    letter-spacing="1.5"
+  >QUANTIX</text>
+  <text
+    x="72"
+    y="541"
+    fill="#b8c5c4"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="17"
+    letter-spacing="1.2"
+  >SOFTWARE</text>
+  <rect x="72" y="572" width="156" height="6" fill="#a94f2f" />
+
+  <text
+    x="380"
+    y="112"
+    fill="#123f46"
+    font-family="Courier New, monospace"
+    font-size="17"
+    font-weight="700"
+    letter-spacing="2"
+  >SOFTWARE ENGINEERING</text>
+  <line x1="380" y1="148" x2="1128" y2="148" stroke="#d0d4cf" stroke-width="2" />
+
+  <text
+    x="380"
+    y="260"
+    fill="#142326"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="68"
+    font-weight="700"
+    letter-spacing="-2"
+  >Software products</text>
+  <text
+    x="380"
+    y="343"
+    fill="#142326"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="68"
+    font-weight="700"
+    letter-spacing="-2"
+  >and custom</text>
+  <text
+    x="380"
+    y="426"
+    fill="#142326"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="68"
+    font-weight="700"
+    letter-spacing="-2"
+  >development.</text>
+
+  <text
+    x="380"
+    y="528"
+    fill="#4f5c5d"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="26"
+  >Business systems · Products · Integrations</text>
+  <text
+    x="380"
+    y="575"
+    fill="#626e70"
+    font-family="Courier New, monospace"
+    font-size="16"
+    font-weight="700"
+    letter-spacing="1.5"
+  >quantix.software</text>
+</svg>
