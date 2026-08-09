@@ -25,7 +25,7 @@ const content = {
       eyebrow: "Desarrollo a medida",
       title: "¿Necesitas una solución diferente?",
       text: "Podemos adaptar uno de nuestros productos o construir un sistema a medida.",
-      primary: { label: "Hablar sobre una solución", href: getRoute("contact", "es") },
+      primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
     },
   },
   en: {

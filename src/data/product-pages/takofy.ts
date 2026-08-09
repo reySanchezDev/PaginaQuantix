@@ -57,7 +57,7 @@ export function getTakofyPage(locale: Locale): ProductPageContent {
         : "Visit Takofy or talk to Quantix about how it could fit your restaurant.",
       primary: product.external!,
       secondary: {
-        label: isEs ? "Contactar a Quantix" : "Contact Quantix",
+        label: isEs ? "Hablar con Quantix" : "Contact Quantix",
         href: getRoute("contact", locale),
       },
     },

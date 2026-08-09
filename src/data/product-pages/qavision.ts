@@ -93,7 +93,7 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
         : "Before installing, compare the SHA-256 checksum with the published value.",
       primary: product.external!,
       secondary: {
-        label: isEs ? "Contactar a Quantix" : "Contact Quantix",
+        label: isEs ? "Hablar con Quantix" : "Contact Quantix",
         href: getRoute("contact", locale),
       },
     },

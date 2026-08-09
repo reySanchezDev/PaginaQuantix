@@ -139,7 +139,7 @@ export function getViggoPage(locale: Locale): ProductPageContent {
         : "Visit VIGGO or talk to Quantix about how it could fit your operation.",
       primary: product.external!,
       secondary: {
-        label: isEs ? "Contactar a Quantix" : "Contact Quantix",
+        label: isEs ? "Hablar con Quantix" : "Contact Quantix",
         href: getRoute("contact", locale),
       },
     },

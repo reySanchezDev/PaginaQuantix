@@ -12,7 +12,7 @@ const content: Record<Locale, StandardPageContent> = {
       eyebrow: "Soluciones",
       title: "Hacemos que tus sistemas y datos trabajen juntos.",
       lead: "Antes de proponer tecnología, revisamos cómo trabaja tu equipo, qué herramientas usa y dónde se pierde tiempo o información.",
-      primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
+      primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       secondary: { label: "Ver productos", href: getRoute("products", "es") },
     },
     sections: [
@@ -47,7 +47,7 @@ const content: Record<Locale, StandardPageContent> = {
       eyebrow: "Siguiente paso",
       title: "Hablemos del proceso que quieres mejorar.",
       text: "Con ese contexto podremos recomendar el camino adecuado: un producto existente, una adaptación o un desarrollo a medida.",
-      primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
+      primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
     },
   },
   en: {

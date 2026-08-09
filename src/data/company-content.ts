@@ -92,7 +92,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
         eyebrow: "Cómo trabajamos",
         title: "De una necesidad concreta a software en producción.",
         lead: "Antes de escribir código, acordamos el problema, el alcance y cómo sabremos que la solución funciona. Después entregamos por etapas y documentamos las decisiones importantes.",
-        primary: { label: "Hablar sobre tu proyecto", href: getRoute("contact", "es") },
+        primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       },
       sections: [
         {
@@ -122,7 +122,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
         eyebrow: "Proyecto",
         title: "¿Tienes un proyecto en mente?",
         text: "Cuéntanos cómo funciona el proceso hoy, qué herramientas utiliza tu equipo y qué quieres conseguir.",
-        primary: { label: "Hablar sobre tu proyecto", href: getRoute("contact", "es") },
+        primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       },
     },
     en: {

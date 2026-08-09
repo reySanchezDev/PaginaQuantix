@@ -13,7 +13,7 @@ const localized = {
       eyebrow: "Ingeniería de software",
       title: "Software que se adapta a cómo trabaja tu empresa.",
       lead: "Creamos productos y sistemas a medida que conectan procesos, ordenan la información y reducen tareas manuales.",
-      primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
+      primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       secondary: { label: "Ver productos", href: getRoute("products", "es") },
     },
     model: {
@@ -47,7 +47,7 @@ const localized = {
       eyebrow: "Contacto",
       title: "¿Hay un proceso que está frenando a tu equipo?",
       text: "Cuéntanos cómo funciona hoy y veremos cuál es el siguiente paso.",
-      primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
+      primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
     },
   },
   en: {
