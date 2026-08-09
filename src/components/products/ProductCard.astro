@@ -43,7 +43,7 @@ const { product, viewLabel, index } = Astro.props as Props;
 
   .product-row::before {
     position: absolute;
-    inset: 0 auto 0 0;
+    inset: 0 auto 0 calc(-1 * var(--space-2));
     z-index: -1;
     width: 0.2rem;
     background: var(--product-accent);
