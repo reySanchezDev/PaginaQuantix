@@ -21,7 +21,7 @@ export function getNicaFinanzasPage(locale: Locale): ProductPageContent {
         : "Financial calculators for Nicaragua.",
       lead: isEs
         ? "Estima salarios, cuotas de préstamo y liquidaciones laborales con parámetros locales."
-        : "Estimate salaries, loan payments, and employment settlements using local inputs.",
+        : "Estimate salaries, loan payments, and employment settlements using Nicaragua-specific parameters.",
       primary: product.external,
       secondary: {
         label: isEs ? "Ver productos" : "View products",
@@ -31,8 +31,8 @@ export function getNicaFinanzasPage(locale: Locale): ProductPageContent {
     overview: {
       eyebrow: isEs ? "Calculadoras" : "Calculators",
       title: isEs
-        ? "Tres cálculos frecuentes, sin pasos innecesarios"
-        : "Straightforward tools for three common calculations",
+        ? "Tres herramientas para cálculos frecuentes"
+        : "Three tools for common financial calculations",
       lead: isEs
         ? "Cada calculadora pide solo los datos necesarios y presenta un resultado fácil de revisar."
         : "Each calculator asks only for the information it needs and returns a clear result.",

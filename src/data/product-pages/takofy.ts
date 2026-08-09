@@ -39,13 +39,13 @@ export function getTakofyPage(locale: Locale): ProductPageContent {
             { title: "Salón", text: "Mesas y comandas" },
             { title: "Cocina", text: "Flujo KDS" },
             { title: "Caja", text: "Pagos y cierres diarios" },
-            { title: "Control", text: "Inventario y reportes" },
+            { title: "Gestión", text: "Inventario y reportes" },
           ]
         : [
             { title: "Front of house", text: "Tables and orders" },
             { title: "Kitchen", text: "KDS workflow" },
             { title: "Point of sale", text: "Payments and daily closeouts" },
-            { title: "Oversight", text: "Inventory and reporting" },
+            { title: "Management", text: "Inventory and reporting" },
           ],
     },
     sections: [],

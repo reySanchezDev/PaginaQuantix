@@ -30,7 +30,7 @@ const content: Record<Locale, StandardPageContent> = {
           },
           {
             title: "Datos y reportes",
-            text: "Convertimos los datos de la operación diaria en reportes y tableros que tu equipo puede usar.",
+            text: "Convertimos los datos diarios en reportes y tableros para entender qué ocurre en el negocio.",
           },
           {
             title: "Automatización",
@@ -38,7 +38,7 @@ const content: Record<Locale, StandardPageContent> = {
           },
           {
             title: "Modernización",
-            text: "Actualizamos sistemas críticos por etapas para evitar interrupciones innecesarias.",
+            text: "Actualizamos sistemas críticos por etapas para reducir las interrupciones.",
           },
         ],
       },
@@ -46,7 +46,7 @@ const content: Record<Locale, StandardPageContent> = {
     cta: {
       eyebrow: "Siguiente paso",
       title: "Hablemos del proceso que quieres mejorar.",
-      text: "Con ese contexto podremos recomendar el camino adecuado: un producto existente, una adaptación o un desarrollo a medida.",
+      text: "Después te diremos si conviene usar un producto, adaptarlo o construir algo nuevo.",
       primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
     },
   },
@@ -60,7 +60,7 @@ const content: Record<Locale, StandardPageContent> = {
       eyebrow: "Solutions",
       title: "We make your systems and data work together.",
       lead: "Before proposing technology, we look at how your team works, what tools it uses, and where time or information gets lost.",
-      primary: { label: "Discuss a project", href: getRoute("contact", "en") },
+      primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
       secondary: { label: "View products", href: getRoute("products", "en") },
     },
     sections: [
@@ -78,7 +78,7 @@ const content: Record<Locale, StandardPageContent> = {
           },
           {
             title: "Data and reporting",
-            text: "We turn day-to-day operating data into reports and dashboards your team can use.",
+            text: "We turn day-to-day data into reports and dashboards that show what is happening across the business.",
           },
           {
             title: "Automation",
@@ -86,7 +86,7 @@ const content: Record<Locale, StandardPageContent> = {
           },
           {
             title: "Modernization",
-            text: "We update critical systems in stages to avoid unnecessary disruption.",
+            text: "We update critical systems in stages to reduce disruption.",
           },
         ],
       },
@@ -94,8 +94,8 @@ const content: Record<Locale, StandardPageContent> = {
     cta: {
       eyebrow: "Next step",
       title: "Let’s talk about the process you want to improve.",
-      text: "With that context, we can recommend the right path: an existing product, a tailored version, or a custom build.",
-      primary: { label: "Discuss a project", href: getRoute("contact", "en") },
+      text: "Then we can tell you whether an existing product, a tailored version, or a custom build makes the most sense.",
+      primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
     },
   },
 };

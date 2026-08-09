@@ -24,7 +24,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Cómo usamos la información",
           paragraphs: [
-            "Usamos la información de contacto únicamente para responder consultas, entender una necesidad de software y dar seguimiento a una conversación iniciada por ti.",
+            "Usamos la información de contacto únicamente para responder tus consultas, entender qué necesitas y darles seguimiento.",
           ],
         },
         {
@@ -68,7 +68,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "How we use information",
           paragraphs: [
-            "We use contact information only to respond to inquiries, understand a software need, and follow up on a conversation you initiated.",
+            "We use contact information only to respond to your inquiries, understand what you need, and follow up with you.",
           ],
         },
         {
@@ -103,7 +103,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
       updatedLabel: "Última actualización",
       updated: "8 de agosto de 2026",
       intro:
-        "Al utilizar este sitio aceptas estos términos. Si no estás de acuerdo, no utilices el sitio ni sus recursos enlazados.",
+        "Al utilizar este sitio aceptas estos términos. Si no estás de acuerdo, no utilices el sitio ni los recursos a los que enlaza.",
       sections: [
         {
           title: "Contenido del sitio",

@@ -16,12 +16,12 @@ export const releaseHistory: ReleaseLog[] = [
     changes: {
       es: [
         "Nuevo modo Clip con selección precisa del área.",
-        "Nomenclatura automática para secuencias de capturas consecutivas.",
+        "Nombres automáticos para secuencias de capturas consecutivas.",
         "Nueva ventana para nombrar capturas, con opciones para omitir o cancelar.",
         "Aviso al finalizar una captura continua, con confirmación y cierre automático.",
-        "Mejora del cierre de la aplicación para evitar bloqueos por clics múltiples.",
-        "Corrección al sustituir carpetas en la ventana flotante.",
-        "Mejoras visuales y de enfoque en las ventanas de la aplicación.",
+        "El cierre de la aplicación ya no se bloquea al hacer varios clics.",
+        "Corrección de un error al reemplazar carpetas en la ventana flotante.",
+        "Mejoras visuales y de foco en las ventanas de la aplicación.",
       ],
       en: [
         "New Clip mode with precise area selection.",

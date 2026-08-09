@@ -18,7 +18,7 @@ const content = {
       id: "products-catalog",
       eyebrow: "Catálogo",
       title: "Productos de Quantix",
-      lead: "Cada ficha reúne las funciones principales, el estado actual y el acceso al producto.",
+      lead: "Elige un producto para ver sus funciones, disponibilidad y forma de acceso.",
       viewLabel: "Ver detalles",
     },
     cta: {
@@ -43,14 +43,14 @@ const content = {
       id: "products-catalog",
       eyebrow: "Catalog",
       title: "Quantix products",
-      lead: "Each page covers the main features, current status, and product access.",
+      lead: "Choose a product to see its features, availability, and access options.",
       viewLabel: "View details",
     },
     cta: {
       eyebrow: "Custom development",
       title: "Need something different?",
       text: "We can adapt one of our products or build a custom system.",
-      primary: { label: "Discuss a solution", href: getRoute("contact", "en") },
+      primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
     },
   },
 } as const;

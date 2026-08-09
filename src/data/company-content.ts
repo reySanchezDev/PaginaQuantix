@@ -25,7 +25,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
             },
             {
               title: "Solo la complejidad necesaria",
-              text: "Cada decisión técnica debe resolver una necesidad concreta y facilitar el mantenimiento.",
+              text: "Evitamos agregar tecnología que no aporta valor o complica el mantenimiento.",
             },
             {
               title: "Listo para el día a día",
@@ -62,8 +62,8 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
               text: "Before choosing technology, we learn how users, rules, and exceptions shape the process.",
             },
             {
-              title: "Only the complexity the work requires",
-              text: "Every technical decision must solve a concrete need and make the system easier to maintain.",
+              title: "No more complexity than necessary",
+              text: "We avoid technology that adds complexity without making the system more useful or maintainable.",
             },
             {
               title: "Ready for day-to-day use",
@@ -90,7 +90,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       },
       hero: {
         eyebrow: "Cómo trabajamos",
-        title: "De una necesidad concreta a software en producción.",
+        title: "Del problema inicial al software en producción.",
         lead: "Antes de escribir código, acordamos el problema, el alcance y cómo sabremos que la solución funciona. Después entregamos por etapas y documentamos las decisiones importantes.",
         primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       },
@@ -109,11 +109,11 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
             },
             {
               title: "Construir",
-              text: "Entregamos por incrementos y validamos cada proceso antes de ampliarlo.",
+              text: "Entregamos por incrementos y revisamos cada uno antes de pasar al siguiente.",
             },
             {
               title: "Operar",
-              text: "Preparamos despliegue, documentación, transferencia y mantenimiento.",
+              text: "Preparamos el despliegue, la documentación, la entrega al equipo y el mantenimiento.",
             },
           ],
         },
@@ -135,7 +135,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
         eyebrow: "How we work",
         title: "From a real business need to working software.",
         lead: "Before we write code, we agree on the problem, the scope, and how we will know the solution works. Then we deliver in stages and document the decisions that matter.",
-        primary: { label: "Discuss your project", href: getRoute("contact", "en") },
+        primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
       },
       sections: [
         {
@@ -152,7 +152,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
             },
             {
               title: "Build",
-              text: "We deliver in increments and validate each process before expanding it.",
+              text: "We deliver in increments and review each one before moving to the next.",
             },
             {
               title: "Operate",
@@ -165,7 +165,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
         eyebrow: "Project",
         title: "Have a project in mind?",
         text: "Tell us how the process works today, which tools your team uses, and what you want to achieve.",
-        primary: { label: "Discuss your project", href: getRoute("contact", "en") },
+        primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
       },
     },
   },
@@ -178,7 +178,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       hero: {
         eyebrow: "Contacto",
         title: "Conversemos sobre tu proyecto.",
-        lead: "Cuéntanos qué quieres mejorar, cómo funciona hoy y qué resultado esperas. Respondemos por correo o WhatsApp.",
+        lead: "Cuéntanos qué quieres mejorar, cómo funciona el proceso hoy y qué resultado esperas. Respondemos por correo o WhatsApp.",
         primary: { label: siteConfig.email, href: contactLinks.email },
         secondary: {
           label: `WhatsApp · ${siteConfig.whatsappDisplay}`,
@@ -196,7 +196,7 @@ const content: Record<"about" | "work" | "contact", Record<Locale, StandardPageC
       hero: {
         eyebrow: "Contact",
         title: "Let’s talk about your project.",
-        lead: "Tell us what you want to improve, how it works today, and what outcome you need. Reach us by email or WhatsApp.",
+        lead: "Tell us what you want to improve, how the process works today, and what outcome you need. Reach us by email or WhatsApp.",
         primary: { label: siteConfig.email, href: contactLinks.email },
         secondary: {
           label: `WhatsApp · ${siteConfig.whatsappDisplay}`,

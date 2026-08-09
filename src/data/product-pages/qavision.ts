@@ -19,7 +19,7 @@ export function getQavisionPage(locale: Locale): ProductPageContent {
       eyebrow: isEs ? "Aplicación gratuita para Windows" : "Free Windows application",
       title: isEs
         ? "Captura, anota y organiza evidencia de pruebas."
-        : "Capture, annotate, and organize testing evidence.",
+        : "Capture, annotate, and organize test evidence.",
       lead: isEs
         ? `QAVision reúne capturas, grabaciones de áreas seleccionadas de la pantalla y herramientas de anotación. La versión ${qavisionTool.version} está disponible para Windows.`
         : `QAVision brings together screenshots, recordings of selected screen areas, and annotation tools. Version ${qavisionTool.version} is available for Windows.`,

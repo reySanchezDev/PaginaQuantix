@@ -18,8 +18,8 @@ export function getViggoPage(locale: Locale): ProductPageContent {
         ? "Clientes, servicios, ventas e inventario en un mismo sistema."
         : "Customers, services, sales, and inventory in one system.",
       lead: isEs
-        ? "Cada movimiento conserva la relación con el cliente, el servicio y su historial."
-        : "Every transaction stays linked to the customer, service, and full history.",
+        ? "La información de cada operación queda vinculada para que el equipo pueda consultar su contexto e historial."
+        : "Information stays connected so the team can review the context and history of each operation.",
       primary: product.external,
       secondary: {
         label: isEs ? "Ver funciones" : "View features",
@@ -71,12 +71,12 @@ export function getViggoPage(locale: Locale): ProductPageContent {
                 text: "Transacciones, pagos, comprobantes, cierres diarios e historial.",
               },
               {
-                title: "Inventario trazable",
+                title: "Control de inventario",
                 text: "Compras, existencias por sede, transferencias, conteos, auditoría y Kardex.",
               },
               {
                 title: "Usuarios y accesos",
-                text: "Roles, credenciales y permisos para cada responsabilidad.",
+                text: "Roles y permisos según la responsabilidad de cada usuario.",
               },
             ]
           : [
@@ -89,12 +89,12 @@ export function getViggoPage(locale: Locale): ProductPageContent {
                 text: "Transactions, payments, receipts, daily closeouts, and history.",
               },
               {
-                title: "Traceable inventory",
+                title: "Inventory control",
                 text: "Purchases, branch stock, transfers, counts, audits, and inventory ledger.",
               },
               {
                 title: "Users and access",
-                text: "Roles, credentials, and permissions for each responsibility.",
+                text: "Roles and permissions based on each user’s responsibilities.",
               },
             ],
       },
@@ -105,8 +105,8 @@ export function getViggoPage(locale: Locale): ProductPageContent {
         ? "Ventas e inventario dentro del mismo registro"
         : "Sales and inventory in the same record",
       lead: isEs
-        ? "Capturas del flujo comercial y de inventario de VIGGO."
-        : "Screens from VIGGO’s sales and inventory workflows.",
+        ? "Capturas de ventas e inventario en VIGGO."
+        : "Screens showing sales and inventory in VIGGO.",
       items: [
         {
           src: "/images/viggo/viggo-caja-gestion-2.webp",

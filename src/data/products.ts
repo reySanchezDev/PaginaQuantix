@@ -87,7 +87,7 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       id: "nica-finanzas",
       name: "Nica Finanzas",
       category: "Financial tools",
-      description: "Free salary, loan, and employment-settlement calculators for Nicaragua.",
+      description: "Free salary, loan, and employment settlement calculators for Nicaragua.",
       status: "Free access",
       external: {
         label: "Open Nica Finanzas",
