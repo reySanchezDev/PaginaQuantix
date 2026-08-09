@@ -18,20 +18,20 @@ const localized = {
     },
     model: {
       eyebrow: "Qué hacemos",
-      title: "No todos los proyectos necesitan empezar desde cero",
-      lead: "Podemos empezar con un producto de Quantix, adaptarlo a tu operación o desarrollar una solución propia.",
+      title: "La mejor solución no siempre empieza desde cero",
+      lead: "Podemos implementar un producto de Quantix, adaptarlo a tu operación o desarrollar un sistema a medida.",
       items: [
         [
-          "Usar un producto existente",
-          "Si uno de nuestros productos encaja con tu operación, te ayudamos a ponerlo en marcha.",
+          "Solución lista para implementar",
+          "VIGGO, Takofy, Nica Finanzas y QAVision ya resuelven necesidades concretas. Configuramos el producto adecuado y acompañamos la puesta en marcha.",
         ],
         [
-          "Adaptar e integrar",
-          "Ajustamos flujos, reglas e integraciones para que funcione con tus sistemas actuales.",
+          "Solución adaptada a tu operación",
+          "Partimos de un producto de Quantix y ajustamos flujos, reglas e integraciones para conectarlo con tus procesos actuales.",
         ],
         [
-          "Construir a medida",
-          "Cuando ningún producto encaja, diseñamos y desarrollamos una solución pensada para tu operación.",
+          "Software a medida",
+          "Diseñamos y desarrollamos un sistema propio cuando la operación requiere algo específico.",
         ],
       ],
     },
@@ -65,20 +65,20 @@ const localized = {
     },
     model: {
       eyebrow: "What we do",
-      title: "Not every project needs to start from scratch",
-      lead: "We can start with a Quantix product, tailor it to your operation, or build a system of your own.",
+      title: "The right solution does not always start from scratch",
+      lead: "We can implement a Quantix product, tailor it to your operation, or build a custom system.",
       items: [
         [
-          "Use an existing product",
-          "If one of our products fits your operation, we help you get it up and running.",
+          "Ready-to-implement solution",
+          "VIGGO, Takofy, Nica Finanzas, and QAVision already solve specific needs. We configure the right product and guide the rollout.",
         ],
         [
-          "Adapt and integrate",
-          "We tailor workflows, rules, and integrations so it works with your current systems.",
+          "Tailored to your operation",
+          "We start with a Quantix product, then tailor workflows, rules, and integrations to connect it with your current processes.",
         ],
         [
-          "Build a custom system",
-          "When no existing product fits, we design and build a system to fit your operation.",
+          "Custom software",
+          "We design and build a dedicated system when the operation calls for something specific.",
         ],
       ],
     },
