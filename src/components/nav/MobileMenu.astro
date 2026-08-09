@@ -19,7 +19,7 @@ interface Props {
 const { navItems, locale, pathname, labels } = Astro.props as Props;
 ---
 
-<div id="mobile-menu" class="menu-overlay" hidden aria-hidden="true">
+<div id="mobile-menu" class="menu-overlay" data-state="closed" hidden aria-hidden="true">
   <button
     class="menu-backdrop"
     type="button"
@@ -77,9 +77,10 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
     inset: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
     border: 0;
     background: var(--color-overlay);
-    animation: fade-backdrop var(--transition-base) both;
+    transition: opacity var(--transition-base);
   }
 
   .menu-dialog {
@@ -89,9 +90,13 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
     padding: max(var(--space-5), env(safe-area-inset-top)) var(--space-5)
       max(var(--space-6), env(safe-area-inset-bottom));
     overflow-y: auto;
+    opacity: 0;
     background: var(--color-surface);
     box-shadow: var(--shadow-lg);
-    animation: enter var(--transition-base) both;
+    transform: translateX(1rem);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base);
   }
 
   .menu-dialog__header {
@@ -148,45 +153,45 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
   }
 
   nav li {
-    animation: enter-item 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    opacity: 0;
+    transform: translateX(1rem);
+    transition:
+      opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  nav li:nth-child(2) {
-    animation-delay: 45ms;
+  .menu-overlay[data-state="open"] .menu-backdrop,
+  .menu-overlay[data-state="open"] .menu-dialog,
+  .menu-overlay[data-state="open"] nav li {
+    opacity: 1;
   }
 
-  nav li:nth-child(3) {
-    animation-delay: 90ms;
+  .menu-overlay[data-state="open"] .menu-dialog,
+  .menu-overlay[data-state="open"] nav li {
+    transform: translateX(0);
   }
 
-  nav li:nth-child(4) {
-    animation-delay: 135ms;
+  .menu-overlay[data-state="open"] nav li:nth-child(2) {
+    transition-delay: 45ms;
+  }
+
+  .menu-overlay[data-state="open"] nav li:nth-child(3) {
+    transition-delay: 90ms;
+  }
+
+  .menu-overlay[data-state="open"] nav li:nth-child(4) {
+    transition-delay: 135ms;
+  }
+
+  .menu-overlay[data-state="closing"] nav li {
+    transition-delay: 0ms;
+    transition-duration: 120ms;
   }
 
   .menu-dialog__footer {
     display: flex;
     justify-content: flex-start;
     margin-top: var(--space-10);
-  }
-
-  @keyframes enter {
-    from {
-      opacity: 0;
-      transform: translateX(1rem);
-    }
-  }
-
-  @keyframes fade-backdrop {
-    from {
-      opacity: 0;
-    }
-  }
-
-  @keyframes enter-item {
-    from {
-      opacity: 0;
-      transform: translateX(1rem);
-    }
   }
 
   @media (min-width: 60rem) {
@@ -202,34 +207,58 @@ const { navItems, locale, pathname, labels } = Astro.props as Props;
   const dialog = overlay?.querySelector<HTMLElement>(".menu-dialog");
   const closeButton = overlay?.querySelector<HTMLButtonElement>(".menu-close");
   const desktopViewport = window.matchMedia("(min-width: 60rem)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const focusableSelector = "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])";
+  let closeFallback: number | undefined;
 
-  function closeMenu() {
-    if (!overlay || overlay.hidden) return;
-    overlay.hidden = true;
-    overlay.setAttribute("aria-hidden", "true");
+  function closeMenu({ immediate = false, restoreFocus = true } = {}) {
+    if (!overlay || overlay.hidden || overlay.dataset.state === "closing") return;
     toggle?.setAttribute("aria-expanded", "false");
-    document.body.removeAttribute("data-menu-open");
-    toggle?.focus();
+    if (restoreFocus) toggle?.focus();
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.inert = true;
+    overlay.dataset.state = "closing";
+
+    const finish = () => {
+      if (overlay.dataset.state !== "closing") return;
+      overlay.hidden = true;
+      overlay.inert = false;
+      overlay.dataset.state = "closed";
+      document.body.removeAttribute("data-menu-open");
+    };
+    window.clearTimeout(closeFallback);
+    if (immediate || reducedMotion.matches) return finish();
+    closeFallback = window.setTimeout(finish, 320);
   }
 
   function openMenu() {
     if (!overlay) return;
+    window.clearTimeout(closeFallback);
     overlay.hidden = false;
+    overlay.inert = false;
     overlay.setAttribute("aria-hidden", "false");
     toggle?.setAttribute("aria-expanded", "true");
     document.body.dataset.menuOpen = "true";
+    overlay.dataset.state = reducedMotion.matches ? "open" : "opening";
+    if (!reducedMotion.matches) {
+      requestAnimationFrame(() => {
+        if (overlay.dataset.state === "opening") overlay.dataset.state = "open";
+      });
+    }
     closeButton?.focus();
   }
 
   toggle?.addEventListener("click", openMenu);
   desktopViewport.addEventListener("change", (event) => {
     if (!event.matches || overlay?.hidden) return;
-    closeMenu();
+    closeMenu({ immediate: true, restoreFocus: false });
     document.querySelector<HTMLElement>(".site-header a")?.focus();
   });
-  overlay?.querySelectorAll<HTMLElement>("[data-menu-close], nav a").forEach((element) => {
-    element.addEventListener("click", closeMenu);
+  overlay?.querySelectorAll<HTMLElement>("[data-menu-close]").forEach((element) => {
+    element.addEventListener("click", () => closeMenu());
+  });
+  overlay?.querySelectorAll<HTMLElement>("nav a").forEach((element) => {
+    element.addEventListener("click", () => closeMenu({ immediate: true, restoreFocus: false }));
   });
 
   document.addEventListener("keydown", (event) => {
