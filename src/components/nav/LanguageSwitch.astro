@@ -17,6 +17,7 @@ const targetLocale: Locale = locale === "es" ? "en" : "es";
   lang={targetLocale}
   hreflang={targetLocale}
   aria-label={label}
+  data-language-switch={targetLocale}
 >
   {targetLocale.toUpperCase()}
 </a>
@@ -42,3 +43,13 @@ const targetLocale: Locale = locale === "es" ? "en" : "es";
     text-underline-offset: 0.25em;
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-language-switch]").forEach((switcher) => {
+    switcher.addEventListener("click", () => {
+      const locale = switcher.dataset.languageSwitch;
+      if (!locale) return;
+      document.cookie = `quantix_locale=${locale}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
+    });
+  });
+</script>

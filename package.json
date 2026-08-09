@@ -13,6 +13,7 @@
     "deadcode": "knip --no-progress",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "generate:og": "node scripts/generate-og-images.mjs",
     "check:size": "node scripts/check-source-size.mjs",
     "test:build": "node scripts/validate-build.mjs",
     "audit": "npm audit --audit-level=high",
@@ -34,6 +35,7 @@
     "knip": "^6.32.0",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.35.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.66.0"
   }

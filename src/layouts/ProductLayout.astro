@@ -8,10 +8,13 @@ interface Props {
   description: string;
   locale: Locale;
   productName: string;
+  image: string;
+  imageAlt: string;
   operatingSystem?: string;
 }
 
-const { title, description, locale, productName, operatingSystem } = Astro.props as Props;
+const { title, description, locale, productName, image, imageAlt, operatingSystem } =
+  Astro.props as Props;
 const site = Astro.site ?? new URL(siteConfig.siteUrl);
 const schema = {
   "@context": "https://schema.org",
@@ -24,6 +27,13 @@ const schema = {
 };
 ---
 
-<BaseLayout title={title} description={description} locale={locale} structuredData={schema}>
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  image={image}
+  imageAlt={imageAlt}
+  structuredData={schema}
+>
   <slot />
 </BaseLayout>

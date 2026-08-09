@@ -26,6 +26,12 @@ npm run dev
 
 The development server runs at `http://localhost:4321`.
 
+Regenerate the localized Open Graph images after changing brand or product copy:
+
+```sh
+npm run generate:og
+```
+
 ## Quality gates
 
 ```sh
@@ -37,11 +43,13 @@ This verifies formatting, lint rules, unused code, the 300-line source limit, As
 ## Architecture
 
 - English routes use `/en/`; Spanish routes use `/es/`.
+- On Vercel, `/` respects the saved language choice and then the browser's preferred language.
 - Route translations, navigation state, language switching, canonicals, and hreflang derive from one manifest.
 - Products and page content are configuration-driven and shared by both languages.
 - Each route is a small composition over reusable layouts and components.
 - Design values live in `src/styles/tokens.css`; component styles consume those tokens.
 - The site ships as static HTML with a generated sitemap and production security headers.
+- Social metadata uses localized 1200×630 images, with product-specific images on product routes.
 
 ## Runtime
 

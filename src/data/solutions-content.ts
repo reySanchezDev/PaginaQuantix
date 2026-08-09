@@ -46,7 +46,7 @@ const content: Record<Locale, StandardPageContent> = {
     cta: {
       eyebrow: "Siguiente paso",
       title: "Revisemos el proceso que necesitas mejorar.",
-      text: "En una primera conversación revisamos el alcance inicial y las principales dependencias.",
+      text: "En la primera conversación identificamos el alcance y las dependencias principales.",
       primary: { label: "Hablar sobre un proyecto", href: getRoute("contact", "es") },
     },
   },
@@ -94,7 +94,7 @@ const content: Record<Locale, StandardPageContent> = {
     cta: {
       eyebrow: "Next step",
       title: "Let’s review the process you need to improve.",
-      text: "In an initial conversation, we review the initial scope and key dependencies.",
+      text: "In the first conversation, we identify scope and key dependencies.",
       primary: { label: "Discuss a project", href: getRoute("contact", "en") },
     },
   },

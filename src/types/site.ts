@@ -94,6 +94,8 @@ export interface ProductPageContent {
       src: string;
       poster: string;
       label: string;
+      width: number;
+      height: number;
     };
   };
   overview: {

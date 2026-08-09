@@ -12,7 +12,7 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       description: "Centraliza clientes, servicios, ventas, cobros, inventario y accesos.",
       status: "Disponible",
       external: {
-        label: "Conocer VIGGO",
+        label: "Visitar VIGGO",
         href: siteConfig.productUrls.viggo,
         target: "_blank",
       },

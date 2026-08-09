@@ -29,6 +29,8 @@ export function getViggoPage(locale: Locale): ProductPageContent {
         src: "/videos/viggo/dashboard-video.mp4",
         poster: "/images/viggo/viggo-dashboard.webp",
         label: isEs ? "Demostración del panel de VIGGO" : "VIGGO dashboard demonstration",
+        width: 1440,
+        height: 706,
       },
     },
     overview: {
@@ -133,7 +135,7 @@ export function getViggoPage(locale: Locale): ProductPageContent {
     },
     cta: {
       eyebrow: "VIGGO",
-      title: isEs ? "Conoce VIGGO." : "Visit VIGGO.",
+      title: isEs ? "Visita VIGGO." : "Visit VIGGO.",
       text: isEs
         ? "Visita VIGGO o contacta a Quantix para conversar sobre la implementación."
         : "Visit VIGGO or contact Quantix to discuss implementation.",

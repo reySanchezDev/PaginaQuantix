@@ -24,6 +24,8 @@ const product = getProduct(productId, locale);
   description={content.seo.description}
   locale={locale}
   productName={product.name}
+  image={`/images/og/${product.id}-${locale}.png`}
+  imageAlt={`${product.name} — ${product.category}`}
   operatingSystem={productId === "qavision" ? "Windows" : undefined}
 >
   <ProductHero content={content} product={product} />

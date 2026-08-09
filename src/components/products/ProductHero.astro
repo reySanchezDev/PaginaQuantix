@@ -54,6 +54,8 @@ const { hero } = content;
               controls
               playsinline
               preload="none"
+              width={hero.video.width}
+              height={hero.video.height}
               aria-label={hero.video.label}
             />
             <figcaption>{hero.video.label}</figcaption>
@@ -154,7 +156,7 @@ const { hero } = content;
   }
 
   .product-hero :global(.product-secondary) {
-    border-color: rgb(239 242 237 / 0.45);
+    border-color: color-mix(in srgb, var(--color-inverse) 45%, transparent);
     color: var(--color-inverse);
   }
 
@@ -172,7 +174,6 @@ const { hero } = content;
 
   video {
     width: 100%;
-    aspect-ratio: 1.95 / 1;
     background: var(--color-dark-deep);
   }
 

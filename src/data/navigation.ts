@@ -64,6 +64,7 @@ export const sharedUi = {
     copyright: "Todos los derechos reservados.",
     footerText: "Productos propios y desarrollo de software para empresas.",
     brandHome: "Inicio de Quantix Software",
+    socialImageAlt: "Quantix Software: productos y desarrollo de software para empresas",
   },
   en: {
     skip: "Skip to content",
@@ -78,5 +79,6 @@ export const sharedUi = {
     copyright: "All rights reserved.",
     footerText: "Software products and custom development for businesses.",
     brandHome: "Quantix Software home",
+    socialImageAlt: "Quantix Software: software products and custom development for businesses",
   },
 } as const;
