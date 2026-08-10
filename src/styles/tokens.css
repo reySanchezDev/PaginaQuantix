@@ -37,8 +37,8 @@
   --product-qavision-soft: #e0e8ef;
 
   --font-body: "IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif;
-  --font-heading: "IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-heading: "Bricolage Grotesque Variable", "Arial Narrow", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -51,7 +51,7 @@
   --text-5xl: 3.25rem;
   --text-6xl: 4.5rem;
 
-  --leading-tight: 1.04;
+  --leading-tight: 0.98;
   --leading-snug: 1.28;
   --leading-normal: 1.55;
   --leading-relaxed: 1.66;
