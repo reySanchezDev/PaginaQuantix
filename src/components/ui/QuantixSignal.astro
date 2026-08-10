@@ -4,6 +4,7 @@
     <path class="signal-route signal-route--muted" d="M1 52h36M123 108h36M52 1v26M108 133v26"
     ></path>
     <path class="signal-route signal-route--active" pathLength="1" d="M30 42h86v72H78v22"></path>
+    <path class="signal-route signal-route--flow" pathLength="1" d="M30 42h86v72H78v22"></path>
     <circle class="signal-node signal-node--one" cx="30" cy="42" r="5"></circle>
     <circle class="signal-node signal-node--two" cx="116" cy="42" r="5"></circle>
     <circle class="signal-node signal-node--three" cx="116" cy="114" r="5"></circle>
@@ -13,11 +14,52 @@
 
 <style>
   .quantix-signal {
+    position: relative;
     width: min(8rem, 70%);
+    aspect-ratio: 1;
+    padding: clamp(0.35rem, 1vw, 0.65rem);
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-border-strong) 72%, transparent);
+    border-radius: var(--radius-control);
+    background: color-mix(in srgb, var(--color-surface-raised) 68%, transparent);
+    box-shadow:
+      0 1.1rem 2.6rem -2rem rgb(20 35 38 / 0.48),
+      inset 0 1px rgb(255 255 255 / 0.78);
     color: var(--signal-color, var(--color-accent));
+    -webkit-backdrop-filter: blur(0.65rem) saturate(112%);
+    backdrop-filter: blur(0.65rem) saturate(112%);
+    isolation: isolate;
+    transition:
+      border-color var(--transition-base),
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .quantix-signal::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(rgb(18 63 70 / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(18 63 70 / 0.055) 1px, transparent 1px);
+    background-size: 1.25rem 1.25rem;
+    content: "";
+    mask-image: linear-gradient(135deg, black, transparent 78%);
+  }
+
+  .quantix-signal::after {
+    position: absolute;
+    inset: 0 auto auto 0.65rem;
+    width: 2.25rem;
+    height: 2px;
+    background: var(--color-accent);
+    box-shadow: 0 0 0.85rem rgb(169 79 47 / 0.4);
+    content: "";
   }
 
   svg {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: auto;
   }
@@ -42,6 +84,15 @@
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
     animation: draw-route 1.4s 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .signal-route--flow {
+    stroke: var(--color-primary);
+    stroke-width: 3;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-dasharray: 0.055 0.945;
+    animation: signal-flow 4.2s 1.5s linear infinite;
   }
 
   .signal-node {
@@ -95,6 +146,26 @@
     }
     92% {
       transform: scale(0.65);
+    }
+  }
+
+  @keyframes signal-flow {
+    to {
+      stroke-dashoffset: -1;
+    }
+  }
+
+  @media (hover: hover) {
+    .quantix-signal:hover {
+      border-color: color-mix(in srgb, var(--color-accent) 48%, var(--color-border-strong));
+      box-shadow:
+        0 1.35rem 3rem -2rem rgb(20 35 38 / 0.62),
+        inset 0 1px rgb(255 255 255 / 0.86);
+      transform: translateY(-2px);
+    }
+
+    .quantix-signal:hover .signal-route--flow {
+      animation-duration: 2.7s;
     }
   }
 </style>
