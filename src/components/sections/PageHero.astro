@@ -2,32 +2,25 @@
 import type { HeroContent } from "../../types/site";
 import Button from "../ui/Button.astro";
 import Container from "../ui/Container.astro";
-import QuantixSignal from "../ui/QuantixSignal.astro";
-
 interface Props {
   content: HeroContent;
   compact?: boolean;
 }
-
-const { content, compact = false } = Astro.props as Props;
+const { content, compact = false } = Astro.props;
 ---
 
 <section class:list={["page-hero", { "page-hero--compact": compact }]} aria-labelledby="page-title">
-  <Container class="page-hero__layout">
-    <div class="page-hero__meta">
-      <p class="eyebrow">{content.eyebrow}</p>
-      <QuantixSignal />
-    </div>
-    <div class="page-hero__content">
-      <h1 id="page-title">{content.title}</h1>
-      <p class="page-hero__lead">{content.lead}</p>
-
+  <Container>
+    <p class="eyebrow">{content.eyebrow}</p>
+    <div class="page-hero__copy" data-enter>
+      <h1 id="page-title">{content.title}</h1><p class="page-hero__lead">{content.lead}</p>
       {
         (content.primary || content.secondary) && (
           <div class="page-hero__actions">
             {content.primary && (
               <Button href={content.primary.href} target={content.primary.target} size="lg">
                 {content.primary.label}
+                <span aria-hidden="true">↗</span>
               </Button>
             )}
             {content.secondary && (
@@ -46,88 +39,36 @@ const { content, compact = false } = Astro.props as Props;
     </div>
   </Container>
 </section>
-
 <style>
   .page-hero {
-    padding: clamp(var(--space-16), 9vw, 7.5rem) 0 clamp(var(--space-20), 10vw, 8.5rem);
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 7vw, 6rem);
     border-bottom: 1px solid var(--color-border);
   }
-
   .page-hero--compact {
-    padding-bottom: clamp(var(--space-16), 8vw, var(--space-24));
+    padding-bottom: clamp(3rem, 6vw, 5rem);
   }
-
-  .page-hero__layout {
-    display: grid;
-    gap: var(--space-6);
+  .page-hero__copy {
+    max-width: 60rem;
   }
-
-  .page-hero__meta {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-6);
-    animation: hero-enter 560ms 40ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .page-hero__meta .eyebrow {
-    padding-top: 0.55rem;
-  }
-
-  .page-hero__meta :global(.quantix-signal) {
-    width: 4.75rem;
-    flex: 0 0 auto;
-  }
-
-  .page-hero__content {
-    max-width: 58rem;
-  }
-
   h1 {
-    max-width: 18ch;
-    animation: hero-enter 680ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    max-width: 23ch;
+    font-size: var(--text-title);
+    line-height: 1.08;
   }
-
   .page-hero__lead {
-    max-width: 41rem;
-    margin: var(--space-6) 0 0;
+    max-width: 57ch;
+    margin: 1.5rem 0 0;
     color: var(--color-ink-muted);
-    font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
-    line-height: var(--leading-relaxed);
-    animation: hero-enter 680ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    font-size: var(--text-lead);
+    line-height: 1.6;
   }
-
   .page-hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-8);
-    animation: hero-enter 680ms 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    gap: 0.75rem;
+    margin-top: 2rem;
   }
-
-  @keyframes hero-enter {
-    from {
-      opacity: 0;
-      transform: translateY(1.25rem);
-    }
-  }
-
-  @media (min-width: 56rem) {
-    .page-hero__layout {
-      grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1.65fr);
-    }
-
-    .page-hero__meta {
-      display: block;
-    }
-
-    .page-hero__meta :global(.quantix-signal) {
-      width: min(8rem, 70%);
-      margin-top: clamp(var(--space-10), 8vw, var(--space-20));
-    }
-  }
-
-  @media (max-width: 40rem) {
+  @media (max-width: 25rem) {
     .page-hero__actions {
       display: grid;
     }

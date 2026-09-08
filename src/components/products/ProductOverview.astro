@@ -14,14 +14,14 @@ const hasMetrics = content.metrics.length > 0;
   <Container
     class:list={["product-overview__layout", { "product-overview__layout--single": !hasMetrics }]}
   >
-    <div class="section-intro" data-reveal>
+    <div class="section-intro">
       <p class="eyebrow">{content.eyebrow}</p>
       <h2 id="overview-title">{content.title}</h2>
       <p>{content.lead}</p>
     </div>
     {
       hasMetrics && (
-        <dl data-reveal>
+        <dl>
           {content.metrics.map((metric) => (
             <div>
               <dt>{metric.title}</dt>
@@ -36,55 +36,53 @@ const hasMetrics = content.metrics.length > 0;
 
 <style>
   .product-overview {
+    border-top: 1px solid var(--color-border);
     background: var(--color-surface);
   }
-
   .product-overview__layout {
     display: grid;
-    gap: var(--space-10);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 6vw, 5rem);
     align-items: start;
   }
-
   .section-intro {
     margin-bottom: 0;
   }
-
-  .product-overview__layout--single .section-intro {
-    max-width: 48rem;
+  .product-overview__layout--single {
+    grid-template-columns: 1fr;
   }
-
+  .product-overview__layout--single .section-intro {
+    max-width: 50rem;
+  }
   dl {
     margin: 0;
-    border-top: 1px solid var(--color-border-strong);
   }
-
   dl div {
     display: grid;
-    grid-template-columns: minmax(7rem, 0.65fr) minmax(0, 1.35fr);
-    gap: var(--space-5);
-    padding-block: var(--space-5);
-    border-bottom: 1px solid var(--color-border);
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-base);
   }
-
   dt {
-    color: var(--color-ink);
-    font-weight: 600;
+    font-weight: 500;
   }
-
   dd {
     margin: 0;
     color: var(--color-ink-muted);
-    line-height: var(--leading-normal);
+    line-height: 1.5;
   }
-
-  @media (min-width: 60rem) {
+  @media (max-width: 56rem) {
     .product-overview__layout {
-      grid-template-columns: minmax(0, 1fr) minmax(25rem, 0.9fr);
-      gap: var(--space-20);
-    }
-
-    .product-overview__layout--single {
       grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  @media (max-width: 22rem) {
+    dl div {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
     }
   }
 </style>

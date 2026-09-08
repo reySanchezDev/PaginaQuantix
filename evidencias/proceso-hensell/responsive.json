@@ -1,0 +1,102 @@
+[
+  {
+    "clientWidth": 305,
+    "columns": "265px",
+    "documentWidth": 305,
+    "lang": "es",
+    "overflow": [],
+    "stages": 4,
+    "title": "Qué recibirás en cada etapa",
+    "width": 320
+  },
+  {
+    "clientWidth": 375,
+    "columns": "335px",
+    "documentWidth": 375,
+    "lang": "es",
+    "overflow": [],
+    "stages": 4,
+    "title": "Qué recibirás en cada etapa",
+    "width": 390
+  },
+  {
+    "clientWidth": 753,
+    "columns": "673px",
+    "documentWidth": 753,
+    "lang": "es",
+    "overflow": [],
+    "stages": 4,
+    "title": "Qué recibirás en cada etapa",
+    "width": 768
+  },
+  {
+    "clientWidth": 1009,
+    "columns": "342.922px 514.398px",
+    "documentWidth": 1009,
+    "lang": "es",
+    "overflow": [],
+    "stages": 4,
+    "title": "Qué recibirás en cada etapa",
+    "width": 1024
+  },
+  {
+    "clientWidth": 1425,
+    "columns": "471.68px 707.523px",
+    "documentWidth": 1425,
+    "lang": "es",
+    "overflow": [],
+    "stages": 4,
+    "title": "Qué recibirás en cada etapa",
+    "width": 1440
+  },
+  {
+    "clientWidth": 305,
+    "columns": "265px",
+    "documentWidth": 305,
+    "lang": "en",
+    "overflow": [],
+    "stages": 4,
+    "title": "What you get at each stage",
+    "width": 320
+  },
+  {
+    "clientWidth": 375,
+    "columns": "335px",
+    "documentWidth": 375,
+    "lang": "en",
+    "overflow": [],
+    "stages": 4,
+    "title": "What you get at each stage",
+    "width": 390
+  },
+  {
+    "clientWidth": 753,
+    "columns": "673px",
+    "documentWidth": 753,
+    "lang": "en",
+    "overflow": [],
+    "stages": 4,
+    "title": "What you get at each stage",
+    "width": 768
+  },
+  {
+    "clientWidth": 1009,
+    "columns": "342.922px 514.398px",
+    "documentWidth": 1009,
+    "lang": "en",
+    "overflow": [],
+    "stages": 4,
+    "title": "What you get at each stage",
+    "width": 1024
+  },
+  {
+    "clientWidth": 1425,
+    "columns": "471.68px 707.523px",
+    "documentWidth": 1425,
+    "lang": "en",
+    "overflow": [],
+    "stages": 4,
+    "title": "What you get at each stage",
+    "width": 1440
+  }
+]

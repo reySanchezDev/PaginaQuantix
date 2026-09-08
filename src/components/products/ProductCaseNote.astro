@@ -1,0 +1,65 @@
+---
+import { getRoute } from "../../i18n/routes";
+import type { CaseStudyContent } from "../../types/case-study";
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  caseStudy: CaseStudyContent;
+  locale: Locale;
+}
+const { caseStudy, locale } = Astro.props;
+const es = locale === "es";
+---
+
+<aside
+  class="product-case"
+  aria-label={es ? `Uso de ${caseStudy.productName}` : `${caseStudy.productName} in use`}
+>
+  <Container class="product-case__content">
+    <p>{caseStudy.context}</p>
+    <a href={getRoute(`case-${caseStudy.id}`, locale)}>
+      {es ? `Ver el caso de ${caseStudy.productName}` : `Read the ${caseStudy.productName} study`}
+      <span aria-hidden="true">→</span>
+    </a>
+  </Container>
+</aside>
+
+<style>
+  .product-case {
+    padding-block: 1.25rem;
+    border-block: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .product-case__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 3rem;
+  }
+  p {
+    max-width: 75ch;
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-underline-offset: 0.3em;
+  }
+  a:hover {
+    color: var(--color-primary);
+  }
+  @media (max-width: 52rem) {
+    .product-case__content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

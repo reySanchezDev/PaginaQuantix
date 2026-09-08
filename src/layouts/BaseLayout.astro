@@ -2,15 +2,13 @@
 import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
 import SiteFooter from "../components/nav/SiteFooter.astro";
 import SiteHeader from "../components/nav/SiteHeader.astro";
-import MotionController from "../components/system/MotionController.astro";
+import EmailFeedback from "../components/system/EmailFeedback.astro";
+import SiteMotion from "../components/system/SiteMotion.astro";
 import { getLegalNavigation, getPrimaryNavigation, sharedUi } from "../data/navigation";
 import { siteConfig } from "../data/site-config";
 import { getAlternatePath, getRoute, normalizePath } from "../i18n/routes";
 import type { Locale } from "../types/site";
 import "@fontsource-variable/bricolage-grotesque/wght.css";
-import "@fontsource/ibm-plex-mono/latin-400.css";
-import "@fontsource/ibm-plex-mono/latin-500.css";
-import "@fontsource/ibm-plex-mono/latin-600.css";
 import "../styles/global.css";
 
 interface Props {
@@ -60,6 +58,7 @@ const organizationSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#f6f4ee" />
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="generator" content={Astro.generator} />
 
@@ -116,6 +115,7 @@ const organizationSchema = {
       locale={locale}
       labels={labels}
     />
-    <MotionController />
+    <EmailFeedback locale={locale} />
+    <SiteMotion />
   </body>
 </html>

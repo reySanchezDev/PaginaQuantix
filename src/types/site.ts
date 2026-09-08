@@ -13,6 +13,8 @@ export interface NavItem extends LinkItem {
 interface FeatureItem {
   title: string;
   text: string;
+  summary?: string;
+  link?: LinkItem;
 }
 
 interface PageSeo {
@@ -49,7 +51,22 @@ export interface StandardPageContent {
   seo: PageSeo;
   hero: HeroContent;
   sections: ContentSection[];
+  process?: ProcessContent;
   cta?: CtaContent;
+}
+
+export interface ProcessContent {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  outcomeLabel: string;
+  reviewLabel: string;
+  stages: Array<{
+    title: string;
+    text: string;
+    outcome: string;
+    review: string;
+  }>;
 }
 
 export interface LegalPageContent {
@@ -72,6 +89,7 @@ export interface ProductSummary {
   description: string;
   href: string;
   status: string;
+  preview?: ProductMedia;
   external?: LinkItem;
 }
 
@@ -84,12 +102,15 @@ interface ProductMedia {
   height: number;
   caption?: string;
   loading?: "eager" | "lazy";
+  title?: string;
+  detailSrc?: string;
 }
 
 export interface ProductPageContent {
   id: ProductId;
   seo: PageSeo;
   hero: HeroContent & {
+    image?: ProductMedia;
     video?: {
       src: string;
       poster: string;
@@ -110,6 +131,8 @@ export interface ProductPageContent {
     title: string;
     lead: string;
     items: ProductMedia[];
+    layout?: "stories";
+    detailLabel?: string;
   };
   release?: {
     label: string;

@@ -8,13 +8,13 @@ import { notFoundContent as content } from "../data/not-found-content";
 <BaseLayout title={content.seo.title} description={content.seo.description} locale="en" noindex>
   <section class="not-found">
     <Container narrow>
-      <p class="eyebrow">{content.code}</p>
+      <p class="error-code">{content.code}</p>
       <h1>{content.title}<br /><span lang="es">{content.titleEs}</span></h1>
       <p>
         {content.message}<br />
         <span lang="es">{content.messageEs}</span>
       </p>
-      <div>
+      <div class="not-found__actions">
         <Button href={content.actions.en.href} hreflang="en" size="lg">
           {content.actions.en.label}
         </Button>
@@ -29,23 +29,32 @@ import { notFoundContent as content } from "../data/not-found-content";
 <style>
   .not-found {
     display: grid;
-    min-height: 68vh;
+    min-height: 68svh;
     place-items: center;
     padding: var(--space-20) 0;
-    background: var(--color-surface);
+    background: var(--color-canvas);
   }
 
-  h1 {
-    max-width: 12ch;
-    font-size: clamp(3rem, 8vw, 5.5rem);
+  .error-code {
+    margin: 0 0 1.5rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: var(--text-heading);
+    font-weight: 600;
+    line-height: 1.25;
   }
-  p:not(.eyebrow) {
-    max-width: 36rem;
+  h1 {
+    max-width: 24ch;
+    font-size: var(--text-section);
+    line-height: 1.12;
+  }
+  p:not(.error-code) {
+    max-width: 55ch;
     color: var(--color-ink-muted);
-    font-size: var(--text-lg);
+    font-size: var(--text-lead);
     line-height: var(--leading-relaxed);
   }
-  div div {
+  .not-found__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);

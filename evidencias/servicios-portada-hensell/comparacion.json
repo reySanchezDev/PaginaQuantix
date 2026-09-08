@@ -1,0 +1,20 @@
+{
+  "before": {
+    "introHeight": 221.40625,
+    "sectionHeight": 876.2265625,
+    "servicesGap": "56px",
+    "width": 1024
+  },
+  "after": {
+    "fonts": [
+      "21.12px",
+      "16px",
+      "16px"
+    ],
+    "introHeight": 179.625,
+    "links": 1,
+    "sectionHeight": 858.78125,
+    "servicesGap": "32px",
+    "width": 1024
+  }
+}

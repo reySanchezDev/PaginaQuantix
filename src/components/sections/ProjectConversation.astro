@@ -1,0 +1,143 @@
+---
+import Container from "../ui/Container.astro";
+import type { Locale } from "../../types/site";
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const c =
+  locale === "es"
+    ? {
+        eyebrow: "La primera conversación",
+        title: "Empecemos por una situación real.",
+        lead: "Un ejemplo del trabajo de tu equipo nos ayuda a entender por dónde empezar.",
+        items: [
+          {
+            title: "Cómo lo hacen hoy",
+            text: "Cuéntanos los pasos y las herramientas que utilizan.",
+          },
+          {
+            title: "Dónde se complica",
+            text: "Muéstranos una tarea que se repite, un dato que se pierde o una dificultad frecuente.",
+          },
+          {
+            title: "Qué necesitan conseguir",
+            text: "Conversemos sobre qué cambio sería más útil para el negocio y quién lo usaría.",
+          },
+        ],
+        decisionTitle: "Si cambian las prioridades, volvemos a lo que necesita el negocio.",
+        decisionText:
+          "Analizamos contigo qué aporta cada cambio y acordamos el siguiente paso. Lo que más le conviene a tu negocio guía esa conversación.",
+      }
+    : {
+        eyebrow: "The first conversation",
+        title: "Let’s start with a real situation.",
+        lead: "An example of your team’s daily work helps us understand where to begin.",
+        items: [
+          {
+            title: "How it works today",
+            text: "Walk us through the steps and the tools your team uses.",
+          },
+          {
+            title: "Where it gets difficult",
+            text: "Show us a repetitive task, information that gets lost, or a recurring difficulty.",
+          },
+          {
+            title: "What needs to improve",
+            text: "Let’s discuss which change would help the business most and who would use it.",
+          },
+        ],
+        decisionTitle: "When priorities change, we return to what the business needs.",
+        decisionText:
+          "We review the value of each change with you and agree on the next step. What best serves your business guides that conversation.",
+      };
+---
+
+<section class="section conversation" aria-labelledby="conversation-title">
+  <Container>
+    <div class="conversation-layout">
+      <div data-reveal>
+        <p class="eyebrow">{c.eyebrow}</p>
+        <h2 id="conversation-title">{c.title}</h2>
+        <p class="conversation-lead">{c.lead}</p>
+      </div>
+      <ul role="list" data-reveal data-motion-delay="80">
+        {
+          c.items.map((item) => (
+            <li>
+              <>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <aside class="conversation-decisions" data-reveal>
+      <h3>{c.decisionTitle}</h3>
+      <p>{c.decisionText}</p>
+    </aside>
+  </Container>
+</section>
+
+<style>
+  .conversation {
+    border-top: 1px solid var(--color-border);
+  }
+  .conversation-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 8vw, 7rem);
+  }
+  h2 {
+    max-width: 19ch;
+    font-size: var(--text-section);
+    line-height: 1.12;
+  }
+  .conversation-lead {
+    max-width: 38ch;
+    color: var(--color-ink-muted);
+    margin: 1.5rem 0 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li + li {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  h3 {
+    font-size: var(--text-subtitle);
+    line-height: 1.3;
+  }
+  li p,
+  .conversation-decisions p {
+    margin: 0.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+  }
+  .conversation-decisions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem clamp(2rem, 8vw, 7rem);
+    margin-top: 3rem;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    border-left: 2px solid var(--color-primary);
+  }
+  .conversation-decisions p {
+    margin: 0;
+  }
+  @media (max-width: 52rem) {
+    .conversation-layout,
+    .conversation-decisions {
+      grid-template-columns: 1fr;
+    }
+    .conversation-decisions {
+      margin-top: 2rem;
+    }
+  }
+</style>

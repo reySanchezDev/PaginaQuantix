@@ -1,6 +1,7 @@
 ---
 interface Props {
   variant?: "primary" | "secondary" | "ghost" | "link";
+  tone?: "default" | "inverse";
   size?: "sm" | "md" | "lg";
   href?: string;
   type?: "button" | "submit" | "reset";
@@ -13,6 +14,7 @@ interface Props {
 
 const {
   variant = "primary",
+  tone = "default",
   size = "md",
   href,
   type = "button",
@@ -35,7 +37,13 @@ const safeHref = href && !isDisabled ? href : undefined;
   target={safeHref ? target : undefined}
   rel={safeHref && target === "_blank" ? "noopener noreferrer" : undefined}
   hreflang={safeHref ? hreflang : undefined}
-  class:list={["button", `button--${variant}`, `button--${size}`, className]}
+  class:list={[
+    "button",
+    `button--${variant}`,
+    `button--${size}`,
+    { "button--inverse": tone === "inverse" },
+    className,
+  ]}
   disabled={!href && isDisabled}
   aria-disabled={isDisabled || undefined}
   aria-busy={loading || undefined}
@@ -49,101 +57,98 @@ const safeHref = href && !isDisabled ? href : undefined;
 <style>
   .button {
     display: inline-flex;
-    min-height: 2.75rem;
+    min-height: 2.875rem;
+    max-width: 100%;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    border: 1px solid transparent;
+    gap: 0.75rem;
+    border: 1px solid var(--button-border, transparent);
+    background: var(--button-bg);
+    color: var(--button-fg);
     border-radius: var(--radius-control);
     font-size: var(--text-sm);
-    font-weight: 600;
-    line-height: 1;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
     transition:
       background var(--transition-fast),
-      border-color var(--transition-fast),
-      box-shadow var(--transition-fast),
       color var(--transition-fast),
-      transform var(--transition-fast);
+      transform var(--motion-feedback) var(--motion-ease-out);
   }
-
   .button[aria-disabled="true"] {
     opacity: 0.5;
     cursor: not-allowed;
   }
-
   .button--primary {
-    border-color: var(--color-primary);
-    background: var(--color-primary);
-    box-shadow:
-      var(--shadow-control),
-      inset 0 1px rgb(255 255 255 / 0.14);
-    color: var(--color-inverse);
+    --button-bg: var(--color-primary);
+    --button-fg: var(--color-inverse);
+    --button-hover-bg: var(--color-primary-hover);
   }
-
-  .button--primary:hover:not([aria-disabled="true"]) {
-    border-color: var(--color-primary-hover);
-    background: var(--color-primary-hover);
-    box-shadow:
-      var(--shadow-control-hover),
-      inset 0 1px rgb(255 255 255 / 0.16);
-    transform: translateY(-2px);
-  }
-
   .button--secondary {
-    border-color: var(--color-border-strong);
-    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
-    box-shadow: inset 0 1px rgb(255 255 255 / 0.7);
-    color: var(--color-ink);
+    --button-border: var(--color-control-border);
+    --button-bg: transparent;
+    --button-fg: var(--color-ink);
+    --button-hover-bg: var(--color-surface-muted);
+    --button-hover-border: var(--color-ink);
   }
-
-  .button--secondary:hover:not([aria-disabled="true"]),
-  .button--ghost:hover:not([aria-disabled="true"]) {
-    border-color: var(--color-ink);
-    box-shadow: var(--shadow-control);
-    color: var(--color-ink);
-    transform: translateY(-2px);
-  }
-
   .button--ghost {
-    border-color: transparent;
-    background: transparent;
-    color: var(--color-ink-muted);
+    --button-bg: transparent;
+    --button-fg: var(--color-ink-muted);
+    --button-hover-bg: var(--color-surface-muted);
+    --button-hover-border: var(--color-ink);
   }
-
   .button--link {
+    --button-bg: transparent;
+    --button-fg: var(--color-ink);
+    --button-hover-fg: var(--color-primary);
     padding: 0;
     border-radius: 0;
-    background: transparent;
-    color: var(--color-primary);
   }
-
-  .button--link:hover:not([aria-disabled="true"]) {
+  .button--inverse {
+    --color-focus: var(--color-inverse);
+  }
+  .button--inverse.button--primary {
+    --button-bg: var(--color-inverse);
+    --button-fg: var(--color-primary-hover);
+    --button-hover-bg: var(--color-canvas);
+  }
+  .button--inverse:is(.button--secondary, .button--ghost) {
+    --button-fg: var(--color-inverse);
+    --button-hover-bg: var(--color-primary-hover);
+    --button-hover-border: var(--color-inverse);
+  }
+  .button--inverse.button--secondary {
+    --button-border: var(--color-inverse);
+  }
+  .button--inverse.button--link {
+    --button-fg: var(--color-inverse);
+    --button-hover-fg: var(--color-inverse);
+  }
+  .button:is(:hover, :focus-visible):not([aria-disabled="true"]) {
+    background: var(--button-hover-bg, var(--button-bg));
+    color: var(--button-hover-fg, var(--button-fg));
+    border-color: var(--button-hover-border, var(--button-border, transparent));
+  }
+  .button--link:is(:hover, :focus-visible):not([aria-disabled="true"]) {
     text-decoration: underline;
-    text-underline-offset: 0.25em;
-    transform: translateX(0.2rem);
+    text-underline-offset: 0.3em;
   }
-
   .button:active:not([aria-disabled="true"]) {
-    box-shadow: none;
-    transform: translateY(0);
+    filter: brightness(0.95);
   }
-
   .button--sm {
-    padding: var(--space-2) var(--space-3);
+    padding: 0.6rem 1rem;
   }
-
   .button--md {
-    padding: var(--space-3) var(--space-5);
+    padding: 0.8rem 1.4rem;
   }
-
   .button--lg {
     min-height: 3.25rem;
-    padding: var(--space-4) var(--space-6);
+    padding: 0.875rem 1.5rem;
     font-size: var(--text-base);
   }
-
   .button__spinner {
     width: 1rem;
     height: 1rem;
@@ -152,7 +157,17 @@ const safeHref = href && !isDisabled ? href : undefined;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
   }
-
+  @media (prefers-reduced-motion: no-preference) {
+    @media (hover: hover) and (pointer: fine) {
+      .button:not(.button--link):hover:not([aria-disabled="true"]) {
+        transform: translateY(-2px);
+      }
+    }
+    .button:not(.button--link):active:not([aria-disabled="true"]) {
+      transform: translateY(0) scale(0.98);
+      transition-duration: 100ms;
+    }
+  }
   @keyframes spin {
     to {
       rotate: 1turn;

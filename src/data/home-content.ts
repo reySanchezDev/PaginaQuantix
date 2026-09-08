@@ -1,47 +1,39 @@
 import { getRoute } from "../i18n/routes";
 import type { Locale } from "../types/site";
-import { getProducts } from "./products";
 
 const localized = {
   es: {
     seo: {
-      title: "Quantix Software | Productos y desarrollo de software",
+      title: "Quantix Software | Desarrollo de software a medida",
       description:
-        "Productos de software y desarrollo a medida para centralizar procesos, conectar datos y reducir trabajo manual.",
+        "Desarrollamos software a medida para conectar procesos, ventas e inventario. Conoce nuestro trabajo y productos usados por negocios de Nicaragua.",
     },
     hero: {
-      eyebrow: "Ingeniería de software",
-      title: "Software que se adapta a cómo trabaja tu empresa.",
-      lead: "Creamos productos y sistemas a medida que conectan procesos, ordenan la información y reducen tareas manuales.",
-      primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
-      secondary: { label: "Ver productos", href: getRoute("products", "es") },
+      eyebrow: "Diseño y desarrollo de software a medida",
+      title: ["Tu operación,", "hecha software."],
+      lead: "Diseñamos y desarrollamos sistemas para conectar ventas, inventario y el trabajo de tu equipo.",
+      proof: "Usados en restaurantes y gimnasios de Nicaragua.",
+      primary: { label: "Cuéntanos tu proyecto", href: getRoute("contact", "es") },
+      secondary: { label: "Conoce nuestro trabajo", href: "#case-studies" },
     },
     model: {
       eyebrow: "Qué hacemos",
-      title: "La mejor solución no siempre empieza desde cero",
-      lead: "Podemos implementar un producto de Quantix, adaptarlo a tu operación o desarrollar un sistema a medida.",
+      title: "¿Qué necesita resolver tu equipo?",
+      lead: "Partimos del trabajo diario: qué registran, qué consultan y dónde se pierde tiempo.",
       items: [
         [
-          "Solución lista para implementar",
-          "VIGGO, Takofy, Nica Finanzas y QAVision ya resuelven necesidades concretas. Configuramos el producto adecuado y acompañamos la puesta en marcha.",
+          "Desarrollo a medida",
+          "Un sistema para registrar ventas, consultar existencias o dar seguimiento a tus clientes, con las reglas y permisos que necesita tu empresa.",
         ],
         [
-          "Solución adaptada a tu operación",
-          "Partimos de un producto de Quantix y ajustamos flujos, reglas e integraciones para conectarlo con tus procesos actuales.",
+          "Integraciones y automatización",
+          "Conectamos las herramientas que ya usas para que tu equipo deje de copiar los mismos datos de un sistema a otro.",
         ],
         [
-          "Software a medida",
-          "Diseñamos y desarrollamos un sistema propio cuando la operación requiere algo específico.",
+          "Productos que podemos adaptar",
+          "Cuando Takofy o VIGGO cubren lo que necesitas, evaluamos qué configurar, integrar o desarrollar sobre esa base.",
         ],
       ],
-    },
-    productsSection: {
-      eyebrow: "Productos",
-      title: "Software para operaciones concretas",
-      lead: "Conoce dos de nuestros productos o consulta el catálogo completo.",
-      viewLabel: "Ver detalles",
-      allLabel: "Ver todos los productos",
-      allHref: getRoute("products", "es"),
     },
     cta: {
       eyebrow: "Contacto",
@@ -52,43 +44,36 @@ const localized = {
   },
   en: {
     seo: {
-      title: "Quantix Software | Products and custom software development",
+      title: "Quantix Software | Custom software development",
       description:
-        "Software products and custom development to centralize processes, connect data, and reduce manual work.",
+        "We build custom software to connect processes, sales and inventory. Explore our work and products used by businesses in Nicaragua.",
     },
     hero: {
-      eyebrow: "Software engineering",
-      title: "Software designed around how your business works.",
-      lead: "We build products and custom systems that connect processes, organize information, and reduce manual work.",
-      primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
-      secondary: { label: "View products", href: getRoute("products", "en") },
+      eyebrow: "Custom software design and development",
+      title: ["Your business.", "Your software."],
+      lead: "We design and build systems that connect sales, inventory and your team’s daily work.",
+      proof: "Used by restaurants and gyms in Nicaragua.",
+      primary: { label: "Tell us about your project", href: getRoute("contact", "en") },
+      secondary: { label: "See our work", href: "#case-studies" },
     },
     model: {
       eyebrow: "What we do",
-      title: "The right solution does not always start from scratch",
-      lead: "We can implement a Quantix product, tailor it to your operation, or build a custom system.",
+      title: "What does your team need to solve?",
+      lead: "We start with the daily work: what you record, what you look up and where time gets lost.",
       items: [
         [
-          "Ready-to-implement solution",
-          "VIGGO, Takofy, Nica Finanzas, and QAVision already solve specific needs. We configure the right product and guide the rollout.",
+          "Custom development",
+          "A system to record sales, check stock or follow up with customers, with the rules and permissions your business needs.",
         ],
         [
-          "Tailored to your operation",
-          "We start with a Quantix product, then tailor workflows, rules, and integrations to connect it with your current processes.",
+          "Integrations and automation",
+          "We connect the tools you already use so your team can stop copying the same data from one system to another.",
         ],
         [
-          "Custom software",
-          "We design and build a dedicated system when the operation calls for something specific.",
+          "Products we can adapt",
+          "When Takofy or VIGGO fits your needs, we assess what to configure, integrate or build on that foundation.",
         ],
       ],
-    },
-    productsSection: {
-      eyebrow: "Products",
-      title: "Software for specific operations",
-      lead: "Explore two of our products or view the full catalog.",
-      viewLabel: "View details",
-      allLabel: "View all products",
-      allHref: getRoute("products", "en"),
     },
     cta: {
       eyebrow: "Contact",
@@ -100,5 +85,5 @@ const localized = {
 } as const;
 
 export function getHomeContent(locale: Locale) {
-  return { ...localized[locale], products: getProducts(locale) };
+  return localized[locale];
 }

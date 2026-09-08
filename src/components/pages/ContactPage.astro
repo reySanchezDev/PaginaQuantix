@@ -1,0 +1,186 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import ContactTopic from "../contact/ContactTopic.astro";
+import { getCompanyPage } from "../../data/company-content";
+import { getContactContent } from "../../data/contact-content";
+import { siteConfig, contactLinks } from "../../data/site-config";
+import type { Locale } from "../../types/site";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { seo } = getCompanyPage("contact", locale);
+const c = getContactContent(locale);
+---
+
+<BaseLayout title={seo.title} description={seo.description} locale={locale}>
+  <section class="contact-page" aria-labelledby="page-title">
+    <Container class="contact-layout">
+      <div class="contact-copy">
+        <p class="eyebrow">{c.eyebrow}</p>
+        <h1 id="page-title">{c.title}</h1>
+        <p class="contact-lead">{c.lead}</p>
+      </div>
+      <div class="contact-channels">
+        <div class="email-contact">
+          <h2 class="eyebrow">{c.email}</h2>
+          <a class="email-address" href={contactLinks.email}>{siteConfig.email}</a>
+          <ContactTopic locale={locale} />
+          <div class="email-actions">
+            <Button href={contactLinks.email}>{c.openEmail}<span aria-hidden="true">↗</span></Button
+            >
+            <button type="button" class="copy-email" data-copy-email hidden>
+              <svg
+                aria-hidden="true"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                ><rect x="8" y="8" width="12" height="12" rx="2"></rect><path
+                  d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg
+              >
+              {c.copyEmail}
+            </button>
+          </div>
+          <p class="email-hint">{c.fallback}</p>
+        </div>
+        <a
+          class="whatsapp-contact"
+          href={contactLinks.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span><small>{c.whatsapp}</small>{siteConfig.whatsappDisplay}</span><span
+            aria-hidden="true">↗</span
+          >
+        </a>
+      </div>
+      <div class="contact-next"><h2>{c.nextTitle}</h2><p>{c.nextText}</p></div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding: clamp(3rem, 6vw, 6rem) 0;
+  }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 2.5rem clamp(3rem, 7vw, 6rem);
+    align-items: start;
+  }
+  h1 {
+    max-width: 19ch;
+    font-size: var(--text-title);
+    line-height: 1.08;
+  }
+  .contact-lead {
+    max-width: 48ch;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+    line-height: 1.6;
+    margin: 1.75rem 0 0;
+  }
+  .contact-channels {
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .email-contact {
+    padding: 1.5rem 0 2rem;
+    border-top: 1px solid var(--color-border-strong);
+  }
+  .email-address {
+    display: inline-block;
+    max-width: 100%;
+    font-size: var(--text-heading);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    user-select: all;
+  }
+  .email-address:hover {
+    color: var(--color-primary);
+  }
+  .email-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-top: 1.75rem;
+  }
+  .copy-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 46px;
+    border: 0;
+    border-radius: var(--radius-control);
+    padding: 0.75rem;
+    background: transparent;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    cursor: pointer;
+  }
+  .copy-email[hidden] {
+    display: none;
+  }
+  .copy-email:hover {
+    background: var(--color-surface-muted);
+    color: var(--color-ink);
+  }
+  .email-hint {
+    max-width: 42ch;
+    margin: 1.25rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  .whatsapp-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.5rem 0;
+    text-decoration: none;
+  }
+  .whatsapp-contact:hover {
+    color: var(--color-primary);
+  }
+  small {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  .contact-next {
+    grid-column: 1;
+  }
+  .contact-next h2 {
+    font-size: var(--text-heading);
+  }
+  .contact-next p {
+    max-width: 48ch;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+    margin: 0.75rem 0 0;
+  }
+  @media (max-width: 58rem) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+    .contact-channels {
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
+</style>

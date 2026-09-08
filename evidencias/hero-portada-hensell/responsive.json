@@ -1,0 +1,464 @@
+[
+  {
+    "locale": "es",
+    "requested": [
+      320,
+      740
+    ],
+    "h1Lines": 2.9996744791666665,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-hero-mobile.png"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-hero-mobile.png"
+      }
+    ],
+    "overflow": false,
+    "overflowing": [],
+    "panels": [
+      {
+        "hidden": true,
+        "id": "workflow-panel-order"
+      },
+      {
+        "hidden": false,
+        "id": "workflow-panel-kitchen"
+      }
+    ],
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "false"
+      },
+      {
+        "height": 44,
+        "selected": "true"
+      }
+    ],
+    "viewport": [
+      320,
+      740
+    ]
+  },
+  {
+    "locale": "es",
+    "requested": [
+      390,
+      844
+    ],
+    "h1Lines": 2.9996744791666665,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-hero-mobile.png"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-hero-mobile.png"
+      }
+    ],
+    "overflow": false,
+    "overflowing": [],
+    "panels": [
+      {
+        "hidden": true,
+        "id": "workflow-panel-order"
+      },
+      {
+        "hidden": false,
+        "id": "workflow-panel-kitchen"
+      }
+    ],
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "false"
+      },
+      {
+        "height": 44,
+        "selected": "true"
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "locale": "es",
+    "requested": [
+      768,
+      1024
+    ],
+    "h1Lines": 1.9997818522872404,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "overflowing": [],
+    "panels": [
+      {
+        "hidden": true,
+        "id": "workflow-panel-order"
+      },
+      {
+        "hidden": false,
+        "id": "workflow-panel-kitchen"
+      }
+    ],
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "false"
+      },
+      {
+        "height": 44,
+        "selected": "true"
+      }
+    ],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "locale": "es",
+    "requested": [
+      844,
+      390
+    ],
+    "h1Lines": 2.00001172168042,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "overflowing": [],
+    "panels": [
+      {
+        "hidden": true,
+        "id": "workflow-panel-order"
+      },
+      {
+        "hidden": false,
+        "id": "workflow-panel-kitchen"
+      }
+    ],
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "false"
+      },
+      {
+        "height": 44,
+        "selected": "true"
+      }
+    ],
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  {
+    "locale": "es",
+    "requested": [
+      1024,
+      900
+    ],
+    "h1Lines": 2.9998326568649714,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "overflowing": [],
+    "panels": [
+      {
+        "hidden": true,
+        "id": "workflow-panel-order"
+      },
+      {
+        "hidden": false,
+        "id": "workflow-panel-kitchen"
+      }
+    ],
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "false"
+      },
+      {
+        "height": 44,
+        "selected": "true"
+      }
+    ],
+    "viewport": [
+      1024,
+      900
+    ]
+  },
+  {
+    "locale": "es",
+    "requested": [
+      1440,
+      1000
+    ],
+    "h1Lines": 2.0000633973158553,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "overflowing": [],
+    "panels": [
+      {
+        "hidden": true,
+        "id": "workflow-panel-order"
+      },
+      {
+        "hidden": false,
+        "id": "workflow-panel-kitchen"
+      }
+    ],
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "false"
+      },
+      {
+        "height": 44,
+        "selected": "true"
+      }
+    ],
+    "viewport": [
+      1440,
+      1000
+    ]
+  },
+  {
+    "locale": "en",
+    "requested": [
+      320,
+      740
+    ],
+    "h1Lines": 2.9996744791666665,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-hero-mobile.png"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-hero-mobile.png"
+      }
+    ],
+    "overflow": false,
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "true"
+      },
+      {
+        "height": 44,
+        "selected": "false"
+      }
+    ],
+    "viewport": [
+      320,
+      740
+    ]
+  },
+  {
+    "locale": "en",
+    "requested": [
+      390,
+      844
+    ],
+    "h1Lines": 2.9996744791666665,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-hero-mobile.png"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-hero-mobile.png"
+      }
+    ],
+    "overflow": false,
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "true"
+      },
+      {
+        "height": 44,
+        "selected": "false"
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "locale": "en",
+    "requested": [
+      768,
+      1024
+    ],
+    "h1Lines": 1.9997818522872404,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-hero-mobile.png"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-hero-mobile.png"
+      }
+    ],
+    "overflow": false,
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "true"
+      },
+      {
+        "height": 44,
+        "selected": "false"
+      }
+    ],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "locale": "en",
+    "requested": [
+      844,
+      390
+    ],
+    "h1Lines": 2.00001172168042,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "true"
+      },
+      {
+        "height": 44,
+        "selected": "false"
+      }
+    ],
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  {
+    "locale": "en",
+    "requested": [
+      1024,
+      900
+    ],
+    "h1Lines": 2.9998326568649714,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "true"
+      },
+      {
+        "height": 44,
+        "selected": "false"
+      }
+    ],
+    "viewport": [
+      1024,
+      900
+    ]
+  },
+  {
+    "locale": "en",
+    "requested": [
+      1440,
+      1000
+    ],
+    "h1Lines": 2.0000633973158553,
+    "image": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/pedido-detalle.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:4322/images/takofy/cocina-detalle.webp"
+      }
+    ],
+    "overflow": false,
+    "tabs": [
+      {
+        "height": 44,
+        "selected": "true"
+      },
+      {
+        "height": 44,
+        "selected": "false"
+      }
+    ],
+    "viewport": [
+      1440,
+      1000
+    ]
+  }
+]

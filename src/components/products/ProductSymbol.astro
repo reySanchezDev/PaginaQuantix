@@ -1,0 +1,75 @@
+---
+import type { ProductId } from "../../types/site";
+interface Props {
+  productId: ProductId;
+}
+const { productId } = Astro.props;
+---
+
+<svg viewBox="0 0 160 160" fill="none" aria-hidden="true">
+  {
+    productId === "viggo" && (
+      <>
+        <>
+          <path
+            d="m22 35 58 95 58-95"
+            stroke="currentColor"
+            stroke-width="18"
+            stroke-linejoin="round"
+          />
+          <path d="m48 35 32 54 32-54" stroke="currentColor" stroke-width="3" />
+        </>
+      </>
+    )
+  }
+  {
+    productId === "takofy" && (
+      <>
+        <>
+          <path d="M26 77a54 54 0 0 1 108 0" stroke="currentColor" stroke-width="12" />
+          <path
+            d="M19 94h122M38 115h84"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+          <circle cx="80" cy="24" r="8" fill="currentColor" />
+        </>
+      </>
+    )
+  }
+  {
+    productId === "nica-finanzas" && (
+      <>
+        <>
+          <rect x="23" y="90" width="26" height="45" rx="4" fill="currentColor" />
+          <rect x="67" y="59" width="26" height="76" rx="4" fill="currentColor" />
+          <rect x="111" y="24" width="26" height="111" rx="4" fill="currentColor" />
+          <path d="m24 58 48-34" stroke="currentColor" stroke-width="4" />
+          <path d="M48 24h24v24" stroke="currentColor" stroke-width="4" />
+        </>
+      </>
+    )
+  }
+  {
+    productId === "qavision" && (
+      <>
+        <>
+          <path
+            d="M50 26H26v24m84-24h24v24M26 110v24h24m84-24v24h-24"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="square"
+          />
+          <path
+            d="m49 81 21 21 42-44"
+            stroke="currentColor"
+            stroke-width="11"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </>
+      </>
+    )
+  }
+</svg>

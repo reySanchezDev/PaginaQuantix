@@ -1,150 +1,140 @@
 ---
 import type { ProductSummary } from "../../types/site";
+import ProductSymbol from "./ProductSymbol.astro";
 
 interface Props {
   product: ProductSummary;
   viewLabel: string;
-  index: number;
 }
-
-const { product, viewLabel, index } = Astro.props as Props;
+const { product, viewLabel } = Astro.props;
 ---
 
-<article class="product-row" data-product={product.id} data-reveal>
-  <span class="product-row__index">{String(index + 1).padStart(2, "0")}</span>
-  <div class="product-row__identity">
-    <p>{product.category}</p>
-    <h3><a href={product.href}>{product.name}</a></h3>
-  </div>
-  <div class="product-row__detail">
-    <p>{product.description}</p>
-    <span>{product.status}</span>
-  </div>
-  <span class="product-row__arrow" aria-hidden="true">↗</span>
-  <span class="visually-hidden">{viewLabel}: {product.name}</span>
+<article class="product-card" data-product={product.id}>
+  <a class="product-card__link" href={product.href} aria-label={`${viewLabel}: ${product.name}`}>
+    <div class:list={["product-card__art", { "product-card__art--image": product.preview }]}>
+      {
+        product.preview ? (
+          <img
+            src={product.preview.src}
+            alt={product.preview.alt}
+            width={product.preview.width}
+            height={product.preview.height}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <ProductSymbol productId={product.id} />
+        )
+      }
+    </div>
+    <div class="product-card__body">
+      <p class="product-card__category">{product.category}</p>
+      <h3>{product.name}</h3>
+      <p class="product-card__description">{product.description}</p>
+      <div class="product-card__footer">
+        <span class="product-card__status">{product.status}</span>
+        <span class="product-card__cta">{viewLabel}<span aria-hidden="true"> →</span></span>
+      </div>
+    </div>
+  </a>
 </article>
 
 <style>
-  .product-row[data-reveal] {
-    --product-accent: var(--color-primary);
-    position: relative;
-    display: grid;
+  .product-card {
+    --product-soft: var(--product-viggo-soft);
+    --product-ink: var(--product-viggo);
     min-width: 0;
-    gap: var(--space-5);
-    align-items: start;
-    padding-block: clamp(var(--space-6), 4vw, var(--space-10));
-    border-top: 1px solid var(--color-border-strong);
-    isolation: isolate;
-    transition:
-      opacity var(--transition-reveal),
-      transform var(--transition-reveal),
-      background var(--transition-base);
   }
-
-  .product-row::before {
-    position: absolute;
-    inset: 0 auto 0 calc(-1 * var(--space-2));
-    z-index: -1;
-    width: 0.2rem;
-    background: var(--product-accent);
-    content: "";
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform var(--transition-base);
+  .product-card[data-product="takofy"] {
+    --product-soft: var(--product-takofy-soft);
+    --product-ink: var(--product-takofy);
   }
-
-  .product-row:hover,
-  .product-row:focus-within {
-    background: color-mix(in srgb, var(--product-accent) 5%, transparent);
+  .product-card[data-product="nica-finanzas"] {
+    --product-soft: var(--product-finance-soft);
+    --product-ink: var(--product-finance);
   }
-
-  .product-row:hover::before,
-  .product-row:focus-within::before {
-    transform: scaleY(1);
+  .product-card[data-product="qavision"] {
+    --product-soft: var(--product-qavision-soft);
+    --product-ink: var(--product-qavision);
   }
-
-  .product-row:last-child {
-    border-bottom: 1px solid var(--color-border-strong);
-  }
-
-  .product-row[data-product="viggo"] {
-    --product-accent: var(--product-viggo);
-  }
-  .product-row[data-product="takofy"] {
-    --product-accent: var(--product-takofy);
-  }
-  .product-row[data-product="nica-finanzas"] {
-    --product-accent: var(--product-finance);
-  }
-  .product-row[data-product="qavision"] {
-    --product-accent: var(--product-qavision);
-  }
-
-  .product-row__index,
-  .product-row__detail > span {
-    color: var(--color-ink-subtle);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.04em;
-  }
-
-  .product-row__identity > p {
-    margin: 0 0 var(--space-2);
-    color: var(--product-accent);
-    font-size: var(--text-sm);
-    font-weight: 600;
-  }
-
-  h3 {
-    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
-  }
-
-  h3 a {
+  .product-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     text-decoration: none;
   }
-
-  h3 a::after {
-    position: absolute;
-    inset: 0;
-    content: "";
+  .product-card__art {
+    display: grid;
+    aspect-ratio: 16 / 10;
+    flex-shrink: 0;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--product-soft);
+    color: var(--product-ink);
+    transition: border-color var(--transition-base);
   }
-
-  .product-row__detail > p {
-    max-width: 36rem;
-    margin: 0 0 var(--space-5);
+  .product-card__art :global(svg) {
+    width: 7rem;
+    height: 7rem;
+  }
+  .product-card__art--image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .product-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 1.25rem;
+  }
+  .product-card__category {
+    margin: 0 0 0.5rem;
     color: var(--color-ink-muted);
-    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
   }
-
-  .product-row__arrow {
-    color: var(--color-ink);
-    font-size: var(--text-xl);
-    transition: transform var(--transition-fast);
+  h3 {
+    font-size: var(--text-heading);
+    transition: color var(--transition-base);
   }
-
-  .product-row:hover .product-row__arrow,
-  .product-row:focus-within .product-row__arrow {
-    transform: translate(0.2rem, -0.2rem);
+  .product-card__description {
+    max-width: 52ch;
+    margin: 0.75rem 0 1.25rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
   }
-
-  @media (min-width: 52rem) {
-    .product-row {
-      grid-template-columns: 2rem minmax(14rem, 0.8fr) minmax(18rem, 1.2fr) 2rem;
-    }
+  .product-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-sm);
   }
-
-  @media (max-width: 51.99rem) {
-    .product-row {
-      grid-template-columns: 2rem minmax(0, 1fr) 2rem;
-    }
-
-    .product-row__detail {
-      grid-column: 2 / -1;
-    }
-
-    .product-row__arrow {
-      grid-column: 3;
-      grid-row: 1;
+  .product-card__status {
+    color: var(--color-ink-muted);
+  }
+  .product-card__cta {
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .product-card__link:hover .product-card__art {
+    border-color: var(--product-ink);
+  }
+  .product-card__link:hover h3,
+  .product-card__link:hover .product-card__cta {
+    color: var(--color-primary);
+  }
+  @media (max-width: 40rem) {
+    .product-card__art :global(svg) {
+      width: 6rem;
+      height: 6rem;
     }
   }
 </style>

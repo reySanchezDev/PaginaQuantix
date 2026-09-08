@@ -1,0 +1,132 @@
+[
+  {
+    "locale": "es",
+    "headerBottom": 89,
+    "headingTop": 103.9296875,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/cocina-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/productos-presentacion.webp"
+      }
+    ],
+    "scrollWidth": 320,
+    "targets": [
+      44,
+      44,
+      44
+    ],
+    "width": 320
+  },
+  {
+    "locale": "es",
+    "headerBottom": 89,
+    "headingTop": 103.7890625,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/cocina-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/productos-presentacion.webp"
+      }
+    ],
+    "scrollWidth": 768,
+    "targets": [
+      44,
+      44,
+      44
+    ],
+    "width": 768
+  },
+  {
+    "locale": "es",
+    "headerBottom": 89,
+    "headingTop": 104.1953125,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/cocina-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/productos-presentacion.webp"
+      }
+    ],
+    "scrollWidth": 1440,
+    "targets": [
+      44,
+      44,
+      44
+    ],
+    "width": 1440
+  },
+  {
+    "locale": "en",
+    "headerBottom": 89,
+    "headingTop": 104.203125,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/cocina-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/productos-presentacion.webp"
+      }
+    ],
+    "scrollWidth": 320,
+    "targets": [
+      44,
+      44,
+      44
+    ],
+    "width": 320
+  },
+  {
+    "locale": "en",
+    "headerBottom": 89,
+    "headingTop": 104.109375,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/cocina-presentacion.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/productos-presentacion.webp"
+      }
+    ],
+    "scrollWidth": 1440,
+    "targets": [
+      44,
+      44,
+      44
+    ],
+    "width": 1440
+  }
+]

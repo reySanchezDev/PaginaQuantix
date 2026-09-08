@@ -1,0 +1,69 @@
+[
+  {
+    "captionGap": 11.671142578125,
+    "caseStart": 910,
+    "height": 844,
+    "heroHeight": 829,
+    "imagesLoaded": true,
+    "locale": "es",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "captionGap": 9.07342529296875,
+    "height": 740,
+    "heroHeight": 870,
+    "locale": "es",
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "captionGap": 29.204559326171875,
+    "height": 1024,
+    "heroHeight": 1109,
+    "locale": "en",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "captionGap": 29.204559326171875,
+    "founderLinkHeights": [
+      44,
+      44
+    ],
+    "height": 390,
+    "locale": "en",
+    "overflow": false,
+    "width": 844
+  },
+  {
+    "captionGap": 4.34954833984375,
+    "founderLinkHeights": [
+      44,
+      44
+    ],
+    "height": 768,
+    "locale": "en",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "captionGap": 18.60870361328125,
+    "founderLinkHeights": [
+      44,
+      44
+    ],
+    "height": 932,
+    "locale": "en",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "captionGap": 16.083908081054688,
+    "height": 768,
+    "locale": "en",
+    "overflow": false,
+    "phase": "final",
+    "width": 1024
+  }
+]

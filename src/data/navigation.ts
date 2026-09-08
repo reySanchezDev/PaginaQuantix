@@ -15,6 +15,8 @@ const labels: Record<Locale, Record<RouteId, string>> = {
     takofy: "Takofy",
     "nica-finanzas": "Nica Finanzas",
     qavision: "QAVision",
+    "case-takofy": "Caso Takofy",
+    "case-viggo": "Caso VIGGO",
   },
   en: {
     home: "Home",
@@ -29,10 +31,12 @@ const labels: Record<Locale, Record<RouteId, string>> = {
     takofy: "Takofy",
     "nica-finanzas": "Nica Finanzas",
     qavision: "QAVision",
+    "case-takofy": "Takofy case study",
+    "case-viggo": "VIGGO case study",
   },
 };
 
-const primaryRouteIds: RouteId[] = ["solutions", "products", "about", "contact"];
+const primaryRouteIds: RouteId[] = ["solutions", "work", "products", "about", "contact"];
 const legalRouteIds: RouteId[] = ["privacy", "terms"];
 
 function buildLinks(routeIds: RouteId[], locale: Locale): LinkItem[] {
@@ -62,7 +66,7 @@ export const sharedUi = {
     legal: "Legal",
     process: "Cómo trabajamos",
     copyright: "Todos los derechos reservados.",
-    footerText: "Productos propios y desarrollo de software para empresas.",
+    footerText: "Software a medida e integraciones para empresas. Productos propios en uso.",
     brandHome: "Inicio de Quantix Software",
     socialImageAlt: "Quantix Software: productos y desarrollo de software para empresas",
   },
@@ -77,7 +81,7 @@ export const sharedUi = {
     legal: "Legal",
     process: "How we work",
     copyright: "All rights reserved.",
-    footerText: "Software products and custom development for businesses.",
+    footerText: "Custom software and integrations for businesses. Our own products in use.",
     brandHome: "Quantix Software home",
     socialImageAlt: "Quantix Software: software products and custom development for businesses",
   },

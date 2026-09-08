@@ -1,0 +1,111 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+const { src, alt, width, height } = Astro.props;
+---
+
+<div class="iphone">
+  <span class="iphone-buttons" aria-hidden="true"></span>
+  <div class="iphone-screen">
+    <div class="iphone-viewport">
+      <img {src} {alt} {width} {height} decoding="async" />
+    </div>
+    <span class="iphone-island" aria-hidden="true"></span>
+    <span class="iphone-home" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style>
+  .iphone {
+    position: relative;
+    padding: 3.3%;
+    border: 1px solid #b9b7b2;
+    border-radius: 17% / 8%;
+    background: #191a1c;
+    box-shadow:
+      inset 0 0 0 1px #747570,
+      inset 0 0 0 2px #292a2b,
+      0 1rem 1.5rem -0.25rem rgb(60 17 9 / 0.4);
+  }
+  .iphone-screen {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    aspect-ratio: 390 / 844;
+    border-radius: 14% / 6.5%;
+    background: #faf8f5;
+  }
+  .iphone-viewport {
+    position: absolute;
+    inset: 7.2% 0 0;
+    overflow: hidden;
+  }
+  .iphone-viewport img {
+    position: absolute;
+    /* Crop the partial paragraph above the order in the original capture. */
+    top: -8.2%;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  .iphone-island {
+    position: absolute;
+    top: 1.8%;
+    left: 35%;
+    width: 30%;
+    height: 3.7%;
+    border-radius: 999px;
+    background: #121316;
+  }
+  .iphone-island::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    right: 9%;
+    height: 50%;
+    aspect-ratio: 1;
+    border: 1px solid #252b34;
+    border-radius: 50%;
+    background: #111e30;
+  }
+  .iphone-home {
+    position: absolute;
+    bottom: 1%;
+    left: 34%;
+    width: 32%;
+    height: 0.6%;
+    border-radius: 999px;
+    background: #262327;
+  }
+  .iphone-buttons {
+    position: absolute;
+    top: 20%;
+    left: -1.5%;
+    width: 1.5%;
+    height: 6.5%;
+    border-radius: 1px 0 0 1px;
+    background: #a6a5a0;
+  }
+  .iphone-buttons::after {
+    content: "";
+    position: absolute;
+    inset: 150% 0 auto;
+    height: 100%;
+    border-radius: inherit;
+    background: inherit;
+  }
+  .iphone::after {
+    content: "";
+    position: absolute;
+    top: 29%;
+    right: -1.5%;
+    width: 1.5%;
+    height: 10%;
+    border-radius: 0 1px 1px 0;
+    background: #a6a5a0;
+  }
+</style>

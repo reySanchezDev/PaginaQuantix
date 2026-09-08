@@ -1,44 +1,52 @@
 :root {
   color-scheme: light;
 
-  --color-canvas: #f7f8f6;
-  --color-surface: #ffffff;
-  --color-surface-raised: #ffffff;
-  --color-surface-muted: #eef1ef;
-  --color-ink: #142326;
-  --color-ink-muted: #505d60;
-  --color-ink-subtle: #667174;
-  --color-border: #dde2df;
-  --color-border-strong: #b7c0bc;
-  --color-primary: #123f46;
-  --color-primary-hover: #0b2d33;
-  --color-primary-soft: #e4edec;
-  --color-accent: #a65336;
-  --color-accent-soft: #f3e6df;
+  --color-canvas: #f6f4ee;
+  --color-surface: #fffdf8;
+  --color-surface-raised: #fffdf8;
+  --color-surface-muted: #eeebe3;
+  --color-ink: #25241f;
+  --color-ink-muted: #626057;
+  --color-ink-subtle: #706d64;
+  --color-border: #dfdcd2;
+  --color-border-strong: #b7b3a6;
+  --color-control-border: #898476;
+  --color-primary: #bb3e20;
+  --color-primary-hover: #9b2f16;
+  --color-primary-soft: #f8e4db;
+  --color-accent: #e45a32;
+  --color-accent-soft: #f8e4db;
   --color-success: #176447;
   --color-warning: #8a5b12;
   --color-danger: #9d2f3f;
-  --color-focus: #96502f;
-  --color-focus-inverse: #f4a47d;
-  --color-overlay: rgb(11 26 30 / 0.68);
-  --color-inverse: #f7faf8;
-  --color-inverse-muted: #c2cdcc;
-  --color-dark: #102c32;
-  --color-dark-raised: #193b42;
-  --color-dark-deep: #0b2227;
+  --color-focus: #bb3e20;
+  --color-focus-inverse: #ffb28f;
+  --color-overlay: rgb(29 30 25 / 0.68);
+  --color-inverse: #fff9ed;
+  --color-inverse-muted: #cbc7b9;
+  --color-dark: #292a23;
+  --color-dark-raised: #36382e;
+  --color-dark-deep: #1d1e19;
 
-  --product-viggo: #5147bd;
-  --product-viggo-soft: #e8e6f5;
-  --product-takofy: #0e665f;
-  --product-takofy-soft: #deebe7;
-  --product-finance: #356847;
-  --product-finance-soft: #e2ebe3;
-  --product-qavision: #335f87;
-  --product-qavision-soft: #e0e8ef;
+  --product-viggo: #715031;
+  --product-viggo-soft: #ede3cf;
+  --product-takofy: #426047;
+  --product-takofy-soft: #e5eadc;
+  --product-finance: #8c442c;
+  --product-finance-soft: #f6e0d3;
+  --product-qavision: #4e557d;
+  --product-qavision-soft: #e5e5ef;
 
   --font-body: "IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif;
   --font-heading: "Bricolage Grotesque Variable", "Arial Narrow", sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --text-display: clamp(3rem, 1.8rem + 4.5vw, 5.5rem);
+  --text-title: clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+  --text-section: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --text-heading: clamp(1.375rem, 1.125rem + 1vw, 1.875rem);
+  --text-subtitle: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --text-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-label: 0.8125rem;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -51,9 +59,9 @@
   --text-5xl: 3.25rem;
   --text-6xl: 4.5rem;
 
-  --leading-tight: 0.98;
+  --leading-tight: 1.08;
   --leading-snug: 1.28;
-  --leading-normal: 1.55;
+  --leading-normal: 1.6;
   --leading-relaxed: 1.66;
 
   --space-1: 0.25rem;
@@ -72,22 +80,21 @@
 
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
-  --radius-control: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
+  --radius-control: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgb(20 35 38 / 0.035);
-  --shadow-control: 0 0.5rem 1.4rem -1rem rgb(18 63 70 / 0.24);
-  --shadow-control-hover: 0 0.9rem 2rem -1.15rem rgb(18 63 70 / 0.42);
-  --shadow-md: 0 1.5rem 4rem -3rem rgb(20 35 38 / 0.28);
-  --shadow-lg: 0 2rem 5rem -3rem rgb(20 35 38 / 0.36);
-  --focus-ring: 0 0 0 3px rgb(150 80 47 / 0.3);
+  --shadow-sm: 0 1px 2px rgb(37 36 31 / 0.035);
+  --shadow-control: 0 0.5rem 1.4rem -1rem rgb(37 36 31 / 0.24);
+  --shadow-control-hover: 0 0.9rem 2rem -1.15rem rgb(37 36 31 / 0.42);
+  --shadow-md: 0 1.5rem 4rem -3rem rgb(37 36 31 / 0.28);
+  --shadow-lg: 0 2rem 5rem -3rem rgb(37 36 31 / 0.36);
+  --focus-ring: 0 0 0 3px rgb(187 62 32 / 0.3);
 
-  --container: 78rem;
+  --container: 80rem;
   --container-narrow: 48rem;
-  --header-height: 4.75rem;
+  --header-height: 5rem;
   --transition-fast: 160ms ease;
   --transition-base: 240ms ease;
-  --transition-reveal: 640ms cubic-bezier(0.22, 1, 0.36, 1);
 }

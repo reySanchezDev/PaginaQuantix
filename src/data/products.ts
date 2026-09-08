@@ -10,7 +10,13 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       name: "VIGGO",
       category: "Operación empresarial",
       description: "Centraliza clientes, servicios, ventas, cobros, inventario y accesos.",
-      status: "Disponible",
+      status: "Aplicación web",
+      preview: {
+        src: "/images/viggo/viggo-dashboard.webp",
+        alt: "Panel de VIGGO con ventas, inventario y el estado del negocio.",
+        width: 1917,
+        height: 945,
+      },
       external: {
         label: "Visitar VIGGO",
         href: siteConfig.productUrls.viggo,
@@ -23,7 +29,13 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       category: "Restaurantes",
       description:
         "Coordina salón, cocina, caja e inventario, incluso cuando no hay conexión a internet.",
-      status: "Disponible",
+      status: "Web · Play Store prevista",
+      preview: {
+        src: "/images/takofy/pedido-detalle.webp",
+        alt: "Takofy con una comanda de ejemplo para una mesa del restaurante.",
+        width: 1280,
+        height: 720,
+      },
       external: {
         label: "Visitar Takofy",
         href: siteConfig.productUrls.takofy.es,
@@ -36,7 +48,13 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       category: "Herramientas financieras",
       description:
         "Calculadoras gratuitas de salario, préstamos y liquidación laboral para Nicaragua.",
-      status: "Acceso gratuito",
+      status: "Web · Acceso gratuito",
+      preview: {
+        src: "/images/nica-finanzas/salario-detalle.webp",
+        alt: "Calculadora de salario de Nica Finanzas con el desglose de INSS e IR.",
+        width: 1440,
+        height: 1000,
+      },
       external: {
         label: "Abrir Nica Finanzas",
         href: siteConfig.productUrls["nica-finanzas"],
@@ -63,7 +81,13 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       category: "Business operations",
       description:
         "Manage customers, services, sales, payments, inventory, and access in one system.",
-      status: "Available",
+      status: "Web app",
+      preview: {
+        src: "/images/viggo/viggo-dashboard.webp",
+        alt: "VIGGO dashboard showing sales, inventory and business activity.",
+        width: 1917,
+        height: 945,
+      },
       external: {
         label: "Visit VIGGO",
         href: siteConfig.productUrls.viggo,
@@ -76,7 +100,13 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       category: "Restaurants",
       description:
         "Coordinate front of house, kitchen, point of sale, and inventory, even without internet access.",
-      status: "Available",
+      status: "Web · Play Store planned",
+      preview: {
+        src: "/images/takofy/pedido-detalle.webp",
+        alt: "Takofy showing an example order for a restaurant table.",
+        width: 1280,
+        height: 720,
+      },
       external: {
         label: "Visit Takofy",
         href: siteConfig.productUrls.takofy.en,
@@ -88,7 +118,13 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       name: "Nica Finanzas",
       category: "Financial tools",
       description: "Free salary, loan, and employment settlement calculators for Nicaragua.",
-      status: "Free access",
+      status: "Web · Free access",
+      preview: {
+        src: "/images/nica-finanzas/salario-detalle.webp",
+        alt: "Nica Finanzas salary calculator with INSS and income tax deductions.",
+        width: 1440,
+        height: 1000,
+      },
       external: {
         label: "Open Nica Finanzas",
         href: siteConfig.productUrls["nica-finanzas"],

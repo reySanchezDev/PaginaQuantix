@@ -11,14 +11,14 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
       eyebrow: "Legal",
       title: "Política de privacidad",
       updatedLabel: "Última actualización",
-      updated: "8 de agosto de 2026",
+      updated: "8 de septiembre de 2026",
       intro:
         "Esta política explica qué información procesamos cuando visitas el sitio de Quantix Software y cómo puedes contactarnos sobre privacidad.",
       sections: [
         {
           title: "Información que recopilamos",
           paragraphs: [
-            "Este sitio no ofrece cuentas de usuario ni procesa pagos. Si nos contactas por correo o WhatsApp, recibimos la información que decidas compartir por ese canal.",
+            "Este sitio no ofrece cuentas de usuario ni procesa pagos. Tampoco recopila consultas mediante un formulario. Si nos contactas por correo o WhatsApp, recibimos la información que decidas enviarnos por ese canal.",
           ],
         },
         {
@@ -36,6 +36,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Servicios de terceros",
           paragraphs: [
+            "Los enlaces de correo abren tu aplicación de correo. El mensaje se envía cuando tú lo envías desde esa aplicación. Al abrir un enlace de correo o usar la opción de copiar, intentamos colocar nuestra dirección pública en el portapapeles de tu dispositivo; no leemos su contenido ni enviamos una consulta.",
             "Los enlaces externos, WhatsApp, correo, descargas y sitios de productos se rigen por las políticas de sus respectivos proveedores. Revisa esas políticas antes de compartir información.",
           ],
         },
@@ -55,14 +56,14 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
       eyebrow: "Legal",
       title: "Privacy policy",
       updatedLabel: "Last updated",
-      updated: "August 8, 2026",
+      updated: "September 8, 2026",
       intro:
         "This policy explains what information we process when you visit the Quantix Software website and how to contact us about privacy.",
       sections: [
         {
           title: "Information we collect",
           paragraphs: [
-            "This website does not offer user accounts or process payments. If you contact us by email or WhatsApp, we receive the information you choose to share through that channel.",
+            "This website does not offer user accounts, process payments, or collect inquiries through a form. If you contact us by email or WhatsApp, we receive the information you choose to send through that channel.",
           ],
         },
         {
@@ -80,6 +81,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Third-party services",
           paragraphs: [
+            "Email links open your email application. A message is sent when you send it from that application. When you open an email link or use the copy option, we attempt to place our public address on your device’s clipboard; we do not read clipboard contents or send an inquiry.",
             "External links, WhatsApp, email, downloads, and product websites are governed by their respective providers’ policies. Review those policies before sharing information.",
           ],
         },

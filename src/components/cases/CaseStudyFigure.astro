@@ -1,0 +1,90 @@
+---
+import type { CaseStudyImage } from "../../types/case-study";
+import type { Locale } from "../../types/site";
+
+interface Props {
+  image: CaseStudyImage;
+  locale: Locale;
+  priority?: boolean;
+}
+const { image, locale, priority = false } = Astro.props;
+const expandLabel = locale === "es" ? "Ampliar captura" : "Open full capture";
+---
+
+<figure class="case-figure">
+  <a
+    class="case-figure__image"
+    href={image.src}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`${expandLabel}: ${image.alt}`}
+  >
+    <img
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : undefined}
+      decoding="async"
+    />
+  </a>
+  <figcaption>
+    <p>{image.caption}</p>
+    <a
+      href={image.src}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${expandLabel}: ${image.caption}`}
+    >
+      {expandLabel}<span aria-hidden="true">↗</span>
+    </a>
+  </figcaption>
+</figure>
+
+<style>
+  .case-figure {
+    min-width: 0;
+    margin: 0;
+  }
+  .case-figure__image {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    transition: border-color var(--transition-fast);
+  }
+  .case-figure__image:hover {
+    border-color: var(--color-primary);
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0 2rem;
+    padding-top: 0.5rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  figcaption p {
+    max-width: 70ch;
+    margin: 0;
+  }
+  figcaption a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    text-underline-offset: 0.3em;
+  }
+  figcaption a:hover {
+    color: var(--color-primary);
+  }
+</style>

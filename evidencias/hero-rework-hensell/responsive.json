@@ -1,0 +1,290 @@
+[
+  {
+    "headline": {
+      "bottom": 296.375,
+      "height": 132.28125,
+      "left": 20,
+      "right": 285,
+      "top": 164.09375,
+      "width": 265,
+      "x": 20,
+      "y": 164.09375
+    },
+    "hero": {
+      "bottom": 1028.765625,
+      "height": 970.265625,
+      "left": 0,
+      "right": 305,
+      "top": 58.5,
+      "width": 305,
+      "x": 0,
+      "y": 58.5
+    },
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/viggo/viggo-dashboard.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-hero-mobile.png"
+      }
+    ],
+    "mainAction": {
+      "bottom": 503.96875,
+      "height": 52,
+      "left": 20,
+      "right": 263.3203125,
+      "top": 451.96875,
+      "width": 243.3203125,
+      "x": 20,
+      "y": 451.96875
+    },
+    "overflow": [],
+    "pageWidth": 305,
+    "viewport": {
+      "height": 740,
+      "width": 320
+    }
+  },
+  {
+    "headline": {
+      "bottom": 252.28125,
+      "height": 88.1875,
+      "left": 20,
+      "right": 355,
+      "top": 164.09375,
+      "width": 335,
+      "x": 20,
+      "y": 164.09375
+    },
+    "hero": {
+      "bottom": 1026.7734375,
+      "height": 968.2734375,
+      "left": 0,
+      "right": 375,
+      "top": 58.5,
+      "width": 375,
+      "x": 0,
+      "y": 58.5
+    },
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/viggo/viggo-dashboard.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-hero-mobile.png"
+      }
+    ],
+    "mainAction": {
+      "bottom": 431.9765625,
+      "height": 52,
+      "left": 20,
+      "right": 263.3203125,
+      "top": 379.9765625,
+      "width": 243.3203125,
+      "x": 20,
+      "y": 379.9765625
+    },
+    "overflow": [],
+    "pageWidth": 375,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "headline": {
+      "bottom": 285.5859375,
+      "height": 131.65625,
+      "left": 40,
+      "right": 789,
+      "top": 153.9296875,
+      "width": 749,
+      "x": 40,
+      "y": 153.9296875
+    },
+    "hero": {
+      "bottom": 1185.4765625,
+      "height": 1126.9765625,
+      "left": 0,
+      "right": 829,
+      "top": 58.5,
+      "width": 829,
+      "x": 0,
+      "y": 58.5
+    },
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/viggo/viggo-dashboard.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-hero-mobile.png"
+      }
+    ],
+    "mainAction": {
+      "bottom": 460.2578125,
+      "height": 52,
+      "left": 40,
+      "right": 283.3203125,
+      "top": 408.2578125,
+      "width": 243.3203125,
+      "x": 40,
+      "y": 408.2578125
+    },
+    "overflow": [],
+    "pageWidth": 829,
+    "viewport": {
+      "height": 390,
+      "width": 844
+    }
+  },
+  {
+    "headline": {
+      "bottom": 269.171875,
+      "height": 119.796875,
+      "left": 40,
+      "right": 713,
+      "top": 149.375,
+      "width": 673,
+      "x": 40,
+      "y": 149.375
+    },
+    "hero": {
+      "bottom": 1167.90625,
+      "height": 1109.40625,
+      "left": 0,
+      "right": 753,
+      "top": 58.5,
+      "width": 753,
+      "x": 0,
+      "y": 58.5
+    },
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/viggo/viggo-dashboard.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-hero-mobile.png"
+      }
+    ],
+    "mainAction": {
+      "bottom": 442.6875,
+      "height": 52,
+      "left": 40,
+      "right": 283.3203125,
+      "top": 390.6875,
+      "width": 243.3203125,
+      "x": 40,
+      "y": 390.6875
+    },
+    "overflow": [],
+    "pageWidth": 753,
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "headline": {
+      "bottom": 374.1953125,
+      "height": 129.90625,
+      "left": 40,
+      "right": 500.09375,
+      "top": 244.2890625,
+      "width": 460.09375,
+      "x": 40,
+      "y": 244.2890625
+    },
+    "hero": {
+      "bottom": 696.234375,
+      "height": 615.234375,
+      "left": 0,
+      "right": 1009,
+      "top": 81,
+      "width": 1009,
+      "x": 0,
+      "y": 81
+    },
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/viggo/viggo-dashboard.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-hero-mobile.png"
+      }
+    ],
+    "mainAction": {
+      "bottom": 584.375,
+      "height": 52,
+      "left": 40,
+      "right": 283.3203125,
+      "top": 532.375,
+      "width": 243.3203125,
+      "x": 40,
+      "y": 532.375
+    },
+    "overflow": [],
+    "pageWidth": 1009,
+    "viewport": {
+      "height": 900,
+      "width": 1024
+    }
+  },
+  {
+    "headline": {
+      "bottom": 423.5078125,
+      "height": 182.703125,
+      "left": 72.5,
+      "right": 705.984375,
+      "top": 240.8046875,
+      "width": 633.484375,
+      "x": 72.5,
+      "y": 240.8046875
+    },
+    "hero": {
+      "bottom": 826.6953125,
+      "height": 768.1953125,
+      "left": 0,
+      "right": 1425,
+      "top": 58.5,
+      "width": 1425,
+      "x": 0,
+      "y": 58.5
+    },
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/viggo/viggo-dashboard.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/images/takofy/pedido-hero-mobile.png"
+      }
+    ],
+    "mainAction": {
+      "bottom": 637.7890625,
+      "height": 52,
+      "left": 72.5,
+      "right": 315.8203125,
+      "top": 585.7890625,
+      "width": 243.3203125,
+      "x": 72.5,
+      "y": 585.7890625
+    },
+    "overflow": [],
+    "pageWidth": 1425,
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  }
+]

@@ -1,0 +1,12 @@
+---
+import CaseStudyPage from "../../../components/pages/CaseStudyPage.astro";
+import { getCaseStudy } from "../../../data/case-studies";
+import { getRoute } from "../../../i18n/routes";
+---
+
+<CaseStudyPage
+  locale="es"
+  caseStudy={getCaseStudy("viggo", "es")}
+  backLink={{ label: "Nuestro trabajo", href: getRoute("work", "es") }}
+  nextCase={{ label: "Conoce el caso Takofy", href: getRoute("case-takofy", "es") }}
+/>

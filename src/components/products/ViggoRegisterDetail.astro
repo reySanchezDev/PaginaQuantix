@@ -1,0 +1,42 @@
+---
+interface Props {
+  alt: string;
+}
+const { alt } = Astro.props;
+---
+
+<div class="register-detail">
+  <img
+    src="/images/viggo/viggo-caja-gestion-2.webp"
+    {alt}
+    width="1916"
+    height="940"
+    loading="lazy"
+    decoding="async"
+  />
+</div>
+
+<style>
+  .register-detail {
+    /* Enlarge the existing records without altering the screenshot or its data. */
+    --crop-width: 695;
+    --crop-height: 250;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: var(--crop-width) / var(--crop-height);
+    background: #f1f5fa;
+  }
+  img {
+    position: absolute;
+    width: calc(1916 / var(--crop-width) * 100%);
+    max-width: none;
+    height: auto;
+    left: calc(-542 / var(--crop-width) * 100%);
+    top: calc(-285 / var(--crop-height) * 100%);
+  }
+  @media (max-width: 30rem) {
+    .register-detail {
+      --crop-width: 280;
+    }
+  }
+</style>

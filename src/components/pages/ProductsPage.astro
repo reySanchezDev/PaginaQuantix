@@ -17,17 +17,13 @@ const id = content.section.id;
 
 <BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
   <PageHero content={content.hero} compact />
-  <section id={id} class="section" aria-labelledby={`${id}-title`}>
+  <section id={id} class="section products-catalog" aria-labelledby={`${id}-title`}>
     <Container>
-      <div class="section-intro" data-reveal>
-        <p class="eyebrow">{content.section.eyebrow}</p>
-        <h2 id={`${id}-title`}>{content.section.title}</h2>
-        <p>{content.section.lead}</p>
-      </div>
+      <h2 id={`${id}-title`} class="visually-hidden">{content.section.title}</h2>
       <div class="products-list">
         {
-          content.products.map((product, index) => (
-            <ProductCard product={product} viewLabel={content.section.viewLabel} index={index} />
+          content.products.map((product) => (
+            <ProductCard product={product} viewLabel={content.section.viewLabel} />
           ))
         }
       </div>
@@ -37,7 +33,17 @@ const id = content.section.id;
 </BaseLayout>
 
 <style>
+  .products-catalog {
+    padding-top: 0;
+  }
   .products-list {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 2rem;
+  }
+  @media (max-width: 48rem) {
+    .products-list {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

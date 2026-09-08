@@ -4,6 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentSection from "../sections/ContentSection.astro";
 import CtaSection from "../sections/CtaSection.astro";
 import PageHero from "../sections/PageHero.astro";
+import ProcessSection from "../sections/ProcessSection.astro";
+import ProjectConversation from "../sections/ProjectConversation.astro";
+import CaseStudiesSection from "../sections/CaseStudiesSection.astro";
+import { isRouteActive } from "../../i18n/routes";
 
 interface Props {
   locale: Locale;
@@ -15,6 +19,9 @@ const { locale, content } = Astro.props as Props;
 
 <BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
   <PageHero content={content.hero} compact />
+  {content.process && <ProcessSection content={content.process} />}
   {content.sections.map((section) => <ContentSection content={section} />)}
+  {content.process && <ProjectConversation locale={locale} />}
+  {isRouteActive(Astro.url.pathname, "work") && <CaseStudiesSection locale={locale} />}
   {content.cta && <CtaSection content={content.cta} />}
 </BaseLayout>

@@ -16,6 +16,8 @@ const routeMap = {
     en: "/en/products/nica-finanzas/",
   },
   qavision: { es: "/es/productos/qavision/", en: "/en/products/qavision/" },
+  "case-takofy": { es: "/es/casos/takofy/", en: "/en/case-studies/takofy/" },
+  "case-viggo": { es: "/es/casos/viggo/", en: "/en/case-studies/viggo/" },
 } as const;
 
 export type RouteId = keyof typeof routeMap;
@@ -44,6 +46,15 @@ export function isRouteActive(pathname: string, routeId: RouteId): boolean {
 
   if (routeId === "products") {
     return normalized.startsWith(route.es) || normalized.startsWith(route.en);
+  }
+
+  if (routeId === "work") {
+    return (
+      normalized === route.es ||
+      normalized === route.en ||
+      normalized.startsWith("/es/casos/") ||
+      normalized.startsWith("/en/case-studies/")
+    );
   }
 
   return normalized === route.es || normalized === route.en;

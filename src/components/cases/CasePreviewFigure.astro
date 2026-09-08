@@ -1,0 +1,73 @@
+---
+import type { CaseStudyContent } from "../../types/case-study";
+import type { Locale } from "../../types/site";
+import { getRoute } from "../../i18n/routes";
+import ViggoRegisterDetail from "../products/ViggoRegisterDetail.astro";
+
+interface Props {
+  study: CaseStudyContent;
+  locale: Locale;
+}
+const { study, locale } = Astro.props;
+const es = locale === "es";
+const registerAlt = es
+  ? "Detalle de dos cobros de VIGGO con sus importes y métodos de pago."
+  : "Detail of two VIGGO payments showing their amounts and payment methods.";
+---
+
+<figure class="case-preview-figure" data-reveal="image">
+  <a
+    class="case-image"
+    href={getRoute(study.id === "takofy" ? "case-takofy" : "case-viggo", locale)}
+    aria-label={`${es ? "Conocer el caso" : "Read the case study"}: ${study.productName}`}
+  >
+    {
+      study.id === "viggo" ? (
+        <ViggoRegisterDetail alt={registerAlt} />
+      ) : (
+        <img
+          src={study.heroImage.src}
+          alt={study.heroImage.alt}
+          width={study.heroImage.width}
+          height={study.heroImage.height}
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
+  </a>
+  <figcaption>
+    {
+      study.id === "viggo"
+        ? es
+          ? "Importes y métodos de pago. Datos de ejemplo."
+          : "Amounts and payment methods. Sample data."
+        : es
+          ? "Una mesa, sus platos y las indicaciones para cocina. Datos de ejemplo."
+          : "A table, its items and the kitchen notes. Sample data."
+    }
+  </figcaption>
+</figure>
+
+<style>
+  .case-preview-figure {
+    min-width: 0;
+    margin: 0;
+  }
+  .case-image {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-control);
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  figcaption {
+    margin-top: 0.75rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+</style>

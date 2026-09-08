@@ -1,0 +1,103 @@
+---
+import type { Locale } from "../../types/site";
+import MacBookFrame from "../ui/MacBookFrame.astro";
+import IPhoneFrame from "../ui/IPhoneFrame.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const es = locale === "es";
+---
+
+<figure class="product-composition" data-enter data-motion-delay="120">
+  <div class="product-stage">
+    <div class="desktop-product">
+      <MacBookFrame
+        src="/images/viggo/viggo-dashboard.webp"
+        alt={es
+          ? "Panel de VIGGO con ventas, cobros y la actividad del negocio."
+          : "VIGGO dashboard showing sales, payments and business activity."}
+        width={1917}
+        height={945}
+      />
+    </div>
+    <div class="mobile-product">
+      <IPhoneFrame
+        src="/images/takofy/pedido-hero-mobile.png"
+        alt={es
+          ? "Takofy en móvil: resumen y platos de un pedido de la Mesa 1."
+          : "Takofy on mobile: the summary and items of an order for Table 1."}
+        width={390}
+        height={844}
+      />
+    </div>
+  </div>
+  <figcaption class="composition-note">
+    {es ? "Interfaces reales." : "Real interfaces."}
+    <span>{es ? "Datos de ejemplo." : "Sample data."}</span>
+  </figcaption>
+</figure>
+
+<style>
+  .product-composition {
+    position: relative;
+    width: 100%;
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+  .product-stage {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 1.12;
+  }
+  .desktop-product {
+    position: absolute;
+    width: 95%;
+    top: 10%;
+    right: 0;
+    transform: rotate(-4deg);
+  }
+  .mobile-product {
+    position: absolute;
+    width: 28%;
+    bottom: 4%;
+    left: 2%;
+    transform: rotate(5deg);
+  }
+  .composition-note {
+    position: absolute;
+    left: 39%;
+    right: 0;
+    bottom: 4%;
+    margin: 0;
+    font-size: var(--text-base);
+  }
+  .composition-note span {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: var(--text-xs);
+  }
+  @media (max-width: 35.999rem) {
+    .product-stage {
+      aspect-ratio: 1.15;
+    }
+    .desktop-product {
+      top: 4%;
+    }
+    .mobile-product {
+      width: 30%;
+      bottom: 2%;
+    }
+    .composition-note {
+      left: 40%;
+      bottom: 5%;
+      font-size: var(--text-sm);
+    }
+  }
+  @media (max-width: 23.999rem) {
+    .product-stage {
+      aspect-ratio: 1.1;
+    }
+  }
+</style>

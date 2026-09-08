@@ -1,0 +1,142 @@
+[
+  {
+    "captions": 2,
+    "cropWidth": "280",
+    "lang": "es",
+    "links": [
+      "/es/casos/takofy/",
+      "/es/casos/takofy/",
+      "/es/casos/viggo/",
+      "/es/casos/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "captions": 2,
+    "cropWidth": "280",
+    "lang": "es",
+    "links": [
+      "/es/casos/takofy/",
+      "/es/casos/takofy/",
+      "/es/casos/viggo/",
+      "/es/casos/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "captions": 2,
+    "cropWidth": "695",
+    "lang": "es",
+    "links": [
+      "/es/casos/takofy/",
+      "/es/casos/takofy/",
+      "/es/casos/viggo/",
+      "/es/casos/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "captions": 2,
+    "cropWidth": "695",
+    "lang": "es",
+    "links": [
+      "/es/casos/takofy/",
+      "/es/casos/takofy/",
+      "/es/casos/viggo/",
+      "/es/casos/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "captions": 2,
+    "cropWidth": "695",
+    "lang": "es",
+    "links": [
+      "/es/casos/takofy/",
+      "/es/casos/takofy/",
+      "/es/casos/viggo/",
+      "/es/casos/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "captions": 2,
+    "cropWidth": "280",
+    "lang": "en",
+    "links": [
+      "/en/case-studies/takofy/",
+      "/en/case-studies/takofy/",
+      "/en/case-studies/viggo/",
+      "/en/case-studies/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "captions": 2,
+    "cropWidth": "280",
+    "lang": "en",
+    "links": [
+      "/en/case-studies/takofy/",
+      "/en/case-studies/takofy/",
+      "/en/case-studies/viggo/",
+      "/en/case-studies/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "captions": 2,
+    "cropWidth": "695",
+    "lang": "en",
+    "links": [
+      "/en/case-studies/takofy/",
+      "/en/case-studies/takofy/",
+      "/en/case-studies/viggo/",
+      "/en/case-studies/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "captions": 2,
+    "cropWidth": "695",
+    "lang": "en",
+    "links": [
+      "/en/case-studies/takofy/",
+      "/en/case-studies/takofy/",
+      "/en/case-studies/viggo/",
+      "/en/case-studies/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "captions": 2,
+    "cropWidth": "695",
+    "lang": "en",
+    "links": [
+      "/en/case-studies/takofy/",
+      "/en/case-studies/takofy/",
+      "/en/case-studies/viggo/",
+      "/en/case-studies/viggo/"
+    ],
+    "locations": 2,
+    "overflow": false,
+    "width": 1440
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "flows": [
+    {
+      "language": "/en/contact/?sobre=integraciones",
+      "mail": [
+        "mailto:contact@quantix.software?subject=Consulta%3A%20Integrar%20mis%20herramientas%20%C2%B7%20Quantix",
+        "mailto:contact@quantix.software?subject=Consulta%3A%20Integrar%20mis%20herramientas%20%C2%B7%20Quantix"
+      ],
+      "topic": "integraciones",
+      "url": "http://127.0.0.1:4322/es/contacto/?sobre=integraciones"
+    },
+    {
+      "focus": " Un proyecto a medidaIntegrar mis herramientasDatos y reportesAutomatizar un procesoActualizar un sistemaVIGGOTakofyNica FinanzasQAVision ",
+      "language": "/en/contact/?sobre=integraciones",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Integrar%20mis%20herramientas%20%C2%B7%20Quantix",
+      "topic": "integraciones",
+      "url": "http://127.0.0.1:4322/es/contacto/?sobre=integraciones"
+    },
+    {
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Connecting%20my%20tools%20%C2%B7%20Quantix",
+      "topic": "integraciones",
+      "url": "http://127.0.0.1:4322/en/contact/?sobre=integraciones"
+    },
+    {
+      "language": "/es/contacto/?sobre=reportes",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Data%20and%20reporting%20%C2%B7%20Quantix",
+      "topic": "reportes",
+      "url": "http://127.0.0.1:4322/en/contact/?sobre=reportes"
+    },
+    {
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Takofy%20%C2%B7%20Quantix",
+      "topic": "takofy",
+      "url": "http://127.0.0.1:4322/es/contacto/?sobre=takofy"
+    }
+  ],
+  "topics": [
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "label": "Un proyecto a medida",
+      "language": "/en/contact/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "es",
+      "input": "proyecto",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Integrar%20mis%20herramientas%20%C2%B7%20Quantix",
+      "label": "Integrar mis herramientas",
+      "language": "/en/contact/?sobre=integraciones",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Integrar%20mis%20herramientas%20%C2%B7%20Quantix",
+      "topic": "integraciones",
+      "locale": "es",
+      "input": "integraciones",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Datos%20y%20reportes%20%C2%B7%20Quantix",
+      "label": "Datos y reportes",
+      "language": "/en/contact/?sobre=reportes",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Datos%20y%20reportes%20%C2%B7%20Quantix",
+      "topic": "reportes",
+      "locale": "es",
+      "input": "reportes",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Automatizar%20un%20proceso%20%C2%B7%20Quantix",
+      "label": "Automatizar un proceso",
+      "language": "/en/contact/?sobre=automatizacion",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Automatizar%20un%20proceso%20%C2%B7%20Quantix",
+      "topic": "automatizacion",
+      "locale": "es",
+      "input": "automatizacion",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Actualizar%20un%20sistema%20%C2%B7%20Quantix",
+      "label": "Actualizar un sistema",
+      "language": "/en/contact/?sobre=modernizacion",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Actualizar%20un%20sistema%20%C2%B7%20Quantix",
+      "topic": "modernizacion",
+      "locale": "es",
+      "input": "modernizacion",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20VIGGO%20%C2%B7%20Quantix",
+      "label": "VIGGO",
+      "language": "/en/contact/?sobre=viggo",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20VIGGO%20%C2%B7%20Quantix",
+      "topic": "viggo",
+      "locale": "es",
+      "input": "viggo",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Takofy%20%C2%B7%20Quantix",
+      "label": "Takofy",
+      "language": "/en/contact/?sobre=takofy",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Takofy%20%C2%B7%20Quantix",
+      "topic": "takofy",
+      "locale": "es",
+      "input": "takofy",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Nica%20Finanzas%20%C2%B7%20Quantix",
+      "label": "Nica Finanzas",
+      "language": "/en/contact/?sobre=nica-finanzas",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Nica%20Finanzas%20%C2%B7%20Quantix",
+      "topic": "nica-finanzas",
+      "locale": "es",
+      "input": "nica-finanzas",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20QAVision%20%C2%B7%20Quantix",
+      "label": "QAVision",
+      "language": "/en/contact/?sobre=qavision",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20QAVision%20%C2%B7%20Quantix",
+      "topic": "qavision",
+      "locale": "es",
+      "input": "qavision",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "label": "Un proyecto a medida",
+      "language": "/en/contact/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "es",
+      "input": "constructor",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "label": "Un proyecto a medida",
+      "language": "/en/contact/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "es",
+      "input": "__proto__",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "label": "Un proyecto a medida",
+      "language": "/en/contact/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Consulta%3A%20Un%20proyecto%20a%20medida%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "es",
+      "input": "",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "label": "A custom software project",
+      "language": "/es/contacto/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "en",
+      "input": "proyecto",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20Connecting%20my%20tools%20%C2%B7%20Quantix",
+      "label": "Connecting my tools",
+      "language": "/es/contacto/?sobre=integraciones",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Connecting%20my%20tools%20%C2%B7%20Quantix",
+      "topic": "integraciones",
+      "locale": "en",
+      "input": "integraciones",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20Data%20and%20reporting%20%C2%B7%20Quantix",
+      "label": "Data and reporting",
+      "language": "/es/contacto/?sobre=reportes",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Data%20and%20reporting%20%C2%B7%20Quantix",
+      "topic": "reportes",
+      "locale": "en",
+      "input": "reportes",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20Automating%20a%20process%20%C2%B7%20Quantix",
+      "label": "Automating a process",
+      "language": "/es/contacto/?sobre=automatizacion",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Automating%20a%20process%20%C2%B7%20Quantix",
+      "topic": "automatizacion",
+      "locale": "en",
+      "input": "automatizacion",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20Updating%20a%20system%20%C2%B7%20Quantix",
+      "label": "Updating a system",
+      "language": "/es/contacto/?sobre=modernizacion",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Updating%20a%20system%20%C2%B7%20Quantix",
+      "topic": "modernizacion",
+      "locale": "en",
+      "input": "modernizacion",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20VIGGO%20%C2%B7%20Quantix",
+      "label": "VIGGO",
+      "language": "/es/contacto/?sobre=viggo",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20VIGGO%20%C2%B7%20Quantix",
+      "topic": "viggo",
+      "locale": "en",
+      "input": "viggo",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20Takofy%20%C2%B7%20Quantix",
+      "label": "Takofy",
+      "language": "/es/contacto/?sobre=takofy",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Takofy%20%C2%B7%20Quantix",
+      "topic": "takofy",
+      "locale": "en",
+      "input": "takofy",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20Nica%20Finanzas%20%C2%B7%20Quantix",
+      "label": "Nica Finanzas",
+      "language": "/es/contacto/?sobre=nica-finanzas",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20Nica%20Finanzas%20%C2%B7%20Quantix",
+      "topic": "nica-finanzas",
+      "locale": "en",
+      "input": "nica-finanzas",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20QAVision%20%C2%B7%20Quantix",
+      "label": "QAVision",
+      "language": "/es/contacto/?sobre=qavision",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20QAVision%20%C2%B7%20Quantix",
+      "topic": "qavision",
+      "locale": "en",
+      "input": "qavision",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "label": "A custom software project",
+      "language": "/es/contacto/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "en",
+      "input": "constructor",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "label": "A custom software project",
+      "language": "/es/contacto/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "en",
+      "input": "__proto__",
+      "pass": true
+    },
+    {
+      "button": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "label": "A custom software project",
+      "language": "/es/contacto/?sobre=proyecto",
+      "mail": "mailto:contact@quantix.software?subject=Enquiry%3A%20A%20custom%20software%20project%20%C2%B7%20Quantix",
+      "topic": "proyecto",
+      "locale": "en",
+      "input": "",
+      "pass": true
+    }
+  ]
+}

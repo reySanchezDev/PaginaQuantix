@@ -1,0 +1,146 @@
+---
+import { getContactHref } from "../../lib/contact-context";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { CaseStudyContent } from "../../types/case-study";
+import type { LinkItem, Locale } from "../../types/site";
+import CaseStudyHero from "../cases/CaseStudyHero.astro";
+import CaseStudyNarrative from "../cases/CaseStudyNarrative.astro";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  caseStudy: CaseStudyContent;
+  locale: Locale;
+  backLink?: LinkItem;
+  nextCase?: LinkItem;
+  contactLink?: LinkItem;
+}
+const { caseStudy, locale, backLink, nextCase, contactLink } = Astro.props;
+const es = locale === "es";
+const projectContact: LinkItem = contactLink ?? {
+  label: es ? "Hablemos de tu proyecto" : "Let’s talk about your project",
+  href: getContactHref(locale, caseStudy.id),
+};
+---
+
+<BaseLayout
+  title={caseStudy.seo.title}
+  description={caseStudy.seo.description}
+  locale={locale}
+  image={`/images/og/${caseStudy.id}-${locale}.png`}
+  imageAlt={`${caseStudy.productName} · ${caseStudy.category}`}
+>
+  <article aria-labelledby="case-title">
+    <CaseStudyHero caseStudy={caseStudy} locale={locale} backLink={backLink} />
+    <CaseStudyNarrative caseStudy={caseStudy} locale={locale} />
+  </article>
+  <section class="case-contact" aria-labelledby="case-contact-title">
+    <Container>
+      <div class="case-contact__content">
+        <div>
+          <p class="eyebrow">{es ? "Tu operación" : "Your operation"}</p>
+          <h2 id="case-contact-title">
+            {
+              es
+                ? "¿Necesitas resolver un proceso parecido?"
+                : "Do you need to solve a similar workflow?"
+            }
+          </h2>
+        </div>
+        <div>
+          <p class="case-contact__lead">
+            {
+              es
+                ? "Cuéntanos cómo funciona hoy y qué necesita tu equipo. Podemos revisar si conviene adaptar un producto o desarrollar una solución a medida."
+                : "Tell us how it works today and what your team needs. We can assess whether to adapt a product or build a custom solution."
+            }
+          </p>
+          <div class="case-contact__actions">
+            <Button href={projectContact.href} target={projectContact.target} size="lg">
+              {projectContact.label}<span aria-hidden="true">↗</span>
+            </Button>
+            <a class="case-product-link" href={caseStudy.productLink.href}>
+              {caseStudy.productLink.label}<span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      {
+        nextCase && (
+          <nav class="case-next" aria-label={es ? "Más trabajo de Quantix" : "More Quantix work"}>
+            <span>{es ? "Otro caso de producto" : "Another product study"}</span>
+            <a href={nextCase.href}>
+              {nextCase.label}
+              <span aria-hidden="true">→</span>
+            </a>
+          </nav>
+        )
+      }
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .case-contact {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface-muted);
+  }
+  .case-contact__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  h2 {
+    max-width: 20ch;
+    font-size: var(--text-section);
+  }
+  .case-contact__lead {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+  }
+  .case-contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-top: 1.75rem;
+  }
+  .case-product-link,
+  .case-next a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    text-underline-offset: 0.3em;
+  }
+  .case-product-link {
+    font-size: var(--text-sm);
+  }
+  .case-product-link:hover,
+  .case-next a:hover {
+    color: var(--color-primary);
+  }
+  .case-next {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 2rem;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-strong);
+  }
+  .case-next > span {
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  @media (max-width: 52rem) {
+    .case-contact__content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

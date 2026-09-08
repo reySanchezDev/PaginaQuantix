@@ -99,6 +99,13 @@ for (const file of htmlFiles) {
   if (duplicates.length > 0)
     errors.push(`${page}: duplicate ids ${[...new Set(duplicates)].join(", ")}`);
 
+  const fragments = [...html.matchAll(/\shref="#([^"]+)"/gi)].map((match) =>
+    decodeURIComponent(match[1]),
+  );
+  for (const fragment of fragments) {
+    if (!ids.includes(fragment)) errors.push(`${page}: broken section link #${fragment}`);
+  }
+
   const links = [...html.matchAll(/\shref="(\/[^"#?]*)/gi)].map((match) => match[1]);
   for (const link of links) {
     if (!(await targetExists(link))) errors.push(`${page}: broken internal link ${link}`);
