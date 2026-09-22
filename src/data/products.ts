@@ -20,7 +20,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Visitar VIGGO",
         href: siteConfig.productUrls.viggo,
-        target: "_blank",
       },
     },
     {
@@ -39,7 +38,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Visitar Takofy",
         href: siteConfig.productUrls.takofy.es,
-        target: "_blank",
       },
     },
     {
@@ -58,7 +56,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Abrir Oktara",
         href: siteConfig.productUrls.oktara,
-        target: "_blank",
       },
     },
     {
@@ -77,7 +74,41 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Abrir Tentrix",
         href: siteConfig.productUrls.tentrix,
-        target: "_blank",
+      },
+    },
+    {
+      id: "lendly",
+      name: "Lendly",
+      category: "Gestión de préstamos",
+      description: "Organiza clientes, préstamos, cuotas y pagos, incluso cuando no hay conexión.",
+      status: "Web · Beta",
+      preview: {
+        src: "/images/lendly/cover.webp",
+        alt: "Lendly con listados de préstamos y clientes usando datos de demostración.",
+        width: 1600,
+        height: 1200,
+      },
+      external: {
+        label: "Abrir Lendly",
+        href: siteConfig.productUrls.lendly,
+      },
+    },
+    {
+      id: "hen-screenshots",
+      name: "Hen Screenshots",
+      category: "Herramientas para developers",
+      description:
+        "Convierte capturas en imágenes para App Store, Google Play y portfolios desde el navegador.",
+      status: "Web · Gratis y open source",
+      preview: {
+        src: "/images/hen-screenshots/cover.webp",
+        alt: "Composición creada con Hen Screenshots para presentar una aplicación.",
+        width: 1600,
+        height: 1200,
+      },
+      external: {
+        label: "Abrir Hen Screenshots",
+        href: siteConfig.productUrls["hen-screenshots"],
       },
     },
     {
@@ -96,7 +127,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Abrir Nica Finanzas",
         href: siteConfig.productUrls["nica-finanzas"],
-        target: "_blank",
       },
     },
     {
@@ -108,7 +138,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Descargar para Windows",
         href: qavisionTool.downloadUrl,
-        target: "_blank",
       },
     },
   ],
@@ -129,7 +158,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Visit VIGGO",
         href: siteConfig.productUrls.viggo,
-        target: "_blank",
       },
     },
     {
@@ -148,7 +176,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Visit Takofy",
         href: siteConfig.productUrls.takofy.en,
-        target: "_blank",
       },
     },
     {
@@ -167,7 +194,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Open Oktara",
         href: siteConfig.productUrls.oktara,
-        target: "_blank",
       },
     },
     {
@@ -185,7 +211,42 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Open Tentrix",
         href: siteConfig.productUrls.tentrix,
-        target: "_blank",
+      },
+    },
+    {
+      id: "lendly",
+      name: "Lendly",
+      category: "Loan management",
+      description:
+        "Organize clients, loans, installments, and payments, even without a connection.",
+      status: "Web · Beta",
+      preview: {
+        src: "/images/lendly/cover.webp",
+        alt: "Lendly loan and client lists with demonstration data.",
+        width: 1600,
+        height: 1200,
+      },
+      external: {
+        label: "Open Lendly",
+        href: siteConfig.productUrls.lendly,
+      },
+    },
+    {
+      id: "hen-screenshots",
+      name: "Hen Screenshots",
+      category: "Developer tools",
+      description:
+        "Turn captures into App Store, Google Play, and portfolio images in the browser.",
+      status: "Web · Free and open source",
+      preview: {
+        src: "/images/hen-screenshots/cover.webp",
+        alt: "An application showcase composed with Hen Screenshots.",
+        width: 1600,
+        height: 1200,
+      },
+      external: {
+        label: "Open Hen Screenshots",
+        href: siteConfig.productUrls["hen-screenshots"],
       },
     },
     {
@@ -203,7 +264,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Open Nica Finanzas",
         href: siteConfig.productUrls["nica-finanzas"],
-        target: "_blank",
       },
     },
     {
@@ -215,14 +275,17 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Download for Windows",
         href: qavisionTool.downloadUrl,
-        target: "_blank",
       },
     },
   ],
 };
 
 export function getProducts(locale: Locale): ProductSummary[] {
-  return content[locale].map((product) => ({ ...product, href: getRoute(product.id, locale) }));
+  return content[locale].map((product) => ({
+    ...product,
+    href: getRoute(product.id, locale),
+    external: product.external ? { ...product.external, target: "_blank" } : undefined,
+  }));
 }
 
 export function getProduct(id: ProductId, locale: Locale): ProductSummary {

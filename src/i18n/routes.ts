@@ -13,6 +13,11 @@ const routeMap = {
   takofy: { es: "/es/productos/takofy/", en: "/en/products/takofy/" },
   oktara: { es: "/es/productos/oktara/", en: "/en/products/oktara/" },
   tentrix: { es: "/es/productos/tentrix/", en: "/en/products/tentrix/" },
+  lendly: { es: "/es/productos/lendly/", en: "/en/products/lendly/" },
+  "hen-screenshots": {
+    es: "/es/productos/hen-screenshots/",
+    en: "/en/products/hen-screenshots/",
+  },
   "nica-finanzas": {
     es: "/es/productos/nica-finanzas/",
     en: "/en/products/nica-finanzas/",

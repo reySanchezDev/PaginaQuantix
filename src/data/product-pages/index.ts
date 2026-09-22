@@ -1,4 +1,6 @@
 import type { Locale, ProductId, ProductPageContent } from "../../types/site";
+import { getHenScreenshotsPage } from "./hen-screenshots";
+import { getLendlyPage } from "./lendly";
 import { getNicaFinanzasPage } from "./nica-finanzas";
 import { getOktaraPage } from "./oktara";
 import { getQavisionPage } from "./qavision";
@@ -11,6 +13,8 @@ const factories: Record<ProductId, (locale: Locale) => ProductPageContent> = {
   takofy: getTakofyPage,
   oktara: getOktaraPage,
   tentrix: getTentrixPage,
+  lendly: getLendlyPage,
+  "hen-screenshots": getHenScreenshotsPage,
   "nica-finanzas": getNicaFinanzasPage,
   qavision: getQavisionPage,
 };

@@ -12,6 +12,8 @@ export const contactTopics = {
   takofy: { es: "Takofy", en: "Takofy" },
   oktara: { es: "Oktara", en: "Oktara" },
   tentrix: { es: "Tentrix", en: "Tentrix" },
+  lendly: { es: "Lendly", en: "Lendly" },
+  "hen-screenshots": { es: "Hen Screenshots", en: "Hen Screenshots" },
   "nica-finanzas": { es: "Nica Finanzas", en: "Nica Finanzas" },
   qavision: { es: "QAVision", en: "QAVision" },
 } as const;
@@ -38,6 +40,8 @@ export function getPageContactTopic(pathname: string): ContactTopic | undefined 
     "takofy",
     "oktara",
     "tentrix",
+    "lendly",
+    "hen-screenshots",
     "nica-finanzas",
     "qavision",
   ];
