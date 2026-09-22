@@ -93,7 +93,15 @@ export interface ProductSummary {
   external?: LinkItem;
 }
 
-export type ProductId = "viggo" | "takofy" | "nica-finanzas" | "qavision";
+export type ProductId =
+  | "viggo"
+  | "takofy"
+  | "oktara"
+  | "tentrix"
+  | "lendly"
+  | "hen-screenshots"
+  | "nica-finanzas"
+  | "qavision";
 
 interface ProductMedia {
   src: string;

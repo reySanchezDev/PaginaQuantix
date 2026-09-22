@@ -7,7 +7,7 @@ const content = {
     seo: {
       title: "Productos de software",
       description:
-        "Productos de Quantix para gestión empresarial, restaurantes, finanzas y evidencia de pruebas.",
+        "Productos de Quantix para gestión empresarial, restaurantes, operaciones, soporte, finanzas y herramientas para developers.",
     },
     hero: {
       eyebrow: "Productos",
@@ -32,7 +32,7 @@ const content = {
     seo: {
       title: "Software products",
       description:
-        "Quantix products for business management, restaurants, finance, and test evidence.",
+        "Quantix products for business management, restaurants, operations, support, finance, and developer tools.",
     },
     hero: {
       eyebrow: "Products",
