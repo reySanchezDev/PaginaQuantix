@@ -1,0 +1,111 @@
+---
+import { getCompanyProfile } from "../../data/company-profile";
+import { getRoute } from "../../i18n/routes";
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const es = locale === "es";
+const company = getCompanyProfile(locale);
+---
+
+<section class="home-team section" aria-labelledby="home-team-title">
+  <Container class="home-team__layout">
+    <div class="home-team__intro" data-reveal>
+      <p class="eyebrow">{es ? "Quiénes somos" : "Who we are"}</p>
+      <h2 id="home-team-title">
+        {es ? "Quienes construimos Quantix." : "The people building Quantix."}
+      </h2>
+      <p class="home-team__lead">
+        {
+          es
+            ? "Somos Reynaldo y Hensell, cofundadores y desarrolladores full stack. Conoce nuestra trayectoria profesional y el trabajo de la empresa."
+            : "We’re Reynaldo and Hensell, cofounders and full stack developers. Get to know our professional backgrounds and the company’s work."
+        }
+      </p>
+      <Button href={getRoute("about", locale)} variant="link">
+        {es ? "Conoce Quantix" : "Meet Quantix"}<span aria-hidden="true">→</span>
+      </Button>
+    </div>
+    <ul class="home-team__founders" role="list">
+      {
+        company.founders.map((founder) => (
+          <li data-reveal>
+            <h3>{founder.name}</h3>
+            <p>{founder.role}</p>
+            {founder.linkedin && (
+              <a
+                href={founder.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${company.linkedinLabel}: ${founder.name}`}
+              >
+                {company.linkedinLabel}
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>
+
+<style>
+  .home-team {
+    border-top: 1px solid var(--color-border);
+  }
+  .home-team__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 7vw, 6rem);
+    align-items: start;
+  }
+  h2 {
+    max-width: 20ch;
+  }
+  .home-team__lead {
+    max-width: 46ch;
+    margin: 1.5rem 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+  }
+  .home-team__founders {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-border-strong);
+  }
+  li + li {
+    margin-top: 0.5rem;
+  }
+  li p {
+    margin: 0.5rem 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    font-size: var(--text-sm);
+    text-underline-offset: 0.25em;
+  }
+  li a:hover {
+    color: var(--color-primary);
+  }
+  @media (max-width: 48rem) {
+    .home-team__layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

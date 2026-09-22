@@ -1,0 +1,182 @@
+[
+  {
+    "height": 844,
+    "lang": "es",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/es/soluciones/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Desarrollo a medida",
+    "rows": 3,
+    "textClipping": [],
+    "width": 320
+  },
+  {
+    "height": 844,
+    "lang": "es",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/es/soluciones/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Desarrollo a medida",
+    "rows": 3,
+    "textClipping": [],
+    "width": 390
+  },
+  {
+    "height": 1024,
+    "lang": "es",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/es/soluciones/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Desarrollo a medida",
+    "rows": 3,
+    "textClipping": [],
+    "width": 768
+  },
+  {
+    "height": 390,
+    "lang": "es",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/es/soluciones/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Desarrollo a medida",
+    "rows": 3,
+    "textClipping": [],
+    "width": 844
+  },
+  {
+    "height": 1000,
+    "lang": "es",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/es/soluciones/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Desarrollo a medida",
+    "rows": 3,
+    "textClipping": [],
+    "width": 1024
+  },
+  {
+    "height": 1000,
+    "lang": "es",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/es/soluciones/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Desarrollo a medida",
+    "rows": 3,
+    "textClipping": [],
+    "width": 1440
+  },
+  {
+    "height": 844,
+    "lang": "en",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/en/solutions/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Custom development",
+    "rows": 3,
+    "textClipping": [],
+    "width": 320
+  },
+  {
+    "height": 844,
+    "lang": "en",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/en/solutions/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Custom development",
+    "rows": 3,
+    "textClipping": [],
+    "width": 390
+  },
+  {
+    "height": 1024,
+    "lang": "en",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/en/solutions/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Custom development",
+    "rows": 3,
+    "textClipping": [],
+    "width": 768
+  },
+  {
+    "height": 390,
+    "lang": "en",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/en/solutions/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Custom development",
+    "rows": 3,
+    "textClipping": [],
+    "width": 844
+  },
+  {
+    "height": 1000,
+    "lang": "en",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/en/solutions/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Custom development",
+    "rows": 3,
+    "textClipping": [],
+    "width": 1024
+  },
+  {
+    "height": 1000,
+    "lang": "en",
+    "links": [
+      {
+        "height": 49.59375,
+        "href": "/en/solutions/"
+      }
+    ],
+    "overflow": false,
+    "primary": "Custom development",
+    "rows": 3,
+    "textClipping": [],
+    "width": 1440
+  }
+]

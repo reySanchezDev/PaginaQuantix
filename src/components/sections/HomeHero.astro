@@ -1,0 +1,186 @@
+---
+import { getHomeContent } from "../../data/home-content";
+import { getRoute } from "../../i18n/routes";
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import HomeProductComposition from "./HomeProductComposition.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const { hero } = getHomeContent(locale);
+const es = locale === "es";
+---
+
+<section class="home-hero" aria-labelledby="page-title">
+  <Container>
+    <div class="hero-layout">
+      <div class="hero-copy" data-enter>
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1 id="page-title">{hero.title.map((line) => <span>{line} </span>)}</h1>
+        <p class="hero-lead">{hero.lead}</p>
+        <div class="hero-actions">
+          <Button href={hero.primary.href} size="lg" tone="inverse" class="hero-contact">
+            {hero.primary.label}<span aria-hidden="true">↗</span>
+          </Button>
+          <a class="hero-work-link" href={hero.secondary.href}>
+            {hero.secondary.label}<span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+      <HomeProductComposition locale={locale} />
+    </div>
+    <div class="hero-footnote">
+      <nav class="hero-products" aria-label={es ? "Casos de Quantix" : "Quantix case studies"}>
+        <a href={getRoute("case-viggo", locale)}>VIGGO<span aria-hidden="true">↗</span></a>
+        <a href={getRoute("case-takofy", locale)}>Takofy<span aria-hidden="true">↗</span></a>
+      </nav>
+      <p>{hero.proof}</p>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .home-hero {
+    --color-focus: var(--color-inverse);
+    background: var(--color-primary);
+    color: var(--color-inverse);
+    padding-top: clamp(2.75rem, 6vw, 5.5rem);
+  }
+  .hero-layout {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+  }
+  .eyebrow {
+    margin-bottom: 1.5rem;
+    color: inherit;
+  }
+  h1 {
+    color: inherit;
+    font-size: clamp(2.65rem, 6.1vw, 5.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+  }
+  h1 span {
+    display: block;
+  }
+  .hero-lead {
+    max-width: 37ch;
+    margin: 1.75rem 0 0;
+    font-size: var(--text-lead);
+    line-height: 1.55;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .hero-work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.3em;
+  }
+  .hero-work-link:hover {
+    text-decoration-color: currentColor;
+  }
+  .hero-footnote {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 2rem;
+    padding-block: 1.125rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgb(255 249 237 / 0.35);
+  }
+  .hero-footnote p {
+    max-width: 44ch;
+    margin: 0;
+    font-size: var(--text-sm);
+  }
+  .hero-products {
+    display: flex;
+    gap: 2rem;
+  }
+  .hero-products a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 550;
+    text-decoration: none;
+  }
+  .hero-products span {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+  }
+  .hero-products a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  @media (min-width: 64rem) {
+    .hero-layout {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: clamp(1.5rem, 3vw, 3rem);
+      min-height: clamp(26rem, 38vw, 34rem);
+    }
+    .hero-footnote {
+      margin-top: 3.5rem;
+    }
+  }
+  @media (min-width: 36rem) and (max-width: 63.999rem) {
+    h1 {
+      font-size: clamp(3.5rem, 7.5vw, 4.75rem);
+    }
+    .hero-lead {
+      max-width: 46ch;
+    }
+  }
+  @media (max-width: 35.999rem) {
+    .home-hero {
+      padding-top: 2rem;
+    }
+    .hero-layout {
+      gap: 1.5rem;
+    }
+    .eyebrow {
+      max-width: 28ch;
+      margin-bottom: 1rem;
+    }
+    .hero-lead {
+      margin-top: 1rem;
+    }
+    .hero-actions {
+      margin-top: 1.25rem;
+      gap: 0.5rem 1rem;
+    }
+    .hero-footnote {
+      margin-top: 1rem;
+      padding-block: 0.75rem 1rem;
+      gap: 0.25rem;
+    }
+    .hero-products {
+      gap: 1.5rem;
+    }
+    .hero-footnote p {
+      font-size: var(--text-xs);
+    }
+  }
+</style>

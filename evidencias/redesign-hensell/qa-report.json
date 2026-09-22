@@ -1,0 +1,26 @@
+{
+  "layout": [],
+  "accessibility": [],
+  "errors": [],
+  "interactions": [
+    "es: mobile menu focus trap, Escape, scroll restoration, breakpoint close, and axe passed",
+    "es: accordion opens with keyboard",
+    "es: required fields, optional email, message preview, safe escaping, correct outgoing links, edit preserving values passed; no message sent",
+    "en: mobile menu focus trap, Escape, scroll restoration, breakpoint close, and axe passed",
+    "en: accordion opens with keyboard",
+    "en: required fields, optional email, message preview, safe escaping, correct outgoing links, edit preserving values passed; no message sent",
+    "Without JavaScript: direct contact links and explanatory fallback remain available"
+  ],
+  "pagesChecked": 25,
+  "viewportWidths": [
+    320,
+    360,
+    390,
+    430,
+    768,
+    844,
+    1024,
+    1440
+  ],
+  "layoutCases": 200
+}

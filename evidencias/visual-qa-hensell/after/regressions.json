@@ -1,0 +1,12 @@
+[
+  "es: home heading stays on 3 lines at 320 px",
+  "es: contact inputs aligned at 1024 px",
+  "es: short message preview and both send options visible on mobile; axe passes",
+  "es: landscape menu close remains visible at bottom; reduced-motion delays are zero",
+  "es: VIGGO catalog return and features jump work below sticky header",
+  "en: home heading stays on 3 lines at 320 px",
+  "en: contact inputs aligned at 1024 px",
+  "en: short message preview and both send options visible on mobile; axe passes",
+  "en: landscape menu close remains visible at bottom; reduced-motion delays are zero",
+  "en: VIGGO catalog return and features jump work below sticky header"
+]

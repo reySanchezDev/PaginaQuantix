@@ -1,0 +1,88 @@
+---
+import type { ProductPageContent } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  content: ProductPageContent["overview"];
+}
+
+const { content } = Astro.props as Props;
+const hasMetrics = content.metrics.length > 0;
+---
+
+<section class="section product-overview" aria-labelledby="overview-title">
+  <Container
+    class:list={["product-overview__layout", { "product-overview__layout--single": !hasMetrics }]}
+  >
+    <div class="section-intro">
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h2 id="overview-title">{content.title}</h2>
+      <p>{content.lead}</p>
+    </div>
+    {
+      hasMetrics && (
+        <dl>
+          {content.metrics.map((metric) => (
+            <div>
+              <dt>{metric.title}</dt>
+              <dd>{metric.text}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+  </Container>
+</section>
+
+<style>
+  .product-overview {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .product-overview__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .section-intro {
+    margin-bottom: 0;
+  }
+  .product-overview__layout--single {
+    grid-template-columns: 1fr;
+  }
+  .product-overview__layout--single .section-intro {
+    max-width: 50rem;
+  }
+  dl {
+    margin: 0;
+  }
+  dl div {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-base);
+  }
+  dt {
+    font-weight: 500;
+  }
+  dd {
+    margin: 0;
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+  }
+  @media (max-width: 56rem) {
+    .product-overview__layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  @media (max-width: 22rem) {
+    dl div {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

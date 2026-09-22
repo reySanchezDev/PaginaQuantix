@@ -1,0 +1,26 @@
+[
+  {
+    "key": "ArrowLeft",
+    "focus": "workflow-tab-order",
+    "selected": "workflow-tab-order",
+    "visible": 1
+  },
+  {
+    "key": "ArrowLeft",
+    "focus": "workflow-tab-kitchen",
+    "selected": "workflow-tab-kitchen",
+    "visible": 1
+  },
+  {
+    "key": "Home",
+    "focus": "workflow-tab-order",
+    "selected": "workflow-tab-order",
+    "visible": 1
+  },
+  {
+    "key": "End",
+    "focus": "workflow-tab-kitchen",
+    "selected": "workflow-tab-kitchen",
+    "visible": 1
+  }
+]

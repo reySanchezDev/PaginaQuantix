@@ -1,0 +1,12 @@
+{
+  "mode": "Node verification of actual controller with DOM, animation and media-query doubles",
+  "sequence": "Images 16px / 0ms; copy 12px / 80ms; 480ms duration; runs once",
+  "focus": "Focusing a pending or active copy cancels its entrance",
+  "liveReducedMotion": "Active animations cancel and observer disconnects",
+  "initialReducedMotion": "No animation or hidden content scheduled",
+  "mobile": "Copy waits for its own viewport entry",
+  "anchor": "Scroll reveal delay is preserved on anchor entry",
+  "delayBounds": "Delay clamped to 0–160ms",
+  "fallback": "No observer: normal visible document retained",
+  "productionUnits": "Minified .48s and 480ms both schedule 480 milliseconds"
+}

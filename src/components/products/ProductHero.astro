@@ -1,0 +1,222 @@
+---
+import type { Locale, ProductPageContent, ProductSummary } from "../../types/site";
+import { getRoute } from "../../i18n/routes";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  content: ProductPageContent;
+  product: ProductSummary;
+  locale: Locale;
+}
+const { content, product, locale } = Astro.props;
+const { hero } = content;
+const hasMedia = Boolean(hero.video || hero.image);
+const sectionAction = hero.secondary?.href.startsWith("#")
+  ? hero.secondary
+  : {
+      href: "#overview-title",
+      label: locale === "es" ? "Explorar el producto" : "Explore the product",
+    };
+---
+
+<section class="product-hero" aria-labelledby="product-title">
+  <Container>
+    <a class="product-back" href={getRoute("products", locale)}>
+      <span aria-hidden="true">←</span>
+      {locale === "es" ? "Todos los productos" : "All products"}
+    </a>
+    <div class:list={["product-hero__layout", { "product-hero__layout--text": !hasMedia }]}>
+      <div class="product-hero__content" data-enter>
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1 id="product-title">{product.name}</h1>
+        <p class="product-hero__tagline">{hero.title}</p>
+        <p class="product-hero__lead">{hero.lead}</p>
+        <div class="product-hero__actions">
+          {
+            hero.primary && (
+              <Button href={hero.primary.href} target={hero.primary.target} size="lg">
+                {hero.primary.label}
+                <span aria-hidden="true">↗</span>
+              </Button>
+            )
+          }
+          <a class="overview-link" href={sectionAction.href}>
+            {sectionAction.label}<span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+      {
+        hasMedia && (
+          <div class="product-hero__visual" data-enter data-motion-delay="120">
+            {hero.video ? (
+              <figure class="video-shell">
+                <video
+                  src={hero.video.src}
+                  poster={hero.video.poster}
+                  controls
+                  playsinline
+                  preload="none"
+                  width={hero.video.width}
+                  height={hero.video.height}
+                  aria-label={hero.video.label}
+                />
+                <figcaption>{hero.video.label}</figcaption>
+              </figure>
+            ) : (
+              hero.image && (
+                <figure class="product-image">
+                  <a
+                    href={hero.image.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={
+                      locale === "es"
+                        ? `Ampliar captura de ${product.name} (nueva pestaña)`
+                        : `Open full ${product.name} capture (new tab)`
+                    }
+                  >
+                    <img
+                      src={hero.image.src}
+                      alt={hero.image.alt}
+                      width={hero.image.width}
+                      height={hero.image.height}
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  </a>
+                  <figcaption>
+                    <span>{hero.image.caption}</span>
+                    <a href={hero.image.src} target="_blank" rel="noopener noreferrer">
+                      {locale === "es" ? "Ampliar captura" : "Open full capture"}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </figcaption>
+                </figure>
+              )
+            )}
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .product-hero {
+    padding: 1.25rem 0 clamp(3rem, 6vw, 5rem);
+  }
+  .product-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+  .product-back:hover {
+    color: var(--color-primary);
+  }
+  .product-hero__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .product-hero__layout--text {
+    grid-template-columns: 1fr;
+    max-width: 52rem;
+  }
+  .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-size: var(--text-title);
+  }
+  .product-hero__tagline {
+    max-width: 32ch;
+    margin: 1.25rem 0 0;
+    font-size: var(--text-subtitle);
+    font-weight: 500;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+  .product-hero__lead {
+    max-width: 52ch;
+    margin: 1rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+    line-height: 1.65;
+  }
+  .product-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+    margin-top: 1.75rem;
+  }
+  .overview-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: var(--text-sm);
+    text-underline-offset: 0.3em;
+  }
+  .overview-link:hover {
+    color: var(--color-primary);
+  }
+  figure {
+    margin: 0;
+  }
+  .product-image img,
+  video {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+  video {
+    background: var(--color-dark);
+  }
+  figcaption {
+    padding-top: 0.75rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  .product-image > a {
+    display: block;
+    border-radius: 0.5rem;
+  }
+  .product-image figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 1rem;
+  }
+  figcaption a {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 2.75rem;
+    text-underline-offset: 0.3em;
+  }
+  figcaption a:hover {
+    color: var(--color-primary);
+  }
+  @media (max-width: 60rem) {
+    .product-hero__layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .product-hero__content {
+      max-width: 42rem;
+    }
+    .product-hero__visual {
+      max-width: 46rem;
+    }
+  }
+</style>

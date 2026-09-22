@@ -1,0 +1,140 @@
+---
+import type { ProductSummary } from "../../types/site";
+import ProductSymbol from "./ProductSymbol.astro";
+
+interface Props {
+  product: ProductSummary;
+  viewLabel: string;
+}
+const { product, viewLabel } = Astro.props;
+---
+
+<article class="product-card" data-product={product.id}>
+  <a class="product-card__link" href={product.href} aria-label={`${viewLabel}: ${product.name}`}>
+    <div class:list={["product-card__art", { "product-card__art--image": product.preview }]}>
+      {
+        product.preview ? (
+          <img
+            src={product.preview.src}
+            alt={product.preview.alt}
+            width={product.preview.width}
+            height={product.preview.height}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <ProductSymbol productId={product.id} />
+        )
+      }
+    </div>
+    <div class="product-card__body">
+      <p class="product-card__category">{product.category}</p>
+      <h3>{product.name}</h3>
+      <p class="product-card__description">{product.description}</p>
+      <div class="product-card__footer">
+        <span class="product-card__status">{product.status}</span>
+        <span class="product-card__cta">{viewLabel}<span aria-hidden="true"> →</span></span>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .product-card {
+    --product-soft: var(--product-viggo-soft);
+    --product-ink: var(--product-viggo);
+    min-width: 0;
+  }
+  .product-card[data-product="takofy"] {
+    --product-soft: var(--product-takofy-soft);
+    --product-ink: var(--product-takofy);
+  }
+  .product-card[data-product="nica-finanzas"] {
+    --product-soft: var(--product-finance-soft);
+    --product-ink: var(--product-finance);
+  }
+  .product-card[data-product="qavision"] {
+    --product-soft: var(--product-qavision-soft);
+    --product-ink: var(--product-qavision);
+  }
+  .product-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+  }
+  .product-card__art {
+    display: grid;
+    aspect-ratio: 16 / 10;
+    flex-shrink: 0;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--product-soft);
+    color: var(--product-ink);
+    transition: border-color var(--transition-base);
+  }
+  .product-card__art :global(svg) {
+    width: 7rem;
+    height: 7rem;
+  }
+  .product-card__art--image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .product-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 1.25rem;
+  }
+  .product-card__category {
+    margin: 0 0 0.5rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  h3 {
+    font-size: var(--text-heading);
+    transition: color var(--transition-base);
+  }
+  .product-card__description {
+    max-width: 52ch;
+    margin: 0.75rem 0 1.25rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+  }
+  .product-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-sm);
+  }
+  .product-card__status {
+    color: var(--color-ink-muted);
+  }
+  .product-card__cta {
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .product-card__link:hover .product-card__art {
+    border-color: var(--product-ink);
+  }
+  .product-card__link:hover h3,
+  .product-card__link:hover .product-card__cta {
+    color: var(--color-primary);
+  }
+  @media (max-width: 40rem) {
+    .product-card__art :global(svg) {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+</style>

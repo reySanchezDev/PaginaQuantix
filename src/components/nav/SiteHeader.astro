@@ -1,0 +1,175 @@
+---
+import { isRouteActive } from "../../i18n/routes";
+import { getContactHref, getPageContactTopic } from "../../lib/contact-context";
+import type { Locale, NavItem } from "../../types/site";
+import Brand from "../ui/Brand.astro";
+import Container from "../ui/Container.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import MobileMenu from "./MobileMenu.astro";
+
+interface Props {
+  navItems: NavItem[];
+  locale: Locale;
+  labels: {
+    primaryNav: string;
+    mobileNav: string;
+    openMenu: string;
+    closeMenu: string;
+    language: string;
+  };
+}
+
+const { navItems, locale, labels } = Astro.props as Props;
+const pathname = Astro.url.pathname;
+const topic = getPageContactTopic(pathname);
+const contextualNav = navItems.map((item) =>
+  item.id === "contact" && topic ? { ...item, href: getContactHref(locale, topic) } : item,
+);
+---
+
+<header class="site-header">
+  <Container class="site-header__inner">
+    <Brand locale={locale} compact />
+
+    <nav class="desktop-nav" aria-label={labels.primaryNav}>
+      <ul>
+        {
+          contextualNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={{
+                  active: isRouteActive(pathname, item.id),
+                  "contact-link": item.id === "contact",
+                }}
+                aria-current={isRouteActive(pathname, item.id) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <LanguageSwitch locale={locale} label={labels.language} />
+    </nav>
+
+    <button
+      id="mobile-menu-toggle"
+      class="menu-toggle"
+      type="button"
+      aria-label={labels.openMenu}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span><span></span>
+    </button>
+  </Container>
+</header>
+
+<MobileMenu navItems={contextualNav} locale={locale} labels={labels} pathname={pathname} />
+
+<style>
+  .site-header {
+    position: sticky;
+    inset: 0 0 auto;
+    z-index: 80;
+    background: var(--color-canvas);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-header__inner {
+    display: flex;
+    min-height: var(--header-height);
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .desktop-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .desktop-nav a {
+    display: inline-flex;
+    min-height: 2.875rem;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast);
+  }
+  .desktop-nav a:hover,
+  .desktop-nav a.active {
+    color: var(--color-ink);
+  }
+  .desktop-nav a:not(.contact-link) {
+    position: relative;
+  }
+  .desktop-nav a:not(.contact-link)::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.6rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms var(--motion-ease-out);
+  }
+  .desktop-nav a:not(.contact-link):is(:hover, :focus-visible, .active)::after {
+    transform: scaleX(1);
+  }
+  .desktop-nav a.contact-link {
+    margin-left: 0.75rem;
+    padding-inline: 1.4rem;
+    background: var(--color-ink);
+    color: var(--color-inverse);
+    border-radius: var(--radius-control);
+  }
+  .desktop-nav a.contact-link:hover,
+  .desktop-nav a.contact-link.active {
+    background: var(--color-primary);
+    color: var(--color-inverse);
+    text-decoration: none;
+  }
+  .menu-toggle {
+    display: inline-grid;
+    width: 2.875rem;
+    height: 2.875rem;
+    place-content: center;
+    gap: 0.4rem;
+    border: 1px solid var(--color-control-border);
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+  .menu-toggle:hover {
+    background: var(--color-surface-muted);
+  }
+  .menu-toggle span {
+    width: 1.2rem;
+    height: 1.5px;
+    background: currentColor;
+  }
+  @media (min-width: 64rem) {
+    .desktop-nav {
+      display: flex;
+    }
+    .menu-toggle {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,160 @@
+---
+import { getContactContent } from "../../data/contact-content";
+import { siteConfig } from "../../data/site-config";
+import type { Locale } from "../../types/site";
+interface Props {
+  locale: Locale;
+}
+const c = getContactContent(Astro.props.locale);
+const copy = {
+  copied: c.copied,
+  mailBackup: c.mailBackup,
+  copyDetail: c.copyDetail,
+  copyFailed: c.copyFailed,
+  copyFailedDetail: c.copyFailedDetail,
+};
+---
+
+<div data-email-feedback data-email={siteConfig.email} data-copy={JSON.stringify(copy)}>
+  <div
+    class="visually-hidden"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    data-email-announcement
+  >
+  </div>
+  <section class="email-toast" data-email-toast aria-label={c.notification} hidden>
+    <svg
+      class="toast-icon"
+      aria-hidden="true"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      ><rect x="4" y="3" width="16" height="18" rx="3"></rect><path d="m8 12 3 3 5-6"></path></svg
+    >
+    <div class="toast-copy">
+      <p class="toast-title" data-toast-title></p>
+      <p class="toast-detail" data-toast-detail></p>
+      <input
+        class="toast-address"
+        data-toast-address
+        aria-label={c.copyEmail}
+        value={siteConfig.email}
+        readonly
+        hidden
+      />
+    </div>
+    <button class="toast-close" type="button" data-toast-close aria-label={c.close}>
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"><path d="m6 6 12 12M6 18 18 6"></path></svg
+      >
+    </button>
+  </section>
+</div>
+
+<style>
+  .email-toast {
+    --color-focus: var(--color-focus-inverse);
+    position: fixed;
+    z-index: 90;
+    inset-inline-end: max(1.5rem, env(safe-area-inset-right));
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+    width: min(27rem, calc(100% - 2rem));
+    display: flex;
+    align-items: start;
+    gap: 0.875rem;
+    padding: 1.25rem 0.75rem 1.25rem 1.25rem;
+    border: 1px solid #56584c;
+    border-radius: var(--radius-control);
+    background: var(--color-dark);
+    color: var(--color-inverse);
+    box-shadow: 0 0.75rem 2.5rem rgb(29 30 25 / 0.2);
+    animation: toast-in 180ms ease-out;
+  }
+  .email-toast[hidden],
+  .toast-address[hidden] {
+    display: none;
+  }
+  .toast-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    color: var(--color-focus-inverse);
+  }
+  .email-toast[data-state="error"] .toast-icon {
+    display: none;
+  }
+  .toast-copy {
+    flex: 1;
+    min-width: 0;
+  }
+  .toast-title {
+    margin: 0;
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+  .toast-detail {
+    margin: 0.35rem 0 0;
+    color: var(--color-inverse-muted);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+  .toast-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    margin-top: -0.5rem;
+    border: 0;
+    border-radius: var(--radius-md);
+    color: var(--color-inverse-muted);
+    background: transparent;
+    cursor: pointer;
+  }
+  .toast-close:hover {
+    color: var(--color-inverse);
+    background: var(--color-dark-raised);
+  }
+  .toast-address {
+    width: 100%;
+    margin-top: 0.75rem;
+    border: 1px solid var(--color-control-border);
+    border-radius: var(--radius-md);
+    background: var(--color-dark-raised);
+    color: var(--color-inverse);
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (max-width: 36rem) {
+    .email-toast {
+      inset-inline-end: 1rem;
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      padding-inline-start: 1rem;
+      gap: 0.75rem;
+    }
+  }
+</style>
+<script>
+  import "../../lib/email-contact";
+</script>

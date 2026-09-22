@@ -1,0 +1,149 @@
+---
+import type { LinkItem, Locale, NavItem } from "../../types/site";
+import { siteConfig } from "../../data/site-config";
+import Brand from "../ui/Brand.astro";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  navItems: NavItem[];
+  legalItems: LinkItem[];
+  locale: Locale;
+  labels: {
+    navigation: string;
+    legal: string;
+    footerText: string;
+    copyright: string;
+    process: string;
+  };
+}
+
+const { navItems, legalItems, locale, labels } = Astro.props as Props;
+const companyLinks = [...navItems];
+---
+
+<footer class="site-footer">
+  <Container>
+    <div class="site-footer__statement">
+      <Brand locale={locale} inverse />
+      <p>{labels.footerText}</p>
+      <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+    </div>
+
+    <div class="site-footer__links">
+      <nav aria-label={labels.navigation}>
+        <h2>{labels.navigation}</h2>
+        <ul>
+          {
+            companyLinks.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label={labels.legal}>
+        <h2>{labels.legal}</h2>
+        <ul>
+          {
+            legalItems.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© {new Date().getFullYear()} {siteConfig.name}. {labels.copyright}</p>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-dark);
+    color: var(--color-inverse);
+    padding: 4rem 0 1.5rem;
+  }
+  .site-footer > :global(.container) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 5rem;
+  }
+  .site-footer__statement {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.5rem;
+  }
+  .site-footer__statement p {
+    max-width: 24ch;
+    margin: 0;
+    color: var(--color-inverse-muted);
+    font-size: var(--text-lead);
+    line-height: var(--leading-relaxed);
+  }
+  .site-footer__statement > a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    font-size: var(--text-sm);
+    text-underline-offset: 0.3em;
+    overflow-wrap: anywhere;
+  }
+  .site-footer__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+  h2 {
+    color: var(--color-inverse-muted);
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 500;
+    letter-spacing: 0;
+    margin: 0.75rem 0 1rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  nav a:hover {
+    color: var(--color-focus-inverse);
+  }
+  .site-footer__bottom {
+    grid-column: 1/-1;
+    border-top: 1px solid #56584c;
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+    font-size: var(--text-label);
+    color: var(--color-inverse-muted);
+  }
+  .site-footer__bottom p {
+    margin: 0;
+  }
+  @media (max-width: 48rem) {
+    .site-footer > :global(.container) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+    .site-footer__bottom {
+      margin-top: 0;
+    }
+    .site-footer__links {
+      gap: 1rem;
+    }
+  }
+</style>

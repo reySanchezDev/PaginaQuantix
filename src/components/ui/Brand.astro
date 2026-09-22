@@ -1,0 +1,56 @@
+---
+import { getRoute } from "../../i18n/routes";
+import type { Locale } from "../../types/site";
+import { sharedUi } from "../../data/navigation";
+interface Props {
+  locale: Locale;
+  compact?: boolean;
+  inverse?: boolean;
+}
+const { locale, compact = false, inverse = false } = Astro.props as Props;
+---
+
+<a
+  class:list={["brand", { "brand--compact": compact, "brand--inverse": inverse }]}
+  href={getRoute("home", locale)}
+  aria-label={sharedUi[locale].brandHome}
+>
+  <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+    <circle cx="18" cy="18" r="12" stroke="currentColor" stroke-width="7"></circle>
+    <path d="m24 25 10 10" stroke="currentColor" stroke-width="7"></path>
+  </svg>
+  <span>quantix<span class="brand__dot">.</span></span>
+</a>
+<style>
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 650;
+    letter-spacing: -0.075em;
+    text-decoration: none;
+    min-height: 2.75rem;
+  }
+  .brand__mark {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+  .brand__dot {
+    color: var(--color-primary);
+  }
+  .brand--inverse {
+    color: var(--color-inverse);
+  }
+  .brand--inverse .brand__mark,
+  .brand--inverse .brand__dot {
+    color: var(--color-focus-inverse);
+  }
+  .brand--compact {
+    font-size: 1.7rem;
+  }
+</style>

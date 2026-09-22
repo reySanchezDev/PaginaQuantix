@@ -1,0 +1,121 @@
+[
+  {
+    "detailLinks": [
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/salario-detalle.webp"
+      },
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/prestamo-detalle.webp"
+      },
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/liquidacion-detalle.webp"
+      }
+    ],
+    "figures": [
+      {
+        "columns": "688px",
+        "width": 688
+      },
+      {
+        "columns": "688px",
+        "width": 688
+      },
+      {
+        "columns": "688px",
+        "width": 688
+      }
+    ],
+    "locale": "es",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "detailLinks": [
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/salario-detalle.webp"
+      },
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/prestamo-detalle.webp"
+      },
+      {
+        "height": 43.9998779296875,
+        "href": "/images/nica-finanzas/liquidacion-detalle.webp"
+      }
+    ],
+    "figures": [
+      {
+        "columns": "350px",
+        "width": 350
+      },
+      {
+        "columns": "350px",
+        "width": 350
+      },
+      {
+        "columns": "350px",
+        "width": 350
+      }
+    ],
+    "locale": "es",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "detailLinks": [
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/salario-detalle.webp"
+      },
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/prestamo-detalle.webp"
+      },
+      {
+        "height": 44,
+        "href": "/images/nica-finanzas/liquidacion-detalle.webp"
+      }
+    ],
+    "figures": [
+      {
+        "columns": "280px",
+        "width": 280
+      },
+      {
+        "columns": "280px",
+        "width": 280
+      },
+      {
+        "columns": "280px",
+        "width": 280
+      }
+    ],
+    "locale": "es",
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "detailLabels": [
+      "Open full capture  ↗",
+      "Open full capture  ↗",
+      "Open full capture  ↗"
+    ],
+    "locale": "en",
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "detailLabels": [
+      "Open full capture  ↗",
+      "Open full capture  ↗",
+      "Open full capture  ↗"
+    ],
+    "locale": "en",
+    "overflow": false,
+    "width": 1440
+  }
+]

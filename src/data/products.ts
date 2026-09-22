@@ -1,229 +1,157 @@
-import { qavisionTool } from "./qavisionTool";
+import { getRoute } from "../i18n/routes";
+import type { Locale, ProductId, ProductSummary } from "../types/site";
+import { qavisionTool } from "./qavision-tool";
+import { siteConfig } from "./site-config";
 
-export interface Product {
-    id: string;
-    title: {
-        es: string;
-        en: string;
-    };
-    description: {
-        es: string;
-        en: string;
-    };
-    tags: string[];
-    category?: {
-        es: string;
-        en: string;
-    };
-    gradient: string;
-    href: {
-        es: string;
-        en: string;
-    };
-    publicUrl?: string;
-    externalLabel?: {
-        es: string;
-        en: string;
-    };
-    launchDate?: {
-        es: string;
-        en: string;
-    };
-    target: '_self' | '_blank';
-    isExternal: boolean;
-    featured?: boolean;
-    status: {
-        es: string;
-        en: string;
-    };
-    availabilityNote?: {
-        es: string;
-        en: string;
-    };
-    features: {
-        es: string[];
-        en: string[];
-    };
+const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
+  es: [
+    {
+      id: "viggo",
+      name: "VIGGO",
+      category: "Operación empresarial",
+      description: "Centraliza clientes, servicios, ventas, cobros, inventario y accesos.",
+      status: "Aplicación web",
+      preview: {
+        src: "/images/viggo/viggo-dashboard.webp",
+        alt: "Panel de VIGGO con ventas, inventario y el estado del negocio.",
+        width: 1917,
+        height: 945,
+      },
+      external: {
+        label: "Visitar VIGGO",
+        href: siteConfig.productUrls.viggo,
+        target: "_blank",
+      },
+    },
+    {
+      id: "takofy",
+      name: "Takofy",
+      category: "Restaurantes",
+      description:
+        "Coordina salón, cocina, caja e inventario, incluso cuando no hay conexión a internet.",
+      status: "Web · Play Store prevista",
+      preview: {
+        src: "/images/takofy/pedido-detalle.webp",
+        alt: "Takofy con una comanda de ejemplo para una mesa del restaurante.",
+        width: 1280,
+        height: 720,
+      },
+      external: {
+        label: "Visitar Takofy",
+        href: siteConfig.productUrls.takofy.es,
+        target: "_blank",
+      },
+    },
+    {
+      id: "nica-finanzas",
+      name: "Nica Finanzas",
+      category: "Herramientas financieras",
+      description:
+        "Calculadoras gratuitas de salario, préstamos y liquidación laboral para Nicaragua.",
+      status: "Web · Acceso gratuito",
+      preview: {
+        src: "/images/nica-finanzas/salario-detalle.webp",
+        alt: "Calculadora de salario de Nica Finanzas con el desglose de INSS e IR.",
+        width: 1440,
+        height: 1000,
+      },
+      external: {
+        label: "Abrir Nica Finanzas",
+        href: siteConfig.productUrls["nica-finanzas"],
+        target: "_blank",
+      },
+    },
+    {
+      id: "qavision",
+      name: "QAVision",
+      category: "Evidencia de pruebas",
+      description: "Captura, anota y organiza evidencia de pruebas en Windows.",
+      status: `Windows · v${qavisionTool.version}`,
+      external: {
+        label: "Descargar para Windows",
+        href: qavisionTool.downloadUrl,
+        target: "_blank",
+      },
+    },
+  ],
+  en: [
+    {
+      id: "viggo",
+      name: "VIGGO",
+      category: "Business operations",
+      description:
+        "Manage customers, services, sales, payments, inventory, and access in one system.",
+      status: "Web app",
+      preview: {
+        src: "/images/viggo/viggo-dashboard.webp",
+        alt: "VIGGO dashboard showing sales, inventory and business activity.",
+        width: 1917,
+        height: 945,
+      },
+      external: {
+        label: "Visit VIGGO",
+        href: siteConfig.productUrls.viggo,
+        target: "_blank",
+      },
+    },
+    {
+      id: "takofy",
+      name: "Takofy",
+      category: "Restaurants",
+      description:
+        "Coordinate front of house, kitchen, point of sale, and inventory, even without internet access.",
+      status: "Web · Play Store planned",
+      preview: {
+        src: "/images/takofy/pedido-detalle.webp",
+        alt: "Takofy showing an example order for a restaurant table.",
+        width: 1280,
+        height: 720,
+      },
+      external: {
+        label: "Visit Takofy",
+        href: siteConfig.productUrls.takofy.en,
+        target: "_blank",
+      },
+    },
+    {
+      id: "nica-finanzas",
+      name: "Nica Finanzas",
+      category: "Financial tools",
+      description: "Free salary, loan, and employment settlement calculators for Nicaragua.",
+      status: "Web · Free access",
+      preview: {
+        src: "/images/nica-finanzas/salario-detalle.webp",
+        alt: "Nica Finanzas salary calculator with INSS and income tax deductions.",
+        width: 1440,
+        height: 1000,
+      },
+      external: {
+        label: "Open Nica Finanzas",
+        href: siteConfig.productUrls["nica-finanzas"],
+        target: "_blank",
+      },
+    },
+    {
+      id: "qavision",
+      name: "QAVision",
+      category: "Testing evidence",
+      description: "Capture, annotate, and organize test evidence on Windows.",
+      status: `Windows · v${qavisionTool.version}`,
+      external: {
+        label: "Download for Windows",
+        href: qavisionTool.downloadUrl,
+        target: "_blank",
+      },
+    },
+  ],
+};
+
+export function getProducts(locale: Locale): ProductSummary[] {
+  return content[locale].map((product) => ({ ...product, href: getRoute(product.id, locale) }));
 }
 
-export const products: Product[] = [
-    {
-        id: 'viggo',
-        title: {
-            es: 'VIGGO',
-            en: 'VIGGO'
-        },
-        description: {
-            es: 'Plataforma integral para negocios que gestionan clientes, servicios, inventario, ventas, cobros, credenciales, accesos e historial en una sola operación.',
-            en: 'Integrated operations platform for businesses that manage customers, services, inventory, sales, payments, credentials, access control, and history in one operating flow.'
-        },
-        tags: ['Operations', 'Customers', 'Sales', 'Inventory', 'Access Control'],
-        category: {
-            es: 'Operación integral',
-            en: 'Integrated operations'
-        },
-        gradient: 'linear-gradient(135deg, #EEF2FF 0%, #DCE5FF 46%, #F4E7C1 100%)',
-        href: {
-            es: '/es/productos/viggo/',
-            en: '/en/products/viggo/',
-        },
-        publicUrl: 'https://facturaystock.com/viggo/',
-        externalLabel: {
-            es: 'Ir a VIGGO',
-            en: 'Go to VIGGO'
-        },
-        target: '_self',
-        isExternal: false,
-        featured: true,
-        status: {
-            es: 'Publicado',
-            en: 'Published'
-        },
-        features: {
-            es: [
-                'Clientes, servicios, vigencias y renovaciones',
-                'Ventas, cobros, transacciones e historial',
-                'Inventario avanzado con compras, stock por sede y Kardex',
-                'Credencial digital y validación operativa'
-            ],
-            en: [
-                'Customers, services, validity periods, and renewals',
-                'Sales, payments, transactions, and history',
-                'Advanced inventory with purchases, branch stock, and Kardex',
-                'Digital credential and operational validation'
-            ]
-        }
-    },
-    {
-        id: 'takofy',
-        title: {
-            es: 'Takofy',
-            en: 'Takofy'
-        },
-        description: {
-            es: 'Software de gestión para restaurantes diseñado para operación rápida, continuidad sin conexión, comandas, mesas, pagos, reportes y flujos de cocina.',
-            en: 'Restaurant management software built for fast operations, continuity without connection, orders, tables, payments, reporting and kitchen workflows.'
-        },
-        tags: ['Restaurants', 'POS', 'KDS', 'Inventory', 'Analytics'],
-        category: {
-            es: 'Operaciones de restaurantes',
-            en: 'Restaurant operations'
-        },
-        gradient: 'linear-gradient(135deg, #EEF4FF 0%, #D9E7FF 52%, #C7F1F1 100%)',
-        href: {
-            es: '/es/productos/takofy/',
-            en: '/en/products/takofy/',
-        },
-        publicUrl: 'https://takofy.app/es/',
-        externalLabel: {
-            es: 'Visitar sitio web',
-            en: 'Visit website'
-        },
-        target: '_self',
-        isExternal: false,
-        status: {
-            es: 'Publicado',
-            en: 'Published'
-        },
-        features: {
-            es: [
-                'Operación continua incluso sin conexión',
-                'Control de comandas, mesas y pagos',
-                'KDS, analítica e inventario integrado'
-            ],
-            en: [
-                'Continuous restaurant operations even without connection',
-                'Orders, tables, and payments control',
-                'KDS, analytics, and integrated inventory'
-            ]
-        }
-    },
-    {
-        id: 'nica-finanzas',
-        title: {
-            es: 'Nica Finanzas',
-            en: 'Nica Finanzas'
-        },
-        description: {
-            es: 'Calculadoras financieras para Nicaragua, incluyendo salario, préstamos y liquidación laboral.',
-            en: 'Financial calculators for Nicaragua, including salary, loan and employment settlement calculations.'
-        },
-        tags: ['Finance', 'Calculators', 'Salary', 'Loans', 'Nicaragua'],
-        category: {
-            es: 'Herramientas financieras',
-            en: 'Financial tools'
-        },
-        gradient: 'linear-gradient(135deg, #EAFBF7 0%, #D4F2E9 48%, #D9E7FF 100%)',
-        href: {
-            es: '/es/productos/nica-finanzas/',
-            en: '/en/products/nica-finanzas/',
-        },
-        publicUrl: 'https://nicafinanzas.com/',
-        externalLabel: {
-            es: 'Visitar sitio web',
-            en: 'Visit website'
-        },
-        target: '_self',
-        isExternal: false,
-        status: {
-            es: 'Publicado',
-            en: 'Published'
-        },
-        features: {
-            es: [
-                'Calculadora salarial para Nicaragua',
-                'Cálculos de préstamos',
-                'Liquidación laboral'
-            ],
-            en: [
-                'Salary calculator for Nicaragua',
-                'Loan calculations',
-                'Employment settlement calculations'
-            ]
-        }
-    },
-    {
-        id: 'qavision',
-        title: {
-            es: 'QAVision',
-            en: 'QAVision'
-        },
-        description: {
-            es: 'Herramienta gratuita de evidencia QA creada por Quantix para captura visual, grabación por zona, anotaciones y organización de evidencia.',
-            en: 'Free QA evidence tool created by Quantix for visual capture, zone recording, annotations and evidence organization.'
-        },
-        tags: ['QA', 'Evidence', 'Screen Capture', 'Video Recording', 'Windows'],
-        category: {
-            es: 'Herramienta de evidencia QA',
-            en: 'QA evidence tool'
-        },
-        gradient: 'linear-gradient(135deg, #F3F7FF 0%, #E2ECFF 48%, #EAFBF7 100%)',
-        href: {
-            es: '/es/productos/qavision/',
-            en: '/en/products/qavision/',
-        },
-        publicUrl: qavisionTool.downloadUrl,
-        externalLabel: {
-            es: 'Descargar',
-            en: 'Download'
-        },
-        target: '_self',
-        isExternal: false,
-        status: {
-            es: 'Herramienta gratuita',
-            en: 'Free tool'
-        },
-        features: {
-            es: [
-                'Captura de pantalla multi-modo',
-                'Grabación de video por zona con FFmpeg',
-                'Visor Pro con anotaciones y edición enriquecida'
-            ],
-            en: [
-                'Multi-mode screen capture',
-                'Zone video recording with FFmpeg',
-                'Pro Viewer with annotations and rich editing'
-            ]
-        }
-    }
-];
+export function getProduct(id: ProductId, locale: Locale): ProductSummary {
+  const product = getProducts(locale).find((item) => item.id === id);
+  if (!product) throw new Error(`Product not found: ${id}`);
+  return product;
+}

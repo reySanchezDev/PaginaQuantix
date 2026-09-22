@@ -1,0 +1,172 @@
+---
+import { getCaseStudies } from "../../data/case-studies";
+import { getRoute } from "../../i18n/routes";
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+import CasePreviewFigure from "../cases/CasePreviewFigure.astro";
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const es = locale === "es";
+const cases = getCaseStudies(locale);
+---
+
+<section id="case-studies" class="section case-studies" aria-labelledby="cases-title">
+  <Container>
+    <div class="cases-intro" data-reveal>
+      <p class="eyebrow">{es ? "Nuestro trabajo" : "Our work"}</p>
+      <div>
+        <h2 id="cases-title">
+          {es ? "Del trabajo diario al software." : "From daily work to working software."}
+        </h2>
+        <p>
+          {
+            es
+              ? "Takofy y VIGGO ya se usan en restaurantes y gimnasios de Nicaragua. Así resolvemos dos tareas de esos negocios."
+              : "Takofy and VIGGO are already used by restaurants and gyms in Nicaragua. Here is how we address two tasks in those businesses."
+          }
+        </p>
+      </div>
+    </div>
+    <div class="case-list">
+      {
+        cases.map((study) => (
+          <article class="case-preview">
+            <CasePreviewFigure study={study} locale={locale} />
+            <div class="case-copy" data-reveal data-motion-delay="80">
+              <p class="eyebrow">
+                {study.productName} · {study.clientContext}
+              </p>
+              <h3>{study.title}</h3>
+              <dl class="case-explanation">
+                <div>
+                  <>
+                    <dt>{es ? "El reto" : "The challenge"}</dt>
+                    <dd>{study.preview.challenge}</dd>
+                  </>
+                </div>
+                <div>
+                  <>
+                    <dt>{es ? "Lo que construimos" : "What we built"}</dt>
+                    <dd>{study.preview.solution}</dd>
+                  </>
+                </div>
+              </dl>
+              <a
+                class="case-link"
+                href={getRoute(study.id === "takofy" ? "case-takofy" : "case-viggo", locale)}
+              >
+                {es ? "Conocer el caso" : "Read the case study"}
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <p class="more-work">
+      {es ? "También desarrollamos" : "We also build"}
+      <a href={getRoute("nica-finanzas", locale)}>Nica Finanzas</a>
+      {es ? "y" : "and"}
+      <a href={getRoute("qavision", locale)}>QAVision</a>.
+      <a href={getRoute("products", locale)}
+        >{es ? "Explorar todos los productos" : "Explore all products"}</a
+      >
+    </p>
+  </Container>
+</section>
+
+<style>
+  .case-studies {
+    background: var(--color-surface-muted);
+  }
+  .cases-intro {
+    display: grid;
+    grid-template-columns: 0.45fr 1fr;
+    gap: 2rem;
+  }
+  .cases-intro h2 {
+    max-width: 24ch;
+  }
+  .cases-intro div > p {
+    max-width: 52ch;
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+  }
+  .case-list {
+    display: grid;
+    gap: 3.5rem;
+    margin-top: 3.5rem;
+  }
+  .case-preview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+  .case-copy h3 {
+    max-width: 26ch;
+  }
+  .case-explanation {
+    display: grid;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  .case-explanation dt {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+  .case-explanation dd {
+    max-width: 48ch;
+    margin: 0.25rem 0 0;
+    color: var(--color-ink-muted);
+  }
+  .case-link {
+    display: inline-flex;
+    gap: 1rem;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--text-sm);
+    text-underline-offset: 0.3em;
+  }
+  .case-link:hover,
+  .more-work a:hover {
+    color: var(--color-primary);
+  }
+  .more-work {
+    margin: 3rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-strong);
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  .more-work a {
+    display: inline-block;
+    padding-block: 0.65rem;
+    text-underline-offset: 0.25em;
+  }
+  .more-work a:last-child {
+    margin-left: 1rem;
+  }
+  @media (max-width: 48rem) {
+    .cases-intro,
+    .case-preview {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .case-list {
+      margin-top: 2rem;
+      gap: 2.5rem;
+    }
+    .case-preview + .case-preview {
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border-strong);
+    }
+    .more-work a:last-child {
+      display: block;
+      margin-left: 0;
+    }
+  }
+</style>

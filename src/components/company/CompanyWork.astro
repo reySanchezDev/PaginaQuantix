@@ -1,0 +1,174 @@
+---
+import type { getCompanyProfile } from "../../data/company-profile";
+import type { LinkItem } from "../../types/site";
+import Container from "../ui/Container.astro";
+import ViggoRegisterDetail from "../products/ViggoRegisterDetail.astro";
+
+interface Props {
+  content: ReturnType<typeof getCompanyProfile>["proof"];
+  processLink: LinkItem;
+}
+const { content, processLink } = Astro.props;
+const projects = [
+  {
+    name: "Takofy",
+    ...content.takofy,
+    image: "/images/takofy/pedido-detalle.webp",
+    width: 1280,
+    height: 720,
+    cropRegister: false,
+  },
+  {
+    name: "VIGGO",
+    ...content.viggo,
+    image: "/images/viggo/viggo-caja-gestion-2.webp",
+    width: 1916,
+    height: 940,
+    cropRegister: true,
+  },
+];
+---
+
+<section class="section company-work" aria-labelledby="company-work-title">
+  <Container>
+    <div class="company-work__intro" data-reveal>
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h2 id="company-work-title">{content.title}</h2>
+      <p class="company-work__lead">{content.lead}</p>
+    </div>
+    <div class="company-work__list">
+      {
+        projects.map((project) => (
+          <article>
+            <figure data-reveal="image">
+              <a
+                class="company-work__image"
+                href={project.href}
+                aria-label={`${content.linkLabel}: ${project.name}`}
+              >
+                {project.cropRegister ? (
+                  <ViggoRegisterDetail alt={project.alt} />
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.alt}
+                    width={project.width}
+                    height={project.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </a>
+              <figcaption>{project.caption}</figcaption>
+            </figure>
+            <div class="company-work__copy" data-reveal data-motion-delay="80">
+              <p class="eyebrow">{project.context}</p>
+              <h3>{project.name}</h3>
+              <p>{project.text}</p>
+              <a
+                class="company-work__link"
+                href={project.href}
+                aria-label={`${content.linkLabel}: ${project.name}`}
+              >
+                {content.linkLabel}
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <p class="company-work__next">
+      <a class="company-work__link" href={processLink.href}>
+        {processLink.label}
+        <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </Container>
+</section>
+
+<style>
+  .company-work {
+    background: var(--color-surface-muted);
+    border-block: 1px solid var(--color-border);
+  }
+  .company-work__intro {
+    max-width: 48rem;
+    margin-bottom: 3rem;
+  }
+  .company-work__lead {
+    max-width: 58ch;
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+  }
+  .company-work__list {
+    display: grid;
+    gap: 3rem;
+  }
+  article {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .company-work__image {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-control);
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+  figcaption {
+    margin-top: 0.75rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+  .company-work__copy {
+    max-width: 48ch;
+  }
+  .company-work__copy .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+  .company-work__copy > p:not(.eyebrow) {
+    margin: 1rem 0 0;
+    color: var(--color-ink-muted);
+  }
+  .company-work__link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    text-underline-offset: 0.25em;
+  }
+  .company-work__link:hover {
+    color: var(--color-primary);
+  }
+  .company-work__next {
+    margin: 2.5rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border-strong);
+  }
+  .company-work__next .company-work__link {
+    margin-top: 0;
+  }
+  @media (max-width: 48rem) {
+    article {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    article + article {
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border-strong);
+    }
+  }
+</style>

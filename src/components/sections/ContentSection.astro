@@ -1,0 +1,190 @@
+---
+import type { ContentSection as SectionContent } from "../../types/site";
+import Container from "../ui/Container.astro";
+interface Props {
+  content: SectionContent;
+}
+const { content } = Astro.props;
+const sectionId =
+  content.id ??
+  `section-${content.title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+<section
+  id={sectionId}
+  class:list={["section", "content-section", { "section--soft": content.variant === "soft" }]}
+  aria-labelledby={`${sectionId}-title`}
+>
+  <Container class="content-section__layout">
+    <div class="section-intro">
+      {content.eyebrow && <p class="eyebrow">{content.eyebrow}</p>}<h2 id={`${sectionId}-title`}>
+        {content.title}
+      </h2>{content.lead && <p>{content.lead}</p>}
+    </div>
+    <div class="content-list">
+      {
+        content.items.map((item, index) => (
+          <details open={index === 0}>
+            <summary>
+              <div class="summary-copy">
+                <h3>{item.title}</h3>
+                {item.summary && <p>{item.summary}</p>}
+              </div>
+              <span class="expand-icon" aria-hidden="true" />
+            </summary>
+            <div class="details-body">
+              <p>{item.text}</p>
+              {item.link && (
+                <a class="details-link" href={item.link.href}>
+                  {item.link.label}
+                  <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+<style>
+  .content-section__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: start;
+  }
+  .section-intro {
+    margin: 0;
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+  }
+  .section-intro h2 {
+    font-size: var(--text-section);
+    line-height: 1.12;
+  }
+  .content-list {
+    border-top: 1px solid var(--color-border-strong);
+  }
+  details {
+    border-bottom: 1px solid var(--color-border);
+  }
+  summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1.5rem;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4rem;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:hover h3 {
+    color: var(--color-primary);
+  }
+  h3 {
+    font-size: var(--text-heading);
+    line-height: 1.25;
+    transition: color var(--transition-fast);
+  }
+  .summary-copy p {
+    margin: 0.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+    line-height: 1.5;
+  }
+  .details-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    margin: -0.75rem 0 1rem;
+    font-size: var(--text-sm);
+    text-underline-offset: 0.3em;
+  }
+  .details-link:hover {
+    color: var(--color-primary);
+  }
+  .expand-icon {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .expand-icon::before,
+  .expand-icon::after {
+    position: absolute;
+    content: "";
+    width: 0.65rem;
+    height: 1px;
+    background: var(--color-ink);
+    left: calc(50% - 0.325rem);
+    top: 50%;
+  }
+  .expand-icon::after {
+    transform: rotate(90deg);
+    transition: transform 260ms ease;
+  }
+  details[open] .expand-icon::after {
+    transform: rotate(0);
+  }
+  details[open] h3 {
+    color: var(--color-primary);
+  }
+  .details-body {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .details-body > p {
+    max-width: 60ch;
+    margin: 0 2.5rem 1.75rem 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-base);
+    line-height: 1.75;
+  }
+  @supports selector(details::details-content) {
+    details::details-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition:
+        grid-template-rows 260ms ease,
+        opacity 260ms ease,
+        content-visibility 260ms allow-discrete;
+    }
+    details[open]::details-content {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+  }
+  @media (max-width: 52rem) {
+    .content-section__layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .section-intro {
+      position: static;
+    }
+  }
+  @media (max-width: 25rem) {
+    summary {
+      gap: 0.5rem;
+    }
+    .details-body > p {
+      margin-right: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    details::details-content,
+    .expand-icon::after,
+    h3 {
+      transition: none;
+    }
+  }
+</style>

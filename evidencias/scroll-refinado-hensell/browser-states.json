@@ -1,0 +1,42 @@
+{
+  "start": [
+    {
+      "class": "case-image",
+      "opacity": "0.000397694",
+      "state": "running",
+      "transform": "matrix(1, 0, 0, 1, 0, 15.9936)"
+    },
+    {
+      "class": "case-copy",
+      "opacity": "0",
+      "state": "running",
+      "transform": "matrix(1, 0, 0, 1, 0, 12)"
+    }
+  ],
+  "revisited": [
+    {
+      "class": "case-image",
+      "opacity": "1",
+      "state": "done",
+      "transform": "none"
+    },
+    {
+      "class": "case-copy",
+      "opacity": "1",
+      "state": "done",
+      "transform": "none"
+    },
+    {
+      "class": "case-image",
+      "opacity": "1",
+      "state": "done",
+      "transform": "none"
+    },
+    {
+      "class": "case-copy",
+      "opacity": "1",
+      "state": "done",
+      "transform": "none"
+    }
+  ]
+}

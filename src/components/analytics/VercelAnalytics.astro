@@ -6,7 +6,7 @@ const pathname = Astro.url.pathname;
 <vercel-analytics data-params={params} data-pathname={pathname}></vercel-analytics>
 
 <script>
-  import { initVercelAnalytics, trackPageview } from "../../lib/vercelAnalytics";
+  import { initVercelAnalytics, trackPageview } from "../../lib/vercel-analytics";
 
   function getBasePath() {
     try {

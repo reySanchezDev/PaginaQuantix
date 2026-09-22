@@ -1,0 +1,125 @@
+---
+import type { LegalPageContent, Locale } from "../../types/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../ui/Container.astro";
+interface Props {
+  locale: Locale;
+  content: LegalPageContent;
+}
+const { locale, content } = Astro.props;
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
+  <header class="legal-hero">
+    <Container
+      ><p class="eyebrow">{content.eyebrow}</p><h1>{content.title}</h1><p class="legal-hero__meta">
+        {content.updatedLabel}: {content.updated}
+      </p><p class="legal-hero__intro">{content.intro}</p></Container
+    >
+  </header>
+  <section class="section">
+    <Container class="legal-layout"
+      ><nav
+        class="legal-index"
+        aria-label={locale === "es" ? "Contenido del documento" : "Document contents"}
+      >
+        <p class="eyebrow">{locale === "es" ? "En esta página" : "On this page"}</p><ol role="list">
+          {
+            content.sections.map((section, index) => (
+              <li>
+                <a href={`#legal-${index + 1}`}>{section.title}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav><div class="prose">
+        {
+          content.sections.map((section, index) => (
+            <section id={`legal-${index + 1}`}>
+              <h2>{section.title}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </section>
+          ))
+        }
+      </div></Container
+    >
+  </section>
+</BaseLayout>
+<style>
+  .legal-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  h1 {
+    max-width: 24ch;
+    font-size: var(--text-title);
+    line-height: 1.08;
+  }
+  .legal-hero__meta {
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+  .legal-hero__intro {
+    max-width: 60ch;
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+    line-height: 1.6;
+  }
+  .legal-layout {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .legal-index {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border-strong);
+  }
+  li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .legal-index a {
+    display: block;
+    padding: 0.9rem 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+  .legal-index a:hover {
+    color: var(--color-primary);
+  }
+  .prose section {
+    padding: 0 0 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .prose h2 {
+    margin: 0 0 1.5rem;
+    font-size: var(--text-heading);
+    line-height: 1.25;
+  }
+  .prose p {
+    max-width: 65ch;
+    font-size: var(--text-base);
+    line-height: 1.75;
+  }
+  @media (max-width: 48rem) {
+    .legal-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .legal-index {
+      position: static;
+    }
+  }
+</style>

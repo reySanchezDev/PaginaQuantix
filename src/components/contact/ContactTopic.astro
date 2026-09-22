@@ -1,0 +1,93 @@
+---
+import { contactTopics } from "../../lib/contact-context";
+import type { Locale } from "../../types/site";
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<div class="contact-topic" data-contact-context data-locale={locale} hidden>
+  <label for="contact-topic"
+    >{locale === "es" ? "Quiero conversar sobre" : "I’d like to discuss"}</label
+  >
+  <select id="contact-topic" name="sobre">
+    {
+      Object.entries(contactTopics).map(([value, labels]) => (
+        <option value={value}>{labels[locale]}</option>
+      ))
+    }
+  </select>
+  <p>
+    {
+      locale === "es"
+        ? "Este será el asunto de tu correo. Puedes cambiarlo."
+        : "This will be your email subject. You can change it."
+    }
+  </p>
+</div>
+
+<script>
+  import { getContactMailto, getContactHref, parseContactTopic } from "../../lib/contact-context";
+  const root = document.querySelector<HTMLElement>("[data-contact-context]");
+  const select = root?.querySelector<HTMLSelectElement>("select");
+  if (root && select) {
+    const locale = root.dataset.locale === "en" ? "en" : "es";
+    const applyTopic = () => {
+      const topic = parseContactTopic(select.value) ?? "proyecto";
+      document
+        .querySelectorAll<HTMLAnchorElement>(".contact-channels a[href^='mailto:']")
+        .forEach((link) => {
+          link.href = getContactMailto(locale, topic);
+        });
+      document.querySelectorAll<HTMLAnchorElement>("[data-language-switch]").forEach((link) => {
+        const target = link.dataset.languageSwitch === "en" ? "en" : "es";
+        link.href = getContactHref(target, topic);
+      });
+    };
+    const restoreTopic = () => {
+      select.value =
+        parseContactTopic(new URLSearchParams(location.search).get("sobre")) ?? "proyecto";
+      applyTopic();
+    };
+    select.addEventListener("change", () => {
+      const topic = parseContactTopic(select.value) ?? "proyecto";
+      const url = new URL(location.href);
+      url.searchParams.set("sobre", topic);
+      history.replaceState(history.state, "", url);
+      applyTopic();
+    });
+    window.addEventListener("pageshow", restoreTopic);
+    window.addEventListener("popstate", restoreTopic);
+    restoreTopic();
+    root.hidden = false;
+  }
+</script>
+
+<style>
+  .contact-topic {
+    margin: 1.5rem 0;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+  select {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-control);
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font: inherit;
+    cursor: pointer;
+  }
+  p {
+    margin: 0.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+</style>

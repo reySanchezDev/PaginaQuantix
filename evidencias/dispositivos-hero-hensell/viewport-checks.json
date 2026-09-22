@@ -1,0 +1,22 @@
+[
+  {
+    "captionGap": 16.19061279296875,
+    "documentWidth": 305,
+    "imagesReady": true,
+    "viewport": 320
+  },
+  {
+    "captionGap": 29.20458984375,
+    "documentWidth": 753,
+    "imagesReady": true,
+    "viewport": 768
+  },
+  {
+    "captionGap": 17.1146240234375,
+    "documentWidth": 1228,
+    "imagesReady": true,
+    "primaryInverse": true,
+    "removedLabels": 0,
+    "viewport": 1243
+  }
+]

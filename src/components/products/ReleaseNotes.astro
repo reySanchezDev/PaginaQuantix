@@ -1,0 +1,114 @@
+---
+import type { ProductPageContent } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  content: NonNullable<ProductPageContent["release"]>;
+}
+
+const { content } = Astro.props as Props;
+---
+
+<section class="release-notes" aria-labelledby="release-title">
+  <Container class="release-notes__layout">
+    <div>
+      <p class="eyebrow">{content.label}</p>
+      <h2 id="release-title">v{content.version}</h2>
+      {content.date && <time datetime={content.date}>{content.date}</time>}
+    </div>
+    <div class="release-notes__detail">
+      <ul>{content.changes.map((change) => <li>{change}</li>)}</ul>
+      {
+        content.checksum && (
+          <dl>
+            <dt>{content.checksum.label}</dt>
+            <dd>
+              <span>
+                {content.checksum.algorithm} · {content.checksum.size}
+              </span>
+              <code>{content.checksum.value}</code>
+            </dd>
+          </dl>
+        )
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .release-notes {
+    padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+    background: var(--color-surface-muted);
+    color: var(--color-ink);
+  }
+
+  .release-notes__layout {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .eyebrow,
+  time {
+    color: var(--color-ink-muted);
+  }
+
+  h2 {
+    margin-bottom: var(--space-3);
+    color: var(--color-ink);
+    font-size: var(--text-section);
+  }
+
+  time {
+    font-size: var(--text-sm);
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding-left: var(--space-5);
+    color: var(--color-ink-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  dl {
+    margin: var(--space-8) 0 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border-strong);
+  }
+
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  dt,
+  dd span {
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  dt {
+    font-weight: 500;
+  }
+
+  dd {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  code {
+    overflow-wrap: anywhere;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 56rem) {
+    .release-notes__layout {
+      grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1.55fr);
+    }
+  }
+</style>

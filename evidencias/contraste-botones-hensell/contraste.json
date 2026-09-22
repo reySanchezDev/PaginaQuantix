@@ -1,0 +1,211 @@
+[
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": true,
+    "outline": "rgb(255, 249, 237) solid 2px",
+    "path": "/es/",
+    "selector": ".cta-primary",
+    "text": "Hablemos de tu proyecto↗",
+    "ratio": 6.79
+  },
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": true,
+    "outline": "rgb(255, 249, 237) solid 2px",
+    "path": "/es/",
+    "selector": ".hero-contact",
+    "text": "Cuéntanos tu proyecto↗",
+    "ratio": 6.79
+  },
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(187, 62, 32)",
+    "hover": false,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/",
+    "selector": ".process-link .button--link",
+    "text": "Conoce Quantix",
+    "ratio": 4.99
+  },
+  {
+    "background": "rgb(187, 62, 32)",
+    "focus": true,
+    "foreground": "rgb(255, 249, 237)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/",
+    "selector": ".desktop-nav .contact-link",
+    "text": "Contacto",
+    "ratio": 5.24
+  },
+  {
+    "background": "rgb(155, 47, 22)",
+    "focus": true,
+    "foreground": "rgb(255, 249, 237)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/productos/takofy/",
+    "selector": ".product-hero .button",
+    "text": "Visitar Takofy↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(255, 249, 237)",
+    "focus": false,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": false,
+    "outline": "rgb(155, 47, 22) none 3px",
+    "path": "/es/productos/takofy/",
+    "selector": ".cta-primary",
+    "text": "Visitar Takofy↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(155, 47, 22)",
+    "focus": true,
+    "foreground": "rgb(255, 249, 237)",
+    "hover": true,
+    "outline": "rgb(255, 249, 237) solid 2px",
+    "path": "/es/productos/takofy/",
+    "selector": ".cta-secondary",
+    "text": "Hablar con Quantix",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(155, 47, 22)",
+    "focus": true,
+    "foreground": "rgb(255, 249, 237)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/soluciones/",
+    "selector": ".page-hero .button--primary",
+    "text": "Hablemos de tu proyecto↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": false,
+    "outline": "rgb(255, 249, 237) solid 2px",
+    "path": "/es/soluciones/",
+    "selector": ".cta-primary",
+    "text": "Hablemos de tu proyecto↗",
+    "ratio": 6.79
+  },
+  {
+    "background": "rgb(155, 47, 22)",
+    "focus": true,
+    "foreground": "rgb(255, 249, 237)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/404.html",
+    "selector": ".button--primary",
+    "text": "Go to the English site",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(238, 235, 227)",
+    "focus": true,
+    "foreground": "rgb(37, 36, 31)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/404.html",
+    "selector": ".button--secondary",
+    "text": "Ir al sitio en español",
+    "ratio": 13.05
+  },
+  {
+    "background": "rgb(155, 47, 22)",
+    "focus": true,
+    "foreground": "rgb(255, 249, 237)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/contacto/",
+    "selector": ".email-actions .button",
+    "text": "Abrir app de correo↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(238, 235, 227)",
+    "focus": true,
+    "foreground": "rgb(37, 36, 31)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/contacto/",
+    "selector": ".copy-email",
+    "text": "Copiar dirección",
+    "ratio": 13.05
+  },
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(187, 62, 32)",
+    "hover": true,
+    "outline": "rgb(187, 62, 32) solid 2px",
+    "path": "/es/contacto/",
+    "selector": ".whatsapp-contact",
+    "text": "También por WhatsApp+505 8521 3462↗",
+    "ratio": 4.99
+  },
+  {
+    "background": "rgb(255, 249, 237)",
+    "focus": false,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": false,
+    "outline": "rgb(155, 47, 22) none 3px",
+    "path": "/es/trabajo/",
+    "selector": ".cta-primary",
+    "text": "Hablemos de tu proyecto↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(255, 249, 237)",
+    "focus": false,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": false,
+    "outline": "rgb(155, 47, 22) none 3px",
+    "path": "/es/nosotros/",
+    "selector": ".cta-primary",
+    "text": "Hablemos de tu proyecto↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": false,
+    "outline": "rgb(255, 249, 237) solid 2px",
+    "path": "/es/productos/",
+    "selector": ".cta-primary",
+    "text": "Hablemos de tu proyecto↗",
+    "ratio": 6.79
+  },
+  {
+    "background": "rgb(255, 249, 237)",
+    "focus": false,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": false,
+    "outline": "rgb(155, 47, 22) none 3px",
+    "path": "/es/productos/viggo/",
+    "selector": ".cta-primary",
+    "text": "Visitar VIGGO↗",
+    "ratio": 7.12
+  },
+  {
+    "background": "rgb(246, 244, 238)",
+    "focus": true,
+    "foreground": "rgb(155, 47, 22)",
+    "hover": true,
+    "outline": "rgb(255, 249, 237) solid 2px",
+    "path": "/es/productos/nica-finanzas/",
+    "selector": ".cta-primary",
+    "text": "Abrir Nica Finanzas↗",
+    "ratio": 6.79
+  }
+]

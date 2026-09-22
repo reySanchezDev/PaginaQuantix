@@ -1,12 +1,12 @@
 ---
-interface Props {
+interface Props extends Omit<astroHTML.JSX.HTMLAttributes, "class"> {
   class?: string;
-  as?: string;
+  narrow?: boolean;
 }
 
-const { class: className, as: Element = 'div' } = Astro.props;
+const { class: className, narrow = false, ...attributes } = Astro.props as Props;
 ---
 
-<Element class:list={['container', className]}>
+<div class:list={["container", { "container--narrow": narrow }, className]} {...attributes}>
   <slot />
-</Element>
+</div>

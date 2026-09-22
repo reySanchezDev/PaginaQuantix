@@ -1,0 +1,55 @@
+/* Small, shared responses. No motion is needed to discover or use an action. */
+:root {
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --motion-feedback: 180ms;
+  --motion-reveal: 480ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :where(
+      .hero-work-link,
+      .case-link,
+      .approach-link,
+      .company-work__link,
+      .overview-link,
+      .product-back,
+      .button
+    )
+    > span[aria-hidden="true"]:not(.button__spinner) {
+    display: inline-block;
+    transition: transform var(--motion-feedback) var(--motion-ease-out);
+  }
+  :where(.case-link, .approach-link, .company-work__link):is(:hover, :focus-visible)
+    > span[aria-hidden="true"] {
+    transform: translateX(4px);
+  }
+  :where(.hero-work-link, .overview-link):is(:hover, :focus-visible) > span[aria-hidden="true"] {
+    transform: translateY(3px);
+  }
+  .product-back:is(:hover, :focus-visible) > span[aria-hidden="true"] {
+    transform: translateX(-4px);
+  }
+  .button:not([aria-disabled="true"]):is(:hover, :focus-visible)
+    > span[aria-hidden="true"]:not(.button__spinner) {
+    transform: translate(2px, -2px);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .case-image img,
+    .gallery-frame--link img {
+      transition: transform 480ms var(--motion-ease-out);
+    }
+    .case-image:hover img,
+    .gallery-frame--link:hover img {
+      transform: scale(1.025);
+    }
+  }
+}
+
+@media print {
+  [data-enter],
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

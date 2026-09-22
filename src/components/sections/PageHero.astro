@@ -1,0 +1,76 @@
+---
+import type { HeroContent } from "../../types/site";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+interface Props {
+  content: HeroContent;
+  compact?: boolean;
+}
+const { content, compact = false } = Astro.props;
+---
+
+<section class:list={["page-hero", { "page-hero--compact": compact }]} aria-labelledby="page-title">
+  <Container>
+    <p class="eyebrow">{content.eyebrow}</p>
+    <div class="page-hero__copy" data-enter>
+      <h1 id="page-title">{content.title}</h1><p class="page-hero__lead">{content.lead}</p>
+      {
+        (content.primary || content.secondary) && (
+          <div class="page-hero__actions">
+            {content.primary && (
+              <Button href={content.primary.href} target={content.primary.target} size="lg">
+                {content.primary.label}
+                <span aria-hidden="true">↗</span>
+              </Button>
+            )}
+            {content.secondary && (
+              <Button
+                href={content.secondary.href}
+                target={content.secondary.target}
+                variant="secondary"
+                size="lg"
+              >
+                {content.secondary.label}
+              </Button>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</section>
+<style>
+  .page-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 7vw, 6rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .page-hero--compact {
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .page-hero__copy {
+    max-width: 60rem;
+  }
+  h1 {
+    max-width: 23ch;
+    font-size: var(--text-title);
+    line-height: 1.08;
+  }
+  .page-hero__lead {
+    max-width: 57ch;
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+    line-height: 1.6;
+  }
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 25rem) {
+    .page-hero__actions {
+      display: grid;
+    }
+  }
+</style>

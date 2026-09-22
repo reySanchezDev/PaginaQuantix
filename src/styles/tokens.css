@@ -1,83 +1,100 @@
 :root {
-  /* =========================================
-     BRAND THEME (Enterprise Azure + Controlled Teal)
-     ========================================= */
-  --bg: #F7FAFC;
-  --bg-rgb: 247, 250, 252;
-  --surface: #FFFFFF;
-  --surface-rgb: 255, 255, 255;
-  --surface-light: #FCFDFE;
-  --surface-2: #F0F5F9;
-  --surface-3: #E3EBF3;
+  color-scheme: light;
 
-  --text: #142D42;
-  --text-muted: #5A6D80;
-  --text-subtle: #8A99A8;
+  --color-canvas: #f6f4ee;
+  --color-surface: #fffdf8;
+  --color-surface-raised: #fffdf8;
+  --color-surface-muted: #eeebe3;
+  --color-ink: #25241f;
+  --color-ink-muted: #626057;
+  --color-ink-subtle: #706d64;
+  --color-border: #dfdcd2;
+  --color-border-strong: #b7b3a6;
+  --color-control-border: #898476;
+  --color-primary: #bb3e20;
+  --color-primary-hover: #9b2f16;
+  --color-primary-soft: #f8e4db;
+  --color-accent: #e45a32;
+  --color-accent-soft: #f8e4db;
+  --color-success: #176447;
+  --color-warning: #8a5b12;
+  --color-danger: #9d2f3f;
+  --color-focus: #bb3e20;
+  --color-focus-inverse: #ffb28f;
+  --color-overlay: rgb(29 30 25 / 0.68);
+  --color-inverse: #fff9ed;
+  --color-inverse-muted: #cbc7b9;
+  --color-dark: #292a23;
+  --color-dark-raised: #36382e;
+  --color-dark-deep: #1d1e19;
 
-  --border: #DCE5EE;
-  --border-strong: #C7D4E0;
+  --product-viggo: #715031;
+  --product-viggo-soft: #ede3cf;
+  --product-takofy: #426047;
+  --product-takofy-soft: #e5eadc;
+  --product-finance: #8c442c;
+  --product-finance-soft: #f6e0d3;
+  --product-qavision: #4e557d;
+  --product-qavision-soft: #e5e5ef;
 
-  --primary: #245BC8;
-  --primary-hover: #1D499F;
-  --primary-soft: #EDF4FF;
-  --primary-rgb: 36, 91, 200;
+  --font-body: "IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Bricolage Grotesque Variable", "Arial Narrow", sans-serif;
 
-  --accent: #168B8A;
-  --accent-rgb: 22, 139, 138;
-  --accent-hover: #106F70;
-  --accent-soft: #EAF8F7;
+  --text-display: clamp(3rem, 1.8rem + 4.5vw, 5.5rem);
+  --text-title: clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+  --text-section: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --text-heading: clamp(1.375rem, 1.125rem + 1vw, 1.875rem);
+  --text-subtitle: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --text-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-label: 0.8125rem;
 
-  --success: #1FA97A;
-  --warning: #D59B28;
-  --danger: #D46767;
-  --info: #3190C5;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.25rem;
+  --text-6xl: 4.5rem;
 
-  --focus-ring: rgba(36, 91, 200, 0.24);
-  --link: #245BC8;
-  --link-hover: #1D499F;
+  --leading-tight: 1.08;
+  --leading-snug: 1.28;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.66;
 
-  /* =========================================
-     DESIGN TOKENS (Enterprise 8px Grid & Calm UI)
-     ========================================= */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 18px;
-  --radius-full: 9999px;
-
-  /* Enterprise shadows: present, but restrained */
-  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.05);
-  --shadow-md: 0 8px 18px -14px rgb(15 23 42 / 0.26);
-  --shadow-lg: 0 16px 34px -24px rgb(15 23 42 / 0.30);
-  --shadow-xl: 0 24px 48px -34px rgb(15 23 42 / 0.34);
-
-  /* Spacing Scale (Strict 4px/8px base) */
   --space-1: 0.25rem;
-  /* 4px */
   --space-2: 0.5rem;
-  /* 8px */
   --space-3: 0.75rem;
-  /* 12px */
   --space-4: 1rem;
-  /* 16px */
   --space-5: 1.25rem;
-  /* 20px */
   --space-6: 1.5rem;
-  /* 24px */
   --space-8: 2rem;
-  /* 32px */
   --space-10: 2.5rem;
-  /* 40px */
   --space-12: 3rem;
-  /* 48px */
   --space-16: 4rem;
-  /* 64px */
   --space-20: 5rem;
-  /* 80px */
   --space-24: 6rem;
-  /* 96px */
   --space-32: 8rem;
-  /* 128px */
-  --space-40: 10rem;
-  /* 160px */
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-control: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgb(37 36 31 / 0.035);
+  --shadow-control: 0 0.5rem 1.4rem -1rem rgb(37 36 31 / 0.24);
+  --shadow-control-hover: 0 0.9rem 2rem -1.15rem rgb(37 36 31 / 0.42);
+  --shadow-md: 0 1.5rem 4rem -3rem rgb(37 36 31 / 0.28);
+  --shadow-lg: 0 2rem 5rem -3rem rgb(37 36 31 / 0.36);
+  --focus-ring: 0 0 0 3px rgb(187 62 32 / 0.3);
+
+  --container: 80rem;
+  --container-narrow: 48rem;
+  --header-height: 5rem;
+  --transition-fast: 160ms ease;
+  --transition-base: 240ms ease;
 }

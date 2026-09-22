@@ -1,0 +1,80 @@
+---
+import type { CtaContent } from "../../types/site";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+interface Props {
+  content: CtaContent;
+}
+const { content } = Astro.props;
+---
+
+<section class="cta-section" aria-labelledby="cta-title">
+  <Container>
+    <p class="eyebrow">{content.eyebrow}</p><div class="cta-section__content" data-reveal>
+      <h2 id="cta-title">{content.title}</h2><div>
+        <p>{content.text}</p><div class="cta-section__actions">
+          <Button
+            href={content.primary.href}
+            target={content.primary.target}
+            size="lg"
+            tone="inverse"
+            class="cta-primary">{content.primary.label}<span aria-hidden="true">↗</span></Button
+          >{
+            content.secondary && (
+              <Button
+                href={content.secondary.href}
+                target={content.secondary.target}
+                variant="secondary"
+                tone="inverse"
+                size="lg"
+                class="cta-secondary"
+              >
+                {content.secondary.label}
+              </Button>
+            )
+          }
+        </div>
+      </div>
+    </div></Container
+  >
+</section>
+<style>
+  .cta-section {
+    background: var(--color-primary);
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+  .eyebrow {
+    color: var(--color-inverse);
+    margin: 0 0 1.5rem;
+  }
+  .cta-section__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  h2 {
+    max-width: 19ch;
+    color: var(--color-inverse);
+    font-size: var(--text-section);
+    line-height: 1.12;
+  }
+  .cta-section__content p {
+    max-width: 46ch;
+    margin: 0 0 1.75rem;
+    color: var(--color-inverse);
+    font-size: var(--text-lead);
+    line-height: 1.65;
+  }
+  .cta-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  @media (max-width: 52rem) {
+    .cta-section__content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

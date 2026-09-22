@@ -1,0 +1,254 @@
+{
+  "layouts": [
+    {
+      "locale": "es",
+      "width": 320,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 360,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 390,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 430,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 768,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 844,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 900,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 1024,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "es",
+      "width": 1440,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 140.421875,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 360,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 430,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 844,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 900,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "overflow": false,
+      "titleLines": 3,
+      "overlap": false,
+      "previewVisible": true,
+      "linkTarget": {
+        "width": 135.828125,
+        "height": 44
+      },
+      "imageLoaded": true
+    }
+  ],
+  "accessibility": [],
+  "errors": [],
+  "links": [
+    {
+      "locale": "es",
+      "focus": true,
+      "href": "/es/productos/viggo/",
+      "destination": "http://127.0.0.1:4322/es/productos/viggo/"
+    },
+    {
+      "locale": "en",
+      "focus": true,
+      "href": "/en/products/viggo/",
+      "destination": "http://127.0.0.1:4322/en/products/viggo/"
+    }
+  ]
+}

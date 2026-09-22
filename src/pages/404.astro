@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
+import Container from "../components/ui/Container.astro";
+import { notFoundContent as content } from "../data/not-found-content";
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} locale="en" noindex>
+  <section class="not-found">
+    <Container narrow>
+      <p class="error-code">{content.code}</p>
+      <h1>{content.title}<br /><span lang="es">{content.titleEs}</span></h1>
+      <p>
+        {content.message}<br />
+        <span lang="es">{content.messageEs}</span>
+      </p>
+      <div class="not-found__actions">
+        <Button href={content.actions.en.href} hreflang="en" size="lg">
+          {content.actions.en.label}
+        </Button>
+        <Button href={content.actions.es.href} hreflang="es" variant="secondary" size="lg">
+          <span lang="es">{content.actions.es.label}</span>
+        </Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    min-height: 68svh;
+    place-items: center;
+    padding: var(--space-20) 0;
+    background: var(--color-canvas);
+  }
+
+  .error-code {
+    margin: 0 0 1.5rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: var(--text-heading);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  h1 {
+    max-width: 24ch;
+    font-size: var(--text-section);
+    line-height: 1.12;
+  }
+  p:not(.error-code) {
+    max-width: 55ch;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lead);
+    line-height: var(--leading-relaxed);
+  }
+  .not-found__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+</style>
