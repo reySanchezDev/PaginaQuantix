@@ -10,6 +10,8 @@ export const siteConfig = {
       es: "https://takofy.app/es/",
       en: "https://takofy.app/en/",
     },
+    oktara: "https://oktara.takofy.app/",
+    tentrix: "https://tentrix.takofy.app/",
     "nica-finanzas": "https://nicafinanzas.com/",
     qavision: "https://pub-7f7968ed52f3476cb305c24354c4468d.r2.dev/QAVision-Setup-1.0.3.exe",
   },

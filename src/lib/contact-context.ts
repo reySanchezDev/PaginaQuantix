@@ -10,6 +10,8 @@ export const contactTopics = {
   modernizacion: { es: "Actualizar un sistema", en: "Updating a system" },
   viggo: { es: "VIGGO", en: "VIGGO" },
   takofy: { es: "Takofy", en: "Takofy" },
+  oktara: { es: "Oktara", en: "Oktara" },
+  tentrix: { es: "Tentrix", en: "Tentrix" },
   "nica-finanzas": { es: "Nica Finanzas", en: "Nica Finanzas" },
   qavision: { es: "QAVision", en: "QAVision" },
 } as const;
@@ -31,7 +33,14 @@ export function getContactMailto(locale: Locale, topic: ContactTopic): string {
 
 export function getPageContactTopic(pathname: string): ContactTopic | undefined {
   const path = normalizePath(pathname);
-  const products: ProductId[] = ["viggo", "takofy", "nica-finanzas", "qavision"];
+  const products: ProductId[] = [
+    "viggo",
+    "takofy",
+    "oktara",
+    "tentrix",
+    "nica-finanzas",
+    "qavision",
+  ];
   return products.find((id) =>
     (["es", "en"] as const).some(
       (locale) =>

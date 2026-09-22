@@ -11,6 +11,8 @@ const routeMap = {
   terms: { es: "/es/terminos/", en: "/en/terms/" },
   viggo: { es: "/es/productos/viggo/", en: "/en/products/viggo/" },
   takofy: { es: "/es/productos/takofy/", en: "/en/products/takofy/" },
+  oktara: { es: "/es/productos/oktara/", en: "/en/products/oktara/" },
+  tentrix: { es: "/es/productos/tentrix/", en: "/en/products/tentrix/" },
   "nica-finanzas": {
     es: "/es/productos/nica-finanzas/",
     en: "/en/products/nica-finanzas/",

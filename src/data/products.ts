@@ -43,6 +43,44 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       },
     },
     {
+      id: "oktara",
+      name: "Oktara",
+      category: "Operaciones por sucursal",
+      description:
+        "Estandariza rutinas, coordina equipos y da seguimiento al cumplimiento en cada ubicación.",
+      status: "Aplicación web · Acceso por consulta",
+      preview: {
+        src: "/images/oktara/es/reports.png",
+        alt: "Panel de Oktara con cumplimiento, calidad y seguimiento por sucursal.",
+        width: 1920,
+        height: 1080,
+      },
+      external: {
+        label: "Abrir Oktara",
+        href: siteConfig.productUrls.oktara,
+        target: "_blank",
+      },
+    },
+    {
+      id: "tentrix",
+      name: "Tentrix",
+      category: "Soporte y mesa de ayuda",
+      description:
+        "Organiza solicitudes, responsables, prioridades y tiempos de atención en un solo lugar.",
+      status: "Aplicación web · Acceso por consulta",
+      preview: {
+        src: "/images/tentrix/es/overview.png",
+        alt: "Panel de Tentrix con estados de tickets, alertas y actividad reciente.",
+        width: 1920,
+        height: 1080,
+      },
+      external: {
+        label: "Abrir Tentrix",
+        href: siteConfig.productUrls.tentrix,
+        target: "_blank",
+      },
+    },
+    {
       id: "nica-finanzas",
       name: "Nica Finanzas",
       category: "Herramientas financieras",
@@ -110,6 +148,43 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Visit Takofy",
         href: siteConfig.productUrls.takofy.en,
+        target: "_blank",
+      },
+    },
+    {
+      id: "oktara",
+      name: "Oktara",
+      category: "Multi-location operations",
+      description:
+        "Standardize routines, coordinate teams, and track completion across every location.",
+      status: "Web app · Access by request",
+      preview: {
+        src: "/images/oktara/en/reports.png",
+        alt: "Oktara dashboard showing completion, quality, and follow-up by location.",
+        width: 1920,
+        height: 1080,
+      },
+      external: {
+        label: "Open Oktara",
+        href: siteConfig.productUrls.oktara,
+        target: "_blank",
+      },
+    },
+    {
+      id: "tentrix",
+      name: "Tentrix",
+      category: "Support and help desk",
+      description: "Organize requests, owners, priorities, and service times in one place.",
+      status: "Web app · Access by request",
+      preview: {
+        src: "/images/tentrix/es/overview.png",
+        alt: "Tentrix dashboard showing ticket statuses, alerts, and recent activity in Spanish.",
+        width: 1920,
+        height: 1080,
+      },
+      external: {
+        label: "Open Tentrix",
+        href: siteConfig.productUrls.tentrix,
         target: "_blank",
       },
     },
