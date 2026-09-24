@@ -5,11 +5,17 @@ import Container from "../ui/Container.astro";
 interface Props {
   locale: Locale;
   content: LegalPageContent;
+  alternatePath?: string;
 }
-const { locale, content } = Astro.props;
+const { locale, content, alternatePath } = Astro.props;
 ---
 
-<BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
+<BaseLayout
+  title={content.seo.title}
+  description={content.seo.description}
+  locale={locale}
+  alternatePath={alternatePath}
+>
   <header class="legal-hero">
     <Container
       ><p class="eyebrow">{content.eyebrow}</p><h1>{content.title}</h1><p class="legal-hero__meta">

@@ -19,6 +19,7 @@ interface Props {
   imageAlt?: string;
   noindex?: boolean;
   structuredData?: Record<string, unknown>;
+  alternatePath?: string;
 }
 
 const {
@@ -29,12 +30,16 @@ const {
   imageAlt,
   noindex = false,
   structuredData,
+  alternatePath,
 } = Astro.props as Props;
 
 const site = Astro.site ?? new URL(siteConfig.siteUrl);
 const canonicalUrl = new URL(normalizePath(Astro.url.pathname), site);
 const alternateLocale: Locale = locale === "es" ? "en" : "es";
-const alternateUrl = new URL(getAlternatePath(Astro.url.pathname, alternateLocale), site);
+const alternateUrl = new URL(
+  alternatePath ?? getAlternatePath(Astro.url.pathname, alternateLocale),
+  site,
+);
 const defaultUrl = new URL(getRoute("home", "en"), site);
 const pageTitle = title.includes("Quantix") ? title : `${title} | Quantix Software`;
 const labels = sharedUi[locale];

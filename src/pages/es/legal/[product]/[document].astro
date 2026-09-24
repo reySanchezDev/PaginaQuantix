@@ -1,0 +1,12 @@
+---
+import LegalPage from "../../../../components/pages/LegalPage.astro";
+import { getProductLegalStaticPaths } from "../../../../data/product-legal-content";
+
+export function getStaticPaths() {
+  return getProductLegalStaticPaths("es");
+}
+
+const { content, alternatePath } = Astro.props;
+---
+
+<LegalPage locale="es" content={content} alternatePath={alternatePath} />
