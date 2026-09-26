@@ -98,8 +98,7 @@ const idsnapPrivacy: ProductLegalDocument = {
     en: {
       seo: {
         title: "IDSnap privacy policy",
-        description:
-          "How IDSnap accesses, processes, retains, and shares photos and related data.",
+        description: "How IDSnap accesses, processes, retains, and shares photos and related data.",
       },
       eyebrow: "IDSnap · Legal",
       title: "IDSnap privacy policy",
@@ -190,11 +189,7 @@ export function getProductLegalStaticPaths(locale: Locale) {
       },
       props: {
         content: document.content[locale],
-        alternatePath: buildProductLegalPath(
-          product,
-          document,
-          locale === "es" ? "en" : "es",
-        ),
+        alternatePath: buildProductLegalPath(product, document, locale === "es" ? "en" : "es"),
       },
     })),
   );
