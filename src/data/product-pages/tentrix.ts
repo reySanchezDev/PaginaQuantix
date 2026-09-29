@@ -55,7 +55,52 @@ export function getTentrixPage(locale: Locale): ProductPageContent {
             { title: "Reports", text: "Workload and service times" },
           ],
     },
-    sections: [],
+    sections: [
+      {
+        id: "oktara-integration",
+        eyebrow: "Tentrix + Oktara",
+        title: isEs
+          ? "El soporte empieza donde surge el problema."
+          : "Support starts where the issue happens.",
+        lead: isEs
+          ? "Conecta Tentrix con Oktara para que los hallazgos de la operación lleguen al equipo de soporte como incidencias listas para atender."
+          : "Connect Tentrix with Oktara so operational findings reach your support team as issues ready to address.",
+        variant: "soft",
+        items: [
+          {
+            title: isEs ? "Recibe el contexto desde Oktara" : "Get context from Oktara",
+            summary: isEs
+              ? "Una incidencia nace de una revisión real."
+              : "An issue starts with a real operational review.",
+            text: isEs
+              ? "Desde una ejecución o una pregunta, Oktara permite reportar el problema a Tentrix y conservar el vínculo con su origen."
+              : "From an execution or a question, Oktara can report the issue to Tentrix and keep it linked to its source.",
+            link: {
+              label: isEs ? "Conoce Oktara" : "Explore Oktara",
+              href: getRoute("oktara", locale),
+            },
+          },
+          {
+            title: isEs ? "Organiza la respuesta" : "Organize the response",
+            summary: isEs
+              ? "Responsables, prioridades y seguimiento en un solo lugar."
+              : "Ownership, priorities, and follow-up in one place.",
+            text: isEs
+              ? "Tentrix convierte lo detectado en trabajo visible para el equipo de soporte, con el historial y los tiempos de atención del ticket."
+              : "Tentrix turns findings into visible work for the support team, with ticket history and response times.",
+          },
+          {
+            title: isEs ? "Cierra la brecha operativa" : "Close the operational gap",
+            summary: isEs
+              ? "Del control de sucursales a la atención del caso."
+              : "From location oversight to issue resolution.",
+            text: isEs
+              ? "Oktara muestra dónde hace falta actuar; Tentrix ayuda a coordinar a quienes deben atenderlo."
+              : "Oktara shows where action is needed; Tentrix helps coordinate the people who can address it.",
+          },
+        ],
+      },
+    ],
     gallery: {
       eyebrow: isEs ? "El producto en uso" : "The product in use",
       title: isEs ? "De la solicitud a la resolución." : "From request to resolution.",

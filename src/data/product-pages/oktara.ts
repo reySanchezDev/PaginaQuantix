@@ -57,7 +57,50 @@ export function getOktaraPage(locale: Locale): ProductPageContent {
             { title: "Reports", text: "Completion and trends" },
           ],
     },
-    sections: [],
+    sections: [
+      {
+        id: "tentrix-integration",
+        eyebrow: isEs ? "Oktara + Tentrix" : "Oktara + Tentrix",
+        title: isEs ? "Convierte hallazgos en atención concreta." : "Turn findings into action.",
+        lead: isEs
+          ? "Cuando una revisión revela un problema, conecta Oktara con Tentrix y lleva la incidencia al equipo que puede resolverla."
+          : "When a review reveals an issue, connect Oktara with Tentrix and bring it to the team that can resolve it.",
+        variant: "soft",
+        items: [
+          {
+            title: isEs ? "Del hallazgo al ticket" : "From finding to ticket",
+            summary: isEs
+              ? "Reporta incidencias desde una ejecución de Oktara."
+              : "Report issues from an Oktara execution.",
+            text: isEs
+              ? "El equipo puede enviar una incidencia a Tentrix desde la ejecución o una pregunta específica, sin reconstruir el caso desde cero."
+              : "Your team can send an issue to Tentrix from an execution or a specific question, without rebuilding the case from scratch.",
+            link: {
+              label: isEs ? "Conoce Tentrix" : "Explore Tentrix",
+              href: getRoute("tentrix", locale),
+            },
+          },
+          {
+            title: isEs ? "Contexto para responder mejor" : "Context for a better response",
+            summary: isEs
+              ? "La operación y el soporte trabajan sobre el mismo caso."
+              : "Operations and support work from the same case.",
+            text: isEs
+              ? "El origen de la incidencia queda vinculado a la revisión en Oktara, mientras Tentrix organiza la atención, los responsables y el seguimiento del ticket."
+              : "The issue remains linked to its source in Oktara, while Tentrix organizes the response, ownership, and ticket follow-up.",
+          },
+          {
+            title: isEs ? "Menos asuntos sin dueño" : "Fewer issues without an owner",
+            summary: isEs
+              ? "Da continuidad a lo que ocurre en cada sucursal."
+              : "Keep work moving across locations.",
+            text: isEs
+              ? "Detecta lo que requiere atención en Oktara y deja que el equipo de soporte lo gestione en Tentrix con prioridades y tiempos visibles."
+              : "Spot what needs attention in Oktara and let the support team manage it in Tentrix with visible priorities and timelines.",
+          },
+        ],
+      },
+    ],
     gallery: {
       eyebrow: isEs ? "El producto en uso" : "The product in use",
       title: isEs ? "De la rutina al hallazgo." : "From routine to finding.",
