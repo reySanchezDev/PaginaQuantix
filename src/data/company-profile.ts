@@ -14,13 +14,13 @@ const copy = {
     seo: {
       title: "Empresa | Quiénes somos",
       description:
-        "Conoce a Reynaldo Sanchez y Hensell Espinoza, cofundadores de Quantix. Desarrollo de software a medida y productos usados en negocios de Nicaragua.",
+        "Quantix desarrolla software desde 2011. Conoce a Reynaldo Sanchez y Hensell Espinoza, cofundadores de la empresa, y nuestro trabajo en software a medida y productos propios.",
     },
     eyebrow: "Quantix Software",
     title: "Somos Quantix.",
-    lead: "Creamos Quantix para hacer software sólido que las personas puedan entender y usar con autonomía.",
+    lead: "Desde 2011 desarrollamos software para resolver problemas reales de operación, con una idea constante: que sea sólido, claro y que las personas puedan usarlo con autonomía.",
     origin:
-      "Queremos que le resulte claro tanto a quien trabaja en el campo como a quien dirige una empresa. Diseñamos con la intención de que cada persona pueda hacer su trabajo y dependa lo menos posible del soporte.",
+      "Durante estos años hemos construido productos y soluciones a medida para distintos tipos de operación. Queremos que el software resulte claro tanto para quien trabaja directamente con el sistema como para quien dirige una empresa, y que cada persona pueda hacer su trabajo con la menor dependencia posible del soporte.",
     teamLabel: "Fundadores",
     founderRole: "Cofundador · Desarrollador full stack",
     linkedinLabel: "Perfil de LinkedIn",
@@ -56,13 +56,13 @@ const copy = {
     seo: {
       title: "Company | About us",
       description:
-        "Meet Reynaldo Sanchez and Hensell Espinoza, cofounders of Quantix. Custom software development and products used by businesses in Nicaragua.",
+        "Quantix has been developing software since 2011. Meet Reynaldo Sanchez and Hensell Espinoza, cofounders of the company, and explore our custom software and products.",
     },
     eyebrow: "Quantix Software",
     title: "We are Quantix.",
-    lead: "We started Quantix to build reliable software that people can understand and use independently.",
+    lead: "Since 2011, we have built software to solve real operational problems, with one constant idea: it should be reliable, clear, and easy for people to use independently.",
     origin:
-      "We want it to feel clear to someone working in the field and to someone running a company. We design with the aim of helping each person do their work with as little reliance on support as possible.",
+      "Over the years, we have built products and custom solutions for different kinds of operations. We want software to feel clear both to the people using it every day and to the people running the business, with as little reliance on support as possible.",
     teamLabel: "Founders",
     founderRole: "Cofounder · Full stack developer",
     linkedinLabel: "LinkedIn profile",
