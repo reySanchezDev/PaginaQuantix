@@ -18,9 +18,9 @@ const copy = {
     },
     eyebrow: "Quantix Software",
     title: "Somos Quantix.",
-    lead: "Desde 2011 desarrollamos software para resolver problemas reales de operación, con una idea constante: que sea sólido, claro y que las personas puedan usarlo con autonomía.",
+    lead: "Desarrollamos software desde 2011.",
     origin:
-      "Durante estos años hemos construido productos y soluciones a medida para distintos tipos de operación. Queremos que el software resulte claro tanto para quien trabaja directamente con el sistema como para quien dirige una empresa, y que cada persona pueda hacer su trabajo con la menor dependencia posible del soporte.",
+      "Desde nuestros inicios construimos software para resolver problemas reales de operación. Durante estos años hemos desarrollado productos y soluciones a medida con una idea constante: que el software sea sólido, claro y que las personas puedan usarlo con autonomía.",
     teamLabel: "Fundadores",
     founderRole: "Cofundador · Desarrollador full stack",
     linkedinLabel: "Perfil de LinkedIn",
@@ -60,9 +60,9 @@ const copy = {
     },
     eyebrow: "Quantix Software",
     title: "We are Quantix.",
-    lead: "Since 2011, we have built software to solve real operational problems, with one constant idea: it should be reliable, clear, and easy for people to use independently.",
+    lead: "We have been developing software since 2011.",
     origin:
-      "Over the years, we have built products and custom solutions for different kinds of operations. We want software to feel clear both to the people using it every day and to the people running the business, with as little reliance on support as possible.",
+      "Since our beginnings, we have built software to solve real operational problems. Over the years, we have developed products and custom solutions with one constant idea: software should be reliable, clear, and easy for people to use independently.",
     teamLabel: "Founders",
     founderRole: "Cofounder · Full stack developer",
     linkedinLabel: "LinkedIn profile",
