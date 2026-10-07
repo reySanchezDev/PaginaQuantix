@@ -47,7 +47,8 @@ export function getAlternatePath(pathname: string, targetLocale: Locale): string
   return match?.[targetLocale] ?? routeMap.home[targetLocale];
 }
 
-export function isRouteActive(pathname: string, routeId: RouteId): boolean {
+export function isRouteActive(pathname: string, routeId: RouteId | "blog"): boolean {
+  if (routeId === "blog") return false;
   const normalized = normalizePath(pathname);
   const route = routeMap[routeId];
 

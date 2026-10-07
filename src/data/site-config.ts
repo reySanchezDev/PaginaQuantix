@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Quantix Software",
   siteUrl: "https://www.quantix.software",
+  blogUrl: "https://blog.quantix.software/",
   email: "contact@quantix.software",
   whatsappUrl: "https://wa.me/50585213462",
   whatsappDisplay: "+505 8521 3462",

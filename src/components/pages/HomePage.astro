@@ -3,6 +3,7 @@ import { getHomeContent } from "../../data/home-content";
 import type { Locale } from "../../types/site";
 import { getRoute } from "../../i18n/routes";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import HomeBlog from "../sections/HomeBlog.astro";
 import CtaSection from "../sections/CtaSection.astro";
 import HomeHero from "../sections/HomeHero.astro";
 import CaseStudiesSection from "../sections/CaseStudiesSection.astro";
@@ -42,6 +43,7 @@ const es = locale === "es";
     </Container>
   </section>
   <HomeTeam locale={locale} />
+  <HomeBlog locale={locale} />
   <CtaSection content={content.cta} />
 </BaseLayout>
 <style>

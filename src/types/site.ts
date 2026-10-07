@@ -7,7 +7,7 @@ export interface LinkItem {
 }
 
 export interface NavItem extends LinkItem {
-  id: "solutions" | "products" | "work" | "about" | "contact";
+  id: "solutions" | "products" | "work" | "about" | "contact" | "blog";
 }
 
 interface FeatureItem {

@@ -1,0 +1,184 @@
+---
+import { siteConfig } from "../../data/site-config";
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const es = locale === "es";
+const articleUrl = `${siteConfig.blogUrl}2026/09/como-nacio-quantix-una-promesa-que.html`;
+const articleImage = "/images/blog/como-nacio-quantix.webp";
+---
+
+<section class="blog-section section" aria-labelledby="blog-title">
+  <Container>
+    <div class="blog-layout">
+      <div class="blog-intro">
+        <p class="eyebrow">Quantix Blog</p>
+        <h2 id="blog-title">
+          {es ? "Detrás del software, hay una historia." : "Behind the software, there’s a story."}
+        </h2>
+        <p class="blog-description">
+          {
+            es
+              ? "Ideas, tecnología y experiencias de los productos que construimos. Una mirada a cómo pensamos y trabajamos en Quantix."
+              : "Ideas, technology and experiences from the products we build. A look at how we think and work at Quantix."
+          }
+        </p>
+        <a class="blog-action" href={siteConfig.blogUrl}
+          >{es ? "Explorar el blog" : "Explore the blog"}<span aria-hidden="true">↗</span></a
+        >
+      </div>
+      <article class="blog-feature">
+        <a class="article-link" href={articleUrl} aria-labelledby="featured-article-title">
+          <div class="article-image">
+            <img
+              src={articleImage}
+              alt=""
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="article-copy">
+            <p class="article-meta">
+              <span>{es ? "Nuestra historia" : "Our story"}</span><time datetime="2026-09-29"
+                >{es ? "29 sep 2026" : "Sep 29, 2026"}</time
+              >
+            </p>
+            <h3 id="featured-article-title" lang="es">
+              Cómo nació Quantix: una promesa que comenzó desde el soporte
+            </h3>
+            <p class="article-excerpt">
+              {
+                es
+                  ? "Las llamadas de soporte, los problemas que se repetían y una promesa: construir software que haga más sencillo el trabajo de las personas."
+                  : "Support calls, recurring problems and a promise: to build software that makes people’s work easier."
+              }
+            </p>
+            <span class="article-action"
+              >{es ? "Leer la historia" : "Read the story"}<span aria-hidden="true">↗</span></span
+            >
+            {!es && <span class="article-language">Article in Spanish</span>}
+          </div>
+        </a>
+      </article>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .blog-section {
+    background: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+  }
+  .blog-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .blog-intro {
+    padding-top: 0.5rem;
+  }
+  .blog-intro h2 {
+    max-width: 17ch;
+    margin: 0;
+    font-size: var(--text-section);
+    text-wrap: balance;
+  }
+  .blog-description {
+    max-width: 35ch;
+    margin: 1.5rem 0 1rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+  .blog-action,
+  .article-action {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .blog-action span,
+  .article-action span {
+    font-size: 1.4rem;
+  }
+  .blog-action:hover,
+  .article-link:is(:hover, :focus-visible) .article-action {
+    color: var(--color-primary-hover);
+  }
+  .article-link {
+    display: block;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .article-image {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  .article-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article-copy {
+    padding-top: 1.25rem;
+  }
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 0 0 0.75rem;
+    color: var(--color-ink-muted);
+    font-size: var(--text-label);
+  }
+  .article-meta span {
+    font-weight: 500;
+  }
+  .article-copy h3 {
+    margin: 0;
+    max-width: 35ch;
+    font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem);
+    line-height: var(--leading-snug);
+    text-wrap: balance;
+  }
+  .article-excerpt {
+    max-width: 55ch;
+    margin: 1rem 0 0.75rem;
+    color: var(--color-ink-muted);
+    line-height: var(--leading-relaxed);
+  }
+  .article-language {
+    display: block;
+    color: var(--color-ink-muted);
+    font-size: var(--text-label);
+  }
+  @media (max-width: 48rem) {
+    .blog-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+    }
+    .blog-intro h2 {
+      max-width: 24ch;
+    }
+    .blog-description {
+      max-width: 48ch;
+      margin-top: 1rem;
+    }
+    .blog-intro {
+      padding-top: 0;
+    }
+  }
+</style>

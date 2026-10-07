@@ -1,3 +1,4 @@
+import { siteConfig } from "./site-config";
 import { getRoute, type RouteId } from "../i18n/routes";
 import type { LinkItem, Locale, NavItem } from "../types/site";
 
@@ -54,12 +55,15 @@ function buildLinks(routeIds: RouteId[], locale: Locale): LinkItem[] {
   }));
 }
 
-export const getPrimaryNavigation = (locale: Locale): NavItem[] =>
-  primaryRouteIds.map((id) => ({
+export const getPrimaryNavigation = (locale: Locale): NavItem[] => {
+  const items = primaryRouteIds.map((id) => ({
     id: id as NavItem["id"],
     label: labels[locale][id],
     href: getRoute(id, locale),
   }));
+  items.splice(items.length - 1, 0, { id: "blog", label: "Blog", href: siteConfig.blogUrl });
+  return items;
+};
 export const getLegalNavigation = (locale: Locale) => buildLinks(legalRouteIds, locale);
 
 export const sharedUi = {
