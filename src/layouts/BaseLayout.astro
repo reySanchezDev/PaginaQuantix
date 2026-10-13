@@ -50,7 +50,10 @@ const legalNavigation = getLegalNavigation(locale);
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": new URL("/#organization", site).href,
   name: siteConfig.name,
+  description:
+    "Quantix Software desarrolla software a medida, integraciones y soluciones para conectar procesos, ventas e inventario de empresas.",
   foundingDate: "2011",
   url: site.href,
   logo: new URL("/favicon.svg", site).href,
