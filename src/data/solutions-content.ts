@@ -11,8 +11,8 @@ const content: Record<Locale, StandardPageContent> = {
     },
     hero: {
       eyebrow: "Soluciones",
-      title: "Menos pasos para hacer el trabajo de cada día.",
-      lead: "Antes de proponer tecnología, revisamos cómo trabaja tu equipo, qué herramientas usa y dónde se pierde tiempo o información.",
+      title: "Ingeniería de software para transformar operaciones empresariales.",
+      lead: "Diseñamos sistemas a medida, integraciones y automatizaciones a partir de un análisis de tus procesos, herramientas y necesidades operativas.",
       primary: {
         label: "Cuéntanos qué necesitas resolver",
         href: getContactHref("es", "proyecto"),
@@ -22,7 +22,7 @@ const content: Record<Locale, StandardPageContent> = {
     sections: [
       {
         eyebrow: "Qué resolvemos",
-        title: "¿Dónde se complica el trabajo?",
+        title: "Soluciones para procesos empresariales.",
         lead: "Partimos de una situación concreta para decidir qué construir, conectar o mejorar.",
         items: [
           {
@@ -82,8 +82,8 @@ const content: Record<Locale, StandardPageContent> = {
     },
     hero: {
       eyebrow: "Solutions",
-      title: "Fewer steps to get the daily work done.",
-      lead: "Before proposing technology, we look at how your team works, what tools it uses, and where time or information gets lost.",
+      title: "Software engineering to transform business operations.",
+      lead: "We design custom systems, integrations, and automation based on a clear understanding of your processes, tools, and operational needs.",
       primary: {
         label: "Tell us what needs to work better",
         href: getContactHref("en", "proyecto"),
@@ -93,7 +93,7 @@ const content: Record<Locale, StandardPageContent> = {
     sections: [
       {
         eyebrow: "What we solve",
-        title: "Where does the work get complicated?",
+        title: "Solutions for business operations.",
         lead: "We start with a specific situation to decide what to build, connect, or improve.",
         items: [
           {
