@@ -96,9 +96,9 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
     {
       id: "hen-screenshots",
       name: "Hen Screenshots",
-      category: "Herramientas para developers",
+      category: "Herramientas para desarrolladores",
       description:
-        "Convierte capturas en imágenes para App Store, Google Play y portfolios desde el navegador.",
+        "Convierte capturas en imágenes para App Store, Google Play y portafolios desde el navegador.",
       status: "Web · Gratis y open source",
       preview: {
         src: "/images/hen-screenshots/cover.webp",
