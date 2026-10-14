@@ -2,6 +2,7 @@
 import type { Locale } from "../../types/site";
 import { getCompanyProfile } from "../../data/company-profile";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { organizationId } from "../../lib/semantic-identity";
 import CompanyWork from "../company/CompanyWork.astro";
 import CtaSection from "../sections/CtaSection.astro";
 import Container from "../ui/Container.astro";
@@ -12,9 +13,19 @@ interface Props {
 }
 const { locale } = Astro.props;
 const c = getCompanyProfile(locale);
+const peopleSchema = {
+  "@context": "https://schema.org",
+  "@graph": c.founders.map((founder, index) => ({
+    "@type": "Person",
+    "@id": `https://www.quantix.software/#founder-${index + 1}`,
+    name: founder.name,
+    ...(founder.linkedin ? { sameAs: [founder.linkedin] } : {}),
+    worksFor: { "@id": organizationId },
+  })),
+};
 ---
 
-<BaseLayout title={c.seo.title} description={c.seo.description} locale={locale}>
+<BaseLayout title={c.seo.title} description={c.seo.description} locale={locale} structuredData={peopleSchema}>
   <section class="company-intro" aria-labelledby="page-title">
     <Container class="company-intro__layout">
       <div class="company-intro__copy">
