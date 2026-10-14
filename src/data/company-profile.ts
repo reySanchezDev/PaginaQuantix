@@ -3,7 +3,7 @@ import type { CtaContent, Locale } from "../types/site";
 
 const founders: Array<{ name: string; linkedin?: string }> = [
   {
-    name: "Reynaldo Sanchez",
+    name: "Reynaldo Sánchez",
     linkedin: "https://www.linkedin.com/in/reynaldo-s%C3%A1nchez-hern%C3%A1ndez/",
   },
   { name: "Hensell Espinoza", linkedin: "https://www.linkedin.com/in/henselldev/" },
@@ -14,13 +14,13 @@ const copy = {
     seo: {
       title: "Empresa | Quiénes somos",
       description:
-        "Quantix desarrolla software desde 2011. Conoce a Reynaldo Sanchez y Hensell Espinoza, cofundadores de la empresa, y nuestro trabajo en software a medida y productos propios.",
+        "Conoce la trayectoria de Quantix Software: 15 años de experiencia en ingeniería de software, integraciones, soluciones empresariales y productos propios.",
     },
     eyebrow: "Quantix Software",
     title: "Somos Quantix.",
-    lead: "Desarrollamos software desde 2011.",
+    lead: "15 años de trayectoria construyendo tecnología para empresas.",
     origin:
-      "Desde nuestros inicios construimos software para resolver problemas reales de operación. Durante estos años hemos desarrollado productos y soluciones a medida con una idea constante: que el software sea sólido, claro y que las personas puedan usarlo con autonomía.",
+      "Nuestra trayectoria en desarrollo de software comenzó en 2011. En Quantix Software combinamos ingeniería, conocimiento de procesos empresariales y productos propios para transformar necesidades operativas en soluciones confiables. Desarrollamos sistemas a medida, integraciones y herramientas que ayudan a las organizaciones a conectar su operación y evolucionar con una base tecnológica sólida.",
     teamLabel: "Fundadores",
     founderRole: "Cofundador · Desarrollador full stack",
     linkedinLabel: "Perfil de LinkedIn",
@@ -56,13 +56,13 @@ const copy = {
     seo: {
       title: "Company | About us",
       description:
-        "Quantix has been developing software since 2011. Meet Reynaldo Sanchez and Hensell Espinoza, cofounders of the company, and explore our custom software and products.",
+        "Discover Quantix Software: 15 years of experience in software engineering, business integrations, custom solutions and proprietary products.",
     },
     eyebrow: "Quantix Software",
     title: "We are Quantix.",
-    lead: "We have been developing software since 2011.",
+    lead: "15 years of experience building technology for businesses.",
     origin:
-      "Since our beginnings, we have built software to solve real operational problems. Over the years, we have developed products and custom solutions with one constant idea: software should be reliable, clear, and easy for people to use independently.",
+      "Our software development experience dates back to 2011. At Quantix Software, we combine engineering, an understanding of business operations, and proprietary products to turn operational needs into reliable solutions. We build custom systems, integrations, and tools that help organizations connect their operations and grow on a solid technology foundation.",
     teamLabel: "Founders",
     founderRole: "Cofounder · Full stack developer",
     linkedinLabel: "LinkedIn profile",
