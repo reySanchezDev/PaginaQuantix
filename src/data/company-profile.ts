@@ -29,7 +29,7 @@ const copy = {
     proof: {
       eyebrow: "Productos propios",
       title: "Software que ya se usa.",
-      lead: "Takofy y VIGGO nos enseñaron a escuchar y entender las necesidades de quienes usan el software. Así se refleja en dos tareas de su trabajo diario.",
+      lead: "Takofy y VIGGO reflejan nuestra experiencia desarrollando herramientas para operaciones reales. Estos ejemplos muestran cómo resuelven tareas cotidianas en restaurantes y gimnasios.",
       linkLabel: "Conocer el caso",
       takofy: {
         context: "Restaurantes en Nicaragua",
@@ -71,7 +71,7 @@ const copy = {
     proof: {
       eyebrow: "Our products",
       title: "Software already in use.",
-      lead: "Building Takofy and VIGGO taught us to listen to the people using the software and understand their needs. Here is how that shows up in two everyday tasks.",
+      lead: "Takofy and VIGGO reflect our experience building tools for real business operations. These examples show how they support everyday tasks in restaurants and gyms.",
       linkLabel: "Read the case study",
       takofy: {
         context: "Restaurants in Nicaragua",
