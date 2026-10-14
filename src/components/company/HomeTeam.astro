@@ -18,7 +18,11 @@ const company = getCompanyProfile(locale);
     <div class="home-team__intro" data-reveal>
       <p class="eyebrow">{es ? "Quiénes somos" : "Who we are"}</p>
       <h2 id="home-team-title">
-        {es ? "Experiencia técnica detrás de cada solución." : "Engineering expertise behind every solution."}
+        {
+          es
+            ? "Experiencia técnica detrás de cada solución."
+            : "Engineering expertise behind every solution."
+        }
       </h2>
       <p class="home-team__lead">
         {
