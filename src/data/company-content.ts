@@ -12,14 +12,14 @@ const content: Record<"work" | "contact", Record<Locale, StandardPageContent>> =
       },
       hero: {
         eyebrow: "Cómo trabajamos",
-        title: "Del problema inicial al software en producción.",
+        title: "De la estrategia tecnológica a la puesta en producción.",
         lead: "Antes de escribir código, acordamos el problema, el alcance y cómo sabremos que la solución funciona. Después entregamos por etapas y documentamos las decisiones importantes.",
         primary: { label: "Hablemos de tu proyecto", href: getRoute("contact", "es") },
       },
       sections: [],
       process: {
         eyebrow: "Proceso",
-        title: "Qué recibirás en cada etapa",
+        title: "Entregables y responsabilidades en cada etapa",
         lead: "Sabes qué vamos a entregar y qué decisiones tomaremos contigo, desde la primera conversación hasta la puesta en marcha.",
         outcomeLabel: "Qué recibes",
         reviewLabel: "Contigo",
@@ -67,14 +67,14 @@ const content: Record<"work" | "contact", Record<Locale, StandardPageContent>> =
       },
       hero: {
         eyebrow: "How we work",
-        title: "From a real business need to working software.",
+        title: "From technology strategy to production-ready software.",
         lead: "Before we write code, we agree on the problem, the scope, and how we will know the solution works. Then we deliver in stages and document the decisions that matter.",
         primary: { label: "Let’s talk about your project", href: getRoute("contact", "en") },
       },
       sections: [],
       process: {
         eyebrow: "Process",
-        title: "What you get at each stage",
+        title: "Deliverables and responsibilities at each stage",
         lead: "You know what we will deliver and which decisions we will make together, from the first conversation to launch.",
         outcomeLabel: "What you get",
         reviewLabel: "With you",
