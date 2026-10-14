@@ -36,7 +36,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Servicios de terceros",
           paragraphs: [
-            "Los enlaces de correo abren tu aplicación de correo. El mensaje se envía cuando tú lo envías desde esa aplicación. Al abrir un enlace de correo o usar la opción de copiar, intentamos colocar nuestra dirección pública en el portapapeles de tu dispositivo; no leemos su contenido ni enviamos una consulta.",
+            "Los enlaces de correo abren tu aplicación de correo. El mensaje se envía cuando tú lo envías desde esa aplicación. Si utilizas la opción de copiar, intentamos colocar nuestra dirección pública en el portapapeles de tu dispositivo; no leemos su contenido ni enviamos una consulta.",
             "Los enlaces externos, WhatsApp, correo, descargas y sitios de productos se rigen por las políticas de sus respectivos proveedores. Revisa esas políticas antes de compartir información.",
           ],
         },
@@ -81,7 +81,7 @@ const content: Record<"privacy" | "terms", Record<Locale, LegalPageContent>> = {
         {
           title: "Third-party services",
           paragraphs: [
-            "Email links open your email application. A message is sent when you send it from that application. When you open an email link or use the copy option, we attempt to place our public address on your device’s clipboard; we do not read clipboard contents or send an inquiry.",
+            "Email links open your email application. A message is sent when you send it from that application. If you use the copy option, we attempt to place our public address on your device’s clipboard; we do not read clipboard contents or send an inquiry.",
             "External links, WhatsApp, email, downloads, and product websites are governed by their respective providers’ policies. Review those policies before sharing information.",
           ],
         },
