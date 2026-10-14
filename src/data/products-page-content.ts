@@ -7,12 +7,12 @@ const content = {
     seo: {
       title: "Productos de software",
       description:
-        "Productos de Quantix para gestión empresarial, restaurantes, operaciones, soporte, finanzas y herramientas para developers.",
+        "Productos de Quantix para gestión empresarial, restaurantes, operaciones, soporte, finanzas y herramientas para desarrolladores.",
     },
     hero: {
       eyebrow: "Productos",
-      title: "Productos para operaciones concretas.",
-      lead: "Conoce qué resuelve cada producto, dónde está disponible y cómo acceder.",
+      title: "Tecnología desarrollada para desafíos reales.",
+      lead: "Explora nuestras plataformas empresariales y herramientas especializadas. Conoce sus capacidades, disponibilidad y opciones de acceso.",
     },
     section: {
       id: "products-catalog",
@@ -36,8 +36,8 @@ const content = {
     },
     hero: {
       eyebrow: "Products",
-      title: "Products built for specific operations.",
-      lead: "See what each product does, where it is available, and how to access it.",
+      title: "Technology built for real-world challenges.",
+      lead: "Explore our business platforms and specialized tools, including their capabilities, availability, and access options.",
     },
     section: {
       id: "products-catalog",
