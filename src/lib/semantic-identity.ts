@@ -14,7 +14,13 @@ export function productId(id: ProductId): string {
   return absoluteUrl(`/#software-${id}`);
 }
 
-export function productPageSchema(id: ProductId, locale: Locale, name: string, description: string, operatingSystem?: string) {
+export function productPageSchema(
+  id: ProductId,
+  locale: Locale,
+  name: string,
+  description: string,
+  operatingSystem?: string,
+) {
   const url = absoluteUrl(getRoute(id, locale));
   return {
     "@context": "https://schema.org",

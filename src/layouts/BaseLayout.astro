@@ -64,7 +64,13 @@ const siteSchema = {
   "@context": "https://schema.org",
   "@graph": [
     organizationSchema,
-    { "@type": "WebSite", "@id": websiteId, url: site.href, name: siteConfig.name, publisher: { "@id": organizationId } },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: site.href,
+      name: siteConfig.name,
+      publisher: { "@id": organizationId },
+    },
     webpageSchema(Astro.url.pathname, pageTitle, description, locale),
   ],
 };
