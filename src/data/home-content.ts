@@ -6,12 +6,12 @@ const localized = {
     seo: {
       title: "Quantix Software | Desarrollo de software a medida",
       description:
-        "Desarrollamos software a medida para conectar procesos, ventas e inventario. Conoce nuestro trabajo y productos usados por negocios de Nicaragua.",
+        "Quantix Software: 15 años de trayectoria en desarrollo de software, integraciones y productos tecnológicos para empresas en Nicaragua.",
     },
     hero: {
-      eyebrow: "Diseño y desarrollo de software a medida",
+      eyebrow: "Ingeniería de software empresarial · Trayectoria desde 2011",
       title: ["Tu operación,", "hecha software."],
-      lead: "Diseñamos y desarrollamos sistemas para conectar ventas, inventario y el trabajo de tu equipo.",
+      lead: "15 años de experiencia construyendo soluciones empresariales, integraciones y productos propios que conectan procesos y acompañan el crecimiento de los negocios.",
       proof: "Usados en restaurantes y gimnasios de Nicaragua.",
       primary: { label: "Cuéntanos tu proyecto", href: getRoute("contact", "es") },
       secondary: { label: "Conoce nuestro trabajo", href: "#case-studies" },
@@ -46,12 +46,12 @@ const localized = {
     seo: {
       title: "Quantix Software | Custom software development",
       description:
-        "We build custom software to connect processes, sales and inventory. Explore our work and products used by businesses in Nicaragua.",
+        "Quantix Software: 15 years of experience building business software, integrations and technology products in Nicaragua.",
     },
     hero: {
-      eyebrow: "Custom software design and development",
+      eyebrow: "Business software engineering · Experience since 2011",
       title: ["Your business.", "Your software."],
-      lead: "We design and build systems that connect sales, inventory and your team’s daily work.",
+      lead: "15 years of experience building business solutions, integrations and proprietary products that connect operations and support business growth.",
       proof: "Used by restaurants and gyms in Nicaragua.",
       primary: { label: "Tell us about your project", href: getRoute("contact", "en") },
       secondary: { label: "See our work", href: "#case-studies" },
