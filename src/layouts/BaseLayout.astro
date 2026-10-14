@@ -8,6 +8,7 @@ import { getLegalNavigation, getPrimaryNavigation, sharedUi } from "../data/navi
 import { siteConfig } from "../data/site-config";
 import { getAlternatePath, getRoute, normalizePath } from "../i18n/routes";
 import type { Locale } from "../types/site";
+import { organizationId, websiteId, webpageSchema } from "../lib/semantic-identity";
 import "@fontsource-variable/bricolage-grotesque/wght.css";
 import "../styles/global.css";
 
@@ -50,7 +51,7 @@ const legalNavigation = getLegalNavigation(locale);
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": new URL("/#organization", site).href,
+  "@id": organizationId,
   name: siteConfig.name,
   description:
     "Quantix Software desarrolla software a medida, integraciones y soluciones para conectar procesos, ventas e inventario de empresas.",
@@ -58,6 +59,20 @@ const organizationSchema = {
   url: site.href,
   logo: new URL("/favicon.svg", site).href,
   email: siteConfig.email,
+};
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationSchema,
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: site.href,
+      name: siteConfig.name,
+      publisher: { "@id": organizationId },
+    },
+    webpageSchema(Astro.url.pathname, pageTitle, description, locale),
+  ],
 };
 ---
 
@@ -102,7 +117,7 @@ const organizationSchema = {
     <meta name="twitter:image:alt" content={socialImageAlt} />
 
     <title>{pageTitle}</title>
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
     {
       structuredData && (
         <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />

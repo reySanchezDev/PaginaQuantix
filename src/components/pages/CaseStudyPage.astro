@@ -1,6 +1,7 @@
 ---
 import { getContactHref } from "../../lib/contact-context";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absoluteUrl, organizationId, productId } from "../../lib/semantic-identity";
 import type { CaseStudyContent } from "../../types/case-study";
 import type { LinkItem, Locale } from "../../types/site";
 import CaseStudyHero from "../cases/CaseStudyHero.astro";
@@ -17,6 +18,19 @@ interface Props {
 }
 const { caseStudy, locale, backLink, nextCase, contactLink } = Astro.props;
 const es = locale === "es";
+const caseUrl = absoluteUrl(Astro.url.pathname);
+const caseSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": `${caseUrl}#case-study`,
+  url: caseUrl,
+  name: caseStudy.title,
+  description: caseStudy.seo.description,
+  inLanguage: locale,
+  publisher: { "@id": organizationId },
+  about: { "@id": productId(caseStudy.id) },
+  mainEntityOfPage: { "@id": `${caseUrl}#webpage` },
+};
 const projectContact: LinkItem = contactLink ?? {
   label: es ? "Hablemos de tu proyecto" : "Let’s talk about your project",
   href: getContactHref(locale, caseStudy.id),
@@ -27,6 +41,7 @@ const projectContact: LinkItem = contactLink ?? {
   title={caseStudy.seo.title}
   description={caseStudy.seo.description}
   locale={locale}
+  structuredData={caseSchema}
   image={`/images/og/${caseStudy.id}-${locale}.png`}
   imageAlt={`${caseStudy.productName} · ${caseStudy.category}`}
 >
