@@ -18,7 +18,7 @@ const localized = {
     },
     model: {
       eyebrow: "Qué hacemos",
-      title: "¿Qué necesita resolver tu equipo?",
+      title: "Soluciones para los desafíos de tu empresa.",
       lead: "Partimos del trabajo diario: qué registran, qué consultan y dónde se pierde tiempo.",
       items: [
         [
@@ -58,7 +58,7 @@ const localized = {
     },
     model: {
       eyebrow: "What we do",
-      title: "What does your team need to solve?",
+      title: "Solutions for your business challenges.",
       lead: "We start with the daily work: what you record, what you look up and where time gets lost.",
       items: [
         [
