@@ -49,7 +49,9 @@ html[data-seasonal-theme="octubre-rosa"] .home-hero {
   color: var(--color-ink);
 }
 html[data-seasonal-theme="octubre-rosa"] .home-hero .hero-lead,
-html[data-seasonal-theme="octubre-rosa"] .home-hero .hero-footnote { color: #543d48; }
+html[data-seasonal-theme="octubre-rosa"] .home-hero .hero-footnote {
+  color: #543d48;
+}
 html[data-seasonal-theme="octubre-rosa"] .home-hero .hero-contact {
   --button-bg: #914461;
   --button-fg: #fffafc;
@@ -60,30 +62,47 @@ html[data-seasonal-theme="octubre-rosa"] .home-hero .hero-footnote {
   border-top-color: #d8b4c3;
 }
 html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness {
-  background: #f7dce6; border-bottom: 1px solid #e8bfce; color: #3b2b33;
+  background: #f7dce6;
+  border-bottom: 1px solid #e8bfce;
+  color: #3b2b33;
 }
 html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__inner {
-  display: flex; align-items: center; justify-content: center;
-  gap: 0.75rem 1.25rem; padding-block: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  padding-block: 0.7rem;
 }
 html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__mark {
-  display: inline-flex; justify-content: center; align-items: center;
-  width: 1.8rem; flex-shrink: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.8rem;
+  flex-shrink: 0;
 }
 html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__mark svg {
-  width: 1.3rem; height: 1.8rem;
+  width: 1.3rem;
+  height: 1.8rem;
 }
 html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__message {
-  margin: 0; font-size: var(--text-sm); line-height: 1.5;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
 }
 html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__link {
-  color: #78334e; font-weight: 650; font-size: var(--text-sm);
+  color: #78334e;
+  font-weight: 650;
+  font-size: var(--text-sm);
   text-underline-offset: 0.2em;
 }
-.seasonal-awareness[hidden] { display: none !important; }
+.seasonal-awareness[hidden] {
+  display: none !important;
+}
 @media (max-width: 48rem) {
   html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__inner {
-    flex-wrap: wrap; justify-content: flex-start; gap: 0.4rem 0.7rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.4rem 0.7rem;
   }
   html[data-seasonal-theme="octubre-rosa"] .seasonal-awareness__link {
     margin-left: 2.5rem;

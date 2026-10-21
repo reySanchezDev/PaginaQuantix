@@ -139,16 +139,26 @@ const siteSchema = {
       <div class="container seasonal-awareness__inner">
         <span class="seasonal-awareness__mark" aria-hidden="true">
           <svg viewBox="0 0 100 130" fill="none">
-            <path d="M35 11C24 23 16 39 25 57c11 22 37 44 57 63" stroke="#f9e5ed" stroke-width="21" stroke-linecap="round" />
-            <path d="M67 10C83 27 75 44 65 60 50 82 32 105 20 120" stroke="#d88fa8" stroke-width="21" stroke-linecap="round" />
-            <path d="M38 66 60 40" stroke="#914461" stroke-width="17" stroke-linecap="round" />
+            <path
+              d="M35 11C24 23 16 39 25 57c11 22 37 44 57 63"
+              stroke="#f9e5ed"
+              stroke-width="21"
+              stroke-linecap="round"></path>
+            <path
+              d="M67 10C83 27 75 44 65 60 50 82 32 105 20 120"
+              stroke="#d88fa8"
+              stroke-width="21"
+              stroke-linecap="round"></path>
+            <path d="M38 66 60 40" stroke="#914461" stroke-width="17" stroke-linecap="round"></path>
           </svg>
         </span>
         <p class="seasonal-awareness__message">
           <strong>{locale === "es" ? "Octubre Rosa." : "Breast Cancer Awareness Month."}</strong>
-          {locale === "es"
-            ? " En Quantix acompañamos con respeto a las personas afectadas por el cáncer de mama y a sus familias."
-            : " At Quantix, we stand with people affected by breast cancer and their families."}
+          {
+            locale === "es"
+              ? " En Quantix acompañamos con respeto a las personas afectadas por el cáncer de mama y a sus familias."
+              : " At Quantix, we stand with people affected by breast cancer and their families."
+          }
         </p>
         <a
           class="seasonal-awareness__link"
@@ -156,7 +166,8 @@ const siteSchema = {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {locale === "es" ? "Conocer más" : "Learn more"} <span aria-hidden="true">↗</span>
+          {locale === "es" ? "Conocer más" : "Learn more"}
+          <span aria-hidden="true">↗</span>
         </a>
       </div>
     </aside>
