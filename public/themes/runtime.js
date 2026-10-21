@@ -25,7 +25,9 @@
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", sync, { once: true });
   }
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) sync(); });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) sync();
+  });
   window.addEventListener("pageshow", sync);
   window.setInterval(sync, 30000);
 })();
