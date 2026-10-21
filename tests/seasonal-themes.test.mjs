@@ -31,6 +31,7 @@ test("el motor admite fechas anuales que cruzan año nuevo", () => {
     id: "christmas", enabled: true, start: "2026-12-15", end: "2027-01-07",
     recurrence: "yearly", priority: 1,
   }] };
+  assert.equal(s.resolve(config, date("2026-01-03T18:00:00Z")), null);
   assert.equal(s.resolve(config, date("2026-12-20T18:00:00Z"))?.id, "christmas");
   assert.equal(s.resolve(config, date("2027-01-03T18:00:00Z"))?.id, "christmas");
   assert.equal(s.resolve(config, date("2027-03-03T18:00:00Z")), null);
