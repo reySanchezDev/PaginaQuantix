@@ -22,8 +22,9 @@
       return today >= campaign.start && today <= campaign.end;
     }
     if (campaign.recurrence === "yearly") {
-      if (today.slice(0, 4) < campaign.start.slice(0, 4)) return false;
+      const year = today.slice(0, 4), firstYear = campaign.start.slice(0, 4);
       const day = today.slice(5), from = campaign.start.slice(5), to = campaign.end.slice(5);
+      if (year < firstYear || (from > to && year === firstYear && day <= to)) return false;
       return from <= to ? day >= from && day <= to : day >= from || day <= to;
     }
     return false;
