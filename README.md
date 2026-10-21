@@ -40,6 +40,16 @@ npm run quality
 
 This verifies formatting, lint rules, unused code, the 300-line source limit, Astro types, the production build, generated HTML, internal links, sitemap integrity, and dependency security.
 
+## Seasonal themes
+
+The site includes a configuration-driven seasonal theme calendar (`public/themes/calendar.js`),
+resolved for the `America/Managua` time zone and applied on the client without requiring a
+redeploy when an already-published campaign begins or ends. The original design tokens remain
+the default. October 2026's Rosa Perla campaign is the first and only configured campaign.
+
+**Operations, campaign dates, adding future themes, quality checks, and rollback:**
+[Seasonal themes technical manual](docs/seasonal-themes.md).
+
 ## Contact
 
 Email links use `mailto:` to open the visitor's configured email application, addressed to `contact@quantix.software`. Visitors send the message from their own application. The copy option writes the public contact address to the clipboard and confirms a successful copy with a toast, so visitors can paste it into their preferred email service.
