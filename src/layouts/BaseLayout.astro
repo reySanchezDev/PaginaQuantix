@@ -83,6 +83,9 @@ const siteSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f6f4ee" />
+    <script is:inline src="/themes/calendar.js"></script>
+    <script is:inline src="/themes/scheduler.js"></script>
+    <script is:inline src="/themes/runtime.js"></script>
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="generator" content={Astro.generator} />
 
@@ -127,6 +130,36 @@ const siteSchema = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">{labels.skip}</a>
+    <aside
+      class="seasonal-awareness"
+      data-seasonal-banner="octubre-rosa"
+      aria-label={locale === "es" ? "Campaña de sensibilización" : "Awareness campaign"}
+      hidden
+    >
+      <div class="container seasonal-awareness__inner">
+        <span class="seasonal-awareness__mark" aria-hidden="true">
+          <svg viewBox="0 0 100 130" fill="none">
+            <path d="M35 11C24 23 16 39 25 57c11 22 37 44 57 63" stroke="#f9e5ed" stroke-width="21" stroke-linecap="round" />
+            <path d="M67 10C83 27 75 44 65 60 50 82 32 105 20 120" stroke="#d88fa8" stroke-width="21" stroke-linecap="round" />
+            <path d="M38 66 60 40" stroke="#914461" stroke-width="17" stroke-linecap="round" />
+          </svg>
+        </span>
+        <p class="seasonal-awareness__message">
+          <strong>{locale === "es" ? "Octubre Rosa." : "Breast Cancer Awareness Month."}</strong>
+          {locale === "es"
+            ? " En Quantix acompañamos con respeto a las personas afectadas por el cáncer de mama y a sus familias."
+            : " At Quantix, we stand with people affected by breast cancer and their families."}
+        </p>
+        <a
+          class="seasonal-awareness__link"
+          href="https://www.who.int/news-room/events/detail/2026/10/01/default-calendar/breast-cancer-awareness-month-2026"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {locale === "es" ? "Conocer más" : "Learn more"} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </aside>
     <SiteHeader navItems={navigation} locale={locale} labels={labels} />
 
     <main id="main-content" tabindex="-1">
