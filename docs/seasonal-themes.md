@@ -2,7 +2,7 @@
 
 **Estado:** implementado en la web corporativa y publicado en `main`.
 **Última revisión de esta documentación:** 20 de octubre de 2026 (hora de Nicaragua).
-**Campaña incorporada:** Octubre Rosa 2026, tema **Rosa Perla**.
+**Campañas incorporadas:** Octubre Rosa 2026, tema **Rosa Perla**, y Halloween 2026, tema **Tech Noir**.
 **Referencia de la versión funcional validada:** [`8db61ebfa18502174cae671235246caaa445b932`](https://github.com/reySanchezDev/PaginaQuantix/commit/8db61ebfa18502174cae671235246caaa445b932).
 **Entorno:** Astro estático, GitHub (`reySanchezDev/PaginaQuantix`, rama `main`) y despliegue automático en Vercel.
 
@@ -10,7 +10,7 @@
 
 ## 1. Objetivo y decisiones aprobadas
 
-El sistema permite activar una identidad visual conmemorativa por fechas sin reemplazar permanentemente la identidad de Quantix. Está preparado para campañas futuras, pero **solo Octubre Rosa está registrada y habilitada** en la configuración vigente.
+El sistema permite activar una identidad visual conmemorativa por fechas sin reemplazar permanentemente la identidad de Quantix. Está preparado para campañas futuras, y actualmente registra **Octubre Rosa** y **Halloween Tech Noir**, ambos limitados a 2026.
 
 Decisiones:
 
@@ -85,7 +85,7 @@ Cada objeto de `campaigns` utiliza:
 }
 ```
 
-El 31 de octubre a las 23:59:59 de Nicaragua todavía corresponde a la campaña. A partir del **1 de noviembre de 2026, 00:00** vuelve `default`. **No** se activará automáticamente en 2027 sin una nueva configuración o autorización.
+El 31 de octubre de 2026 tiene prioridad la campaña **Halloween Tech Noir**, de las 00:00 a las 23:59:59, sobre Octubre Rosa. A partir del **1 de noviembre de 2026, 00:00** vuelve `default`. **Ninguna** de las dos campañas se activará automáticamente en 2027 sin una nueva configuración o autorización.
 
 ### 2.2. `public/themes/scheduler.js`: selección
 
@@ -169,7 +169,8 @@ https://www.who.int/news-room/events/detail/2026/10/01/default-calendar/breast-c
 ### 4.1. Activación y desactivación
 
 - **Activación prevista:** 2026-10-01 00:00:00 en `America/Managua`.
-- **Final del último día:** 2026-10-31 23:59:59 en `America/Managua`.
+- **Inicio de Halloween:** 2026-10-31 00:00:00 en `America/Managua`, reemplazando visualmente a Rosa Perla.
+- **Final de Halloween:** 2026-10-31 23:59:59 en `America/Managua`.
 - **Regreso automático:** 2026-11-01 00:00:00 en `America/Managua`.
 - **Repetición automática en 2027:** no, porque `recurrence` es `once`.
 
@@ -260,4 +261,4 @@ Verificaciones del último cambio visual:
 - La activación en `main` desencadena el proceso de despliegue conectado a GitHub/Vercel; comprobar tanto el despliegue como el workflow de calidad.
 - Antes de una campaña futura, confirmar fechas locales, tono de conmemoración, aprobación editorial y accesibilidad.
 
-**Resultado vigente:** motor preparado para futuras temporadas; Rosa Perla es la única campaña incorporada; su último ícono es un lazo rosa continuo de una sola trayectoria.
+**Resultado vigente:** el motor selecciona Rosa Perla hasta el 30 de octubre, Halloween Tech Noir solo el 31 de octubre de 2026 y el tema base desde el 1 de noviembre. Consultar `docs/halloween-tech-noir-2026.md`.

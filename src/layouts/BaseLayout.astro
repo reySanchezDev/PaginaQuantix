@@ -165,6 +165,25 @@ const siteSchema = {
         </a>
       </div>
     </aside>
+    <aside
+      class="seasonal-halloween"
+      data-seasonal-banner="halloween-tech-noir"
+      aria-label={locale === "es" ? "Ambientación de Halloween" : "Halloween seasonal theme"}
+      hidden
+    >
+      <div class="container seasonal-halloween__inner">
+        <span class="seasonal-halloween__icon" aria-hidden="true">✦</span>
+        <p>
+          <strong>{locale === "es" ? "Halloween en Quantix." : "Halloween at Quantix."}</strong>
+          {
+            locale === "es"
+              ? " La misma tecnología. Una atmósfera diferente."
+              : " The same technology. A different atmosphere."
+          }
+        </p>
+        <span class="seasonal-halloween__icon" aria-hidden="true">✦</span>
+      </div>
+    </aside>
     <SiteHeader navItems={navigation} locale={locale} labels={labels} />
 
     <main id="main-content" tabindex="-1">

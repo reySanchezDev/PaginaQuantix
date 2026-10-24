@@ -3,6 +3,7 @@
 @import "./typography.css";
 @import "./motion.css";
 @import "./themes/octubre-rosa.css";
+@import "./themes/halloween-tech-noir.css";
 
 *,
 *::before,

@@ -1,0 +1,258 @@
+/* Halloween Tech Noir — temporada visual, sin cambiar contenidos ni capturas reales. */
+html[data-seasonal-theme="halloween-tech-noir"] {
+  color-scheme: dark;
+  --color-canvas: #090b12;
+  --color-surface: #11141e;
+  --color-surface-raised: #1a1b29;
+  --color-surface-muted: #10121d;
+  --color-ink: #fff7ec;
+  --color-ink-muted: #c9c2c2;
+  --color-ink-subtle: #b9afb4;
+  --color-border: #40303a;
+  --color-border-strong: #76513e;
+  --color-control-border: #bb825e;
+  --color-primary: #ff923c;
+  --color-primary-hover: #ffb06a;
+  --color-primary-soft: #392219;
+  --color-accent: #ffc07b;
+  --color-accent-soft: #301d20;
+  --color-focus: #ffc07b;
+  --color-focus-inverse: #ffc07b;
+  --color-overlay: rgb(3 3 8 / 0.86);
+  --color-inverse: #fff8ef;
+  --color-inverse-muted: #c9bec1;
+  --color-dark: #080a12;
+  --color-dark-raised: #17131d;
+  --color-dark-deep: #06070d;
+  --focus-ring: 0 0 0 3px rgb(255 164 82 / 0.42);
+  --shadow-md: 0 1.5rem 4rem -2.5rem rgb(0 0 0 / 0.65);
+  --shadow-lg: 0 2rem 5rem -2.5rem rgb(0 0 0 / 0.75);
+  --product-viggo: #b18afb;
+  --product-viggo-soft: #281f38;
+  --product-takofy: #ffa65c;
+  --product-takofy-soft: #34221b;
+  --product-oktara: #86d5cb;
+  --product-oktara-soft: #152e30;
+  --product-tentrix: #a59af5;
+  --product-tentrix-soft: #272442;
+  --product-lendly: #84c5f1;
+  --product-lendly-soft: #162e40;
+  --product-hen-screenshots: #eaa77f;
+  --product-hen-screenshots-soft: #32231e;
+  --product-finance: #edb27f;
+  --product-finance-soft: #35251f;
+  --product-qavision: #b9aaf8;
+  --product-qavision-soft: #292740;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] body {
+  background: radial-gradient(ellipse at 75% 14%, #23141c 0%, #090b12 50%, #090b12 100%);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .site-header {
+  background: rgb(9 11 18 / 0.95);
+  border-bottom-color: #5d382c;
+  box-shadow: 0 2px 22px rgb(255 124 42 / 0.08);
+  backdrop-filter: blur(14px);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.contact-link {
+  background: transparent;
+  color: #ffb36d;
+  border: 1px solid #d37a32;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.contact-link:hover,
+html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.contact-link.active {
+  background: #ff923c;
+  color: #160d0c;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .brand__dot,
+html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.active {
+  color: #ffae67;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero {
+  --color-focus: #ffc07b;
+  position: relative;
+  isolation: isolate;
+  background-color: #090b12;
+  background-image:
+    linear-gradient(
+      90deg,
+      #090b12 0%,
+      rgb(9 11 18 / 0.93) 28%,
+      rgb(9 11 18 / 0.61) 63%,
+      rgb(9 11 18 / 0.24) 100%
+    ),
+    url("/themes/halloween-tech-noir/scene.svg");
+  background-position:
+    center,
+    right center;
+  background-repeat: no-repeat;
+  background-size:
+    cover,
+    auto 110%;
+  box-shadow: inset 0 -1px 0 #6f371f;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .eyebrow {
+  color: #ffb77e;
+  letter-spacing: 0.1em;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero h1 span:last-child {
+  color: #ffa456;
+  text-shadow: 0 0 38px rgb(255 123 40 / 0.18);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-lead,
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-footnote {
+  color: #f1e3df;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-contact,
+html[data-seasonal-theme="halloween-tech-noir"] .cta-section .cta-primary {
+  --button-bg: #ff963c;
+  --button-fg: #1d100b;
+  --button-hover-bg: #ffba78;
+  --button-hover-fg: #1d100b;
+  --button-border: #ffb06a;
+  box-shadow: 0 0 24px rgb(255 125 39 / 0.3);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-work-link {
+  padding: 0.6rem 1rem;
+  border: 1px solid #7c6e72;
+  border-radius: var(--radius-control);
+  background: rgb(7 8 13 / 0.5);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-footnote {
+  border-top-color: rgb(253 161 87 / 0.44);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-products a {
+  color: #ffc187;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero .product-composition {
+  filter: drop-shadow(0 1.75rem 2rem rgb(0 0 0 / 0.66));
+}
+
+/* Las tarjetas originales permanecen en su lugar, con nuevas superficies cromáticas. */
+html[data-seasonal-theme="halloween-tech-noir"] .case-studies,
+html[data-seasonal-theme="halloween-tech-noir"] .blog-section,
+html[data-seasonal-theme="halloween-tech-noir"] .section--soft {
+  background:
+    radial-gradient(ellipse at 90% 0%, rgb(120 54 40 / 0.2), transparent 38%),
+    linear-gradient(145deg, #10131e, #0b0d17);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .case-preview {
+  padding: clamp(1rem, 2vw, 1.75rem);
+  border: 1px solid #524049;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(130deg, rgb(25 21 31 / 0.92), rgb(10 13 24 / 0.85));
+  box-shadow: 0 0 28px rgb(255 135 48 / 0.05);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .approach-options article {
+  padding-inline: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid #524049;
+  border-radius: var(--radius-md);
+  background: linear-gradient(125deg, #191720, #10131c);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .approach-options {
+  display: grid;
+  gap: 0.75rem;
+  border: none;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .home-team__founders li {
+  padding-inline: 1.25rem;
+  border: 1px solid #59404a;
+  border-radius: var(--radius-md);
+  background: #141521;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .blog-feature .article-image {
+  border: 1px solid #8a523e;
+  box-shadow: 0 0 25px rgb(255 144 57 / 0.08);
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .cta-section {
+  background:
+    radial-gradient(ellipse at 93% 50%, rgb(194 84 31 / 0.2), transparent 35%),
+    linear-gradient(105deg, #0a0c16, #24131b 78%, #110e18);
+  border-block: 1px solid #8a492d;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .site-footer {
+  background: #06070d;
+  border-top: 1px solid #6c3c2d;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .seasonal-halloween {
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #773b21;
+  background: linear-gradient(90deg, #25100d, #3c1c12 50%, #25100d);
+  color: #ffd6ad;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .seasonal-halloween__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-block: 0.55rem;
+  text-align: center;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .seasonal-halloween p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+html[data-seasonal-theme="halloween-tech-noir"] .seasonal-halloween__icon {
+  color: #ffb067;
+  font-size: 1rem;
+}
+
+.seasonal-halloween[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 48rem) {
+  html[data-seasonal-theme="halloween-tech-noir"] .home-hero {
+    background-image:
+      linear-gradient(180deg, rgb(9 11 18 / 0.91), rgb(9 11 18 / 0.83) 48%, rgb(9 11 18 / 0.52)),
+      url("/themes/halloween-tech-noir/scene.svg");
+    background-position:
+      center,
+      62% center;
+    background-size:
+      cover,
+      auto 100%;
+  }
+
+  html[data-seasonal-theme="halloween-tech-noir"] .case-preview {
+    padding: 1rem;
+  }
+
+  html[data-seasonal-theme="halloween-tech-noir"] .seasonal-halloween__inner {
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-contact:hover,
+  html[data-seasonal-theme="halloween-tech-noir"] .cta-section .cta-primary:hover {
+    box-shadow: 0 0 36px rgb(255 145 53 / 0.46);
+  }
+}

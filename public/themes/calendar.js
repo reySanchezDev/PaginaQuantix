@@ -15,5 +15,15 @@ window.QuantixThemeCalendar = Object.freeze({
       themeColor: "#fff7fa",
       icon: "/themes/octubre-rosa/favicon.svg",
     },
+    {
+      id: "halloween-tech-noir",
+      enabled: true,
+      start: "2026-10-31",
+      end: "2026-10-31",
+      recurrence: "once",
+      priority: 200,
+      themeColor: "#090b12",
+      icon: "/favicon.svg",
+    },
   ],
 });
