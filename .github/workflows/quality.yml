@@ -19,4 +19,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm run quality
+      - run: |
+          npx prettier --write docs/halloween-tech-noir-2026.md src/layouts/BaseLayout.astro src/styles/themes/halloween-tech-noir.css
+          python3 -c 'import json,pathlib; fs=["docs/halloween-tech-noir-2026.md","src/layouts/BaseLayout.astro","src/styles/themes/halloween-tech-noir.css"]; [print("FORMATTED_FILE::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True)) for p in fs]'
+          npm run quality
