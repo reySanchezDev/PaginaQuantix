@@ -4,15 +4,15 @@ html[data-seasonal-theme="halloween-tech-noir"] .home-hero {
   isolation: isolate;
 }
 
-html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
-  .home-hero::before {
+html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off]) .home-hero::before {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   width: clamp(13rem, 20vw, 17rem);
   aspect-ratio: 500 / 355;
-  background: url("/themes/halloween-tech-noir/web.svg?v=minimal-20261030") right top / contain no-repeat;
+  background: url("/themes/halloween-tech-noir/web.svg?v=minimal-20261030") right top / contain
+    no-repeat;
   opacity: 0.72;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
@@ -112,20 +112,40 @@ html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
 }
 
 @keyframes halloween-suspend {
-  from { transform: translateY(0) rotate(-1.5deg); }
-  to { transform: translateY(3px) rotate(1.5deg); }
+  from {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  to {
+    transform: translateY(3px) rotate(1.5deg);
+  }
 }
 
 @keyframes halloween-tap {
-  0%, 100% { scale: 1; }
-  40% { scale: 0.88; }
-  70% { scale: 1.05; }
+  0%,
+  100% {
+    scale: 1;
+  }
+  40% {
+    scale: 0.88;
+  }
+  70% {
+    scale: 1.05;
+  }
 }
 
 @keyframes halloween-silk {
-  0% { opacity: 0.9; transform: scaleY(0); }
-  60% { opacity: 0.9; transform: scaleY(1); }
-  100% { opacity: 0; transform: scaleY(1); }
+  0% {
+    opacity: 0.9;
+    transform: scaleY(0);
+  }
+  60% {
+    opacity: 0.9;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1);
+  }
 }
 
 @media (max-width: 47.999rem) {
