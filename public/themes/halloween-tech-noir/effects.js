@@ -10,19 +10,7 @@
   });
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const spider = `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g class="halloween-spider__legs halloween-spider__legs--left" fill="none" stroke="#bc8555" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M27 29 15 17 4 18M25 33 12 26 2 30M25 39 12 44 4 54M28 43 19 53 17 61"/>
-    </g>
-    <g class="halloween-spider__legs halloween-spider__legs--right" fill="none" stroke="#bc8555" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M37 29 49 17 60 18M39 33 52 26 62 30M39 39 52 44 60 54M36 43 45 53 47 61"/>
-    </g>
-    <ellipse cx="32" cy="39" rx="12.8" ry="15.5" fill="#0c0d13" stroke="#da8247" stroke-width="1.8"/>
-    <ellipse cx="32" cy="25" rx="9.8" ry="9" fill="#1a121a" stroke="#c98b56" stroke-width="1.6"/>
-    <path d="M32 30v16" stroke="#f6a36c" opacity=".48" stroke-width="1.6"/>
-    <circle cx="28.5" cy="23.5" r="1.9" fill="#ffbd7a"/>
-    <circle cx="35.5" cy="23.5" r="1.9" fill="#ffbd7a"/>
-  </svg>`;
+  const spider = `<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="spider-abdomen" cx=".32" cy=".18" r=".85"><stop stop-color="#67514a"/><stop offset=".38" stop-color="#2b1f23"/><stop offset="1" stop-color="#060910"/></radialGradient></defs><g class="halloween-spider__legs halloween-spider__legs--left" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#08090f" stroke-width="7.2"><path d="M40 40 29 29 18 12 5 9"/><path d="M39 45 23 39 11 29 2 33"/><path d="M39 50 22 56 8 69 4 80"/><path d="M42 54 30 68 23 84 16 94"/></g><g stroke="#c28a65" stroke-width="3.1"><path d="M40 40 29 29 18 12 5 9"/><path d="M39 45 23 39 11 29 2 33"/><path d="M39 50 22 56 8 69 4 80"/><path d="M42 54 30 68 23 84 16 94"/></g></g><g class="halloween-spider__legs halloween-spider__legs--right" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#08090f" stroke-width="7.2"><path d="M56 40 67 29 78 12 91 9"/><path d="M57 45 73 39 85 29 94 33"/><path d="M57 50 74 56 88 69 92 80"/><path d="M54 54 66 68 73 84 80 94"/></g><g stroke="#c28a65" stroke-width="3.1"><path d="M56 40 67 29 78 12 91 9"/><path d="M57 45 73 39 85 29 94 33"/><path d="M57 50 74 56 88 69 92 80"/><path d="M54 54 66 68 73 84 80 94"/></g></g><ellipse cx="48" cy="62" rx="19" ry="22" fill="url(#spider-abdomen)" stroke="#c28b64" stroke-width="2.4"/><path d="M39 52q9-6 18 0M39 68q9 8 18 0M47 46v31" fill="none" stroke="#e1a17a" stroke-width="1.8" opacity=".6"/><path d="M43 59 48 65 53 59 48 55Z" fill="#c88964" opacity=".7"/><ellipse cx="48" cy="39" rx="13" ry="11" fill="#292025" stroke="#d1a077" stroke-width="2.3"/><path d="M42 45 39 52M54 45 57 52" stroke="#aa846a" stroke-width="2.5"/><g fill="#ffc38c"><circle cx="44" cy="36" r="1.6"/><circle cx="52" cy="36" r="1.6"/></g></svg>`;
 
   let currentMode = "";
   let teardown = () => {};
