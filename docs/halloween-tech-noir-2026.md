@@ -1,72 +1,41 @@
 # Halloween Tech Noir 2026 — Quantix Software
 
-## Alcance aprobado
+## Alcance vigente
 
-Solo cambia la ambientación de la página real. Se conservan literalmente los contenidos existentes, los enlaces, la estructura, la navegación, los datos SEO y las capturas auténticas de TAKOFY y VIGGO. El primer mockup es referencia estética, no referencia de texto ni datos.
+La ambientación Halloween es exclusivamente visual. Conserva literalmente los textos, enlaces, estructura, navegación, SEO, capturas auténticas de productos y componentes funcionales de Quantix.
 
-## Activación automática
+**Diseño final:** se conserva una sola telaraña decorativa en la esquina superior derecha del hero. No se montan efectos de interacción ni elementos animados adicionales. El usuario conserva siempre el cursor estándar del navegador.
 
-- Inicio: 30 de octubre de 2026, 00:00:00, zona America/Managua.
-- Final: 31 de octubre de 2026, 23:59:59, zona America/Managua.
-- Vuelta a la identidad corporativa: 1 de noviembre de 2026, 00:00:00.
-- Prioridad: 200, por encima de Octubre Rosa (100) durante el 30 y 31.
-- Recurrencia: once (no se repetirá automáticamente en 2027).
-- Se evalúa en el navegador al abrir la página, recuperar el foco y cada 30 segundos mediante el motor actual; no se necesita cron ni un nuevo deploy al comenzar la fecha.
+## Calendario automático
 
-## Identidad y recursos
+- Inicio: 30 de octubre de 2026, 00:00, zona `America/Managua`.
+- Fin: 31 de octubre de 2026, 23:59:59, zona `America/Managua`.
+- Retorno al tema corporativo: 1 de noviembre de 2026, 00:00.
+- Prioridad: 200, superior a Octubre Rosa (100) durante el 30 y 31.
+- Recurrencia: una sola vez en 2026. No se activa automáticamente en 2027.
+- La selección se hace en el navegador mediante `/themes/calendar.js`, `/themes/scheduler.js` y `/themes/runtime.js`. No requiere cron ni un deploy adicional al comienzo del día.
 
-- Paleta carbón/azul noche, naranja ámbar y violeta oscuro.
-- Ilustración SVG local, sin texto ni interfaces ficticias, como capa decorativa detrás de las capturas reales.
-- Paleta y estilos aislados en src/styles/themes/halloween-tech-noir.css.
-- Ilustración en public/themes/halloween-tech-noir/scene.svg.
-- Banner estacional bilingüe en BaseLayout, oculto fuera de la fecha.
-- Se conserva /favicon.svg como identidad de la marca.
+## Recursos vigentes
 
-## Pruebas y mitigaciones
+- `public/themes/halloween-tech-noir/scene.svg`: ambientación original del fondo.
+- `public/themes/halloween-tech-noir/web.svg`: única telaraña.
+- `src/styles/themes/halloween-tech-noir.css`: paleta y fondo de Halloween.
+- `src/styles/themes/halloween-ambient.css`: únicamente telaraña en `.home-hero::before`, visible en escritorio y móvil, con `pointer-events: none`.
+- `src/layouts/BaseLayout.astro`: mantiene banner bilingüe y calendario estacional.
 
-- tests/seasonal-themes.test.mjs cubre el inicio del 30 de octubre y la restauración del 1 de noviembre, prioridad y recurrencia.
-- Probar escritorio y móvil, accesibilidad, navegación y contraste, sin alterar contenidos.
-- La fecha depende de un reloj del dispositivo correcto, aunque el día se calcula en America/Managua.
-- Si JavaScript está bloqueado, la página conserva el tema corporativo por defecto.
-- Para desactivar anticipadamente, cambiar enabled a false en public/themes/calendar.js y publicar.
+## Eliminaciones definitivas
 
-## Animaciones Halloween (30 y 31 de octubre de 2026)
+- Eliminados `public/themes/halloween-tech-noir/effects.js` y `public/themes/halloween-tech-noir/spider.svg`.
+- Eliminada la referencia al script de efectos desde `BaseLayout.astro`.
+- Eliminados todos los componentes, estilos y animaciones de arañas, del cursor personalizado y de la simulación de seda al hacer clic.
+- Eliminados los tests obsoletos de efectos y reemplazados por pruebas de **solo telaraña**.
 
-La ambientación minimalista incluye únicamente una araña suspendida de la telaraña y un cursor-araña en escritorio. Todo se implementa con SVG/CSS/JavaScript ligero, sin bibliotecas de animación:
+## Validación y reversión
 
-- **Cursor araña:** solo escritorio con puntero fino y hover. La araña acompaña al mouse y, en el clic principal, simula una pequeña descarga de hilo y un toque de patas. Las interacciones de botones y enlaces se ejecutan sin demoras y los elementos superpuestos siempre tienen `pointer-events: none`.
-- **Araña colgante:** una única araña permanece suspendida en la telaraña del hero mediante un hilo fino, fuera del texto y las capturas. No hay arañas caminantes en ninguna sección.
-- **Telaraña:** un único grabado SVG de seda gris y humo, en la esquina superior derecha del hero. No hay telarañas en CTA ni footer.
+- `tests/halloween-web.test.mjs` valida calendario/layout, recurso SVG y ausencia de scripts o archivos de arañas.
+- `tests/halloween-web.browser.mjs` comprueba la telaraña real en Chromium (escritorio, móvil y movimiento reducido), el cursor nativo, los enlaces y el regreso al tema base.
+- `tests/halloween-contrast.browser.mjs` continúa auditando botones y contraste del tema.
 
-### Aislamiento y accesibilidad
+La fecha depende del reloj del dispositivo, aunque el día se interpreta en `America/Managua`. Si JavaScript está desactivado, se conserva el tema corporativo. Para desactivar Halloween antes de su fecha final, establecer `enabled: false` en su entrada del calendario y publicar.
 
-Solo se activan cuando el calendario coloca `data-seasonal-theme="halloween-tech-noir"`; al salir del tema se retiran arañas, cursor e hilos sin recargar la página. El modo `prefers-reduced-motion: reduce` conserva estática la araña colgante y la telaraña, pero no monta el cursor especial. Formularios y campos editables conservan el cursor normal. En dispositivos táctiles no hay cursor especial.
-
-Banderas al comienzo de `public/themes/halloween-tech-noir/effects.js`: `spiderCursor` y `spiderWebs`. No existe `ambientSpiders`. Desactivar una bandera no cambia el calendario ni el texto.
-
-### Archivos y validación
-
-- `public/themes/halloween-tech-noir/effects.js`: montaje, eventos y limpieza de efectos.
-- `public/themes/halloween-tech-noir/web.svg`: telaraña orgánica original Quantix con radios y arcos de seda conectados. SVG estático y válido.
-- `public/themes/halloween-tech-noir/spider.svg`: araña minimalista de ocho patas articuladas, gris carbón con brillo de borde tenue, sin ojos ni contornos caricaturescos.
-- `src/styles/themes/halloween-ambient.css`: telaraña principal pequeña en esquina superior derecha, máscara de desvanecimiento antes de las capturas, una araña colgante por hilo visible y ajustes para móvil.
-- `tests/halloween-effects.test.mjs`: controles de comportamiento y aislamiento.
-- `tests/halloween-effects.browser.mjs`: prueba automatizada del cursor, clic, telaraña, una única araña colgante, ausencia de caminantes, móvil y movimiento reducido.
-
-El calendario del 30 y 31 de octubre se conserva; el 1 de noviembre vuelve el tema corporativo sin animaciones.
-
-## Revisión de diseño 30/10 — Organic Silk
-
-La versión previa generaba hilos geométricos muy extensos, araña iconográfica y se superponía al mockup. Se sustituyeron las piezas con ilustraciones SVG originales de Quantix inspiradas en las fotografías de telarañas naturales y en el patrón de accesibilidad de proyectos abiertos; no se incorpora ni redistribuye código o imágenes de terceros.
-
-Referencias de investigación:
-
-- https://github.com/rogulia/halloween.js (MIT) — efectos de Halloween desacoplados, sin dependencias y con respeto a movimiento reducido.
-- https://github.com/ashmystic/spiderweb-on-the-fly — inspiración matemática de redes orbiculares naturales, no se copia implementación.
-- Captura de referencia proporcionada por el usuario: interfaz de ChatGPT con hilo colgante y telaraña de esquina.
-
-Se mantienen textos, SEO, capturas reales, navegación y calendario originales. La composición no debe ocupar el título ni interceptar elementos interactivos. La fecha del tema sigue siendo 30–31/10/2026, y se retira el 1/11. La rama remota no contiene ni elimina los archivos locales no rastreados de Codex en `NUEVO_PRODUCTO/`.
-
-## Revisión minimalista del 30/10/2026
-
-A petición del usuario, se eliminaron íntegramente las arañas caminantes y todos sus estilos y animaciones. La única araña decorativa del documento cuelga de la telaraña del hero; la otra aparece únicamente como cursor en escritorio. Ambas usan el mismo recurso SVG minimalista. La telaraña del footer también se retiró para respetar el concepto. Las pruebas de navegador verifican que no exista ninguna `halloween-walker` y que los efectos desaparezcan al finalizar el tema.
+Los archivos locales sin commit que puedan existir en el equipo del usuario no se modifican desde GitHub. Actualizar el clon local con cuidado antes de recuperar cambios.

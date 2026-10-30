@@ -1,10 +1,10 @@
-/* Quantix Halloween 2026: one hanging spider, one desktop pointer, one corner web. */
+/* Halloween 2026: únicamente la telaraña decorativa del hero. */
 html[data-seasonal-theme="halloween-tech-noir"] .home-hero {
   position: relative;
   isolation: isolate;
 }
 
-html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off]) .home-hero::before {
+html[data-seasonal-theme="halloween-tech-noir"] .home-hero::before {
   content: "";
   position: absolute;
   top: 0;
@@ -20,163 +20,9 @@ html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off]) .
   z-index: 2;
 }
 
-.halloween-hanging-spider,
-.halloween-spider-pointer,
-.halloween-silk-shot {
-  display: none;
-}
-
-/* One discreet hanging spider, attached by a fine visible silk thread. */
-html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider {
-  position: absolute;
-  display: block;
-  top: 0.25rem;
-  right: 2rem;
-  width: 2.5rem;
-  height: 7.1rem;
-  transform-origin: 50% 0;
-  animation: halloween-suspend 9s ease-in-out infinite alternate;
-  pointer-events: none;
-  user-select: none;
-  z-index: 3;
-}
-
-html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 50%;
-  width: 1px;
-  height: 4.8rem;
-  background: linear-gradient(#d5d1d9 0%, #aca6b4 70%, #7f7b8c 100%);
-  opacity: 0.75;
-}
-
-html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img,
-html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
-  position: absolute;
-  left: 0;
-  top: 4.55rem;
-  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.6));
-}
-
-@media (hover: hover) and (pointer: fine) {
-  html[data-seasonal-theme="halloween-tech-noir"][data-halloween-cursor="on"],
-  html[data-seasonal-theme="halloween-tech-noir"][data-halloween-cursor="on"] body,
-  html[data-seasonal-theme="halloween-tech-noir"][data-halloween-cursor="on"] a,
-  html[data-seasonal-theme="halloween-tech-noir"][data-halloween-cursor="on"] button,
-  html[data-seasonal-theme="halloween-tech-noir"][data-halloween-cursor="on"] summary {
-    cursor: none !important;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer {
-    display: block;
-    position: fixed;
-    top: -6rem;
-    left: -6rem;
-    width: 2.4rem;
-    height: 2.4rem;
-    opacity: 0;
-    transform: translate(-50%, -42%);
-    pointer-events: none;
-    user-select: none;
-    z-index: 2147483646;
-    will-change: left, top;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer.is-visible {
-    opacity: 1;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer.is-tapping {
-    animation: halloween-tap 350ms ease-out;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-silk-shot {
-    display: block;
-    position: fixed;
-    width: 1px;
-    height: 24px;
-    background: linear-gradient(#e4d8d8, #bcb8c3 60%, transparent);
-    transform-origin: top center;
-    animation: halloween-silk 410ms ease-out forwards;
-    pointer-events: none;
-    z-index: 2147483645;
-  }
-}
-
-@keyframes halloween-suspend {
-  from {
-    transform: translateY(0) rotate(-1.5deg);
-  }
-  to {
-    transform: translateY(3px) rotate(1.5deg);
-  }
-}
-
-@keyframes halloween-tap {
-  0%,
-  100% {
-    scale: 1;
-  }
-  40% {
-    scale: 0.88;
-  }
-  70% {
-    scale: 1.05;
-  }
-}
-
-@keyframes halloween-silk {
-  0% {
-    opacity: 0.9;
-    transform: scaleY(0);
-  }
-  60% {
-    opacity: 0.9;
-    transform: scaleY(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scaleY(1);
-  }
-}
-
 @media (max-width: 47.999rem) {
-  html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
-    .home-hero::before {
+  html[data-seasonal-theme="halloween-tech-noir"] .home-hero::before {
     width: 8.25rem;
     opacity: 0.6;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider {
-    right: 0.65rem;
-    top: 0.2rem;
-    width: 1.45rem;
-    height: 4.25rem;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider::before {
-    height: 2.65rem;
-  }
-
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
-    top: 2.45rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider {
-    animation: none !important;
-  }
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer,
-  html[data-seasonal-theme="halloween-tech-noir"] .halloween-silk-shot {
-    display: none !important;
   }
 }
