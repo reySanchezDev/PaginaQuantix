@@ -134,14 +134,15 @@ const contextualNav = navItems.map((item) =>
   .desktop-nav a.contact-link {
     margin-left: 0.75rem;
     padding-inline: 1.4rem;
-    background: var(--color-ink);
-    color: var(--color-inverse);
+    background: var(--nav-contact-bg, var(--color-ink));
+    color: var(--nav-contact-fg, var(--color-inverse));
+    border: 1px solid var(--nav-contact-border, transparent);
     border-radius: var(--radius-control);
   }
-  .desktop-nav a.contact-link:hover,
-  .desktop-nav a.contact-link.active {
-    background: var(--color-primary);
-    color: var(--color-inverse);
+  .desktop-nav a.contact-link:is(:hover, :focus-visible, .active, [aria-current="page"]) {
+    background: var(--nav-contact-hover-bg, var(--color-primary));
+    color: var(--nav-contact-hover-fg, var(--color-inverse));
+    border-color: var(--nav-contact-hover-border, var(--nav-contact-border, transparent));
     text-decoration: none;
   }
   .menu-toggle {
