@@ -133,6 +133,10 @@ const safeHref = href && !isDisabled ? href : undefined;
     color: var(--button-hover-fg, var(--button-fg));
     border-color: var(--button-hover-border, var(--button-border, transparent));
   }
+  /* No permitir texto claro sobre naranja al pasar el cursor o usar teclado. */
+  .button--primary:not(.button--inverse):is(:hover, :focus-visible):not([aria-disabled="true"]) {
+    color: var(--color-on-primary, var(--color-inverse));
+  }
   .button--link:is(:hover, :focus-visible):not([aria-disabled="true"]) {
     text-decoration: underline;
     text-underline-offset: 0.3em;
