@@ -29,6 +29,30 @@ try {
     .locator(".home-hero")
     .evaluate((node) => getComputedStyle(node, "::before").backgroundImage);
   assert.match(webImage, /halloween-tech-noir\/web\.svg/);
+  const webCheck = await desktop.evaluate(async () => {
+    const response = await fetch("/themes/halloween-tech-noir/web.svg?v=20261030-v2");
+    const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
+    const image = new Image();
+    image.src = "/themes/halloween-tech-noir/web.svg?v=20261030-v2";
+    await image.decode();
+    const style = getComputedStyle(document.querySelector(".home-hero"), "::before");
+    return {
+      status: response.status,
+      invalid: !!doc.querySelector("parsererror"),
+      strands: doc.querySelectorAll("path").length,
+      width: image.naturalWidth,
+      renderedWidth: Number.parseFloat(style.width),
+      opacity: Number.parseFloat(style.opacity),
+    };
+  });
+  assert.equal(webCheck.status, 200);
+  assert.equal(webCheck.invalid, false, "Cobweb SVG must parse correctly");
+  assert.ok(webCheck.strands > 10 && webCheck.width >= 500);
+  assert.ok(webCheck.renderedWidth >= 250 && webCheck.opacity > 0.5);
+  const spiderWidth = await desktop.locator(".halloween-walker").first().evaluate(
+    (node) => node.getBoundingClientRect().width,
+  );
+  assert.ok(spiderWidth >= 40, "Spider must be clearly identifiable");
 
   await desktop.mouse.move(350, 350);
   await desktop.waitForFunction(
