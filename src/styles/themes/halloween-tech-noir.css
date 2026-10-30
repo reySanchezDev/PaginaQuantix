@@ -124,6 +124,15 @@ html[data-seasonal-theme="halloween-tech-noir"] .cta-section .cta-primary {
   box-shadow: 0 0 24px rgb(255 125 39 / 0.3);
 }
 
+/* Explicit hover/focus contrast for product CTA links; scoped component CSS may
+   otherwise restore white text on the seasonal orange background. */
+html[data-seasonal-theme="halloween-tech-noir"] .button--primary:not(.button--inverse):is(
+    :hover,
+    :focus-visible
+  ) {
+  color: #160d0c !important;
+}
+
 html[data-seasonal-theme="halloween-tech-noir"] .home-hero .hero-work-link {
   padding: 0.6rem 1rem;
   border: 1px solid #7c6e72;
