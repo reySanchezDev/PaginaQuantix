@@ -29,3 +29,27 @@ Solo cambia la ambientación de la página real. Se conservan literalmente los c
 - La fecha depende de un reloj del dispositivo correcto, aunque el día se calcula en America/Managua.
 - Si JavaScript está bloqueado, la página conserva el tema corporativo por defecto.
 - Para desactivar anticipadamente, cambiar enabled a false en public/themes/calendar.js y publicar.
+
+## Animaciones Halloween (30 y 31 de octubre de 2026)
+
+La ambientación incluye tres efectos originales basados en SVG/CSS/JavaScript ligero, sin bibliotecas de animación:
+
+- **Cursor araña:** solo escritorio con puntero fino y hover. La araña acompaña al mouse y, en el clic principal, simula una pequeña descarga de hilo y un toque de patas. Las interacciones de botones y enlaces se ejecutan sin demoras y los elementos superpuestos siempre tienen `pointer-events: none`.
+- **Arañas decorativas:** hasta tres arañas pequeñas caminan pausadamente por bordes de secciones existentes (primera sección, CTA y footer); en pantallas estrechas solo una es visible.
+- **Telarañas premium:** tres grabados SVG color cobre/humo, con respiración tenue, en esquinas de primera sección, CTA y footer. Permanecen decorativas y no reemplazan fotografías, mensajes ni capturas de producto.
+
+### Aislamiento y accesibilidad
+
+Solo se activan cuando el calendario coloca `data-seasonal-theme="halloween-tech-noir"`; al salir del tema se retiran arañas, cursor e hilos sin recargar la página. El modo `prefers-reduced-motion: reduce` mantiene las telarañas estáticas pero no monta arañas móviles ni cursor. Formularios y campos editables conservan el cursor normal. En dispositivos táctiles no hay cursor especial.
+
+Banderas individuales al comienzo de `public/themes/halloween-tech-noir/effects.js`: `spiderCursor`, `ambientSpiders`, `spiderWebs`. Desactivar una bandera no cambia el calendario ni el texto.
+
+### Archivos y validación
+
+- `public/themes/halloween-tech-noir/effects.js`: montaje, eventos y limpieza de efectos.
+- `public/themes/halloween-tech-noir/web.svg`: telaraña geométrica local.
+- `src/styles/themes/halloween-ambient.css`: keyframes y posiciones exclusivamente estacionales.
+- `tests/halloween-effects.test.mjs`: controles de comportamiento y aislamiento.
+- `tests/halloween-effects.browser.mjs`: prueba automatizada del cursor, clic, telarañas, caminantes, móvil y movimiento reducido.
+
+El calendario del 30 y 31 de octubre se conserva; el 1 de noviembre vuelve el tema corporativo sin animaciones.
