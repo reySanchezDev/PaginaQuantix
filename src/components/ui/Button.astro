@@ -137,10 +137,6 @@ const safeHref = href && !isDisabled ? href : undefined;
   .button--primary:not(.button--inverse):is(:hover, :focus-visible):not([aria-disabled="true"]) {
     color: var(--color-on-primary, var(--color-inverse));
   }
-  /* CTA final: su fondo estacional naranja exige tinta oscura también al enfocarlo. */
-  .button--inverse.button--primary.cta-primary:is(:hover, :focus-visible) {
-    color: var(--cta-primary-hover-fg, var(--button-hover-fg));
-  }
   .button--link:is(:hover, :focus-visible):not([aria-disabled="true"]) {
     text-decoration: underline;
     text-underline-offset: 0.3em;
