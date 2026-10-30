@@ -19,4 +19,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Temporary Prettier output for browser test
+        run: |
+          npx prettier --write tests/halloween-effects.browser.mjs
+          python3 -c 'import json,pathlib; p="tests/halloween-effects.browser.mjs"; print("FORMAT_TEST::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()}))'
       - run: npm run quality
