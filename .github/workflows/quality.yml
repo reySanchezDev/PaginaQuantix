@@ -19,8 +19,4 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - name: Temporary format of minimalist seasonal sources
-        run: |
-          npx prettier --write src/styles/themes/halloween-ambient.css tests/halloween-effects.browser.mjs
-          python3 -c 'import pathlib,json; files=["src/styles/themes/halloween-ambient.css","tests/halloween-effects.browser.mjs"]; [print("FORMAT_MINIMAL::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True)) for p in files]'
       - run: npm run quality
