@@ -1,9 +1,10 @@
 import { chromium } from "playwright";
 import { readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { join, relative, sep } from "node:path";
 
 const base = process.env.E2E_BASE_URL || "http://127.0.0.1:4321";
-const dist = new URL("../dist/", import.meta.url).pathname;
+const dist = fileURLToPath(new URL("../dist/", import.meta.url));
 const walk = (folder) =>
   readdirSync(folder, { withFileTypes: true }).flatMap((item) =>
     item.isDirectory() ? walk(join(folder, item.name)) : [join(folder, item.name)],
@@ -98,6 +99,7 @@ try {
         continue;
       }
       await page.waitForLoadState("load");
+      await page.waitForTimeout(250);
       await page.addStyleTag({ content: "*{transition:none!important;animation:none!important}" });
       await page.evaluate(() => {
         document.documentElement.setAttribute("data-seasonal-theme", "halloween-tech-noir");
