@@ -49,9 +49,10 @@ try {
   assert.equal(webCheck.invalid, false, "Cobweb SVG must parse correctly");
   assert.ok(webCheck.strands >= 10 && webCheck.width >= 500);
   assert.ok(webCheck.renderedWidth >= 250 && webCheck.opacity > 0.5);
-  const spiderWidth = await desktop.locator(".halloween-walker").first().evaluate(
-    (node) => node.getBoundingClientRect().width,
-  );
+  const spiderWidth = await desktop
+    .locator(".halloween-walker")
+    .first()
+    .evaluate((node) => node.getBoundingClientRect().width);
   assert.ok(spiderWidth >= 40, "Spider must be clearly identifiable");
 
   await desktop.mouse.move(350, 350);
