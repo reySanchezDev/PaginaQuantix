@@ -45,7 +45,8 @@ This verifies formatting, lint rules, unused code, the 300-line source limit, As
 The site includes a configuration-driven seasonal theme calendar (`public/themes/calendar.js`),
 resolved for the `America/Managua` time zone and applied on the client without requiring a
 redeploy when an already-published campaign begins or ends. The original design tokens remain
-the default. October 2026's Rosa Perla campaign is the first and only configured campaign.
+the default. The 2026 calendar includes Rosa Perla and the Halloween Tech Noir campaign; the
+Halloween treatment is intentionally limited to one non-interactive hero cobweb.
 
 **Operations, campaign dates, adding future themes, quality checks, and rollback:**
 [Seasonal themes technical manual](docs/seasonal-themes.md).
@@ -78,5 +79,5 @@ npm run preview
 
 ## Runtime
 
-- Node.js 22.21.1 or newer compatible release
+- Node.js 22.22.3 (see `.nvmrc`) or newer compatible release
 - npm 10 or newer
