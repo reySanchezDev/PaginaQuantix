@@ -28,6 +28,7 @@ html[data-seasonal-theme="halloween-tech-noir"] {
   --color-on-primary: #160d0c;
   --color-on-inverse-button: #160d0c;
   --color-on-inverse-button-hover: #ffb06a;
+  --cta-primary-hover-fg: #160d0c;
   --nav-contact-bg: transparent;
   --nav-contact-fg: #ffb36d;
   --nav-contact-border: #d37a32;
