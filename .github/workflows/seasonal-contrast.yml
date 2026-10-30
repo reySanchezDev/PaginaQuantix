@@ -6,6 +6,8 @@ on:
       - "src/components/**"
       - "src/styles/**"
       - "tests/halloween-contrast*"
+      - "tests/halloween-effects*"
+      - "public/themes/halloween-tech-noir/**"
       - ".github/workflows/seasonal-contrast.yml"
   push:
     branches: [main]
@@ -13,6 +15,8 @@ on:
       - "src/components/**"
       - "src/styles/**"
       - "tests/halloween-contrast*"
+      - "tests/halloween-effects*"
+      - "public/themes/halloween-tech-noir/**"
   workflow_dispatch:
 
 permissions:
@@ -44,3 +48,4 @@ jobs:
           done
           curl -fsS http://127.0.0.1:4321/en/ > /dev/null
           node tests/halloween-contrast.browser.mjs
+          node tests/halloween-effects.browser.mjs

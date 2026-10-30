@@ -2,5 +2,8 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": ["src/pages/**/*.astro"],
   "project": ["src/**/*.{astro,ts}", "scripts/**/*.mjs", "*.{js,mjs}"],
-  "ignoreDependencies": ["@fontsource-variable/ibm-plex-sans"]
+  "ignoreDependencies": ["@fontsource-variable/ibm-plex-sans"],
+  "ignoreIssues": {
+    "tests/*.browser.mjs": ["unlisted"]
+  }
 }

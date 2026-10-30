@@ -1,0 +1,20 @@
+/* Elegant cobweb engraving. All paths are decorative and carry no text. */
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" fill="none">
+  <defs>
+    <linearGradient id="strand" x1="1" y1="0" x2="0" y2="1">
+      <stop stop-color="#f4b77e" stop-opacity=".92"/>
+      <stop offset=".65" stop-color="#b57a64" stop-opacity=".54"/>
+      <stop offset="1" stop-color="#9e8a99" stop-opacity=".14"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#strand)" stroke-width="1.25" stroke-linecap="round">
+    <path d="M319 1 8 8M319 1 4 93M319 1 16 192M319 1 87 295M319 1 184 319M319 1 277 316M319 1 317 319"/>
+    <path d="M278 1Q281 48 310 55M230 2Q239 97 301 113M171 4Q190 135 284 171M110 6Q142 172 251 221M61 7Q98 194 204 270M10 20Q34 230 151 304" />
+    <path d="M319 64Q252 57 220 39Q208 38 197 45M319 119Q223 104 162 72Q137 71 117 89M319 177Q191 146 110 107Q75 107 51 135M319 234Q162 192 71 146Q37 149 21 181M319 290Q144 237 39 177Q11 196 5 221"/>
+    <path d="M260 1Q272 30 305 35M203 3Q226 58 307 86M143 5Q163 95 302 144M85 6Q105 127 286 199M31 8Q55 172 261 255"/>
+    <path d="M307 2Q301 19 318 28M317 103Q293 96 283 77M283 201Q261 194 244 176" />
+  </g>
+  <g fill="#ffd4a0" opacity=".62">
+    <circle cx="220" cy="39" r="2"/><circle cx="162" cy="72" r="1.6"/><circle cx="110" cy="107" r="2"/><circle cx="71" cy="146" r="1.5"/>
+  </g>
+</svg>
