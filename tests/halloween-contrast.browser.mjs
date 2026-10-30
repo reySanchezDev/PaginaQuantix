@@ -9,7 +9,10 @@ const walk = (folder) =>
     item.isDirectory() ? walk(join(folder, item.name)) : [join(folder, item.name)],
   );
 const routes = walk(dist)
-  .filter((file) => file.endsWith(".html") && !file.endsWith("404.html") && !file.endsWith("/dist/index.html"))
+  .filter(
+    (file) =>
+      file.endsWith(".html") && !file.endsWith("404.html") && !file.endsWith("/dist/index.html"),
+  )
   .map((file) => {
     const pathname = relative(dist, file).split(sep).join("/");
     if (pathname === "index.html") return "/";
@@ -37,9 +40,7 @@ const inspect = async (page, route, viewport) => {
         };
         const linear = (channel) => {
           const normalized = channel / 255;
-          return normalized <= 0.04045
-            ? normalized / 12.92
-            : ((normalized + 0.055) / 1.055) ** 2.4;
+          return normalized <= 0.04045 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
         };
         const luminance = (rgb) =>
           0.2126 * linear(rgb[0]) + 0.7152 * linear(rgb[1]) + 0.0722 * linear(rgb[2]);
@@ -61,14 +62,17 @@ const inspect = async (page, route, viewport) => {
             ];
           }
         }
-        const ratio = (Math.max(luminance(fg), luminance(bg)) + 0.05) /
+        const ratio =
+          (Math.max(luminance(fg), luminance(bg)) + 0.05) /
           (Math.min(luminance(fg), luminance(bg)) + 0.05);
         return { ratio, foreground: getComputedStyle(node).color, background: bg };
       });
       if (result) {
         checked++;
         if (result.ratio < 4.5) {
-          problems.push(`${route} [${viewport}px] ${text || "unnamed control"} ${state} contrast ${result.ratio.toFixed(2)}:1 foreground=${result.foreground} background=${result.background.join(",")}`);
+          problems.push(
+            `${route} [${viewport}px] ${text || "unnamed control"} ${state} contrast ${result.ratio.toFixed(2)}:1 foreground=${result.foreground} background=${result.background.join(",")}`,
+          );
         }
       }
     };
@@ -86,12 +90,17 @@ try {
   for (const viewport of [1440, 390]) {
     const page = await browser.newPage({ viewport: { width: viewport, height: 900 } });
     for (const route of routes) {
-      const response = await page.goto(new URL(route, base).href, { waitUntil: "domcontentloaded" });
+      const response = await page.goto(new URL(route, base).href, {
+        waitUntil: "domcontentloaded",
+      });
       if (!response || response.status() !== 200) {
         problems.push(`${route} [${viewport}px] HTTP ${response?.status() ?? "no response"}`);
         continue;
       }
       await page.waitForLoadState("load");
+      await page.addStyleTag({
+        content: "*, *::before, *::after { transition: none !important; animation: none !important; }",
+      });
       await page.evaluate(() => {
         document.documentElement.setAttribute("data-seasonal-theme", "halloween-tech-noir");
       });
@@ -103,7 +112,9 @@ try {
   await browser.close();
 }
 
-console.log(`Halloween contrast audit: ${routes.length} pages x 2 viewports, ${checked} control states`);
+console.log(
+  `Halloween contrast audit: ${routes.length} pages x 2 viewports, ${checked} control states`,
+);
 if (problems.length > 0) {
   for (const item of problems) console.error(item);
   process.exitCode = 1;
