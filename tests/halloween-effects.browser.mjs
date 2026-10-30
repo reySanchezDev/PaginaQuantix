@@ -25,18 +25,18 @@ try {
   await waitFor(desktop, ".halloween-walker", 3);
   assert.equal(await desktop.locator(".halloween-spider-pointer").count(), 1);
   assert.equal(await desktop.locator(".halloween-walker").count(), 3);
-  const webImage = await desktop.locator(".home-hero").evaluate(
-    (node) => getComputedStyle(node, "::before").backgroundImage,
-  );
+  const webImage = await desktop
+    .locator(".home-hero")
+    .evaluate((node) => getComputedStyle(node, "::before").backgroundImage);
   assert.match(webImage, /halloween-tech-noir\/web\.svg/);
 
   await desktop.mouse.move(350, 350);
   await desktop.waitForFunction(
     () => document.documentElement.getAttribute("data-halloween-cursor") === "on",
   );
-  const pointerStyle = await desktop.locator(".halloween-spider-pointer").evaluate(
-    (node) => getComputedStyle(node).pointerEvents,
-  );
+  const pointerStyle = await desktop
+    .locator(".halloween-spider-pointer")
+    .evaluate((node) => getComputedStyle(node).pointerEvents);
   assert.equal(pointerStyle, "none");
 
   await desktop.mouse.down();
@@ -46,10 +46,14 @@ try {
   // Decorations may not intercept real CTA actions.
   const cta = desktop.locator(".home-hero .hero-contact");
   await cta.evaluate((node) => {
-    node.addEventListener("click", (event) => {
-      event.preventDefault();
-      node.dataset.testClicked = "yes";
-    }, { once: true });
+    node.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        node.dataset.testClicked = "yes";
+      },
+      { once: true },
+    );
   });
   await cta.click();
   assert.equal(await cta.getAttribute("data-test-clicked"), "yes");
@@ -59,9 +63,10 @@ try {
   });
   await waitFor(desktop, ".halloween-walker", 0);
   await waitFor(desktop, ".halloween-spider-pointer", 0);
-  assert.equal(await desktop.evaluate(
-    () => document.documentElement.hasAttribute("data-halloween-cursor"),
-  ), false);
+  assert.equal(
+    await desktop.evaluate(() => document.documentElement.hasAttribute("data-halloween-cursor")),
+    false,
+  );
   await desktop.close();
 
   const mobile = await browser.newPage({
@@ -82,12 +87,17 @@ try {
   await activate(reduced, "/en/");
   assert.equal(await reduced.locator(".halloween-walker").count(), 0);
   assert.equal(await reduced.locator(".halloween-spider-pointer").count(), 0);
-  assert.equal(await reduced.locator(".home-hero").evaluate(
-    (node) => getComputedStyle(node, "::before").animationName,
-  ), "none");
+  assert.equal(
+    await reduced
+      .locator(".home-hero")
+      .evaluate((node) => getComputedStyle(node, "::before").animationName),
+    "none",
+  );
   await reduced.close();
 
-  console.log("Halloween effects E2E PASS: cursor/click, web, walkers, mobile, reduced motion, teardown");
+  console.log(
+    "Halloween effects E2E PASS: cursor/click, web, walkers, mobile, reduced motion, teardown",
+  );
 } finally {
   await browser.close();
 }
