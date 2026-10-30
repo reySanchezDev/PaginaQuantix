@@ -6,6 +6,7 @@ const asset = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 const effects = asset("../public/themes/halloween-tech-noir/effects.js");
 const style = asset("../src/styles/themes/halloween-ambient.css");
 const web = asset("../public/themes/halloween-tech-noir/web.svg");
+const spiderAsset = asset("../public/themes/halloween-tech-noir/spider.svg");
 const layout = asset("../src/layouts/BaseLayout.astro");
 const globalStyle = asset("../src/styles/global.css");
 
@@ -36,8 +37,13 @@ test("Motion preferences and pointer capability gate cursor and roaming spiders"
 test("Cobweb is lightweight decorative SVG without executable content", () => {
   assert.match(web, /<svg/);
   assert.ok(web.trimStart().startsWith("<svg"), "No non-XML comments may precede SVG root");
-  assert.match(web, /viewBox="0 0 560 560"/);
-  assert.match(effects, /viewBox="0 0 96 96"/);
+  assert.match(web, /viewBox="0 0 500 355"/);
+  assert.match(effects, /halloween-tech-noir\/spider\.svg/);
+  assert.match(spiderAsset, /viewBox="0 0 120 120"/);
+  assert.match(effects, /halloween-hanging-spider/);
+  assert.doesNotMatch(spiderAsset, /#ffc38c|<circle[^>]*cx="44"/i);
   assert.doesNotMatch(web, /<script|<foreignObject|onload=/i);
   assert.match(style, /halloween-tech-noir\/web\.svg/);
+  assert.match(style, /halloween-hanging-spider::before/);
+  assert.match(style, /mask-image:/);
 });

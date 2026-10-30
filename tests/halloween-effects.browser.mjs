@@ -47,6 +47,31 @@ try {
   });
   assert.equal(webCheck.status, 200);
   assert.equal(webCheck.invalid, false, "Cobweb SVG must parse correctly");
+  const hanging = desktop.locator(".home-hero .halloween-hanging-spider");
+  assert.equal(await hanging.count(), 1, "Homepage must have one suspended spider");
+  const suspended = await hanging.evaluate(async (node) => {
+    const img = node.querySelector("img");
+    await img.decode();
+    const imageBox = img.getBoundingClientRect();
+    const title = document.querySelector(".home-hero h1").getBoundingClientRect();
+    const intersectsTitle =
+      imageBox.left < title.right &&
+      imageBox.right > title.left &&
+      imageBox.top < title.bottom &&
+      imageBox.bottom > title.top;
+    return {
+      source: img.getAttribute("src"),
+      width: img.naturalWidth,
+      silk: getComputedStyle(node, "::before").height,
+      intersectsTitle,
+      pointerEvents: getComputedStyle(node).pointerEvents,
+    };
+  });
+  assert.match(suspended.source, /spider\.svg/);
+  assert.ok(suspended.width >= 120 && suspended.silk !== "0px");
+  assert.equal(suspended.intersectsTitle, false);
+  assert.equal(suspended.pointerEvents, "none");
+
   assert.ok(webCheck.strands >= 10 && webCheck.width >= 500);
   assert.ok(webCheck.renderedWidth >= 250 && webCheck.opacity > 0.5);
   const spiderWidth = await desktop
@@ -102,6 +127,15 @@ try {
   await activate(mobile, "/es/");
   await waitFor(mobile, ".halloween-walker", 3);
   assert.equal(await mobile.locator(".halloween-spider-pointer").count(), 0);
+  const mobileWeb = await mobile.locator(".home-hero").evaluate((node) => {
+    const style = getComputedStyle(node, "::before");
+    return { width: Number.parseFloat(style.width), height: Number.parseFloat(style.height) };
+  });
+  assert.ok(
+    mobileWeb.width <= 160 && mobileWeb.height <= 120,
+    "Mobile web must stay out of the title",
+  );
+
   assert.equal(await mobile.locator(".halloween-walker:visible").count(), 1);
   await mobile.close();
 
