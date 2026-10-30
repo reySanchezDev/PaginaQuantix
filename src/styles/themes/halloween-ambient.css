@@ -1,8 +1,8 @@
 /* Halloween ornamentation is isolated from the permanent corporate theme. */
 html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
-  main > section:first-child::before,
-html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
-  .cta-section::before,
+  main
+  > section:first-child::before,
+html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off]) .cta-section::before,
 html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
   .site-footer::before {
   content: "";
@@ -145,39 +145,88 @@ html[data-seasonal-theme="halloween-tech-noir"] .site-footer .halloween-walker {
 }
 
 @keyframes halloween-crawl {
-  0%, 8% { left: 3%; transform: translateY(0) rotate(-8deg); }
-  24% { left: 24%; transform: translateY(4px) rotate(12deg); }
-  29%, 36% { left: 29%; transform: translateY(4px) rotate(12deg); }
-  62% { left: 60%; transform: translateY(-2px) rotate(-8deg); }
-  66%, 73% { left: 64%; transform: translateY(0) rotate(-8deg); }
-  100% { left: 89%; transform: translateY(3px) rotate(10deg); }
+  0%,
+  8% {
+    left: 3%;
+    transform: translateY(0) rotate(-8deg);
+  }
+  24% {
+    left: 24%;
+    transform: translateY(4px) rotate(12deg);
+  }
+  29%,
+  36% {
+    left: 29%;
+    transform: translateY(4px) rotate(12deg);
+  }
+  62% {
+    left: 60%;
+    transform: translateY(-2px) rotate(-8deg);
+  }
+  66%,
+  73% {
+    left: 64%;
+    transform: translateY(0) rotate(-8deg);
+  }
+  100% {
+    left: 89%;
+    transform: translateY(3px) rotate(10deg);
+  }
 }
 
 @keyframes halloween-left-leg {
-  from { transform: rotate(-5deg); }
-  to { transform: rotate(7deg); }
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(7deg);
+  }
 }
 
 @keyframes halloween-right-leg {
-  from { transform: rotate(6deg); }
-  to { transform: rotate(-6deg); }
+  from {
+    transform: rotate(6deg);
+  }
+  to {
+    transform: rotate(-6deg);
+  }
 }
 
 @keyframes halloween-tap {
-  0%, 100% { scale: 1; }
-  35% { scale: 0.82; }
-  65% { scale: 1.12; }
+  0%,
+  100% {
+    scale: 1;
+  }
+  35% {
+    scale: 0.82;
+  }
+  65% {
+    scale: 1.12;
+  }
 }
 
 @keyframes halloween-silk {
-  0% { opacity: 0.95; transform: scaleY(0); }
-  60% { opacity: 0.95; transform: scaleY(1); }
-  100% { opacity: 0; transform: scaleY(1); }
+  0% {
+    opacity: 0.95;
+    transform: scaleY(0);
+  }
+  60% {
+    opacity: 0.95;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1);
+  }
 }
 
 @keyframes halloween-web-breathe {
-  from { opacity: 0.22; }
-  to { opacity: 0.42; }
+  from {
+    opacity: 0.22;
+  }
+  to {
+    opacity: 0.42;
+  }
 }
 
 @media (max-width: 47.999rem) {
