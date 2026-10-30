@@ -70,7 +70,7 @@ html[data-seasonal-theme="halloween-tech-noir"] .site-header {
    Evita reglas aisladas que puedan perder prioridad frente al CSS encapsulado de Astro. */
 
 html[data-seasonal-theme="halloween-tech-noir"] .brand__dot,
-html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.active {
+html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.active:not(.contact-link) {
   color: #ffae67;
 }
 
