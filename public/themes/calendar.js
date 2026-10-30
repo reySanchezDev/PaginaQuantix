@@ -18,7 +18,7 @@ window.QuantixThemeCalendar = Object.freeze({
     {
       id: "halloween-tech-noir",
       enabled: true,
-      start: "2026-10-31",
+      start: "2026-10-30",
       end: "2026-10-31",
       recurrence: "once",
       priority: 200,

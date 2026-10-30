@@ -6,10 +6,10 @@ Solo cambia la ambientación de la página real. Se conservan literalmente los c
 
 ## Activación automática
 
-- Inicio: 31 de octubre de 2026, 00:00:00, zona America/Managua.
+- Inicio: 30 de octubre de 2026, 00:00:00, zona America/Managua.
 - Final: 31 de octubre de 2026, 23:59:59, zona America/Managua.
 - Vuelta a la identidad corporativa: 1 de noviembre de 2026, 00:00:00.
-- Prioridad: 200, por encima de Octubre Rosa (100) únicamente el día 31.
+- Prioridad: 200, por encima de Octubre Rosa (100) durante el 30 y 31.
 - Recurrencia: once (no se repetirá automáticamente en 2027).
 - Se evalúa en el navegador al abrir la página, recuperar el foco y cada 30 segundos mediante el motor actual; no se necesita cron ni un nuevo deploy al comenzar la fecha.
 
@@ -24,7 +24,7 @@ Solo cambia la ambientación de la página real. Se conservan literalmente los c
 
 ## Pruebas y mitigaciones
 
-- tests/seasonal-themes.test.mjs cubre 30/31 de octubre y 31 de octubre/1 de noviembre, prioridad y recurrencia.
+- tests/seasonal-themes.test.mjs cubre el inicio del 30 de octubre y la restauración del 1 de noviembre, prioridad y recurrencia.
 - Probar escritorio y móvil, accesibilidad, navegación y contraste, sin alterar contenidos.
 - La fecha depende de un reloj del dispositivo correcto, aunque el día se calcula en America/Managua.
 - Si JavaScript está bloqueado, la página conserva el tema corporativo por defecto.

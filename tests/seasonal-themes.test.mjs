@@ -18,16 +18,18 @@ test("octubre 2026 inicia el 1 a las 00:00 Nicaragua", () => {
   assert.equal(s.resolve(c, date("2026-10-01T05:59:59Z")), null);
   assert.equal(s.resolve(c, date("2026-10-01T06:00:00Z"))?.id, "octubre-rosa");
 });
-test("octubre rosa cede prioridad a Halloween solo el 31 de octubre de 2026", () => {
-  assert.equal(s.resolve(c, date("2026-10-31T05:59:59Z"))?.id, "octubre-rosa");
+test("octubre rosa cede prioridad a Halloween desde el 30 de octubre de 2026", () => {
+  assert.equal(s.resolve(c, date("2026-10-30T05:59:59Z"))?.id, "octubre-rosa");
+  assert.equal(s.resolve(c, date("2026-10-30T06:00:00Z"))?.id, "halloween-tech-noir");
   assert.equal(s.resolve(c, date("2026-10-31T06:00:00Z"))?.id, "halloween-tech-noir");
   assert.equal(s.resolve(c, date("2026-11-01T05:59:59Z"))?.id, "halloween-tech-noir");
   assert.equal(s.resolve(c, date("2026-11-01T06:00:00Z")), null);
 });
 
-test("halloween respeta octubre rosa durante los otros dias de octubre", () => {
+test("halloween respeta octubre rosa hasta el 29 de octubre", () => {
   assert.equal(s.resolve(c, date("2026-10-20T18:00:00Z"))?.id, "octubre-rosa");
-  assert.equal(s.resolve(c, date("2026-10-30T18:00:00Z"))?.id, "octubre-rosa");
+  assert.equal(s.resolve(c, date("2026-10-29T18:00:00Z"))?.id, "octubre-rosa");
+  assert.equal(s.resolve(c, date("2026-10-30T18:00:00Z"))?.id, "halloween-tech-noir");
 });
 
 test("halloween no vuelve en 2027 sin autorizacion", () => {
