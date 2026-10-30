@@ -55,8 +55,11 @@ try {
     const box = node.getBoundingClientRect();
     const imageBox = img.getBoundingClientRect();
     const title = document.querySelector(".home-hero h1").getBoundingClientRect();
-    const intersectsTitle = imageBox.left < title.right && imageBox.right > title.left &&
-      imageBox.top < title.bottom && imageBox.bottom > title.top;
+    const intersectsTitle =
+      imageBox.left < title.right &&
+      imageBox.right > title.left &&
+      imageBox.top < title.bottom &&
+      imageBox.bottom > title.top;
     return {
       source: img.getAttribute("src"),
       width: img.naturalWidth,
@@ -129,7 +132,10 @@ try {
     const style = getComputedStyle(node, "::before");
     return { width: Number.parseFloat(style.width), height: Number.parseFloat(style.height) };
   });
-  assert.ok(mobileWeb.width <= 160 && mobileWeb.height <= 120, "Mobile web must stay out of the title");
+  assert.ok(
+    mobileWeb.width <= 160 && mobileWeb.height <= 120,
+    "Mobile web must stay out of the title",
+  );
 
   assert.equal(await mobile.locator(".halloween-walker:visible").count(), 1);
   await mobile.close();
