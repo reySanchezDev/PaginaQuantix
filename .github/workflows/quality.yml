@@ -19,8 +19,4 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - name: Temporary Prettier output for cobweb browser test
-        run: |
-          npx prettier --write tests/halloween-web.browser.mjs
-          python3 -c 'import json,pathlib; p="tests/halloween-web.browser.mjs"; print("FORMATTED_WEB_ONLY::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True))'
       - run: npm run quality
