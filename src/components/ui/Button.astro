@@ -6,6 +6,7 @@ interface Props {
   href?: string;
   type?: "button" | "submit" | "reset";
   class?: string;
+  style?: string;
   target?: "_self" | "_blank";
   hreflang?: string;
   disabled?: boolean;
@@ -83,8 +84,9 @@ const safeHref = href && !isDisabled ? href : undefined;
   }
   .button--primary {
     --button-bg: var(--color-primary);
-    --button-fg: var(--color-inverse);
+    --button-fg: var(--color-on-primary, var(--color-inverse));
     --button-hover-bg: var(--color-primary-hover);
+    --button-hover-fg: var(--color-on-primary, var(--color-inverse));
   }
   .button--secondary {
     --button-border: var(--color-control-border);
@@ -111,8 +113,9 @@ const safeHref = href && !isDisabled ? href : undefined;
   }
   .button--inverse.button--primary {
     --button-bg: var(--color-inverse);
-    --button-fg: var(--color-primary-hover);
+    --button-fg: var(--color-on-inverse-button, var(--color-primary-hover));
     --button-hover-bg: var(--color-canvas);
+    --button-hover-fg: var(--color-on-inverse-button-hover, var(--color-primary-hover));
   }
   .button--inverse:is(.button--secondary, .button--ghost) {
     --button-fg: var(--color-inverse);
@@ -130,6 +133,10 @@ const safeHref = href && !isDisabled ? href : undefined;
     background: var(--button-hover-bg, var(--button-bg));
     color: var(--button-hover-fg, var(--button-fg));
     border-color: var(--button-hover-border, var(--button-border, transparent));
+  }
+  /* No permitir texto claro sobre naranja al pasar el cursor o usar teclado. */
+  .button--primary:not(.button--inverse):is(:hover, :focus-visible):not([aria-disabled="true"]) {
+    color: var(--color-on-primary, var(--color-inverse));
   }
   .button--link:is(:hover, :focus-visible):not([aria-disabled="true"]) {
     text-decoration: underline;
