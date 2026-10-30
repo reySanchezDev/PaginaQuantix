@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+  <!-- Original Quantix spider silhouette: eight segmented legs, shaded abdomen, no cartoon eyes. -->
+  <defs>
+    <radialGradient id="abdomen" cx=".32" cy=".28" r=".75"><stop stop-color="#54555c"/><stop offset=".43" stop-color="#24242b"/><stop offset="1" stop-color="#090b11"/></radialGradient>
+    <radialGradient id="head" cx=".33" cy=".26" r=".72"><stop stop-color="#535059"/><stop offset="1" stop-color="#10121a"/></radialGradient>
+  </defs>
+  <g stroke-linejoin="round" stroke-linecap="round">
+    <g stroke="#080a10" stroke-width="5.8"><path d="M57 43 C49 37 45 30 37 21 C32 16 24 16 17 13 C12 12 9 7 6 4"/><path d="M56 48 C45 44 41 36 30 32 C22 28 18 29 11 29 C7 29 4 26 1 22"/><path d="M56 52 C45 56 39 59 29 68 C21 76 17 80 9 81 C5 82 4 88 3 91"/><path d="M58 57 C49 66 47 72 40 84 C35 94 29 101 23 105 C20 110 20 114 20 117"/><g transform="translate(120 0) scale(-1 1)"><path d="M57 43 C49 37 45 30 37 21 C32 16 24 16 17 13 C12 12 9 7 6 4"/><path d="M56 48 C45 44 41 36 30 32 C22 28 18 29 11 29 C7 29 4 26 1 22"/><path d="M56 52 C45 56 39 59 29 68 C21 76 17 80 9 81 C5 82 4 88 3 91"/><path d="M58 57 C49 66 47 72 40 84 C35 94 29 101 23 105 C20 110 20 114 20 117"/></g></g>
+    <g stroke="#a9a9ac" stroke-width="1.85"><path d="M57 43 C49 37 45 30 37 21 C32 16 24 16 17 13 C12 12 9 7 6 4"/><path d="M56 48 C45 44 41 36 30 32 C22 28 18 29 11 29 C7 29 4 26 1 22"/><path d="M56 52 C45 56 39 59 29 68 C21 76 17 80 9 81 C5 82 4 88 3 91"/><path d="M58 57 C49 66 47 72 40 84 C35 94 29 101 23 105 C20 110 20 114 20 117"/><g transform="translate(120 0) scale(-1 1)"><path d="M57 43 C49 37 45 30 37 21 C32 16 24 16 17 13 C12 12 9 7 6 4"/><path d="M56 48 C45 44 41 36 30 32 C22 28 18 29 11 29 C7 29 4 26 1 22"/><path d="M56 52 C45 56 39 59 29 68 C21 76 17 80 9 81 C5 82 4 88 3 91"/><path d="M58 57 C49 66 47 72 40 84 C35 94 29 101 23 105 C20 110 20 114 20 117"/></g></g>
+  </g>
+  <ellipse cx="60" cy="74" rx="19" ry="27" fill="url(#abdomen)" stroke="#88868b" stroke-width="1.25"/>
+  <ellipse cx="60" cy="47" rx="12.5" ry="12" fill="url(#head)" stroke="#9c999a" stroke-width="1.35"/>
+  <path d="M55 42Q60 39 65 42M54 76Q60 79 66 76" stroke="#b2afb0" stroke-width=".9" opacity=".33"/>
+  <path d="M55 53L50 61M65 53L70 61" stroke="#8e8c90" stroke-width="1.35" stroke-linecap="round"/>
+</svg>
