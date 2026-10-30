@@ -71,9 +71,11 @@
     };
     const move = (event) => {
       if (event.pointerType && event.pointerType !== "mouse") return hide();
-      if (event.target instanceof Element && event.target.closest(
-        "input, textarea, select, [contenteditable], [role='textbox']",
-      )) return hide();
+      if (
+        event.target instanceof Element &&
+        event.target.closest("input, textarea, select, [contenteditable], [role='textbox']")
+      )
+        return hide();
       posX = event.clientX;
       posY = event.clientY;
       root.setAttribute("data-halloween-cursor", "on");
@@ -97,19 +99,27 @@
       shot.style.top = `${event.clientY - 27}px`;
       document.body.append(shot);
       shots.add(shot);
-      shot.addEventListener("animationend", () => {
-        shot.remove();
-        shots.delete(shot);
-      }, { once: true });
+      shot.addEventListener(
+        "animationend",
+        () => {
+          shot.remove();
+          shots.delete(shot);
+        },
+        { once: true },
+      );
       // The click itself is never delayed: navigation continues normally.
     };
 
     window.addEventListener("pointermove", move, { passive: true, signal });
     window.addEventListener("pointerdown", shoot, { passive: true, signal });
     window.addEventListener("blur", hide, { signal });
-    document.addEventListener("pointerout", (event) => {
-      if (!event.relatedTarget) hide();
-    }, { passive: true, signal });
+    document.addEventListener(
+      "pointerout",
+      (event) => {
+        if (!event.relatedTarget) hide();
+      },
+      { passive: true, signal },
+    );
 
     return () => {
       controller.abort();
