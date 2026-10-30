@@ -9,7 +9,7 @@ const walk = (folder) =>
     item.isDirectory() ? walk(join(folder, item.name)) : [join(folder, item.name)],
   );
 const routes = walk(dist)
-  .filter((file) => file.endsWith(".html") && !file.endsWith("404.html"))
+  .filter((file) => file.endsWith(".html") && !file.endsWith("404.html") && !file.endsWith("/dist/index.html"))
   .map((file) => {
     const pathname = relative(dist, file).split(sep).join("/");
     if (pathname === "index.html") return "/";
