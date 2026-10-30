@@ -35,6 +35,9 @@ test("Motion preferences and pointer capability gate cursor and roaming spiders"
 
 test("Cobweb is lightweight decorative SVG without executable content", () => {
   assert.match(web, /<svg/);
+  assert.ok(web.trimStart().startsWith("<svg"), "No non-XML comments may precede SVG root");
+  assert.match(web, /viewBox="0 0 560 560"/);
+  assert.match(effects, /viewBox="0 0 96 96"/);
   assert.doesNotMatch(web, /<script|<foreignObject|onload=/i);
   assert.match(style, /halloween-tech-noir\/web\.svg/);
 });
