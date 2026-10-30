@@ -19,8 +19,4 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - name: Prettier format seasonal files for review
-        run: |
-          npx prettier --write docs/halloween-tech-noir-2026.md src/styles/themes/halloween-ambient.css tests/halloween-effects.browser.mjs
-          python3 -c 'import json,pathlib; paths=["docs/halloween-tech-noir-2026.md","src/styles/themes/halloween-ambient.css","tests/halloween-effects.browser.mjs"]; [print("FORMATTED_ORGANIC::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True)) for p in paths]'
       - run: npm run quality
