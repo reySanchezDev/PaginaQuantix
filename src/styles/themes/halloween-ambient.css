@@ -259,6 +259,6 @@ html[data-seasonal-theme="halloween-tech-noir"] .site-footer .halloween-walker {
   html[data-seasonal-theme="halloween-tech-noir"] main > section:first-child::before,
   html[data-seasonal-theme="halloween-tech-noir"] .cta-section::before,
   html[data-seasonal-theme="halloween-tech-noir"] .site-footer::before {
-    animation: none;
+    animation: none !important;
   }
 }
