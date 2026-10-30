@@ -22,18 +22,18 @@ async function waitFor(page, selector, count) {
 try {
   const desktop = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await activate(desktop, "/en/");
-  await waitFor(desktop, ".halloween-walker", 3);
+  await waitFor(desktop, ".halloween-hanging-spider", 1);
   assert.equal(await desktop.locator(".halloween-spider-pointer").count(), 1);
-  assert.equal(await desktop.locator(".halloween-walker").count(), 3);
+  assert.equal(await desktop.locator(".halloween-walker").count(), 0);
   const webImage = await desktop
     .locator(".home-hero")
     .evaluate((node) => getComputedStyle(node, "::before").backgroundImage);
   assert.match(webImage, /halloween-tech-noir\/web\.svg/);
   const webCheck = await desktop.evaluate(async () => {
-    const response = await fetch("/themes/halloween-tech-noir/web.svg?v=20261030-v2");
+    const response = await fetch("/themes/halloween-tech-noir/web.svg?v=minimal-20261030");
     const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
     const image = new Image();
-    image.src = "/themes/halloween-tech-noir/web.svg?v=20261030-v2";
+    image.src = "/themes/halloween-tech-noir/web.svg?v=minimal-20261030";
     await image.decode();
     const style = getComputedStyle(document.querySelector(".home-hero"), "::before");
     return {
@@ -74,11 +74,10 @@ try {
 
   assert.ok(webCheck.strands >= 10 && webCheck.width >= 500);
   assert.ok(webCheck.renderedWidth >= 250 && webCheck.opacity > 0.5);
-  const spiderWidth = await desktop
-    .locator(".halloween-walker")
-    .first()
-    .evaluate((node) => node.getBoundingClientRect().width);
-  assert.ok(spiderWidth >= 40, "Spider must be clearly identifiable");
+  const spiderWidth = await hanging.evaluate(
+    (node) => node.querySelector("img").getBoundingClientRect().width,
+  );
+  assert.ok(spiderWidth >= 40, "Suspended spider must be clearly identifiable");
 
   await desktop.mouse.move(350, 350);
   await desktop.waitForFunction(
@@ -111,7 +110,7 @@ try {
   await desktop.evaluate(() => {
     document.documentElement.setAttribute("data-seasonal-theme", "default");
   });
-  await waitFor(desktop, ".halloween-walker", 0);
+  await waitFor(desktop, ".halloween-hanging-spider", 0);
   await waitFor(desktop, ".halloween-spider-pointer", 0);
   assert.equal(
     await desktop.evaluate(() => document.documentElement.hasAttribute("data-halloween-cursor")),
@@ -125,7 +124,7 @@ try {
     hasTouch: true,
   });
   await activate(mobile, "/es/");
-  await waitFor(mobile, ".halloween-walker", 3);
+  await waitFor(mobile, ".halloween-hanging-spider", 1);
   assert.equal(await mobile.locator(".halloween-spider-pointer").count(), 0);
   const mobileWeb = await mobile.locator(".home-hero").evaluate((node) => {
     const style = getComputedStyle(node, "::before");
@@ -136,7 +135,7 @@ try {
     "Mobile web must stay out of the title",
   );
 
-  assert.equal(await mobile.locator(".halloween-walker:visible").count(), 1);
+  assert.equal(await mobile.locator(".halloween-walker").count(), 0);
   await mobile.close();
 
   const reduced = await browser.newPage({
@@ -144,6 +143,7 @@ try {
     reducedMotion: "reduce",
   });
   await activate(reduced, "/en/");
+  await waitFor(reduced, ".halloween-hanging-spider", 1);
   assert.equal(await reduced.locator(".halloween-walker").count(), 0);
   assert.equal(await reduced.locator(".halloween-spider-pointer").count(), 0);
   assert.equal(
@@ -155,7 +155,7 @@ try {
   await reduced.close();
 
   console.log(
-    "Halloween effects E2E PASS: cursor/click, web, walkers, mobile, reduced motion, teardown",
+    "Halloween minimalist E2E PASS: cursor/click, one hanging spider, no walkers, mobile, reduced motion, teardown",
   );
 } finally {
   await browser.close();

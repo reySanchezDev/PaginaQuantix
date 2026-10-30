@@ -25,11 +25,13 @@ test("Decorative spiders cannot block links, keyboard focus or clicks", () => {
   assert.match(effects, /teardown\(\)/);
 });
 
-test("Motion preferences and pointer capability gate cursor and roaming spiders", () => {
+test("Only the hanging spider and desktop cursor can be mounted", () => {
   assert.match(effects, /prefers-reduced-motion: reduce/);
   assert.match(effects, /hover: hover\) and \(pointer: fine/);
-  assert.match(effects, /settings\.ambientSpiders/);
+  assert.match(effects, /mountHangingSpider/);
   assert.match(effects, /settings\.spiderCursor/);
+  assert.doesNotMatch(effects, /mountWalkers|ambientSpiders|halloween-walker/);
+  assert.doesNotMatch(style, /halloween-walker|halloween-crawl/);
   assert.match(style, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(style, /max-width: 47\.999rem/);
 });
@@ -46,4 +48,12 @@ test("Cobweb is lightweight decorative SVG without executable content", () => {
   assert.match(style, /halloween-tech-noir\/web\.svg/);
   assert.match(style, /halloween-hanging-spider::before/);
   assert.match(style, /mask-image:/);
+});
+
+test("The minimalist spider is readable and web remains limited to the hero", () => {
+  assert.match(spiderAsset, /id="left-legs"/);
+  assert.match(spiderAsset, /scale\(-1 1\)/);
+  assert.match(style, /\.home-hero::before/);
+  assert.doesNotMatch(style, /\.site-footer::before|\.cta-section::before/);
+  assert.match(effects, /spider\.svg\?v=minimal-20261030/);
 });

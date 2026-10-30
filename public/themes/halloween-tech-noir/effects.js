@@ -5,51 +5,24 @@
   const root = document.documentElement;
   const settings = Object.freeze({
     spiderCursor: true,
-    ambientSpiders: true,
     spiderWebs: true,
   });
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const spider = `<img src="/themes/halloween-tech-noir/spider.svg?v=organic-20261030" alt="" draggable="false" aria-hidden="true" />`;
+  const spider = `<img src="/themes/halloween-tech-noir/spider.svg?v=minimal-20261030" alt="" draggable="false" aria-hidden="true" />`;
 
   let currentMode = "";
   let teardown = () => {};
 
-  function mountWalkers() {
-    const hosts = [
-      document.querySelector(".home-hero") || document.querySelector("main > section:first-child"),
-      document.querySelector(".cta-section"),
-      document.querySelector(".site-footer"),
-    ];
-    const mounted = [];
-    for (const [index, host] of hosts.entries()) {
-      if (!host || mounted.some((item) => item.host === host)) continue;
-      const node = document.createElement("span");
-      node.className = "halloween-walker";
-      node.innerHTML = spider;
-      node.style.setProperty("--walk-delay", `-${index * 6}s`);
-      host.classList.add("halloween-walkway");
-      host.append(node);
-      mounted.push({ host, node });
-      if (mounted.length === 3) break;
-    }
-    // Suspended spider shares the same original asset as walkers and pointer.
-    // It is deliberately anchored outside the commercial hero copy.
+  function mountHangingSpider() {
     const hero = document.querySelector(".home-hero");
-    if (hero && settings.spiderWebs) {
-      const hanging = document.createElement("span");
-      hanging.className = "halloween-hanging-spider";
-      hanging.innerHTML = spider;
-      hanging.setAttribute("aria-hidden", "true");
-      hero.append(hanging);
-      mounted.push({ host: hero, node: hanging });
-    }
-    return () => {
-      for (const { host, node } of mounted) {
-        node.remove();
-        host.classList.remove("halloween-walkway");
-      }
-    };
+    if (!hero) return () => {};
+    const hanging = document.createElement("span");
+    hanging.className = "halloween-hanging-spider";
+    hanging.setAttribute("aria-hidden", "true");
+    hanging.innerHTML = spider;
+    hero.append(hanging);
+    return () => hanging.remove();
   }
 
   function mountCursor() {
@@ -133,17 +106,22 @@
   function sync() {
     root.toggleAttribute("data-halloween-webs-off", !settings.spiderWebs);
     const enabled = root.getAttribute("data-seasonal-theme") === "halloween-tech-noir";
-    const animate = enabled && !reduced.matches;
-    const mode = !animate ? "off" : finePointer.matches ? "desktop" : "touch";
+    const mode = !enabled
+      ? "off"
+      : reduced.matches
+        ? "static"
+        : finePointer.matches
+          ? "desktop"
+          : "touch";
     if (currentMode === mode) return;
     teardown();
     currentMode = mode;
-    if (!animate) {
+    if (!enabled) {
       teardown = () => {};
       return;
     }
     const cleanups = [];
-    if (settings.ambientSpiders) cleanups.push(mountWalkers());
+    if (settings.spiderWebs) cleanups.push(mountHangingSpider());
     if (mode === "desktop" && settings.spiderCursor) cleanups.push(mountCursor());
     teardown = () => cleanups.forEach((cleanup) => cleanup());
   }
