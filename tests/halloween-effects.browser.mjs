@@ -52,7 +52,6 @@ try {
   const suspended = await hanging.evaluate(async (node) => {
     const img = node.querySelector("img");
     await img.decode();
-    const box = node.getBoundingClientRect();
     const imageBox = img.getBoundingClientRect();
     const title = document.querySelector(".home-hero h1").getBoundingClientRect();
     const intersectsTitle =
