@@ -18,6 +18,7 @@ const { content } = Astro.props;
             target={content.primary.target}
             size="lg"
             tone="inverse"
+            style="--button-hover-fg: var(--cta-primary-hover-fg, var(--color-primary-hover));"
             class="cta-primary">{content.primary.label}<span aria-hidden="true">↗</span></Button
           >{
             content.secondary && (
