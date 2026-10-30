@@ -8,14 +8,16 @@ html[data-seasonal-theme="halloween-tech-noir"] .site-footer {
 
 /* The hero web is bounded to a small corner and fades before the product mockup. */
 html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
-  main > section:first-child::before {
+  main
+  > section:first-child::before {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   width: clamp(16rem, 23vw, 19rem);
   aspect-ratio: 500 / 355;
-  background: url("/themes/halloween-tech-noir/web.svg?v=organic-20261030") right top / contain no-repeat;
+  background: url("/themes/halloween-tech-noir/web.svg?v=organic-20261030") right top / contain
+    no-repeat;
   opacity: 0.84;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 100%);
@@ -31,20 +33,27 @@ html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
   top: 0;
   width: 11rem;
   aspect-ratio: 500 / 355;
-  background: url("/themes/halloween-tech-noir/web.svg?v=organic-20261030") right top / contain no-repeat;
+  background: url("/themes/halloween-tech-noir/web.svg?v=organic-20261030") right top / contain
+    no-repeat;
   opacity: 0.29;
   transform: scaleX(-1);
   pointer-events: none;
 }
 
-.halloween-walkway { position: relative; }
-.halloween-walker, .halloween-spider-pointer, .halloween-silk-shot,
-.halloween-hanging-spider { display: none; }
+.halloween-walkway {
+  position: relative;
+}
+.halloween-walker,
+.halloween-spider-pointer,
+.halloween-silk-shot,
+.halloween-hanging-spider {
+  display: none;
+}
 
 html[data-seasonal-theme="halloween-tech-noir"] .halloween-walker {
   display: block;
   position: absolute;
-  top: -.6rem;
+  top: -0.6rem;
   left: 3%;
   width: 2.5rem;
   height: 2.5rem;
@@ -53,11 +62,11 @@ html[data-seasonal-theme="halloween-tech-noir"] .halloween-walker {
   z-index: 3;
   animation: halloween-crawl 32s ease-in-out infinite alternate;
   animation-delay: var(--walk-delay, 0s);
-  filter: drop-shadow(0 2px 2px rgb(0 0 0 / .55));
+  filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.55));
 }
 html[data-seasonal-theme="halloween-tech-noir"] .home-hero .halloween-walker {
   top: auto;
-  bottom: -.55rem;
+  bottom: -0.55rem;
 }
 html[data-seasonal-theme="halloween-tech-noir"] .halloween-walker img,
 html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer img,
@@ -71,7 +80,7 @@ html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
 html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider {
   display: block;
   position: absolute;
-  top: .3rem;
+  top: 0.3rem;
   right: 2.5rem;
   width: 2.35rem;
   height: 8rem;
@@ -88,13 +97,13 @@ html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider::befor
   width: 1px;
   height: 5.2rem;
   background: linear-gradient(#c8c5ce, #a5a3af 70%, #77717f);
-  opacity: .85;
+  opacity: 0.85;
 }
 html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
   position: absolute;
   top: 5.1rem;
   left: 0;
-  filter: drop-shadow(0 1px 2px rgb(0 0 0 / .7));
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.7));
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -118,7 +127,7 @@ html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
     user-select: none;
     z-index: 2147483646;
     will-change: left, top;
-    filter: drop-shadow(0 0 2px rgb(255 220 184 / .22));
+    filter: drop-shadow(0 0 2px rgb(255 220 184 / 0.22));
   }
   html[data-seasonal-theme="halloween-tech-noir"] .halloween-spider-pointer.is-visible {
     opacity: 1;
@@ -140,39 +149,75 @@ html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider img {
 }
 
 @keyframes halloween-crawl {
-  0%, 10% { left: 4%; transform: translateY(0) rotate(-5deg); }
-  32%, 40% { left: 31%; transform: translateY(2px) rotate(6deg); }
-  70%, 76% { left: 67%; transform: translateY(-2px) rotate(-4deg); }
-  100% { left: 91%; transform: translateY(1px) rotate(6deg); }
+  0%,
+  10% {
+    left: 4%;
+    transform: translateY(0) rotate(-5deg);
+  }
+  32%,
+  40% {
+    left: 31%;
+    transform: translateY(2px) rotate(6deg);
+  }
+  70%,
+  76% {
+    left: 67%;
+    transform: translateY(-2px) rotate(-4deg);
+  }
+  100% {
+    left: 91%;
+    transform: translateY(1px) rotate(6deg);
+  }
 }
 @keyframes halloween-suspend {
-  from { transform: translateY(0) rotate(-2deg); }
-  to { transform: translateY(4px) rotate(2deg); }
+  from {
+    transform: translateY(0) rotate(-2deg);
+  }
+  to {
+    transform: translateY(4px) rotate(2deg);
+  }
 }
 @keyframes halloween-tap {
-  0%, 100% { scale: 1; }
-  40% { scale: .88; }
-  70% { scale: 1.07; }
+  0%,
+  100% {
+    scale: 1;
+  }
+  40% {
+    scale: 0.88;
+  }
+  70% {
+    scale: 1.07;
+  }
 }
 @keyframes halloween-silk {
-  0% { opacity: .9; transform: scaleY(0); }
-  60% { opacity: .9; transform: scaleY(1); }
-  100% { opacity: 0; transform: scaleY(1); }
+  0% {
+    opacity: 0.9;
+    transform: scaleY(0);
+  }
+  60% {
+    opacity: 0.9;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1);
+  }
 }
 
 @media (max-width: 47.999rem) {
   html[data-seasonal-theme="halloween-tech-noir"]:not([data-halloween-webs-off])
-    main > section:first-child::before {
+    main
+    > section:first-child::before {
     width: clamp(7.5rem, 32vw, 9.5rem);
-    opacity: .72;
+    opacity: 0.72;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
   }
   html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider {
     width: 1.55rem;
     height: 4.4rem;
-    top: .3rem;
-    right: .85rem;
+    top: 0.3rem;
+    right: 0.85rem;
   }
   html[data-seasonal-theme="halloween-tech-noir"] .halloween-hanging-spider::before {
     height: 2.5rem;
