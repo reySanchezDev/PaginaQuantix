@@ -21,6 +21,9 @@
     "astro": "astro",
     "test:themes": "node --test tests/*.test.mjs"
   },
+  "knip": {
+    "ignore": ["tests/halloween-contrast.browser.mjs"]
+  },
   "engines": {
     "node": ">=22.22.3",
     "npm": ">=10.0.0"
