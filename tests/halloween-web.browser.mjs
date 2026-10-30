@@ -3,7 +3,8 @@ import { chromium } from "playwright";
 
 const base = process.env.E2E_BASE_URL || "http://127.0.0.1:4321";
 const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
-const forbidden = ".halloween-walker, .halloween-hanging-spider, .halloween-spider-pointer, .halloween-silk-shot";
+const forbidden =
+  ".halloween-walker, .halloween-hanging-spider, .halloween-spider-pointer, .halloween-silk-shot";
 
 async function inspect(page, route, mobile = false) {
   const response = await page.goto(new URL(route, base).href, { waitUntil: "load" });
@@ -48,10 +49,14 @@ async function inspect(page, route, mobile = false) {
 
   const button = page.locator(".home-hero .hero-contact");
   await button.evaluate((node) => {
-    node.addEventListener("click", (event) => {
-      event.preventDefault();
-      node.dataset.webOnlyClick = "ok";
-    }, { once: true });
+    node.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        node.dataset.webOnlyClick = "ok";
+      },
+      { once: true },
+    );
   });
   await button.click();
   assert.equal(await button.getAttribute("data-web-only-click"), "ok");
@@ -63,9 +68,9 @@ async function inspect(page, route, mobile = false) {
   });
   assert.equal(await page.locator(forbidden).count(), 0);
   assert.equal(
-    await page.locator(".home-hero").evaluate(
-      (node) => getComputedStyle(node, "::before").backgroundImage,
-    ),
+    await page
+      .locator(".home-hero")
+      .evaluate((node) => getComputedStyle(node, "::before").backgroundImage),
     "none",
     "The cobweb must disappear outside Halloween",
   );
@@ -91,7 +96,9 @@ try {
   await inspect(reduced, "/en/");
   await reduced.close();
 
-  console.log("Halloween web-only E2E PASS: SVG renders, zero spiders, native cursor, clickable CTA, mobile and reduced motion");
+  console.log(
+    "Halloween web-only E2E PASS: SVG renders, zero spiders, native cursor, clickable CTA, mobile and reduced motion",
+  );
 } finally {
   await browser.close();
 }
