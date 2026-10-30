@@ -138,7 +138,7 @@ const safeHref = href && !isDisabled ? href : undefined;
     color: var(--color-on-primary, var(--color-inverse));
   }
   /* CTA final: su fondo estacional naranja exige tinta oscura también al enfocarlo. */
-  .button--inverse.button--primary.cta-primary:is(:hover, :focus-visible):not([aria-disabled="true"]) {
+  .button--inverse.button--primary.cta-primary:is(:hover, :focus-visible) {
     color: var(--cta-primary-hover-fg, var(--button-hover-fg));
   }
   .button--link:is(:hover, :focus-visible):not([aria-disabled="true"]) {
