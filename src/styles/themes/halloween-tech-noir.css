@@ -126,10 +126,8 @@ html[data-seasonal-theme="halloween-tech-noir"] .cta-section .cta-primary {
 
 /* Explicit hover/focus contrast for product CTA links; scoped component CSS may
    otherwise restore white text on the seasonal orange background. */
-html[data-seasonal-theme="halloween-tech-noir"] .button--primary:not(.button--inverse):is(
-    :hover,
-    :focus-visible
-  ) {
+html[data-seasonal-theme="halloween-tech-noir"]
+  .button--primary:not(.button--inverse):is(:hover, :focus-visible) {
   color: #160d0c !important;
 }
 
