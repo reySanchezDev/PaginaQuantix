@@ -47,9 +47,19 @@ Banderas individuales al comienzo de `public/themes/halloween-tech-noir/effects.
 ### Archivos y validación
 
 - `public/themes/halloween-tech-noir/effects.js`: montaje, eventos y limpieza de efectos.
-- `public/themes/halloween-tech-noir/web.svg`: telaraña geométrica local.
-- `src/styles/themes/halloween-ambient.css`: keyframes y posiciones exclusivamente estacionales.
+- `public/themes/halloween-tech-noir/web.svg`: telaraña orgánica original Quantix con radios y arcos de seda conectados. SVG estático y válido.
+- `public/themes/halloween-tech-noir/spider.svg`: araña original gris carbón con ocho patas orgánicas, sin ojos ni contornos caricaturescos.\n- `src/styles/themes/halloween-ambient.css`: una telaraña principal pequeña en esquina superior derecha, máscara de desvanecimiento antes de las capturas, araña colgante por hilo visible, caminantes discretos y ajustes para móvil.
 - `tests/halloween-effects.test.mjs`: controles de comportamiento y aislamiento.
 - `tests/halloween-effects.browser.mjs`: prueba automatizada del cursor, clic, telarañas, caminantes, móvil y movimiento reducido.
 
 El calendario del 30 y 31 de octubre se conserva; el 1 de noviembre vuelve el tema corporativo sin animaciones.
+
+## Revisión de diseño 30/10 — Organic Silk
+La versión previa generaba hilos geométricos muy extensos, araña iconográfica y se superponía al mockup. Se sustituyeron las piezas con ilustraciones SVG originales de Quantix inspiradas en las fotografías de telarañas naturales y en el patrón de accesibilidad de proyectos abiertos; no se incorpora ni redistribuye código o imágenes de terceros.
+
+Referencias de investigación:
+- https://github.com/rogulia/halloween.js (MIT) — efectos de Halloween desacoplados, sin dependencias y con respeto a movimiento reducido.
+- https://github.com/ashmystic/spiderweb-on-the-fly — inspiración matemática de redes orbiculares naturales, no se copia implementación.
+- Captura de referencia proporcionada por el usuario: interfaz de ChatGPT con hilo colgante y telaraña de esquina.
+
+Se mantienen textos, SEO, capturas reales, navegación y calendario originales. La composición no debe ocupar el título ni interceptar elementos interactivos. La fecha del tema sigue siendo 30–31/10/2026, y se retira el 1/11. La rama remota no contiene ni elimina los archivos locales no rastreados de Codex en `NUEVO_PRODUCTO/`.
