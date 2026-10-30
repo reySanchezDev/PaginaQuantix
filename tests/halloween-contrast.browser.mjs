@@ -12,6 +12,7 @@ const routes = walk(dist)
   .filter((file) => file.endsWith(".html") && !file.endsWith("404.html"))
   .map((file) => {
     const pathname = relative(dist, file).split(sep).join("/");
+    if (pathname === "index.html") return "/";
     return pathname.endsWith("/index.html")
       ? `/${pathname.slice(0, -10)}`
       : `/${pathname.slice(0, -5)}`;
@@ -30,7 +31,7 @@ const inspect = async (page, route, viewport) => {
     const verify = async (state) => {
       const result = await element.evaluate((node) => {
         const parse = (value) => {
-          const numbers = value.match(/[\\d.]+/g)?.map(Number) || [];
+          const numbers = value.match(/[0-9.]+/g)?.map(Number) || [];
           if (numbers.length < 3) return null;
           return [...numbers.slice(0, 3), numbers[3] ?? 1];
         };
@@ -90,6 +91,7 @@ try {
         problems.push(`${route} [${viewport}px] HTTP ${response?.status() ?? "no response"}`);
         continue;
       }
+      await page.waitForLoadState("load");
       await page.evaluate(() => {
         document.documentElement.setAttribute("data-seasonal-theme", "halloween-tech-noir");
       });
