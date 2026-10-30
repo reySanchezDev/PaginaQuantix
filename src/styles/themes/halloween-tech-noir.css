@@ -24,6 +24,16 @@ html[data-seasonal-theme="halloween-tech-noir"] {
   --color-dark: #080a12;
   --color-dark-raised: #17131d;
   --color-dark-deep: #06070d;
+  /* Contraste AA para los CTA: la paleta Halloween usa naranja + texto oscuro. */
+  --color-on-primary: #160d0c;
+  --color-on-inverse-button: #160d0c;
+  --color-on-inverse-button-hover: #ffb06a;
+  --nav-contact-bg: transparent;
+  --nav-contact-fg: #ffb36d;
+  --nav-contact-border: #d37a32;
+  --nav-contact-hover-bg: #ff923c;
+  --nav-contact-hover-fg: #160d0c;
+  --nav-contact-hover-border: #ffb06a;
   --focus-ring: 0 0 0 3px rgb(255 164 82 / 0.42);
   --shadow-md: 0 1.5rem 4rem -2.5rem rgb(0 0 0 / 0.65);
   --shadow-lg: 0 2rem 5rem -2.5rem rgb(0 0 0 / 0.75);
@@ -56,17 +66,8 @@ html[data-seasonal-theme="halloween-tech-noir"] .site-header {
   backdrop-filter: blur(14px);
 }
 
-html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.contact-link {
-  background: transparent;
-  color: #ffb36d;
-  border: 1px solid #d37a32;
-}
-
-html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.contact-link:hover,
-html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.contact-link.active {
-  background: #ff923c;
-  color: #160d0c;
-}
+/* El encabezado y los botones compartidos consumen los tokens anteriores directamente.
+   Evita reglas aisladas que puedan perder prioridad frente al CSS encapsulado de Astro. */
 
 html[data-seasonal-theme="halloween-tech-noir"] .brand__dot,
 html[data-seasonal-theme="halloween-tech-noir"] .desktop-nav a.active {
