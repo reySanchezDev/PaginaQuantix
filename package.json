@@ -19,7 +19,7 @@
     "audit": "npm audit --audit-level=high",
     "quality": "npm run format:check && npm run lint && npm run test:themes && npm run deadcode && npm run check:size && npm run check && npm run build && npm run test:build && npm run audit",
     "astro": "astro",
-    "test:themes": "node --test tests/seasonal-themes.test.mjs"
+    "test:themes": "node --test tests/*.test.mjs"
   },
   "engines": {
     "node": ">=22.22.3",
