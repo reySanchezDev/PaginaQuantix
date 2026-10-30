@@ -74,7 +74,9 @@ try {
 
   assert.ok(webCheck.strands >= 10 && webCheck.width >= 500);
   assert.ok(webCheck.renderedWidth >= 250 && webCheck.opacity > 0.5);
-  const spiderWidth = await hanging.evaluate((node) => node.querySelector("img").getBoundingClientRect().width);
+  const spiderWidth = await hanging.evaluate(
+    (node) => node.querySelector("img").getBoundingClientRect().width,
+  );
   assert.ok(spiderWidth >= 40, "Suspended spider must be clearly identifiable");
 
   await desktop.mouse.move(350, 350);
