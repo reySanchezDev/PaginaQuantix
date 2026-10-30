@@ -55,9 +55,11 @@ Banderas individuales al comienzo de `public/themes/halloween-tech-noir/effects.
 El calendario del 30 y 31 de octubre se conserva; el 1 de noviembre vuelve el tema corporativo sin animaciones.
 
 ## Revisión de diseño 30/10 — Organic Silk
+
 La versión previa generaba hilos geométricos muy extensos, araña iconográfica y se superponía al mockup. Se sustituyeron las piezas con ilustraciones SVG originales de Quantix inspiradas en las fotografías de telarañas naturales y en el patrón de accesibilidad de proyectos abiertos; no se incorpora ni redistribuye código o imágenes de terceros.
 
 Referencias de investigación:
+
 - https://github.com/rogulia/halloween.js (MIT) — efectos de Halloween desacoplados, sin dependencias y con respeto a movimiento reducido.
 - https://github.com/ashmystic/spiderweb-on-the-fly — inspiración matemática de redes orbiculares naturales, no se copia implementación.
 - Captura de referencia proporcionada por el usuario: interfaz de ChatGPT con hilo colgante y telaraña de esquina.
