@@ -99,7 +99,7 @@ try {
       }
       await page.waitForLoadState("load");
       await page.addStyleTag({
-        content: "*, *::before, *::after { transition: none !important; animation: none !important; }",
+        content: "*,*::before,*::after{transition:none!important;animation:none!important}",
       });
       await page.evaluate(() => {
         document.documentElement.setAttribute("data-seasonal-theme", "halloween-tech-noir");
