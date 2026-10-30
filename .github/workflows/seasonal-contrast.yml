@@ -33,6 +33,10 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Collect formatted test fixtures
+        run: |
+          npx prettier --write tests/halloween-contrast.browser.mjs tests/halloween-contrast.test.mjs
+          python3 -c 'import json,pathlib; fs=["tests/halloween-contrast.browser.mjs","tests/halloween-contrast.test.mjs"]; [print("FORMATTED_FILE::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True)) for p in fs]'
       - name: Build and audit all generated pages at 1440 and 390 widths
         run: |
           npm run test:themes
