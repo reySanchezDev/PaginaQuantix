@@ -13,7 +13,7 @@ async function visit(page, path, date) {
 try {
   for (const width of [1440, 390]) {
     const page = await browser.newPage({
-      viewport: { width, height: 900 },
+      viewport: { width, height: width === 390 ? 844 : 900 },
       isMobile: width === 390,
       hasTouch: width === 390,
     });
@@ -44,6 +44,40 @@ try {
     assert.match(visuals.flowers, /dia-de-muertos-premium\/flores\.svg/);
     assert.match(visuals.bunting, /dia-de-muertos-premium\/papel-picado\.svg/);
     assert.equal(visuals.noClickBlock, "none");
+
+    const floralSafeArea = await page.locator(".home-hero").evaluate((hero) => {
+      const overlaps = (a, b) =>
+        a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      const box = (selector) => {
+        const node = document.querySelector(selector);
+        const rect = node?.getBoundingClientRect();
+        return rect
+          ? { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom }
+          : null;
+      };
+      const heroRect = hero.getBoundingClientRect();
+      const style = getComputedStyle(hero, "::before");
+      const flowers = {
+        left: heroRect.left + Number.parseFloat(style.left),
+        top: heroRect.bottom - Number.parseFloat(style.bottom) - Number.parseFloat(style.height),
+        right: heroRect.left + Number.parseFloat(style.left) + Number.parseFloat(style.width),
+        bottom: heroRect.bottom - Number.parseFloat(style.bottom),
+      };
+      return {
+        flowers,
+        overlaps: [
+          box(".hero-copy"),
+          box(".hero-footnote"),
+          box('.hero-products a[href*="viggo"]'),
+          box('.hero-products a[href*="takofy"]'),
+        ].map((zone) => (zone ? overlaps(flowers, zone) : false)),
+      };
+    });
+    assert.deepEqual(
+      floralSafeArea.overlaps,
+      [false, false, false, false],
+      `Floral decoration must stay outside content at ${width}px`,
+    );
 
     // Regression: hero copy and real-product captions must remain legible.
     // The original seasonal release put nearly white text on a cream hero.
