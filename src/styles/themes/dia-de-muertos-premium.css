@@ -185,6 +185,44 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .site-footer::before {
   pointer-events: none;
 }
 
+/* Consistent informational strip, shown only for this calendar campaign. */
+html[data-seasonal-theme="dia-de-muertos-premium"] .seasonal-muertos {
+  border-bottom: 1px solid #a76b66;
+  background: linear-gradient(90deg, #29192f, #452546 50%, #29192f);
+  color: #fff2da;
+}
+
+html[data-seasonal-theme="dia-de-muertos-premium"] .seasonal-muertos__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-block: 0.6rem;
+  text-align: center;
+}
+
+html[data-seasonal-theme="dia-de-muertos-premium"] .seasonal-muertos p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+html[data-seasonal-theme="dia-de-muertos-premium"] .seasonal-muertos__flower {
+  flex: none;
+  color: #ffd08a;
+  font-size: 1.15rem;
+}
+
+.seasonal-muertos[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 48rem) {
+  html[data-seasonal-theme="dia-de-muertos-premium"] .seasonal-muertos__inner {
+    gap: 0.5rem;
+  }
+}
+
 @keyframes dia-de-muertos-drift {
   from {
     transform: translate3d(0, 0, 0);

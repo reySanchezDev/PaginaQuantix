@@ -14,6 +14,21 @@ runInNewContext(
 const s = ctx.window.QuantixThemeScheduler,
   c = ctx.window.QuantixThemeCalendar;
 const date = (value) => new Date(value);
+test("cada campaña visual tiene un banner informativo bilingüe", () => {
+  const layout = readFileSync(new URL("../src/layouts/BaseLayout.astro", import.meta.url), "utf8");
+  const bannerIds = [...layout.matchAll(/data-seasonal-banner="([^"]+)"/g)].map(
+    (match) => match[1],
+  );
+  assert.equal(new Set(bannerIds).size, bannerIds.length, "No se deben duplicar los banners");
+  assert.deepEqual(
+    bannerIds.sort(),
+    Array.from(c.campaigns, (campaign) => campaign.id).sort(),
+    "Toda campaña del calendario debe explicar su ambientación al visitante",
+  );
+  assert.match(layout, /"Día de Muertos en Quantix\."/);
+  assert.match(layout, /"Day of the Dead at Quantix\."/);
+});
+
 test("octubre 2026 inicia el 1 a las 00:00 Nicaragua", () => {
   assert.equal(s.resolve(c, date("2026-10-01T05:59:59Z")), null);
   assert.equal(s.resolve(c, date("2026-10-01T06:00:00Z"))?.id, "octubre-rosa");

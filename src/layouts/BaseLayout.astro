@@ -184,6 +184,29 @@ const siteSchema = {
         <span class="seasonal-halloween__icon" aria-hidden="true">✦</span>
       </div>
     </aside>
+    <aside
+      class="seasonal-muertos"
+      data-seasonal-banner="dia-de-muertos-premium"
+      aria-label={locale === "es" ? "Conmemoración del Día de Muertos" : "Day of the Dead tribute"}
+      hidden
+    >
+      <div class="container seasonal-muertos__inner">
+        <span class="seasonal-muertos__flower" aria-hidden="true">✿</span>
+        <p>
+          <strong
+            >{
+              locale === "es" ? "Día de Muertos en Quantix." : "Day of the Dead at Quantix."
+            }</strong
+          >
+          {
+            locale === "es"
+              ? " Flores y color para honrar la memoria, inspirados en esta tradición mexicana."
+              : " Flowers and color to honor loved ones, inspired by this Mexican tradition."
+          }
+        </p>
+        <span class="seasonal-muertos__flower" aria-hidden="true">✿</span>
+      </div>
+    </aside>
     <SiteHeader navItems={navigation} locale={locale} labels={labels} />
 
     <main id="main-content" tabindex="-1">
