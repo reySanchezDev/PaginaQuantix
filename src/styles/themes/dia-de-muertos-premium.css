@@ -53,8 +53,8 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .site-header::after {
   content: "";
   position: absolute;
   inset: 100% 0 auto;
-  height: clamp(2.4rem, 4vw, 3.25rem);
-  background: url("/themes/dia-de-muertos-premium/papel-picado.svg?v=2") center / auto 100% repeat-x;
+  height: clamp(2.5rem, 4.8vw, 4.25rem);
+  background: url("/themes/dia-de-muertos-premium/papel-picado.svg?v=3") center / auto 100% repeat-x;
   filter: drop-shadow(0 0.35rem 0.45rem rgb(54 20 56 / 0.2));
   opacity: 0.96;
   pointer-events: none;
@@ -180,7 +180,7 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .site-footer::before {
   position: absolute;
   inset: 0 0 auto;
   height: 2.2rem;
-  background: url("/themes/dia-de-muertos-premium/papel-picado.svg") center / auto 100% repeat-x;
+  background: url("/themes/dia-de-muertos-premium/papel-picado.svg?v=3") center / auto 100% repeat-x;
   opacity: 0.58;
   pointer-events: none;
 }
@@ -233,6 +233,10 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .seasonal-muertos__flower {
 }
 
 @media (max-width: 48rem) {
+  html[data-seasonal-theme="dia-de-muertos-premium"] .site-header::after {
+    height: clamp(2.2rem, 8vw, 2.75rem);
+  }
+
   html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero::before {
     width: 8rem;
     opacity: 0.7;
