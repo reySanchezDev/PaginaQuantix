@@ -69,10 +69,12 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .desktop-nav a.active:not(.co
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero {
   position: relative;
   isolation: isolate;
+  color: #fff7e9;
   background:
-    radial-gradient(circle at 80% 50%, rgb(241 139 43 / 0.16), transparent 24rem),
-    linear-gradient(115deg, #fbf4e9 0%, #fbf4e9 57%, #f5e1d2 100%);
-  box-shadow: inset 0 -1px 0 #d8b08f;
+    radial-gradient(circle at 84% 24%, rgb(255 163 76 / 0.18), transparent 27rem),
+    radial-gradient(circle at 7% 95%, rgb(216 76 117 / 0.18), transparent 22rem),
+    linear-gradient(118deg, #1d1530 0%, #302041 53%, #442a52 100%);
+  box-shadow: inset 0 -1px 0 #c88a55;
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero::before {
@@ -105,26 +107,48 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero::after {
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero h1 span:last-child {
-  color: #7d3b63;
-  text-shadow: 0 0 2rem rgb(216 76 117 / 0.16);
+  color: #ffcf83;
+  text-shadow: 0 0 2rem rgb(245 169 86 / 0.16);
+}
+
+/* Explicit light-on-dark foreground: the site hero was originally built for
+   inverse (white) text, so never place it on a light seasonal hero background. */
+html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero :is(
+  .hero-copy,
+  .hero-copy > .eyebrow,
+  .hero-copy h1,
+  .hero-lead,
+  .hero-work-link,
+  .hero-footnote,
+  .hero-footnote p,
+  .product-composition,
+  .composition-note
+) {
+  color: #fff7e9;
+}
+html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero .hero-copy > .eyebrow {
+  color: #f8cf9e;
+}
+html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero .hero-footnote {
+  border-top-color: rgb(255 221 182 / 0.42);
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero .hero-contact,
 html[data-seasonal-theme="dia-de-muertos-premium"] .cta-section .cta-primary {
-  --button-bg: #7d3b63;
-  --button-fg: #fffaf2;
-  --button-hover-bg: #62294e;
-  --button-hover-fg: #fffaf2;
-  --button-border: #7d3b63;
-  box-shadow: 0 0 1.5rem rgb(216 76 117 / 0.2);
+  --button-bg: #f5af59;
+  --button-fg: #23152e;
+  --button-hover-bg: #ffd28a;
+  --button-hover-fg: #23152e;
+  --button-border: #f5af59;
+  box-shadow: 0 0 1.5rem rgb(245 175 89 / 0.24);
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero .hero-footnote {
-  border-top-color: rgb(216 76 117 / 0.42);
+  border-top-color: rgb(255 221 182 / 0.42);
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero .hero-products a {
-  color: #7d3b63;
+  color: #ffd18a;
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .section--soft,
