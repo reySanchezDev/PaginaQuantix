@@ -19,8 +19,4 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - name: Temporary Prettier export for seasonal notices
-        run: |
-          npx prettier --write src/layouts/BaseLayout.astro tests/dia-de-muertos.browser.mjs tests/seasonal-themes.test.mjs
-          python3 -c 'import pathlib,json; files=["src/layouts/BaseLayout.astro","tests/dia-de-muertos.browser.mjs","tests/seasonal-themes.test.mjs"]; [print("FORMATTED_BANNER::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True)) for p in files]'
       - run: npm run quality
