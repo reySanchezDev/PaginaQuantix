@@ -113,17 +113,19 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero h1 span:last-child
 
 /* Explicit light-on-dark foreground: the site hero was originally built for
    inverse (white) text, so never place it on a light seasonal hero background. */
-html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero :is(
-  .hero-copy,
-  .hero-copy > .eyebrow,
-  .hero-copy h1,
-  .hero-lead,
-  .hero-work-link,
-  .hero-footnote,
-  .hero-footnote p,
-  .product-composition,
-  .composition-note
-) {
+html[data-seasonal-theme="dia-de-muertos-premium"]
+  .home-hero
+  :is(
+    .hero-copy,
+    .hero-copy > .eyebrow,
+    .hero-copy h1,
+    .hero-lead,
+    .hero-work-link,
+    .hero-footnote,
+    .hero-footnote p,
+    .product-composition,
+    .composition-note
+  ) {
   color: #fff7e9;
 }
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero .hero-copy > .eyebrow {
