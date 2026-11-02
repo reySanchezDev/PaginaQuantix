@@ -7,11 +7,16 @@ const forbidden =
   ".halloween-walker, .halloween-hanging-spider, .halloween-spider-pointer, .halloween-silk-shot";
 
 async function inspect(page, route, mobile = false) {
+  // Freeze Nicaragua's calendar on Halloween so a later seasonal campaign
+  // cannot overwrite this test's theme during page load or on pageshow.
+  await page.clock.setFixedTime(new Date("2026-10-31T18:00:00Z"));
   const response = await page.goto(new URL(route, base).href, { waitUntil: "load" });
   assert.equal(response?.status(), 200, `${route} must load`);
-  await page.evaluate(() => {
-    document.documentElement.setAttribute("data-seasonal-theme", "halloween-tech-noir");
-  });
+  assert.equal(
+    await page.locator("html").getAttribute("data-seasonal-theme"),
+    "halloween-tech-noir",
+    "The real seasonal scheduler must activate Halloween on October 31",
+  );
 
   assert.equal(await page.locator(forbidden).count(), 0, "No spiders or click silk allowed");
   assert.equal(
