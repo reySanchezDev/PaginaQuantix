@@ -53,7 +53,9 @@ async function state(page) {
       colorCanvas: getComputedStyle(root).getPropertyValue("--color-canvas").trim(),
       colorInk: getComputedStyle(root).getPropertyValue("--color-ink").trim(),
       themeColor: document.querySelector('meta[name="theme-color"]')?.content,
-      favicon: document.querySelector('link[rel="icon"][type="image/svg+xml"]')?.getAttribute("href"),
+      favicon: document
+        .querySelector('link[rel="icon"][type="image/svg+xml"]')
+        ?.getAttribute("href"),
       brandIcons: Array.from(document.querySelectorAll(".brand__mark"), (node) =>
         node.getAttribute("src"),
       ),
@@ -85,7 +87,10 @@ function assertDefault(snapshot, label) {
   assert.equal(snapshot.favicon, "/favicon.svg", `${label}: original favicon`);
   assert.deepEqual(snapshot.visibleBanners, [], `${label}: no seasonal notices`);
   assert.equal(snapshot.spiderCount, 0, `${label}: no Halloween overlays`);
-  assert.ok(snapshot.brandIcons.every((icon) => icon === "/favicon.svg"), label);
+  assert.ok(
+    snapshot.brandIcons.every((icon) => icon === "/favicon.svg"),
+    label,
+  );
   assert.equal(snapshot.headerOrnament?.backgroundImage, "none", label);
   if (snapshot.hero) {
     assert.equal(snapshot.heroFlowers?.backgroundImage, "none", label);
