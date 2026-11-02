@@ -24,7 +24,7 @@ try {
       "dia-de-muertos-premium",
     );
     const banners = page.locator("[data-seasonal-banner]");
-    assert.equal(await banners.count(), 3, "Every seasonal theme must have an explanation");
+    assert.equal(await banners.count(), 4, "Every seasonal theme must have an explanation");
     assert.equal(
       await page.locator('[data-seasonal-banner="dia-de-muertos-premium"]').isVisible(),
       true,
@@ -34,6 +34,7 @@ try {
       await page.locator('[data-seasonal-banner="halloween-tech-noir"]').isVisible(),
       false,
     );
+    assert.equal(await page.locator('[data-seasonal-banner="navidad-premium"]').isVisible(), false);
     const visuals = await page.locator(".home-hero").evaluate((hero) => ({
       flowers: getComputedStyle(hero, "::before").backgroundImage,
       noClickBlock: getComputedStyle(hero, "::before").pointerEvents,

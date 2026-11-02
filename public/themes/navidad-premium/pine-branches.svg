@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" fill="none">
+  <defs>
+    <linearGradient id="needle" x1="80" y1="35" x2="650" y2="225" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2f6b55"/>
+      <stop offset="1" stop-color="#0d332b"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="365" y1="70" x2="365" y2="185" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8d78d"/>
+      <stop offset="1" stop-color="#b9873f"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 221C160 176 261 103 340 21M92 245C205 190 275 131 353 43M195 253c75-56 123-101 172-168M350 236c48-49 84-94 112-160M420 254c39-57 76-102 129-157M501 251c38-55 78-89 139-127" stroke="url(#needle)" stroke-width="8" stroke-linecap="round"/>
+  <g stroke="url(#needle)" stroke-width="5" stroke-linecap="round">
+    <path d="M83 183 45 153m68 19-6-49m29 32 42-42m-83 86-52 3m101-42 35 19M188 169l-43-40m67 5 7-51m26 28 40-33m-91 91-49 16m107-50 40 13M294 111l-34-38m61 3 13-44m23 47 39-26m-60 78-48 18m106-62 41 4M418 114l-25-40m61 22 22-42m13 65 38-14m-75 74-45-3m83-42 40 14M526 126l-20-37m54 18 27-31m-37 74-48 18m91-36 42 3"/>
+  </g>
+  <g fill="url(#gold)" stroke="#fff0bc" stroke-width="2">
+    <circle cx="190" cy="139" r="6"/><circle cx="302" cy="101" r="5"/><circle cx="420" cy="126" r="6"/><circle cx="530" cy="127" r="5"/>
+  </g>
+</svg>

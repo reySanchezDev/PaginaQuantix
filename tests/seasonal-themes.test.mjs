@@ -27,6 +27,8 @@ test("cada campaña visual tiene un banner informativo bilingüe", () => {
   );
   assert.match(layout, /"Día de Muertos en Quantix\."/);
   assert.match(layout, /"Day of the Dead at Quantix\."/);
+  assert.match(layout, /"Navidad en Quantix\."/);
+  assert.match(layout, /"Christmas at Quantix\."/);
 });
 
 test("octubre 2026 inicia el 1 a las 00:00 Nicaragua", () => {
@@ -53,7 +55,16 @@ test("halloween no vuelve en 2027 sin autorizacion", () => {
 test("Día de Muertos Premium solo está activo el 2 de noviembre de 2026", () => {
   assert.equal(s.resolve(c, date("2026-11-01T18:00:00Z")), null);
   assert.equal(s.resolve(c, date("2026-11-02T06:00:00Z"))?.id, "dia-de-muertos-premium");
-  assert.equal(s.resolve(c, date("2026-11-03T06:00:00Z")), null);
+  assert.equal(s.resolve(c, date("2026-11-03T05:59:59Z"))?.id, "dia-de-muertos-premium");
+});
+test("Navidad Premium inicia y termina a medianoche de Nicaragua", () => {
+  assert.equal(s.resolve(c, date("2026-11-03T05:59:59Z"))?.id, "dia-de-muertos-premium");
+  assert.equal(s.resolve(c, date("2026-11-03T06:00:00Z"))?.id, "navidad-premium");
+  assert.equal(s.resolve(c, date("2027-01-01T05:59:59Z"))?.id, "navidad-premium");
+  assert.equal(s.resolve(c, date("2027-01-01T06:00:00Z")), null);
+});
+test("Navidad Premium no se reactiva en la siguiente temporada", () => {
+  assert.equal(s.resolve(c, date("2027-11-03T12:00:00Z")), null);
 });
 test("no se reactiva solo al año siguiente", () => {
   assert.equal(s.resolve(c, date("2027-10-19T19:00:00Z")), null);

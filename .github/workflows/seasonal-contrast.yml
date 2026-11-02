@@ -8,6 +8,7 @@ on:
       - "tests/halloween-contrast*"
       - "tests/halloween-web*"
       - "tests/dia-de-muertos*"
+      - "tests/navidad*"
       - "tests/seasonal-restoration*"
       - "public/themes/halloween-tech-noir/**"
       - ".github/workflows/seasonal-contrast.yml"
@@ -19,6 +20,7 @@ on:
       - "tests/halloween-contrast*"
       - "tests/halloween-web*"
       - "tests/dia-de-muertos*"
+      - "tests/navidad*"
       - "tests/seasonal-restoration*"
       - "public/themes/halloween-tech-noir/**"
   workflow_dispatch:
@@ -54,4 +56,5 @@ jobs:
           node tests/halloween-contrast.browser.mjs
           node tests/halloween-web.browser.mjs
           node tests/dia-de-muertos.browser.mjs
+          node tests/navidad.browser.mjs
           node tests/seasonal-restoration.browser.mjs

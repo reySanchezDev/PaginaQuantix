@@ -35,5 +35,15 @@ window.QuantixThemeCalendar = Object.freeze({
       themeColor: "#20152f",
       icon: "/favicon.svg",
     },
+    {
+      id: "navidad-premium",
+      enabled: true,
+      start: "2026-11-03",
+      end: "2026-12-31",
+      recurrence: "once",
+      priority: 400,
+      themeColor: "#12352d",
+      icon: "/favicon.svg",
+    },
   ],
 });
