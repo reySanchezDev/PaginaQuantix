@@ -16,7 +16,9 @@ const s = ctx.window.QuantixThemeScheduler,
 const date = (value) => new Date(value);
 test("cada campaña visual tiene un banner informativo bilingüe", () => {
   const layout = readFileSync(new URL("../src/layouts/BaseLayout.astro", import.meta.url), "utf8");
-  const bannerIds = [...layout.matchAll(/data-seasonal-banner="([^"]+)"/g)].map((match) => match[1]);
+  const bannerIds = [...layout.matchAll(/data-seasonal-banner="([^"]+)"/g)].map(
+    (match) => match[1],
+  );
   assert.equal(new Set(bannerIds).size, bannerIds.length, "No se deben duplicar los banners");
   assert.deepEqual(
     bannerIds.sort(),
