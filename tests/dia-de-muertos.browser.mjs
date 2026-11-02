@@ -38,12 +38,13 @@ try {
     const heroReadability = await page.locator(".home-hero").evaluate((hero) => {
       const parse = (value) =>
         (value.match(/[0-9.]+/g) || []).slice(0, 3).map((item) => Number(item));
-      const luminance = (rgb) => rgb
-        .map((channel) => {
-          const value = channel / 255;
-          return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-        })
-        .reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
+      const luminance = (rgb) =>
+        rgb
+          .map((channel) => {
+            const value = channel / 255;
+            return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+          })
+          .reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
       const contrast = (fg, bg) => {
         const top = Math.max(luminance(fg), luminance(bg));
         const bottom = Math.min(luminance(fg), luminance(bg));
@@ -83,20 +84,22 @@ try {
         "/themes/dia-de-muertos-premium/papel-picado.svg?v=2",
         "/themes/dia-de-muertos-premium/flores.svg?v=2",
       ];
-      return Promise.all(paths.map(async (path) => {
-        const response = await fetch(path);
-        const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
-        const image = new Image();
-        image.src = path;
-        await image.decode();
-        return {
-          path,
-          status: response.status,
-          invalid: Boolean(doc.querySelector("parsererror")),
-          paths: doc.querySelectorAll("path").length,
-          width: image.naturalWidth,
-        };
-      }));
+      return Promise.all(
+        paths.map(async (path) => {
+          const response = await fetch(path);
+          const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
+          const image = new Image();
+          image.src = path;
+          await image.decode();
+          return {
+            path,
+            status: response.status,
+            invalid: Boolean(doc.querySelector("parsererror")),
+            paths: doc.querySelectorAll("path").length,
+            width: image.naturalWidth,
+          };
+        }),
+      );
     });
     assert.equal(assets.length, 2);
     for (const asset of assets) {
