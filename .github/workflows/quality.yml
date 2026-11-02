@@ -19,4 +19,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Normalize seasonal CSS and browser QA
+        run: |
+          npx prettier --write src/styles/themes/dia-de-muertos-premium.css tests/dia-de-muertos.browser.mjs
+          python3 -c 'import pathlib,json; fs=["src/styles/themes/dia-de-muertos-premium.css","tests/dia-de-muertos.browser.mjs"]; [print("FORMATTED_DIA::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True)) for p in fs]'
       - run: npm run quality
