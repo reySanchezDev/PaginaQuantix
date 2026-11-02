@@ -11,6 +11,7 @@ on:
       - "tests/navidad*"
       - "tests/seasonal-restoration*"
       - "public/themes/halloween-tech-noir/**"
+      - "public/themes/dia-de-muertos-premium/**"
       - ".github/workflows/seasonal-contrast.yml"
   push:
     branches: [main]
