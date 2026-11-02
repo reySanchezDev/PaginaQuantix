@@ -19,4 +19,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Format test fixture for verification
+        run: |
+          npx prettier --write tests/dia-de-muertos.browser.mjs
+          python3 -c 'import json,pathlib; p="tests/dia-de-muertos.browser.mjs"; print("FORMATTED_TEST::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()}))'
       - run: npm run quality
