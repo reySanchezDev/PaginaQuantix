@@ -35,6 +35,11 @@ test("halloween respeta octubre rosa hasta el 29 de octubre", () => {
 test("halloween no vuelve en 2027 sin autorizacion", () => {
   assert.equal(s.resolve(c, date("2027-10-31T12:00:00Z")), null);
 });
+test("Día de Muertos Premium solo está activo el 2 de noviembre de 2026", () => {
+  assert.equal(s.resolve(c, date("2026-11-01T18:00:00Z")), null);
+  assert.equal(s.resolve(c, date("2026-11-02T06:00:00Z"))?.id, "dia-de-muertos-premium");
+  assert.equal(s.resolve(c, date("2026-11-03T06:00:00Z")), null);
+});
 test("no se reactiva solo al año siguiente", () => {
   assert.equal(s.resolve(c, date("2027-10-19T19:00:00Z")), null);
 });

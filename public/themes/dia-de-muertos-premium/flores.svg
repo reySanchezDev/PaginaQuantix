@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="presentation">
+  <g fill="none" stroke="#f5a22e" stroke-width="9" stroke-linecap="round">
+    <path d="M78 191c18-44 35-78 72-120" opacity=".65"/>
+    <path d="M91 160c-24-11-43-8-60 8M117 125c22-12 40-11 55 2" opacity=".6"/>
+  </g>
+  <g transform="translate(142 59)">
+    <circle r="18" fill="#ffd766"/>
+    <g fill="#e87928">
+      <ellipse cy="-35" rx="13" ry="29"/><ellipse cy="35" rx="13" ry="29"/>
+      <ellipse cx="-35" rx="29" ry="13"/><ellipse cx="35" rx="29" ry="13"/>
+      <ellipse transform="rotate(45)" cy="-34" rx="13" ry="28"/><ellipse transform="rotate(45)" cy="34" rx="13" ry="28"/>
+      <ellipse transform="rotate(-45)" cy="-34" rx="13" ry="28"/><ellipse transform="rotate(-45)" cy="34" rx="13" ry="28"/>
+    </g>
+    <circle r="8" fill="#7d3b63"/>
+  </g>
+  <g transform="translate(63 151) scale(.68)">
+    <circle r="18" fill="#ffd766"/>
+    <g fill="#d94c75"><ellipse cy="-35" rx="13" ry="29"/><ellipse cy="35" rx="13" ry="29"/><ellipse cx="-35" rx="29" ry="13"/><ellipse cx="35" rx="29" ry="13"/><ellipse transform="rotate(45)" cy="-34" rx="13" ry="28"/><ellipse transform="rotate(45)" cy="34" rx="13" ry="28"/><ellipse transform="rotate(-45)" cy="-34" rx="13" ry="28"/><ellipse transform="rotate(-45)" cy="34" rx="13" ry="28"/></g>
+    <circle r="8" fill="#7d3b63"/>
+  </g>
+</svg>

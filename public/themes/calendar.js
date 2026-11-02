@@ -25,5 +25,15 @@ window.QuantixThemeCalendar = Object.freeze({
       themeColor: "#090b12",
       icon: "/favicon.svg",
     },
+    {
+      id: "dia-de-muertos-premium",
+      enabled: true,
+      start: "2026-11-02",
+      end: "2026-11-02",
+      recurrence: "once",
+      priority: 300,
+      themeColor: "#20152f",
+      icon: "/favicon.svg",
+    },
   ],
 });
