@@ -22,7 +22,7 @@ test("cada campaña visual tiene un banner informativo bilingüe", () => {
   assert.equal(new Set(bannerIds).size, bannerIds.length, "No se deben duplicar los banners");
   assert.deepEqual(
     bannerIds.sort(),
-    c.campaigns.map((campaign) => campaign.id).sort(),
+    Array.from(c.campaigns, (campaign) => campaign.id).sort(),
     "Toda campaña del calendario debe explicar su ambientación al visitante",
   );
   assert.match(layout, /"Día de Muertos en Quantix\."/);
