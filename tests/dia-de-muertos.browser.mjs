@@ -29,10 +29,7 @@ try {
       await page.locator('[data-seasonal-banner="dia-de-muertos-premium"]').isVisible(),
       true,
     );
-    assert.equal(
-      await page.locator('[data-seasonal-banner="octubre-rosa"]').isVisible(),
-      false,
-    );
+    assert.equal(await page.locator('[data-seasonal-banner="octubre-rosa"]').isVisible(), false);
     assert.equal(
       await page.locator('[data-seasonal-banner="halloween-tech-noir"]').isVisible(),
       false,
@@ -173,7 +170,7 @@ try {
       `The visitor must see an explanation for ${campaign.theme}`,
     );
     assert.equal(
-      await past.locator('[data-seasonal-banner]:not([hidden])').count(),
+      await past.locator("[data-seasonal-banner]:not([hidden])").count(),
       1,
       "Only the current campaign banner can be visible",
     );
