@@ -19,4 +19,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Temporary Prettier output for seasonal restoration test
+        run: |
+          npx prettier --write tests/seasonal-restoration.browser.mjs
+          python3 -c 'import json,pathlib; p="tests/seasonal-restoration.browser.mjs"; print("FORMATTED_RESTORATION::"+json.dumps({"path":p,"content":pathlib.Path(p).read_text()},ensure_ascii=True))'
       - run: npm run quality
