@@ -23,6 +23,20 @@ try {
       await page.locator("html").getAttribute("data-seasonal-theme"),
       "dia-de-muertos-premium",
     );
+    const banners = page.locator("[data-seasonal-banner]");
+    assert.equal(await banners.count(), 3, "Every seasonal theme must have an explanation");
+    assert.equal(
+      await page.locator('[data-seasonal-banner="dia-de-muertos-premium"]').isVisible(),
+      true,
+    );
+    assert.equal(
+      await page.locator('[data-seasonal-banner="octubre-rosa"]').isVisible(),
+      false,
+    );
+    assert.equal(
+      await page.locator('[data-seasonal-banner="halloween-tech-noir"]').isVisible(),
+      false,
+    );
     const visuals = await page.locator(".home-hero").evaluate((hero) => ({
       flowers: getComputedStyle(hero, "::before").backgroundImage,
       noClickBlock: getComputedStyle(hero, "::before").pointerEvents,
@@ -141,7 +155,30 @@ try {
     "default",
     "The corporate theme returns at midnight Nicaragua time on November 3",
   );
+  for (const banner of await restored.locator("[data-seasonal-banner]").all()) {
+    assert.equal(await banner.isVisible(), false, "No seasonal banner after November 2");
+  }
   await restored.close();
+
+  for (const campaign of [
+    { date: "2026-10-20T18:00:00Z", theme: "octubre-rosa" },
+    { date: "2026-10-31T18:00:00Z", theme: "halloween-tech-noir" },
+  ]) {
+    const past = await browser.newPage();
+    await visit(past, "/en/", campaign.date);
+    assert.equal(await past.locator("html").getAttribute("data-seasonal-theme"), campaign.theme);
+    assert.equal(
+      await past.locator(`[data-seasonal-banner="${campaign.theme}"]`).isVisible(),
+      true,
+      `The visitor must see an explanation for ${campaign.theme}`,
+    );
+    assert.equal(
+      await past.locator('[data-seasonal-banner]:not([hidden])').count(),
+      1,
+      "Only the current campaign banner can be visible",
+    );
+    await past.close();
+  }
 
   console.log(
     "Dia de Muertos E2E PASS: themes, flowers, bunting, live clicks, mobile and restoration",
