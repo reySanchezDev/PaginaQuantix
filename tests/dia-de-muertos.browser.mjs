@@ -27,8 +27,7 @@ try {
       flowers: getComputedStyle(hero, "::before").backgroundImage,
       noClickBlock: getComputedStyle(hero, "::before").pointerEvents,
       confetti: getComputedStyle(hero, "::after").animationName,
-      bunting: getComputedStyle(document.querySelector(".site-header"), "::after")
-        .backgroundImage,
+      bunting: getComputedStyle(document.querySelector(".site-header"), "::after").backgroundImage,
     }));
     assert.match(visuals.flowers, /dia-de-muertos-premium\/flores\.svg/);
     assert.match(visuals.bunting, /dia-de-muertos-premium\/papel-picado\.svg/);
@@ -36,10 +35,14 @@ try {
 
     const cta = page.locator(".home-hero .hero-contact");
     await cta.evaluate((node) => {
-      node.addEventListener("click", (event) => {
-        event.preventDefault();
-        node.dataset.seasonalClick = "working";
-      }, { once: true });
+      node.addEventListener(
+        "click",
+        (event) => {
+          event.preventDefault();
+          node.dataset.seasonalClick = "working";
+        },
+        { once: true },
+      );
     });
     await cta.click();
     assert.equal(await cta.getAttribute("data-seasonal-click"), "working");
@@ -49,9 +52,9 @@ try {
   const reduced = await browser.newPage({ reducedMotion: "reduce" });
   await visit(reduced, "/es/", "2026-11-02T18:00:00Z");
   assert.equal(
-    await reduced.locator(".home-hero").evaluate(
-      (node) => getComputedStyle(node, "::after").animationName,
-    ),
+    await reduced
+      .locator(".home-hero")
+      .evaluate((node) => getComputedStyle(node, "::after").animationName),
     "none",
   );
   await reduced.close();
@@ -65,7 +68,9 @@ try {
   );
   await restored.close();
 
-  console.log("Dia de Muertos E2E PASS: themes, flowers, bunting, live clicks, mobile and restoration");
+  console.log(
+    "Dia de Muertos E2E PASS: themes, flowers, bunting, live clicks, mobile and restoration",
+  );
 } finally {
   await browser.close();
 }
