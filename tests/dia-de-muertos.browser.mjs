@@ -150,17 +150,23 @@ try {
   await visit(restored, "/en/", "2026-11-03T06:00:00Z");
   assert.equal(
     await restored.locator("html").getAttribute("data-seasonal-theme"),
-    "default",
-    "The corporate theme returns at midnight Nicaragua time on November 3",
+    "navidad-premium",
+    "Christmas starts at midnight Nicaragua time on November 3",
   );
-  for (const banner of await restored.locator("[data-seasonal-banner]").all()) {
-    assert.equal(await banner.isVisible(), false, "No seasonal banner after November 2");
-  }
+  assert.equal(
+    await restored.locator('[data-seasonal-banner="navidad-premium"]').isVisible(),
+    true,
+  );
+  assert.equal(
+    await restored.locator('[data-seasonal-banner="dia-de-muertos-premium"]').isVisible(),
+    false,
+  );
   await restored.close();
 
   for (const campaign of [
     { date: "2026-10-20T18:00:00Z", theme: "octubre-rosa" },
     { date: "2026-10-31T18:00:00Z", theme: "halloween-tech-noir" },
+    { date: "2026-12-15T18:00:00Z", theme: "navidad-premium" },
   ]) {
     const past = await browser.newPage();
     await visit(past, "/en/", campaign.date);

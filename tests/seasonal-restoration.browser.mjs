@@ -6,8 +6,8 @@ import { chromium } from "playwright";
 
 const base = process.env.E2E_BASE_URL || "http://127.0.0.1:4321";
 const dist = fileURLToPath(new URL("../dist/", import.meta.url));
-const cutoff = "2026-11-03T06:00:00.000Z";
-const justBefore = "2026-11-03T05:59:45.000Z";
+const cutoff = "2027-01-01T06:00:00.000Z";
+const justBefore = "2027-01-01T05:59:45.000Z";
 const forbiddenSpiders =
   ".halloween-walker, .halloween-hanging-spider, .halloween-spider-pointer, .halloween-silk-shot";
 
@@ -69,6 +69,7 @@ async function state(page) {
       hero: style(".home-hero"),
       heroFlowers: style(".home-hero", "::before"),
       heroParticles: style(".home-hero", "::after"),
+      headerLights: style(".site-header", "::before"),
       heroHeadline: style(".home-hero h1"),
       heroLead: style(".home-hero .hero-lead"),
       footer: style(".site-footer"),
@@ -123,10 +124,10 @@ try {
     });
     assert.equal(response?.status(), 200);
     const before = await state(live);
-    assert.equal(before.theme, "dia-de-muertos-premium");
-    assert.deepEqual(before.visibleBanners, ["dia-de-muertos-premium"]);
-    assert.match(before.heroFlowers?.backgroundImage || "", /flores\.svg/);
-    assert.match(before.headerOrnament?.backgroundImage || "", /papel-picado\.svg/);
+    assert.equal(before.theme, "navidad-premium");
+    assert.deepEqual(before.visibleBanners, ["navidad-premium"]);
+    assert.match(before.heroFlowers?.backgroundImage || "", /pine-branches\.svg/);
+    assert.match(before.headerLights?.backgroundImage || "", /lights\.svg/);
 
     // The site's own 30-second timer must perform the change with no reload.
     await live.clock.fastForward(31_000);
