@@ -18,9 +18,7 @@ function token(name) {
 function luminance(hex) {
   const values = [1, 3, 5].map((start) => {
     const value = Number.parseInt(hex.slice(start, start + 2), 16) / 255;
-    return value <= 0.04045
-      ? value / 12.92
-      : ((value + 0.055) / 1.055) ** 2.4;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
   });
   return 0.2126 * values[0] + 0.7152 * values[1] + 0.0722 * values[2];
 }
