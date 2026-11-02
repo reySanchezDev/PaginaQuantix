@@ -14,6 +14,29 @@ runInNewContext(
 const s = ctx.window.QuantixThemeScheduler,
   c = ctx.window.QuantixThemeCalendar;
 const date = (value) => new Date(value);
+test("papel picado tiene ocho escenas tradicionales distintas", () => {
+  const svg = readFileSync(
+    new URL("../public/themes/dia-de-muertos-premium/papel-picado.svg", import.meta.url),
+    "utf8",
+  );
+  const motifs = [...svg.matchAll(/data-motif="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(motifs.length, 8);
+  assert.equal(new Set(motifs).size, 8);
+  assert.equal([...svg.matchAll(/<mask\b/g)].length, 8);
+  for (const subject of [
+    "cempasuchil",
+    "veladora",
+    "pan-de-muerto",
+    "calaverita",
+    "retrato-ofrenda",
+    "copal",
+    "xoloitzcuintle",
+    "mariposa-monarca",
+  ]) {
+    assert.ok(motifs.includes(subject), `Falta el motivo tradicional: ${subject}`);
+  }
+});
+
 test("cada campaña visual tiene un banner informativo bilingüe", () => {
   const layout = readFileSync(new URL("../src/layouts/BaseLayout.astro", import.meta.url), "utf8");
   const bannerIds = [...layout.matchAll(/data-seasonal-banner="([^"]+)"/g)].map(

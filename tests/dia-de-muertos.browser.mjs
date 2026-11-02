@@ -93,7 +93,7 @@ try {
     }
     const assets = await page.evaluate(async () => {
       const paths = [
-        "/themes/dia-de-muertos-premium/papel-picado.svg?v=2",
+        "/themes/dia-de-muertos-premium/papel-picado.svg?v=3",
         "/themes/dia-de-muertos-premium/flores.svg?v=2",
       ];
       return Promise.all(
@@ -109,6 +109,9 @@ try {
             invalid: Boolean(doc.querySelector("parsererror")),
             paths: doc.querySelectorAll("path").length,
             width: image.naturalWidth,
+            motifNames: Array.from(doc.querySelectorAll("[data-motif]"), (node) =>
+              node.getAttribute("data-motif"),
+            ),
           };
         }),
       );
@@ -118,6 +121,10 @@ try {
       assert.equal(asset.status, 200, asset.path);
       assert.equal(asset.invalid, false, asset.path);
       assert.ok(asset.width >= 300 && asset.paths > 5, asset.path);
+      if (asset.path.includes("papel-picado")) {
+        assert.equal(asset.motifNames.length, 8, "Eight distinct papel picado banners");
+        assert.equal(new Set(asset.motifNames).size, 8, "No duplicated banner scenes");
+      }
     }
 
     const cta = page.locator(".home-hero .hero-contact");
