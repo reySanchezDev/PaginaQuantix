@@ -6,7 +6,7 @@ html[data-seasonal-theme="dia-de-muertos-premium"] {
   --color-surface-muted: #f6eadb;
   --color-ink: #241735;
   --color-ink-muted: #65536c;
-  --color-ink-subtle: #85738a;
+  --color-ink-subtle: #70536c; /* ≥4.5:1 sobre superficies claras */
   --color-border: #ead7c8;
   --color-border-strong: #c98957;
   --color-control-border: #a85d78;
@@ -67,6 +67,10 @@ html[data-seasonal-theme="dia-de-muertos-premium"] .desktop-nav a.active:not(.co
 }
 
 html[data-seasonal-theme="dia-de-muertos-premium"] .home-hero {
+  /* UX-039: el hero original usa texto marfil sobre fondo oscuro.
+     Este tema invierte la superficie: todo texto heredado debe ser oscuro. */
+  --color-focus: #62294e;
+  color: var(--color-ink);
   position: relative;
   isolation: isolate;
   color: #fff7e9;
