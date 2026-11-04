@@ -53,10 +53,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
         width: 1920,
         height: 1080,
       },
-      external: {
-        label: "Abrir Oktara",
-        href: siteConfig.productUrls.oktara,
-      },
     },
     {
       id: "tentrix",
@@ -70,10 +66,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
         alt: "Panel de Tentrix con estados de tickets, alertas y actividad reciente.",
         width: 1920,
         height: 1080,
-      },
-      external: {
-        label: "Abrir Tentrix",
-        href: siteConfig.productUrls.tentrix,
       },
     },
     {
@@ -191,10 +183,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
         width: 1920,
         height: 1080,
       },
-      external: {
-        label: "Open Oktara",
-        href: siteConfig.productUrls.oktara,
-      },
     },
     {
       id: "tentrix",
@@ -207,10 +195,6 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
         alt: "Tentrix dashboard showing ticket statuses, alerts, and recent activity in Spanish.",
         width: 1920,
         height: 1080,
-      },
-      external: {
-        label: "Open Tentrix",
-        href: siteConfig.productUrls.tentrix,
       },
     },
     {

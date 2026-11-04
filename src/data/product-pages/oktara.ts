@@ -1,4 +1,5 @@
 import { getRoute } from "../../i18n/routes";
+import { getContactHref } from "../../lib/contact-context";
 import type { Locale, ProductPageContent } from "../../types/site";
 import { getProduct } from "../products";
 
@@ -23,7 +24,10 @@ export function getOktaraPage(locale: Locale): ProductPageContent {
       lead: isEs
         ? "Centraliza formularios, equipos y seguimiento. Estandariza tus rutinas, revisa el cumplimiento y detecta dónde necesita atención tu operación."
         : "Bring forms, teams, and follow-up together. Standardize routines, review completion, and identify where your operation needs attention.",
-      primary: product.external,
+      primary: {
+        label: isEs ? "Solicitar una demo" : "Request a demo",
+        href: getContactHref(locale, "oktara"),
+      },
       secondary: { label: isEs ? "Explorar Oktara" : "Explore Oktara", href: "#overview-title" },
       image: {
         src: `${imageRoot}/reports.png`,
@@ -140,14 +144,13 @@ export function getOktaraPage(locale: Locale): ProductPageContent {
     },
     cta: {
       eyebrow: "Oktara",
-      title: isEs ? "Conoce Oktara." : "Meet Oktara.",
+      title: isEs ? "Solicita una demo de Oktara." : "Request an Oktara demo.",
       text: isEs
-        ? "Abre Oktara o habla con Quantix sobre la operación de tus equipos y sucursales."
-        : "Open Oktara or talk to Quantix about operations across your teams and locations.",
-      primary: product.external!,
-      secondary: {
-        label: isEs ? "Hablar con Quantix" : "Contact Quantix",
-        href: getRoute("contact", locale),
+        ? "Contáctanos para conversar sobre la operación de tus equipos y sucursales y coordinar una demostración."
+        : "Contact us to discuss operations across your teams and locations and schedule a demonstration.",
+      primary: {
+        label: isEs ? "Contáctanos para una demo" : "Contact us for a demo",
+        href: getContactHref(locale, "oktara"),
       },
     },
   };

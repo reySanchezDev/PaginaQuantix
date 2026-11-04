@@ -11,8 +11,6 @@ export const siteConfig = {
       es: "https://takofy.app/es/",
       en: "https://takofy.app/en/",
     },
-    oktara: "https://oktara.takofy.app/",
-    tentrix: "https://tentrix.takofy.app/",
     lendly: "https://lendly.hensell.dev/",
     "hen-screenshots": "https://screenshots.hensell.dev/",
     "nica-finanzas": "https://nicafinanzas.com/",

@@ -1,4 +1,5 @@
 import { getRoute } from "../../i18n/routes";
+import { getContactHref } from "../../lib/contact-context";
 import type { Locale, ProductPageContent } from "../../types/site";
 import { getProduct } from "../products";
 
@@ -21,7 +22,10 @@ export function getTentrixPage(locale: Locale): ProductPageContent {
       lead: isEs
         ? "Centraliza las solicitudes de soporte, asigna responsables y sigue cada ticket hasta su resolución, con prioridades, vencimientos y contexto siempre visibles."
         : "Centralize support requests, assign owners, and follow every ticket through resolution, with priorities, deadlines, and context always visible.",
-      primary: product.external,
+      primary: {
+        label: isEs ? "Solicitar una demo" : "Request a demo",
+        href: getContactHref(locale, "tentrix"),
+      },
       secondary: { label: isEs ? "Explorar Tentrix" : "Explore Tentrix", href: "#overview-title" },
       image: {
         src: `${imageRoot}/overview.png`,
@@ -153,14 +157,13 @@ export function getTentrixPage(locale: Locale): ProductPageContent {
     },
     cta: {
       eyebrow: "Tentrix",
-      title: isEs ? "Conoce Tentrix." : "Meet Tentrix.",
+      title: isEs ? "Solicita una demo de Tentrix." : "Request a Tentrix demo.",
       text: isEs
-        ? "Abre Tentrix o habla con Quantix sobre el flujo de soporte de tu equipo."
-        : "Open Tentrix or talk to Quantix about your team’s support workflow.",
-      primary: product.external!,
-      secondary: {
-        label: isEs ? "Hablar con Quantix" : "Contact Quantix",
-        href: getRoute("contact", locale),
+        ? "Contáctanos para conversar sobre el flujo de soporte de tu equipo y coordinar una demostración."
+        : "Contact us to discuss your team’s support workflow and schedule a demonstration.",
+      primary: {
+        label: isEs ? "Contáctanos para una demo" : "Contact us for a demo",
+        href: getContactHref(locale, "tentrix"),
       },
     },
   };
