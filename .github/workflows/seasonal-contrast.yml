@@ -12,6 +12,7 @@ on:
       - "tests/seasonal-restoration*"
       - "public/themes/halloween-tech-noir/**"
       - "public/themes/dia-de-muertos-premium/**"
+      - "public/themes/navidad-premium/**"
       - ".github/workflows/seasonal-contrast.yml"
   push:
     branches: [main]
@@ -24,6 +25,7 @@ on:
       - "tests/navidad*"
       - "tests/seasonal-restoration*"
       - "public/themes/halloween-tech-noir/**"
+      - "public/themes/navidad-premium/**"
   workflow_dispatch:
 
 permissions:
