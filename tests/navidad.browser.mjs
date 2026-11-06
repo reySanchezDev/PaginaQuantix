@@ -49,17 +49,31 @@ try {
       "The garland must never intercept navigation clicks",
     );
 
+    const mounting = await page.locator(".site-header").evaluate((header) => {
+      const height = header.getBoundingClientRect().height;
+      const style = getComputedStyle(header, "::before");
+      return { headerHeight: height, decorativeTop: parseFloat(style.top) };
+    });
+    assert.ok(
+      mounting.decorativeTop < mounting.headerHeight &&
+        mounting.decorativeTop >= mounting.headerHeight - 8,
+      "The brass plates must overlap the ivory header instead of floating over the hero",
+    );
+
     const garland = await page.evaluate(async () => {
-      const response = await fetch("/themes/navidad-premium/lights.svg?v=2");
+      const response = await fetch("/themes/navidad-premium/lights.svg?v=3");
       const svg = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
       const image = new Image();
-      image.src = "/themes/navidad-premium/lights.svg?v=2";
+      image.src = "/themes/navidad-premium/lights.svg?v=3";
       await image.decode();
       return {
         status: response.status,
         errors: svg.querySelectorAll("parsererror").length,
-        wirePaths: [...svg.querySelectorAll('path[d^="M0 27"]')].map((node) =>
+        wirePaths: [...svg.querySelectorAll('path[d^="M0 16"]')].map((node) =>
           node.getAttribute("d"),
+        ),
+        mounts: [...svg.querySelectorAll("[data-anchor]")].map((node) =>
+          node.getAttribute("transform"),
         ),
         leds: svg.querySelectorAll("[data-led]").length,
         phases: [...svg.querySelectorAll("[data-led]")].map((node) => node.getAttribute("style")),
@@ -72,8 +86,13 @@ try {
     assert.equal(garland.naturalWidth, 720);
     assert.equal(garland.wirePaths.length, 2, "Two strokes outline the same continuous cable");
     assert.ok(
-      garland.wirePaths.every((path) => path.endsWith("720 27")),
-      "Cable must begin and end at exactly y=27 to avoid visible tile seams",
+      garland.wirePaths.every((path) => path.endsWith("720 16")),
+      "Cable must begin and end at exactly y=16 to avoid visible tile seams",
+    );
+    assert.deepEqual(
+      garland.mounts,
+      ["translate(0 0)", "translate(240 0)", "translate(480 0)", "translate(720 0)"],
+      "Four precisely spaced brass mounts must attach the continuous cable to the header",
     );
     assert.equal(garland.leds, 6, "Six individually powered bulbs per seamless SVG tile");
     assert.equal(new Set(garland.phases).size, 6, "LED bulbs must have independent pulse timings");
@@ -122,21 +141,23 @@ try {
       "Reduced-motion users must see steady, warm lights without animation",
     );
     const staticGarland = await reduced.evaluate(async () => {
-      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=2");
+      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=3");
       const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
       const img = new Image();
-      img.src = "/themes/navidad-premium/lights-static.svg?v=2";
+      img.src = "/themes/navidad-premium/lights-static.svg?v=3";
       await img.decode();
       return {
         status: response.status,
         errors: doc.querySelectorAll("parsererror").length,
         hasAnimations: Boolean(doc.querySelector("style, animate, animateTransform")),
+        anchors: doc.querySelectorAll("[data-anchor]").length,
         leds: doc.querySelectorAll("[data-led]").length,
       };
     });
     assert.equal(staticGarland.status, 200);
     assert.equal(staticGarland.errors, 0);
     assert.equal(staticGarland.hasAnimations, false);
+    assert.equal(staticGarland.anchors, 4, "Static lights must retain physical header anchors");
     assert.equal(staticGarland.leds, 6);
     await reduced.close();
 
