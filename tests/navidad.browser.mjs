@@ -41,6 +41,61 @@ try {
     assert.match(visuals.lights, /navidad-premium\/lights\.svg/);
     assert.equal(visuals.noClickBlock, "none");
     assert.notEqual(visuals.particles, "none");
+    assert.equal(
+      await page.locator(".site-header").evaluate((header) => getComputedStyle(header, "::before").pointerEvents),
+      "none",
+      "The garland must never intercept navigation clicks",
+    );
+
+    const garland = await page.evaluate(async () => {
+      const response = await fetch("/themes/navidad-premium/lights.svg?v=2");
+      const svg = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
+      const image = new Image();
+      image.src = "/themes/navidad-premium/lights.svg?v=2";
+      await image.decode();
+      return {
+        status: response.status,
+        errors: svg.querySelectorAll("parsererror").length,
+        wirePaths: [...svg.querySelectorAll('path[d^="M0 27"]')].map((node) =>
+          node.getAttribute("d"),
+        ),
+        leds: svg.querySelectorAll("[data-led]").length,
+        phases: [...svg.querySelectorAll("[data-led]")].map((node) => node.getAttribute("style")),
+        animation: svg.querySelector("style")?.textContent || "",
+        naturalWidth: image.naturalWidth,
+      };
+    });
+    assert.equal(garland.status, 200);
+    assert.equal(garland.errors, 0);
+    assert.equal(garland.naturalWidth, 720);
+    assert.equal(garland.wirePaths.length, 2, "Two strokes outline the same continuous cable");
+    assert.ok(
+      garland.wirePaths.every((path) => path.endsWith("720 27")),
+      "Cable must begin and end at exactly y=27 to avoid visible tile seams",
+    );
+    assert.equal(garland.leds, 6, "Six individually powered bulbs per seamless SVG tile");
+    assert.equal(new Set(garland.phases).size, 6, "LED bulbs must have independent pulse timings");
+    assert.match(garland.animation, /@keyframes qx-led-aura/);
+    assert.match(garland.animation, /prefers-reduced-motion: reduce/);
+
+    if (width === 1440) {
+      const header = await page.locator(".site-header").boundingBox();
+      assert.ok(header, "Header should be visible for illumination test");
+      const clip = {
+        x: 0,
+        y: header.y + header.height + 3,
+        width: 720,
+        height: 33,
+      };
+      const firstFrame = await page.screenshot({ clip, animations: "allow" });
+      await page.waitForTimeout(900);
+      const secondFrame = await page.screenshot({ clip, animations: "allow" });
+      assert.notDeepEqual(
+        firstFrame,
+        secondFrame,
+        "The garland bulbs must visibly pulse in the actual browser, not just contain animation markup",
+      );
+    }
 
     const cta = page.locator(".home-hero .hero-contact");
     assert.ok(await cta.getAttribute("href"), "The existing CTA must retain its link");
@@ -57,6 +112,30 @@ try {
         .evaluate((hero) => getComputedStyle(hero, "::after").animationName),
       "none",
     );
+    assert.match(
+      await reduced
+        .locator(".site-header")
+        .evaluate((header) => getComputedStyle(header, "::before").backgroundImage),
+      /lights-static\\.svg/,
+      "Reduced-motion users must see steady, warm lights without animation",
+    );
+    const staticGarland = await reduced.evaluate(async () => {
+      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=2");
+      const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
+      const img = new Image();
+      img.src = "/themes/navidad-premium/lights-static.svg?v=2";
+      await img.decode();
+      return {
+        status: response.status,
+        errors: doc.querySelectorAll("parsererror").length,
+        hasAnimations: Boolean(doc.querySelector("style, animate, animateTransform")),
+        leds: doc.querySelectorAll("[data-led]").length,
+      };
+    });
+    assert.equal(staticGarland.status, 200);
+    assert.equal(staticGarland.errors, 0);
+    assert.equal(staticGarland.hasAnimations, false);
+    assert.equal(staticGarland.leds, 6);
     await reduced.close();
 
     const restored = await browser.newPage({ viewport: { width, height: 900 } });
