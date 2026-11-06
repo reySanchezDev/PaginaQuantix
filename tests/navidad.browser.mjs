@@ -42,7 +42,9 @@ try {
     assert.equal(visuals.noClickBlock, "none");
     assert.notEqual(visuals.particles, "none");
     assert.equal(
-      await page.locator(".site-header").evaluate((header) => getComputedStyle(header, "::before").pointerEvents),
+      await page
+        .locator(".site-header")
+        .evaluate((header) => getComputedStyle(header, "::before").pointerEvents),
       "none",
       "The garland must never intercept navigation clicks",
     );
