@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="108" viewBox="0 0 720 108" fill="none" role="presentation">
-  <!-- Brass clips are fixed into the cream header; the cord hangs naturally between them. Seamless ends both y=16. -->
+  <!-- Brass clips are fixed into the cream header; the cord hangs naturally between them. One gravity-shaped drape per pair of clips; seamless ends both y=16. -->
   <defs>
     <radialGradient id="warm-halo">
       <stop offset="0" stop-color="#ffe3a0" stop-opacity=".85"/>
@@ -70,9 +70,9 @@
     <circle cx="0" cy="4.4" r="2.1" fill="#6e5136" stroke="#f5dfaa" stroke-width=".65"/>
     <circle cx="0" cy="16" r="3.1" fill="#294037" stroke="#bfa46e" stroke-width="1.4"/>
   </g>
-  <path d="M0 16 C28 16 30 64 60 64 C92 64 87 32 120 32 C148 32 150 60 180 60 C212 60 210 16 240 16 C268 16 270 66 300 66 C332 66 328 34 360 34 C390 34 392 63 420 63 C452 63 450 16 480 16 C509 16 511 61 540 61 C571 61 569 30 600 30 C631 30 631 62 660 62 C692 62 690 16 720 16" stroke="#172b25" stroke-width="4" stroke-linecap="round"/>
-  <path d="M0 16 C28 16 30 64 60 64 C92 64 87 32 120 32 C148 32 150 60 180 60 C212 60 210 16 240 16 C268 16 270 66 300 66 C332 66 328 34 360 34 C390 34 392 63 420 63 C452 63 450 16 480 16 C509 16 511 61 540 61 C571 61 569 30 600 30 C631 30 631 62 660 62 C692 62 690 16 720 16" stroke="#bfa46e" stroke-width="1.5" stroke-linecap="round" opacity=".87"/>
-  <g class="lamp" data-led="01" transform="translate(60 64)" style="--led-duration:3.8s;--led-delay:-1.3s">
+  <path d="M0 16 Q120 104 240 16 Q360 104 480 16 Q600 104 720 16" stroke="#172b25" stroke-width="4" stroke-linecap="round"/>
+  <path d="M0 16 Q120 104 240 16 Q360 104 480 16 Q600 104 720 16" stroke="#bfa46e" stroke-width="1.5" stroke-linecap="round" opacity=".87"/>
+  <g class="lamp" data-led="01" transform="translate(60 49)" style="--led-duration:3.8s;--led-delay:-1.3s">
     <circle class="lamp__aura" cx="0" cy="19" r="29" fill="url(#warm-halo)" opacity=".5"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2" stroke-linecap="round"/>
     <rect x="-5" y="4" width="10" height="6" rx="2" fill="#5a6550" stroke="#d2b375" stroke-width="1"/>
@@ -80,7 +80,7 @@
     <path class="lamp__filament" d="M-2 15v7M2 15v7M-2 19Q0 22 2 19" stroke="#fffefa" stroke-width="2" stroke-linecap="round" opacity=".86"/>
     <circle cx="-2.2" cy="12.5" r="1.6" fill="#fffdf2" opacity=".85"/>
   </g>
-  <g class="lamp" data-led="02" transform="translate(180 60)" style="--led-duration:4.7s;--led-delay:-3.2s">
+  <g class="lamp" data-led="02" transform="translate(180 49)" style="--led-duration:4.7s;--led-delay:-3.2s">
     <circle class="lamp__aura" cx="0" cy="19" r="29" fill="url(#warm-halo)" opacity=".5"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2" stroke-linecap="round"/>
     <rect x="-5" y="4" width="10" height="6" rx="2" fill="#5a6550" stroke="#d2b375" stroke-width="1"/>
@@ -88,7 +88,7 @@
     <path class="lamp__filament" d="M-2 15v7M2 15v7M-2 19Q0 22 2 19" stroke="#fffefa" stroke-width="2" stroke-linecap="round" opacity=".86"/>
     <circle cx="-2.2" cy="12.5" r="1.6" fill="#fffdf2" opacity=".85"/>
   </g>
-  <g class="lamp" data-led="03" transform="translate(300 66)" style="--led-duration:3.3s;--led-delay:-2.1s">
+  <g class="lamp" data-led="03" transform="translate(300 49)" style="--led-duration:3.3s;--led-delay:-2.1s">
     <circle class="lamp__aura" cx="0" cy="19" r="29" fill="url(#warm-halo)" opacity=".5"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2" stroke-linecap="round"/>
     <rect x="-5" y="4" width="10" height="6" rx="2" fill="#5a6550" stroke="#d2b375" stroke-width="1"/>
@@ -96,7 +96,7 @@
     <path class="lamp__filament" d="M-2 15v7M2 15v7M-2 19Q0 22 2 19" stroke="#fffefa" stroke-width="2" stroke-linecap="round" opacity=".86"/>
     <circle cx="-2.2" cy="12.5" r="1.6" fill="#fffdf2" opacity=".85"/>
   </g>
-  <g class="lamp" data-led="04" transform="translate(420 63)" style="--led-duration:4.2s;--led-delay:-0.6s">
+  <g class="lamp" data-led="04" transform="translate(420 49)" style="--led-duration:4.2s;--led-delay:-0.6s">
     <circle class="lamp__aura" cx="0" cy="19" r="29" fill="url(#warm-halo)" opacity=".5"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2" stroke-linecap="round"/>
     <rect x="-5" y="4" width="10" height="6" rx="2" fill="#5a6550" stroke="#d2b375" stroke-width="1"/>
@@ -104,7 +104,7 @@
     <path class="lamp__filament" d="M-2 15v7M2 15v7M-2 19Q0 22 2 19" stroke="#fffefa" stroke-width="2" stroke-linecap="round" opacity=".86"/>
     <circle cx="-2.2" cy="12.5" r="1.6" fill="#fffdf2" opacity=".85"/>
   </g>
-  <g class="lamp" data-led="05" transform="translate(540 61)" style="--led-duration:3.6s;--led-delay:-2.9s">
+  <g class="lamp" data-led="05" transform="translate(540 49)" style="--led-duration:3.6s;--led-delay:-2.9s">
     <circle class="lamp__aura" cx="0" cy="19" r="29" fill="url(#warm-halo)" opacity=".5"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2" stroke-linecap="round"/>
     <rect x="-5" y="4" width="10" height="6" rx="2" fill="#5a6550" stroke="#d2b375" stroke-width="1"/>
@@ -112,7 +112,7 @@
     <path class="lamp__filament" d="M-2 15v7M2 15v7M-2 19Q0 22 2 19" stroke="#fffefa" stroke-width="2" stroke-linecap="round" opacity=".86"/>
     <circle cx="-2.2" cy="12.5" r="1.6" fill="#fffdf2" opacity=".85"/>
   </g>
-  <g class="lamp" data-led="06" transform="translate(660 62)" style="--led-duration:4.4s;--led-delay:-1.8s">
+  <g class="lamp" data-led="06" transform="translate(660 49)" style="--led-duration:4.4s;--led-delay:-1.8s">
     <circle class="lamp__aura" cx="0" cy="19" r="29" fill="url(#warm-halo)" opacity=".5"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2" stroke-linecap="round"/>
     <rect x="-5" y="4" width="10" height="6" rx="2" fill="#5a6550" stroke="#d2b375" stroke-width="1"/>

@@ -55,7 +55,7 @@ html[data-seasonal-theme="navidad-premium"] .site-header::before {
   inset: calc(100% - 0.25rem) 0 auto;
   height: clamp(2.3rem, 3.5vw, 3rem);
   /* Phase-aligned tile: both ends of the wire meet without a visible break. */
-  background: url("/themes/navidad-premium/lights.svg?v=3") left top / auto 100% repeat-x;
+  background: url("/themes/navidad-premium/lights.svg?v=4") left top / auto 100% repeat-x;
   filter: drop-shadow(0 0.16rem 0.4rem rgb(220 170 80 / 0.18));
   opacity: 1;
   pointer-events: none;
@@ -246,7 +246,7 @@ html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__ornament {
 
 @media (prefers-reduced-motion: reduce) {
   html[data-seasonal-theme="navidad-premium"] .site-header::before {
-    background-image: url("/themes/navidad-premium/lights-static.svg?v=3");
+    background-image: url("/themes/navidad-premium/lights-static.svg?v=4");
   }
 
   html[data-seasonal-theme="navidad-premium"] .home-hero::after {
