@@ -116,7 +116,7 @@ try {
       await reduced
         .locator(".site-header")
         .evaluate((header) => getComputedStyle(header, "::before").backgroundImage),
-      /lights-static\\.svg/,
+      /lights-static\.svg/,
       "Reduced-motion users must see steady, warm lights without animation",
     );
     const staticGarland = await reduced.evaluate(async () => {
