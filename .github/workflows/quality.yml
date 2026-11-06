@@ -19,4 +19,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Temporary canonical Prettier capture
+        run: |
+          npx prettier --write tests/navidad.browser.mjs
+          node -e 'console.log("FORMATTED_NAVIDAD::" + JSON.stringify(require("node:fs").readFileSync("tests/navidad.browser.mjs", "utf8")))'
       - run: npm run quality
