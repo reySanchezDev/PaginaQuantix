@@ -10,7 +10,7 @@ let scrollPosition = 0;
 
 const pageSurfaces = [
   ...document.querySelectorAll<HTMLElement>(
-    ".site-header, main, .site-footer, [data-email-feedback]",
+    "[data-new-year], .site-header, main, .site-footer, [data-email-feedback]",
   ),
 ];
 function closeMenu({ immediate = false, restoreFocus = true } = {}) {

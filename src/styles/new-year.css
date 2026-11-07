@@ -5,190 +5,122 @@
 .new-year {
   --color-ink: #fff5dc;
   --color-ink-muted: #e3ce9f;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
+  padding: 0.45rem 0.75rem;
+  color: var(--color-ink);
+  background:
+    radial-gradient(ellipse at 45% 135%, #28553d, transparent 78%),
+    linear-gradient(110deg, #102d27, #153c32 64%, #102d27);
+  border-bottom: 1px solid #a98545;
   text-align: center;
-  padding: clamp(4rem, 8vw, 7rem) 1.25rem 3rem;
-  color: #fff5dc;
-  background: radial-gradient(ellipse at 50% 100%, #28553d 0, transparent 65%), #102d27;
-  border-block: 1px solid #a98545;
 }
 .new-year__content {
   position: relative;
-  z-index: 2;
-  max-width: 72rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 76rem;
   margin-inline: auto;
 }
-.new-year__watermark {
-  position: absolute;
-  z-index: -1;
-  inset: -3rem 0 auto;
-  font:
-    400 clamp(9rem, 32vw, 30rem)/1 Georgia,
-    serif;
-  color: transparent;
-  -webkit-text-stroke: 1px #c9a45b35;
-  pointer-events: none;
+.new-year__title,
+.new-year__greeting {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.25;
 }
-.new-year__eyebrow {
-  color: #e9cd91;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 0.8rem;
-  margin: 0 0 1rem;
-}
-.new-year__title {
-  color: #fff5dc;
-  font:
-    400 clamp(2.1rem, 4.7vw, 4.6rem)/1.12 Georgia,
-    serif;
-  text-wrap: balance;
-  margin: 0 auto 2.6rem;
-  max-width: 20ch;
+.new-year__title span,
+.new-year__greeting span {
+  color: #f4d58d;
 }
 .new-year__digits {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  max-width: 55rem;
-  gap: clamp(0.4rem, 1.8vw, 1.5rem);
-  margin: 0 auto 2rem;
+  gap: clamp(0.25rem, 1vw, 0.7rem);
+  width: min(100%, 28rem);
 }
 .new-year__unit {
-  padding: 1.35rem 0.3rem 1rem;
-  border: 1px solid #c8a75d;
-  border-radius: 0.7rem;
-  background: linear-gradient(145deg, #28534380, #0a221eaf);
-  box-shadow:
-    inset 0 1px 0 #ffe2a330,
-    0 12px 30px #001b192b;
+  padding: 0.22rem 0.14rem;
+  border: 1px solid #aa8d53;
+  border-radius: 0.4rem;
+  background: #102b25;
 }
 .new-year__number {
   display: block;
-  font:
-    400 clamp(2rem, 6.2vw, 5rem)/1.1 Georgia,
-    serif;
+  font: 500 clamp(1.15rem, 2vw, 1.6rem) / 1 var(--font-heading);
   font-variant-numeric: tabular-nums;
   color: #fff2d2;
 }
 .new-year__label {
   display: block;
-  margin-top: 0.6rem;
-  font-size: clamp(0.55rem, 1vw, 0.8rem);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  margin-top: 0.13rem;
+  font-size: clamp(0.56rem, 1.25vw, 0.68rem);
+  line-height: 1.3;
   color: #f2dcaa;
 }
-.new-year__zone {
-  font-size: 0.9rem;
-  color: #e3ce9f;
-  margin: 1.7rem 0 1rem;
+.new-year__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
 }
-.new-year__settings {
-  max-width: 30rem;
-  margin: auto;
-  font-size: 0.85rem;
-  color: #e3ce9f;
+.new-year__zone {
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 .new-year__settings summary {
   cursor: pointer;
+  padding: 0.3rem 0.15rem;
   text-decoration: underline;
-  text-underline-offset: 0.25em;
-  padding: 0.6rem;
+  text-underline-offset: 0.22em;
+}
+.new-year__zone-panel {
+  position: absolute;
+  z-index: 85;
+  inset: calc(100% + 0.45rem) 0 auto auto;
+  width: min(100%, 22rem);
+  padding: 0.8rem;
+  border: 1px solid #aa8d53;
+  border-radius: 0.55rem;
+  background: #102d27;
+  box-shadow: 0 0.8rem 2rem #001b1966;
+  text-align: start;
 }
 .new-year__settings label {
   display: block;
-  padding: 0.8rem 0;
+  margin-bottom: 0.4rem;
 }
-.new-year__settings select {
+.new-year__settings select,
+.new-year__settings button {
   width: 100%;
   min-height: 2.75rem;
-  padding: 0.6rem;
-  color: #17392e;
-  background: #fff8e8;
+  padding: 0.45rem;
   border: 1px solid #c8a75d;
   border-radius: 0.3rem;
+  background: #fff8e8;
+  color: #17392e;
+  font-size: 1rem;
 }
 .new-year__settings button {
+  margin-top: 0.55rem;
   background: transparent;
   color: #fff2d2;
-  border: 1px solid #aa8c53;
-  border-radius: 0.3rem;
-  padding: 0.6rem 1rem;
-  margin-top: 0.8rem;
   cursor: pointer;
-  min-height: 2.75rem;
 }
 .new-year :is(summary, select, button):focus-visible {
-  outline: 3px solid #ffe2a3;
-  outline-offset: 4px;
+  outline: 2px solid #ffe2a3;
+  outline-offset: 2px;
 }
-.new-year__greeting {
-  color: #fff5dc;
-  margin: 0;
-  font:
-    400 clamp(2.6rem, 5vw, 4.5rem)/1.1 Georgia,
-    serif;
-}
-.new-year__greeting span {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: clamp(6rem, 20vw, 17rem);
-  letter-spacing: -0.055em;
-  color: #edc66f;
-  background: linear-gradient(130deg, #a37429, #fff0ba 40%, #d6a743 63%, #fff0b5);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 25px #d6ad5c35);
-}
-.new-year__wish {
-  color: #fff5dc;
-  font:
-    italic 400 clamp(1.25rem, 2.5vw, 2rem)/1.5 Georgia,
-    serif;
-  max-width: 38rem;
-  margin: 1.5rem auto 1rem;
+.new-year__welcome p {
+  margin: 0.15rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.82rem;
   text-wrap: balance;
-}
-.new-year__sparkles {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  opacity: 0.6;
-  background-image:
-    radial-gradient(circle, #e6be6c 1px, transparent 2px),
-    radial-gradient(circle, #e6be6c80 1px, transparent 2px);
-  background-size:
-    137px 159px,
-    211px 197px;
-  background-position:
-    17px 23px,
-    63px 97px;
-  mask-image: linear-gradient(90deg, #000, transparent 35%, transparent 65%, #000);
-  pointer-events: none;
-}
-.new-year::before,
-.new-year::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  bottom: 0;
-  width: clamp(9rem, 24vw, 22rem);
-  height: 14rem;
-  background: url("/themes/navidad-premium/pine-branches.svg") left bottom / contain no-repeat;
-  opacity: 0.6;
-  pointer-events: none;
-}
-.new-year::before {
-  left: 0;
-}
-.new-year::after {
-  right: 0;
-  transform: scaleX(-1);
-}
-.new-year[data-phase="welcome"]::before,
-.new-year[data-phase="welcome"]::after {
-  display: none;
 }
 .new-year__fireworks {
   position: fixed;
@@ -221,23 +153,24 @@
     opacity: 0;
   }
 }
-@media (max-width: 30rem) {
-  .new-year {
-    padding-inline: 0.75rem;
+@media (min-width: 54rem) {
+  .new-year__content {
+    grid-template-columns: 1fr minmax(18rem, 28rem) 1fr;
+    gap: 1rem;
   }
-  .new-year__unit {
-    padding-block: 1rem;
-    border-radius: 0.4rem;
+  .new-year__title {
+    justify-self: end;
   }
-  .new-year__label {
-    letter-spacing: 0;
+  .new-year__meta {
+    justify-content: flex-start;
+  }
+  .new-year__welcome {
+    grid-column: 1 / 3;
+    justify-self: end;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .new-year__fireworks {
     display: none !important;
-  }
-  .new-year__particle {
-    animation: none;
   }
 }

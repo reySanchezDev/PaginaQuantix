@@ -37,7 +37,7 @@ test("papel picado tiene ocho escenas tradicionales distintas", () => {
   }
 });
 
-test("cada campaña visual tiene un banner informativo bilingüe", () => {
+test("las campañas tienen su franja informativa o cuenta regresiva", () => {
   const layout = readFileSync(new URL("../src/layouts/BaseLayout.astro", import.meta.url), "utf8");
   const bannerIds = [...layout.matchAll(/data-seasonal-banner="([^"]+)"/g)].map(
     (match) => match[1],
@@ -45,13 +45,14 @@ test("cada campaña visual tiene un banner informativo bilingüe", () => {
   assert.equal(new Set(bannerIds).size, bannerIds.length, "No se deben duplicar los banners");
   assert.deepEqual(
     bannerIds.sort(),
-    Array.from(c.campaigns, (campaign) => campaign.id).sort(),
+    Array.from(c.campaigns, (campaign) => campaign.id)
+      .filter((id) => id !== "navidad-premium")
+      .sort(),
     "Toda campaña del calendario debe explicar su ambientación al visitante",
   );
   assert.match(layout, /"Día de Muertos en Quantix\."/);
   assert.match(layout, /"Day of the Dead at Quantix\."/);
-  assert.match(layout, /"Navidad en Quantix\."/);
-  assert.match(layout, /"Christmas at Quantix\."/);
+  assert.match(layout, /<NewYear locale=\{locale\} \/>\s*<SiteHeader/);
 });
 
 test("octubre 2026 inicia el 1 a las 00:00 Nicaragua", () => {

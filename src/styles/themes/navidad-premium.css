@@ -201,37 +201,6 @@ html[data-seasonal-theme="navidad-premium"] .site-footer::before {
   pointer-events: none;
 }
 
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas {
-  border-bottom: 1px solid #9c7b3f;
-  background: linear-gradient(90deg, #102d27, #1b4a3a 50%, #102d27);
-  color: #fbf0d0;
-}
-
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding-block: 0.6rem;
-  text-align: center;
-}
-
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas p {
-  margin: 0;
-  font-size: var(--text-sm);
-  line-height: 1.5;
-}
-
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__ornament {
-  flex: none;
-  color: #edc976;
-  font-size: 1rem;
-}
-
-.seasonal-christmas[hidden] {
-  display: none !important;
-}
-
 @keyframes navidad-premium-glow {
   from {
     opacity: 0.42;
@@ -244,10 +213,6 @@ html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__ornament {
 }
 
 @media (max-width: 48rem) {
-  html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__inner {
-    gap: 0.5rem;
-  }
-
   html[data-seasonal-theme="navidad-premium"] .home-hero::before {
     bottom: 4.75rem;
     width: 9rem;

@@ -125,7 +125,7 @@ try {
     assert.equal(response?.status(), 200);
     const before = await state(live);
     assert.equal(before.theme, "navidad-premium");
-    assert.deepEqual(before.visibleBanners, ["navidad-premium"]);
+    assert.deepEqual(before.visibleBanners, []);
     assert.match(before.heroFlowers?.backgroundImage || "", /pine-branches\.svg/);
     assert.match(before.headerLights?.backgroundImage || "", /lights\.svg/);
 

@@ -2,7 +2,6 @@ async function initNewYear() {
   const section = document.querySelector("[data-new-year]");
   if (!section) return;
   const { newYearState } = await import(/* @vite-ignore */ "/themes/new-year-clock.js");
-  const es = section.dataset.locale === "es";
   const autoZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   let zone = autoZone;
   try {
@@ -75,14 +74,14 @@ async function initNewYear() {
     for (const node of section.querySelectorAll("[data-countdown-copy]")) node.hidden = isWelcome;
     welcome.hidden = !isWelcome;
     section.setAttribute("aria-labelledby", isWelcome ? "new-year-greeting" : "new-year-title");
-    welcome.querySelector("h2").id = "new-year-greeting";
     if (!isWelcome) {
       for (const [i, key] of ["months", "days", "hours", "minutes", "seconds"].entries()) {
         const value = String(state[key]).padStart(2, "0");
         if (units[i].textContent !== value) units[i].textContent = value;
       }
     }
-    caption.textContent = `${isWelcome ? (es ? "Celebramos contigo" : "Celebrating with you") : es ? "Rumbo a 2027" : "On our way to 2027"} · ${zone.replaceAll("_", " ")}`;
+    const zoneLabel = zone.replaceAll("_", " ");
+    if (caption.textContent !== zoneLabel) caption.textContent = zoneLabel;
     if (isWelcome && previousPhase !== "welcome") celebrate();
     previousPhase = state.phase;
   }

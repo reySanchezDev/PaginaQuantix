@@ -1,6 +1,6 @@
 # Cuenta regresiva y bienvenida a 2027
 
-Sección bilingüe bajo el hero de inicio, activa desde noviembre de 2026 hasta el 7 de enero de 2027 inclusive, según la zona elegida por cada visitante. No reemplaza el hero, navegación, contenido comercial ni metadatos.
+Franja bilingüe sobre el menú de navegación que sustituye el saludo navideño en todo el sitio, activa desde noviembre de 2026 hasta el 7 de enero de 2027 inclusive, según la zona elegida por cada visitante. No reemplaza el hero, navegación, contenido comercial ni metadatos.
 
 ## Comportamiento
 
