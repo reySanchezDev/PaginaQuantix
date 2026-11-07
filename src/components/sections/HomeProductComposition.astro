@@ -78,6 +78,65 @@ const es = locale === "es";
     margin-top: 0.25rem;
     font-size: var(--text-xs);
   }
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::before,
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::before {
+    inset: -9% -10% 1% -9%;
+    background: radial-gradient(
+      ellipse at 61% 42%,
+      rgb(255 218 147 / 0.38),
+      rgb(222 173 87 / 0.17) 32%,
+      transparent 69%
+    );
+  }
+
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::after {
+    inset: 58% -3% 4% -6%;
+    background:
+      radial-gradient(ellipse at 51% 36%, rgb(5 20 16 / 0.66), transparent 66%),
+      radial-gradient(ellipse at 35% 68%, rgb(228 180 93 / 0.18), transparent 60%);
+  }
+
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage :global(.macbook) {
+    filter: drop-shadow(0 1.35rem 1.15rem rgb(3 17 13 / 0.54));
+  }
+
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage :global(.macbook-lid),
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage :global(.iphone) {
+    border-color: #d5bf9b;
+  }
+
+  :global(html[data-seasonal-theme="navidad-premium"]) .product-stage :global(.iphone) {
+    box-shadow:
+      inset 0 0 0 1px #827766,
+      inset 0 0 0 2px #292a2b,
+      0.4rem 1.25rem 1.6rem -0.3rem rgb(3 17 13 / 0.78),
+      0 0 1.25rem rgb(247 204 127 / 0.14);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html[data-seasonal-theme="navidad-premium"])
+      .product-composition[data-motion-state="running"]
+      .mobile-product {
+      animation: navidad-phone-enter 400ms var(--motion-ease-out) 140ms backwards;
+    }
+  }
+
+  @keyframes navidad-phone-enter {
+    from {
+      translate: 0 0.65rem;
+    }
+    to {
+      translate: 0 0;
+    }
+  }
+
   @media (max-width: 35.999rem) {
     .product-stage {
       aspect-ratio: 1.15;
