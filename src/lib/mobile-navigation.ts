@@ -51,12 +51,7 @@ function openMenu() {
   if (document.body.dataset.menuOpen !== "true") scrollPosition = window.scrollY;
   document.body.style.top = `-${scrollPosition}px`;
   document.body.dataset.menuOpen = "true";
-  overlay.dataset.state = reducedMotion.matches ? "open" : "opening";
-  if (!reducedMotion.matches) {
-    requestAnimationFrame(() => {
-      if (overlay.dataset.state === "opening") overlay.dataset.state = "open";
-    });
-  }
+  overlay.dataset.state = "open";
   closeButton?.focus({ preventScroll: true });
   pageSurfaces.forEach((surface) => {
     surface.inert = true;

@@ -27,6 +27,19 @@ html[data-seasonal-theme="navidad-premium"] {
   --nav-contact-hover-bg: #17634e;
   --nav-contact-hover-fg: #fffdf8;
   --nav-contact-hover-border: #17634e;
+  --menu-header-bg: linear-gradient(112deg, #e9dcc1 0%, #f6efdf 31%, #f2e7ce 63%, #e4d1ab 100%);
+  --menu-header-border: #bfa675;
+  --menu-panel-bg: radial-gradient(ellipse at 92% 18%, #285244, transparent 62%), #102d27;
+  --menu-row-bg: #173b32;
+  --menu-row-border: #6e7156;
+  --menu-ink: #fbf4e3;
+  --menu-muted: #e5cea1;
+  --menu-active: #f5d692;
+  --menu-action-bg: linear-gradient(110deg, #edcf91, #d5ab61);
+  --menu-action-fg: #172a26;
+  --menu-ornament-height: 1.6rem;
+  --menu-ornament: url("/themes/navidad-premium/lights-static.svg?v=4") left top / auto 100%
+    repeat-x;
   --product-viggo: #5d4f83;
   --product-viggo-soft: #e9e4f3;
   --product-takofy: #b15c32;
@@ -43,8 +56,8 @@ html[data-seasonal-theme="navidad-premium"] body {
 
 html[data-seasonal-theme="navidad-premium"] .site-header {
   --color-ink-muted: #43554d;
-  background: linear-gradient(112deg, #e9dcc1 0%, #f6efdf 31%, #f2e7ce 63%, #e4d1ab 100%);
-  border-bottom-color: #bfa675;
+  background: var(--menu-header-bg);
+  border-bottom-color: var(--menu-header-border);
   box-shadow: 0 0.4rem 1.5rem rgb(16 62 46 / 0.1);
   backdrop-filter: blur(14px);
 }
