@@ -22,7 +22,7 @@ const es = locale === "es";
         <h1 id="page-title">
           {
             hero.title.map((line, index) => (
-              <span data-enter data-motion-delay={index * 80}>
+              <span data-enter="headline" data-motion-delay={index * 110}>
                 {line}{" "}
               </span>
             ))

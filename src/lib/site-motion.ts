@@ -34,13 +34,36 @@ export function initializeSiteMotion() {
       return;
     element.dataset.motionState = "running";
     const distance = element.dataset.reveal === "image" ? 16 : 12;
-    const keyframes = frame
-      ? [{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0 0 0)" }]
-      : [
-          { opacity: 0, transform: `translateY(${distance}px)` },
-          { opacity: 1, transform: "translateY(0)" },
-        ];
-    const animation = element.animate(keyframes, { duration, delay, easing, fill: "backwards" });
+    let keyframes: Keyframe[] = [
+      { opacity: 0, transform: `translateY(${distance}px)` },
+      { opacity: 1, transform: "translateY(0)" },
+    ];
+    let timing = duration;
+    if (frame) {
+      keyframes = [
+        { clipPath: "polygon(0 0, 8% 0, 0 100%, 0 100%)", transform: "scale(1.04)" },
+        { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", transform: "scale(1)" },
+      ];
+      timing = 680;
+    } else if (element.dataset.enter === "headline") {
+      keyframes = [
+        { clipPath: "inset(95% -6% -18% -6%)", transform: "translateY(0.28em)" },
+        { clipPath: "inset(-15% -6% -18% -6%)", transform: "translateY(0)" },
+      ];
+      timing = 620;
+    } else if (element.dataset.enter === "stage") {
+      keyframes = [
+        { opacity: 0.2, transform: "translateY(20px) scale(0.96)" },
+        { opacity: 1, transform: "translateY(0) scale(1)" },
+      ];
+      timing = 680;
+    }
+    const animation = element.animate(keyframes, {
+      duration: timing,
+      delay,
+      easing,
+      fill: "backwards",
+    });
     active.set(element, animation);
     animation.finished.then(
       () => finish(element),
