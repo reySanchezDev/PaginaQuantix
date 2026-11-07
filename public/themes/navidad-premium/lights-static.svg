@@ -2,14 +2,21 @@
   <!-- Brass clips are fixed into the cream header; the cord hangs naturally between them. One gravity-shaped drape per pair of clips; seamless ends both y=16. -->
   <defs>
     <radialGradient id="warm-halo">
-      <stop offset="0" stop-color="#ffe3a0" stop-opacity=".85"/>
-      <stop offset=".38" stop-color="#efb85b" stop-opacity=".37"/>
+      <stop offset="0" stop-color="#fff2c0" stop-opacity=".98"/>
+      <stop offset=".38" stop-color="#ffc660" stop-opacity=".62"/>
+      <stop offset=".68" stop-color="#ed9a44" stop-opacity=".2"/>
       <stop offset="1" stop-color="#efb85b" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="cranberry-halo">
-      <stop stop-color="#ffc2a1" stop-opacity=".78"/>
-      <stop offset=".42" stop-color="#e05263" stop-opacity=".37"/>
+      <stop stop-color="#ffd2ae" stop-opacity=".94"/>
+      <stop offset=".38" stop-color="#f16a6d" stop-opacity=".64"/>
+      <stop offset=".68" stop-color="#db3d57" stop-opacity=".2"/>
       <stop offset="1" stop-color="#be334f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="filament-light">
+      <stop stop-color="#fffef0" stop-opacity=".98"/>
+      <stop offset=".42" stop-color="#fff0bb" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#ffe2a1" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="champagne-glass" cx="45%" cy="42%" r="70%">
       <stop stop-color="#fff7d6" stop-opacity=".78"/>
@@ -66,66 +73,72 @@
   <path d="M0 16 Q120 104 240 16 Q360 104 480 16 Q600 104 720 16" stroke="#172b25" stroke-width="4" stroke-linecap="round"/>
   <path d="M0 16 Q120 104 240 16 Q360 104 480 16 Q600 104 720 16" stroke="#bfa46e" stroke-width="1.5" stroke-linecap="round" opacity=".87"/>
   <g class="lamp" data-glass="champagne" data-led="01" transform="translate(60 49)" style="--led-duration:3.8s;--led-delay:-1.3s">
-    <circle class="lamp__aura" cx="0" cy="22" r="30" fill="url(#warm-halo)" opacity=".52"/>
+    <ellipse class="lamp__aura" cx="0" cy="22" rx="39" ry="35" fill="url(#warm-halo)" opacity=".68"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2.5" stroke-linecap="round"/>
     <path class="lamp__glass" d="M-5.8 9h11.6c.5 4.7 5.8 8.6 5.8 14.7C11.6 30 6.8 34.8 0 34.8S-11.6 30-11.6 23.7C-11.6 17.6-6.3 13.7-5.8 9Z" fill="url(#champagne-glass)" stroke="url(#glass-rim)" stroke-width="1.3"/>
     <path d="M-2.5 11v10.6M2.5 11v10.6" stroke="#794829" stroke-opacity=".58" stroke-width=".9"/>
-    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+    <circle class="lamp__core" cx="0" cy="21" r="9" fill="url(#filament-light)" opacity=".72"/>
+    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".94"/>
     <path d="M-6.1 15.3c-3.3 4.6-3.8 8.6-2.2 11.6" stroke="#fffdf2" stroke-opacity=".72" stroke-width="1.4" stroke-linecap="round"/>
     <path d="M8.5 25.8c-.6 2.5-2.5 4.7-4.9 5.6" stroke="#fff1d6" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/>
     <rect x="-6.5" y="4" width="13" height="7" rx="1.7" fill="url(#brass-cap)" stroke="#7c6340" stroke-width=".75"/>
     <path d="M-5.4 6h10.8m-10.8 2.2h10.8" stroke="#fff0c3" stroke-opacity=".54" stroke-width=".65"/>
   </g>
   <g class="lamp" data-glass="champagne" data-led="02" transform="translate(180 49)" style="--led-duration:4.7s;--led-delay:-3.2s">
-    <circle class="lamp__aura" cx="0" cy="22" r="30" fill="url(#warm-halo)" opacity=".52"/>
+    <ellipse class="lamp__aura" cx="0" cy="22" rx="39" ry="35" fill="url(#warm-halo)" opacity=".68"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2.5" stroke-linecap="round"/>
     <path class="lamp__glass" d="M-5.8 9h11.6c.5 4.7 5.8 8.6 5.8 14.7C11.6 30 6.8 34.8 0 34.8S-11.6 30-11.6 23.7C-11.6 17.6-6.3 13.7-5.8 9Z" fill="url(#champagne-glass)" stroke="url(#glass-rim)" stroke-width="1.3"/>
     <path d="M-2.5 11v10.6M2.5 11v10.6" stroke="#794829" stroke-opacity=".58" stroke-width=".9"/>
-    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+    <circle class="lamp__core" cx="0" cy="21" r="9" fill="url(#filament-light)" opacity=".72"/>
+    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".94"/>
     <path d="M-6.1 15.3c-3.3 4.6-3.8 8.6-2.2 11.6" stroke="#fffdf2" stroke-opacity=".72" stroke-width="1.4" stroke-linecap="round"/>
     <path d="M8.5 25.8c-.6 2.5-2.5 4.7-4.9 5.6" stroke="#fff1d6" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/>
     <rect x="-6.5" y="4" width="13" height="7" rx="1.7" fill="url(#brass-cap)" stroke="#7c6340" stroke-width=".75"/>
     <path d="M-5.4 6h10.8m-10.8 2.2h10.8" stroke="#fff0c3" stroke-opacity=".54" stroke-width=".65"/>
   </g>
   <g class="lamp" data-glass="cranberry" data-led="03" transform="translate(300 49)" style="--led-duration:3.3s;--led-delay:-2.1s">
-    <circle class="lamp__aura" cx="0" cy="22" r="30" fill="url(#cranberry-halo)" opacity=".52"/>
+    <ellipse class="lamp__aura" cx="0" cy="22" rx="39" ry="35" fill="url(#cranberry-halo)" opacity=".68"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2.5" stroke-linecap="round"/>
     <path class="lamp__glass" d="M-5.8 9h11.6c.5 4.7 5.8 8.6 5.8 14.7C11.6 30 6.8 34.8 0 34.8S-11.6 30-11.6 23.7C-11.6 17.6-6.3 13.7-5.8 9Z" fill="url(#cranberry-glass)" stroke="url(#glass-rim)" stroke-width="1.3"/>
     <path d="M-2.5 11v10.6M2.5 11v10.6" stroke="#794829" stroke-opacity=".58" stroke-width=".9"/>
-    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff0d8" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+    <circle class="lamp__core" cx="0" cy="21" r="9" fill="url(#filament-light)" opacity=".72"/>
+    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff0d8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".94"/>
     <path d="M-6.1 15.3c-3.3 4.6-3.8 8.6-2.2 11.6" stroke="#fffdf2" stroke-opacity=".72" stroke-width="1.4" stroke-linecap="round"/>
     <path d="M8.5 25.8c-.6 2.5-2.5 4.7-4.9 5.6" stroke="#fff1d6" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/>
     <rect x="-6.5" y="4" width="13" height="7" rx="1.7" fill="url(#brass-cap)" stroke="#7c6340" stroke-width=".75"/>
     <path d="M-5.4 6h10.8m-10.8 2.2h10.8" stroke="#fff0c3" stroke-opacity=".54" stroke-width=".65"/>
   </g>
   <g class="lamp" data-glass="champagne" data-led="04" transform="translate(420 49)" style="--led-duration:4.2s;--led-delay:-0.6s">
-    <circle class="lamp__aura" cx="0" cy="22" r="30" fill="url(#warm-halo)" opacity=".52"/>
+    <ellipse class="lamp__aura" cx="0" cy="22" rx="39" ry="35" fill="url(#warm-halo)" opacity=".68"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2.5" stroke-linecap="round"/>
     <path class="lamp__glass" d="M-5.8 9h11.6c.5 4.7 5.8 8.6 5.8 14.7C11.6 30 6.8 34.8 0 34.8S-11.6 30-11.6 23.7C-11.6 17.6-6.3 13.7-5.8 9Z" fill="url(#champagne-glass)" stroke="url(#glass-rim)" stroke-width="1.3"/>
     <path d="M-2.5 11v10.6M2.5 11v10.6" stroke="#794829" stroke-opacity=".58" stroke-width=".9"/>
-    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+    <circle class="lamp__core" cx="0" cy="21" r="9" fill="url(#filament-light)" opacity=".72"/>
+    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".94"/>
     <path d="M-6.1 15.3c-3.3 4.6-3.8 8.6-2.2 11.6" stroke="#fffdf2" stroke-opacity=".72" stroke-width="1.4" stroke-linecap="round"/>
     <path d="M8.5 25.8c-.6 2.5-2.5 4.7-4.9 5.6" stroke="#fff1d6" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/>
     <rect x="-6.5" y="4" width="13" height="7" rx="1.7" fill="url(#brass-cap)" stroke="#7c6340" stroke-width=".75"/>
     <path d="M-5.4 6h10.8m-10.8 2.2h10.8" stroke="#fff0c3" stroke-opacity=".54" stroke-width=".65"/>
   </g>
   <g class="lamp" data-glass="champagne" data-led="05" transform="translate(540 49)" style="--led-duration:3.6s;--led-delay:-2.9s">
-    <circle class="lamp__aura" cx="0" cy="22" r="30" fill="url(#warm-halo)" opacity=".52"/>
+    <ellipse class="lamp__aura" cx="0" cy="22" rx="39" ry="35" fill="url(#warm-halo)" opacity=".68"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2.5" stroke-linecap="round"/>
     <path class="lamp__glass" d="M-5.8 9h11.6c.5 4.7 5.8 8.6 5.8 14.7C11.6 30 6.8 34.8 0 34.8S-11.6 30-11.6 23.7C-11.6 17.6-6.3 13.7-5.8 9Z" fill="url(#champagne-glass)" stroke="url(#glass-rim)" stroke-width="1.3"/>
     <path d="M-2.5 11v10.6M2.5 11v10.6" stroke="#794829" stroke-opacity=".58" stroke-width=".9"/>
-    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+    <circle class="lamp__core" cx="0" cy="21" r="9" fill="url(#filament-light)" opacity=".72"/>
+    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff6d8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".94"/>
     <path d="M-6.1 15.3c-3.3 4.6-3.8 8.6-2.2 11.6" stroke="#fffdf2" stroke-opacity=".72" stroke-width="1.4" stroke-linecap="round"/>
     <path d="M8.5 25.8c-.6 2.5-2.5 4.7-4.9 5.6" stroke="#fff1d6" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/>
     <rect x="-6.5" y="4" width="13" height="7" rx="1.7" fill="url(#brass-cap)" stroke="#7c6340" stroke-width=".75"/>
     <path d="M-5.4 6h10.8m-10.8 2.2h10.8" stroke="#fff0c3" stroke-opacity=".54" stroke-width=".65"/>
   </g>
   <g class="lamp" data-glass="cranberry" data-led="06" transform="translate(660 49)" style="--led-duration:4.4s;--led-delay:-1.8s">
-    <circle class="lamp__aura" cx="0" cy="22" r="30" fill="url(#cranberry-halo)" opacity=".52"/>
+    <ellipse class="lamp__aura" cx="0" cy="22" rx="39" ry="35" fill="url(#cranberry-halo)" opacity=".68"/>
     <path d="M0 0v5" stroke="#bda470" stroke-width="2.5" stroke-linecap="round"/>
     <path class="lamp__glass" d="M-5.8 9h11.6c.5 4.7 5.8 8.6 5.8 14.7C11.6 30 6.8 34.8 0 34.8S-11.6 30-11.6 23.7C-11.6 17.6-6.3 13.7-5.8 9Z" fill="url(#cranberry-glass)" stroke="url(#glass-rim)" stroke-width="1.3"/>
     <path d="M-2.5 11v10.6M2.5 11v10.6" stroke="#794829" stroke-opacity=".58" stroke-width=".9"/>
-    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff0d8" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+    <circle class="lamp__core" cx="0" cy="21" r="9" fill="url(#filament-light)" opacity=".72"/>
+    <path class="lamp__filament" d="M-2.5 21.5l1.25-2 1.25 2 1.25-2 1.25 2" stroke="#fff0d8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".94"/>
     <path d="M-6.1 15.3c-3.3 4.6-3.8 8.6-2.2 11.6" stroke="#fffdf2" stroke-opacity=".72" stroke-width="1.4" stroke-linecap="round"/>
     <path d="M8.5 25.8c-.6 2.5-2.5 4.7-4.9 5.6" stroke="#fff1d6" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/>
     <rect x="-6.5" y="4" width="13" height="7" rx="1.7" fill="url(#brass-cap)" stroke="#7c6340" stroke-width=".75"/>
