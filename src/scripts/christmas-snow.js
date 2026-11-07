@@ -18,6 +18,7 @@
     let height = 0;
     let particles = [];
     let protectedAreas = [];
+    let surfaces = [];
     let measurePending = true;
     let frame = null;
     let previousTime = 0;
@@ -39,6 +40,33 @@
             bottom: rect.bottom + 8,
           },
         ];
+      });
+      // Cache painted surfaces once per layout change, never query styles per particle/frame.
+      surfaces = [
+        ...document.querySelectorAll("body,main,section,article,aside,footer,div"),
+      ].flatMap((node) => {
+        const rect = node.getBoundingClientRect();
+        if (!rect.width || !rect.height || rect.bottom < 0 || rect.top > height) return [];
+        const style = getComputedStyle(node);
+        const colors =
+          `${style.backgroundColor} ${style.backgroundImage}`.match(/rgba?\([^)]+\)/g) || [];
+        let brightness;
+        for (const color of colors) {
+          const values = color.match(/[\d.]+/g).map(Number);
+          if (values.length > 3 && values[3] < 0.85) continue;
+          brightness = values[0] * 0.2126 + values[1] * 0.7152 + values[2] * 0.0722;
+        }
+        return brightness === undefined
+          ? []
+          : [
+              {
+                left: rect.left,
+                right: rect.right,
+                top: rect.top,
+                bottom: rect.bottom,
+                light: brightness > 155,
+              },
+            ];
       });
       measurePending = false;
     }
@@ -67,7 +95,21 @@
     }
     function draw(p, time) {
       const x = p.x + Math.sin(time * 0.00022 + p.phase) * p.drift;
-      const size = p.crystal ? p.radius * 2 : p.radius;
+      let light = true;
+      for (let i = surfaces.length - 1; i >= 0; i--) {
+        const surface = surfaces[i];
+        if (
+          x >= surface.left &&
+          x <= surface.right &&
+          p.y >= surface.top &&
+          p.y <= surface.bottom
+        ) {
+          light = surface.light;
+          break;
+        }
+      }
+      const crystal = p.crystal || (light && p.phase < Math.PI);
+      const size = crystal ? p.radius * 2 : p.radius;
       if (
         protectedAreas.some(
           (r) =>
@@ -77,12 +119,14 @@
         return;
       // More presence at the edges; much quieter in the central reading area.
       const edge = Math.abs(x / width - 0.5) * 2;
-      ctx.globalAlpha = p.opacity * (0.45 + edge * 0.55);
-      ctx.fillStyle = "#edf7f4";
-      ctx.strokeStyle = "#dcece8";
+      ctx.globalAlpha = Math.min(0.48, p.opacity * (light ? 1.35 : 1)) * (0.45 + edge * 0.55);
+      // Ice gray on ivory, pearl on pine; a few champagne crystals echo the seasonal gold.
+      const champagne = light && crystal && p.phase < 0.65;
+      ctx.fillStyle = light ? "#718f97" : "#edf7f4";
+      ctx.strokeStyle = light ? (champagne ? "#a08750" : "#718f97") : "#dcece8";
       ctx.lineWidth = 0.7;
       ctx.beginPath();
-      if (p.crystal) {
+      if (crystal) {
         for (let ray = 0; ray < 6; ray++) {
           const angle = (ray * Math.PI) / 3 + p.phase;
           ctx.moveTo(x, p.y);

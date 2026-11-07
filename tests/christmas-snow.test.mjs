@@ -3,7 +3,13 @@ import assert from "node:assert/strict";
 import vm from "node:vm";
 import { readFileSync } from "node:fs";
 const source = readFileSync(new URL("../src/scripts/christmas-snow.js", import.meta.url), "utf8");
-function setup({ paused = false, reducedMotion = false, blocked = false } = {}) {
+function setup({
+  paused = false,
+  reducedMotion = false,
+  blocked = false,
+  background = "rgb(247, 243, 233)",
+  backgroundImage = "none",
+} = {}) {
   const events = {};
   const storage = new Map(paused ? [["quantix-snow-paused", "1"]] : []);
   const frames = new Map();
@@ -27,6 +33,16 @@ function setup({ paused = false, reducedMotion = false, blocked = false } = {}) 
       draws++;
     },
   };
+  const surface = {
+    getBoundingClientRect: () => ({
+      left: 0,
+      right: 1440,
+      top: 0,
+      bottom: 900,
+      width: 1440,
+      height: 900,
+    }),
+  };
   const canvas = { hidden: true, getContext: () => ctx };
   const label = { textContent: "" };
   const button = {
@@ -43,21 +59,23 @@ function setup({ paused = false, reducedMotion = false, blocked = false } = {}) 
     documentElement: { dataset: { seasonalTheme: "navidad-premium" } },
     body: {},
     querySelector: (selector) => (selector.includes("toggle") ? button : canvas),
-    querySelectorAll: () =>
-      blocked
-        ? [
-            {
-              getBoundingClientRect: () => ({
-                left: -100,
-                right: 2000,
-                top: -100,
-                bottom: 2000,
-                width: 2100,
-                height: 2100,
-              }),
-            },
-          ]
-        : [],
+    querySelectorAll: (selector) =>
+      selector.startsWith("body,")
+        ? [surface]
+        : blocked
+          ? [
+              {
+                getBoundingClientRect: () => ({
+                  left: -100,
+                  right: 2000,
+                  top: -100,
+                  bottom: 2000,
+                  width: 2100,
+                  height: 2100,
+                }),
+              },
+            ]
+          : [],
     addEventListener: on("document"),
   };
   const media = { matches: reducedMotion, addEventListener: on("media") };
@@ -68,6 +86,7 @@ function setup({ paused = false, reducedMotion = false, blocked = false } = {}) 
     addEventListener: on("window"),
   };
   vm.runInNewContext(source, {
+    getComputedStyle: () => ({ backgroundColor: background, backgroundImage }),
     document: doc,
     window: win,
     matchMedia: () => media,
@@ -98,6 +117,7 @@ function setup({ paused = false, reducedMotion = false, blocked = false } = {}) 
     events,
     seasonChanged: () => seasonChanged(),
     draws: () => draws,
+    context: ctx,
   };
 }
 test("snow pauses, persists preference and cancels its frame loop", () => {
@@ -144,5 +164,20 @@ test("snow never draws over protected text or images", () => {
     h.frames.delete(id);
     fn(100);
     assert.equal(h.draws() > 0, !blocked);
+  }
+});
+
+test("snow adapts to light, dark and gradient backgrounds without changing density", () => {
+  for (const [background, expected, backgroundImage = "none"] of [
+    ["rgb(247, 243, 233)", "#718f97"],
+    ["rgb(16, 45, 39)", "#edf7f4"],
+    ["rgba(0, 0, 0, 0)", "#edf7f4", "linear-gradient(90deg, rgb(16, 45, 39), rgb(27, 76, 61))"],
+  ]) {
+    const h = setup({ background, backgroundImage });
+    const [id, fn] = h.frames.entries().next().value;
+    h.frames.delete(id);
+    fn(100);
+    assert.equal(h.context.fillStyle, expected);
+    assert.ok(h.context.globalAlpha <= 0.48);
   }
 });
