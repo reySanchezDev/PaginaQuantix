@@ -1,19 +1,12 @@
 (() => {
   // Sparse snow and ice crystals; no image requests or third-party animation library.
   const canvas = document.querySelector("[data-christmas-snow]");
-  const toggle = document.querySelector("[data-snow-toggle]");
-  if (canvas && toggle) {
+  if (canvas) {
     const context = canvas.getContext("2d", { alpha: true });
-    if (context) initializeSnow(canvas, toggle, context);
+    if (context) initializeSnow(canvas, context);
   }
-  function initializeSnow(canvas, toggle, ctx) {
+  function initializeSnow(canvas, ctx) {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-    let paused = false;
-    try {
-      paused = localStorage.getItem("quantix-snow-paused") === "1";
-    } catch {
-      /* Optional storage. */
-    }
     let width = 0;
     let height = 0;
     let particles = [];
@@ -154,13 +147,7 @@
       }
     }
     function sync() {
-      const available = activeSeason() && !reduced.matches;
-      toggle.hidden = !available;
-      toggle.setAttribute("aria-pressed", String(paused));
-      toggle.querySelector("[data-snow-label]").textContent = paused
-        ? toggle.dataset.resume
-        : toggle.dataset.pause;
-      const shouldRun = available && !paused && !document.hidden;
+      const shouldRun = activeSeason() && !reduced.matches && !document.hidden;
       if (shouldRun === running) return;
       running = shouldRun;
       canvas.hidden = !running;
@@ -175,15 +162,6 @@
         ctx.clearRect(0, 0, width, height);
       }
     }
-    toggle.addEventListener("click", () => {
-      paused = !paused;
-      try {
-        localStorage.setItem("quantix-snow-paused", paused ? "1" : "0");
-      } catch {
-        /* Optional storage. */
-      }
-      sync();
-    });
     new MutationObserver(sync).observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["data-seasonal-theme"],

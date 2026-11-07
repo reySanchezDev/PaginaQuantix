@@ -4,14 +4,12 @@ import vm from "node:vm";
 import { readFileSync } from "node:fs";
 const source = readFileSync(new URL("../src/scripts/christmas-snow.js", import.meta.url), "utf8");
 function setup({
-  paused = false,
   reducedMotion = false,
   blocked = false,
   background = "rgb(247, 243, 233)",
   backgroundImage = "none",
 } = {}) {
   const events = {};
-  const storage = new Map(paused ? [["quantix-snow-paused", "1"]] : []);
   const frames = new Map();
   let nextFrame = 0;
   let draws = 0;
@@ -44,21 +42,11 @@ function setup({
     }),
   };
   const canvas = { hidden: true, getContext: () => ctx };
-  const label = { textContent: "" };
-  const button = {
-    hidden: true,
-    dataset: { pause: "Pause snow", resume: "Enable snow" },
-    setAttribute(name, value) {
-      this[name] = value;
-    },
-    querySelector: () => label,
-    addEventListener: on("button"),
-  };
   const doc = {
     hidden: false,
     documentElement: { dataset: { seasonalTheme: "navidad-premium" } },
     body: {},
-    querySelector: (selector) => (selector.includes("toggle") ? button : canvas),
+    querySelector: () => canvas,
     querySelectorAll: (selector) =>
       selector.startsWith("body,")
         ? [surface]
@@ -90,7 +78,6 @@ function setup({
     document: doc,
     window: win,
     matchMedia: () => media,
-    localStorage: { getItem: (k) => storage.get(k), setItem: (k, v) => storage.set(k, v) },
     requestAnimationFrame: (fn) => {
       frames.set(++nextFrame, fn);
       return nextFrame;
@@ -109,28 +96,18 @@ function setup({
   return {
     doc,
     media,
-    button,
-    label,
     canvas,
     frames,
-    storage,
     events,
     seasonChanged: () => seasonChanged(),
     draws: () => draws,
     context: ctx,
   };
 }
-test("snow pauses, persists preference and cancels its frame loop", () => {
+test("snow suspends its frame loop in a hidden tab", () => {
   const h = setup();
   assert.equal(h.canvas.hidden, false);
   assert.equal(h.canvas.width, 2160, "pixel ratio is capped at 1.5");
-  assert.equal(h.frames.size, 1);
-  h.events["button:click"]();
-  assert.equal(h.canvas.hidden, true);
-  assert.equal(h.frames.size, 0);
-  assert.equal(h.label.textContent, "Enable snow");
-  assert.equal(h.storage.get("quantix-snow-paused"), "1");
-  h.events["button:click"]();
   assert.equal(h.frames.size, 1);
   h.doc.hidden = true;
   h.events["document:visibilitychange"]();
@@ -139,13 +116,9 @@ test("snow pauses, persists preference and cancels its frame loop", () => {
   h.events["document:visibilitychange"]();
   assert.equal(h.frames.size, 1);
 });
-test("reduced motion, saved pause and season retirement stop snow", () => {
+test("reduced motion and season retirement stop snow", () => {
   const reduced = setup({ reducedMotion: true });
   assert.equal(reduced.frames.size, 0);
-  assert.equal(reduced.button.hidden, true);
-  const saved = setup({ paused: true });
-  assert.equal(saved.frames.size, 0);
-  assert.equal(saved.button.hidden, false);
   const h = setup();
   h.media.matches = true;
   h.events["media:change"]();
@@ -155,7 +128,7 @@ test("reduced motion, saved pause and season retirement stop snow", () => {
   h.doc.documentElement.dataset.seasonalTheme = "default";
   h.seasonChanged();
   assert.equal(h.frames.size, 0);
-  assert.equal(h.button.hidden, true);
+  assert.equal(h.canvas.hidden, true);
 });
 test("snow never draws over protected text or images", () => {
   for (const blocked of [false, true]) {

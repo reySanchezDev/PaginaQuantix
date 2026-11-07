@@ -42,8 +42,9 @@ html[data-seasonal-theme="navidad-premium"] body {
 }
 
 html[data-seasonal-theme="navidad-premium"] .site-header {
-  background: rgb(247 243 233 / 0.95);
-  border-bottom-color: #cdb984;
+  --color-ink-muted: #43554d;
+  background: linear-gradient(112deg, #e9dcc1 0%, #f6efdf 31%, #f2e7ce 63%, #e4d1ab 100%);
+  border-bottom-color: #bfa675;
   box-shadow: 0 0.4rem 1.5rem rgb(16 62 46 / 0.1);
   backdrop-filter: blur(14px);
 }
@@ -62,9 +63,12 @@ html[data-seasonal-theme="navidad-premium"] .site-header::before {
   z-index: 3;
 }
 
-html[data-seasonal-theme="navidad-premium"] .brand__dot,
-html[data-seasonal-theme="navidad-premium"] .desktop-nav a.active:not(.contact-link) {
+html[data-seasonal-theme="navidad-premium"] .brand__dot {
   color: #a7762f;
+}
+
+html[data-seasonal-theme="navidad-premium"] .desktop-nav a.active:not(.contact-link) {
+  color: #76531f;
 }
 
 html[data-seasonal-theme="navidad-premium"] .home-hero {
