@@ -5,7 +5,7 @@
 .new-year {
   --color-ink: #fff5dc;
   --color-ink-muted: #e3ce9f;
-  padding: 0.45rem 0.75rem;
+  padding: 0.65rem 0.75rem;
   color: var(--color-ink);
   background:
     radial-gradient(ellipse at 45% 135%, #28553d, transparent 78%),
@@ -18,7 +18,7 @@
   display: grid;
   justify-items: center;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.48rem;
   max-width: 76rem;
   margin-inline: auto;
 }
@@ -27,7 +27,7 @@
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-heading);
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
   font-weight: 600;
   line-height: 1.25;
 }
@@ -39,7 +39,7 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(0.25rem, 1vw, 0.7rem);
-  width: min(100%, 28rem);
+  width: min(100%, 32rem);
 }
 .new-year__unit {
   padding: 0.12rem 0;
@@ -48,7 +48,7 @@
   display: flex;
   justify-content: center;
   gap: 0.11em;
-  font: 600 clamp(1.25rem, 2.2vw, 1.72rem) / 1 var(--font-heading);
+  font: 600 clamp(1.55rem, 6.4vw, 2.15rem) / 1 var(--font-heading);
   font-variant-numeric: tabular-nums;
   color: #fff2d2;
 }
@@ -109,8 +109,8 @@
 }
 .new-year__label {
   display: block;
-  margin-top: 0.13rem;
-  font-size: clamp(0.56rem, 1.25vw, 0.68rem);
+  margin-top: 0.25rem;
+  font-size: clamp(0.68rem, 1.8vw, 0.8rem);
   line-height: 1.3;
   color: #f2dcaa;
 }
@@ -207,10 +207,13 @@
     opacity: 0;
   }
 }
-@media (min-width: 54rem) {
+@media (min-width: 56rem) {
   .new-year__content {
-    grid-template-columns: 1fr minmax(18rem, 28rem) 1fr;
+    grid-template-columns: 1fr minmax(21rem, 32rem) 1fr;
     gap: 1rem;
+  }
+  .new-year__number {
+    font-size: clamp(2.05rem, 3.2vw, 2.65rem);
   }
   .new-year__title {
     justify-self: end;
