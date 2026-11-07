@@ -15,7 +15,7 @@ const registerAlt = es
   : "Detail of two VIGGO payments showing their amounts and payment methods.";
 ---
 
-<figure class="case-preview-figure" data-reveal="image">
+<figure class="case-preview-figure" data-reveal={study.id === "takofy" ? undefined : "image"}>
   <a
     class="case-image"
     href={getRoute(study.id === "takofy" ? "case-takofy" : "case-viggo", locale)}
@@ -32,6 +32,8 @@ const registerAlt = es
           height={study.heroImage.height}
           loading="lazy"
           decoding="async"
+          data-reveal="frame"
+          data-motion-delay="75"
         />
       )
     }

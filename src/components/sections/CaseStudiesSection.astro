@@ -31,38 +31,55 @@ const cases = getCaseStudies(locale);
     </div>
     <div class="case-list">
       {
-        cases.map((study) => (
-          <article class="case-preview">
-            <CasePreviewFigure study={study} locale={locale} />
-            <div class="case-copy" data-reveal data-motion-delay="80">
-              <p class="eyebrow">
-                {study.productName} · {study.clientContext}
-              </p>
-              <h3>{study.title}</h3>
-              <dl class="case-explanation">
-                <div>
-                  <>
-                    <dt>{es ? "El reto" : "The challenge"}</dt>
-                    <dd>{study.preview.challenge}</dd>
-                  </>
-                </div>
-                <div>
-                  <>
-                    <dt>{es ? "Lo que construimos" : "What we built"}</dt>
-                    <dd>{study.preview.solution}</dd>
-                  </>
-                </div>
-              </dl>
-              <a
-                class="case-link"
-                href={getRoute(study.id === "takofy" ? "case-takofy" : "case-viggo", locale)}
+        cases.map((study) => {
+          const staged = study.id === "takofy";
+          return (
+            <article class="case-preview">
+              <CasePreviewFigure study={study} locale={locale} />
+              <div
+                class="case-copy"
+                data-reveal={staged ? undefined : ""}
+                data-motion-delay={staged ? undefined : "80"}
               >
-                {es ? "Conocer el caso" : "Read the case study"}
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
-        ))
+                <div data-reveal={staged ? "" : undefined}>
+                  <p class="eyebrow">
+                    {study.productName} · {study.clientContext}
+                  </p>
+                  <h3>{study.title}</h3>
+                </div>
+                <dl class="case-explanation">
+                  <div
+                    data-reveal={staged ? "" : undefined}
+                    data-motion-delay={staged ? "145" : undefined}
+                  >
+                    <>
+                      <dt>{es ? "El reto" : "The challenge"}</dt>
+                      <dd>{study.preview.challenge}</dd>
+                    </>
+                  </div>
+                  <div
+                    data-reveal={staged ? "" : undefined}
+                    data-motion-delay={staged ? "215" : undefined}
+                  >
+                    <>
+                      <dt>{es ? "Lo que construimos" : "What we built"}</dt>
+                      <dd>{study.preview.solution}</dd>
+                    </>
+                  </div>
+                </dl>
+                <a
+                  class="case-link"
+                  data-reveal={staged ? "" : undefined}
+                  data-motion-delay={staged ? "260" : undefined}
+                  href={getRoute(study.id === "takofy" ? "case-takofy" : "case-viggo", locale)}
+                >
+                  {es ? "Conocer el caso" : "Read the case study"}
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          );
+        })
       }
     </div>
     <p class="more-work">

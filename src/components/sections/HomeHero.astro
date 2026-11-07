@@ -17,11 +17,19 @@ const es = locale === "es";
 <section class="home-hero" aria-labelledby="page-title">
   <Container>
     <div class="hero-layout">
-      <div class="hero-copy" data-enter>
-        <p class="eyebrow">{hero.eyebrow}</p>
-        <h1 id="page-title">{hero.title.map((line) => <span>{line} </span>)}</h1>
-        <p class="hero-lead">{hero.lead}</p>
-        <div class="hero-actions">
+      <div class="hero-copy">
+        <p class="eyebrow" data-enter>{hero.eyebrow}</p>
+        <h1 id="page-title">
+          {
+            hero.title.map((line, index) => (
+              <span data-enter data-motion-delay={index * 80}>
+                {line}{" "}
+              </span>
+            ))
+          }
+        </h1>
+        <p class="hero-lead" data-enter data-motion-delay="130">{hero.lead}</p>
+        <div class="hero-actions" data-enter data-motion-delay="190">
           <Button href={hero.primary.href} size="lg" tone="inverse" class="hero-contact">
             {hero.primary.label}<span aria-hidden="true">↗</span>
           </Button>
