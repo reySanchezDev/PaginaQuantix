@@ -5,6 +5,7 @@ import { getRoute } from "../../i18n/routes";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HomeBlog from "../sections/HomeBlog.astro";
 import CtaSection from "../sections/CtaSection.astro";
+import NewYear from "../sections/NewYear.astro";
 import HomeHero from "../sections/HomeHero.astro";
 import CaseStudiesSection from "../sections/CaseStudiesSection.astro";
 import HomeTeam from "../company/HomeTeam.astro";
@@ -19,6 +20,7 @@ const es = locale === "es";
 
 <BaseLayout title={content.seo.title} description={content.seo.description} locale={locale}>
   <HomeHero locale={locale} />
+  <NewYear locale={locale} />
   <CaseStudiesSection locale={locale} />
   <section class="section approach" aria-labelledby="approach-title">
     <Container>
