@@ -42,16 +42,70 @@
   width: min(100%, 28rem);
 }
 .new-year__unit {
-  padding: 0.22rem 0.14rem;
-  border: 1px solid #aa8d53;
-  border-radius: 0.4rem;
-  background: #102b25;
+  padding: 0.12rem 0;
 }
 .new-year__number {
-  display: block;
-  font: 500 clamp(1.15rem, 2vw, 1.6rem) / 1 var(--font-heading);
+  display: flex;
+  justify-content: center;
+  gap: 0.11em;
+  font: 600 clamp(1.25rem, 2.2vw, 1.72rem) / 1 var(--font-heading);
   font-variant-numeric: tabular-nums;
   color: #fff2d2;
+}
+.new-year__digit {
+  position: relative;
+  width: 0.79em;
+  height: 1.22em;
+  border: 1px solid #9a8050;
+  border-radius: 0.19em;
+  background: #091e19;
+  box-shadow: 0 0.16em 0.28em #071b1799;
+  perspective: 5em;
+}
+.new-year__digit::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 50% 0 auto;
+  border-top: 1px solid #071b17;
+  box-shadow: 0 1px 0 #d9bc7626;
+  pointer-events: none;
+}
+.new-year__face {
+  position: absolute;
+  inset-inline: 0;
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.new-year__face::before {
+  content: attr(data-digit);
+  position: absolute;
+  inset-inline: 0;
+  display: grid;
+  height: 200%;
+  place-items: center;
+}
+.new-year__face--top {
+  top: 0;
+  border-radius: 0.15em 0.15em 0 0;
+  background: linear-gradient(#2b4f42, #19382f);
+  transform-origin: center bottom;
+}
+.new-year__face--top::before {
+  top: 0;
+}
+.new-year__face--bottom {
+  bottom: 0;
+  border-radius: 0 0 0.15em 0.15em;
+  background: linear-gradient(#19372d, #102a23);
+  transform-origin: center top;
+}
+.new-year__face--bottom::before {
+  bottom: 0;
+}
+.new-year__fold {
+  z-index: 2;
 }
 .new-year__label {
   display: block;

@@ -1,5 +1,57 @@
 import { newYearState } from "../lib/new-year-clock.js";
 
+function createFlipDigit(element) {
+  const top = element.querySelector("[data-flip-top]");
+  const bottom = element.querySelector("[data-flip-bottom]");
+  const outgoing = element.querySelector("[data-flip-out]");
+  const incoming = element.querySelector("[data-flip-in]");
+  let current = "0";
+  let active = [];
+
+  function settle() {
+    const animations = active;
+    active = [];
+    bottom.dataset.digit = current;
+    outgoing.hidden = true;
+    incoming.hidden = true;
+    animations.forEach((animation) => animation.cancel());
+  }
+
+  return (next, animate) => {
+    if (!animate || next !== current) settle();
+    if (next === current) return;
+    const previous = current;
+    current = next;
+    top.dataset.digit = next;
+    if (!animate || !outgoing.animate) {
+      bottom.dataset.digit = next;
+      return;
+    }
+    outgoing.dataset.digit = previous;
+    incoming.dataset.digit = next;
+    outgoing.hidden = false;
+    incoming.hidden = false;
+    const closing = outgoing.animate(
+      [{ transform: "rotateX(0deg)" }, { transform: "rotateX(-90deg)", filter: "brightness(.64)" }],
+      { duration: 185, easing: "ease-in", fill: "both" },
+    );
+    const opening = incoming.animate(
+      [
+        { transform: "rotateX(90deg)", filter: "brightness(.7)" },
+        { transform: "rotateX(0deg)", filter: "brightness(1)" },
+      ],
+      { duration: 235, delay: 185, easing: "ease-out", fill: "both" },
+    );
+    active = [closing, opening];
+    opening.finished.then(
+      () => {
+        if (active.includes(opening)) settle();
+      },
+      () => {},
+    );
+  };
+}
+
 function initNewYear() {
   const section = document.querySelector("[data-new-year]");
   if (!section) return;
@@ -32,7 +84,11 @@ function initNewYear() {
     select.append(option);
   }
   select.value = zone;
-  const units = section.querySelectorAll("[data-time-unit]");
+  const units = Array.from(section.querySelectorAll("[data-time-unit]"), (unit) => ({
+    value: unit.querySelector("[data-time-value]"),
+    digits: Array.from(unit.querySelectorAll("[data-flip-digit]"), createFlipDigit),
+  }));
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const welcome = section.querySelector("[data-welcome-copy]");
   const caption = section.querySelector("[data-zone-caption]");
   const fireworks = section.querySelector("[data-fireworks]");
@@ -63,7 +119,7 @@ function initNewYear() {
       fireworks.replaceChildren();
     }, 8000);
   }
-  function tick() {
+  function tick(animate = false) {
     const state = newYearState(new Date(), zone);
     section.hidden = state.phase === "hidden";
     section.dataset.phase = state.phase;
@@ -78,7 +134,10 @@ function initNewYear() {
     if (!isWelcome) {
       for (const [i, key] of ["months", "days", "hours", "minutes", "seconds"].entries()) {
         const value = String(state[key]).padStart(2, "0");
-        if (units[i].textContent !== value) units[i].textContent = value;
+        const unit = units[i];
+        if (unit.value.textContent !== value) unit.value.textContent = value;
+        const flip = animate && previousPhase === "countdown" && !reducedMotion.matches;
+        unit.digits.forEach((update, index) => update(value[index], flip));
       }
     }
     const zoneLabel = zone.replaceAll("_", " ");
@@ -107,7 +166,7 @@ function initNewYear() {
   });
   tick();
   setInterval(() => {
-    if (!document.hidden) tick();
+    if (!document.hidden) tick(true);
   }, 1000);
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) tick();

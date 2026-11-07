@@ -24,13 +24,33 @@ const units = es
     >
       {
         units.map((label, i) => (
-          <div class="new-year__unit">
-            <>
-              <span class="new-year__number" data-time-unit={i}>
-                00
-              </span>
-              <span class="new-year__label">{label}</span>
-            </>
+          <div class="new-year__unit" data-time-unit={i}>
+            <span class="visually-hidden" data-time-value>
+              00
+            </span>
+            <span class="new-year__number" aria-hidden="true">
+              {[0, 1].map(() => (
+                <span class="new-year__digit" data-flip-digit>
+                  <span class="new-year__face new-year__face--top" data-flip-top data-digit="0" />
+                  <span
+                    class="new-year__face new-year__face--bottom"
+                    data-flip-bottom
+                    data-digit="0"
+                  />
+                  <span
+                    class="new-year__face new-year__face--top new-year__fold"
+                    data-flip-out
+                    hidden
+                  />
+                  <span
+                    class="new-year__face new-year__face--bottom new-year__fold"
+                    data-flip-in
+                    hidden
+                  />
+                </span>
+              ))}
+            </span>
+            <span class="new-year__label">{label}</span>
           </div>
         ))
       }
