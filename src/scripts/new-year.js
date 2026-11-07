@@ -1,7 +1,8 @@
-async function initNewYear() {
+import { newYearState } from "../lib/new-year-clock.js";
+
+function initNewYear() {
   const section = document.querySelector("[data-new-year]");
   if (!section) return;
-  const { newYearState } = await import(/* @vite-ignore */ "/themes/new-year-clock.js");
   const autoZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   let zone = autoZone;
   try {

@@ -18,7 +18,7 @@ Franja bilingüe sobre el menú de navegación que sustituye el saludo navideño
 - `src/components/sections/NewYear.astro`: sección y textos ES/EN.
 - `src/styles/new-year.css`: diseño adaptable, bienvenida y partículas.
 - `src/scripts/new-year.js`: renderizado, selector, almacenamiento y celebración.
-- `public/themes/new-year-clock.js`: cálculo de calendario y conversión horaria.
+- `src/lib/new-year-clock.js`: cálculo de calendario y conversión horaria.
 - `tests/new-year.test.mjs`: medianoche en Nicaragua, Nueva York, Los Ángeles, India, Kiribati y Samoa Americana; instantes simultáneos; meses/días; retiro de campaña.
 
 Validación: `npm run test:themes`, `npm run lint`, `npm run check`, `npm run build`, `npm run test:build`. La bienvenida puede probarse con fechas simuladas en pruebas; no se incluye un control público para adelantarla ni se altera el reloj del visitante.

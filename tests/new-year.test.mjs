@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { newYearState, zonedInstant } from "../public/themes/new-year-clock.js";
+import { newYearState, zonedInstant } from "../src/lib/new-year-clock.js";
 
 test("each visitor celebrates at midnight in their selected time zone", () => {
   for (const [zone, instant] of [
