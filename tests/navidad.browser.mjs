@@ -62,10 +62,10 @@ try {
     );
 
     const garland = await page.evaluate(async () => {
-      const response = await fetch("/themes/navidad-premium/lights.svg?v=4");
+      const response = await fetch("/themes/navidad-premium/lights.svg?v=5");
       const svg = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
       const image = new Image();
-      image.src = "/themes/navidad-premium/lights.svg?v=4";
+      image.src = "/themes/navidad-premium/lights.svg?v=5";
       await image.decode();
       return {
         status: response.status,
@@ -142,10 +142,10 @@ try {
       "Reduced-motion users must see steady, warm lights without animation",
     );
     const staticGarland = await reduced.evaluate(async () => {
-      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=4");
+      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=5");
       const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
       const img = new Image();
-      img.src = "/themes/navidad-premium/lights-static.svg?v=4";
+      img.src = "/themes/navidad-premium/lights-static.svg?v=5";
       await img.decode();
       return {
         status: response.status,
