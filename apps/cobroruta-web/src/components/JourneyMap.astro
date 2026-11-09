@@ -1,0 +1,187 @@
+---
+import type { Locale } from '../lib/routes';
+const { locale } = Astro.props as { locale: Locale };
+const es = locale === 'es';
+---
+<div class="journey-window cr-route-window" data-cobroruta-map data-locale={locale}>
+  <div class="journey-window-top cr-route-titlebar">
+    <span class="cr-route-live-dot" aria-hidden="true"></span>
+    <strong>{es ? 'RUTA DE COBRANZA' : 'COLLECTION ROUTE'}</strong>
+    <span class="cr-route-location" data-map-area>{es ? 'Managua, Nicaragua' : 'Managua, Nicaragua'}</span>
+  </div>
+
+  <div class="cr-map-viewport" data-map-viewport aria-label={es ? 'Mapa de la ruta de cobranza' : 'Collection route map'}>
+    <div class="cr-map-tiles" data-map-tiles aria-hidden="true"></div>
+    <svg class="cr-map-route" data-map-route aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path class="cr-map-route-glow" data-map-route-glow />
+      <path class="cr-map-route-line" data-map-route-line />
+    </svg>
+    <div class="cr-map-pins" data-map-pins></div>
+    <div class="cr-map-upper">
+      <div class="cr-map-summary"><span class="cr-map-summary-symbol" aria-hidden="true">◉</span><span><strong>{es?'Tu ruta del día':'Your daily route'}</strong><small>{es?'4 visitas por recorrer':'4 stops on the route'}</small></span></div>
+      <div class="cr-map-zoom" aria-label={es?'Control de zoom':'Zoom control'}>
+        <button type="button" data-map-zoom-in aria-label={es?'Acercar mapa':'Zoom in'}>+</button>
+        <button type="button" data-map-zoom-out aria-label={es?'Alejar mapa':'Zoom out'}>−</button>
+      </div>
+    </div>
+    <div class="cr-map-lower">
+      <div class="cr-map-visit" aria-live="polite">
+        <span class="cr-map-visit-icon" aria-hidden="true">01</span>
+        <span><strong data-map-selected>{es?'Visita 01':'Stop 01'}</strong><small>{es?'Seleccioná los puntos del recorrido':'Select a point on the route'}</small></span>
+      </div>
+      <button type="button" class="cr-map-locate" data-map-locate>{es?'Usar mi ubicación':'Use my location'} <span aria-hidden="true">⌖</span></button>
+    </div>
+    <div class="cr-map-feedback" data-map-feedback role="status" aria-live="polite" hidden></div>
+    <div class="cr-map-attribution">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors</div>
+  </div>
+</div>
+
+<script>
+  import { DEFAULT_CENTER, INITIAL_ZOOM, makeStops, project, visibleTiles } from '../lib/journey-map.mjs';
+
+  const root = document.querySelector<HTMLElement>('[data-cobroruta-map]');
+  if (root) {
+    const viewport = root.querySelector<HTMLElement>('[data-map-viewport]');
+    const tilesEl = root.querySelector<HTMLElement>('[data-map-tiles]');
+    const pinsEl = root.querySelector<HTMLElement>('[data-map-pins]');
+    const routeSvg = root.querySelector<SVGSVGElement>('[data-map-route]');
+    const line = root.querySelector<SVGPathElement>('[data-map-route-line]');
+    const glow = root.querySelector<SVGPathElement>('[data-map-route-glow]');
+    const area = root.querySelector<HTMLElement>('[data-map-area]');
+    const selected = root.querySelector<HTMLElement>('[data-map-selected]');
+    const visitNumber = root.querySelector<HTMLElement>('.cr-map-visit-icon');
+    const feedback = root.querySelector<HTMLElement>('[data-map-feedback]');
+    const locate = root.querySelector<HTMLButtonElement>('[data-map-locate]');
+    const zoomIn = root.querySelector<HTMLButtonElement>('[data-map-zoom-in]');
+    const zoomOut = root.querySelector<HTMLButtonElement>('[data-map-zoom-out]');
+    const isEs = root.dataset.locale === 'es';
+    let center = { ...DEFAULT_CENTER };
+    let zoom = INITIAL_ZOOM;
+    let stops: ReturnType<typeof makeStops> = [];
+    let selectedId = 1;
+    let ready = false;
+
+    const showFeedback = (message: string) => {
+      if (!feedback) return;
+      feedback.textContent = message;
+      feedback.hidden = false;
+    };
+    const hideFeedback = () => { if (feedback) feedback.hidden = true; };
+
+    const paint = () => {
+      if (!viewport || !tilesEl || !pinsEl || !routeSvg || !line || !glow) return;
+      const width = viewport.clientWidth;
+      const height = viewport.clientHeight;
+      if (!width || !height) return;
+      if (!stops.length) stops = makeStops(center, width, height, zoom);
+
+      const tiles = visibleTiles(center, zoom, width, height);
+      const frag = document.createDocumentFragment();
+      let errors = 0;
+      let successes = 0;
+      for (const tile of tiles) {
+        const img = document.createElement('img');
+        img.alt = '';
+        img.width = 256;
+        img.height = 256;
+        img.decoding = 'async';
+        img.loading = 'lazy';
+        img.referrerPolicy = 'strict-origin-when-cross-origin';
+        img.style.left = tile.left + 'px';
+        img.style.top = tile.top + 'px';
+        img.addEventListener('load', () => { successes++; if (successes) hideFeedback(); });
+        img.addEventListener('error', () => {
+          errors++;
+          if (errors === tiles.length && successes === 0) showFeedback(isEs ? 'El mapa no pudo cargarse. Comprobá tu conexión.' : 'The map could not load. Check your connection.');
+        });
+        img.src = 'https://tile.openstreetmap.org/' + tile.z + '/' + tile.x + '/' + tile.y + '.png';
+        frag.appendChild(img);
+      }
+      tilesEl.replaceChildren(frag);
+
+      const c = project(center.lat, center.lng, zoom);
+      const screen = (p: {lat: number;lng: number}) => {
+        const wp = project(p.lat, p.lng, zoom);
+        return { x: wp.x - c.x + width / 2, y: wp.y - c.y + height / 2 };
+      };
+
+      routeSvg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+      const px = stops.map(screen);
+      const path = px.map((p,i) => (i ? 'L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
+      line.setAttribute('d', path);
+      glow.setAttribute('d', path);
+
+      const markers = document.createDocumentFragment();
+      stops.forEach((stop, i) => {
+        const p = px[i];
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'cr-map-pin';
+        button.classList.toggle('is-active', stop.id === selectedId);
+        button.textContent = String(stop.id).padStart(2, '0');
+        button.setAttribute('aria-label', (isEs ? 'Visita ' : 'Stop ') + String(stop.id).padStart(2, '0'));
+        button.setAttribute('aria-pressed', String(stop.id === selectedId));
+        button.style.left = p.x + 'px';
+        button.style.top = p.y + 'px';
+        button.addEventListener('click', () => {
+          selectedId = stop.id;
+          if (selected) selected.textContent = (isEs ? 'Visita ' : 'Stop ') + String(stop.id).padStart(2, '0');
+          if (visitNumber) visitNumber.textContent = String(stop.id).padStart(2, '0');
+          pinsEl.querySelectorAll<HTMLButtonElement>('button').forEach(b => {
+            const current = b === button;
+            b.classList.toggle('is-active', current);
+            b.setAttribute('aria-pressed', String(current));
+          });
+        });
+        markers.appendChild(button);
+      });
+      pinsEl.replaceChildren(markers);
+    };
+
+    const start = () => {
+      if (ready) return;
+      ready = true;
+      paint();
+    };
+    if (typeof IntersectionObserver !== 'undefined' && viewport) {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0]?.isIntersecting) {
+          start();
+          observer.disconnect();
+        }
+      }, { rootMargin: '100px' });
+      observer.observe(viewport);
+    } else start();
+
+    const sizeObserver = typeof ResizeObserver !== 'undefined' && viewport ? new ResizeObserver(() => { if (ready) paint(); }) : null;
+    if (sizeObserver && viewport) sizeObserver.observe(viewport);
+
+    zoomIn?.addEventListener('click', () => { zoom = Math.min(17, zoom + 1); paint(); });
+    zoomOut?.addEventListener('click', () => { zoom = Math.max(12, zoom - 1); paint(); });
+
+    locate?.addEventListener('click', () => {
+      if (!('geolocation' in navigator)) {
+        showFeedback(isEs ? 'Este navegador no permite consultar tu ubicación.' : 'Your browser does not support location access.');
+        return;
+      }
+      locate.disabled = true;
+      showFeedback(isEs ? 'Buscando tu ubicación…' : 'Finding your location…');
+      navigator.geolocation.getCurrentPosition(pos => {
+        center = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        zoom = INITIAL_ZOOM;
+        stops = [];
+        selectedId = 1;
+        if (selected) selected.textContent = isEs ? 'Visita 01' : 'Stop 01';
+        if (visitNumber) visitNumber.textContent = '01';
+        if (area) area.textContent = isEs ? 'Cerca de vos' : 'Near you';
+        locate.disabled = false;
+        hideFeedback();
+        start();
+        paint();
+      }, () => {
+        locate.disabled = false;
+        showFeedback(isEs ? 'No se obtuvo tu ubicación. Seguimos mostrando Managua.' : 'Location unavailable. Showing Managua instead.');
+      }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+    });
+  }
+</script>

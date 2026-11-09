@@ -53,3 +53,9 @@ Petición del responsable: retirar textos legales innecesarios del marketing, co
 
 ## Restauración de tarjeta del hero móvil (2026-11-08)
 La tarjeta flotante inferior «Tu cartera, a tu alcance» fue ocultada indebidamente en la corrección anterior mediante CSS `.float-bottom{display:none}`. Se restauró junto con el texto original ES/EN y se reposicionó exclusivamente en ancho <=600px para mantener separado el texto de disponibilidad Google Play. Se conservaron el screenshot original, las otras tarjetas y la separación del hero. QA visual final pendiente de usuario en dispositivo real.
+
+
+## Mapas de jornada (2026-11-08)
+El diagrama de cuatro círculos se sustituyó por un mapa geográfico con calles de OpenStreetMap. Fuente oficial de tiles: https://tile.openstreetmap.org/{z}/{x}/{y}.png, con atribución visible y solicitudes limitadas a viewport (ver https://operations.osmfoundation.org/policies/tiles/). Zoom limitado 12–17.
+Al cargar, el mapa usa Managua, Nicaragua (coordenadas UNGEGN 12.1263760777, -86.2662276527), sin pedir permiso. Botón «Usar mi ubicación» activa geolocation del navegador por consentimiento, recenter y cuatro puntos anónimos simulados; no hay lectura de cartera, ni datos personales, ni llamadas a Supabase, OSRM o backend. La línea une paradas gráficamente: NO es una ruta por calles optimizada ni una navegación. Los puntos no se deben presentar como clientes auténticos.
+Ruta en ES/EN con controles clicables 01–04, zoom, feedback de error y tiles si hay conexión. El cliente de mapas no persiste la ubicación, no la comparte con la app CobroRuta, y los tiles externos solo reciben viewport geográfico solicitado (según condiciones OSM). Sin permiso se conserva Managua. CSP raíz modificada únicamente para permitir cargar PNG de tile.openstreetmap.org. No se modificó Vercel directamente.
