@@ -4,15 +4,18 @@ import { copy } from '../content/copy';
 import { routeMap, type Locale, type PageKey } from '../lib/routes';
 import '../styles/tokens.css';
 import '../styles/global.css';
-const {locale, pageKey='home', title, description} = Astro.props as {locale:Locale;pageKey?:PageKey;title?:string;description?:string};
+const {locale, pageKey='home', title, description, embedded=false} = Astro.props as {locale:Locale;pageKey?:PageKey;title?:string;description?:string;embedded?:boolean};
 const c = copy[locale];
 const other:Locale = locale==='es'?'en':'es';
 const play = 'https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta';
-const current = routeMap[pageKey][locale];
-const alt = routeMap[pageKey][other];
-const base = 'https://cobroruta.quantix.software';
-const navKeys:PageKey[] = ['features','how','demo','help'];
-const navLabels = [c.nav.features,c.nav.how,c.nav.demo,c.nav.help];
+const current = embedded ? `/${locale}/cobroruta/` : routeMap[pageKey][locale];
+const alt = embedded ? `/${other}/cobroruta/` : routeMap[pageKey][other];
+const base = embedded ? 'https://www.quantix.software' : 'https://cobroruta.quantix.software';
+const navKeys:PageKey[] = ['features','how','help'];
+const navLabels = [c.nav.features,c.nav.how,c.nav.help];
+const linkFor = (key:PageKey) => embedded ? (key==='features'?'#funciones':key==='how'?'#jornada':'#faq') : routeMap[key][locale];
+const homeHref = embedded ? current : routeMap.home[locale];
+const footerContactHref = embedded ? (locale==='es'?'/es/contacto/':'/en/contact/') : routeMap.contact[locale];
 ---
 <!doctype html>
 <html lang={locale}>
@@ -21,18 +24,18 @@ const navLabels = [c.nav.features,c.nav.how,c.nav.demo,c.nav.help];
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#23624C" />
     <meta name="description" content={description ?? c.siteDescription} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="robots" content={embedded?'noindex,follow':'index,follow,max-image-preview:large'} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="CobroRuta" />
     <meta property="og:locale" content={locale==='es'?'es_ES':'en_US'} />
     <meta property="og:title" content={title ?? c.siteTitle} />
     <meta property="og:description" content={description ?? c.siteDescription} />
     <meta property="og:url" content={`${base}${current}`} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={embedded?'/cobroruta/favicon.svg':'/favicon.svg'} />
     <link rel="canonical" href={`${base}${current}`} />
-    <link rel="alternate" hreflang="es" href={`${base}${routeMap[pageKey].es}`} />
-    <link rel="alternate" hreflang="en" href={`${base}${routeMap[pageKey].en}`} />
-    <link rel="alternate" hreflang="x-default" href={`${base}/es/`} />
+    <link rel="alternate" hreflang="es" href={`${base}${embedded?'/es/cobroruta/':routeMap[pageKey].es}`} />
+    <link rel="alternate" hreflang="en" href={`${base}${embedded?'/en/cobroruta/':routeMap[pageKey].en}`} />
+    <link rel="alternate" hreflang="x-default" href={`${base}${embedded?'/es/cobroruta/':'/es/'}`} />
     <title>{title ?? c.siteTitle}</title>
   </head>
   <body>
@@ -40,26 +43,26 @@ const navLabels = [c.nav.features,c.nav.how,c.nav.demo,c.nav.help];
     <div class="site-frame">
       <header class="site-header" id="top">
         <div class="container nav-wrap">
-          <a class="brand" href={routeMap.home[locale]} aria-label="CobroRuta — Home"><span class="brand-graphic"><Mark /></span><span>Cobro<span class="brand-light">Ruta</span></span></a>
+          <a class="brand" href={homeHref} aria-label="CobroRuta — Home"><span class="brand-graphic"><Mark /></span><span>Cobro<span class="brand-light">Ruta</span></span></a>
           <nav class="desktop-nav" aria-label={locale==='es'?'Navegación principal':'Primary navigation'}>
-            {navKeys.map((key,i)=><a class:list={['nav-link',pageKey===key&&'is-active']} href={routeMap[key][locale]}>{navLabels[i]}</a>)}
+            {navKeys.map((key,i)=><a class:list={['nav-link',pageKey===key&&'is-active']} href={linkFor(key)}>{navLabels[i]}</a>)}
           </nav>
           <div class="header-actions">
-            <div class="lang-switch" aria-label={c.nav.language}><a href={routeMap[pageKey].es} lang="es" aria-current={locale==='es'?'page':undefined}>ES</a><span aria-hidden="true">/</span><a href={routeMap[pageKey].en} lang="en" aria-current={locale==='en'?'page':undefined}>EN</a></div>
+            <div class="lang-switch" aria-label={c.nav.language}><a href={embedded?'/es/cobroruta/':routeMap[pageKey].es} lang="es" aria-current={locale==='es'?'page':undefined}>ES</a><span aria-hidden="true">/</span><a href={embedded?'/en/cobroruta/':routeMap[pageKey].en} lang="en" aria-current={locale==='en'?'page':undefined}>EN</a></div>
             <a class="btn btn-primary btn-header" href={play} target="_blank" rel="noopener noreferrer">{c.nav.download}<span aria-hidden="true">↗</span></a>
             <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label={c.nav.menu}><span></span><span></span></button>
           </div>
         </div>
         <nav class="mobile-nav" id="mobile-nav" aria-label={locale==='es'?'Navegación móvil':'Mobile navigation'} hidden>
-          {navKeys.map((key,i)=><a href={routeMap[key][locale]}>{navLabels[i]} <span>↗</span></a>)}
+          {navKeys.map((key,i)=><a href={linkFor(key)}>{navLabels[i]} <span>↗</span></a>)}
           <a href={play} target="_blank" rel="noopener noreferrer">{c.nav.download} <span>↗</span></a>
         </nav>
       </header>
       <main id="main"><slot /></main>
       <footer class="site-footer">
         <div class="container footer-top">
-          <div><a class="brand footer-brand" href={routeMap.home[locale]}><span class="brand-graphic"><Mark /></span><span>Cobro<span class="brand-light">Ruta</span></span></a><p>{c.footer.label}</p></div>
-          <div class="footer-links"><a href={routeMap.features[locale]}>{c.nav.features}</a><a href={routeMap.demo[locale]}>{c.nav.demo}</a><a href={routeMap.help[locale]}>{c.nav.help}</a><a href={routeMap.contact[locale]}>{c.nav.contact}</a></div>
+          <div><a class="brand footer-brand" href={homeHref}><span class="brand-graphic"><Mark /></span><span>Cobro<span class="brand-light">Ruta</span></span></a><p>{c.footer.label}</p></div>
+          <div class="footer-links"><a href={linkFor('features')}>{c.nav.features}</a><a href={linkFor('help')}>{c.nav.help}</a><a href={footerContactHref}>{c.nav.contact}</a></div>
           <div class="footer-links"><a href="https://www.quantix.software" target="_blank" rel="noopener noreferrer">Quantix Software ↗</a><a href={play} target="_blank" rel="noopener noreferrer">Google Play ↗</a></div>
         </div>
         <div class="container footer-bottom"><span>© {new Date().getFullYear()} CobroRuta. {c.footer.rights}</span><span>{c.footer.disclaimer}</span></div>

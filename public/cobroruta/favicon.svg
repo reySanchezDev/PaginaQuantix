@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CobroRuta - marcador de ubicación">
+ <rect width="64" height="64" rx="15" fill="#23624C"/>
+ <path d="M32 10c-12 0-20 9-20 20 0 14 20 27 20 27s20-13 20-27c0-11-8-20-20-20z" fill="#FFFEFA"/>
+ <path d="M32 25c-2-4-8-2-8 3 0 5 8 9 8 9s8-4 8-9c0-5-6-7-8-3z" fill="#23624C"/>
+</svg>

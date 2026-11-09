@@ -1,21 +1,19 @@
 ---
 import Home from './Home.astro';
 import Icon from './Icon.astro';
-import PaymentDemo from './PaymentDemo.astro';
 import ScreensGallery from './ScreensGallery.astro';
 import { copy } from '../content/copy';
 import {type PageKey,type Locale,routeMap} from '../lib/routes';
 const {locale,pageKey} = Astro.props as {locale:Locale,pageKey:PageKey};
 const c=copy[locale];
-const isDemo=pageKey==='demo';
 const heading = pageKey==='features'?c.internal.features:pageKey==='how'?c.internal.how:pageKey==='help'?c.internal.help:c.internal.contact;
 ---
 {pageKey==='home'? <Home locale={locale}/>:<>
-  <section class="interior-header"><div class="container"><span class="eyebrow">{isDemo?c.demo.eyebrow:heading.eyebrow}</span><h1>{isDemo?c.demo.title:heading.title}</h1><p>{isDemo?c.demo.body:heading.body}</p>{pageKey==='how'&&<a href={routeMap.demo[locale]} class="btn btn-primary" style="margin-top:24px">{c.nav.demo} <span aria-hidden="true">↗</span></a>}</div></section>
-  {isDemo?<section class="interior-demo"><div class="container"><PaymentDemo locale={locale}/></div></section>:<section class="interior-content"><div class="container">
+  <section class="interior-header"><div class="container"><span class="eyebrow">{heading.eyebrow}</span><h1>{heading.title}</h1><p>{heading.body}</p>{pageKey==='how'&&<a href={routeMap.features[locale]} class="btn btn-primary" style="margin-top:24px">{c.nav.features} <span aria-hidden="true">↗</span></a>}</div></section>
+  <section class="interior-content"><div class="container">
     {pageKey==='features'&&<><div class="features-grid">{c.feature.cards.map((f,i)=><article class="feature-card"><span class="feature-index">0{i+1}</span><div class="feature-symbol"><Icon name={f.icon}/></div><h3>{f.title}</h3><p>{f.text}</p></article>)}</div><ScreensGallery locale={locale}/></>}
     {pageKey==='how'&&<><div class="interior-mini-grid">{c.intro.steps.map(step=><article class="interior-step"><b>{step.num}</b><h3>{step.title}</h3><p>{step.text}</p></article>)}</div><ScreensGallery locale={locale}/></>}
     {pageKey==='help'&&<div class="faq-list">{c.faqs.map((faq,i)=><details open={i===0}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</div>}
     {pageKey==='contact'&&<div class="interior-placeholder"><h2 style="font-size:32px;letter-spacing:-1px">{c.internal.contact.pending}</h2><p>{locale==='es'?'Mientras tanto, encontrá la aplicación oficial en Google Play.':'In the meantime, find the official app on Google Play.'}</p><a href="https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Google Play ↗</a></div>}
-  </div></section>}
+  </div></section>
 </>}

@@ -31,3 +31,6 @@
 - Galería real ES/EN: imágenes originales en español, sin traducción visual ficticia.
 - Code ZIP en Drive es obsoleto; Git es fuente de verdad. Drive se reserva para documentación y recursos.
 - Pendientes: instalar dependencias, build Astro, QA visual, fotografías nuevas con datos ficticios de pago y préstamo, entorno Preview y aprobación del usuario.
+
+## Hito visual (2026-11-08)
+El flujo de pagos se pospone hasta la última fase. No hay enlace, demo ni ruta de simulador en la web pública del Hito 1. El código de cálculo queda reservado en el repositorio para fase final. La web comercial puede mostrarse provisionalmente bajo https://www.quantix.software/es/cobroruta/ y /en/cobroruta/ (noindex). La URL oficial prevista sigue siendo https://cobroruta.quantix.software; no está configurada por el simple hecho de fusionar código a main. No modificar Vercel ni DNS.
