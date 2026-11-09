@@ -31,7 +31,8 @@ const footerContactHref = embedded ? (locale==='es'?'/es/contacto/':'/en/contact
     <meta property="og:title" content={title ?? c.siteTitle} />
     <meta property="og:description" content={description ?? c.siteDescription} />
     <meta property="og:url" content={`${base}${current}`} />
-    <link rel="icon" type="image/svg+xml" href={embedded?'/cobroruta/favicon.svg':'/favicon.svg'} />
+    <link rel="icon" type="image/png" href="/cobroruta/favicon.png" />
+    <link rel="apple-touch-icon" href="/cobroruta/icon.png" />
     <link rel="canonical" href={`${base}${current}`} />
     <link rel="alternate" hreflang="es" href={`${base}${embedded?'/es/cobroruta/':routeMap[pageKey].es}`} />
     <link rel="alternate" hreflang="en" href={`${base}${embedded?'/en/cobroruta/':routeMap[pageKey].en}`} />

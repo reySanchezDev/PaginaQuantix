@@ -34,3 +34,10 @@
 
 ## Hito visual (2026-11-08)
 El flujo de pagos se pospone hasta la última fase. No hay enlace, demo ni ruta de simulador en la web pública del Hito 1. El código de cálculo queda reservado en el repositorio para fase final. La web comercial puede mostrarse provisionalmente bajo https://www.quantix.software/es/cobroruta/ y /en/cobroruta/ (noindex). La URL oficial prevista sigue siendo https://cobroruta.quantix.software; no está configurada por el simple hecho de fusionar código a main. No modificar Vercel ni DNS.
+
+
+## Ajustes de marca y enfoque comercial (2026-11-08)
+- La marca visible del header, footer, hero y favicon usa el ícono ORIGINAL de Flutter, `Hensell/lugar_app/assets/icon.png`, idéntico por SHA de blob a `103d8f4a631a7ad5a734a4b99969a11b4a79f316`. No dibujar versiones alternativas ni usar el SVG provisional.
+- El favicon PNG también procede del repositorio de la app (`web/favicon.png`). Copias necesarias dentro del proyecto raíz corporativo y la app Astro aislada: `public/cobroruta/`.
+- Texto público ES/EN reorientado a los beneficios de CobroRuta. Fuera referencias al origen, validación, idioma o carácter auténtico de las capturas. Ese detalle técnico pertenece únicamente a esta bitácora.
+- Se conserva el aplazamiento del simulador de cobros hasta la última fase.

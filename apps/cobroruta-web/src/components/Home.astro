@@ -22,10 +22,10 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
     </div>
     <div class="hero-visual" aria-label={c.hero.screenStatus}>
       <div class="hero-arc arc-1" aria-hidden="true"></div><div class="hero-arc arc-2" aria-hidden="true"></div>
-      <div class="float-label float-top"><span class="float-icon"><Mark/></span><span><strong>CobroRuta</strong><small>Android · Offline-first</small></span></div>
+      <div class="float-label float-top"><span class="float-icon"><Mark/></span><span><strong>CobroRuta</strong><small>{locale==='es'?'Gestión desde tu celular':'Manage it from your phone'}</small></span></div>
       <figure class="phone-shell"><div class="phone-speaker" aria-hidden="true"></div><img src="/images/screens/home-android.jpg" alt={c.hero.screenCaption} width="230" height="512" loading="eager" decoding="async" /></figure>
       <div class="float-label float-bottom"><span class="status-orbit" aria-hidden="true"></span><span><strong>{c.hero.screenStatus}</strong><small>{c.hero.screenCaption}</small></span></div>
-      <span class="hero-visual-index">01 / 04 — COBRORUTA</span>
+      <span class="hero-visual-index">{locale==='es'?'TU CARTERA, EN ORDEN':'YOUR PORTFOLIO, ORGANIZED'}</span>
     </div>
   </div>
   <div class="hero-scroll container"><span>{c.hero.scroll}</span><span aria-hidden="true">↓</span></div>
@@ -35,7 +35,7 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
   <div class="container">
     <div class="section-head journey-head" data-reveal><span class="eyebrow">{c.intro.eyebrow}</span><h2>{c.intro.title}</h2><p>{c.intro.body}</p></div>
     <div class="journey-grid">
-      <div class="journey-visual" data-reveal><div class="journey-window"><div class="journey-window-top"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span><small>COBRORUTA / JOURNEY</small></div><div class="journey-art"><div class="route-illustration" aria-hidden="true"><div class="route-line"></div><span class="route-stop stop-1">01</span><span class="route-stop stop-2">02</span><span class="route-stop stop-3">03</span><span class="route-stop stop-4">04</span><div class="map-orbit orbit-a"></div><div class="map-orbit orbit-b"></div></div><div class="art-note">{locale==='es'?'Recorrido ilustrativo · No es una pantalla de la app':'Illustrative flow · Not an app screen'}</div></div></div></div>
+      <div class="journey-visual" data-reveal><div class="journey-window"><div class="journey-window-top"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span><small>COBRORUTA / JOURNEY</small></div><div class="journey-art"><div class="route-illustration" aria-hidden="true"><div class="route-line"></div><span class="route-stop stop-1">01</span><span class="route-stop stop-2">02</span><span class="route-stop stop-3">03</span><span class="route-stop stop-4">04</span><div class="map-orbit orbit-a"></div><div class="map-orbit orbit-b"></div></div></div></div></div>
       <div class="journey-steps">{c.intro.steps.map(s=><div class="journey-step" data-reveal><span class="journey-number">{s.num}</span><div><h3>{s.title}</h3><p>{s.text}</p></div><span class="step-arrow" aria-hidden="true">↗</span></div>)}</div>
     </div>
   </div>
@@ -49,8 +49,8 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
       <a class="btn btn-outline" href={howHref}>{c.nav.how}<span aria-hidden="true">↗</span></a>
     </div>
     <div class="product-story-visual" data-reveal>
-      <div class="product-story-card product-story-back"><img src="/images/screens/route-empty-android.jpg" alt={locale==='es'?'Pantalla real de ruta del día sin cuotas vencidas':'Actual daily route screen with no installments due'} width="230" height="512" loading="lazy" decoding="async" /></div>
-      <div class="product-story-card product-story-front"><img src="/images/screens/reports-menu-android.jpg" alt={locale==='es'?'Menú real de reportes':'Actual reports menu'} width="230" height="512" loading="lazy" decoding="async" /></div>
+      <div class="product-story-card product-story-back"><img src="/images/screens/route-empty-android.jpg" alt={locale==='es'?'Ruta de hoy en CobroRuta':'Today’s route in CobroRuta'} width="230" height="512" loading="lazy" decoding="async" /></div>
+      <div class="product-story-card product-story-front"><img src="/images/screens/reports-menu-android.jpg" alt={locale==='es'?'Reportes de cartera en CobroRuta':'Portfolio reports in CobroRuta'} width="230" height="512" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 </section>

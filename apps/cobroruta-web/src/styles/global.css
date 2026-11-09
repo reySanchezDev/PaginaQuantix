@@ -55,3 +55,9 @@ img,svg{max-width:100%}figure{margin:0}h1,h2,h3,p{margin-top:0}p{line-height:1.7
 @media(max-width:850px){.product-story-grid{grid-template-columns:1fr;gap:30px}.product-story-visual{min-height:510px}.product-story-copy h2{max-width:100%}}
 @media(max-width:450px){.product-story-card{width:170px}.product-story-visual{min-height:420px}}
 @media(prefers-reduced-motion:reduce){.product-story-card{transition:none!important}}
+
+/* Official brand artwork: actual launcher icon from CobroRuta Flutter assets. */
+.brand-graphic img.brand-mark{width:36px;height:36px;object-fit:contain;display:block;transform:none;border-radius:9px;flex-shrink:0}
+.float-icon img.brand-mark{width:30px;height:30px;object-fit:contain;display:block;border-radius:8px}
+.closing-orbit>img.brand-mark{width:min(180px,42vw);height:auto;aspect-ratio:1;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 25px 25px #091d1788);border-radius:38px}
+@media(max-width:600px){.brand-graphic img.brand-mark{width:32px;height:32px}}
