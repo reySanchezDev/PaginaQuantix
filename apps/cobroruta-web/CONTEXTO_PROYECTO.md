@@ -78,3 +78,7 @@ En la portada y el catálogo de productos se reemplazó el texto sin enlace «Di
 
 ## Carrusel de pantallas (2026-11-09)
 Se corrigió «Explorá CobroRuta» por capturas entrecortadas. Ahora muestra un dispositivo íntegro por pantalla móvil, dos en tablet y tres en escritorio, sin cortar imágenes. Carrusel con desplazamiento táctil nativo, scroll snap, controles anterior/siguiente, contador, puntos de paginación y accesibilidad de teclado/lector, más reduced motion. ES/EN; conserva 6 imágenes originales y no autoavanza.
+
+
+## Controles flotantes del carrusel (2026-11-09)
+Según captura Android del responsable, los controles anterior/siguiente situados arriba del carrusel eran poco ergonómicos. Se trasladaron a los laterales del área de imágenes, con botones circulares sobre el carrusel, en ambos idiomas. Se mantiene contador en la cabecera, paginación inferior, swipe táctil, carrusel de 6 capturas y aria/teclado. Las flechas tienen objetivo táctil >=50px y foco accesible, con modo reduced motion. No se modificaron capturas ni otros componentes. Fuente del código: src/components/ScreensGallery.astro y src/styles/global.css del subproyecto apps/cobroruta-web.

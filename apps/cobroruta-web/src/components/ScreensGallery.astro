@@ -22,19 +22,23 @@ const images = [
         <p class="screen-carousel-hint"><span class="screen-carousel-swipe" aria-hidden="true">⟷</span>{es?'Deslizá para descubrir más':'Swipe to explore more'}</p>
         <div class="screen-carousel-navigation">
           <span class="screen-carousel-count" aria-live="polite"><strong data-carousel-current>01</strong> / {String(images.length).padStart(2,'0')}</span>
-          <button class="screen-carousel-arrow" type="button" data-carousel-prev aria-label={es?'Ver capturas anteriores':'Previous screenshots'} disabled>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
-          </button>
-          <button class="screen-carousel-arrow" type="button" data-carousel-next aria-label={es?'Ver siguientes capturas':'Next screenshots'}>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
-          </button>
         </div>
       </div>
-      <div class="screen-gallery" data-carousel-track role="region" aria-roledescription={es?'carrusel':'carousel'} aria-label={es?'Pantallas de CobroRuta':'CobroRuta screens'} tabindex="0">
+      <div class="screen-carousel-stage">
+        <div class="screen-gallery" data-carousel-track role="region" aria-roledescription={es?'carrusel':'carousel'} aria-label={es?'Pantallas de CobroRuta':'CobroRuta screens'} tabindex="0">
         {images.map((item,i)=><figure class="screen-gallery-card" data-carousel-slide>
           <div class="screen-gallery-device"><img src={item.src} alt={es?item.es:item.en} width="230" height="512" loading="lazy" decoding="async"/></div>
           <figcaption><span>{String(i+1).padStart(2,'0')}</span>{es?item.descEs:item.descEn}</figcaption>
         </figure>)}
+        </div>
+        <div class="screen-carousel-floating-controls" aria-label={es?'Navegación entre pantallas':'Screen navigation'}>
+          <button class="screen-carousel-arrow screen-carousel-arrow--previous" type="button" data-carousel-prev aria-label={es?'Pantalla anterior':'Previous screen'} disabled>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+          </button>
+          <button class="screen-carousel-arrow screen-carousel-arrow--next" type="button" data-carousel-next aria-label={es?'Pantalla siguiente':'Next screen'}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
+          </button>
+        </div>
       </div>
       <div class="screen-carousel-pagination" data-carousel-dots aria-label={es?'Ir a una captura':'Go to screenshot'}>
         {images.map((item,i)=><button type="button" class:list={['screen-carousel-dot',{'is-active':i===0}]} data-carousel-dot={i} aria-label={(es?'Ir a la captura ':'Go to screenshot ')+(i+1)+': '+(es?item.descEs:item.descEn)} aria-current={i===0?'true':undefined}><span></span></button>)}
