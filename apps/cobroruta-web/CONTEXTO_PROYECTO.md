@@ -74,3 +74,7 @@ En la portada y el catálogo de productos se reemplazó el texto sin enlace «Di
 - Las dos pantallas originales (Inicio y Reportes) tienen movimiento de flotación independiente y alternado, con variación leve de inclinación y desplazamiento vertical, y respiración del halo decorativo. Preserva su encuadre completo y responsive.
 - En prefers-reduced-motion se detienen todas las animaciones decorativas; los dos teléfonos permanecen visibles e íntegros.
 - Sin nuevas imágenes, sin cambios de DNS/Vercel manuales; revisión visual móvil de usuario pendiente.
+
+
+## Carrusel de pantallas (2026-11-09)
+Se corrigió «Explorá CobroRuta» por capturas entrecortadas. Ahora muestra un dispositivo íntegro por pantalla móvil, dos en tablet y tres en escritorio, sin cortar imágenes. Carrusel con desplazamiento táctil nativo, scroll snap, controles anterior/siguiente, contador, puntos de paginación y accesibilidad de teclado/lector, más reduced motion. ES/EN; conserva 6 imágenes originales y no autoavanza.
