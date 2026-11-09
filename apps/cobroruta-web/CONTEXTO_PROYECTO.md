@@ -101,3 +101,7 @@ La revisión móvil evidenció botones sobredimensionados. Se redujo la acción 
 
 
 2026-11-09 — Ajuste puntual del pie de página: eliminado únicamente el botón de Google Play de la última columna del footer de CobroRuta a solicitud del propietario. Se mantiene el enlace Quantix Software y todas las demás insignias de descarga del sitio, sin cambios de estilos, Vercel ni DNS.
+
+
+## Copy de productos en home de Quantix (2026-11-09)
+Se corrigió la frase de la franja CobroRuta / VIGGO / Takofy, que afirmaba genéricamente «Usados en restaurantes y gimnasios de Nicaragua» y sugería que los tres productos atendían los mismos giros. Nuevo texto ES: «Soluciones para cobranza, gimnasios y restaurantes.». EN: «Solutions for collections, gyms, and restaurants.». Se modifica exclusivamente la fuente localizada src/data/home-content.ts; el orden, los enlaces y el diseño de las tarjetas permanecen intactos. Despliegue gestionado desde main, sin tocar Vercel.
