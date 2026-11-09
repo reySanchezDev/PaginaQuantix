@@ -158,71 +158,74 @@ img,svg{max-width:100%}figure{margin:0}h1,h2,h3,p{margin-top:0}p{line-height:1.7
 @media(max-width:700px){.screen-carousel-floating-controls{inset:0 0 50px;padding-inline:0}.screen-carousel-floating-controls .screen-carousel-arrow{width:50px;height:50px;min-width:50px;min-height:50px}}
 @media(prefers-reduced-motion:reduce){.screen-carousel-floating-controls .screen-carousel-arrow{transition:none}.screen-carousel-floating-controls .screen-carousel-arrow:not(:disabled):hover{transform:none}}
 
-/* Unified primary and Google Play actions: same rhythm, alignment and tap target. */
+/* Compact CTAs with balanced visible width. Official Google Play artwork
+   remains unframed (the previous white 100%-width panel was a UX regression). */
 .hero-ctas{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  align-items:stretch;
-  gap:14px;
-  width:min(100%,568px);
+  grid-template-columns:minmax(0,270px) minmax(0,310px);
+  align-items:center;
+  justify-content:start;
+  column-gap:8px;
+  width:min(100%,590px);
 }
 .hero-ctas .hero-cta-primary{
-  display:flex;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:11px;
   width:100%;
   min-width:0;
-  min-height:70px;
-  padding:14px 18px;
-  border-radius:12px;
-  font-size:clamp(13px,1.15vw,15px);
-  line-height:1.35;
+  min-height:66px;
+  padding:14px 17px;
+  border-radius:11px;
+  font-size:15px;
   text-align:center;
-  white-space:normal;
+  line-height:1.35;
 }
-.hero-ctas .hero-cta-primary span{font-size:20px;line-height:1;flex-shrink:0}
+.hero-ctas .hero-cta-primary span{font-size:19px;flex-shrink:0}
 .closing-actions{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  align-items:stretch;
-  gap:14px;
-  width:min(100%,560px);
+  grid-template-columns:minmax(0,310px) minmax(0,270px);
+  align-items:center;
+  justify-content:start;
+  gap:8px;
+  width:min(100%,590px);
 }
 .closing-actions .closing-more-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   width:100%;
   min-width:0;
-  min-height:70px;
-  padding:14px 18px;
-  justify-content:center;
+  min-height:66px;
+  padding:14px 17px;
   gap:12px;
-  border-color:#b9d6c8;
-  border-radius:12px;
+  border-radius:11px;
   color:#fffefa;
+  border-color:#b9d6c8;
+  font-size:15px;
   font-weight:700;
   text-align:center;
 }
 .closing-actions .closing-more-cta:hover{background:#ffffff15}
 @media(max-width:900px){
-  .hero-ctas{margin-inline:auto}
-  .closing-actions{margin-inline:auto}
+  .hero-ctas,.closing-actions{margin-inline:auto;justify-content:center}
 }
 @media(max-width:600px){
-  .hero-ctas{
+  .hero-ctas,.closing-actions{
     grid-template-columns:minmax(0,1fr);
-    gap:12px;
-    width:100%;
-    margin:0;
+    justify-items:center;
+    width:min(100%,310px);
+    gap:2px;
+    margin-inline:auto;
   }
-  .hero-ctas .hero-cta-primary{
-    min-height:68px;
-    padding:14px 18px;
+  .hero-ctas .hero-cta-primary,
+  .closing-actions .closing-more-cta{
+    width:90%;
+    min-height:66px;
+    padding:13px 15px;
     font-size:16px;
   }
-  .closing-actions{
-    grid-template-columns:minmax(0,1fr);
-    gap:12px;
-    max-width:420px;
-  }
-  .closing-actions .closing-more-cta{min-height:68px}
+  .hero-ctas .hero-cta-primary{justify-content:center}
 }
+
