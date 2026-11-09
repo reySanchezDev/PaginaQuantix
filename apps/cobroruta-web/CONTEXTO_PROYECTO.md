@@ -98,3 +98,6 @@ Tras la captura de revisión se detectó un gran rectángulo blanco que rodeaba 
 
 ## Ajuste fino de ergonomía de botones — 2026-11-09
 La revisión móvil evidenció botones sobredimensionados. Se redujo la acción verde a ancho ~215px y alto mínimo 52px, y el badge oficial Google Play a 205px de ancho (sin alterar la imagen ni añadir fondos). En móviles se centran en columna y en escritorio comparten una fila compacta; se aplica el mismo patrón al CTA final. El título del botón se acortó a «Ver cómo funciona» / «See how it works» para evitar quiebres de línea. Se mantuvieron los enlaces originales, el recurso oficial de Google Play y los estilos accesibles.
+
+
+2026-11-09 — Ajuste puntual del pie de página: eliminado únicamente el botón de Google Play de la última columna del footer de CobroRuta a solicitud del propietario. Se mantiene el enlace Quantix Software y todas las demás insignias de descarga del sitio, sin cambios de estilos, Vercel ni DNS.
