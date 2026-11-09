@@ -30,7 +30,6 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
   </div>
   <div class="hero-scroll container"><span>{c.hero.scroll}</span><span aria-hidden="true">↓</span></div>
 </section>
-<div class="marquee-strip"><div class="container marquee-inner">{c.marquee.map((item,i)=><><span>{item}</span>{i<3&&<b aria-hidden="true">✳</b>}</>)}</div></div>
 <section class="section section-journey" id="jornada">
   <div class="container">
     <div class="section-head journey-head" data-reveal><span class="eyebrow">{c.intro.eyebrow}</span><h2>{c.intro.title}</h2><p>{c.intro.body}</p></div>
@@ -44,8 +43,8 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
   <div class="container product-story-grid">
     <div class="product-story-copy" data-reveal>
       <span class="eyebrow">{locale==='es'?'HECHA PARA TU JORNADA':'MADE FOR YOUR WORKDAY'}</span>
-      <h2>{locale==='es'?'De los pendientes a las decisiones.':'From what’s due to what’s next.'}</h2>
-      <p>{locale==='es'?'Consultá lo que falta por cobrar, organizá tu día y descubrí los reportes de la aplicación, todo en un mismo recorrido.':'See what is outstanding, organize your day, and explore real reporting screens—all in one place.'}</p>
+      <h2>{locale==='es'?'Decisiones con información clara.':'Better decisions start with clear numbers.'}</h2>
+      <p>{locale==='es'?'Consultá reportes de cartera y proyecciones para anticipar tu próxima jornada.':'Use portfolio reports and collection forecasts to plan your next workday.'}</p>
       <a class="btn btn-outline" href={howHref}>{c.nav.how}<span aria-hidden="true">↗</span></a>
     </div>
     <div class="product-story-visual" data-reveal>

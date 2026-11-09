@@ -41,3 +41,12 @@ El flujo de pagos se pospone hasta la última fase. No hay enlace, demo ni ruta 
 - El favicon PNG también procede del repositorio de la app (`web/favicon.png`). Copias necesarias dentro del proyecto raíz corporativo y la app Astro aislada: `public/cobroruta/`.
 - Texto público ES/EN reorientado a los beneficios de CobroRuta. Fuera referencias al origen, validación, idioma o carácter auténtico de las capturas. Ese detalle técnico pertenece únicamente a esta bitácora.
 - Se conserva el aplazamiento del simulador de cobros hasta la última fase.
+
+## Ajuste de legibilidad y copy móvil — 2026-11-08
+Petición del responsable: retirar textos legales innecesarios del marketing, corregir nota del hero tapada por el teléfono móvil sin eliminar captura original y simplificar copy.
+- Eliminado disclaimer del pie, en ES/EN, y pregunta FAQ que repetía negaciones sobre préstamos.
+- Nota del hero abreviada y separada del teléfono; z-index, espaciado y transform-origin corregidos bajo 600px; foto original preservada.
+- Eliminada franja repetitiva de claims de cartera/cuotas/cobros que se truncaba en móviles.
+- Galería sin párrafo reiterativo y secciones de producto, CTA y hero con mensajes diferenciados.
+- Código en apps/cobroruta-web, integrado al build Quantix en /es/cobroruta/ y /en/cobroruta/.
+- Pendiente validación visual final en móvil del usuario; no se cambió Vercel directamente.
