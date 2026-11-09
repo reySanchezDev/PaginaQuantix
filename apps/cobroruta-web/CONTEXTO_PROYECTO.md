@@ -94,3 +94,7 @@ En el hero móvil el botón «Descubrir cómo funciona» ocupaba todo el ancho, 
 
 ## Corrección de regresión visual del botón Google Play (2026-11-09)
 Tras la captura de revisión se detectó un gran rectángulo blanco que rodeaba artificialmente el badge en el CTA final. No era parte del recurso original: lo generó el segundo bloque CSS añadido a GooglePlayBadge.astro en el commit anterior. Se eliminó completamente ese contenedor de fondo/borde/sombra y se restauró el badge OFICIAL sin marco, manteniendo su relación de aspecto. Los botones principales de hero y cierre son compactos, centrados y de anchura visual equilibrada con la insignia original; ninguna acción ocupa el ancho completo de la pantalla móvil. Conservados links ES/EN, accesibilidad y reduced-motion, sin manipular Vercel. Por verificar visualmente en móvil.
+
+
+## Ajuste fino de ergonomía de botones — 2026-11-09
+La revisión móvil evidenció botones sobredimensionados. Se redujo la acción verde a ancho ~215px y alto mínimo 52px, y el badge oficial Google Play a 205px de ancho (sin alterar la imagen ni añadir fondos). En móviles se centran en columna y en escritorio comparten una fila compacta; se aplica el mismo patrón al CTA final. El título del botón se acortó a «Ver cómo funciona» / «See how it works» para evitar quiebres de línea. Se mantuvieron los enlaces originales, el recurso oficial de Google Play y los estilos accesibles.
