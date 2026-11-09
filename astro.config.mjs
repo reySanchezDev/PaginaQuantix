@@ -33,7 +33,7 @@ export default defineConfig({
         "connect-src 'self' https://vitals.vercel-insights.com",
         "font-src 'self'",
         "form-action 'self' mailto:",
-        "img-src 'self' data: https://tile.openstreetmap.org",
+        "img-src 'self' data: https://tile.openstreetmap.org https://play.google.com",
         "media-src 'self'",
         "object-src 'none'",
       ],

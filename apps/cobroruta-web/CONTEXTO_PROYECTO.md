@@ -63,3 +63,7 @@ Ruta en ES/EN con controles clicables 01–04, zoom, feedback de error y tiles s
 
 ## Producto estrella de Quantix — 2026-11-09
 CobroRuta se destaca al inicio de /es/productos/ y /en/products/, antes del resto del catálogo, con ícono original y screenshot auténtico. La portada corporativa ES/EN incorpora la misma sección después del hero y lo presenta como primer enlace destacado antes de VIGGO y Takofy. La tarjeta dirige a /es/cobroruta/ y /en/cobroruta/. No se modificó la app Flutter, ni DNS, ni Vercel manualmente.
+
+
+## Mejora final tarjeta destacada Quantix (2026-11-09)
+En la portada y el catálogo de productos se reemplazó el texto sin enlace «Disponible en Google Play» por un CTA real que incorpora el badge OFICIAL provisto por Google (URL del servidor play.google.com, versión ES/EN) enlazando directamente a https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta. Según las reglas de marca Google, se utiliza badge original, sin redibujarlo. CSP de Astro habilita solo play.google.com en img-src, conservando restricciones restantes. CTA «Conocer CobroRuta» sigue enlazando a la landing local por idioma. El visual presenta dos capturas originales de la app sin datos personales (home-android.jpg y reports-menu-android.jpg), con ambos teléfonos íntegros y sin márgenes negativos; responsive en móvil y desktop. No se tocó Vercel manualmente. Verificar despliegue y revisión visual del propietario.
