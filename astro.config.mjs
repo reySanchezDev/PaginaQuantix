@@ -12,7 +12,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        return pathname !== "/" && pathname !== "/404/";
+        return pathname !== "/" && pathname !== "/404/" && !/^\/(?:es|en)\/cobroruta\/$/.test(pathname);
       },
     }),
   ],
