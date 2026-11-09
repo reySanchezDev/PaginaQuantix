@@ -60,3 +60,44 @@ const label = locale === 'es' ? 'Descargar CobroRuta en Google Play' : 'Get Cobr
   }
   @media(prefers-reduced-motion:reduce){.cr-google-play-badge{transition:none}.cr-google-play-badge:hover{transform:none}}
 </style>
+
+<!-- Actions in the hero and closing sections use equal-sized surfaces.
+     The Google Play badge artwork itself is not altered. -->
+<style>
+  .cr-google-play-badge--hero,
+  .cr-google-play-badge--closing{
+    width:100%;
+    min-width:0;
+    min-height:70px;
+    padding:0 12px;
+    border:1px solid #b5c8b9;
+    border-radius:12px;
+    background:#fffcf5;
+    box-shadow:0 8px 20px #163e2d0a;
+    box-sizing:border-box;
+  }
+  .cr-google-play-badge--hero img,
+  .cr-google-play-badge--closing img{
+    width:185px;
+    max-width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+  .cr-google-play-badge--closing{
+    background:#fffefa;
+    border-color:#ffffff7d;
+  }
+  @media(max-width:600px){
+    .cr-google-play-badge--hero,
+    .cr-google-play-badge--closing{
+      width:100%;
+      min-height:68px;
+      margin:0;
+    }
+    .cr-google-play-badge--hero img,
+    .cr-google-play-badge--closing img{
+      width:182px;
+      height:auto;
+    }
+  }
+</style>

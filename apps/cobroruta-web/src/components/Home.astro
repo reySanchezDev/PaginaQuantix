@@ -18,8 +18,10 @@ const c=copy[locale];
       <div class="eyebrow pill-eyebrow"><span class="tiny-star">✳</span> {c.hero.eyebrow}</div>
       <h1><span>{c.hero.titleA}</span><br/><em>{c.hero.titleB}</em></h1>
       <p class="hero-subtitle">{c.hero.body}</p>
-      <div class="hero-ctas"><a class="btn btn-primary btn-xl" href={howHref}>{c.hero.primary}<span aria-hidden="true">↗</span></a><GooglePlayBadge locale={locale} variant="hero" /></div>
-      <div class="hero-note"><span class="note-seal" aria-hidden="true">✓</span>{c.hero.footnote}</div>
+      <div class="hero-ctas" aria-label={locale==='es'?'Explorar CobroRuta y descargar para Android':'Explore CobroRuta and download for Android'}>
+        <a class="btn btn-primary btn-xl hero-cta-primary" href={howHref}>{c.hero.primary}<span aria-hidden="true">↗</span></a>
+        <GooglePlayBadge locale={locale} variant="hero" />
+      </div>
     </div>
     <div class="hero-visual" aria-label={c.hero.screenStatus}>
       <div class="hero-arc arc-1" aria-hidden="true"></div><div class="hero-arc arc-2" aria-hidden="true"></div>
@@ -62,4 +64,4 @@ const c=copy[locale];
     <div class="faq-list">{c.faqs.map((faq,i)=><details open={i===0}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</div>
   </div>
 </section>
-<section class="final-cta"><div class="container closing-grid"><div class="closing-orbit" aria-hidden="true"><span></span><span></span><Mark/></div><div class="closing-copy" data-reveal><span class="eyebrow">{c.close.eyebrow}</span><h2>{c.close.title}</h2><p>{c.close.body}</p><div class="closing-actions"><GooglePlayBadge locale={locale} variant="closing" /><a class="text-link text-link-light" href={featuresHref}>{c.close.secondary} <span aria-hidden="true">→</span></a></div></div></div></section>
+<section class="final-cta"><div class="container closing-grid"><div class="closing-orbit" aria-hidden="true"><span></span><span></span><Mark/></div><div class="closing-copy" data-reveal><span class="eyebrow">{c.close.eyebrow}</span><h2>{c.close.title}</h2><p>{c.close.body}</p><div class="closing-actions"><GooglePlayBadge locale={locale} variant="closing" /><a class="btn btn-outline closing-more-cta" href={featuresHref}>{c.close.secondary}<span aria-hidden="true">↗</span></a></div></div></div></section>

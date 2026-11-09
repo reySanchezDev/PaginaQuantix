@@ -157,3 +157,72 @@ img,svg{max-width:100%}figure{margin:0}h1,h2,h3,p{margin-top:0}p{line-height:1.7
 .screen-carousel-floating-controls .screen-carousel-arrow:focus-visible{outline:3px solid #f3cc72;outline-offset:3px}
 @media(max-width:700px){.screen-carousel-floating-controls{inset:0 0 50px;padding-inline:0}.screen-carousel-floating-controls .screen-carousel-arrow{width:50px;height:50px;min-width:50px;min-height:50px}}
 @media(prefers-reduced-motion:reduce){.screen-carousel-floating-controls .screen-carousel-arrow{transition:none}.screen-carousel-floating-controls .screen-carousel-arrow:not(:disabled):hover{transform:none}}
+
+/* Unified primary and Google Play actions: same rhythm, alignment and tap target. */
+.hero-ctas{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:14px;
+  width:min(100%,568px);
+}
+.hero-ctas .hero-cta-primary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  min-width:0;
+  min-height:70px;
+  padding:14px 18px;
+  border-radius:12px;
+  font-size:clamp(13px,1.15vw,15px);
+  line-height:1.35;
+  text-align:center;
+  white-space:normal;
+}
+.hero-ctas .hero-cta-primary span{font-size:20px;line-height:1;flex-shrink:0}
+.closing-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:14px;
+  width:min(100%,560px);
+}
+.closing-actions .closing-more-cta{
+  width:100%;
+  min-width:0;
+  min-height:70px;
+  padding:14px 18px;
+  justify-content:center;
+  gap:12px;
+  border-color:#b9d6c8;
+  border-radius:12px;
+  color:#fffefa;
+  font-weight:700;
+  text-align:center;
+}
+.closing-actions .closing-more-cta:hover{background:#ffffff15}
+@media(max-width:900px){
+  .hero-ctas{margin-inline:auto}
+  .closing-actions{margin-inline:auto}
+}
+@media(max-width:600px){
+  .hero-ctas{
+    grid-template-columns:minmax(0,1fr);
+    gap:12px;
+    width:100%;
+    margin:0;
+  }
+  .hero-ctas .hero-cta-primary{
+    min-height:68px;
+    padding:14px 18px;
+    font-size:16px;
+  }
+  .closing-actions{
+    grid-template-columns:minmax(0,1fr);
+    gap:12px;
+    max-width:420px;
+  }
+  .closing-actions .closing-more-cta{min-height:68px}
+}
