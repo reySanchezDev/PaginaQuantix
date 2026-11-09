@@ -18,7 +18,6 @@ const googlePlayBadge = es
   <Container>
     <article class="cr-featured__panel" data-reveal>
       <div class="cr-featured__content">
-        <p class="cr-featured__eyebrow"><span aria-hidden="true">✦</span> {es ? "Producto estrella de Quantix" : "Featured Quantix product"}</p>
         <div class="cr-featured__brand">
           <img src="/cobroruta/icon.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy" decoding="async" />
           <span>CobroRuta</span>
@@ -66,8 +65,6 @@ const googlePlayBadge = es
   .cr-featured__panel{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);align-items:center;min-height:37rem;overflow:hidden;border:1px solid #2b7659;border-radius:clamp(1rem,2vw,1.75rem);color:#fffefa;background:linear-gradient(124deg,#123a2e,#205e49 60%,#2e785e);box-shadow:0 1.25rem 3.25rem -2.5rem #103b2c91}
   .cr-featured__panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 90% 85%,#a6cbb83b,transparent 56%)}
   .cr-featured__content{position:relative;z-index:2;min-width:0;padding:clamp(2rem,4vw,4rem)}
-  .cr-featured__eyebrow{display:flex;align-items:center;gap:.65rem;margin:0 0 1.7rem;color:#dfede4;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-  .cr-featured__eyebrow span{color:#d5e9d9;font-size:1rem}
   .cr-featured__brand{display:flex;align-items:center;gap:.8rem;margin-bottom:1.25rem;font-family:var(--font-heading);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:700}
   .cr-featured__brand img{display:block;width:3rem;height:3rem;flex-shrink:0;border-radius:.8rem;object-fit:contain;box-shadow:0 .5rem 1rem #092c214d}
   .cr-featured h2{margin:0;max-width:14ch;color:inherit;font-size:clamp(2rem,3.5vw,3.6rem);font-weight:650;letter-spacing:-.045em;line-height:1.08;text-wrap:balance}
@@ -83,11 +80,30 @@ const googlePlayBadge = es
   .cr-featured__halo{position:absolute;inset:12% 5%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse,#b1d6c24d,#8cba9e24 48%,transparent 70%);pointer-events:none}
   .cr-featured__phone{position:relative;display:block;flex:0 1 12.8rem;width:min(12.8rem,42%);min-width:0;margin:0;padding:.42rem;border:4px solid #14261f;border-radius:1.8rem;overflow:hidden;background:#15241e;box-shadow:.6rem 1.2rem 2.4rem #041b1666;transition:transform 400ms ease}
   .cr-featured__phone img{display:block;width:100%;height:auto;aspect-ratio:230/512;object-fit:contain;border-radius:1.2rem}
-  .cr-featured__phone--home{transform:rotate(-4deg)}
-  .cr-featured__phone--reports{transform:rotate(4deg)}
-  .cr-featured__panel:hover .cr-featured__phone--home{transform:rotate(-2deg) translateY(-.25rem)}
-  .cr-featured__panel:hover .cr-featured__phone--reports{transform:rotate(2deg) translateY(-.25rem)}
+  /* Movimiento editorial suave, alternado y sin alterar las capturas originales. */
+  .cr-featured__phone--home{transform:rotate(-4deg);animation:cr-home-float 6.4s ease-in-out infinite}
+  .cr-featured__phone--reports{transform:rotate(4deg);animation:cr-reports-float 7.2s ease-in-out -1.8s infinite}
+  .cr-featured__halo{animation:cr-halo-breathe 8s ease-in-out infinite}
+  @keyframes cr-home-float {
+    0%,100%{transform:translate3d(0,0,0) rotate(-4deg)}
+    50%{transform:translate3d(-3px,-13px,0) rotate(-5.5deg)}
+  }
+  @keyframes cr-reports-float {
+    0%,100%{transform:translate3d(0,0,0) rotate(4deg)}
+    50%{transform:translate3d(4px,12px,0) rotate(5.5deg)}
+  }
+  @keyframes cr-halo-breathe {
+    0%,100%{opacity:.8;transform:scale(.96)}
+    50%{opacity:1;transform:scale(1.045)}
+  }
+  .cr-featured__panel:hover .cr-featured__phone{box-shadow:.7rem 1.5rem 2.7rem #041b1677}
+
   @media(max-width:67rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
   @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:stretch;gap:.65rem}.cr-featured__cta{width:100%}.cr-featured__google-play{width:100%;min-height:3.5rem}.cr-featured__google-play img{height:4.2rem}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
-  @media(prefers-reduced-motion:reduce){.cr-featured__cta,.cr-featured__google-play,.cr-featured__phone{transition:none}.cr-featured__panel:hover .cr-featured__phone--home{transform:rotate(-4deg)}.cr-featured__panel:hover .cr-featured__phone--reports{transform:rotate(4deg)}}
+  @media(prefers-reduced-motion:reduce){
+    .cr-featured__cta,.cr-featured__google-play,.cr-featured__phone{transition:none}
+    .cr-featured__phone,.cr-featured__halo{animation:none!important}
+    .cr-featured__phone--home{transform:rotate(-4deg)}
+    .cr-featured__phone--reports{transform:rotate(4deg)}
+  }
 </style>
