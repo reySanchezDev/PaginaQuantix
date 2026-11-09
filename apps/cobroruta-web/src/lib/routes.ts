@@ -1,5 +1,5 @@
 export type Locale = 'es' | 'en';
-export type PageKey = 'home' | 'features' | 'how | 'help' | 'contact';
+export type PageKey = 'home' | 'features' | 'how' | 'help' | 'contact';
 export const routeMap: Record<PageKey, Record<Locale, string>> = {
   home: {es: '/es/', en: '/en/'},
   features: {es: '/es/funciones/', en: '/en/features/'},
