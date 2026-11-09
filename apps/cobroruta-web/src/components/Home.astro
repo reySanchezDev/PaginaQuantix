@@ -46,8 +46,8 @@ const c=copy[locale];
   <div class="container product-story-grid">
     <div class="product-story-copy" data-reveal>
       <span class="eyebrow">{locale==='es'?'HECHA PARA TU JORNADA':'MADE FOR YOUR WORKDAY'}</span>
-      <h2>{locale==='es'?'Decisiones con información clara.':'Better decisions start with clear numbers.'}</h2>
-      <p>{locale==='es'?'Consultá reportes de cartera y proyecciones para anticipar tu próxima jornada.':'Use portfolio reports and collection forecasts to plan your next workday.'}</p>
+      <h2>{locale==='es'?'Sabé cómo van tus cobros.':'See how your collections are going.'}</h2>
+      <p>{locale==='es'?'Revisá lo cobrado, los pagos pendientes y el estado de tus préstamos.':'See what you have collected, what is still pending, and how your loans are doing.'}</p>
       <a class="btn btn-outline" href={howHref}>{c.nav.how}<span aria-hidden="true">↗</span></a>
     </div>
     <div class="product-story-visual" data-reveal>
@@ -60,7 +60,7 @@ const c=copy[locale];
 <ScreensGallery locale={locale}/>
 <section class="section faq-section" id="faq">
   <div class="container">
-    <div class="section-head" data-reveal><span class="eyebrow">{locale==='es'?'AYUDA RÁPIDA':'QUICK ANSWERS'}</span><h2>{locale==='es'?'Lo esencial, sin complicaciones.':'The essentials, made clear.'}</h2></div>
+    <div class="section-head" data-reveal><span class="eyebrow">{locale==='es'?'AYUDA RÁPIDA':'QUICK ANSWERS'}</span><h2>{locale==='es'?'Preguntas frecuentes.':'Frequently asked questions.'}</h2></div>
     <div class="faq-list">{c.faqs.map((faq,i)=><details open={i===0}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</div>
   </div>
 </section>

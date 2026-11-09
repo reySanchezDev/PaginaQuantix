@@ -105,3 +105,12 @@ La revisión móvil evidenció botones sobredimensionados. Se redujo la acción 
 
 ## Copy de productos en home de Quantix (2026-11-09)
 Se corrigió la frase de la franja CobroRuta / VIGGO / Takofy, que afirmaba genéricamente «Usados en restaurantes y gimnasios de Nicaragua» y sugería que los tres productos atendían los mismos giros. Nuevo texto ES: «Soluciones para cobranza, gimnasios y restaurantes.». EN: «Solutions for collections, gyms, and restaurants.». Se modifica exclusivamente la fuente localizada src/data/home-content.ts; el orden, los enlaces y el diseño de las tarjetas permanecen intactos. Despliegue gestionado desde main, sin tocar Vercel.
+
+
+## Auditoría integral de lenguaje comercial (2026-11-09)
+- Fuentes revisadas: copy.ts (ES/EN: metadatos, portada, pasos, seis tarjetas de funciones, FAQ, CTA, páginas interiores), Home.astro (narrativa y preguntas), ScreensGallery.astro (alt y títulos), JourneyMap.astro (etiquetas de recorrido) e Interior.astro (contacto).
+- Se eliminaron frases técnicas visibles: «arquitectura local-first», «sincronización remota y servicios externos», «operación local», «indicadores» y «distribución» en el apartado público de pagos; reemplazadas por beneficios y acciones concretas que entiende un usuario sin conocimientos técnicos.
+- La explicación de modo sin internet se contrastó con Hensell/lugar_app, PowerSyncConnectionManager y flujos de ajustes: es posible registrar pagos/visitas sin conexión y los cambios de la cuenta pueden actualizarse al recuperarla si el usuario inició sesión y habilitó la sincronización. Por eso la FAQ NO promete sincronización universal ni actualización inmediata para todos.
+- Se ajustó el lenguaje ES/EN de rutas, reportes y pasos; el mapa promocional evita describir cuatro paradas visuales como visitas efectivas de un usuario real.
+- La futura página de contacto dedicada deja de anunciar que el canal no existe y ahora dirige al formulario real de Quantix. Se mantiene sin alterar la demostración diferida para la última fase, porque no forma parte de las rutas públicas.
+- Solo cambios editoriales/a11y en la página CobroRuta; identidad, screenshots originales, funcionalidades, mapa, CTA y Vercel intactos.

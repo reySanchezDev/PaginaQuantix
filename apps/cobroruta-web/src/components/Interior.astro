@@ -2,7 +2,6 @@
 import Home from './Home.astro';
 import Icon from './Icon.astro';
 import ScreensGallery from './ScreensGallery.astro';
-import GooglePlayBadge from './GooglePlayBadge.astro';
 import { copy } from '../content/copy';
 import {type PageKey,type Locale,routeMap} from '../lib/routes';
 const {locale,pageKey} = Astro.props as {locale:Locale,pageKey:PageKey};
@@ -15,6 +14,6 @@ const heading = pageKey==='features'?c.internal.features:pageKey==='how'?c.inter
     {pageKey==='features'&&<><div class="features-grid">{c.feature.cards.map((f,i)=><article class="feature-card"><span class="feature-index">0{i+1}</span><div class="feature-symbol"><Icon name={f.icon}/></div><h3>{f.title}</h3><p>{f.text}</p></article>)}</div><ScreensGallery locale={locale}/></>}
     {pageKey==='how'&&<><div class="interior-mini-grid">{c.intro.steps.map(step=><article class="interior-step"><b>{step.num}</b><h3>{step.title}</h3><p>{step.text}</p></article>)}</div><ScreensGallery locale={locale}/></>}
     {pageKey==='help'&&<div class="faq-list">{c.faqs.map((faq,i)=><details open={i===0}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</div>}
-    {pageKey==='contact'&&<div class="interior-placeholder"><h2 style="font-size:32px;letter-spacing:-1px">{c.internal.contact.pending}</h2><p>{locale==='es'?'Mientras tanto, encontrá la aplicación oficial en Google Play.':'In the meantime, find the official app on Google Play.'}</p><GooglePlayBadge locale={locale} variant="contact" /></div>}
+    {pageKey==='contact'&&<div class="interior-placeholder"><h2 style="font-size:32px;letter-spacing:-1px">{locale==='es'?'¿Tenés preguntas sobre CobroRuta?':'Have questions about CobroRuta?'}</h2><p>{locale==='es'?'Contactá al equipo de Quantix y contanos en qué podemos ayudarte.':'Get in touch with the Quantix team and tell us how we can help.'}</p><a class="btn btn-primary" href={locale==='es'?'https://www.quantix.software/es/contacto/':'https://www.quantix.software/en/contact/'}>{c.internal.contact.pending} <span aria-hidden="true">↗</span></a></div>}
   </div></section>
 </>}
