@@ -1,0 +1,62 @@
+---
+import type { Locale } from '../lib/routes';
+interface Props {
+  locale: Locale;
+  variant?: 'header' | 'menu' | 'hero' | 'closing' | 'footer' | 'contact';
+}
+const { locale, variant = 'hero' } = Astro.props as Props;
+const playUrl = 'https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta';
+const badgeUrl = locale === 'es'
+  ? 'https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png'
+  : 'https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png';
+const label = locale === 'es' ? 'Descargar CobroRuta en Google Play' : 'Get CobroRuta on Google Play';
+---
+<a
+  class:list={['cr-google-play-badge', 'cr-google-play-badge--' + variant]}
+  href={playUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+>
+  <img src={badgeUrl} width="215" height="83" alt={locale==='es'?'Disponible en Google Play':'Get it on Google Play'} loading={variant==='hero'?'eager':'lazy'} decoding="async" />
+</a>
+
+<style>
+  .cr-google-play-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:max-content;
+    max-width:100%;
+    flex-shrink:0;
+    border:0;
+    border-radius:8px;
+    padding:0;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform .2s ease, filter .2s ease;
+  }
+  .cr-google-play-badge img{
+    display:block;
+    height:auto;
+    width:100%;
+    object-fit:contain;
+  }
+  .cr-google-play-badge:hover{transform:translateY(-2px);filter:brightness(1.05)}
+  .cr-google-play-badge:focus-visible{outline:3px solid #4f7893;outline-offset:3px}
+  .cr-google-play-badge--header{width:145px}
+  .cr-google-play-badge--menu{width:184px}
+  .cr-google-play-badge--hero{width:218px}
+  .cr-google-play-badge--closing{width:225px}
+  .cr-google-play-badge--footer{width:155px}
+  .cr-google-play-badge--contact{width:205px;margin-top:18px}
+  @media(max-width:900px){
+    .cr-google-play-badge--header{display:none!important}
+    .cr-google-play-badge--hero{margin-inline:auto}
+  }
+  @media(max-width:600px){
+    .cr-google-play-badge--hero{width:208px}
+    .cr-google-play-badge--closing{width:220px;margin-inline:auto}
+  }
+  @media(prefers-reduced-motion:reduce){.cr-google-play-badge{transition:none}.cr-google-play-badge:hover{transform:none}}
+</style>

@@ -1,5 +1,6 @@
 ---
 import Mark from '../components/Mark.astro';
+import GooglePlayBadge from '../components/GooglePlayBadge.astro';
 import { copy } from '../content/copy';
 import { routeMap, type Locale, type PageKey } from '../lib/routes';
 import '../styles/tokens.css';
@@ -7,7 +8,6 @@ import '../styles/global.css';
 const {locale, pageKey='home', title, description, embedded=false} = Astro.props as {locale:Locale;pageKey?:PageKey;title?:string;description?:string;embedded?:boolean};
 const c = copy[locale];
 const other:Locale = locale==='es'?'en':'es';
-const play = 'https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta';
 const current = embedded ? `/${locale}/cobroruta/` : routeMap[pageKey][locale];
 const alt = embedded ? `/${other}/cobroruta/` : routeMap[pageKey][other];
 const base = embedded ? 'https://www.quantix.software' : 'https://cobroruta.quantix.software';
@@ -50,13 +50,13 @@ const footerContactHref = embedded ? (locale==='es'?'/es/contacto/':'/en/contact
           </nav>
           <div class="header-actions">
             <div class="lang-switch" aria-label={c.nav.language}><a href={embedded?'/es/cobroruta/':routeMap[pageKey].es} lang="es" aria-current={locale==='es'?'page':undefined}>ES</a><span aria-hidden="true">/</span><a href={embedded?'/en/cobroruta/':routeMap[pageKey].en} lang="en" aria-current={locale==='en'?'page':undefined}>EN</a></div>
-            <a class="btn btn-primary btn-header" href={play} target="_blank" rel="noopener noreferrer">{c.nav.download}<span aria-hidden="true">↗</span></a>
+            <GooglePlayBadge locale={locale} variant="header" />
             <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label={c.nav.menu}><span></span><span></span></button>
           </div>
         </div>
         <nav class="mobile-nav" id="mobile-nav" aria-label={locale==='es'?'Navegación móvil':'Mobile navigation'} hidden>
           {navKeys.map((key,i)=><a href={linkFor(key)}>{navLabels[i]} <span>↗</span></a>)}
-          <a href={play} target="_blank" rel="noopener noreferrer">{c.nav.download} <span>↗</span></a>
+          <GooglePlayBadge locale={locale} variant="menu" />
         </nav>
       </header>
       <main id="main"><slot /></main>
@@ -64,7 +64,7 @@ const footerContactHref = embedded ? (locale==='es'?'/es/contacto/':'/en/contact
         <div class="container footer-top">
           <div><a class="brand footer-brand" href={homeHref}><span class="brand-graphic"><Mark /></span><span>Cobro<span class="brand-light">Ruta</span></span></a><p>{c.footer.label}</p></div>
           <div class="footer-links"><a href={linkFor('features')}>{c.nav.features}</a><a href={linkFor('help')}>{c.nav.help}</a><a href={footerContactHref}>{c.nav.contact}</a></div>
-          <div class="footer-links"><a href="https://www.quantix.software" target="_blank" rel="noopener noreferrer">Quantix Software ↗</a><a href={play} target="_blank" rel="noopener noreferrer">Google Play ↗</a></div>
+          <div class="footer-links"><a href="https://www.quantix.software" target="_blank" rel="noopener noreferrer">Quantix Software ↗</a><GooglePlayBadge locale={locale} variant="footer" /></div>
         </div>
         <div class="container footer-bottom"><span>© {new Date().getFullYear()} CobroRuta. {c.footer.rights}</span></div>
       </footer>

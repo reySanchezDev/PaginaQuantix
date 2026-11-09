@@ -82,3 +82,7 @@ Se corrigió «Explorá CobroRuta» por capturas entrecortadas. Ahora muestra un
 
 ## Controles flotantes del carrusel (2026-11-09)
 Según captura Android del responsable, los controles anterior/siguiente situados arriba del carrusel eran poco ergonómicos. Se trasladaron a los laterales del área de imágenes, con botones circulares sobre el carrusel, en ambos idiomas. Se mantiene contador en la cabecera, paginación inferior, swipe táctil, carrusel de 6 capturas y aria/teclado. Las flechas tienen objetivo táctil >=50px y foco accesible, con modo reduced motion. No se modificaron capturas ni otros componentes. Fuente del código: src/components/ScreensGallery.astro y src/styles/global.css del subproyecto apps/cobroruta-web.
+
+
+## Insignias de Google Play en botones de descarga (2026-11-09)
+En la landing CobroRuta (ES/EN, versión integrada en Quantix y proyecto independiente), TODOS los puntos que dirigen a Google Play muestran la insignia ORIGINAL y localizada de Google Play como en la ficha de producto Quantix: header desktop, menú móvil, segundo CTA del hero, CTA final, enlace de pie y pantalla Contacto. Componente reutilizable: apps/cobroruta-web/src/components/GooglePlayBadge.astro. Usa el mismo dominio/archivos oficiales que el bloque CobroRutaSpotlight de Quantix. No se redibujó el logo Android, no se inventaron assets; href a dev.hensell.cobro_ruta. CSP ya habilitaba play.google.com en imágenes. No se alteró Vercel/DNS ni app Flutter. QA responsive visual pendiente del usuario.

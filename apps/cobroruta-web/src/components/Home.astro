@@ -3,13 +3,13 @@ import Mark from './Mark.astro';
 import Icon from './Icon.astro';
 import ScreensGallery from './ScreensGallery.astro';
 import JourneyMap from './JourneyMap.astro';
+import GooglePlayBadge from './GooglePlayBadge.astro';
 import {copy} from '../content/copy';
 import {routeMap,type Locale} from '../lib/routes';
 const {locale, embedded=false} = Astro.props as {locale:Locale;embedded?:boolean};
 const howHref = embedded ? '#jornada' : routeMap.how[locale];
 const featuresHref = embedded ? '#funciones' : routeMap.features[locale];
 const c=copy[locale];
-const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta';
 ---
 <section class="hero-section" id="inicio">
   <div class="hero-pattern" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -18,7 +18,7 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
       <div class="eyebrow pill-eyebrow"><span class="tiny-star">✳</span> {c.hero.eyebrow}</div>
       <h1><span>{c.hero.titleA}</span><br/><em>{c.hero.titleB}</em></h1>
       <p class="hero-subtitle">{c.hero.body}</p>
-      <div class="hero-ctas"><a class="btn btn-primary btn-xl" href={howHref}>{c.hero.primary}<span aria-hidden="true">↗</span></a><a class="text-link" href={play} target="_blank" rel="noopener noreferrer">{c.hero.secondary}<span aria-hidden="true">↗</span></a></div>
+      <div class="hero-ctas"><a class="btn btn-primary btn-xl" href={howHref}>{c.hero.primary}<span aria-hidden="true">↗</span></a><GooglePlayBadge locale={locale} variant="hero" /></div>
       <div class="hero-note"><span class="note-seal" aria-hidden="true">✓</span>{c.hero.footnote}</div>
     </div>
     <div class="hero-visual" aria-label={c.hero.screenStatus}>
@@ -62,4 +62,4 @@ const play='https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta
     <div class="faq-list">{c.faqs.map((faq,i)=><details open={i===0}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</div>
   </div>
 </section>
-<section class="final-cta"><div class="container closing-grid"><div class="closing-orbit" aria-hidden="true"><span></span><span></span><Mark/></div><div class="closing-copy" data-reveal><span class="eyebrow">{c.close.eyebrow}</span><h2>{c.close.title}</h2><p>{c.close.body}</p><div class="closing-actions"><a href={play} class="btn btn-light btn-xl" target="_blank" rel="noopener noreferrer">{c.close.primary}<span aria-hidden="true">↗</span></a><a class="text-link text-link-light" href={featuresHref}>{c.close.secondary} <span aria-hidden="true">→</span></a></div></div></div></section>
+<section class="final-cta"><div class="container closing-grid"><div class="closing-orbit" aria-hidden="true"><span></span><span></span><Mark/></div><div class="closing-copy" data-reveal><span class="eyebrow">{c.close.eyebrow}</span><h2>{c.close.title}</h2><p>{c.close.body}</p><div class="closing-actions"><GooglePlayBadge locale={locale} variant="closing" /><a class="text-link text-link-light" href={featuresHref}>{c.close.secondary} <span aria-hidden="true">→</span></a></div></div></div></section>
