@@ -1,0 +1,57 @@
+---
+import { getRoute } from "../../i18n/routes";
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+interface Props { locale: Locale; variant?: "home" | "catalog"; }
+const { locale, variant = "catalog" } = Astro.props as Props;
+const es = locale === "es";
+---
+<section class="cr-featured" data-variant={variant} aria-labelledby={"cr-featured-" + variant}>
+  <Container>
+    <article class="cr-featured__panel" data-reveal>
+      <div class="cr-featured__content">
+        <p class="cr-featured__eyebrow"><span aria-hidden="true">✦</span> {es ? "Producto estrella de Quantix" : "Featured Quantix product"}</p>
+        <div class="cr-featured__brand">
+          <img src="/cobroruta/icon.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy" decoding="async"/>
+          <span>CobroRuta</span>
+        </div>
+        <h2 id={"cr-featured-" + variant}>{es ? "Tu cartera, lista para cada jornada." : "Your portfolio, ready for every workday."}</h2>
+        <p class="cr-featured__description">{es ? "Gestioná clientes, préstamos y cuotas. Prepará tus visitas y registrá cobros desde el celular." : "Manage customers, loans, and installments. Plan visits and record collections from your phone."}</p>
+        <a class="cr-featured__cta" href={getRoute("cobroruta", locale)}>
+          {es ? "Conocer CobroRuta" : "Explore CobroRuta"} <span aria-hidden="true">↗</span>
+        </a>
+        <p class="cr-featured__availability">{es ? "Disponible en Google Play" : "Available on Google Play"}</p>
+      </div>
+      <div class="cr-featured__visual">
+        <div class="cr-featured__halo" aria-hidden="true"></div>
+        <figure class="cr-featured__phone">
+          <img src="/images/screens/home-android.jpg" alt={es ? "Inicio de CobroRuta en Android" : "CobroRuta Android home screen"} width="230" height="512" loading="lazy" decoding="async"/>
+        </figure>
+      </div>
+    </article>
+  </Container>
+</section>
+<style>
+  .cr-featured{padding:clamp(2rem,5vw,4.5rem) 0;background:var(--color-canvas)}
+  .cr-featured[data-variant="catalog"]{padding-top:0;padding-bottom:clamp(2.5rem,5vw,5rem)}
+  .cr-featured__panel{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);align-items:center;overflow:hidden;min-height:30rem;border:1px solid #2b7659;border-radius:clamp(1rem,2vw,1.75rem);color:#fffefa;background:linear-gradient(124deg,#123a2e,#205e49 60%,#2e785e);box-shadow:0 1.25rem 3.25rem -2.5rem #103b2c91}
+  .cr-featured__panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 90% 85%,#a6cbb83b,transparent 56%)}
+  .cr-featured__content{position:relative;z-index:2;padding:clamp(2rem,5vw,4.5rem)}
+  .cr-featured__eyebrow{display:flex;align-items:center;gap:.65rem;margin:0 0 1.7rem;color:#dfede4;font-size:.75rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+  .cr-featured__eyebrow span{color:#d5e9d9;font-size:1rem}
+  .cr-featured__brand{display:flex;align-items:center;gap:.8rem;margin-bottom:1.25rem;font-family:var(--font-heading);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:700}
+  .cr-featured__brand img{display:block;width:3rem;height:3rem;border-radius:.8rem;object-fit:contain;box-shadow:0 .5rem 1rem #092c214d}
+  .cr-featured h2{margin:0;max-width:13ch;color:inherit;font-size:clamp(2rem,4vw,3.75rem);font-weight:650;letter-spacing:-.045em;line-height:1.08;text-wrap:balance}
+  .cr-featured__description{max-width:43ch;margin:1.5rem 0 0;color:#e3eee7;font-size:clamp(1rem,1.45vw,1.15rem);line-height:1.6}
+  .cr-featured__cta{display:inline-flex;justify-content:space-between;align-items:center;gap:2rem;min-height:3.25rem;margin-top:1.75rem;padding:.85rem 1.25rem;border-radius:.55rem;color:#164331;background:#fffefa;font-size:var(--text-base);font-weight:700;text-decoration:none;transition:transform 180ms ease,background 180ms ease}
+  .cr-featured__cta:is(:hover,:focus-visible){color:#123a2e;background:#e6eee7;transform:translateY(-2px)}
+  .cr-featured__cta:focus-visible{outline:3px solid #f4dc8b;outline-offset:4px}
+  .cr-featured__availability{margin:1rem 0 0;color:#cbded3;font-size:var(--text-xs)}
+  .cr-featured__visual{position:relative;align-self:stretch;display:grid;place-items:center;min-height:25rem;padding:2rem 2.5rem 0}
+  .cr-featured__halo{position:absolute;width:min(31rem,95%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#b1d6c24d,#8cba9e24 44%,transparent 69%);outline:1px solid #c7dfcd1f;pointer-events:none}
+  .cr-featured__phone{position:relative;display:block;width:clamp(11rem,22vw,14rem);margin:1rem auto -6rem;padding:.45rem;border:4px solid #14261f;border-radius:2rem;overflow:hidden;background:#15241e;box-shadow:1rem 1.5rem 3rem #041b1666;transform:rotate(7deg);transition:transform 400ms ease}
+  .cr-featured__phone img{display:block;width:100%;height:auto;aspect-ratio:230/512;object-fit:contain;border-radius:1.35rem}
+  .cr-featured__panel:hover .cr-featured__phone{transform:rotate(4deg) translateY(-.35rem)}
+  @media(max-width:48rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 1.5rem 1rem}.cr-featured h2{max-width:17ch}.cr-featured__visual{min-height:17rem;padding:0 1rem}.cr-featured__phone{width:10.5rem;margin:1rem auto -11rem}.cr-featured__description{margin-top:1rem}.cr-featured__cta{margin-top:1.25rem}}
+  @media(prefers-reduced-motion:reduce){.cr-featured__cta,.cr-featured__phone{transition:none}.cr-featured__panel:hover .cr-featured__phone{transform:rotate(7deg)}}
+</style>

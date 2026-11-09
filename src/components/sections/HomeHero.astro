@@ -41,7 +41,8 @@ const es = locale === "es";
       <HomeProductComposition locale={locale} />
     </div>
     <div class="hero-footnote">
-      <nav class="hero-products" aria-label={es ? "Casos de Quantix" : "Quantix case studies"}>
+      <nav class="hero-products" aria-label={es ? "Productos destacados de Quantix" : "Featured Quantix products"}>
+        <a class="hero-products__star" href={getRoute("cobroruta", locale)}>CobroRuta<span aria-hidden="true">↗</span></a>
         <a href={getRoute("case-viggo", locale)}>VIGGO<span aria-hidden="true">↗</span></a>
         <a href={getRoute("case-takofy", locale)}>Takofy<span aria-hidden="true">↗</span></a>
       </nav>
@@ -123,8 +124,10 @@ const es = locale === "es";
   }
   .hero-products {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: .25rem 1.5rem;
   }
+  .hero-products__star { color: #fff3c8; }
   .hero-products a {
     display: inline-flex;
     align-items: center;
