@@ -1,0 +1,11 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import Interior from '../../components/Interior.astro';
+import { copy } from '../../content/copy';
+import { paths,type Locale,type PageKey } from '../../lib/routes';
+export function getStaticPaths(){return paths;}
+const {locale,pageKey}=Astro.props as {locale:Locale;pageKey:PageKey};
+const c=copy[locale];
+const title=pageKey==='home'?c.siteTitle:({features:c.nav.features,how:c.nav.how,demo:c.nav.demo,help:c.nav.help,contact:c.nav.contact} as Record<PageKey,string>)[pageKey]+' | CobroRuta';
+---
+<MarketingLayout locale={locale} pageKey={pageKey} title={title}><Interior locale={locale} pageKey={pageKey}/></MarketingLayout>

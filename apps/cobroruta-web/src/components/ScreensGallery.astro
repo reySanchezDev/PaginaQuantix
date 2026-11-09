@@ -1,0 +1,28 @@
+---
+import type { Locale } from '../lib/routes';
+const {locale} = Astro.props as {locale:Locale};
+const images = [
+ {src:'/images/screens/home-android.jpg', es:'Inicio de CobroRuta',en:'CobroRuta home screen',descEs:'Panel principal',descEn:'Home dashboard'},
+ {src:'/images/screens/clients-empty-android.jpg',es:'Estado inicial de clientes',en:'Customer empty state',descEs:'Clientes',descEn:'Customers'},
+ {src:'/images/screens/route-empty-android.jpg',es:'Ruta diaria sin cuotas vencidas',en:'Daily route with no due installments',descEs:'Ruta del día',descEn:'Daily route'},
+ {src:'/images/screens/reports-menu-android.jpg',es:'Listado de reportes de CobroRuta',en:'CobroRuta reporting menu',descEs:'Reportes',descEn:'Reports'},
+ {src:'/images/screens/portfolio-report-android.jpg',es:'Reporte de salud de cartera con datos vacíos',en:'Portfolio report with empty data',descEs:'Salud de cartera',descEn:'Portfolio health'},
+ {src:'/images/screens/forecast-report-android.jpg',es:'Proyección de cobros con datos vacíos',en:'Collection forecast with empty data',descEs:'Proyección',descEn:'Forecast'},
+];
+---
+<section class="section screenshot-section" aria-labelledby="screen-gallery-title">
+ <div class="container">
+  <div class="section-head screenshot-gallery-heading" data-reveal>
+   <span class="eyebrow">{locale==='es'?'LA APLICACIÓN, DE VERDAD':'THE REAL APPLICATION'}</span>
+   <h2 id="screen-gallery-title">{locale==='es'?'Conocé las pantallas reales.':'Explore the actual product.'}</h2>
+   <p>{locale==='es'?'Capturas originales de CobroRuta para Android, sin interfaces generadas. Las pantallas muestran estados de prueba, incluidos estados vacíos.':'Original screenshots from CobroRuta for Android—not generated interfaces. Some screens show test or empty states.'}</p>
+  </div>
+  <div class="screen-gallery" aria-label={locale==='es'?'Galería de capturas de Android':'Android screenshot gallery'}>
+   {images.map((item,i)=><figure class="screen-gallery-card" data-reveal>
+     <div class="screen-gallery-device"><img src={item.src} alt={locale==='es'?item.es:item.en} width="230" height="512" loading="lazy" decoding="async"/></div>
+     <figcaption><span>{String(i+1).padStart(2,'0')}</span>{locale==='es'?item.descEs:item.descEn}</figcaption>
+   </figure>)}
+  </div>
+  <p class="screen-gallery-note">{locale==='es'?'Las imágenes contienen textos de la versión española de la app. Para la versión inglesa del sitio se muestran los originales sin alterar.':'The original app screenshots are in Spanish; they are intentionally shown unchanged on this English page.'}</p>
+ </div>
+</section>
