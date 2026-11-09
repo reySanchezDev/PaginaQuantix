@@ -68,6 +68,11 @@ img,svg{max-width:100%}figure{margin:0}h1,h2,h3,p{margin-top:0}p{line-height:1.7
   .hero-content{position:relative;z-index:5}
   .hero-note{position:relative;z-index:6;display:flex;justify-content:center;align-items:center;margin:22px auto 0;max-width:100%;text-align:center;line-height:1.5;font-size:12px}
   .hero-visual{position:relative;z-index:1;margin-top:20px;margin-bottom:0;transform:scale(.67);transform-origin:center top}
-  .float-bottom{display:none}
+  .float-bottom{display:flex;right:-10%;bottom:17%;max-width:300px;z-index:4}
+  .float-bottom small{max-width:205px}
+
   .footer-bottom{justify-content:flex-start}
 }
+
+/* Keep the second phone callout visible on narrow screens without covering the hero copy. */
+@media(max-width:380px){.float-bottom{right:-8%;bottom:16%;max-width:280px}}

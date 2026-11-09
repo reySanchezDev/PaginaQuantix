@@ -50,3 +50,6 @@ Petición del responsable: retirar textos legales innecesarios del marketing, co
 - Galería sin párrafo reiterativo y secciones de producto, CTA y hero con mensajes diferenciados.
 - Código en apps/cobroruta-web, integrado al build Quantix en /es/cobroruta/ y /en/cobroruta/.
 - Pendiente validación visual final en móvil del usuario; no se cambió Vercel directamente.
+
+## Restauración de tarjeta del hero móvil (2026-11-08)
+La tarjeta flotante inferior «Tu cartera, a tu alcance» fue ocultada indebidamente en la corrección anterior mediante CSS `.float-bottom{display:none}`. Se restauró junto con el texto original ES/EN y se reposicionó exclusivamente en ancho <=600px para mantener separado el texto de disponibilidad Google Play. Se conservaron el screenshot original, las otras tarjetas y la separación del hero. QA visual final pendiente de usuario en dispositivo real.
