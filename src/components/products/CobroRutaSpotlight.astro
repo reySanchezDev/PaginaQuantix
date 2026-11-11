@@ -30,7 +30,7 @@ const googlePlayBadge = es
           </a>
           <a class="cr-featured__cta" href="https://cobroruta.hensell.dev/app/">
             <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
-            {es ? "Abrir versión web" : "Open web app"}
+            {es ? "Versión web" : "Web app"}
           </a>
           <a
             class="cr-featured__google-play"
@@ -103,13 +103,13 @@ const googlePlayBadge = es
   .cr-featured__panel:hover .cr-featured__phone{box-shadow:.7rem 1.5rem 2.7rem #041b1677}
 
   @media(min-width:40.001rem){
-    .cr-featured__actions{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:.5rem}
-    .cr-featured__cta{min-width:0;gap:.5rem;padding:.75rem;font-size:.875rem}
+    .cr-featured__actions{display:grid;grid-template-columns:max-content max-content minmax(8rem,1fr);gap:.5rem}
+    .cr-featured__cta{min-width:0;height:3.25rem;gap:.5rem;padding:.65rem;font-size:.8125rem;white-space:nowrap}
     .cr-featured__google-play{min-width:0}
     .cr-featured__google-play img{width:100%;height:auto;max-height:4.35rem}
   }
 
-  @media(max-width:67rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
+  @media(max-width:76rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
   @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:stretch;gap:.65rem}.cr-featured__cta{width:100%}.cr-featured__google-play{width:100%;min-height:3.5rem}.cr-featured__google-play img{height:4.2rem}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
   @media(prefers-reduced-motion:reduce){
     .cr-featured__cta,.cr-featured__google-play,.cr-featured__phone{transition:none}
