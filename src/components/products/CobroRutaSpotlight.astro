@@ -103,10 +103,10 @@ const googlePlayBadge = es
   .cr-featured__panel:hover .cr-featured__phone{box-shadow:.7rem 1.5rem 2.7rem #041b1677}
 
   @media(min-width:40.001rem){
-    .cr-featured__actions{display:grid;grid-template-columns:max-content max-content minmax(8rem,1fr);gap:.5rem}
+    .cr-featured__actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
     .cr-featured__cta{min-width:0;height:3.25rem;gap:.5rem;padding:.65rem;font-size:.8125rem;white-space:nowrap}
-    .cr-featured__google-play{min-width:0}
-    .cr-featured__google-play img{width:100%;height:auto;max-height:4.35rem}
+    .cr-featured__google-play{min-width:0;height:3.25rem;overflow:hidden;background:#000;border:1px solid #a6b3ac}
+    .cr-featured__google-play img{width:100%;height:100%;max-height:none;object-fit:contain;transform:scale(1.16)}
   }
 
   @media(max-width:76rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
