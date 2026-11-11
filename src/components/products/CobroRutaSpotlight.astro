@@ -1,5 +1,4 @@
 ---
-import { getRoute } from "../../i18n/routes";
 import type { Locale } from "../../types/site";
 import Container from "../ui/Container.astro";
 
@@ -25,8 +24,12 @@ const googlePlayBadge = es
         <h2 id={"cr-featured-" + variant}>{es ? "Tu cartera, lista para cada jornada." : "Your portfolio, ready for every workday."}</h2>
         <p class="cr-featured__description">{es ? "Gestioná clientes, préstamos y cuotas. Prepará tus visitas y registrá cobros desde el celular." : "Manage customers, loans, and installments. Plan visits and record collections from your phone."}</p>
         <div class="cr-featured__actions">
-          <a class="cr-featured__cta" href={getRoute("cobroruta", locale)}>
+          <a class="cr-featured__cta" href="https://cobroruta.hensell.dev">
             {es ? "Conocer CobroRuta" : "Explore CobroRuta"}
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="cr-featured__cta" href="https://cobroruta.hensell.dev/app/">
+            {es ? "Abrir versión web" : "Open web app"}
             <span aria-hidden="true">↗</span>
           </a>
           <a
