@@ -25,12 +25,12 @@ const googlePlayBadge = es
         <p class="cr-featured__description">{es ? "Gestioná clientes, préstamos y cuotas. Prepará tus visitas y registrá cobros desde el celular." : "Manage customers, loans, and installments. Plan visits and record collections from your phone."}</p>
         <div class="cr-featured__actions">
           <a class="cr-featured__cta" href="https://cobroruta.hensell.dev">
+            <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
             {es ? "Conocer CobroRuta" : "Explore CobroRuta"}
-            <span aria-hidden="true">↗</span>
           </a>
           <a class="cr-featured__cta" href="https://cobroruta.hensell.dev/app/">
+            <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
             {es ? "Abrir versión web" : "Open web app"}
-            <span aria-hidden="true">↗</span>
           </a>
           <a
             class="cr-featured__google-play"
@@ -74,6 +74,7 @@ const googlePlayBadge = es
   .cr-featured__description{max-width:43ch;margin:1.4rem 0 0;color:#e3eee7;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6}
   .cr-featured__actions{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem 1rem;margin-top:1.75rem}
   .cr-featured__cta{display:inline-flex;align-items:center;justify-content:center;gap:1.2rem;min-height:3.25rem;padding:.85rem 1.2rem;border-radius:.55rem;color:#164331;background:#fffefa;font-size:var(--text-base);font-weight:700;text-decoration:none;transition:transform 180ms ease,background 180ms ease}
+  .cr-featured__button-icon{display:block;width:1.25rem;height:1.25rem;flex-shrink:0;border-radius:.3rem;object-fit:contain}
   .cr-featured__cta:is(:hover,:focus-visible){color:#123a2e;background:#e6eee7;transform:translateY(-2px)}
   .cr-featured__google-play{display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;max-width:100%;border-radius:.55rem;text-decoration:none;transition:transform 180ms ease;cursor:pointer}
   .cr-featured__google-play img{display:block;width:auto;height:4.35rem;max-width:100%;object-fit:contain}
