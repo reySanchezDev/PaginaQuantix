@@ -38,6 +38,7 @@ html[data-seasonal-theme="navidad-premium"] {
   --menu-action-bg: linear-gradient(110deg, #edcf91, #d5ab61);
   --menu-action-fg: #172a26;
   --menu-ornament-height: 1.6rem;
+  --header-ornament-height: clamp(2.3rem, 3.5vw, 3rem);
   --menu-ornament: url("/themes/navidad-premium/lights-static.svg?v=6") left top / auto 100%
     repeat-x;
   --product-viggo: #5d4f83;
@@ -67,13 +68,17 @@ html[data-seasonal-theme="navidad-premium"] .site-header::before {
   position: absolute;
   /* The brass anchor plates overlap the ivory header by 4px, not the hero content. */
   inset: calc(100% - 0.25rem) 0 auto;
-  height: clamp(2.3rem, 3.5vw, 3rem);
+  height: var(--header-ornament-height);
   /* Phase-aligned tile: both ends of the wire meet without a visible break. */
   background: url("/themes/navidad-premium/lights.svg?v=6") left top / auto 100% repeat-x;
   filter: drop-shadow(0 0.16rem 0.4rem rgb(220 170 80 / 0.18));
   opacity: 1;
   pointer-events: none;
   z-index: 3;
+}
+
+html[data-seasonal-theme="navidad-premium"] .new-year {
+  padding-block-start: calc(var(--header-ornament-height) + 0.65rem);
 }
 
 html[data-seasonal-theme="navidad-premium"] .brand__dot {
