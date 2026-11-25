@@ -80,7 +80,7 @@ El respaldo se considera un bloque prioritario e independiente dentro de Configu
 - Restauración de respaldo y confirmaciones de mantenimiento.
 - Mensajes de carpeta no configurada, respaldo creado, restauración y error.
 
-La demo no ejecutará operaciones reales sobre archivos: representará el flujo con datos de muestra y dejará claro cuándo se trata de una simulación.
+La capacidad sí existe en la app real: `lib/services/backup_service.dart` crea respaldos SQLite, lista, elimina, comparte y restaura archivos; la UI de `settings_screen.dart` y `scheduled_backup_screen.dart` expone esas acciones. Por tanto, el respaldo sí debe formar parte del mini. La limitación es técnica de la landing: el navegador no tendrá acceso a la base SQLite de la app instalada. El mini mostrará el mismo flujo y resultado de forma demostrativa, pero nunca afirmará que creó/restauró un archivo de la app real ni presentará una operación web como si fuera persistente.
 
 Además, el mini usa pocos interruptores (`validateCapital`, `contractRatePolicy`, `logoPath`) donde la app real tiene varias políticas independientes. La configuración no debe crecer como una lista plana: conviene agruparla en bloques navegables dentro del dispositivo.
 
@@ -258,7 +258,7 @@ Diferencias observadas:
 - Las etiquetas y mensajes principales coinciden con el catálogo aprobado para ES y EN.
 - Un escenario completo modifica coherentemente cliente, préstamo, cuotas, pago, historial y reportes.
 - Los reportes muestran datos derivados del mismo escenario, no cifras desconectadas.
-- Las reglas que no se pueden simular completamente en una landing se muestran como estados explicativos y no como acciones falsas.
+- Las reglas y capacidades de la app se muestran únicamente si existen en la referencia Flutter; las que no se pueden ejecutar sobre la base local dentro de una landing se muestran como estados explicativos claramente marcados, nunca como operaciones reales completadas.
 - La demo conserva el diseño editorial, el playback automático y el uso exclusivo en escritorio definido para esta sección.
 - No se agregan dependencias de base de datos ni se presentan datos de la demo como operaciones reales.
 - La preview se identifica con el commit de la app de referencia y el commit web que la integra.
