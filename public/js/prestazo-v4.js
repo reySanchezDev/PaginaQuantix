@@ -74,15 +74,23 @@
 
     const en = document.documentElement.lang.toLowerCase().startsWith('en');
     const translations = demo.querySelector('[data-mp-i18n]')?.dataset || {};
+    const phaseScreens = (demo.dataset.mpPhaseScreens || 'company,dashboard,customer,loan,payment,collection,history,reports,backup')
+      .split(',').map(value => value.trim()).filter(Boolean);
+    const phaseCount = phaseScreens.length || 1;
     const headings = [
       translations.settingsHeading,
+      en ? 'Review your portfolio.' : 'Revisar tu cartera.',
       translations.customerHeading,
       translations.loanHeading,
-      translations.paymentHeading
+      translations.paymentHeading,
+      en ? 'Review collections.' : 'Revisar cobranza.',
+      en ? 'Check the history.' : 'Consultar historial.',
+      en ? 'Read your reports.' : 'Revisar reportes.',
+      en ? 'Manage backups.' : 'Gestionar respaldos.'
     ].map(value => (value || '').trim().replace(/[.!]+$/u, ''));
     const shortNames = en
-      ? ['Setup', 'Customers', 'Loans', 'Payments']
-      : ['Configuración', 'Clientes', 'Préstamos', 'Pagos'];
+      ? ['Setup', 'Portfolio', 'Customers', 'Loans', 'Payments', 'Collections', 'History', 'Reports', 'Backups']
+      : ['Configuración', 'Cartera', 'Clientes', 'Préstamos', 'Pagos', 'Cobranza', 'Historial', 'Reportes', 'Respaldos'];
 
     const mobile = document.createElement('span');
     mobile.className = 'prestazo-mobile-section-name';
@@ -112,10 +120,8 @@
 
     const stepForScreen = () => {
       const screen = screens.find(item => !item.hidden)?.dataset.mpScreen;
-      if (screen === 'customer') return 1;
-      if (screen === 'loan') return 2;
-      if (screen === 'payment') return 3;
-      return 0; // company, monetary, policy, sequences = etapa 1
+      const step = phaseScreens.indexOf(screen);
+      return step >= 0 ? step : 0;
     };
 
     const visibleBelowHeader = (element, headerBottom) => {
@@ -152,18 +158,18 @@
         fullAccessibleText = mobileText;
       } else {
         fullAccessibleText = (en ? 'Step ' : 'Paso ') + (step + 1) +
-          (en ? ' of 4: ' : ' de 4: ') + headings[step];
+          (en ? ' of ' : ' de ') + phaseCount + ': ' + (headings[step] || '');
         if (orderVisible) {
           mobileText = en ? 'The app' : 'La aplicación';
         } else if (titleVisible) {
           mobileText = (en ? 'Step ' : 'Paso ') + (step + 1) +
-            (en ? ' of 4' : ' de 4');
+            (en ? ' of ' : ' de ') + phaseCount;
           showDesktop = true;
-          desktopText = (en ? 'Step ' : 'Paso ') + (step + 1) + '/4';
+          desktopText = (en ? 'Step ' : 'Paso ') + (step + 1) + '/' + phaseCount;
         } else {
-          mobileText = (step + 1) + '/4 · ' + shortNames[step];
+          mobileText = (step + 1) + '/' + phaseCount + ' · ' + (shortNames[step] || '');
           showDesktop = true;
-          desktopText = (en ? 'Step ' : 'Paso ') + (step + 1) + '/4';
+          desktopText = (en ? 'Step ' : 'Paso ') + (step + 1) + '/' + phaseCount;
           if (innerWidth > 900) desktopText += ' · ' + headings[step];
         }
         if (inTour && step !== lastStep) {
@@ -619,7 +625,8 @@
          demo.dataset.locale==='en'?'Read your reports.':'Revisar reportes.',
          demo.dataset.locale==='en'?'Manage backups.':'Gestionar respaldos.'
        ];
-       const screens=['company','dashboard','customer','loan','payment','collection','history','reports','backup'];
+       const screens=(demo.dataset.mpPhaseScreens||'company,dashboard,customer,loan,payment,collection,history,reports,backup')
+         .split(',').map(value=>value.trim()).filter(Boolean);
       const list=document.createElement('ol');
       list.className='mp-desktop-checklist';
       list.setAttribute('aria-label',demo.dataset.locale==='en'?'Demo progress':'Progreso de la demostración');
