@@ -146,6 +146,7 @@
             "Lo octavo es",
             "Lo noveno es",
           ];
+    const playbackTiming = { readablePhase: 4200, dashboard: 4200, backup: 5000 };
     let N = -1;
     function O(t) {
       const e = Math.max(0, Math.min(M.length - 1, t));
@@ -374,7 +375,8 @@
         R(m.settingsHeading || "Configurar tu empresa."),
         T(),
         (S = !1),
-        (L = !1));
+        (L = !1),
+        e.dispatchEvent(new CustomEvent("mp-demo-reset")));
     }
     function Y(e, a) {
       return F(t.matches ? Math.max(300, Math.min(e, 4e3)) : e, a);
@@ -528,7 +530,7 @@
       if (!(v && a === x && (await Y(1400, a)) && (await D(m.storyConfigured, a)))) return;
       R("en" === e.dataset.locale ? "Review your portfolio." : "Revisar tu cartera.");
       U(4);
-      if (!(await Y(1800, a))) return;
+      if (!(await Y(playbackTiming.dashboard, a))) return;
       R(m.customerHeading);
       U(5);
       if (
@@ -566,16 +568,16 @@
         return;
       R("en" === e.dataset.locale ? "Review collections." : "Revisar cobranza.");
       U(8);
-      if (!(await Y(1300, a))) return;
+      if (!(await Y(playbackTiming.readablePhase, a))) return;
       R("en" === e.dataset.locale ? "Check the history." : "Consultar historial.");
       U(9);
-      if (!(await Y(1300, a))) return;
+      if (!(await Y(playbackTiming.readablePhase, a))) return;
       R("en" === e.dataset.locale ? "Read your reports." : "Revisar reportes.");
       U(10);
-      if (!(await Y(1300, a))) return;
+      if (!(await Y(playbackTiming.readablePhase, a))) return;
       R("en" === e.dataset.locale ? "Manage backups." : "Gestionar respaldos.");
       U(11);
-      if (!(await Y(1800, a))) return;
+      if (!(await Y(playbackTiming.backup, a))) return;
       if (v && a === x) z();
     }
     (e.addEventListener("input", (t) => {
