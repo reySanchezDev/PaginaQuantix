@@ -126,6 +126,64 @@
         const e = t.dataset.mpPaymentChoice === d.paymentType?.value;
         (t.classList.toggle("is-selected", e), t.setAttribute("aria-pressed", String(e)));
       }
+      syncOnboardingViews();
+    }
+    function syncOnboardingViews() {
+      const customerName = d.customerName?.value || ("en" === e.dataset.locale ? "New customer" : "Nuevo cliente");
+      const loanAmount = Number(d.loanAmount?.value || 0);
+      const paymentAmount = Number(d.paymentAmount?.value || 0);
+      const currency = "USD" === d.loanCurrency?.value ? "$" : "C$";
+      const money = (value) => `${currency} ${Number(value || 0).toLocaleString("en-US")}`;
+      const screenTitles = {
+        collection: "en" === e.dataset.locale ? "To Collect" : "A Cobrar",
+        history: "en" === e.dataset.locale ? "Payment History" : "Historial de Pagos",
+        reports: "en" === e.dataset.locale ? "Reports" : "Reportes",
+        backup: "en" === e.dataset.locale ? "Scheduled Backup" : "Respaldo Programado",
+      };
+      for (const [screen, title] of Object.entries(screenTitles)) {
+        const heading = e.querySelector(`[data-mp-screen="${screen}"] .mp-section-title`);
+        heading && (heading.textContent = title);
+      }
+      const customerCount = e.querySelector('[data-mp-metric="customers"]');
+      const loanCount = e.querySelector('[data-mp-metric="loans"]');
+      const placed = e.querySelector('[data-mp-metric="placed"]');
+      const payments = e.querySelector('[data-mp-metric="payments"]');
+      customerCount && (customerCount.textContent = d.customerName?.value ? "1" : "0");
+      loanCount && (loanCount.textContent = loanAmount ? "1" : "0");
+      placed && (placed.textContent = money(loanAmount));
+      payments && (payments.textContent = money(paymentAmount));
+      const collection = e.querySelectorAll(".mp-status-list")[0];
+      if (collection) {
+        collection.replaceChildren();
+        const item = document.createElement("div");
+        item.innerHTML = `<strong>${customerName}</strong><span class="mp-status mp-status-success">${"en" === e.dataset.locale ? "Due today" : "Vence hoy"}</span><small>${money(paymentAmount || 1500)} · ${"en" === e.dataset.locale ? "Monthly plan" : "Plan mensual"}</small><small>${"en" === e.dataset.locale ? "Installment amount and balance from the active loan." : "Cuota y saldo del préstamo activo."}</small>`;
+        collection.append(item);
+        const action = document.createElement("button");
+        action.className = "mp-save-button";
+        action.type = "button";
+        action.dataset.mpNav = "payment";
+        action.textContent = "en" === e.dataset.locale ? "Register payment" : "Registrar Pago";
+        collection.append(action);
+      }
+      const history = e.querySelectorAll(".mp-status-list")[1];
+      if (history) {
+        history.replaceChildren();
+        const item = document.createElement("div");
+        item.innerHTML = `<strong>${"en" === e.dataset.locale ? "Receipt" : "Recibo"} #R-000</strong><span class="mp-status mp-status-success">${money(paymentAmount)}</span><small>${customerName} · ${"en" === e.dataset.locale ? "Mixed payment · Today" : "Pago mixto · Hoy"}</small>`;
+        history.append(item);
+      }
+      const report = e.querySelector('[data-mp-report="realized"]');
+      const projected = e.querySelector('[data-mp-report="projected"]');
+      const fx = e.querySelector('[data-mp-report="fx"]');
+      report && (report.textContent = money(paymentAmount));
+      projected && (projected.textContent = money(loanAmount * (Number(d.monthlyRate?.value || 0) / 100)));
+      fx && (fx.textContent = money(0));
+      const statementName = e.querySelector("[data-mp-statement-name]");
+      const statementBalance = e.querySelector("[data-mp-statement-balance]");
+      const statementApplication = e.querySelector("[data-mp-statement-application]");
+      statementName && (statementName.textContent = customerName);
+      statementBalance && (statementBalance.textContent = money(Math.max(0, loanAmount - paymentAmount)));
+      statementApplication && (statementApplication.textContent = money(paymentAmount));
     }
     const M =
       "en" === e.dataset.locale
