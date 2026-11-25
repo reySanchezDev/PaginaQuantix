@@ -148,6 +148,9 @@
       const step = stepForScreen();
       const orderVisible = visibleBelowHeader(orderTitle, headerBottom);
       const titleVisible = visibleBelowHeader(stepTitle, headerBottom);
+      const orderTitleInMobileHeader = innerWidth <= 600 && inTour && orderVisible;
+      orderTitle?.classList.toggle('mp-order-title-in-header', orderTitleInMobileHeader);
+      orderTitle?.setAttribute('aria-hidden', String(orderTitleInMobileHeader));
 
       let mobileText;
       let desktopText = '';

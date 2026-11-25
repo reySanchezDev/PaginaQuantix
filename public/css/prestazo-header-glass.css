@@ -209,6 +209,9 @@ html{scroll-padding-top:92px}
   }
 }
 @media (max-width:600px) {
+  .mp-tour .tour-heading h2.mp-order-title-in-header {
+    visibility:hidden;
+  }
   .prestazo-desktop-step-progress,
   .prestazo-desktop-step-progress.is-visible {display:none!important}
   .site-header .header-inner .prestazo-mobile-section-name {
