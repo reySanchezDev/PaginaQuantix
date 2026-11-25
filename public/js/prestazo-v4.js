@@ -92,6 +92,10 @@
       ? ['Setup', 'Portfolio', 'Customers', 'Loans', 'Payments', 'Collections', 'History', 'Reports', 'Backups']
       : ['Configuración', 'Cartera', 'Clientes', 'Préstamos', 'Pagos', 'Cobranza', 'Historial', 'Reportes', 'Respaldos'];
 
+    const narrativeLabels = en
+      ? ['First,', 'Second,', 'Third,', 'Fourth,', 'Fifth,', 'Sixth,', 'Seventh,', 'Eighth,', 'Ninth,']
+      : ['Lo primero es', 'Lo segundo es', 'Lo tercero es', 'Lo cuarto es', 'Lo quinto es', 'Lo sexto es', 'Lo séptimo es', 'Lo octavo es', 'Lo noveno es'];
+
     const mobile = document.createElement('span');
     mobile.className = 'prestazo-mobile-section-name';
     mobile.setAttribute('aria-live', 'off');
@@ -160,14 +164,13 @@
         fullAccessibleText = (en ? 'Step ' : 'Paso ') + (step + 1) +
           (en ? ' of ' : ' de ') + phaseCount + ': ' + (headings[step] || '');
         if (orderVisible) {
-          mobileText = en ? 'The app' : 'La aplicación';
+          mobileText = narrativeLabels[step] || (en ? 'The app' : 'La aplicación');
         } else if (titleVisible) {
-          mobileText = (en ? 'Step ' : 'Paso ') + (step + 1) +
-            (en ? ' of ' : ' de ') + phaseCount;
+          mobileText = narrativeLabels[step] || (en ? 'The app' : 'La aplicación');
           showDesktop = true;
           desktopText = (en ? 'Step ' : 'Paso ') + (step + 1) + '/' + phaseCount;
         } else {
-          mobileText = (step + 1) + '/' + phaseCount + ' · ' + (shortNames[step] || '');
+          mobileText = narrativeLabels[step] || (en ? 'The app' : 'La aplicación');
           showDesktop = true;
           desktopText = (en ? 'Step ' : 'Paso ') + (step + 1) + '/' + phaseCount;
           if (innerWidth > 900) desktopText += ' · ' + headings[step];
