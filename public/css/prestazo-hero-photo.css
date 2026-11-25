@@ -95,19 +95,21 @@ main#content::before {
   .mp-demo .mp-desktop-checklist {
     display:flex;
     flex-direction:column;
-    gap:clamp(.65rem,1.5vh,1.1rem);
+    gap:clamp(.18rem,.65vh,.5rem);
     padding:0;
     margin:0;
     list-style:none;
     max-width:440px;
+    flex:1 1 auto;
+    justify-content:space-between;
   }
   .mp-demo .mp-desktop-checklist li {
     display:grid;
-    grid-template-columns:2.45rem minmax(0,1fr);
+     grid-template-columns:2.15rem minmax(0,1fr);
     align-items:center;
     column-gap:clamp(.7rem,1.3vw,1rem);
-    padding:clamp(.75rem,1.1vw,1.05rem);
-    border-radius:16px;
+     padding:clamp(.3rem,.5vw,.55rem) clamp(.45rem,.7vw,.7rem);
+     border-radius:13px;
     border:1px solid transparent;
     color:#738991;
     opacity:.76;
@@ -115,19 +117,19 @@ main#content::before {
   }
   .mp-demo .mp-check-index {
     display:flex;
-    width:2.45rem;
-    height:2.45rem;
+     width:2.15rem;
+     height:2.15rem;
     align-items:center;
     justify-content:center;
     border:1px solid #d5e3e8;
     border-radius:50%;
-    font:750 .91rem/1 'Manrope',sans-serif;
+     font:750 .78rem/1 'Manrope',sans-serif;
     color:#718895;
     background:#fff;
     transition:inherit;
   }
   .mp-demo .mp-check-label {
-    font:650 clamp(1.04rem,1.44vw,1.28rem)/1.28 'Manrope',sans-serif;
+     font:650 clamp(.86rem,1.12vw,1.05rem)/1.18 'Manrope',sans-serif;
     letter-spacing:-.035em;
   }
   .mp-demo .mp-desktop-checklist li.is-active {
