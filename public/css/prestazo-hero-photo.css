@@ -95,13 +95,13 @@ main#content::before {
   .mp-demo .mp-desktop-checklist {
     display:flex;
     flex-direction:column;
-    gap:clamp(.18rem,.65vh,.5rem);
+    gap:clamp(.12rem,.35vh,.3rem);
     padding:0;
     margin:0;
     list-style:none;
     max-width:440px;
-    flex:1 1 auto;
-    justify-content:space-between;
+    flex:0 0 auto;
+    justify-content:flex-start;
   }
   .mp-demo .mp-desktop-checklist li {
     display:grid;
@@ -154,12 +154,32 @@ main#content::before {
     border-color:#9bd8c9;
   }
   .mp-demo .mp-editorial > .mp-actions {
-    margin-top:auto!important;
-    padding-top:clamp(1.1rem,3vw,2rem);
+     margin-top:clamp(.7rem,1.4vh,1rem)!important;
+     padding-top:0;
     padding-bottom:0;
     display:flex;
     flex-wrap:wrap;
     gap:.7rem;
     align-self:flex-start;
   }
+}
+
+@media (max-width:900px) {
+  .mp-demo .mp-desktop-checklist {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:.35rem;
+    width:100%;
+    max-width:none;
+    margin:0 0 .75rem;
+  }
+  .mp-demo .mp-desktop-checklist li {
+    min-width:0;
+    grid-template-columns:1.65rem minmax(0,1fr);
+    column-gap:.35rem;
+    padding:.35rem .4rem;
+    border-radius:10px;
+  }
+  .mp-demo .mp-check-index {width:1.65rem;height:1.65rem;font-size:.65rem}
+  .mp-demo .mp-check-label {font-size:.68rem;line-height:1.15;letter-spacing:-.02em}
 }
