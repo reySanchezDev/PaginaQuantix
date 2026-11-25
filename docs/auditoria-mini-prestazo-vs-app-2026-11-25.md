@@ -69,6 +69,19 @@ Faltan o están simplificados frente a `AppSettings` y `settings_screen.dart`:
 - Respaldo manual/programado, ubicación, retención, reintentos y acciones de mantenimiento.
 - Apariencia, idioma y pantalla Acerca de.
 
+El respaldo se considera un bloque prioritario e independiente dentro de Configuración. La demo deberá mostrar de forma explícita:
+
+- Exportación o creación de respaldo manual.
+- Carpeta/ubicación configurada para el respaldo.
+- Frecuencia: deshabilitado, diario, semanal o mensual.
+- Hora programada, retención de archivos y cantidad de reintentos.
+- Respaldo automático al crear préstamo y al registrar pago.
+- Nombre personalizado del archivo.
+- Restauración de respaldo y confirmaciones de mantenimiento.
+- Mensajes de carpeta no configurada, respaldo creado, restauración y error.
+
+La demo no ejecutará operaciones reales sobre archivos: representará el flujo con datos de muestra y dejará claro cuándo se trata de una simulación.
+
 Además, el mini usa pocos interruptores (`validateCapital`, `contractRatePolicy`, `logoPath`) donde la app real tiene varias políticas independientes. La configuración no debe crecer como una lista plana: conviene agruparla en bloques navegables dentro del dispositivo.
 
 ### 3. Creación de clientes incompleta
@@ -194,7 +207,7 @@ Diferencias observadas:
 
 ### Fase 2 — Configuración y alta de cliente
 
-1. Reorganizar configuración en pantallas compactas por grupos.
+1. Reorganizar configuración en pantallas compactas por grupos, con `Respaldo y mantenimiento` como bloque visible de primer nivel.
 2. Añadir políticas omitidas y mostrar dependencias visibles.
 3. Completar cliente con categoría, validación DNI, restricción y estados.
 4. Alinear etiquetas y mensajes ES/EN con el catálogo de referencia.
