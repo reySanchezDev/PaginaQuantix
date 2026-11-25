@@ -213,7 +213,7 @@ npm run audit
 npm run quality
 ```
 
-`npm run quality` integra las validaciones del repositorio (formato, lint, calendario, análisis de código, control de tamaño, comprobaciones Astro, build, integridad del build y auditoría de dependencias). El build validado generó **40 páginas HTML**.
+`npm run quality` integra las validaciones del repositorio (formato, lint, calendario, análisis de código, control de tamaño, comprobaciones Astro, build, integridad del build y auditoría de dependencias). El build validado genera **44 páginas HTML**.
 
 Evidencias de publicación y mantenimiento, en secuencia:
 

@@ -118,7 +118,7 @@ const C = en ? {
  <link rel="stylesheet" href="/css/prestazo-responsive.css"/>
  <link rel="stylesheet" href="/css/prestazo-hero-photo.css"/>
  <link rel="stylesheet" href="/css/mini-prestazo.css"/>
- <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'SoftwareApplication',name:'Prestazo',applicationCategory:'BusinessApplication',operatingSystem:'Android',offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},downloadUrl:play,description:H.seoDescription})}/>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'SoftwareApplication',name:'Prestazo',applicationCategory:'BusinessApplication',operatingSystem:'Android',offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},downloadUrl:play,description:H.seoDescription})}/>
 </head>
 <body>
  <a class="skip" href="#content">{en?'Skip to content':'Saltar al contenido'}</a>
@@ -185,7 +185,7 @@ const C = en ? {
      <path d="M12 19V5m-6 6 6-6 6 6"/>
    </svg>
  </a>
- <script src="/js/prestazo-v4.js" defer></script>
- <script src="/js/mini-prestazo.js" defer></script>
+  <script is:inline src="/js/prestazo-v4.js" defer></script>
+  <script is:inline src="/js/mini-prestazo.js" defer></script>
 </body>
 </html>

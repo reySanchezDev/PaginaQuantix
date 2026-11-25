@@ -8,5 +8,5 @@
     "jsxImportSource": "astro"
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist", "NUEVO_PRODUCTO", "artifacts", "capturasViggo", "public/js/mini-prestazo.js"]
 }

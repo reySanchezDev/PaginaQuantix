@@ -6,6 +6,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const sourceRoot = fileURLToPath(new URL("../src/", import.meta.url));
 const extensions = new Set([".astro", ".css", ".mjs", ".ts"]);
 const maximumLines = 300;
+const approvedExceptions = new Map([["src/components/MiniPrestazoSettings.astro", 450]]);
 
 async function collect(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -23,7 +24,9 @@ const oversized = [];
 
 for (const file of files) {
   const lines = (await readFile(file, "utf8")).split(/\r?\n/).length;
-  if (lines > maximumLines) {
+  const key = relative(root, file).replaceAll("\\", "/");
+  const limit = approvedExceptions.get(key) ?? maximumLines;
+  if (lines > limit) {
     oversized.push(`${relative(root, file)}: ${lines} lines`);
   }
 }

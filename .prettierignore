@@ -1,5 +1,9 @@
+NUEVO_PRODUCTO/
+artifacts/
+capturasViggo/
 dist/
 node_modules/
+.astro/
 .agent/
 MisRecursos/
 Requerimiento/

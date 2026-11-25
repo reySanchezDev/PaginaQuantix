@@ -139,6 +139,20 @@ const cards = [
     description: "Capture and annotate test evidence on Windows",
     accent: "#4e557d",
   },
+  {
+    file: "cobroruta-es",
+    eyebrow: "PRODUCTO QUANTIX",
+    title: ["CobroRuta"],
+    description: "Cobros en ruta · Clientes · PrÃ©stamos · Trabajo mÃ³vil",
+    accent: "#23624c",
+  },
+  {
+    file: "cobroruta-en",
+    eyebrow: "QUANTIX PRODUCT",
+    title: ["CobroRuta"],
+    description: "Route collections · Customers · Loans · Mobile work",
+    accent: "#23624c",
+  },
 ];
 
 function escapeXml(value) {
