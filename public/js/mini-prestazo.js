@@ -151,8 +151,12 @@
     let N = -1;
     const seekPlayback = (delta) => {
       if (!v) return;
-      if (b?.seekBy) b.seekBy(delta);
-      else pendingSeek += delta;
+      pendingSeek += delta;
+      if (b?.seekBy) {
+        const queued = pendingSeek;
+        pendingSeek = 0;
+        b.seekBy(queued);
+      }
     };
     function O(t) {
       const e = Math.max(0, Math.min(M.length - 1, t));
@@ -216,9 +220,16 @@
           seekBy(delta) {
             if (this.settled) return;
             this.halt();
-            this.remaining = Math.max(0, this.remaining - delta);
-            if (this.remaining === 0) this.finish(v && e === x);
-            else if (!C) this.start();
+            const amount = Number(delta) || 0;
+            if (amount > 0 && amount >= this.remaining) {
+              pendingSeek += amount - this.remaining;
+              this.remaining = 0;
+              this.finish(v && e === x);
+            } else {
+              this.remaining = Math.max(0, this.remaining - amount);
+              if (this.remaining === 0) this.finish(v && e === x);
+              else if (!C) this.start();
+            }
           },
         };
         ((b = n), n.start());
