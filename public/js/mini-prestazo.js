@@ -361,13 +361,13 @@
       }))
         I(t, e);
       const t = new Date(),
-        e = [
+        dateParts = [
           t.getFullYear(),
           String(t.getMonth() + 1).padStart(2, "0"),
           String(t.getDate()).padStart(2, "0"),
         ].join("-");
-      (I("loanDate", e),
-        I("paymentDate", e),
+      (I("loanDate", dateParts),
+        I("paymentDate", dateParts),
         I("exchangeRate", "1.0"),
         A(),
         E(),
