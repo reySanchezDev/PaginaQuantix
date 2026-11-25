@@ -1,0 +1,262 @@
+---
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+  variant?: "home" | "catalog";
+}
+
+const { locale, variant = "catalog" } = Astro.props as Props;
+const es = locale === "es";
+const landingUrl = es ? "/es/productos/prestazo/" : "/en/products/prestazo/";
+const googlePlayUrl = "https://play.google.com/store/apps/details?id=com.prestamos.prestamos_app";
+const googlePlayBadge = es
+  ? "https://play.google.com/intl/en_us/badges/static/images/badges/es-419_badge_web_generic.png"
+  : "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+---
+
+<section class="prestazo-featured" data-variant={variant} aria-labelledby={`prestazo-featured-${variant}`}>
+  <Container>
+    <article class="prestazo-featured__panel" data-reveal>
+      <div class="prestazo-featured__content">
+        <div class="prestazo-featured__eyebrow">{es ? "Nuevo producto" : "New product"}</div>
+        <h2 id={`prestazo-featured-${variant}`}>{es ? "Tu cartera, bajo control." : "Your portfolio, under control."}</h2>
+        <p class="prestazo-featured__description">
+          {es
+            ? "Gestioná clientes, préstamos, cobros y ganancias desde una app hecha para quienes prestan dinero todos los días."
+            : "Manage customers, loans, collections, and earnings from an app built for people who lend every day."}
+        </p>
+        <div class="prestazo-featured__proof" aria-label={es ? "Beneficios de Prestazo" : "Prestazo benefits"}>
+          <span>{es ? "Clientes" : "Customers"}</span>
+          <span>{es ? "Préstamos" : "Loans"}</span>
+          <span>{es ? "Cobros" : "Collections"}</span>
+          <span>{es ? "Reportes" : "Reports"}</span>
+        </div>
+        <div class="prestazo-featured__actions">
+          <a class="prestazo-featured__cta" href={landingUrl}>
+            {es ? "Conocer Prestazo" : "Explore Prestazo"}
+          </a>
+          <a class="prestazo-featured__secondary" href={googlePlayUrl} target="_blank" rel="noopener noreferrer">
+            <img src={googlePlayBadge} alt={es ? "Descargar en Google Play" : "Get it on Google Play"} width="646" height="250" loading="lazy" decoding="async" />
+          </a>
+        </div>
+      </div>
+      <a class="prestazo-featured__visual" href={landingUrl} aria-label={es ? "Abrir la landing page de Prestazo" : "Open the Prestazo product page"}>
+        <div class="prestazo-featured__visual-glow" aria-hidden="true"></div>
+        <img src="/img/prestazo-hero-personas-crecimiento.png" alt={es ? "Prestamista organizando su cartera con Prestazo" : "Lender organizing a portfolio with Prestazo"} width="1672" height="941" loading="eager" decoding="async" />
+      </a>
+    </article>
+  </Container>
+</section>
+
+<style>
+  /* Tarjeta recuperada del CSS publicado. Las dimensiones de los CTA se basan
+     en el área visible de la insignia Google Play (565 × 170 dentro de 646 × 250).
+     Se conserva el margen transparente original, sin deformar ni recortar el logo. */
+  .prestazo-featured {
+    background:var(--color-canvas);
+    padding:clamp(2rem,5vw,4.5rem) 0;
+  }
+  .prestazo-featured[data-variant=catalog] {
+    padding-top:0;
+    padding-bottom:clamp(2.5rem,5vw,5rem);
+  }
+  .prestazo-featured__panel {
+    isolation:isolate;
+    color:#f6fffc;
+    background:linear-gradient(122deg,#061d2d 0%,#073a43 54%,#08705e 100%);
+    border:1px solid #1c6f67;
+    border-radius:clamp(1rem,2vw,1.75rem);
+    grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+    min-height:34rem;
+    display:grid;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 1.5rem 4rem -2.6rem #052c3580;
+  }
+  .prestazo-featured__panel:before {
+    content:"";
+    z-index:-1;
+    pointer-events:none;
+    background:radial-gradient(circle at 14% 8%,#49f0b439,#0000 32%),linear-gradient(90deg,#061d2d 0%,#061d2db8 39%,#0000 72%);
+    position:absolute;
+    inset:0;
+  }
+  .prestazo-featured__content {
+    z-index:2;
+    flex-direction:column;
+    justify-content:center;
+    min-width:0;
+    padding:clamp(2rem,4vw,4.25rem);
+    display:flex;
+    position:relative;
+  }
+  .prestazo-featured__eyebrow {
+    color:#8af4ce;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-bottom:1.2rem;
+    font-size:.75rem;
+    font-weight:800;
+  }
+  .prestazo-featured h2 {
+    max-width:12ch;
+    color:inherit;
+    letter-spacing:-.055em;
+    text-wrap:balance;
+    margin:0;
+    font-size:clamp(2.25rem,4vw,4.1rem);
+    font-weight:650;
+    line-height:1.03;
+  }
+  .prestazo-featured__description {
+    color:#d7efea;
+    max-width:41ch;
+    margin:1.4rem 0 0;
+    font-size:clamp(1rem,1.35vw,1.16rem);
+    line-height:1.6;
+  }
+  .prestazo-featured__proof {
+    flex-wrap:wrap;
+    gap:.55rem;
+    margin-top:1.35rem;
+    display:flex;
+  }
+  .prestazo-featured__proof span {
+    color:#d9fff1;
+    background:#75e7c314;
+    border:1px solid #70e7c34d;
+    border-radius:999px;
+    padding:.42rem .7rem;
+    font-size:.78rem;
+    font-weight:650;
+  }
+  .prestazo-featured__actions {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.75rem 1.25rem;
+    margin-top:1.7rem;
+    max-width:32rem;
+  }
+  .prestazo-featured__cta,.prestazo-featured__secondary {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    min-width:0;
+    width:100%;
+    aspect-ratio:565 / 170;
+    text-align:center;
+    text-decoration:none;
+    border-radius:.6rem;
+    transition:transform .18s,background .18s;
+  }
+  .prestazo-featured__cta {
+    color:#062c2a;
+    font-size:var(--text-base);
+    background:#b8ffe2;
+    padding:.35rem .65rem;
+    font-weight:750;
+    line-height:1.2;
+  }
+  .prestazo-featured__cta:hover {
+    color:#062c2a;
+    background:#e1fff3;
+    transform:translateY(-2px);
+  }
+  .prestazo-featured__secondary {
+    position:relative;
+    overflow:visible;
+  }
+  .prestazo-featured__secondary img {
+    display:block;
+    width:calc(100% * 646 / 565);
+    max-width:none;
+    height:auto;
+    flex:none;
+    object-fit:contain;
+  }
+  .prestazo-featured__secondary:hover {
+    transform:translateY(-2px);
+  }
+  .prestazo-featured__cta:focus-visible,.prestazo-featured__secondary:focus-visible,.prestazo-featured__visual:focus-visible {
+    outline-offset:4px;
+    outline:3px solid #f3d878;
+  }
+  .prestazo-featured__visual {
+    min-height:34rem;
+    text-decoration:none;
+    display:block;
+    position:relative;
+    overflow:hidden;
+  }
+  .prestazo-featured__visual:after {
+    content:"";
+    pointer-events:none;
+    background:linear-gradient(90deg,#061d2d 0%,#0000 30%),linear-gradient(#0000 70%,#061d2d66);
+    position:absolute;
+    inset:0;
+  }
+  .prestazo-featured__visual img {
+    object-fit:cover;
+    object-position:center;
+    width:100%;
+    height:100%;
+    transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .3s;
+  }
+  .prestazo-featured__visual:hover img {
+    filter:saturate(1.08);
+    transform:scale(1.035);
+  }
+  .prestazo-featured__visual-glow {
+    z-index:1;
+    filter:blur(5rem);
+    pointer-events:none;
+    background:#5dffd65c;
+    border-radius:50%;
+    position:absolute;
+    inset:15% 12%;
+  }
+  @media (width<=64rem) {
+    .prestazo-featured__panel {
+      grid-template-columns:1fr;
+    }
+    .prestazo-featured__content {
+      padding-bottom:2rem;
+    }
+    .prestazo-featured__visual {
+      min-height:24rem;
+    }
+    .prestazo-featured__visual:after {
+      background:linear-gradient(#0000 62%,#061d2d 100%);
+    }
+  }
+  @media (width<=40rem) {
+    .prestazo-featured__content {
+      padding:2rem 1.4rem 1.5rem;
+    }
+    .prestazo-featured h2 {
+      max-width:14ch;
+    }
+    .prestazo-featured__actions {
+      grid-template-columns:1fr;
+      max-width:18rem;
+      gap:1rem;
+    }
+    .prestazo-featured__cta,.prestazo-featured__secondary {
+      width:100%;
+    }
+    .prestazo-featured__visual {
+      min-height:19rem;
+    }
+    .prestazo-featured__visual img {
+      object-position:58% center;
+    }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .prestazo-featured__visual img,.prestazo-featured__cta,.prestazo-featured__secondary {
+      transition:none;
+    }
+  }
+</style>
