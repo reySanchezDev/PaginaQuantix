@@ -37,7 +37,6 @@
  .hero--full-bleed .hero-grid{min-height:760px;padding-bottom:340px}
 }
 
-
 /* Underlap the first section's *computed* background behind the sticky glass.
    The genuine transparent dent can now reveal that section instead of the
    white body canvas. The underlay belongs to the scrolling document, so other
@@ -162,24 +161,4 @@ main#content::before {
     gap:.7rem;
     align-self:flex-start;
   }
-}
-
-@media (max-width:900px) {
-  .mp-demo .mp-desktop-checklist {
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:.35rem;
-    width:100%;
-    max-width:none;
-    margin:0 0 .75rem;
-  }
-  .mp-demo .mp-desktop-checklist li {
-    min-width:0;
-    grid-template-columns:1.65rem minmax(0,1fr);
-    column-gap:.35rem;
-    padding:.35rem .4rem;
-    border-radius:10px;
-  }
-  .mp-demo .mp-check-index {width:1.65rem;height:1.65rem;font-size:.65rem}
-  .mp-demo .mp-check-label {font-size:.68rem;line-height:1.15;letter-spacing:-.02em}
 }
