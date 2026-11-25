@@ -47,7 +47,7 @@
   cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;
 }
 .mp-demo .mp-control svg{width:1.15rem;height:1.15rem;flex:none}
-.mp-demo .mp-control > span{min-width:0;overflow-wrap:anywhere;text-align:center}
+.mp-demo .mp-control > span{flex:1 1 auto;min-width:0;overflow-wrap:anywhere;text-align:center}
 .mp-demo .mp-control:hover{transform:translateY(-2px)}
 .mp-demo .mp-control:active,.mp-demo .mp-control.mp-button-pressed{transform:scale(.97)}
 .mp-demo .mp-control-primary{background:var(--mp-primary);color:#fff}
