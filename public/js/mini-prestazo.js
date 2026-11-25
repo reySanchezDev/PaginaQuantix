@@ -61,6 +61,8 @@
       C = !1,
       b = null,
       pendingSeek = 0,
+      playbackPosition = 0,
+      replayTarget = null,
       L = !1,
       S = !1,
       x = 0,
@@ -151,6 +153,15 @@
     let N = -1;
     const seekPlayback = (delta) => {
       if (!v) return;
+      if (delta < 0) {
+        const currentPosition = playbackPosition + (b?.elapsed?.() || 0);
+        replayTarget = Math.max(0, currentPosition + delta);
+        pendingSeek = 0;
+        j();
+        playbackPosition = 0;
+        K();
+        return;
+      }
       pendingSeek += delta;
       if (b?.seekBy) {
         const queued = pendingSeek;
@@ -183,6 +194,7 @@
       return new Promise((a) => {
         if (!v || e !== x) return a(!1);
         const n = {
+          duration: Math.max(0, t),
           remaining: Math.max(0, t),
           startedAt: 0,
           timer: null,
@@ -214,8 +226,16 @@
                 this.remaining - (performance.now() - this.startedAt),
               )));
           },
+          elapsed() {
+            return Math.max(0, this.duration - this.remaining);
+          },
           finish(t) {
-            this.settled || (this.halt(), (this.settled = !0), b === this && (b = null), a(t));
+            this.settled ||
+              (this.halt(),
+              (this.settled = !0),
+              t && e === x && (playbackPosition += this.duration),
+              b === this && (b = null),
+              a(t));
           },
           seekBy(delta) {
             if (this.settled) return;
@@ -232,8 +252,18 @@
             }
           },
         };
-        ((b = n), n.start());
-        if (pendingSeek !== 0) {
+        b = n;
+        if (replayTarget !== null) {
+          const skipped = Math.min(replayTarget, n.duration);
+          replayTarget -= skipped;
+          if (replayTarget <= 0) replayTarget = null;
+          n.remaining = n.duration - skipped;
+          if (n.remaining === 0) n.finish(v && e === x);
+          else n.start();
+        } else {
+          n.start();
+        }
+        if (replayTarget === null && pendingSeek !== 0 && !n.settled) {
           const t = pendingSeek;
           pendingSeek = 0;
           n.seekBy(t);
@@ -509,6 +539,7 @@
       if (v) return;
       const t = document.activeElement;
       (t && e.contains(t) && t.matches("input, textarea, select") && t.blur(),
+        (playbackPosition = 0),
         z(),
         (v = !0),
         (C = !1),
@@ -714,7 +745,7 @@
         seekPlayback(3000);
       }),
       l?.addEventListener("click", () => {
-        (z(), K());
+        (replayTarget = null), (playbackPosition = 0), z(), K();
       }),
       document.addEventListener("visibilitychange", () => {
         document.hidden && H();
