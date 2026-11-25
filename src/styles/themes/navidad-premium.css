@@ -27,6 +27,20 @@ html[data-seasonal-theme="navidad-premium"] {
   --nav-contact-hover-bg: #17634e;
   --nav-contact-hover-fg: #fffdf8;
   --nav-contact-hover-border: #17634e;
+  --menu-header-bg: linear-gradient(112deg, #e9dcc1 0%, #f6efdf 31%, #f2e7ce 63%, #e4d1ab 100%);
+  --menu-header-border: #bfa675;
+  --menu-panel-bg: radial-gradient(ellipse at 92% 18%, #285244, transparent 62%), #102d27;
+  --menu-row-bg: #173b32;
+  --menu-row-border: #6e7156;
+  --menu-ink: #fbf4e3;
+  --menu-muted: #e5cea1;
+  --menu-active: #f5d692;
+  --menu-action-bg: linear-gradient(110deg, #edcf91, #d5ab61);
+  --menu-action-fg: #172a26;
+  --menu-ornament-height: 1.6rem;
+  --header-ornament-height: clamp(2.3rem, 3.5vw, 3rem);
+  --menu-ornament: url("/themes/navidad-premium/lights-static.svg?v=6") left top / auto 100%
+    repeat-x;
   --product-viggo: #5d4f83;
   --product-viggo-soft: #e9e4f3;
   --product-takofy: #b15c32;
@@ -42,8 +56,9 @@ html[data-seasonal-theme="navidad-premium"] body {
 }
 
 html[data-seasonal-theme="navidad-premium"] .site-header {
-  background: rgb(247 243 233 / 0.95);
-  border-bottom-color: #cdb984;
+  --color-ink-muted: #43554d;
+  background: var(--menu-header-bg);
+  border-bottom-color: var(--menu-header-border);
   box-shadow: 0 0.4rem 1.5rem rgb(16 62 46 / 0.1);
   backdrop-filter: blur(14px);
 }
@@ -53,18 +68,25 @@ html[data-seasonal-theme="navidad-premium"] .site-header::before {
   position: absolute;
   /* The brass anchor plates overlap the ivory header by 4px, not the hero content. */
   inset: calc(100% - 0.25rem) 0 auto;
-  height: clamp(2.3rem, 3.5vw, 3rem);
+  height: var(--header-ornament-height);
   /* Phase-aligned tile: both ends of the wire meet without a visible break. */
-  background: url("/themes/navidad-premium/lights.svg?v=4") left top / auto 100% repeat-x;
+  background: url("/themes/navidad-premium/lights.svg?v=6") left top / auto 100% repeat-x;
   filter: drop-shadow(0 0.16rem 0.4rem rgb(220 170 80 / 0.18));
   opacity: 1;
   pointer-events: none;
   z-index: 3;
 }
 
-html[data-seasonal-theme="navidad-premium"] .brand__dot,
-html[data-seasonal-theme="navidad-premium"] .desktop-nav a.active:not(.contact-link) {
+html[data-seasonal-theme="navidad-premium"] .new-year {
+  padding-block-start: calc(var(--header-ornament-height) + 0.65rem);
+}
+
+html[data-seasonal-theme="navidad-premium"] .brand__dot {
   color: #a7762f;
+}
+
+html[data-seasonal-theme="navidad-premium"] .desktop-nav a.active:not(.contact-link) {
+  color: #76531f;
 }
 
 html[data-seasonal-theme="navidad-premium"] .home-hero {
@@ -73,18 +95,19 @@ html[data-seasonal-theme="navidad-premium"] .home-hero {
   overflow: hidden;
   color: #f9f5e9;
   background:
-    radial-gradient(circle at 85% 22%, rgb(208 166 79 / 0.18), transparent 25rem),
     radial-gradient(circle at 7% 94%, rgb(52 125 92 / 0.2), transparent 23rem),
-    linear-gradient(118deg, #102d27 0%, #173f34 54%, #1b4c3d 100%);
+    linear-gradient(118deg, #102d27 0%, #15392f 54%, #194538 100%);
   box-shadow: inset 0 -1px 0 #c19a50;
 }
 
 html[data-seasonal-theme="navidad-premium"] .home-hero::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
+  inset: 0 auto 2.4rem 0;
   width: clamp(12rem, 23vw, 22rem);
-  background: url("/themes/navidad-premium/pine-branches.svg") left bottom / contain no-repeat;
+  background:
+    url("/themes/navidad-premium/cranberry-clusters.svg") left bottom / contain no-repeat,
+    url("/themes/navidad-premium/pine-branches.svg") left bottom / contain no-repeat;
   opacity: 0.7;
   pointer-events: none;
   z-index: -1;
@@ -183,37 +206,6 @@ html[data-seasonal-theme="navidad-premium"] .site-footer::before {
   pointer-events: none;
 }
 
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas {
-  border-bottom: 1px solid #9c7b3f;
-  background: linear-gradient(90deg, #102d27, #1b4a3a 50%, #102d27);
-  color: #fbf0d0;
-}
-
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding-block: 0.6rem;
-  text-align: center;
-}
-
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas p {
-  margin: 0;
-  font-size: var(--text-sm);
-  line-height: 1.5;
-}
-
-html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__ornament {
-  flex: none;
-  color: #edc976;
-  font-size: 1rem;
-}
-
-.seasonal-christmas[hidden] {
-  display: none !important;
-}
-
 @keyframes navidad-premium-glow {
   from {
     opacity: 0.42;
@@ -226,13 +218,10 @@ html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__ornament {
 }
 
 @media (max-width: 48rem) {
-  html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__inner {
-    gap: 0.5rem;
-  }
-
   html[data-seasonal-theme="navidad-premium"] .home-hero::before {
+    bottom: 4.75rem;
     width: 9rem;
-    opacity: 0.5;
+    opacity: 0.65;
   }
 
   html[data-seasonal-theme="navidad-premium"] .home-hero::after {
@@ -246,7 +235,7 @@ html[data-seasonal-theme="navidad-premium"] .seasonal-christmas__ornament {
 
 @media (prefers-reduced-motion: reduce) {
   html[data-seasonal-theme="navidad-premium"] .site-header::before {
-    background-image: url("/themes/navidad-premium/lights-static.svg?v=4");
+    background-image: url("/themes/navidad-premium/lights-static.svg?v=6");
   }
 
   html[data-seasonal-theme="navidad-premium"] .home-hero::after {

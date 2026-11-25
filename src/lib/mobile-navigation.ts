@@ -10,7 +10,7 @@ let scrollPosition = 0;
 
 const pageSurfaces = [
   ...document.querySelectorAll<HTMLElement>(
-    ".site-header, main, .site-footer, [data-email-feedback]",
+    "[data-new-year], .site-header, main, .site-footer, [data-email-feedback]",
   ),
 ];
 function closeMenu({ immediate = false, restoreFocus = true } = {}) {
@@ -51,12 +51,7 @@ function openMenu() {
   if (document.body.dataset.menuOpen !== "true") scrollPosition = window.scrollY;
   document.body.style.top = `-${scrollPosition}px`;
   document.body.dataset.menuOpen = "true";
-  overlay.dataset.state = reducedMotion.matches ? "open" : "opening";
-  if (!reducedMotion.matches) {
-    requestAnimationFrame(() => {
-      if (overlay.dataset.state === "opening") overlay.dataset.state = "open";
-    });
-  }
+  overlay.dataset.state = "open";
   closeButton?.focus({ preventScroll: true });
   pageSurfaces.forEach((surface) => {
     surface.inert = true;

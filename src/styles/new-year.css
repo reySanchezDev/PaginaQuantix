@@ -1,0 +1,233 @@
+.new-year[hidden],
+.new-year [hidden] {
+  display: none !important;
+}
+.new-year {
+  --color-ink: #fff5dc;
+  --color-ink-muted: #e3ce9f;
+  padding: 0.65rem 0.75rem;
+  color: var(--color-ink);
+  background:
+    radial-gradient(ellipse at 45% 135%, #28553d, transparent 78%),
+    linear-gradient(110deg, #102d27, #153c32 64%, #102d27);
+  border-bottom: 1px solid #a98545;
+  text-align: center;
+}
+.new-year__content {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.48rem;
+  max-width: 76rem;
+  margin-inline: auto;
+}
+.new-year__title,
+.new-year__greeting {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.new-year__title span,
+.new-year__greeting span {
+  color: #f4d58d;
+}
+.new-year__digits {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.25rem, 1vw, 0.7rem);
+  width: min(100%, 32rem);
+}
+.new-year__unit {
+  padding: 0.12rem 0;
+}
+.new-year__number {
+  display: flex;
+  justify-content: center;
+  gap: 0.11em;
+  font: 600 clamp(1.55rem, 6.4vw, 2.15rem) / 1 var(--font-heading);
+  font-variant-numeric: tabular-nums;
+  color: #fff2d2;
+}
+.new-year__digit {
+  position: relative;
+  width: 0.79em;
+  height: 1.22em;
+  border: 1px solid #9a8050;
+  border-radius: 0.19em;
+  background: #091e19;
+  box-shadow: 0 0.16em 0.28em #071b1799;
+  perspective: 5em;
+}
+.new-year__digit::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 50% 0 auto;
+  border-top: 1px solid #071b17;
+  box-shadow: 0 1px 0 #d9bc7626;
+  pointer-events: none;
+}
+.new-year__face {
+  position: absolute;
+  inset-inline: 0;
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.new-year__face::before {
+  content: attr(data-digit);
+  position: absolute;
+  inset-inline: 0;
+  display: grid;
+  height: 200%;
+  place-items: center;
+}
+.new-year__face--top {
+  top: 0;
+  border-radius: 0.15em 0.15em 0 0;
+  background: linear-gradient(#2b4f42, #19382f);
+  transform-origin: center bottom;
+}
+.new-year__face--top::before {
+  top: 0;
+}
+.new-year__face--bottom {
+  bottom: 0;
+  border-radius: 0 0 0.15em 0.15em;
+  background: linear-gradient(#19372d, #102a23);
+  transform-origin: center top;
+}
+.new-year__face--bottom::before {
+  bottom: 0;
+}
+.new-year__fold {
+  z-index: 2;
+}
+.new-year__label {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: clamp(0.68rem, 1.8vw, 0.8rem);
+  line-height: 1.3;
+  color: #f2dcaa;
+}
+.new-year__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+}
+.new-year__zone {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.new-year__settings summary {
+  cursor: pointer;
+  padding: 0.3rem 0.15rem;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+.new-year__zone-panel {
+  position: absolute;
+  z-index: 85;
+  inset: calc(100% + 0.45rem) 0 auto auto;
+  width: min(100%, 22rem);
+  padding: 0.8rem;
+  border: 1px solid #aa8d53;
+  border-radius: 0.55rem;
+  background: #102d27;
+  box-shadow: 0 0.8rem 2rem #001b1966;
+  text-align: start;
+}
+.new-year__settings label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.new-year__settings select,
+.new-year__settings button {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.45rem;
+  border: 1px solid #c8a75d;
+  border-radius: 0.3rem;
+  background: #fff8e8;
+  color: #17392e;
+  font-size: 1rem;
+}
+.new-year__settings button {
+  margin-top: 0.55rem;
+  background: transparent;
+  color: #fff2d2;
+  cursor: pointer;
+}
+.new-year :is(summary, select, button):focus-visible {
+  outline: 2px solid #ffe2a3;
+  outline-offset: 2px;
+}
+.new-year__welcome p {
+  margin: 0.15rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.82rem;
+  text-wrap: balance;
+}
+.new-year__fireworks {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  overflow: hidden;
+}
+.new-year__particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffe7a4;
+  box-shadow: 0 0 8px #e6bb58;
+  animation: new-year-burst 2.5s ease-out var(--delay) both;
+}
+@keyframes new-year-burst {
+  0% {
+    transform: translate(0, 0) scale(0.2);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0.3);
+    opacity: 0;
+  }
+}
+@media (min-width: 56rem) {
+  .new-year__content {
+    grid-template-columns: 1fr minmax(21rem, 32rem) 1fr;
+    gap: 1rem;
+  }
+  .new-year__number {
+    font-size: clamp(2.05rem, 3.2vw, 2.65rem);
+  }
+  .new-year__title {
+    justify-self: end;
+  }
+  .new-year__meta {
+    justify-content: flex-start;
+  }
+  .new-year__welcome {
+    grid-column: 1 / 3;
+    justify-self: end;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .new-year__fireworks {
+    display: none !important;
+  }
+}

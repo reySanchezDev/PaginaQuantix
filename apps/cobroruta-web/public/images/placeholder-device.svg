@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 900" role="img" aria-labelledby="title desc">
+<title id="title">Espacio reservado para una captura real</title><desc id="desc">Composición temporal abstracta, no es una captura de CobroRuta</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E6EEE7"/><stop offset="1" stop-color="#F3F0E6"/></linearGradient></defs>
+<rect width="660" height="900" rx="72" fill="#1B4F3C"/><rect x="15" y="15" width="630" height="870" rx="58" fill="url(#g)"/>
+<circle cx="330" cy="270" r="130" fill="#23624C" opacity=".08"/>
+<path d="M330 176c-51 0-86 39-86 89 0 64 86 122 86 122s86-58 86-122c0-50-35-89-86-89z" fill="#23624C"/>
+<circle cx="330" cy="263" r="29" fill="#FFFEFA"/>
+<rect x="107" y="473" width="446" height="1" fill="#C8CEC4"/>
+<text x="330" y="535" font-family="Arial,sans-serif" font-size="29" text-anchor="middle" fill="#1E2927" font-weight="700">CobroRuta</text>
+<text x="330" y="592" font-family="Arial,sans-serif" font-size="19" text-anchor="middle" fill="#50605A">Espacio para captura real</text>
+<text x="330" y="629" font-family="Arial,sans-serif" font-size="16" text-anchor="middle" fill="#63706A">TEMPORAL · NO ES LA APP</text>
+<path d="M184 736h292" stroke="#708D81" stroke-width="2" stroke-dasharray="6 11"/>
+</svg>

@@ -1,0 +1,120 @@
+---
+import type { Locale } from "../../types/site";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  locale: Locale;
+  variant?: "home" | "catalog";
+}
+const { locale, variant = "catalog" } = Astro.props as Props;
+const es = locale === "es";
+const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell.cobro_ruta";
+const googlePlayBadge = es
+  ? "https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
+  : "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+---
+<section class="cr-featured" data-variant={variant} aria-labelledby={"cr-featured-" + variant}>
+  <Container>
+    <article class="cr-featured__panel" data-reveal>
+      <div class="cr-featured__content">
+        <div class="cr-featured__brand">
+          <img src="/cobroruta/icon.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy" decoding="async" />
+          <span>CobroRuta</span>
+        </div>
+        <h2 id={"cr-featured-" + variant}>{es ? "Tu cartera, lista para cada jornada." : "Your portfolio, ready for every workday."}</h2>
+        <p class="cr-featured__description">{es ? "Gestioná clientes, préstamos y cuotas. Prepará tus visitas y registrá cobros desde el celular." : "Manage customers, loans, and installments. Plan visits and record collections from your phone."}</p>
+        <div class="cr-featured__actions">
+          <a class="cr-featured__cta" href="https://cobroruta.hensell.dev">
+            <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
+            {es ? "Conocer CobroRuta" : "Explore CobroRuta"}
+          </a>
+          <a class="cr-featured__cta" href="https://cobroruta.hensell.dev/app/">
+            <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
+            {es ? "Versión web" : "Web app"}
+          </a>
+          <a
+            class="cr-featured__google-play"
+            href={googlePlayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={es ? "Disponible en Google Play: abrir ficha de CobroRuta" : "Get it on Google Play: open CobroRuta listing"}
+          >
+            <img
+              src={googlePlayBadge}
+              alt={es ? "Disponible en Google Play" : "Get it on Google Play"}
+              width="215"
+              height="83"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="cr-featured__visual" aria-label={es ? "Pantallas de la aplicación" : "App screens"}>
+        <div class="cr-featured__halo" aria-hidden="true"></div>
+        <figure class="cr-featured__phone cr-featured__phone--home">
+          <img src="/images/screens/home-android.jpg" alt={es ? "Inicio de CobroRuta en Android" : "CobroRuta home screen on Android"} width="230" height="512" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="cr-featured__phone cr-featured__phone--reports">
+          <img src="/images/screens/reports-menu-android.jpg" alt={es ? "Reportes de CobroRuta en Android" : "CobroRuta reports on Android"} width="230" height="512" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </article>
+  </Container>
+</section>
+<style>
+  .cr-featured{padding:clamp(2rem,5vw,4.5rem) 0;background:var(--color-canvas)}
+  .cr-featured[data-variant="catalog"]{padding-top:0;padding-bottom:clamp(2.5rem,5vw,5rem)}
+  .cr-featured__panel{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);align-items:center;min-height:37rem;overflow:hidden;border:1px solid #2b7659;border-radius:clamp(1rem,2vw,1.75rem);color:#fffefa;background:linear-gradient(124deg,#123a2e,#205e49 60%,#2e785e);box-shadow:0 1.25rem 3.25rem -2.5rem #103b2c91}
+  .cr-featured__panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 90% 85%,#a6cbb83b,transparent 56%)}
+  .cr-featured__content{position:relative;z-index:2;min-width:0;padding:clamp(2rem,4vw,4rem)}
+  .cr-featured__brand{display:flex;align-items:center;gap:.8rem;margin-bottom:1.25rem;font-family:var(--font-heading);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:700}
+  .cr-featured__brand img{display:block;width:3rem;height:3rem;flex-shrink:0;border-radius:.8rem;object-fit:contain;box-shadow:0 .5rem 1rem #092c214d}
+  .cr-featured h2{margin:0;max-width:14ch;color:inherit;font-size:clamp(2rem,3.5vw,3.6rem);font-weight:650;letter-spacing:-.045em;line-height:1.08;text-wrap:balance}
+  .cr-featured__description{max-width:43ch;margin:1.4rem 0 0;color:#e3eee7;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6}
+  .cr-featured__actions{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem 1rem;margin-top:1.75rem}
+  .cr-featured__cta{display:inline-flex;align-items:center;justify-content:center;gap:1.2rem;min-height:3.25rem;padding:.85rem 1.2rem;border-radius:.55rem;color:#164331;background:#fffefa;font-size:var(--text-base);font-weight:700;text-decoration:none;transition:transform 180ms ease,background 180ms ease}
+  .cr-featured__button-icon{display:block;width:1.25rem;height:1.25rem;flex-shrink:0;border-radius:.3rem;object-fit:contain}
+  .cr-featured__cta:is(:hover,:focus-visible){color:#123a2e;background:#e6eee7;transform:translateY(-2px)}
+  .cr-featured__google-play{display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;max-width:100%;border-radius:.55rem;text-decoration:none;transition:transform 180ms ease;cursor:pointer}
+  .cr-featured__google-play img{display:block;width:auto;height:4.35rem;max-width:100%;object-fit:contain}
+  .cr-featured__google-play:hover{transform:translateY(-2px)}
+  .cr-featured__cta:focus-visible,.cr-featured__google-play:focus-visible{outline:3px solid #f4dc8b;outline-offset:4px}
+  .cr-featured__visual{position:relative;isolation:isolate;align-self:stretch;display:flex;align-items:center;justify-content:center;gap:clamp(.9rem,2vw,1.75rem);min-width:0;min-height:35rem;padding:2.5rem clamp(1.5rem,3vw,3rem);overflow:visible}
+  .cr-featured__halo{position:absolute;inset:12% 5%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse,#b1d6c24d,#8cba9e24 48%,transparent 70%);pointer-events:none}
+  .cr-featured__phone{position:relative;display:block;flex:0 1 12.8rem;width:min(12.8rem,42%);min-width:0;margin:0;padding:.42rem;border:4px solid #14261f;border-radius:1.8rem;overflow:hidden;background:#15241e;box-shadow:.6rem 1.2rem 2.4rem #041b1666;transition:transform 400ms ease}
+  .cr-featured__phone img{display:block;width:100%;height:auto;aspect-ratio:230/512;object-fit:contain;border-radius:1.2rem}
+  /* Movimiento editorial suave, alternado y sin alterar las capturas originales. */
+  .cr-featured__phone--home{transform:rotate(-4deg);animation:cr-home-float 6.4s ease-in-out infinite}
+  .cr-featured__phone--reports{transform:rotate(4deg);animation:cr-reports-float 7.2s ease-in-out -1.8s infinite}
+  .cr-featured__halo{animation:cr-halo-breathe 8s ease-in-out infinite}
+  @keyframes cr-home-float {
+    0%,100%{transform:translate3d(0,0,0) rotate(-4deg)}
+    50%{transform:translate3d(-3px,-13px,0) rotate(-5.5deg)}
+  }
+  @keyframes cr-reports-float {
+    0%,100%{transform:translate3d(0,0,0) rotate(4deg)}
+    50%{transform:translate3d(4px,12px,0) rotate(5.5deg)}
+  }
+  @keyframes cr-halo-breathe {
+    0%,100%{opacity:.8;transform:scale(.96)}
+    50%{opacity:1;transform:scale(1.045)}
+  }
+  .cr-featured__panel:hover .cr-featured__phone{box-shadow:.7rem 1.5rem 2.7rem #041b1677}
+
+  @media(min-width:40.001rem){
+    .cr-featured__actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+    .cr-featured__cta{min-width:0;height:3.25rem;gap:.5rem;padding:.65rem;font-size:.8125rem;white-space:nowrap}
+    .cr-featured__google-play{position:relative;min-width:0;height:3.25rem;overflow:hidden}
+    .cr-featured__google-play img{position:absolute;left:50%;top:50%;width:100%;height:auto;max-width:none;max-height:none;transform:translate(-50%,-50%)}
+  }
+
+  @media(max-width:76rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
+  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:stretch;gap:.65rem}.cr-featured__cta{width:100%}.cr-featured__google-play{width:100%;min-height:3.5rem}.cr-featured__google-play img{height:4.2rem}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
+  @media(prefers-reduced-motion:reduce){
+    .cr-featured__cta,.cr-featured__google-play,.cr-featured__phone{transition:none}
+    .cr-featured__phone,.cr-featured__halo{animation:none!important}
+    .cr-featured__phone--home{transform:rotate(-4deg)}
+    .cr-featured__phone--reports{transform:rotate(4deg)}
+  }
+</style>

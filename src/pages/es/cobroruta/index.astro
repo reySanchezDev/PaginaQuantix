@@ -1,0 +1,9 @@
+---
+import MarketingLayout from "../../../../apps/cobroruta-web/src/layouts/MarketingLayout.astro";
+import Home from "../../../../apps/cobroruta-web/src/components/Home.astro";
+import { copy } from "../../../../apps/cobroruta-web/src/content/copy";
+const locale = 'es';
+---
+<MarketingLayout locale={locale} pageKey="home" title={copy[locale].siteTitle} embedded>
+  <Home locale={locale} embedded/>
+</MarketingLayout>

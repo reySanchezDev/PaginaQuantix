@@ -17,11 +17,19 @@ const es = locale === "es";
 <section class="home-hero" aria-labelledby="page-title">
   <Container>
     <div class="hero-layout">
-      <div class="hero-copy" data-enter>
-        <p class="eyebrow">{hero.eyebrow}</p>
-        <h1 id="page-title">{hero.title.map((line) => <span>{line} </span>)}</h1>
-        <p class="hero-lead">{hero.lead}</p>
-        <div class="hero-actions">
+      <div class="hero-copy">
+        <p class="eyebrow" data-enter>{hero.eyebrow}</p>
+        <h1 id="page-title">
+          {
+            hero.title.map((line, index) => (
+              <span data-enter="headline" data-motion-delay={index * 110}>
+                {line}{" "}
+              </span>
+            ))
+          }
+        </h1>
+        <p class="hero-lead" data-enter data-motion-delay="130">{hero.lead}</p>
+        <div class="hero-actions" data-enter data-motion-delay="190">
           <Button href={hero.primary.href} size="lg" tone="inverse" class="hero-contact">
             {hero.primary.label}<span aria-hidden="true">↗</span>
           </Button>
@@ -33,7 +41,8 @@ const es = locale === "es";
       <HomeProductComposition locale={locale} />
     </div>
     <div class="hero-footnote">
-      <nav class="hero-products" aria-label={es ? "Casos de Quantix" : "Quantix case studies"}>
+      <nav class="hero-products" aria-label={es ? "Productos destacados de Quantix" : "Featured Quantix products"}>
+        <a class="hero-products__star" href="https://cobroruta.hensell.dev">CobroRuta<span aria-hidden="true">↗</span></a>
         <a href={getRoute("case-viggo", locale)}>VIGGO<span aria-hidden="true">↗</span></a>
         <a href={getRoute("case-takofy", locale)}>Takofy<span aria-hidden="true">↗</span></a>
       </nav>
@@ -115,8 +124,10 @@ const es = locale === "es";
   }
   .hero-products {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: .25rem 1.5rem;
   }
+  .hero-products__star { color: #fff3c8; }
   .hero-products a {
     display: inline-flex;
     align-items: center;

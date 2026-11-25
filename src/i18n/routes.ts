@@ -4,6 +4,7 @@ const routeMap = {
   home: { es: "/es/", en: "/en/" },
   solutions: { es: "/es/soluciones/", en: "/en/solutions/" },
   products: { es: "/es/productos/", en: "/en/products/" },
+  cobroruta: { es: "/es/cobroruta/", en: "/en/cobroruta/" },
   work: { es: "/es/trabajo/", en: "/en/work/" },
   about: { es: "/es/nosotros/", en: "/en/about/" },
   contact: { es: "/es/contacto/", en: "/en/contact/" },

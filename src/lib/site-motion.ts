@@ -15,7 +15,7 @@ export function initializeSiteMotion() {
     Number.parseFloat(durationToken) * (durationToken.endsWith("ms") ? 1 : 1000) || 480;
 
   function readDelay(element: HTMLElement) {
-    return Math.min(160, Math.max(0, Number(element.dataset.motionDelay) || 0));
+    return Math.min(260, Math.max(0, Number(element.dataset.motionDelay) || 0));
   }
 
   function finish(element: HTMLElement) {
@@ -28,16 +28,42 @@ export function initializeSiteMotion() {
     observer.unobserve(element);
     if (seen.has(element)) return;
     seen.add(element);
-    if (preference.matches || element.contains(document.activeElement) || !element.animate) return;
+    const frame = element.dataset.reveal === "frame";
+    const focusSurface = frame ? element.closest("a") || element : element;
+    if (preference.matches || focusSurface.contains(document.activeElement) || !element.animate)
+      return;
     element.dataset.motionState = "running";
     const distance = element.dataset.reveal === "image" ? 16 : 12;
-    const animation = element.animate(
-      [
-        { opacity: 0, transform: `translateY(${distance}px)` },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      { duration, delay, easing, fill: "backwards" },
-    );
+    let keyframes: Keyframe[] = [
+      { opacity: 0, transform: `translateY(${distance}px)` },
+      { opacity: 1, transform: "translateY(0)" },
+    ];
+    let timing = duration;
+    if (frame) {
+      keyframes = [
+        { clipPath: "polygon(0 0, 8% 0, 0 100%, 0 100%)", transform: "scale(1.04)" },
+        { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", transform: "scale(1)" },
+      ];
+      timing = 680;
+    } else if (element.dataset.enter === "headline") {
+      keyframes = [
+        { clipPath: "inset(95% -6% -18% -6%)", transform: "translateY(0.28em)" },
+        { clipPath: "inset(-15% -6% -18% -6%)", transform: "translateY(0)" },
+      ];
+      timing = 620;
+    } else if (element.dataset.enter === "stage") {
+      keyframes = [
+        { opacity: 0.2, transform: "translateY(20px) scale(0.96)" },
+        { opacity: 1, transform: "translateY(0) scale(1)" },
+      ];
+      timing = 680;
+    }
+    const animation = element.animate(keyframes, {
+      duration: timing,
+      delay,
+      easing,
+      fill: "backwards",
+    });
     active.set(element, animation);
     animation.finished.then(
       () => finish(element),
@@ -78,7 +104,10 @@ export function initializeSiteMotion() {
 
   document.addEventListener("focusin", (event) => {
     active.forEach((_, element) => {
-      if (event.target instanceof Node && element.contains(event.target)) finish(element);
+      if (!(event.target instanceof Node)) return;
+      const focusSurface =
+        element.dataset.reveal === "frame" ? element.closest("a") || element : element;
+      if (focusSurface.contains(event.target)) finish(element);
     });
   });
   preference.addEventListener("change", start);

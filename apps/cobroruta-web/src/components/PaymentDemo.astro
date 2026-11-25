@@ -1,0 +1,50 @@
+---
+import { copy } from '../content/copy';
+import type { Locale } from '../lib/routes';
+const {locale} = Astro.props as {locale:Locale};
+const d = copy[locale].demo;
+const todayIso = '2026-11-08'; // Safe fallback for no-JS; client overrides with device-local date.
+---
+<section class="demo-workspace" data-payment-demo data-locale={locale} aria-labelledby="demo-title">
+  <div class="demo-meta"><span class="demo-live-dot" aria-hidden="true"></span><span>{d.notice}</span></div>
+  <div class="demo-progress" aria-label={d.step}>
+    {d.stepLabels.map((label,i) => <div class:list={['demo-progress-item', i === 0 && 'is-current']} data-progress={i}><span>{String(i+1).padStart(2,'0')}</span><small>{label}</small></div>)}
+  </div>
+  <div class="demo-screen" data-screen="0">
+    <div class="demo-screen-heading"><span class="eyebrow">01 / 04</span><h3 id="demo-title">{d.introTitle}</h3><p>{d.introDesc}</p></div>
+    <button class="demo-customer" type="button" data-demo-action="start" aria-label={d.cta}>
+      <div class="demo-avatar">AE</div><div class="demo-customer-text"><strong>{d.customer}</strong><span>{d.loan}</span></div>
+      <div class="demo-amount"><small>{d.pending}</small><strong>NIO 465.00</strong></div><span class="demo-card-arrow" aria-hidden="true">↗</span>
+    </button>
+    <div class="demo-quote"><span aria-hidden="true">✦</span><p>{d.viewCode}</p></div>
+    <button class="btn btn-primary demo-start" type="button" data-demo-action="start">{d.cta} <span aria-hidden="true">↗</span></button>
+  </div>
+  <div class="demo-screen" data-screen="1" hidden>
+    <div class="demo-screen-heading"><span class="eyebrow">02 / 04</span><h3>{d.choose}</h3><p>{d.details}</p></div>
+    <div class="demo-fields">
+      <div class="demo-field-large"><label for={`demo-amount-${locale}`}>{d.amount}</label><div class="money-input"><span>NIO</span><input id={`demo-amount-${locale}`} type="number" inputmode="decimal" min="0.01" max="465.00" step="0.01" value="165.00" data-demo-amount /></div></div>
+      <div class="demo-quick"><button type="button" data-demo-action="suggested">{d.suggested} · NIO 315.00</button><button type="button" data-demo-action="full">{d.all} · NIO 465.00</button></div>
+      <div class="demo-form-grid"><label>{d.date}<input data-demo-date type="date" value={todayIso} min="2026-01-01" max={todayIso}/></label><label>{d.method}<select data-demo-method>{d.methods.map((name,i)=><option value={i}>{name}</option>)}</select></label></div>
+      <div class="demo-form-grid"><label>{d.channel}<select data-demo-channel>{d.channels.map((name,i)=><option value={i}>{name}</option>)}</select></label><div class="demo-note"><strong>{d.pending}</strong><span>NIO 465.00</span></div></div>
+      <div class="demo-distribution"><div class="demo-distribution-title">{d.allocation} <span>NIO <b data-total>165.00</b></span></div><div class="demo-bar" aria-label={d.allocation}><span data-bar-late></span><span data-bar-interest></span><span data-bar-principal></span></div><div class="demo-legend"><span><i class="legend-late"></i>{d.late}: <strong data-late>15.00</strong></span><span><i class="legend-interest"></i>{d.interest}: <strong data-interest>35.00</strong></span><span><i class="legend-principal"></i>{d.principal}: <strong data-principal>115.00</strong></span></div></div>
+    </div>
+    <p class="demo-error" data-demo-error role="alert" hidden></p>
+    <div class="demo-actions"><button class="btn btn-outline" type="button" data-demo-action="back">{d.back}</button><button class="btn btn-primary" type="button" data-demo-action="review">{d.review} <span aria-hidden="true">→</span></button></div>
+  </div>
+  <div class="demo-screen" data-screen="2" hidden>
+    <div class="demo-screen-heading"><span class="eyebrow">03 / 04</span><h3>{d.confirmation}</h3><p>{d.note}</p></div>
+    <div class="demo-review"><div><span>{d.customer} · {d.loan}</span><strong data-review-amount>NIO 165.00</strong></div><div><span>{d.date}</span><strong data-review-date></strong></div><div><span>{d.method}</span><strong data-review-method></strong></div><div><span>{d.channel}</span><strong data-review-channel></strong></div></div>
+    <div class="demo-actions"><button class="btn btn-outline" type="button" data-demo-action="edit">{d.cancel}</button><button class="btn btn-primary" type="button" data-demo-action="confirm">{d.confirm} <span aria-hidden="true">✓</span></button></div>
+  </div>
+  <div class="demo-screen demo-result" data-screen="3" hidden>
+    <div class="result-mark" aria-hidden="true">✓</div><span class="eyebrow">04 / 04</span><h3>{d.success}</h3><p>{d.paymentSaved}</p>
+    <div class="result-balance"><span>{d.after}</span><strong data-after>NIO 300.00</strong></div>
+    <p class="result-info">{d.route}</p>
+    <button class="btn btn-primary" type="button" data-demo-action="restart">{d.restart} <span aria-hidden="true">↻</span></button>
+  </div>
+  <dialog class="demo-confirm-dialog" data-full-dialog aria-label={d.fullConfirm}><h3>{d.fullQuestion}</h3><p>NIO 465.00</p><div class="demo-actions"><button type="button" class="btn btn-outline" data-full-no>{d.fullNo}</button><button type="button" class="btn btn-primary" data-full-yes>{d.fullYes}</button></div></dialog>
+</section>
+<script>
+  import { attachPaymentDemos } from '../scripts/payment-demo';
+  attachPaymentDemos();
+</script>

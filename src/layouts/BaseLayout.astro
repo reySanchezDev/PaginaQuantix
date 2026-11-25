@@ -1,8 +1,10 @@
 ---
+import NewYear from "../components/sections/NewYear.astro";
 import VercelAnalytics from "../components/analytics/VercelAnalytics.astro";
 import SiteFooter from "../components/nav/SiteFooter.astro";
 import SiteHeader from "../components/nav/SiteHeader.astro";
 import EmailFeedback from "../components/system/EmailFeedback.astro";
+import ChristmasSnow from "../components/system/ChristmasSnow.astro";
 import SiteMotion from "../components/system/SiteMotion.astro";
 import { getLegalNavigation, getPrimaryNavigation, sharedUi } from "../data/navigation";
 import { siteConfig } from "../data/site-config";
@@ -207,28 +209,8 @@ const siteSchema = {
         <span class="seasonal-muertos__flower" aria-hidden="true">✿</span>
       </div>
     </aside>
-    <aside
-      class="seasonal-christmas"
-      data-seasonal-banner="navidad-premium"
-      aria-label={locale === "es"
-        ? "Celebración navideña de Quantix"
-        : "Quantix Christmas celebration"}
-      hidden
-    >
-      <div class="container seasonal-christmas__inner">
-        <span class="seasonal-christmas__ornament" aria-hidden="true">✦</span>
-        <p>
-          <strong>{locale === "es" ? "Navidad en Quantix." : "Christmas at Quantix."}</strong>
-          {
-            locale === "es"
-              ? " Celebramos esta temporada con gratitud, innovación y los mejores deseos para nuestros clientes y aliados."
-              : " We celebrate this season with gratitude, innovation, and our best wishes for our clients and partners."
-          }
-        </p>
-        <span class="seasonal-christmas__ornament" aria-hidden="true">✦</span>
-      </div>
-    </aside>
     <SiteHeader navItems={navigation} locale={locale} labels={labels} />
+    <NewYear locale={locale} />
 
     <main id="main-content" tabindex="-1">
       <slot />
@@ -242,5 +224,6 @@ const siteSchema = {
     />
     <EmailFeedback locale={locale} />
     <SiteMotion />
+    <ChristmasSnow />
   </body>
 </html>

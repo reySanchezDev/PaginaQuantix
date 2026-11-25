@@ -20,8 +20,9 @@ try {
     await visit(page, width === 390 ? "/en/" : "/es/", "2026-12-15T18:00:00Z");
 
     assert.equal(await page.locator("html").getAttribute("data-seasonal-theme"), "navidad-premium");
-    assert.equal(await page.locator("[data-seasonal-banner]").count(), 4);
-    assert.equal(await page.locator('[data-seasonal-banner="navidad-premium"]').isVisible(), true);
+    assert.equal(await page.locator("[data-seasonal-banner]").count(), 3);
+    await page.locator("[data-new-year][data-phase=countdown]").waitFor();
+    assert.equal(await page.locator("[data-time-unit]").count(), 5);
     assert.equal(
       await page.locator('[data-seasonal-banner="dia-de-muertos-premium"]').isVisible(),
       false,
@@ -61,10 +62,10 @@ try {
     );
 
     const garland = await page.evaluate(async () => {
-      const response = await fetch("/themes/navidad-premium/lights.svg?v=4");
+      const response = await fetch("/themes/navidad-premium/lights.svg?v=6");
       const svg = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
       const image = new Image();
-      image.src = "/themes/navidad-premium/lights.svg?v=4";
+      image.src = "/themes/navidad-premium/lights.svg?v=6";
       await image.decode();
       return {
         status: response.status,
@@ -141,10 +142,10 @@ try {
       "Reduced-motion users must see steady, warm lights without animation",
     );
     const staticGarland = await reduced.evaluate(async () => {
-      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=4");
+      const response = await fetch("/themes/navidad-premium/lights-static.svg?v=6");
       const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
       const img = new Image();
-      img.src = "/themes/navidad-premium/lights-static.svg?v=4";
+      img.src = "/themes/navidad-premium/lights-static.svg?v=6";
       await img.decode();
       return {
         status: response.status,
@@ -164,10 +165,7 @@ try {
     const restored = await browser.newPage({ viewport: { width, height: 900 } });
     await visit(restored, "/en/", "2027-01-01T06:00:00Z");
     assert.equal(await restored.locator("html").getAttribute("data-seasonal-theme"), "default");
-    assert.equal(
-      await restored.locator('[data-seasonal-banner="navidad-premium"]').isVisible(),
-      false,
-    );
+    assert.equal(await restored.locator('[data-seasonal-banner="navidad-premium"]').count(), 0);
     await restored.close();
   }
   console.log(

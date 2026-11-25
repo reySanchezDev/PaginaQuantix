@@ -1,0 +1,89 @@
+---
+import type { Locale } from "../../types/site";
+import "../../styles/new-year.css";
+interface Props {
+  locale: Locale;
+}
+const es = Astro.props.locale === "es";
+const units = es
+  ? ["Meses", "Días", "Horas", "Minutos", "Segundos"]
+  : ["Months", "Days", "Hours", "Minutes", "Seconds"];
+---
+
+<section class="new-year" data-new-year hidden aria-labelledby="new-year-title">
+  <div class="new-year__content">
+    <h2 id="new-year-title" class="new-year__title" data-countdown-copy>
+      {es ? "Rumbo a" : "On our way to"}
+      <span>2027</span>
+    </h2>
+    <div
+      class="new-year__digits"
+      data-countdown-copy
+      role="group"
+      aria-label={es ? "Cuenta regresiva a 2027" : "Countdown to 2027"}
+    >
+      {
+        units.map((label, i) => (
+          <div class="new-year__unit" data-time-unit={i}>
+            <span class="visually-hidden" data-time-value>
+              00
+            </span>
+            <span class="new-year__number" aria-hidden="true">
+              {[0, 1].map(() => (
+                <span class="new-year__digit" data-flip-digit>
+                  <span class="new-year__face new-year__face--top" data-flip-top data-digit="0" />
+                  <span
+                    class="new-year__face new-year__face--bottom"
+                    data-flip-bottom
+                    data-digit="0"
+                  />
+                  <span
+                    class="new-year__face new-year__face--top new-year__fold"
+                    data-flip-out
+                    hidden
+                  />
+                  <span
+                    class="new-year__face new-year__face--bottom new-year__fold"
+                    data-flip-in
+                    hidden
+                  />
+                </span>
+              ))}
+            </span>
+            <span class="new-year__label">{label}</span>
+          </div>
+        ))
+      }
+    </div>
+    <div class="new-year__welcome" data-welcome-copy hidden role="status">
+      <h2 id="new-year-greeting" class="new-year__greeting">
+        {es ? "¡Bienvenido," : "Welcome,"}
+        <span>2027{es ? "!" : ""}</span>
+      </h2>
+      <p>
+        {
+          es
+            ? "Un nuevo año para convertir grandes ideas en realidad."
+            : "A new year to turn great ideas into reality."
+        }
+      </p>
+      <p>{es ? "Gracias por ser parte de Quantix." : "Thank you for being part of Quantix."}</p>
+    </div>
+    <div class="new-year__meta">
+      <p class="new-year__zone" data-zone-caption></p>
+      <details class="new-year__settings">
+        <summary>{es ? "Cambiar zona horaria" : "Change time zone"}</summary>
+        <div class="new-year__zone-panel">
+          <label for="new-year-zone">{es ? "Elegí tu zona horaria" : "Choose your time zone"}</label
+          >
+          <select id="new-year-zone" data-zone-select></select>
+          <button type="button" data-zone-auto
+            >{es ? "Usar mi zona automática" : "Use my automatic time zone"}</button
+          >
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="new-year__fireworks" aria-hidden="true" data-fireworks hidden></div>
+</section>
+<script src="../../scripts/new-year.js"></script>

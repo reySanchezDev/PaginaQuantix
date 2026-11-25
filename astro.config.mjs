@@ -12,7 +12,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        return pathname !== "/" && pathname !== "/404/";
+        return pathname !== "/" && pathname !== "/404/" && !/^\/(?:es|en)\/cobroruta\/$/.test(pathname);
       },
     }),
   ],
@@ -33,7 +33,7 @@ export default defineConfig({
         "connect-src 'self' https://vitals.vercel-insights.com",
         "font-src 'self'",
         "form-action 'self' mailto:",
-        "img-src 'self' data: https://play.google.com",
+        "img-src 'self' data: https://tile.openstreetmap.org https://play.google.com",
         "media-src 'self'",
         "object-src 'none'",
       ],
