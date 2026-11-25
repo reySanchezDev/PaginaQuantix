@@ -60,6 +60,7 @@
       v = !1,
       C = !1,
       b = null,
+      pendingSeek = 0,
       L = !1,
       S = !1,
       x = 0,
@@ -148,6 +149,11 @@
           ];
     const playbackTiming = { readablePhase: 4200, dashboard: 4200, backup: 5000 };
     let N = -1;
+    const seekPlayback = (delta) => {
+      if (!v) return;
+      if (b?.seekBy) b.seekBy(delta);
+      else pendingSeek += delta;
+    };
     function O(t) {
       const e = Math.max(0, Math.min(M.length - 1, t));
       e !== N &&
@@ -216,6 +222,11 @@
           },
         };
         ((b = n), n.start());
+        if (pendingSeek !== 0) {
+          const t = pendingSeek;
+          pendingSeek = 0;
+          n.seekBy(t);
+        }
       });
     }
     function k(t, e) {
@@ -333,6 +344,7 @@
       ((x += 1),
         (v = !1),
         (C = !1),
+        (pendingSeek = 0),
         b?.finish(!1),
         e.classList.remove("mp-playback-paused"),
         $(!1),
@@ -685,10 +697,10 @@
           : K();
       }),
       e.querySelector("[data-mp-back]")?.addEventListener("click", () => {
-        v && b?.seekBy(-3000);
+        seekPlayback(-3000);
       }),
       e.querySelector("[data-mp-next]")?.addEventListener("click", () => {
-        v && b?.seekBy(3000);
+        seekPlayback(3000);
       }),
       l?.addEventListener("click", () => {
         (z(), K());

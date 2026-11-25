@@ -57,15 +57,15 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
       </button>
       <button class="mp-control mp-control-outline" type="button" data-mp-back aria-label={en?'Go back 3 seconds':'Retroceder 3 segundos'} title={en?'Go back 3 seconds':'Retroceder 3 segundos'}>
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M11 6 5 12l6 6M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        {t.back}
+        <span>{t.back}</span>
       </button>
       <button class="mp-control mp-control-outline" type="button" data-mp-next aria-label={en?'Advance 3 seconds':'Adelantar 3 segundos'} title={en?'Advance 3 seconds':'Adelantar 3 segundos'}>
-        {t.next}
+        <span>{t.next}</span>
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m13 6 6 6-6 6m6-6H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <button class="mp-control mp-control-outline" type="button" data-mp-reset>
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 3v6h6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
-        {t.replay}
+        <span>{t.replay}</span>
       </button>
     </div>
     <nav class="mp-mode-navigation" aria-label={en?'Prestazo navigation':'Navegación de Prestazo'} data-mp-navigation>
