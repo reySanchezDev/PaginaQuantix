@@ -30,6 +30,8 @@
       i = e.querySelector("[data-mp-pointer]"),
       r = e.querySelector("[data-mp-play]"),
       c = e.querySelector("[data-mp-play-label]"),
+      playIcon = e.querySelector("[data-mp-play-icon]"),
+      pauseIcon = e.querySelector("[data-mp-pause-icon]"),
       l = e.querySelector("[data-mp-reset]"),
       m = e.querySelector("[data-mp-i18n]")?.dataset || {},
       d = Object.fromEntries(
@@ -369,6 +371,8 @@
     }
     function $(t) {
       (r && r.setAttribute("aria-pressed", String(t)),
+        playIcon && (playIcon.style.display = t ? "none" : ""),
+        pauseIcon && (pauseIcon.style.display = t ? "" : "none"),
         c &&
           (c.textContent = t
             ? m.pause || "Pause"
@@ -413,7 +417,7 @@
         roundMode: "HALF_UP",
         daysMonth: "30",
         daysYear: "360",
-        loanPlan: "",
+        loanPlan: "MONTHLY_STANDARD",
         loanCurrency: "NIO",
         loanFrequency: "",
         paymentCurrency: "NIO",
@@ -608,6 +612,7 @@
       U(6);
       if (
         !(await Y(550, a)) ||
+        !(await G("loanPlan", "MONTHLY_STANDARD", a)) ||
         !(await G("loanCurrency", "NIO", a)) ||
         !(await V("loanAmount", "10000", a)) ||
         !(await V("monthlyRate", "10", a)) ||
