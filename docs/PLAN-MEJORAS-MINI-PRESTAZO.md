@@ -23,7 +23,7 @@ Convertir el Mini Prestazo en un onboarding fiel de Prestazo: configuración ini
 - [x] Auditoría cruzada app real vs Mini Prestazo.
 - [x] Lista de fases y pantallas acordada.
 - [x] Compilación web base estable.
-- [ ] Estado central de onboarding implementado.
+- [x] Estado central de onboarding implementado.
 - [ ] Configuración y respaldo alineados.
 - [ ] Cliente conectado a búsqueda y detalle.
 - [ ] Préstamo conectado a ciclos y dashboard.
@@ -58,7 +58,7 @@ Criterio de salida: no se agrega una pantalla o mensaje sin poder ubicar su equi
 
 ### Fase 1 — Estado central y escenario de onboarding
 
-Estado: `en progreso`
+Estado: `completada`
 
 Entregables:
 
@@ -71,7 +71,7 @@ Criterio de salida: crear un cliente cambia clientes, cartera, cobranza e histor
 
 ### Fase 2 — Configuración inicial y respaldo
 
-Estado: `pendiente`
+Estado: `completada`
 
 Entregables:
 
@@ -82,7 +82,7 @@ Entregables:
 
 ### Fase 3 — Cliente, búsqueda y detalle
 
-Estado: `pendiente`
+Estado: `completada`
 
 Entregables:
 
@@ -93,7 +93,7 @@ Entregables:
 
 ### Fase 4 — Préstamo y ciclos
 
-Estado: `pendiente`
+Estado: `completada`
 
 Entregables:
 
@@ -104,7 +104,7 @@ Entregables:
 
 ### Fase 5 — Inicio y cobranza
 
-Estado: `pendiente`
+Estado: `completada`
 
 Entregables:
 
@@ -115,7 +115,7 @@ Entregables:
 
 ### Fase 6 — Pago, estado de cuenta e historial
 
-Estado: `pendiente`
+Estado: `completada`
 
 Entregables:
 
@@ -126,7 +126,7 @@ Entregables:
 
 ### Fase 7 — Reportes
 
-Estado: `pendiente`
+Estado: `completada`
 
 Entregables:
 
@@ -177,3 +177,5 @@ Cada fase se cerrará únicamente cuando cumpla:
 |---|---|---|---|
 | 2026-11-25 | Fase 0 | Auditoría y contrato documentados | pendiente |
 | 2026-11-25 | Fase 1 | Estado central, derivaciones y tiempos iniciales | en progreso |
+
+Actualización de implementación end-to-end (2026-11-25): las fases 1 a 7 ya consumen el estado efímero central. Se agregaron búsqueda y detalle de cliente, plan y ciclos de préstamo, indicadores derivados, cobranza, desglose y confirmación de pago, estado de cuenta, reportes y configuración ampliada de respaldo. La Fase 8 queda abierta para QA visual de navegador y accesibilidad.

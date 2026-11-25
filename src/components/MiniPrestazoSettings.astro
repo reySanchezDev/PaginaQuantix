@@ -234,6 +234,13 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
 
           <!-- Campos exactos customer_form_screen.dart (en Flutter algunos labels están hardcoded ES) -->
           <section class="mp-screen" data-mp-screen="customer" aria-label={flowLabels.newCustomer} hidden>
+            <div class="mp-card mp-customer-directory" data-mp-customer-directory hidden>
+              <div class="mp-list-tile"><strong>{en?'Find the customer you just created':'Busca el cliente que acabas de crear'}</strong><small>{en?'Search by name or ID before opening the detail.':'Busca por nombre o identificación antes de abrir el detalle.'}</small></div>
+              <div class="mp-field"><label for="mp-customerSearch">{en?'Search customers':'Buscar clientes'}</label><input id="mp-customerSearch" data-mp-customer-search autocomplete="off" placeholder={en?'Name or ID':'Nombre o identificación'}/></div>
+              <div class="mp-card mp-customer-result" data-mp-customer-result><strong data-mp-directory-name>{en?'New customer':'Nuevo cliente'}</strong><small data-mp-directory-detail></small><button type="button" class="mp-control mp-control-outline" data-mp-customer-detail>{en?'Open customer detail':'Abrir detalle del cliente'}</button></div>
+            </div>
+            <div data-mp-customer-form>
+            <div class="mp-field"><label for="mp-customerCategory">{en?'Customer category':'Categoría de cliente'} <small>({en?'optional':'opcional'})</small></label><select id="mp-customerCategory" data-mp-field="customerCategory"><option value="">{en?'Select a category':'Selecciona una categoría'}</option><option value="GENERAL">General</option><option value="COMMERCE">{en?'Commerce':'Comercio'}</option><option value="PERSONAL">Personal</option></select></div>
             <div class="mp-field"><label for="mp-customerName">Nombre completo *</label>
               <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.person} /></svg>
                 <input id="mp-customerName" data-mp-field="customerName"  autocomplete="off" placeholder="Ej: Juan Pérez García"/>
@@ -275,6 +282,8 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               </div>
             </div>
             <button type="button" class="mp-save-button" data-mp-action="createCustomer">{flowLabels.createCustomer}</button>
+            <p class="mp-inline-feedback" data-mp-customer-feedback aria-live="polite"></p>
+            </div>
           </section>
 
 
@@ -287,7 +296,7 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
             <div class="mp-section-title">{flowLabels.paymentPlans}</div>
             <div class="mp-card">
               <div class="mp-field"><label for="mp-loanPlan">{flowLabels.selectPlan}</label>
-                <select id="mp-loanPlan" data-mp-field="loanPlan"><option value="">{flowLabels.optional}</option></select>
+                <select id="mp-loanPlan" data-mp-field="loanPlan"><option value="MONTHLY_STANDARD">{en?'Standard monthly plan':'Plan mensual estándar'}</option><option value="WEEKLY_STANDARD">{en?'Standard weekly plan':'Plan semanal estándar'}</option></select>
               </div>
             </div>
             <div class="mp-section-title">{flowLabels.loanCurrencyLabel}</div>
@@ -403,7 +412,9 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
             <div class="mp-field"><label for="mp-paymentNotes">{flowLabels.notes}</label>
               <input id="mp-paymentNotes" data-mp-field="paymentNotes" autocomplete="off"/>
             </div>
+            <div class="mp-card mp-payment-breakdown"><strong>{en?'Payment application':'Aplicación del pago'}</strong><div><span>{en?'Interest':'Interés'}</span><b data-mp-payment-interest>C$ 0</b></div><div><span>{en?'Principal':'Capital'}</span><b data-mp-payment-principal>C$ 0</b></div><div><span>{en?'Remaining balance':'Saldo restante'}</span><b data-mp-payment-balance>C$ 0</b></div><small>{en?'The real app confirms this allocation before saving the receipt.':'La app real confirma esta distribución antes de guardar el recibo.'}</small></div>
             <button class="mp-save-button" type="button" data-mp-action="registerPayment">{flowLabels.registerPayment}</button>
+            <p class="mp-inline-feedback" data-mp-payment-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="dashboard" aria-label={modeLabels.dashboard}>
@@ -413,6 +424,8 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <div class="mp-metric-card"><small>{en?'Active loans':'Préstamos activos'}</small><strong data-mp-metric="loans">18</strong><span>{en?'2 overdue':'2 en mora'}</span></div>
               <div class="mp-metric-card"><small>{en?'Payments today':'Pagos de hoy'}</small><strong data-mp-metric="payments">C$ 4,850</strong><span>{en?'6 receipts':'6 recibos'}</span></div>
               <div class="mp-metric-card"><small>{en?'Available capital':'Capital disponible'}</small><strong data-mp-metric="capital">C$ 32,400</strong><span>{en?'Capital control on':'Control de capital activo'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Placed capital':'Capital colocado'}</small><strong data-mp-metric="placed">C$ 0</strong><span>{en?'From this demo loan':'De este préstamo demo'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Overdue':'Vencidos'}</small><strong data-mp-metric="overdue">0</strong><span>{en?'Pending cycles':'Ciclos pendientes'}</span></div>
             </div>
             <div class="mp-section-title">{en?'Quick actions':'Acciones rápidas'}</div>
             <div class="mp-card mp-quick-actions"><button type="button" data-mp-nav="customer">{en?'New customer':'Nuevo cliente'}</button><button type="button" data-mp-nav="loan">{en?'New loan':'Nuevo préstamo'}</button><button type="button" data-mp-nav="payment">{en?'Register payment':'Registrar pago'}</button></div>
@@ -429,8 +442,11 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <label class="mp-switch-tile"><span>{en?'Backup on loan creation':'Respaldar al crear préstamo'}</span><input type="checkbox" data-mp-backup-setting="loan"/><span class="mp-switch" aria-hidden="true"></span></label>
               <label class="mp-switch-tile"><span>{en?'Backup on payment':'Respaldar al registrar pago'}</span><input type="checkbox" data-mp-backup-setting="payment"/><span class="mp-switch" aria-hidden="true"></span></label>
               <div class="mp-field"><label for="mp-backup-frequency">{en?'Frequency':'Frecuencia'}</label><select id="mp-backup-frequency"><option>{en?'Disabled':'Deshabilitado'}</option><option>{en?'Daily':'Diaria'}</option><option>{en?'Weekly':'Semanal'}</option><option>{en?'Monthly':'Mensual'}</option></select></div>
+              <div class="mp-field"><label for="mp-backup-time">{en?'Preferred time':'Hora preferida'}</label><input id="mp-backup-time" type="time" value="02:00"/></div>
               <div class="mp-field"><label for="mp-backup-retention">{en?'Keep backups for (days)':'Conservar respaldos (días)'}</label><input id="mp-backup-retention" type="number" value="30" min="1"/></div>
+              <div class="mp-field"><label for="mp-backup-retries">{en?'Retries':'Reintentos'}</label><input id="mp-backup-retries" type="number" value="3" min="0" max="10"/></div>
               <div class="mp-field"><label for="mp-backup-name">{en?'Custom file name':'Nombre personalizado'}</label><input id="mp-backup-name" value="prestazo_backup"/></div>
+              <button class="mp-control mp-control-outline" type="button" data-mp-backup-action="save-settings">{en?'Save backup settings':'Guardar configuración de respaldo'}</button>
             </div>
             <div class="mp-card"><div class="mp-list-tile"><strong>{en?'Restore or manage backups':'Restaurar o administrar respaldos'}</strong><small>{en?'The real app lists, shares, deletes and restores local backup files.':'La app real lista, comparte, elimina y restaura archivos locales.'}</small></div><button class="mp-control mp-control-outline" type="button" data-mp-backup-action="restore">{en?'Show restore flow':'Mostrar flujo de restauración'}</button></div>
             <p class="mp-inline-feedback" data-mp-backup-feedback aria-live="polite"></p>
@@ -445,6 +461,8 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
           <section class="mp-screen" data-mp-screen="history" aria-label={modeLabels.history} hidden>
             <div class="mp-section-title">{en?'Payment history':'Historial de pagos'}</div>
             <div class="mp-card mp-status-list"><div><strong data-mp-history-receipt>Receipt #R-024</strong><span class="mp-status mp-status-success" data-mp-history-amount>C$ 1,500</span><small data-mp-history-detail>Juan Pérez · {en?'Mixed payment · Today':'Pago mixto · Hoy'}</small></div><div><strong>Receipt #R-023</strong><span class="mp-status mp-status-success">C$ 900</span><small>María López · {en?'Interest and principal':'Interés y capital'}</small></div><div><strong>Receipt #R-022</strong><span class="mp-status mp-status-success">C$ 750</span><small>José Martínez · {en?'Interest only':'Solo interés'}</small></div></div>
+            <div class="mp-section-title">{en?'Customer statement':'Estado de cuenta del cliente'}</div>
+            <div class="mp-card mp-statement-card"><div><strong data-mp-statement-name>{en?'New customer':'Nuevo cliente'}</strong><small data-mp-statement-id></small></div><div><span>{en?'Loan balance':'Saldo del préstamo'}</span><b data-mp-statement-balance>C$ 0</b></div><div><span>{en?'Payment application':'Aplicación del pago'}</span><b data-mp-statement-application>C$ 0</b></div><button type="button" class="mp-control mp-control-outline" data-mp-statement-action>{en?'View account details':'Ver detalle de cuenta'}</button></div>
           </section>
 
           <section class="mp-screen" data-mp-screen="reports" aria-label={modeLabels.reports} hidden>
