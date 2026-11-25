@@ -78,6 +78,17 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
       <div class="mp-appbar"><div class="mp-appbar-copy"><strong data-mp-app-title>{t.companyData}</strong><small data-mp-app-subtitle hidden></small></div></div>
       <div class="mp-app-scroll" data-mp-scroll>
         <div class="mp-app-inner">
+          <nav class="mp-mode-navigation mp-device-navigation" aria-label={en?'Prestazo navigation':'NavegaciÃ³n de Prestazo'} data-mp-navigation>
+            <button type="button" class="is-active" data-mp-nav="dashboard">{modeLabels.dashboard}</button>
+            <button type="button" data-mp-nav="company">{modeLabels.settings}</button>
+            <button type="button" data-mp-nav="customer">{modeLabels.customers}</button>
+            <button type="button" data-mp-nav="loan">{modeLabels.loans}</button>
+            <button type="button" data-mp-nav="payment">{modeLabels.payments}</button>
+            <button type="button" data-mp-nav="backup">{modeLabels.backup}</button>
+            <button type="button" data-mp-nav="collection">{modeLabels.collection}</button>
+            <button type="button" data-mp-nav="history">{modeLabels.history}</button>
+            <button type="button" data-mp-nav="reports">{modeLabels.reports}</button>
+          </nav>
           <section class="mp-screen" data-mp-screen="company" aria-label={t.companyData} hidden>
             <div class="mp-info mp-company-info"><svg class="mp-info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6"/><path d="M12 7h.01"/></svg><span>{t.companyInfoHelp}</span></div>
             <div class="mp-section-title">{t.identity}</div>
