@@ -98,12 +98,12 @@ const C = en ? {
  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
  <meta name="theme-color" content="#091D30"/>
  <meta name="robots" content="index,follow"/>
+ <link rel="canonical" href={canonical}/>
+ <link rel="alternate" hreflang={en ? 'es' : 'en'} href={alternate}/>
+ <link rel="alternate" hreflang={en ? 'en' : 'es'} href={canonical}/>
+ <link rel="alternate" hreflang="x-default" href={new URL('/es/productos/prestazo/', site).href}/>
  <meta name="description" content={H.seoDescription}/>
  <title>{H.seoTitle}</title>
- <link rel="canonical" href={canonical}/>
- <link rel="alternate" hreflang={en?'en':'es'} href={canonical}/>
- <link rel="alternate" hreflang={en?'es':'en'} href={alternate}/>
- <link rel="alternate" hreflang="x-default" href={new URL('/en/products/prestazo/', site).href}/>
  <meta property="og:title" content={H.seoTitle}/>
  <meta property="og:description" content={H.seoDescription}/>
  <meta property="og:type" content="website"/>
