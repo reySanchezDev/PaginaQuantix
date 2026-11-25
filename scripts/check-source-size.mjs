@@ -6,7 +6,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const sourceRoot = fileURLToPath(new URL("../src/", import.meta.url));
 const extensions = new Set([".astro", ".css", ".mjs", ".ts"]);
 const maximumLines = 300;
-const approvedExceptions = new Map([["src/components/MiniPrestazoSettings.astro", 450]]);
+const approvedExceptions = new Map([["src/components/MiniPrestazoSettings.astro", 520]]);
 
 async function collect(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

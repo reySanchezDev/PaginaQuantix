@@ -8,7 +8,20 @@ Repositorio fuente: `C:\Users\reyre\Aplicaciones\Prestazo`, rama `develop`, comm
 
 Convertir el Mini Prestazo de la segunda sección de la landing en una demostración confiable de la aplicación real: mismos conceptos, campos, textos, reglas visibles, mensajes y flujo de negocio, manteniendo el formato compacto y demostrativo de la landing.
 
-Esta fase es únicamente de auditoría y planificación. No se modificó el componente ni se alteró la app Flutter.
+La auditoría inicial no alteró la app Flutter. La implementación web se inicia de forma incremental en `PaginaQuantix`, sin cambiar todavía las reglas internas de la aplicación real.
+
+## Estado de implementación
+
+La primera iteración web ya está implementada en `PaginaQuantix`:
+
+- Navegación manual por módulos dentro del dispositivo.
+- Adaptación diferenciada para escritorio y móvil mediante CSS responsive.
+- Dashboard de muestra.
+- Bloque de respaldo y mantenimiento alineado con las capacidades verificadas de Flutter.
+- Cobranza, historial y reportes como nuevas vistas del flujo.
+- El playback automático existente de configuración → cliente → préstamo → pago se conserva.
+
+Esta iteración es estructural y visual. La siguiente debe conectar las nuevas vistas al mismo estado demo y sustituir valores aislados por cálculos derivados del escenario completo.
 
 ## Fuentes revisadas
 
