@@ -229,6 +229,7 @@
 .mp-demo .mp-mode-navigation{display:flex;flex-wrap:wrap;gap:.45rem;margin:-.5rem 0 1rem;padding:.35rem;border:1px solid var(--mp-border);border-radius:14px;background:rgba(255,255,255,.78)}
 .mp-demo .mp-mode-navigation button{appearance:none;border:0;border-radius:9px;padding:.6rem .72rem;background:transparent;color:var(--mp-secondary);font:600 .72rem/1.2 'Inter',sans-serif;cursor:pointer}
 .mp-demo .mp-mode-navigation button:hover,.mp-demo .mp-mode-navigation button.is-active{background:var(--mp-primary);color:#fff}
+.mp-demo .mp-device-navigation{display:none!important}
 .mp-demo .mp-dashboard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin:.8rem 0 1.25rem}
 .mp-demo .mp-metric-card{display:flex;flex-direction:column;gap:.25rem;padding:.85rem;border:1px solid var(--mp-border);border-radius:14px;background:#fff}
 .mp-demo .mp-metric-card small,.mp-demo .mp-metric-card span{color:var(--mp-secondary);font-size:.68rem}.mp-demo .mp-metric-card strong{color:var(--mp-primary);font-size:1.1rem}.mp-demo .mp-metric-card span{color:var(--mp-accent)}
@@ -259,12 +260,12 @@
   .mp-demo .mp-appbar{min-height:3.4rem;padding:.8rem 1rem}
   .mp-demo .mp-app-scroll{flex:1;min-height:0}
   .mp-demo .mp-actions{
-    order:3;margin:clamp(.85rem,2svh,1.25rem) 0 0;width:100%;
+     order:4;margin:clamp(.85rem,2svh,1.25rem) 0 0;width:100%;
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;
   }
   .mp-demo .mp-control{min-width:0;min-height:3.25rem;padding:.75rem .6rem;white-space:normal}
   .mp-demo .mp-demo-pointer{width:1.5rem;height:1.5rem}
-  .mp-demo .mp-device-navigation{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 0 .8rem;overflow:auto;max-height:9rem}
+  .mp-demo .mp-mode-navigation{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:.8rem 0 0;overflow:auto;max-height:9rem}
   .mp-demo .mp-mode-navigation button{min-height:2.65rem;padding:.55rem .35rem;font-size:.68rem}
   .mp-demo .mp-stage{order:3}
   .mp-demo .mp-dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}

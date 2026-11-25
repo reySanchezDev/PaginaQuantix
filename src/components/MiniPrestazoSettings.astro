@@ -58,6 +58,17 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
         {t.replay}
       </button>
     </div>
+    <nav class="mp-mode-navigation" aria-label={en?'Prestazo navigation':'Navegación de Prestazo'} data-mp-navigation>
+      <button type="button" class="is-active" data-mp-nav="dashboard">{modeLabels.dashboard}</button>
+      <button type="button" data-mp-nav="company">{modeLabels.settings}</button>
+      <button type="button" data-mp-nav="customer">{modeLabels.customers}</button>
+      <button type="button" data-mp-nav="loan">{modeLabels.loans}</button>
+      <button type="button" data-mp-nav="payment">{modeLabels.payments}</button>
+      <button type="button" data-mp-nav="backup">{modeLabels.backup}</button>
+      <button type="button" data-mp-nav="collection">{modeLabels.collection}</button>
+      <button type="button" data-mp-nav="history">{modeLabels.history}</button>
+      <button type="button" data-mp-nav="reports">{modeLabels.reports}</button>
+    </nav>
   </div>
 
   <div class="mp-stage">
