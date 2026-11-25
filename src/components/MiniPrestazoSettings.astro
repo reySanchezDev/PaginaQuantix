@@ -1,0 +1,422 @@
+---
+interface Props { en?: boolean }
+const {en=false}=Astro.props;
+const locale= en ? {"settings":"Settings","companyData":"Company Data","identity":"Identity","countryOfOperation":"Country of Operation","selectCountry":"Select a country","companyName":"Company Name","rucId":"TAX ID / Identification","contact":"Contact","phoneFixed":"Landline","cellPhone":"Mobile","whatsapp":"WhatsApp","location":"Location","address":"Address","branding":"Branding","logoPath":"Logo Path (PNG)","selectFile":"Select file...","visible":"Visible","hidden":"Hidden","companyInfoHelp":"Toggle the switch to show this data on receipts and reports.","saveChanges":"Save Changes","monetaryManagement":"Monetary Management","monetarySubtitle":"Currencies, Capital & Exchange Rates","baseConfiguration":"Base Configuration","baseCurrency":"Base Currency","baseCurrencyDesc":"Main currency for calculations and reports","availableCapital":"Capital available for lending","availableCapitalDesc":"Maximum amount available for lending","capitalSaved":"Capital saved","validateCapital":"Validate working capital","validateCapitalDesc":"Loan amount will be validated against available limits","recoveryPriority":"Recovery Priority","prioritizeCapital":"Prioritize Principal (Recommended)","prioritizeInterest":"Prioritize Overdue Interest","currencyCenter":"Currency Center","manageExchangeRates":"Manage exchange rates","currencyMaster":"Exchange Rate Master","contractRatePolicy":"Contract Rate Policy","contractRatePolicyDesc":"Allow manual exchange rate modification when creating a loan","reportConsolidation":"Report Consolidation","presentationCurrency":"Presentation Currency","sequencesTitle":"Sequences","lastLoanGenerated":"Last Loan Generated","nextLoanSequenceDesc":"The next loan will follow this sequence","lastReceiptGenerated":"Last Receipt Generated","nextReceiptSequenceDesc":"The next receipt will follow this sequence","sequenceUpdated":"Sequence updated","receiptSequenceUpdated":"Receipt sequence updated"} : {"settings":"Configuraciones","companyData":"Datos de la Empresa","identity":"Identidad","countryOfOperation":"País de Operación","selectCountry":"Seleccione un país","companyName":"Nombre de la Empresa","rucId":"RUC / Identificación","contact":"Contacto","phoneFixed":"Teléfono Fijo","cellPhone":"Celular","whatsapp":"WhatsApp","location":"Ubicación","address":"Dirección","branding":"Branding","logoPath":"Ruta del Logo (PNG)","selectFile":"Seleccione archivo...","visible":"Visible","hidden":"Oculto","companyInfoHelp":"Activa el interruptor para mostrar el dato en los recibos y reportes.","saveChanges":"Guardar Cambios","monetaryManagement":"Gestión Monetaria","monetarySubtitle":"Monedas, Capital y Tasas de Cambio","baseConfiguration":"Configuración Base","baseCurrency":"Moneda Base","baseCurrencyDesc":"Moneda principal para cálculos y reportes","availableCapital":"Capital disponible para prestar","availableCapitalDesc":"Monto máximo que tienes disponible para préstamos","capitalSaved":"Capital guardado","validateCapital":"Validar capital de trabajo","validateCapitalDesc":"Se validará que el monto del préstamo no exceda el saldo disponible","recoveryPriority":"Prioridad en Recuperación","prioritizeCapital":"Priorizar Capital (Recomendado)","prioritizeInterest":"Priorizar Interés Vencido","currencyCenter":"Centro de Divisas","manageExchangeRates":"Gestionar tasas de cambio","currencyMaster":"Maestro de tasas de compra y venta","contractRatePolicy":"Política de Tasa en Contrato","contractRatePolicyDesc":"Permitir modificar la tasa de cambio al crear un préstamo","reportConsolidation":"Consolidación de Reportes","presentationCurrency":"Moneda de Visualización","sequencesTitle":"Consecutivos","lastLoanGenerated":"Último Préstamo Generado","nextLoanSequenceDesc":"El próximo préstamo será el siguiente en la secuencia","lastReceiptGenerated":"Último Recibo Generado","nextReceiptSequenceDesc":"El próximo recibo será el siguiente en la secuencia","sequenceUpdated":"Consecutivo actualizado","receiptSequenceUpdated":"Consecutivo de recibos actualizado"};
+const t = {
+ ...locale,
+ title:en?'Set up your business. See it happen.':'Configurá tu negocio. Mirá cómo funciona.',
+ play:en?'Play demo':'Reproducir demo',
+ pause:en?'Pause':'Pausar',
+ replay:en?'Restart':'Reiniciar',
+ // FinancialPolicyScreen in Prestazo/develop uses these untranslated Spanish literals.
+ financialTitle:'Convención Financiera',
+ financialInfo:'Esta configuración define cómo se calculan los intereses. Los préstamos existentes mantienen su política original.',
+ dayConvention:'Convención de Conteo de Días',
+ daysMonth:'Días por Mes',
+ daysYear:'Días por Año',
+ proration:'Regla de Prorrateo',
+ roundPolicy:'Política de Redondeo',
+ roundDecimals:'Decimales',
+ roundMode:'Modo',
+ calcTitle:'Vista Previa del Cálculo',
+ savePolicy:'Guardar Configuración',
+};
+const companyGroups=[["identity",[["companyName","business"],["rucId","confirmation_number"]]],["contact",[["phoneFixed","phone"],["cellPhone","smartphone"],["whatsapp","chat"]]],["location",[["address","location_on"]]]];
+const flowLabels = en ? {"newCustomer":"New Customer","createCustomer":"Create Customer","customerCreated":"Customer created successfully","optional":"Optional","newLoan":"New Loan","loanAmountLabel":"Loan Amount (Principal) *","monthlyRateLabel":"Monthly Interest Rate (%) *","notes":"Notes","loanObservations":"Loan observations...","createLoanAction":"Create Loan","billingFrequency":"Billing Frequency","selectFrequency":"Select Frequency","daily":"Daily","weekly":"Weekly","biweekly":"Biweekly","monthly":"Monthly","selectPlan":"Select Plan","paymentPlans":"Payment Plans","selectCustomer":"Select Customer","loanCurrencyLabel":"Loan Currency","selectCurrency":"Select Currency","exchangeRateLabel":"Exchange Rate","disbursementDate":"Disbursement Date","registerPayment":"Register Payment","selectLoan":"Select a loan","paymentCurrency":"Payment Currency","paymentAmountLabel":"Payment Amount *","paymentType":"Payment Type","paymentTypeMixed":"Mixed","paymentTypeRecovery":"Recovery","typeInterest":"Interest Only","typePrincipal":"Principal Only","typeCancel":"Payoff","paymentSuccess":"Payment registered successfully","paymentDate":"Payment Date"} : {"newCustomer":"Nuevo Cliente","createCustomer":"Crear Cliente","customerCreated":"Cliente creado exitosamente","optional":"Opcional","newLoan":"Nuevo Préstamo","loanAmountLabel":"Monto del Préstamo (Capital) *","monthlyRateLabel":"Tasa de Interés Mensual (%) *","notes":"Notas","loanObservations":"Observaciones del préstamo...","createLoanAction":"Crear Préstamo","billingFrequency":"Frecuencia de Cobro","selectFrequency":"Seleccionar Frecuencia","daily":"Diario","weekly":"Semanal","biweekly":"Quincenal","monthly":"Mensual","selectPlan":"Seleccionar Plan","paymentPlans":"Planes de Pago","selectCustomer":"Seleccionar Cliente","loanCurrencyLabel":"Moneda del Préstamo","selectCurrency":"Seleccionar Moneda","exchangeRateLabel":"Tasa de Cambio","disbursementDate":"Fecha de Desembolso","registerPayment":"Registrar Pago","selectLoan":"Seleccione un préstamo","paymentCurrency":"Moneda Pago","paymentAmountLabel":"Monto Pago","paymentType":"Tipo de Pago","paymentTypeMixed":"Mixto","paymentTypeRecovery":"Recuperar","typeInterest":"Solo Interés","typePrincipal":"Solo Capital","typeCancel":"Cancelar","paymentSuccess":"Pago registrado exitosamente","paymentDate":"Fecha de Pago"};
+const journey = en ? {
+ settingsHeading:'Configure your business.',
+ customerHeading:'Create your first customer.',
+ loanHeading:'Create a loan for your customer.',
+ paymentHeading:'Register a payment.',
+ configured:'With those settings, your app is ready to manage your customers and their loans.',
+ customerSaved:'With your customer saved, you can now manage a loan for them in Prestazo.',
+ loanCreated:'With the loan registered, you can track its installments and record payments.',
+ completed:'Every registered payment helps keep your lending portfolio organized.',
+} : {
+ settingsHeading:'Configurar tu empresa.',
+ customerHeading:'Crear tu primer cliente.',
+ loanHeading:'Gestionarle un préstamo.',
+ paymentHeading:'Registrar un pago.',
+ configured:'Con esas configuraciones tu app está lista para empezar a gestionar a tus clientes y sus préstamos.',
+ customerSaved:'Con tu cliente guardado, ahora sí podrás gestionarle un préstamo en Prestazo.',
+ loanCreated:'Con el préstamo registrado, podés llevar el control de sus cuotas y registrar los pagos.',
+ completed:'Cada cobro registrado mantiene tu cartera organizada.',
+};
+const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.05a15 15 0 0 0-1.38-5.17A8.03 8.03 0 0 1 18.92 11ZM12 4.05c.9 1.3 1.54 3.45 1.73 6.95h-3.46C10.46 7.5 11.1 5.35 12 4.05ZM4.08 13h3.05c.12 2 .63 3.8 1.38 5.17A8.03 8.03 0 0 1 4.08 13Zm3.05-2H4.08a8.03 8.03 0 0 1 4.43-5.17A15 15 0 0 0 7.13 11ZM12 19.95c-.9-1.3-1.54-3.45-1.73-6.95h3.46c-.19 3.5-.83 5.65-1.73 6.95ZM10.18 11c.12-2.28.54-4.14 1.2-5.5-.48 1.3-.78 3.13-.88 5.5h-.32Zm-.03 2h3.7c-.16 2.58-.74 4.43-1.85 6.5-1.11-2.07-1.69-3.92-1.85-6.5Zm4.34 5.17c.75-1.37 1.26-3.17 1.38-5.17h3.05a8.03 8.03 0 0 1-4.43 5.17Z","business":"M3 21V3h11v5h7v13H3Zm2-2h3v-3H5v3Zm5 0h2v-3h-2v3Zm4 0h5v-3h-5v3ZM5 6v2h2V6H5Zm4 0v2h2V6H9Zm-4 4v2h2v-2H5Zm4 0v2h2v-2H9Zm5 1v2h2v-2h-2Z","confirmation_number":"M21 5H3c-1.1 0-2 .9-2 2v3a2 2 0 0 1 0 4v3c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-3a2 2 0 0 1 0-4V7c0-1.1-.9-2-2-2Zm0 4.17a4 4 0 0 0 0 5.66V17H3v-2.17a4 4 0 0 0 0-5.66V7h18v2.17ZM11 9h2v6h-2V9Z","phone":"M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.13.38 2.35.58 3.56.58.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.21.2 2.43.58 3.56a1 1 0 0 1-.24 1.03l-2.22 2.2Z","smartphone":"M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2Zm0 18H7V5h10v14Zm-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z","chat":"M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7l-5 3V5a2 2 0 0 1 2-2Zm0 2v13l2.3-1H20V5H4Z","location_on":"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z","image":"M21 3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM3 19l5-6 3 3 4-5 6 8H3ZM8 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z","chevron_right":"m9 6-1.4 1.4L12.2 12l-4.6 4.6L9 18l6-6-6-6Z","save":"M17 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4Zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm3-10H5V5h10v4Z","person":"M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z","badge":"M20 5h-4.18C15.4 3.84 14.3 3 13 3h-2c-1.3 0-2.4.84-2.82 2H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm-9 0h2v2h-2V5ZM5 10h14v9H5v-9Zm4 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm4 1h4v1h-4v-1Zm0 2h4v1h-4v-1Z","face":"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-3 7a1.2 1.2 0 1 1 0 2.4A1.2 1.2 0 0 1 9 9Zm6 0a1.2 1.2 0 1 1 0 2.4A1.2 1.2 0 0 1 15 9Zm-3 8c-2.4 0-4.5-1.3-5.5-3.4h11c-1 2.1-3.1 3.4-5.5 3.4Z","pin_drop":"M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z","calendar_today":"M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H5V9h14v11Z","note":"M19 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10l6-6V4a2 2 0 0 0-2-2ZM7 7h10v2H7V7Zm0 4h10v2H7v-2Zm0 4h6v2H7v-2Zm9 4v-4h4l-4 4Z","percent":"M6 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm12 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM5 21 19 3l-1.5-1.2-14 18L5 21Z"};
+---
+<section class="mp-demo" data-miniprestazo data-locale={en?'en':'es'} aria-label={en?'Interactive Prestazo settings preview':'Vista interactiva de configuraciones de Prestazo'}>
+  <div class="mp-editorial">
+    <h3 data-mp-story-title aria-live="polite">{journey.settingsHeading}</h3>
+    <div class="mp-actions">
+      <button class="mp-control mp-control-primary" type="button" data-mp-play aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        <span data-mp-play-label>{t.play}</span>
+      </button>
+      <button class="mp-control mp-control-outline" type="button" data-mp-reset>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 3v6h6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+        {t.replay}
+      </button>
+    </div>
+  </div>
+
+  <div class="mp-stage">
+    <div class="mp-device">
+      <div class="mp-statusbar" aria-hidden="true"><span>9:41</span><span class="mp-camera"></span><span>◢ ▰ 100%</span></div>
+      <div class="mp-appbar"><div class="mp-appbar-copy"><strong data-mp-app-title>{t.companyData}</strong><small data-mp-app-subtitle hidden></small></div></div>
+      <div class="mp-app-scroll" data-mp-scroll>
+        <div class="mp-app-inner">
+          <section class="mp-screen" data-mp-screen="company" aria-label={t.companyData}>
+            <div class="mp-info mp-company-info"><svg class="mp-info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6"/><path d="M12 7h.01"/></svg><span>{t.companyInfoHelp}</span></div>
+            <div class="mp-section-title">{t.identity}</div>
+            <div class="mp-field">
+              <label for="mp-country">{t.countryOfOperation}</label>
+              <div class="mp-input-wrap">
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.public} /></svg>
+                <input id="mp-country" data-mp-field="country" data-mp-country readonly placeholder={t.selectCountry} />
+              </div>
+            </div>
+            {companyGroups.map(group=><>
+              <div class="mp-company-group">
+                {group[0]!=='identity' && <div class="mp-section-title">{t[group[0] as keyof typeof t]}</div>}
+                {group[1].map(field=><div class="mp-company-field">
+                  <div class="mp-field">
+                    <label for={'mp-'+field[0]}>{t[field[0] as keyof typeof t]}</label>
+                    <div class="mp-input-wrap">
+                      <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths[field[1]]}/></svg>
+                      <input id={'mp-'+field[0]} data-mp-field={field[0]} type={['phoneFixed','cellPhone','whatsapp'].includes(field[0])?'tel':'text'} autocomplete="off"/>
+                    </div>
+                  </div>
+                  <label class="mp-visibility">
+                    <input type="checkbox" data-mp-toggle={field[0]}/>
+                    <span class="mp-switch" aria-hidden="true"></span>
+                    <small data-mp-visible-label={field[0]}>{t.hidden}</small>
+                  </label>
+                </div>)}
+              </div>
+            </>)}
+            <div class="mp-section-title">{t.branding}</div>
+            <div class="mp-company-field">
+              <div class="mp-field">
+                <label for="mp-logoPath">{t.logoPath}</label>
+                <div class="mp-input-wrap">
+                  <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.image} /></svg>
+                  <input id="mp-logoPath" readonly placeholder={t.selectFile} data-mp-field="logoPath"/>
+                </div>
+              </div>
+              <label class="mp-visibility">
+                <input type="checkbox" data-mp-toggle="logoPath"/>
+                <span class="mp-switch" aria-hidden="true"></span>
+                <small data-mp-visible-label="logoPath">{t.hidden}</small>
+              </label>
+            </div>
+            <button class="mp-save-button" data-mp-action="saveCompany" type="button">{t.saveChanges}</button>
+          </section>
+
+          <section class="mp-screen" data-mp-screen="monetary" aria-label={t.monetaryManagement} hidden>
+            <div class="mp-section-title">{t.baseConfiguration}</div>
+            <div class="mp-card">
+              <label class="mp-select-tile mp-currency-tile">
+                <span>{t.baseCurrency}<small data-mp-currency-value>C$ (NIO)</small></span>
+                <select data-mp-field="currency" aria-label={t.baseCurrency}>
+                  <option value="NIO">C$ (NIO)</option>
+                  <option value="USD">$ (USD)</option>
+                </select>
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.chevron_right} /></svg>
+              </label>
+              <small class="mp-currency-desc">{t.baseCurrencyDesc}</small>
+              <div class="mp-divider"></div>
+              <div class="mp-field mp-money-field">
+                <label for="mp-capital">{t.availableCapital}</label>
+                <div class="mp-input-wrap">
+                  <span data-mp-currency-symbol>C$</span>
+                  <input id="mp-capital" data-mp-field="capital" inputmode="numeric" type="text" placeholder="0" autocomplete="off"/>
+                  <button type="button" data-mp-action="saveCapital" class="mp-icon-button" aria-label={t.capitalSaved}>
+                    <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.save} /></svg>
+                  </button>
+                </div>
+                <small>{t.availableCapitalDesc}</small>
+              </div>
+              <div class="mp-divider"></div>
+              <label class="mp-switch-tile">
+                <span>{t.validateCapital}<small>{t.validateCapitalDesc}</small></span>
+                <input type="checkbox" data-mp-toggle="validateCapital"/>
+                <span class="mp-switch" aria-hidden="true"></span>
+              </label>
+              <div class="mp-divider"></div>
+              <div class="mp-field">
+                <label for="mp-priority">{t.recoveryPriority}</label>
+                <select id="mp-priority" data-mp-field="priority">
+                  <option value="CAPITAL_FIRST">{t.prioritizeCapital}</option>
+                  <option value="INTEREST_FIRST">{t.prioritizeInterest}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mp-section-title">{t.currencyCenter}</div>
+            <div class="mp-card">
+              <div class="mp-list-tile"><strong>{t.manageExchangeRates}</strong><small>{t.currencyMaster}</small></div>
+              <div class="mp-divider"></div>
+              <label class="mp-switch-tile">
+                <span>{t.contractRatePolicy}<small>{t.contractRatePolicyDesc}</small></span>
+                <input type="checkbox" data-mp-toggle="contractRatePolicy"/>
+                <span class="mp-switch" aria-hidden="true"></span>
+              </label>
+            </div>
+            <div class="mp-section-title">{t.reportConsolidation}</div>
+            <div class="mp-card">
+              <div class="mp-field">
+                <label for="mp-reportCurrency">{t.presentationCurrency}</label>
+                <select id="mp-reportCurrency" data-mp-field="reportCurrency"><option value="NIO">NIO</option><option value="USD">USD</option></select>
+              </div>
+            </div>
+          </section>
+
+          <section class="mp-screen" data-mp-screen="policy" aria-label={t.financialTitle} hidden>
+            <div class="mp-info mp-policy-info"><svg class="mp-info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6"/><path d="M12 7h.01"/></svg><span>{t.financialInfo}</span></div>
+            <div class="mp-field">
+              <label for="mp-convention">{t.dayConvention}</label>
+              <select id="mp-convention" data-mp-field="convention">
+                <option value="30/360">30/360 (Estándar Comercial)</option>
+                <option value="ACTUAL/360">Actual/360</option>
+                <option value="ACTUAL/365">Actual/365</option>
+                <option value="30/365">30/365</option>
+              </select>
+            </div>
+            <div class="mp-field-pair">
+              <div class="mp-field"><label for="mp-daysMonth">{t.daysMonth}</label><input id="mp-daysMonth" data-mp-field="daysMonth" type="number" min="1" max="31" value="30"/></div>
+              <div class="mp-field"><label for="mp-daysYear">{t.daysYear}</label><input id="mp-daysYear" data-mp-field="daysYear" type="number" min="360" max="366" value="360"/></div>
+            </div>
+            <div class="mp-field">
+              <label for="mp-proration">{t.proration}</label>
+              <select id="mp-proration" data-mp-field="proration"><option value="EXACT_DAYS">Días Exactos</option><option value="CYCLE_PROPORTION">Proporción del Ciclo</option></select>
+            </div>
+            <div class="mp-section-title">{t.roundPolicy}</div>
+            <div class="mp-field-pair">
+              <div class="mp-field"><label for="mp-decimals">{t.roundDecimals}</label><select id="mp-decimals" data-mp-field="decimals"><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+              <div class="mp-field"><label for="mp-roundMode">{t.roundMode}</label><select id="mp-roundMode" data-mp-field="roundMode">
+                <option value="HALF_UP">Medio Arriba</option><option value="HALF_EVEN">Bancario</option><option value="DOWN">Truncar</option><option value="UP">Hacia Arriba</option>
+              </select></div>
+            </div>
+            <div class="mp-calc-preview">
+              <strong>{t.calcTitle}</strong>
+              <div>Capital: C$ 10000.00</div>
+              <div>Tasa Mensual: 10%</div>
+              <div>Días: 15</div>
+              <div data-mp-daily-rate>Tasa Diaria: 0.3333%</div>
+              <b data-mp-calc-interest>Interés Calculado: C$ 500.00</b>
+            </div>
+            <button class="mp-save-button" type="button" data-mp-action="savePolicy">
+              <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.save} /></svg>{t.savePolicy}
+            </button>
+          </section>
+
+          <!-- Campos exactos customer_form_screen.dart (en Flutter algunos labels están hardcoded ES) -->
+          <section class="mp-screen" data-mp-screen="customer" aria-label={flowLabels.newCustomer} hidden>
+            <div class="mp-field"><label for="mp-customerName">Nombre completo *</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.person} /></svg>
+                <input id="mp-customerName" data-mp-field="customerName"  autocomplete="off" placeholder="Ej: Juan Pérez García"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerDni">DNI (Cédula) *</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.badge} /></svg>
+                <input id="mp-customerDni" data-mp-field="customerDni"  autocomplete="off" placeholder="Ej: 001-010100-0000A"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerAlias">Apodo / Alias</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.face} /></svg>
+                <input id="mp-customerAlias" data-mp-field="customerAlias"  autocomplete="off" placeholder="Ej: Juanito (opcional)"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerPhone">Teléfono *</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.phone} /></svg>
+                <input id="mp-customerPhone" data-mp-field="customerPhone" type="tel" autocomplete="off" placeholder="Ej: 8888-8888"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerAddress">Dirección / Referencia *</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.location_on} /></svg>
+                <input id="mp-customerAddress" data-mp-field="customerAddress"  autocomplete="off" placeholder="Ej: Del mercado 2c al norte"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerCoords">PIN (Coordenadas)</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.pin_drop} /></svg>
+                <input id="mp-customerCoords" data-mp-field="customerCoords"  autocomplete="off" placeholder="Ej: 12.123456, -86.123456 (opcional)"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerPayDay">Día preferido de pago</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.calendar_today} /></svg>
+                <input id="mp-customerPayDay" data-mp-field="customerPayDay" inputmode="numeric" autocomplete="off" placeholder="Ej: 15 (opcional, 1-31)"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-customerNotes">Notas</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.note} /></svg>
+                <input id="mp-customerNotes" data-mp-field="customerNotes"  autocomplete="off" placeholder="Observaciones sobre el cliente..."/>
+              </div>
+            </div>
+            <button type="button" class="mp-save-button" data-mp-action="createCustomer">{flowLabels.createCustomer}</button>
+          </section>
+
+
+          <!-- loan_form_screen.dart: cliente, plan, divisa, capital, tasa, frecuencia y fecha -->
+          <section class="mp-screen" data-mp-screen="loan" aria-label={flowLabels.newLoan} hidden>
+            <div class="mp-card mp-customer-summary">
+              <span class="mp-customer-avatar" data-mp-customer-initial aria-hidden="true"></span>
+              <div><strong data-mp-customer-display></strong><small data-mp-customer-dni></small></div>
+            </div>
+            <div class="mp-section-title">{flowLabels.paymentPlans}</div>
+            <div class="mp-card">
+              <div class="mp-field"><label for="mp-loanPlan">{flowLabels.selectPlan}</label>
+                <select id="mp-loanPlan" data-mp-field="loanPlan"><option value="">{flowLabels.optional}</option></select>
+              </div>
+            </div>
+            <div class="mp-section-title">{flowLabels.loanCurrencyLabel}</div>
+            <div class="mp-card mp-currency-selector-card">
+              <div class="mp-currency-row">
+                <span class="mp-currency-leading" data-mp-loan-currency-symbol>C$</span>
+                <span class="mp-currency-copy" data-mp-currency-label>{en?'Nicaraguan Córdoba (NIO)':'Córdoba nicaragüense (NIO)'}</span>
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={iconPaths.chevron_right}/></svg>
+                <select id="mp-loanCurrency" data-mp-field="loanCurrency" aria-label={flowLabels.selectCurrency}>
+                  <option value="NIO">{en?'Nicaraguan Córdoba (NIO)':'Córdoba nicaragüense (NIO)'}</option>
+                  <option value="USD">{en?'US Dollar (USD)':'Dólar estadounidense (USD)'}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-exchangeRate">{flowLabels.exchangeRateLabel}</label>
+              <input id="mp-exchangeRate" data-mp-field="exchangeRate" value="1.0" readonly/>
+            </div>
+            <div class="mp-field"><label for="mp-loanAmount">{flowLabels.loanAmountLabel}</label>
+              <div class="mp-input-wrap"><span data-mp-loan-currency-symbol>C$</span>
+                <input id="mp-loanAmount" data-mp-field="loanAmount" autocomplete="off" inputmode="decimal" placeholder="0.00"/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-monthlyRate">{flowLabels.monthlyRateLabel}</label>
+              <div class="mp-input-wrap"><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.percent} /></svg>
+                <input id="mp-monthlyRate" data-mp-field="monthlyRate" autocomplete="off" inputmode="decimal"/>
+              </div>
+            </div>
+            <div class="mp-field mp-frequency-field">
+              <label for="mp-loanFrequency">{flowLabels.billingFrequency}</label>
+              <div class="mp-currency-row mp-frequency-row">
+                <span class="mp-frequency-icon"><svg class="mp-svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={iconPaths.calendar_today}/></svg></span>
+                <span class="mp-frequency-copy" data-mp-frequency-label>{flowLabels.selectFrequency}</span>
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={iconPaths.chevron_right}/></svg>
+                <select id="mp-loanFrequency" data-mp-field="loanFrequency" aria-label={flowLabels.billingFrequency}>
+                  <option value="">{flowLabels.selectFrequency}</option>
+                  <option value="daily">{flowLabels.daily}</option>
+                  <option value="weekly">{flowLabels.weekly}</option>
+                  <option value="biweekly">{flowLabels.biweekly}</option>
+                  <option value="monthly">{flowLabels.monthly}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mp-field mp-date-field">
+              <label for="mp-loanDate">{flowLabels.disbursementDate}</label>
+              <div class="mp-currency-row mp-date-row">
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={iconPaths.calendar_today}/></svg>
+                <span class="mp-date-copy" data-mp-date-label></span>
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={iconPaths.chevron_right}/></svg>
+                <input id="mp-loanDate" data-mp-field="loanDate" type="date" aria-label={flowLabels.disbursementDate}/>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-loanNotes">{flowLabels.notes}</label>
+              <input id="mp-loanNotes" data-mp-field="loanNotes" autocomplete="off" placeholder={flowLabels.loanObservations}/>
+            </div>
+            <div class="mp-card mp-loan-summary">
+              <strong>Resumen del Préstamo</strong>
+              <div><span>Capital</span><b data-mp-loan-summary-amount>—</b></div>
+              <div><span>Tasa mensual</span><b data-mp-loan-summary-rate>—</b></div>
+            </div>
+            <button class="mp-save-button" type="button" data-mp-action="createLoan">{flowLabels.createLoanAction}</button>
+          </section>
+
+
+          <!-- payment_form_screen.dart: cliente y préstamo seleccionados, moneda, monto, tipo y fecha -->
+          <section class="mp-screen" data-mp-screen="payment" aria-label={flowLabels.registerPayment} hidden>
+            <div class="mp-section-title">{flowLabels.selectCustomer}</div>
+            <div class="mp-card mp-customer-summary">
+              <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.person} /></svg>
+              <div><strong data-mp-payment-customer></strong><small data-mp-payment-dni></small></div>
+            </div>
+            <div class="mp-section-title">{flowLabels.selectLoan}</div>
+            <div class="mp-card mp-loan-summary"><strong data-mp-payment-loan></strong></div>
+            <div class="mp-field mp-payment-currency-field">
+              <label for="mp-paymentCurrency">{flowLabels.paymentCurrency}</label>
+              <div class="mp-payment-currency-picker">
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M15.5 8.4c-1-.8-2.3-1.1-3.5-1.1-2 0-3.5.9-3.5 2.5 0 3.5 6.5 1.3 6.5 4.3 0 1.5-1.2 2.6-3.5 2.6-1.3 0-2.7-.4-3.8-1.3M12 5.7v12.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span data-mp-payment-currency-label>{en?'Nicaraguan Córdoba (NIO)':'Córdoba nicaragüense (NIO)'}</span>
+                <svg class="mp-svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5z" fill="currentColor"/></svg>
+                <select id="mp-paymentCurrency" data-mp-field="paymentCurrency" aria-label={flowLabels.paymentCurrency}>
+                  <option value="NIO">{en?'Nicaraguan Córdoba (NIO)':'Córdoba nicaragüense (NIO)'}</option>
+                  <option value="USD">{en?'US Dollar (USD)':'Dólar estadounidense (USD)'}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mp-field"><label for="mp-paymentAmount">{flowLabels.paymentAmountLabel}</label>
+              <div class="mp-input-wrap"><span data-mp-payment-symbol>C$</span>
+                <input id="mp-paymentAmount" data-mp-field="paymentAmount" autocomplete="off" inputmode="decimal"/>
+              </div>
+            </div>
+            <div class="mp-field mp-payment-types">
+              <label id="mp-payment-type-label">{flowLabels.paymentType}</label>
+              <div class="mp-choice-wrap" role="group" aria-labelledby="mp-payment-type-label">
+                <button type="button" class="mp-choice-chip is-selected" data-mp-payment-choice="mixed" aria-pressed="true">{flowLabels.paymentTypeMixed}</button>
+                <button type="button" class="mp-choice-chip" data-mp-payment-choice="interest" aria-pressed="false">{flowLabels.typeInterest}</button>
+                <button type="button" class="mp-choice-chip" data-mp-payment-choice="principal" aria-pressed="false">{flowLabels.typePrincipal}</button>
+                <button type="button" class="mp-choice-chip mp-choice-success" data-mp-payment-choice="cancel" aria-pressed="false">{flowLabels.typeCancel}</button>
+                <button type="button" class="mp-choice-chip mp-choice-info" data-mp-payment-choice="recovery" aria-pressed="false">{flowLabels.paymentTypeRecovery}</button>
+              </div>
+              <select class="mp-sr-only" tabindex="-1" aria-hidden="true" id="mp-paymentType" data-mp-field="paymentType">
+                <option value="mixed">{flowLabels.paymentTypeMixed}</option>
+                <option value="interest">{flowLabels.typeInterest}</option>
+                <option value="principal">{flowLabels.typePrincipal}</option>
+                <option value="cancel">{flowLabels.typeCancel}</option>
+                <option value="recovery">{flowLabels.paymentTypeRecovery}</option>
+              </select>
+            </div>
+            <div class="mp-field"><label for="mp-paymentDate">{flowLabels.paymentDate}</label>
+              <input id="mp-paymentDate" data-mp-field="paymentDate" type="date"/>
+            </div>
+            <div class="mp-field"><label for="mp-paymentNotes">{flowLabels.notes}</label>
+              <input id="mp-paymentNotes" data-mp-field="paymentNotes" autocomplete="off"/>
+            </div>
+            <button class="mp-save-button" type="button" data-mp-action="registerPayment">{flowLabels.registerPayment}</button>
+          </section>
+
+          <section class="mp-screen" data-mp-screen="sequences" aria-label={t.sequencesTitle} hidden>
+            <div class="mp-section-title">{t.sequencesTitle}</div>
+            <div class="mp-card">
+              <div class="mp-field">
+                <label for="mp-lastLoan">{t.lastLoanGenerated}</label>
+                <small>{t.nextLoanSequenceDesc}</small>
+                <div class="mp-input-wrap">
+                  <span>#</span>
+                  <input id="mp-lastLoan" data-mp-field="lastLoan" type="text" placeholder="A-000" autocapitalize="characters" autocomplete="off"/>
+                  <button class="mp-icon-button" type="button" data-mp-action="saveLoan" aria-label={t.sequenceUpdated}><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.save} /></svg></button>
+                </div>
+              </div>
+              <div class="mp-divider"></div>
+              <div class="mp-field">
+                <label for="mp-lastReceipt">{t.lastReceiptGenerated}</label>
+                <small>{t.nextReceiptSequenceDesc}</small>
+                <div class="mp-input-wrap">
+                  <span>#</span>
+                  <input id="mp-lastReceipt" data-mp-field="lastReceipt" type="text" placeholder="R-000" autocapitalize="characters" autocomplete="off"/>
+                  <button class="mp-icon-button" type="button" data-mp-action="saveReceipt" aria-label={t.receiptSequenceUpdated}><svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.save} /></svg></button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="mp-bottom-gesture" aria-hidden="true"><span></span></div>
+    </div>
+    <span class="mp-demo-pointer" data-mp-pointer aria-hidden="true">
+      <svg viewBox="0 0 28 28"><path d="M3 3v18l5.8-5.8 4.2 9 3.6-1.7-4.4-9H22z" fill="#fff" stroke="#1E3A5F" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+  <div class="mp-story-panel" data-mp-story-panel aria-hidden="true" role="status">
+    <p class="mp-story-message" data-mp-story-message></p>
+  </div>
+  <template data-mp-i18n data-play={t.play} data-pause={t.pause} data-company={t.companyData} data-monetary={t.monetaryManagement} data-monetary-subtitle={t.monetarySubtitle} data-policy={t.financialTitle} data-sequences={t.sequencesTitle} data-customer-title={flowLabels.newCustomer} data-loan-title={flowLabels.newLoan} data-payment-title={flowLabels.registerPayment} data-settings-heading={journey.settingsHeading} data-customer-heading={journey.customerHeading} data-loan-heading={journey.loanHeading} data-payment-heading={journey.paymentHeading} data-story-configured={journey.configured} data-story-customer-saved={journey.customerSaved} data-story-loan-created={journey.loanCreated} data-story-completed={journey.completed} data-visible={t.visible} data-hidden={t.hidden}></template>
+</section>

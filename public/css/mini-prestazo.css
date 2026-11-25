@@ -1,0 +1,1103 @@
+@charset "UTF-8";
+
+/* Tokens auditados en Prestazo/develop:
+   lib/core/theme/app_colors.dart, app_theme.dart y app_typography.dart.
+   La landing conserva su identidad; SOLO la aplicación simulada usa los colores de Prestazo. */
+.mp-demo {
+  --mp-primary:#1E3A5F;
+  --mp-primary-light:#2E5A8F;
+  --mp-accent:#00B894;
+  --mp-bg:#F8FAFC;
+  --mp-surface:#FFFFFF;
+  --mp-surface-variant:#F1F5F9;
+  --mp-ink:#1A1A2E;
+  --mp-secondary:#64748B;
+  --mp-tertiary:#94A3B8;
+  --mp-border:#E2E8F0;
+  display:grid;
+  grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);
+  align-items:center;
+  gap:clamp(1.5rem,4vw,4rem);
+  width:100%;
+  padding:0 0 1rem;
+}
+.mp-demo,.mp-demo *{box-sizing:border-box}
+.mp-demo .mp-editorial{min-width:0}
+.mp-demo .mp-editorial h3 {
+  font:700 clamp(1.55rem,2.45vw,2.2rem)/1.24 'Bricolage Grotesque Variable',sans-serif;
+  max-width:29rem;
+  letter-spacing:-.045em;
+  margin:0 0 1.4rem;
+  color:#183b51;
+}
+.mp-tour .tour-heading {margin:0 0 clamp(1.5rem,4vw,3rem)}
+.mp-tour .tour-heading h2 {
+  font:750 clamp(2.7rem,5.25vw,4.6rem)/1.11 'Bricolage Grotesque Variable',sans-serif;
+  letter-spacing:-.06em;
+  margin:0;
+  max-width:58rem;
+}
+.mp-demo .mp-actions {display:flex;flex-wrap:wrap;align-items:center;gap:.65rem;margin:0}
+.mp-demo .mp-control {
+  appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  border:1px solid var(--mp-primary);
+  border-radius:12px;padding:.85rem 1rem;min-height:3rem;
+  font:600 .84rem/1.2 'Inter',sans-serif;
+  cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;
+}
+.mp-demo .mp-control svg{width:1.15rem;height:1.15rem;flex:none}
+.mp-demo .mp-control:hover{transform:translateY(-2px)}
+.mp-demo .mp-control:active,.mp-demo .mp-control.mp-button-pressed{transform:scale(.97)}
+.mp-demo .mp-control-primary{background:var(--mp-primary);color:#fff}
+.mp-demo .mp-control-primary:hover{background:var(--mp-primary-light)}
+.mp-demo .mp-control-outline{background:#fff;color:var(--mp-primary)}
+.mp-demo .mp-control-outline:hover{background:var(--mp-surface-variant)}
+.mp-demo .mp-stage {position:relative;min-width:0;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.mp-demo .mp-device {
+  position:relative;display:flex;flex-direction:column;overflow:hidden;min-width:0;
+  width:min(100%,24rem);height:clamp(38rem,74vh,49rem);
+  border:7px solid #152A45;border-radius:34px;
+  outline:2px solid #64748B;background:var(--mp-bg);
+  box-shadow:0 22px 60px rgba(30,58,95,.19),0 6px 18px rgba(30,58,95,.12);
+  font:400 14px/1.55 'Inter',sans-serif;color:var(--mp-ink);
+}
+.mp-demo .mp-statusbar {
+  flex:none;min-height:1.75rem;display:flex;align-items:center;justify-content:space-between;
+  position:relative;padding:0 .9rem;background:var(--mp-primary);
+  font:600 .63rem 'Inter',sans-serif;color:#fff;
+}
+.mp-demo .mp-camera{position:absolute;left:50%;top:.36rem;transform:translateX(-50%);width:.75rem;height:.75rem;border:3px solid #1A1A2E;border-radius:50%}
+.mp-demo .mp-appbar {
+  flex:none;display:flex;align-items:center;min-height:3.5rem;padding:.9rem 1rem;
+  background:var(--mp-primary);color:#fff;
+}
+.mp-demo .mp-appbar strong{font:600 1.1rem/1.3 'Inter',sans-serif}
+.mp-demo .mp-app-scroll {
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  background:var(--mp-bg);scrollbar-width:thin;scrollbar-color:var(--mp-border) transparent;
+}
+.mp-demo .mp-app-inner{padding:1rem 1rem 1.75rem}
+.mp-demo .mp-screen[hidden]{display:none!important}
+.mp-demo .mp-screen{display:block;min-width:0;animation:mp-enter .24s ease}
+.mp-demo .mp-info{
+  border:1px solid rgba(52,152,219,.3);border-radius:8px;padding:.8rem;
+  background:rgba(52,152,219,.1);color:var(--mp-secondary);
+  font-size:.75rem;line-height:1.6;margin-bottom:1.25rem;
+}
+.mp-demo .mp-section-title{
+  font:600 .9rem/1.4 'Inter',sans-serif;color:var(--mp-primary);
+  margin:1.35rem 0 .8rem;
+}
+.mp-demo .mp-company-group{min-width:0}
+.mp-demo .mp-field {display:flex;flex-direction:column;gap:.4rem;min-width:0;margin:0 0 1rem}
+.mp-demo .mp-field>label{
+  font:500 .78rem/1.4 'Inter',sans-serif;color:var(--mp-ink);
+  display:block;
+}
+.mp-demo .mp-field>small,
+.mp-demo .mp-field .mp-input-wrap+small{
+  color:var(--mp-secondary);font:400 .72rem/1.5 'Inter',sans-serif;
+}
+.mp-demo .mp-field input,
+.mp-demo .mp-field select {
+  border:1px solid var(--mp-border);border-radius:12px;
+  background:#fff;color:var(--mp-ink);width:100%;min-width:0;
+  padding:.85rem .78rem;
+  font:400 .83rem/1.4 'Inter',sans-serif;min-height:3rem;
+  outline:none;
+}
+.mp-demo .mp-field input:focus,
+.mp-demo .mp-field select:focus,
+.mp-demo .mp-input-wrap:focus-within{
+  border-color:var(--mp-primary);box-shadow:0 0 0 1px var(--mp-primary);
+}
+.mp-demo .mp-field input::placeholder{color:var(--mp-tertiary);opacity:1}
+.mp-demo .mp-field input[readonly]{cursor:pointer}
+.mp-demo .mp-input-wrap{
+  display:flex;align-items:center;min-height:3rem;overflow:hidden;
+  border:1px solid var(--mp-border);border-radius:12px;background:#fff;
+  transition:border-color .15s,box-shadow .15s;
+}
+.mp-demo .mp-input-wrap>.material-symbols-outlined{
+  padding-left:.7rem;color:var(--mp-secondary);font-size:1.2rem;flex:none;
+}
+.mp-demo .material-symbols-outlined{
+  font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:1.35rem;
+  line-height:1;display:inline-block;white-space:nowrap;letter-spacing:normal;
+  -webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased;
+}
+.mp-demo .mp-input-wrap>span:not(.material-symbols-outlined){
+  padding-left:.8rem;flex:none;font:600 .82rem 'Inter',sans-serif;color:var(--mp-ink);
+}
+.mp-demo .mp-input-wrap>input {
+  flex:1;border:0;box-shadow:none!important;background:transparent;
+  border-radius:0;padding:.7rem .72rem;
+}
+.mp-demo .mp-company-field {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.7rem;align-items:center}
+.mp-demo .mp-company-field .mp-field{min-width:0}
+.mp-demo .mp-visibility{
+  cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:.2rem;min-width:3.2rem;
+}
+.mp-demo .mp-visibility small{font:400 .62rem 'Inter',sans-serif;color:var(--mp-secondary)}
+.mp-demo .mp-switch-tile,
+.mp-demo .mp-select-tile {
+  display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  padding:.9rem 0;cursor:pointer;
+}
+.mp-demo .mp-switch-tile>span:first-child,
+.mp-demo .mp-select-tile>span:first-child{
+  font:500 .83rem/1.45 'Inter',sans-serif;color:var(--mp-ink);min-width:0;
+}
+.mp-demo .mp-switch-tile small,.mp-demo .mp-select-tile small,
+.mp-demo .mp-list-tile small{display:block;font:400 .73rem/1.55 'Inter',sans-serif;color:var(--mp-secondary);margin-top:.3rem}
+.mp-demo .mp-visibility input,
+.mp-demo .mp-switch-tile input {
+  position:absolute;opacity:0;width:1px;height:1px;
+}
+.mp-demo .mp-switch {
+  position:relative;display:inline-block;flex:none;width:2.6rem;height:1.52rem;
+  border-radius:99px;background:rgba(158,158,158,.5);transition:background .2s;
+}
+.mp-demo .mp-switch:before{
+  content:"";position:absolute;top:.25rem;left:.25rem;width:1.02rem;height:1.02rem;
+  border-radius:50%;background:#fff;transition:transform .2s;
+  box-shadow:0 1px 3px rgba(0,0,0,.18);
+}
+.mp-demo input:checked+.mp-switch{background:rgba(30,58,95,.5)}
+.mp-demo input:checked+.mp-switch:before{background:var(--mp-primary);transform:translateX(1.1rem)}
+.mp-demo input:focus-visible+.mp-switch{outline:2px solid var(--mp-primary);outline-offset:3px}
+.mp-demo .mp-field-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.mp-demo .mp-card{
+  background:#fff;border:1px solid var(--mp-border);border-radius:16px;padding:1rem;
+  margin:.55rem 0 1.2rem;
+}
+.mp-demo .mp-divider{height:1px;background:var(--mp-border);margin:.7rem 0}
+.mp-demo .mp-card .mp-field{margin:.75rem 0}
+.mp-demo .mp-card .mp-field:last-child{margin-bottom:0}
+.mp-demo .mp-list-tile{padding:.8rem 0}
+.mp-demo .mp-list-tile strong{font:500 .85rem/1.4 'Inter',sans-serif}
+.mp-demo .mp-select-tile select{width:auto;max-width:42%;font:400 .8rem 'Inter',sans-serif;color:var(--mp-ink);background:#fff;border:0;cursor:pointer}
+.mp-demo .mp-icon-button{
+  display:grid;place-items:center;appearance:none;border:0;cursor:pointer;
+  color:var(--mp-accent);background:transparent;min-width:2.65rem;min-height:2.65rem;
+  border-radius:50%;padding:.55rem;margin-right:.15rem;
+}
+.mp-demo .mp-icon-button:hover{background:var(--mp-surface-variant)}
+.mp-demo .mp-save-button{
+  width:100%;min-height:3.5rem;border:0;border-radius:12px;cursor:pointer;
+  background:var(--mp-primary);color:#fff;padding:1rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  font:600 .95rem/1.4 'Inter',sans-serif;margin:1rem 0 1.4rem;
+}
+.mp-demo .mp-save-button:hover{background:var(--mp-primary-light)}
+.mp-demo .mp-save-button.mp-button-pressed,
+.mp-demo .mp-icon-button.mp-button-pressed{box-shadow:inset 0 0 0 2px var(--mp-primary);transform:scale(.97)}
+.mp-demo .mp-calc-preview{
+  border-radius:16px;background:var(--mp-surface-variant);color:var(--mp-primary);
+  padding:1rem;margin:1.3rem 0 .5rem;line-height:1.9;font-size:.78rem;
+}
+.mp-demo .mp-calc-preview strong{display:block;font-size:.88rem;margin-bottom:.5rem}
+.mp-demo .mp-calc-preview b{display:block;margin-top:.6rem;font-size:.92rem}
+.mp-demo .mp-bottom-navigation{display:none}
+.mp-demo .mp-bottom-gesture{height:1.25rem;min-height:1.25rem;display:grid;place-items:center;background:#fff}
+.mp-demo .mp-bottom-gesture span{display:block;width:5rem;height:.24rem;background:#1A1A2E;border-radius:99px}
+.mp-demo .mp-demo-pointer{
+  position:absolute;z-index:20;pointer-events:none;opacity:0;
+  width:1.6rem;height:1.6rem;left:50%;top:50%;
+  transform:translate(-12%,-15%) scale(.85);
+  transition:left .48s cubic-bezier(.19,1,.22,1),top .48s cubic-bezier(.19,1,.22,1),opacity .2s,transform .18s;
+}
+.mp-demo .mp-demo-pointer svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 3px rgba(30,58,95,.25))}
+.mp-demo .mp-demo-pointer.is-visible{opacity:1;transform:translate(-12%,-15%) scale(1)}
+.mp-demo .mp-demo-pointer.is-tapping{transform:translate(-12%,-15%) scale(.75)}
+.mp-demo .mp-demo-pointer.is-tapping:after{
+  content:"";display:block;position:absolute;left:0;top:0;width:2rem;height:2rem;
+  border:2px solid var(--mp-primary);border-radius:50%;
+  animation:mp-tap .36s ease-out forwards;
+}
+.mp-demo .mp-demo-target{box-shadow:0 0 0 3px rgba(30,58,95,.23)!important;border-color:var(--mp-primary)!important}
+.mp-demo .mp-demo-options{
+  position:absolute;z-index:19;padding:.3rem;background:#fff;
+  border:1px solid var(--mp-border);border-radius:.7rem;
+  box-shadow:0 10px 32px rgba(30,58,95,.2);font:400 .75rem/1.4 'Inter',sans-serif;
+  max-height:min(14rem,35svh);overflow:auto;
+}
+.mp-demo .mp-demo-options>div{padding:.5rem .65rem;border-radius:.4rem}
+.mp-demo .mp-demo-options>div.is-selected{background:var(--mp-surface-variant);font-weight:600;color:var(--mp-primary)}
+.mp-demo :is(button,input,select):focus-visible{outline:2px solid var(--mp-primary);outline-offset:3px}
+@keyframes mp-enter{from{opacity:.6;transform:translateY(.35rem)}to{opacity:1;transform:none}}
+@keyframes mp-tap{from{opacity:.8;transform:scale(.6)}to{opacity:0;transform:scale(1.5)}}
+
+/* El formulario móvil es un panel responsive (sin mockup).
+   Altura relativa al viewport: el contenido ocupa el panel hasta los botones,
+   sin márgenes rígidos ni rellenos artificiales. */
+@media (max-width:900px){
+  .mp-demo{display:flex;flex-direction:column;gap:0;align-items:stretch;padding:0}
+  .mp-demo .mp-editorial{display:contents}
+  .mp-demo .mp-editorial h3{
+    order:1;max-width:45rem;margin:0 0 1rem;
+    font-size:clamp(1.4rem,4.5vw,1.85rem);
+  }
+  .mp-demo .mp-stage{order:2;width:100%;display:block;flex:none}
+  .mp-demo .mp-device{
+    width:100%;max-width:none;min-width:0;
+    height:70svh;min-height:0;max-height:none;
+    border:1px solid var(--mp-border);outline:none;border-radius:12px;
+    box-shadow:0 8px 22px rgba(30,58,95,.06);
+  }
+  .mp-demo .mp-statusbar,.mp-demo .mp-bottom-gesture{display:none}
+  .mp-demo .mp-appbar{min-height:3.4rem;padding:.8rem 1rem}
+  .mp-demo .mp-app-scroll{flex:1;min-height:0}
+  .mp-demo .mp-actions{
+    order:3;margin:clamp(.85rem,2svh,1.25rem) 0 0;width:100%;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;
+  }
+  .mp-demo .mp-control{min-width:0;min-height:3.25rem;padding:.75rem .6rem;white-space:normal}
+  .mp-demo .mp-demo-pointer{width:1.5rem;height:1.5rem}
+  .mp-tour .tour-heading{margin-bottom:1.4rem}
+  .mp-tour .tour-heading h2{font-size:clamp(2.4rem,6vw,3.5rem)}
+}
+@media (max-width:600px){
+  .mp-tour{padding-block:clamp(3.2rem,8vw,5rem)}
+  .mp-tour .tour-heading{margin-bottom:1.15rem}
+  .mp-tour .tour-heading h2{font-size:clamp(2.05rem,8.6vw,3rem);line-height:1.12}
+  .mp-demo .mp-editorial h3{font-size:clamp(1.35rem,5.45vw,1.7rem);line-height:1.3}
+  .mp-demo .mp-device{height:69svh;min-height:0}
+  .mp-demo .mp-app-inner{padding:1rem .85rem 1.6rem}
+  .mp-demo .mp-appbar strong{font-size:1rem}
+  .mp-demo .mp-control{font-size:.76rem}
+  .mp-demo .mp-company-field{gap:.4rem}
+  .mp-demo .mp-field-pair{gap:.55rem}
+}
+@media (max-width:359px){
+  .mp-demo .mp-control{font-size:.71rem;gap:.25rem}
+  .mp-demo .mp-control svg{width:1rem;height:1rem}
+}
+/* Autorrelleno: foco representado con luz y pulsación, sin activar el teclado
+   físico del navegador. Sólo un toque real del usuario abre el teclado. */
+.mp-demo .mp-input-wrap.mp-demo-typing,
+.mp-demo .mp-demo-typing-field:not(.mp-input-wrap) {
+  border-color:var(--mp-primary);
+  box-shadow:0 0 0 2px rgba(30,58,95,.18);
+}
+.mp-demo .mp-input-wrap.mp-demo-typing {
+  animation:mp-typing-attention .65s ease-in-out infinite alternate;
+}
+.mp-demo .mp-app-scroll {scroll-padding-block:1rem}
+@keyframes mp-typing-attention {
+  from {box-shadow:0 0 0 1px rgba(30,58,95,.14)}
+  to {box-shadow:0 0 0 3px rgba(30,58,95,.28)}
+}
+@media(max-width:900px){
+  /* El viewport reducido por un teclado real determina la altura editable. */
+  .mp-demo.mp-keyboard-visible .mp-device{
+    height:min(70svh,max(15rem,calc(var(--mp-visible-height,70svh) - 7rem)));
+  }
+  /* iOS Safari no ampliará automáticamente la página por un input pequeño. */
+  .mp-demo .mp-field input,
+  .mp-demo .mp-field select,
+  .mp-demo .mp-input-wrap > input {font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mp-demo *, .mp-demo *:before, .mp-demo *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .mp-demo .mp-demo-pointer{display:none}
+}
+
+
+/* -----------------------------------------------------------------------
+   Paridad cromática y de componentes — Prestazo/develop 2026-11-24.
+   Origen: AppTheme.lightTheme/darkTheme, AppColors, AppTextField, AppCard,
+   CompanySettingsScreen, MonetarySettingsScreen, FinancialPolicyScreen.
+   No aplicar estas variables a la landing fuera de .mp-demo.
+   ----------------------------------------------------------------------- */
+.mp-demo {
+  --mp-on-primary:#FFFFFF;                /* AppColors.textOnPrimary */
+  --mp-on-surface-variant:#1A1A2E;        /* ColorScheme.light fallback onSurface */
+  --mp-input-fill:#FFFFFF;                /* InputDecorationTheme light */
+  --mp-icon-primary:#1E3A5F;              /* AppColors.primary */
+  --mp-money-save:#18D6B4;               /* AppColors.secondaryDarkTheme */
+  --mp-sequence-save:#00B894;            /* AppColors.success */
+  --mp-info-color:#3498DB;               /* AppColors.info */
+  --mp-primary-container:#1E3A5F;       /* ColorScheme.light.primaryContainer -> primary */
+  --mp-on-primary-container:#FFFFFF;     /* ColorScheme.light.onPrimaryContainer -> onPrimary */
+  --mp-card-border:#E2E8F0;              /* AppColors.border */
+  --mp-switch-disabled:#9E9E9E;          /* Flutter Colors.grey */
+  --mp-toggle-thumb:#1E3A5F;             /* Theme.colorScheme.primary */
+}
+.mp-demo .mp-appbar-copy {display:flex;flex-direction:column;gap:2px;min-width:0}
+.mp-demo .mp-appbar-copy strong {font:600 20px/1.3 'Inter',sans-serif}
+.mp-demo .mp-appbar.is-monetary .mp-appbar-copy strong{font-size:14px}
+.mp-demo .mp-appbar-copy small {font:400 12px/1.4 'Inter',sans-serif;color:var(--mp-on-surface-variant)}
+.mp-demo .mp-appbar-copy small[hidden]{display:none}
+.mp-demo .mp-info{display:flex;align-items:flex-start;gap:.75rem}
+.mp-demo .mp-info .material-symbols-outlined{flex:none;font-size:1.25rem;line-height:1.25}
+.mp-demo .mp-company-info {
+  background:rgb(52 152 219 / .1);
+  border:1px solid rgb(52 152 219 / .3);
+  color:var(--mp-secondary);
+}
+.mp-demo .mp-company-info .material-symbols-outlined{color:var(--mp-info-color)}
+.mp-demo .mp-policy-info{
+  background:var(--mp-surface);color:var(--mp-ink);
+  border:1px solid var(--mp-card-border);
+  border-radius:16px;padding:1rem;
+}
+.mp-demo .mp-policy-info .material-symbols-outlined{color:var(--mp-primary)}
+.mp-demo .mp-field input,.mp-demo .mp-field select{
+  background:var(--mp-input-fill);
+  color:var(--mp-ink);
+  border-color:var(--mp-border);
+}
+.mp-demo .mp-input-wrap{background:var(--mp-input-fill);border-color:var(--mp-border)}
+.mp-demo .mp-input-wrap>input{background:transparent}
+.mp-demo .mp-field>label{color:var(--mp-ink)}
+.mp-demo .mp-card{background:var(--mp-surface);border-color:var(--mp-card-border)}
+.mp-demo .mp-select-tile small,
+.mp-demo .mp-list-tile small {color:var(--mp-secondary)}
+.mp-demo .mp-currency-desc {
+  display:block;font:400 12px/1.45 'Inter',sans-serif;
+  color:var(--mp-ink);margin:0 0 .6rem;
+}
+.mp-demo .mp-currency-tile{position:relative}
+.mp-demo .mp-currency-tile>span:first-child{padding-right:1rem}
+.mp-demo .mp-currency-tile>span.material-symbols-outlined{color:var(--mp-secondary);font-size:1.3rem}
+.mp-demo .mp-currency-tile select {
+  position:absolute;inset:0;width:100%;max-width:none;height:100%;
+  opacity:0;cursor:pointer;color:var(--mp-ink);
+}
+.mp-demo .mp-currency-tile:focus-within{
+  outline:2px solid var(--mp-primary);outline-offset:2px;border-radius:8px;
+}
+.mp-demo .mp-switch{
+  background:rgb(158 158 158 / .5);
+  width:3.25rem;height:2rem;
+}
+.mp-demo .mp-switch:before{
+  width:1rem;height:1rem;top:.5rem;left:.55rem;
+  background:var(--mp-switch-disabled);
+  box-shadow:none;
+}
+.mp-demo input:checked + .mp-switch{
+  background:color-mix(in srgb,var(--mp-primary) 50%,transparent);
+}
+.mp-demo input:checked + .mp-switch:before{
+  background:var(--mp-toggle-thumb);
+  transform:translateX(1.15rem);
+}
+.mp-demo .mp-icon-button{color:var(--mp-sequence-save)}
+.mp-demo [data-mp-action="saveCapital"]{color:var(--mp-money-save)}
+.mp-demo .mp-save-button,.mp-demo .mp-control-primary{
+  background:var(--mp-primary);color:var(--mp-on-primary);
+}
+.mp-demo .mp-control-outline{
+  background:var(--mp-surface);color:var(--mp-primary);border-color:var(--mp-primary);
+}
+.mp-demo .mp-calc-preview{
+  background:var(--mp-primary-container);
+  color:var(--mp-on-primary-container);
+  border-radius:16px;
+}
+.mp-demo .mp-calc-preview :is(strong,b){color:var(--mp-on-primary-container)}
+.mp-demo .mp-demo-options{
+  background:var(--mp-surface);color:var(--mp-ink);border-color:var(--mp-border);
+}
+.mp-demo .mp-demo-options>div.is-selected{
+  color:var(--mp-primary);background:var(--mp-surface-variant);
+}
+
+/* ThemeMode.system in Prestazo defaults to the device's dark/light mode.
+   AppTheme.darkTheme uses a different appbar, surfaces, inputs and accents. */
+@media(prefers-color-scheme:dark){
+  .mp-demo{
+    --mp-primary:#2D7DFF;                 /* AppColors.primaryDarkTheme */
+    --mp-primary-light:#2D7DFF;
+    --mp-accent:#18D6B4;                  /* AppColors.secondaryDarkTheme */
+    --mp-bg:#0B0F14;                      /* AppColors.backgroundDark */
+    --mp-surface:#121826;                 /* AppColors.surfaceDark */
+    --mp-surface-variant:#1F2A44;        /* AppColors.surfaceVariantDark */
+    --mp-ink:#EAF0FF;                     /* AppColors.textPrimaryDark */
+    --mp-secondary:#B7C3DE;               /* AppColors.textSecondaryDark */
+    --mp-tertiary:#7F8FB3;                /* AppColors.textTertiaryDark */
+    --mp-border:#2C3A5A;                  /* AppColors.borderDark */
+    --mp-card-border:#2C3A5A;             /* ColorScheme.outlineVariant */
+    --mp-on-primary:#FFFFFF;              /* ThemeData.colorScheme.onPrimary */
+    --mp-on-surface-variant:#B7C3DE;     /* ColorScheme.onSurfaceVariant */
+    --mp-icon-primary:#2D7DFF;
+    --mp-input-fill:#1F2A44;              /* InputDecorationTheme dark */
+    --mp-primary-container:#2D7DFF;
+    --mp-on-primary-container:#FFFFFF;
+    --mp-switch-disabled:#7F8FB3;        /* AppColors.iconInactiveDark */
+    --mp-toggle-thumb:#2D7DFF;
+  }
+  .mp-demo .mp-appbar{background:var(--mp-surface);color:var(--mp-ink)}
+  .mp-demo .mp-device{background:var(--mp-bg)}
+  .mp-demo .mp-app-scroll{background:var(--mp-bg)}
+  .mp-demo .mp-statusbar{background:var(--mp-surface);color:var(--mp-ink)}
+  .mp-demo .mp-control:hover{background:var(--mp-primary)}
+  .mp-demo .mp-control-outline:hover{background:var(--mp-surface-variant)}
+  .mp-demo .mp-field input::placeholder{color:var(--mp-tertiary)}
+  .mp-demo .mp-section-title{color:var(--mp-primary)}
+  .mp-demo .mp-input-wrap>.material-symbols-outlined{color:var(--mp-secondary)}
+  .mp-demo .mp-bottom-gesture{background:var(--mp-surface)}
+  .mp-demo .mp-bottom-gesture span{background:var(--mp-ink)}
+}
+
+/* Recorrido narrativo continuo: la app queda oculta mientras aparece
+   un mensaje de transición. Los colores del formulario siguen AppTheme. */
+.mp-demo .mp-info-icon{
+  display:block;flex:0 0 20px;width:20px;height:20px;max-width:20px;
+  color:var(--mp-primary);
+}
+.mp-demo .mp-company-info .mp-info-icon{color:var(--mp-info-color)}
+.mp-demo .mp-info > span:not(.material-symbols-outlined){
+  flex:1;min-width:0;overflow-wrap:break-word;
+}
+.mp-demo .mp-story-panel{
+  position:absolute;z-index:8;inset:0;
+  display:grid;place-items:center;
+  padding:clamp(1.5rem,5vw,4rem);
+  border:1px solid var(--mp-border);
+  border-radius:clamp(12px,3vw,32px);
+  background:linear-gradient(155deg,var(--mp-surface) 10%,var(--mp-bg) 92%);
+  color:var(--mp-ink);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:scale(.96);
+  transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1),visibility .6s;
+  overflow:hidden;
+}
+.mp-demo .mp-story-copy{position:relative;z-index:2;max-width:31rem;text-align:center}
+.mp-demo .mp-story-copy p{
+  font:700 clamp(1.55rem,3.25vw,2.7rem)/1.25 'Bricolage Grotesque Variable','Inter',sans-serif;
+  letter-spacing:-.045em;color:var(--mp-primary);margin:0;
+  text-wrap:balance;
+}
+
+
+.mp-demo.mp-story-active .mp-device{
+  opacity:0;visibility:hidden;pointer-events:none;transform:scale(.955);
+  transition:opacity .35s ease,transform .55s ease,visibility .35s;
+}
+.mp-demo.mp-story-active .mp-story-panel{
+  opacity:1;visibility:visible;transform:none;
+}
+.mp-demo.mp-story-active .mp-story-copy p{
+  animation:mp-story-reveal 1.05s cubic-bezier(.16,1,.3,1) both;
+}
+
+.mp-demo .mp-headline-enter{
+  animation:mp-headline-reveal .65s cubic-bezier(.2,.8,.2,1) both;
+}
+.mp-demo .mp-customer-summary{display:flex;align-items:center;gap:.8rem}
+.mp-demo .mp-customer-summary .material-symbols-outlined{color:var(--mp-primary);font-size:1.4rem}
+.mp-demo .mp-customer-summary div{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.mp-demo .mp-customer-summary strong{font:600 .95rem/1.3 'Inter',sans-serif}
+.mp-demo .mp-customer-summary small{font:400 .78rem 'Inter',sans-serif;color:var(--mp-secondary)}
+.mp-demo .mp-loan-summary strong{display:block;margin-bottom:.5rem}
+.mp-demo .mp-loan-summary>div{display:flex;justify-content:space-between;gap:.8rem;margin:.4rem 0}
+.mp-demo .mp-loan-summary>div span{color:var(--mp-secondary)}
+.mp-demo .mp-story-panel :is(p,span){overflow-wrap:break-word}
+@keyframes mp-story-reveal {
+  from{opacity:0;transform:translateY(24px);filter:blur(8px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes mp-headline-reveal {
+  from{opacity:.3;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:900px){
+  .mp-demo .mp-story-panel{border-radius:12px;padding:clamp(1.4rem,5vw,2.5rem)}
+  .mp-demo .mp-story-copy p{font-size:clamp(1.5rem,5vw,2.25rem)}
+}
+@media(max-width:600px){
+  .mp-demo .mp-story-copy p{font-size:clamp(1.5rem,6.2vw,1.95rem)}
+
+}
+@media(prefers-reduced-motion:reduce){
+  .mp-demo.mp-story-active .mp-story-panel,
+  .mp-demo.mp-story-active .mp-device{transition:none}
+}
+
+/* Refinamiento visual de la simulación:
+   componentes, etiquetas, fondos y modos basados en AppTheme / AppTextField,
+   AppCard, ChoiceChip y ListTile de Prestazo/develop.
+   El relato es una capa narrativa sobre la interfaz, NO un componente inventado
+   dentro del formulario Flutter. */
+.mp-demo .mp-svg-icon{
+  display:block;width:20px;height:20px;flex:none;fill:currentColor;
+}
+.mp-demo .mp-input-wrap>.mp-svg-icon{
+  width:20px;height:20px;margin-left:12px;color:var(--mp-secondary);
+}
+.mp-demo .mp-info-icon{display:block;flex:none;width:20px;height:20px}
+.mp-demo .mp-customer-summary>.mp-svg-icon{width:20px;height:20px;color:var(--mp-primary)}
+.mp-demo .mp-icon-button>.mp-svg-icon{width:22px;height:22px}
+.mp-demo .mp-save-button>.mp-svg-icon{width:20px;height:20px}
+.mp-demo .mp-currency-row>.mp-svg-icon{color:var(--mp-secondary);width:20px;height:20px}
+.mp-demo .mp-frequency-icon .mp-svg-icon{color:var(--mp-primary)}
+.mp-demo .mp-field input:not([type=checkbox]),
+.mp-demo .mp-field select{font:400 14px/1.4 'Inter',sans-serif}
+.mp-demo .mp-field>label{font:500 12px/1.4 'Inter',sans-serif;margin-bottom:2px}
+.mp-demo .mp-card{border-radius:16px}
+.mp-demo .mp-sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;border:0;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}
+.mp-demo .mp-payment-types{gap:10px}
+.mp-demo .mp-choice-wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mp-demo .mp-choice-chip{
+  border:1px solid var(--mp-border);border-radius:9px;
+  background:var(--mp-surface-variant);color:var(--mp-ink);
+  padding:9px 12px;font:500 12px/1.3 'Inter',sans-serif;
+  min-height:36px;cursor:pointer;
+  transition:background .22s ease,color .22s ease,transform .18s ease,border-color .22s ease;
+}
+.mp-demo .mp-choice-chip:hover{transform:translateY(-1px)}
+.mp-demo .mp-choice-chip:active{transform:scale(.95)}
+.mp-demo .mp-choice-chip.is-selected{
+  background:color-mix(in srgb,var(--mp-primary) 13%,var(--mp-surface));
+  color:var(--mp-primary);border-color:var(--mp-primary);
+}
+.mp-demo .mp-choice-chip.mp-choice-success.is-selected{
+  background:color-mix(in srgb,#00B894 20%,var(--mp-surface));
+  border-color:#00B894;color:var(--mp-ink);
+}
+.mp-demo .mp-choice-chip.mp-choice-info.is-selected{
+  background:color-mix(in srgb,#3498DB 20%,var(--mp-surface));
+  border-color:#3498DB;color:var(--mp-ink);
+}
+.mp-demo .mp-currency-selector-card{padding:0;position:relative}
+.mp-demo .mp-currency-row{
+  position:relative;display:flex;align-items:center;gap:12px;padding:15px;
+  border-radius:12px;border:1px solid var(--mp-border);
+  background:var(--mp-surface);min-height:58px;
+}
+.mp-demo .mp-currency-selector-card .mp-currency-row{border:0}
+.mp-demo .mp-currency-leading{
+  font:700 20px/1.3 'Inter',sans-serif;
+  min-width:24px;flex:none;color:var(--mp-primary);
+}
+.mp-demo .mp-currency-copy,.mp-demo .mp-frequency-copy,.mp-demo .mp-date-copy{
+  font:500 14px/1.45 'Inter',sans-serif;color:var(--mp-ink);
+  flex:1;min-width:0;
+}
+.mp-demo .mp-currency-row>select,.mp-demo .mp-currency-row>input[type=date]{
+  position:absolute;inset:0;width:100%;height:100%;
+  padding:0;opacity:0;cursor:pointer;
+}
+.mp-demo .mp-currency-row:focus-within{
+  border-color:var(--mp-primary);box-shadow:0 0 0 2px color-mix(in srgb,var(--mp-primary) 22%,transparent);
+}
+.mp-demo .mp-frequency-icon{
+  width:38px;height:38px;display:grid;place-items:center;flex:none;
+  border-radius:8px;background:var(--mp-surface-variant);
+}
+.mp-demo .mp-date-row{border-radius:12px}
+.mp-demo .mp-customer-avatar{
+  display:grid;place-items:center;width:48px;height:48px;flex:none;
+  border-radius:12px;
+  background:color-mix(in srgb,var(--mp-primary) 10%,var(--mp-surface));
+  color:var(--mp-primary);font:600 18px/1 'Inter',sans-serif;
+}
+.mp-demo .mp-customer-summary .mp-customer-avatar{color:var(--mp-primary)}
+/* Mantener el mismo dispositivo y appbar durante las transiciones.
+   Se sustituye solo el contenido que contiene el formulario. */
+.mp-demo .mp-app-scroll{
+  position:relative;
+  overflow:auto;
+}
+.mp-demo .mp-app-inner{
+  transition:opacity .45s ease,transform .65s cubic-bezier(.16,1,.3,1);
+}
+.mp-demo .mp-story-panel{
+  z-index:6;
+  inset:0;
+  position:absolute;
+  min-height:100%;
+  border-radius:0;
+  border:0;
+  padding:clamp(1.6rem,5%,2.5rem);
+  background:var(--mp-bg);
+  color:var(--mp-ink);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px);
+  transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .65s cubic-bezier(.2,.8,.2,1),visibility .55s;
+}
+.mp-demo .mp-story-copy{max-width:100%;width:100%;text-align:left}
+.mp-demo .mp-story-copy p{
+  color:var(--mp-primary);
+  font:700 clamp(1.35rem,2.6vw,2.05rem)/1.35 'Inter',sans-serif;
+  letter-spacing:-.035em;
+  text-wrap:pretty;
+}
+
+
+.mp-demo.mp-story-active .mp-device{
+  opacity:1!important;visibility:visible!important;
+  transform:none!important;pointer-events:auto!important;
+}
+.mp-demo.mp-story-active .mp-app-scroll{overflow:hidden}
+.mp-demo.mp-story-active .mp-app-inner{
+  opacity:0;transform:translateY(-14px);
+  visibility:hidden;pointer-events:none;
+}
+.mp-demo.mp-story-active .mp-story-panel{
+  opacity:1;visibility:visible;transform:none;
+}
+.mp-demo .mp-story-word{
+  display:inline-block;opacity:0;
+  margin-right:.27em;
+  transform:translateY(.68em);
+  filter:blur(7px);
+  transition:opacity .68s ease,transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease;
+  transition-delay:calc(var(--word-index,0)*70ms);
+}
+.mp-demo.mp-story-active .mp-story-word{
+  opacity:1;transform:none;filter:blur(0);
+}
+.mp-demo.mp-story-active .mp-story-copy p{
+  animation:none;
+}
+
+.mp-demo .mp-story-copy p::selection{background:var(--mp-accent);color:#fff}
+.mp-demo .mp-screen{animation:mp-screen-native-enter .62s cubic-bezier(.16,1,.3,1) both}
+@keyframes mp-screen-native-enter{
+  from{opacity:0;transform:translateX(12px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.mp-demo .mp-headline-enter{animation:mp-headline-native .75s cubic-bezier(.16,1,.3,1) both}
+@keyframes mp-headline-native{
+  from{opacity:.15;transform:translateY(15px);filter:blur(4px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+/* No atar la apariencia del producto al tema oscuro que usa el navegador
+   de la landing; la demo muestra explícitamente el tema claro de Flutter. */
+@media(prefers-color-scheme:dark){
+  .mp-demo{
+    --mp-primary:#1E3A5F;
+    --mp-primary-light:#2E5A8F;
+    --mp-accent:#00B894;
+    --mp-bg:#F8FAFC;
+    --mp-surface:#FFFFFF;
+    --mp-surface-variant:#F1F5F9;
+    --mp-ink:#1A1A2E;
+    --mp-secondary:#64748B;
+    --mp-tertiary:#94A3B8;
+    --mp-border:#E2E8F0;
+    --mp-card-border:#E2E8F0;
+    --mp-on-primary:#FFFFFF;
+    --mp-on-surface-variant:#49454F;
+    --mp-input-fill:#FFFFFF;
+    --mp-primary-container:#1E3A5F;
+    --mp-on-primary-container:#FFFFFF;
+    --mp-switch-disabled:#9E9E9E;
+    --mp-toggle-thumb:#1E3A5F;
+  }
+  .mp-demo .mp-appbar{background:var(--mp-primary);color:#fff}
+  .mp-demo .mp-device{background:var(--mp-bg)}
+  .mp-demo .mp-app-scroll{background:var(--mp-bg)}
+  .mp-demo .mp-statusbar{background:var(--mp-primary);color:#fff}
+  .mp-demo .mp-bottom-gesture{background:#fff}
+  .mp-demo .mp-bottom-gesture span{background:#1A1A2E}
+  .mp-demo .mp-control-outline:hover{background:var(--mp-surface-variant)}
+}
+@media(max-width:900px){
+  .mp-demo .mp-story-panel{padding:clamp(1.4rem,5vw,2rem)}
+  .mp-demo .mp-story-copy p{font-size:clamp(1.5rem,5vw,2rem)}
+  .mp-demo .mp-app-scroll .mp-story-panel{min-height:100%}
+  .mp-demo .mp-currency-row{padding:12px}
+}
+@media(max-width:600px){
+  .mp-demo .mp-story-copy p{font-size:clamp(1.5rem,6.1vw,1.95rem)}
+  .mp-demo .mp-choice-chip{font-size:12px;padding:9px 11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mp-demo .mp-story-word{opacity:1;transform:none;filter:none;transition:none}
+  .mp-demo.mp-story-active .mp-story-copy p{animation:none}
+  .mp-demo .mp-screen{animation:none}
+}
+
+/* La reproducción de palabras utiliza keyframes, no transiciones que podrían
+   omitirse cuando se crean los spans y el estado activo en el mismo frame. */
+@keyframes mp-word-appear{
+  from{opacity:0;transform:translateY(.8em) scale(.985);filter:blur(7px)}
+  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+.mp-demo.mp-story-active .mp-story-word{
+  animation:mp-word-appear .84s cubic-bezier(.16,1,.3,1) both;
+  animation-delay:calc(var(--word-index,0)*78ms);
+}
+.mp-demo .mp-appbar-copy small{color:rgba(255,255,255,.76)}
+@media (prefers-reduced-motion: reduce){
+  .mp-demo.mp-story-active .mp-story-word{
+    animation:none;opacity:1;filter:none;transform:none;
+  }
+}
+
+/* InputDecorator de moneda en Registrar Pago (payment_form_screen.dart). */
+.mp-demo .mp-payment-currency-picker{
+  position:relative;display:flex;align-items:center;gap:12px;
+  min-height:56px;padding:12px 14px;border-radius:12px;
+  background:var(--mp-input-fill);border:1px solid var(--mp-border);
+}
+.mp-demo .mp-payment-currency-picker>.mp-svg-icon{color:var(--mp-secondary)}
+.mp-demo .mp-payment-currency-picker>.mp-svg-icon:first-child{fill:none}
+.mp-demo .mp-payment-currency-picker>span{
+  font:400 14px/1.4 'Inter',sans-serif;color:var(--mp-ink);
+  flex:1;min-width:0;
+}
+.mp-demo .mp-payment-currency-picker>select{
+  opacity:0;position:absolute;inset:0;width:100%;height:100%;
+  cursor:pointer;margin:0;
+}
+.mp-demo .mp-payment-currency-picker:focus-within{
+  border-color:var(--mp-primary);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--mp-primary) 20%,transparent);
+}
+
+/* Entrada y regreso del formulario: evitamos un corte brusco al finalizar
+   el mensaje y no alteramos la altura del layout ni el scroll de la página. */
+.mp-demo .mp-stage,
+.mp-demo .mp-editorial h3,
+.mp-demo .mp-editorial .mp-actions{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  transition:opacity .48s ease,transform .58s cubic-bezier(.22,1,.36,1),visibility .5s;
+}
+/* Recorrido narrativo independiente — aprobado 24/11/2026.
+   El texto reemplaza temporalmente TODO el mini Prestazo (mockup,
+   subtítulo y controles), pero no altera las otras secciones de la landing. */
+.mp-demo{
+  position:relative;
+  isolation:isolate;
+}
+.mp-demo .mp-story-panel{
+  position:absolute;
+  inset:0;
+  z-index:25;
+  width:100%;
+  min-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(1.5rem,5vw,5rem);
+  background:#f8faf8;
+  border:0;
+  border-radius:0;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px);
+  pointer-events:none;
+  transition:opacity .54s cubic-bezier(.22,1,.36,1),
+             transform .6s cubic-bezier(.22,1,.36,1), visibility .6s;
+}
+.mp-demo .mp-story-message{
+  margin:0 auto;
+  width:100%;
+  max-width:910px;
+  font:750 clamp(2rem,4.5vw,4.15rem)/1.22 'Bricolage Grotesque Variable','Inter',sans-serif;
+  letter-spacing:-.058em;
+  text-wrap:balance;
+  text-align:center;
+  color:#172c3b;
+}
+.mp-demo .mp-story-word{
+  display:inline-block;
+  opacity:0;
+  transform:translate3d(0,20px,0);
+  filter:blur(7px);
+  margin-right:.18em;
+  will-change:opacity,transform,filter;
+}
+.mp-demo.mp-story-active .mp-editorial h3,
+.mp-demo.mp-story-active .mp-editorial .mp-actions,
+.mp-demo.mp-story-active .mp-stage{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translateY(-10px);
+  transition:opacity .38s ease,transform .5s ease,visibility .4s;
+}
+.mp-demo.mp-story-active .mp-device{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+.mp-demo.mp-story-active .mp-story-panel{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+}
+@keyframes mp-standalone-word-in{
+  0%{opacity:0;transform:translate3d(0,20px,0);filter:blur(7px)}
+  100%{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+}
+.mp-demo.mp-story-active .mp-story-word{
+  animation:mp-standalone-word-in .82s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay:calc(var(--word-index,0)*70ms);
+}
+/* El título del bloque también cede protagonismo al mensaje.
+   Se mantiene su espacio para que la página no salte durante el cambio. */
+.mp-tour:has(.mp-demo.mp-story-active) .tour-heading{
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .35s ease,visibility .35s;
+}
+@media(max-width:900px){
+  .mp-demo .mp-story-panel{padding:clamp(1rem,5vw,2.4rem)}
+  .mp-demo .mp-story-message{
+    font-size:clamp(1.8rem,5.7vw,3.2rem);
+    line-height:1.28;
+    letter-spacing:-.045em;
+  }
+}
+@media(max-width:600px){
+  .mp-demo .mp-story-panel{padding:clamp(.8rem,4vw,1.5rem)}
+  .mp-demo .mp-story-message{
+    font-size:clamp(1.6rem,6.7vw,2.3rem);
+    line-height:1.31;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .mp-demo .mp-story-panel,
+  .mp-demo.mp-story-active .mp-editorial h3,
+  .mp-demo.mp-story-active .mp-editorial .mp-actions,
+  .mp-demo.mp-story-active .mp-stage{transition:none!important}
+  .mp-demo.mp-story-active .mp-story-word{
+    animation:none!important;
+    opacity:1;transform:none;filter:none;
+    will-change:auto;
+  }
+}
+
+
+/* Prestazo cinematic story v2 — words are the only foreground elements.
+   Six-second narrative; no phone, progress bar, frame, buttons or extra labels.
+   App UI design tokens remain untouched outside the transition. */
+.mp-demo .mp-story-panel{
+  z-index:30;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(1.5rem,4vw,5rem);
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  background:
+    radial-gradient(ellipse 58% 56% at 45% 48%,rgb(94 229 192 / .105),transparent 85%),
+    radial-gradient(ellipse 56% 55% at 65% 52%,rgb(46 90 143 / .065),transparent 87%),
+    #f8faf8;
+}
+.mp-demo .mp-story-panel::before,
+.mp-demo .mp-story-panel::after{
+  content:"";
+  display:block;
+  position:absolute;
+  pointer-events:none;
+  z-index:0;
+  width:clamp(17rem,45vw,38rem);
+  height:clamp(17rem,45vw,38rem);
+  border-radius:50%;
+  filter:blur(clamp(26px,4vw,64px));
+  opacity:.18;
+}
+.mp-demo .mp-story-panel::before{
+  left:-12%;top:-38%;
+  background:radial-gradient(circle,#5ee5c0,transparent 68%);
+}
+.mp-demo .mp-story-panel::after{
+  bottom:-48%;right:-16%;
+  background:radial-gradient(circle,#2e5a8f,transparent 70%);
+}
+.mp-demo .mp-story-message{
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  max-width:1050px;
+  margin:0 auto;
+  padding:0;
+  color:#123955;
+  text-align:center;
+  text-wrap:balance;
+  font:800 clamp(3rem,5.4vw,5.5rem)/1.14 'Bricolage Grotesque Variable','Inter',sans-serif;
+  letter-spacing:-.062em;
+  overflow-wrap:normal;
+  filter:drop-shadow(0 13px 24px rgb(30 58 95 / .07));
+}
+.mp-demo .mp-story-word{
+  display:inline-block;
+  position:relative;
+  margin-right:.085em;
+  opacity:0;
+  transform:translate3d(0,25px,0) scale(.96);
+  filter:blur(9px);
+  white-space:nowrap;
+  color:#123955;
+  background:linear-gradient(112deg,#123955 2%,#2e5a8f 24%,#00b894 51%,#5ee5c0 67%,#1e3a5f 96%);
+  background-size:220% 100%;
+  background-position:0% 50%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  will-change:transform,opacity,filter;
+}
+.mp-demo .mp-story-word.is-emphasis{
+  background-image:linear-gradient(110deg,#1e3a5f 2%,#00b894 27%,#5ee5c0 54%,#2e5a8f 76%,#00b894 100%);
+  background-size:175% 100%;
+  text-shadow:0 6px 22px rgb(0 184 148 / .11);
+}
+@keyframes mp-premium-word-in{
+  0%{opacity:0;transform:translate3d(0,26px,0) scale(.95);filter:blur(9px)}
+  62%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+}
+@keyframes mp-premium-ink-flow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes mp-premium-message-out{
+  0%,83%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+  100%{opacity:0;transform:translate3d(0,-12px,0) scale(.975);filter:blur(5px)}
+}
+@keyframes mp-premium-ambient{
+  0%{opacity:0}
+  8%,84%{opacity:1}
+  100%{opacity:0}
+}
+.mp-demo.mp-story-active .mp-story-panel{
+  opacity:1;
+  visibility:visible;
+  animation:mp-premium-ambient 6000ms linear both;
+}
+.mp-demo.mp-story-active .mp-story-message{
+  animation:mp-premium-message-out 6000ms ease-in-out both;
+}
+.mp-demo.mp-story-active .mp-story-word{
+  animation:
+    mp-premium-word-in 880ms cubic-bezier(.22,1,.36,1) both,
+    mp-premium-ink-flow 7600ms ease-in-out infinite;
+  animation-delay:var(--story-delay,110ms),0ms;
+}
+@media(max-width:900px){
+  .mp-demo .mp-story-message{
+    max-width:780px;
+    font-size:clamp(2.45rem,6.2vw,4rem);
+    letter-spacing:-.052em;
+    line-height:1.2;
+  }
+}
+@media(max-width:600px){
+  .mp-demo .mp-story-panel{padding:clamp(1rem,5vw,1.7rem)}
+  .mp-demo .mp-story-message{
+    font-size:clamp(2rem,7.4vw,3.1rem);
+    line-height:1.22;
+    letter-spacing:-.046em;
+  }
+}
+@media(max-width:360px){
+  .mp-demo .mp-story-message{font-size:clamp(1.8rem,8vw,2.2rem);line-height:1.25}
+}
+@media(prefers-reduced-motion:reduce){
+  .mp-demo.mp-story-active .mp-story-message,
+  .mp-demo.mp-story-active .mp-story-panel,
+  .mp-demo.mp-story-active .mp-story-word{
+    animation:none!important;
+    opacity:1!important;
+    filter:none!important;
+    transform:none!important;
+    will-change:auto;
+  }
+  .mp-demo .mp-story-word{
+    background-position:35% 50%;
+    opacity:1;
+  }
+}
+
+
+/* Orquestación de la demo — 24/11/2026.
+   El contador de seis segundos comienza cuando ya se reveló la ÚLTIMA
+   palabra. No se permite que una animación CSS de 6000 ms oculte antes el texto. */
+.mp-demo.mp-story-active .mp-story-panel,
+.mp-demo.mp-story-active .mp-story-message{
+  animation:none!important;
+  opacity:1;
+  visibility:visible;
+}
+.mp-demo.mp-story-active .mp-story-panel{
+  transform:none;
+  transition:opacity .65s ease, transform .7s cubic-bezier(.22,1,.36,1), visibility .7s;
+}
+.mp-demo.mp-story-active .mp-story-message{
+  transform:none;
+  filter:drop-shadow(0 13px 24px rgb(30 58 95 / .07));
+  transition:opacity .55s ease, transform .7s cubic-bezier(.22,1,.36,1),filter .7s ease;
+}
+.mp-demo.mp-story-active.mp-story-exiting .mp-story-panel{
+  opacity:0;
+  transform:translate3d(0,-12px,0) scale(.99);
+}
+.mp-demo.mp-story-active.mp-story-exiting .mp-story-message{
+  opacity:0;
+  transform:translate3d(0,-12px,0);
+  filter:blur(6px);
+}
+@keyframes mp-ordinal-enter{
+  from{opacity:.08;transform:translate3d(0,16px,0);filter:blur(6px)}
+  to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+}
+.mp-tour .tour-heading h2.mp-step-title-enter{
+  animation:mp-ordinal-enter .7s cubic-bezier(.22,1,.36,1) both;
+}
+/* Efectos transitorios en la demo, usando solo el primario de AppTheme.
+   Son feedback de interacción, no colores ni componentes nuevos de Prestazo. */
+@keyframes mp-field-feedback{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--mp-primary) 27%,transparent)}
+  40%{box-shadow:0 0 0 4px color-mix(in srgb,var(--mp-primary) 20%,transparent)}
+  100%{box-shadow:0 0 0 0 transparent}
+}
+.mp-demo .mp-interaction-pulse{
+  animation:mp-field-feedback .8s cubic-bezier(.22,1,.36,1) both;
+  border-color:var(--mp-primary);
+}
+.mp-demo :is(.mp-save-button,.mp-icon-button){
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.mp-demo :is(.mp-save-button,.mp-icon-button)::after{
+  content:"";
+  pointer-events:none;
+  position:absolute;
+  z-index:1;
+  inset:-80% -30%;
+  background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.05) 40%,rgba(255,255,255,.33) 50%,rgba(255,255,255,.04) 60%,transparent 70%);
+  opacity:0;
+  transform:translateX(-95%) rotate(-8deg);
+}
+.mp-demo .mp-save-button.mp-button-pressed{
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--mp-primary) 16%,transparent),0 7px 20px color-mix(in srgb,var(--mp-primary) 19%,transparent);
+  transform:scale(.985);
+}
+.mp-demo .mp-icon-button.mp-button-pressed{
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--mp-primary) 15%,transparent);
+  transform:scale(.93);
+}
+.mp-demo :is(.mp-save-button,.mp-icon-button).mp-button-pressed::after{
+  opacity:1;
+  animation:mp-save-sheen .82s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes mp-save-sheen{
+  from{transform:translateX(-95%) rotate(-8deg);opacity:0}
+  20%{opacity:1}
+  to{transform:translateX(95%) rotate(-8deg);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .mp-demo .mp-interaction-pulse,
+  .mp-demo :is(.mp-save-button,.mp-icon-button).mp-button-pressed::after,
+  .mp-tour .tour-heading h2.mp-step-title-enter{animation:none!important}
+  .mp-demo.mp-story-active.mp-story-exiting :is(.mp-story-panel,.mp-story-message){transition:none!important}
+}

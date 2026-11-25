@@ -1,0 +1,12 @@
+/* Prestazo: scroll del visitante solo en la página.
+   Auditado en móvil y escritorio. NO usar overflow:clip.
+   Se conservan scrollTop/scrollTo para demostración automática
+   y controles propios de selectores desplegables. */
+.mp-demo .mp-app-scroll {
+  overflow-x:hidden!important;
+  overflow-y:hidden!important;
+  overscroll-behavior:auto!important;
+  scrollbar-width:none!important;
+  touch-action:pan-y;
+}
+.mp-demo .mp-app-scroll::-webkit-scrollbar {display:none}

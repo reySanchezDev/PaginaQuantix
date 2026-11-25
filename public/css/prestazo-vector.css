@@ -1,0 +1,174 @@
+/* Prestazo — lettering vectorial independiente de la fotografía.
+   Cada composición es SVG transparente con grupos de trazos editables.
+   El texto HTML permanece disponible para SEO y accesibilidad. */
+.hero.hero--full-bleed.hero--vector-ready {
+  overflow:visible !important;
+}
+.hero.hero--full-bleed .prestazo-hero-lettering {
+  display:block;
+  position:absolute;
+  z-index:4;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  overflow:visible;
+  width:min(670px,48vw);
+  left:max(20px,calc((100% - 1120px) / 2));
+  top:-63px;
+  margin:0;
+  line-height:0;
+}
+.hero.hero--full-bleed .prestazo-hero-lettering img {
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+}
+.hero.hero--full-bleed.hero--vector-ready .hero-copy h1 {
+  /* Screen reader/SEO text preserved, visually replaced by genuine outlines. */
+  position:absolute!important;
+  overflow:hidden!important;
+  clip:rect(0 0 0 0)!important;
+  clip-path:inset(50%)!important;
+  white-space:nowrap!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  border:0!important;
+}
+.hero.hero--full-bleed .hero-grid {z-index:2}
+@media(min-width:601px) and (max-width:900px) {
+  .hero.hero--full-bleed .prestazo-hero-lettering {
+    left:16px;
+    top:-36px;
+    width:min(765px,92vw);
+  }
+}
+@media(max-width:600px) {
+  .hero.hero--full-bleed .prestazo-hero-lettering {
+    top:-55px;
+    left:0;
+    width:100%;
+    max-width:none;
+  }
+  .hero.hero--full-bleed.hero--vector-ready .hero-grid {
+    min-height:max(690px,calc(100svh - 60px));
+  }
+}
+@media(max-width:360px) {
+  .hero.hero--full-bleed .prestazo-hero-lettering {top:-49px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero.hero--full-bleed .prestazo-hero-lettering img{transition:none!important}
+}
+
+
+/* INITIAL C/F LAYER & SECTION ENTRY
+ * The initial and all other text are genuine separate transparent SVGs.
+ * The initial layer is attached to body to avoid the hero stacking context,
+ * remains pointer-transparent, and moves naturally with document scrolling.
+ */
+.prestazo-hero-initial-layer {
+  position:absolute;
+  z-index:10020;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  line-height:0;
+  width:0;
+  height:auto;
+  overflow:visible;
+  transform-origin:28% 18%;
+}
+.prestazo-hero-initial-layer img {
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:none;
+}
+.prestazo-hero-initial-layer.is-behind-header { z-index:9997 }
+.hero.hero--full-bleed .prestazo-hero-lettering { opacity:1; }
+@media (prefers-reduced-motion: no-preference) {
+  .prestazo-hero-initial-layer.is-entrance {
+    animation:prestazo-initial-rise 850ms cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero.hero--full-bleed .prestazo-hero-lettering.is-entrance {
+    animation:prestazo-copy-reveal 760ms cubic-bezier(.22,1,.36,1) 125ms both;
+  }
+  @keyframes prestazo-initial-rise {
+    from {opacity:0;transform:translate3d(0,23px,0) scale(.94)}
+    to {opacity:1;transform:translate3d(0,0,0) scale(1)}
+  }
+  @keyframes prestazo-copy-reveal {
+    from {opacity:0;transform:translate3d(0,17px,0)}
+    to {opacity:1;transform:translate3d(0,0,0)}
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prestazo-hero-initial-layer,
+  .hero.hero--full-bleed .prestazo-hero-lettering {
+    animation:none!important;
+    transition:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
+
+/* Prestige glass edge: real concave outline on the decorative backdrop only.
+   The navigation text and controls remain perfectly straight and clickable. */
+.site-header.prestazo-impact-host {
+  background:transparent!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  border-bottom-color:transparent!important;
+  box-shadow:none!important;
+  isolation:isolate;
+}
+.site-header.prestazo-impact-host > .prestazo-header-impact-skin {
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:rgba(5,27,45,.66);
+  backdrop-filter:blur(18px) saturate(165%);
+  -webkit-backdrop-filter:blur(18px) saturate(165%);
+  border-bottom:0;
+  box-shadow:0 12px 32px rgba(0,7,17,.12);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+}
+.site-header.prestazo-impact-host > .header-inner {
+  position:relative;
+  z-index:1;
+}
+.site-header.prestazo-impact-host .prestazo-header-impact-edge {
+  position:absolute;
+  width:100%;
+  height:46px;
+  z-index:2;
+  overflow:visible;
+  pointer-events:none;
+  opacity:1;
+  filter:drop-shadow(0 3px 4px rgba(0,12,24,.35));
+}
+.prestazo-hero-initial-layer.prestazo-c-impact {
+  animation:prestazo-c-push 730ms cubic-bezier(.25,.72,.3,1) both!important;
+}
+@keyframes prestazo-c-push {
+  0%{transform:translate3d(0,0,0) scale(1)}
+  31%{transform:translate3d(0,-25px,0) scale(1.055)}
+  47%{transform:translate3d(0,-19px,0) scale(1.035)}
+  67%{transform:translate3d(0,-23px,0) scale(1.04)}
+  100%{transform:translate3d(0,-9px,0) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){
+  .site-header.prestazo-impact-host {animation:none!important}
+  .prestazo-hero-initial-layer.prestazo-c-impact {animation:none!important}
+}
+
+.site-header.prestazo-impact-host .prestazo-header-edge-shadow-path {
+  opacity:.55;
+  filter:blur(3px);
+}
