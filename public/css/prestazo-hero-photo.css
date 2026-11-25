@@ -1,163 +1,110 @@
-@import url('/css/prestazo-vector.css');
-@import url('/css/prestazo-header-glass.css');
-@import url('/css/prestazo-hero-type.css');
-@import url('/css/prestazo-scroll-guard.css');
-/* Prestazo hero v2: desktop con encuadre natural; movil con imagen propia. El contenido y las animaciones no cambian. */
-.hero.hero--full-bleed{position:relative;isolation:isolate;overflow:hidden;background:#061c2e}
-.hero.hero--full-bleed::before{content:none}
-.hero--full-bleed .hero-background{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.hero--full-bleed .hero-background img{
- position:absolute;display:block;top:50%;right:clamp(4px,2.5vw,48px);
- transform:translateY(-50%);width:min(1090px,62vw);height:auto;max-width:none;
- object-fit:contain;object-position:right center;
- -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,#000 23%);
- mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,#000 23%);
-}
-.hero--full-bleed::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(3,19,34,.98) 0%,rgba(3,19,34,.92) 21%,rgba(3,19,34,.73) 34%,rgba(3,19,34,.30) 49%,rgba(3,19,34,0) 80%),linear-gradient(180deg,rgba(2,16,30,.08),transparent 40%,rgba(2,16,30,.13))}
-.hero--full-bleed .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:none;align-items:center;min-height:clamp(600px,55vw,760px);gap:0;padding-top:clamp(56px,5.6vw,86px);padding-bottom:clamp(65px,6vw,96px)}
-.hero--full-bleed .hero-copy{grid-area:auto;width:100%;max-width:530px}
-@media(min-width:901px) and (max-width:1180px){
- .hero--full-bleed .hero-background img{width:min(920px,71vw);right:-12px}
- .hero--full-bleed::after{background:linear-gradient(90deg,rgba(3,19,34,.99),rgba(3,19,34,.87) 31%,rgba(3,19,34,.18) 82%,rgba(3,19,34,.08))}
-}
-@media(min-width:601px) and (max-width:900px){
- .hero--full-bleed .hero-grid{align-items:start;min-height:720px;padding-top:70px;padding-bottom:320px}
- .hero--full-bleed .hero-copy{max-width:650px}
- .hero--full-bleed .hero-background img{top:auto;bottom:0;right:-5%;transform:none;width:min(600px,81vw);height:auto;-webkit-mask-image:linear-gradient(0deg,#000 0%,#000 70%,transparent 100%);mask-image:linear-gradient(0deg,#000 0%,#000 70%,transparent 100%)}
- .hero--full-bleed::after{background:linear-gradient(180deg,rgba(3,19,34,1) 0%,rgba(3,19,34,.98) 43%,rgba(3,19,34,.25) 85%)}
-}
-@media(max-width:600px){
- .hero--full-bleed .hero-background{background-image:url('/img/prestazo-hero-mobile.webp');background-size:100% auto;background-position:center bottom;background-repeat:no-repeat}
- .hero--full-bleed .hero-background img{display:none!important}
- .hero--full-bleed .hero-grid{align-items:start;min-height:max(730px,calc(100svh - 70px));padding-top:clamp(70px,14vw,94px);padding-bottom:330px}
- .hero--full-bleed .hero-copy{max-width:480px}
- .hero--full-bleed::after{background:linear-gradient(180deg,rgba(3,19,34,.16) 0%,rgba(3,19,34,.07) 57%,rgba(3,19,34,0) 100%)}
-}
-@media(max-width:379px){
- .hero--full-bleed .hero-grid{min-height:760px;padding-bottom:340px}
-}
-
-
-/* Underlap the first section's *computed* background behind the sticky glass.
-   The genuine transparent dent can now reveal that section instead of the
-   white body canvas. The underlay belongs to the scrolling document, so other
-   sections still supply their own background without being painted over. */
-main#content {
+/* Prestazo · Hero editorial, imagen de personas reales a escala natural.
+   Únicamente la primera sección: textos y mini Prestazo sin cambios. */
+.hero.hero--full-bleed {
   position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#081d2e;
 }
-main#content::before {
-  content:"";
+.hero.hero--full-bleed::before { content:none; }
+.hero--full-bleed .hero-background {
   position:absolute;
-  top:-80px;
-  left:0;
-  right:0;
-  height:80px;
-  z-index:5;
-  background:var(--prestazo-first-section-bg, transparent);
+  inset:0;
+  z-index:0;
+  overflow:hidden;
   pointer-events:none;
 }
-@media (max-width:600px) {
-  main#content::before {
-    top:-60px;
-    height:60px;
+.hero--full-bleed .hero-background img {
+  position:absolute;
+  display:block;
+  top:50%;
+  right:-100px;
+  transform:translateY(-50%);
+  width:min(1220px,75vw);
+  height:auto;
+  max-width:none;
+  object-fit:contain;
+  object-position:right center;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,#000 22%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,#000 22%);
+}
+.hero--full-bleed::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(3,19,34,.97) 0%,
+      rgba(3,19,34,.89) 18%,
+      rgba(3,19,34,.70) 31%,
+      rgba(3,19,34,.30) 48%,
+      rgba(3,19,34,.06) 70%,
+      rgba(3,19,34,.03) 100%),
+    linear-gradient(180deg,rgba(2,16,30,.09),transparent 35%,rgba(2,16,30,.19));
+}
+.hero--full-bleed .hero-grid {
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:none;
+  align-items:center;
+  min-height:clamp(600px,55vw,760px);
+  gap:0;
+  padding-top:clamp(56px,5.6vw,86px);
+  padding-bottom:clamp(65px,6vw,96px);
+}
+.hero--full-bleed .hero-copy {
+  grid-area:auto;
+  width:100%;
+  max-width:530px;
+}
+@media (min-width:901px) and (max-width:1180px) {
+  .hero--full-bleed .hero-background img {
+    width:min(1080px,82vw);
+    right:-110px;
+  }
+  .hero--full-bleed::after {
+    background:linear-gradient(90deg,rgba(3,19,34,.97),rgba(3,19,34,.82) 30%,rgba(3,19,34,.16) 77%,rgba(3,19,34,.05));
   }
 }
-
-.mp-demo .mp-desktop-checklist { display:none; }
-
-/* Desktop mini Prestazo: editorial checklist + controls aligned with phone base.
-   Mobile/tablet retain their existing headline and playback layout. */
-@media (min-width:901px) {
-  .mp-tour .tour-heading { display:none!important; }
-  .mp-demo {
-    align-items:stretch!important;
+@media (max-width:900px) {
+  .hero--full-bleed .hero-background img {
+    top:auto;
+    right:-24%;
+    bottom:0;
+    transform:none;
+    width:max(780px,122vw);
+    max-width:none;
+    -webkit-mask-image:linear-gradient(0deg,#000 0%,#000 75%,transparent 100%);
+    mask-image:linear-gradient(0deg,#000 0%,#000 75%,transparent 100%);
   }
-  .mp-demo .mp-editorial {
-    display:flex;
-    flex-direction:column;
-    align-self:stretch;
-    min-height:0;
-    padding:clamp(.35rem,1.2vw,1rem) 0 0;
+  .hero--full-bleed::after {
+    background:
+      linear-gradient(180deg,rgba(2,16,31,.94) 0%,rgba(2,16,31,.81) 32%,rgba(2,16,31,.46) 63%,rgba(2,16,31,.18) 100%),
+      linear-gradient(90deg,rgba(3,19,34,.42),transparent 85%);
   }
-  .mp-demo .mp-editorial > [data-mp-story-title] {
-    /* The same four step labels are presented by the checklist. */
-    position:absolute!important;
-    width:1px!important;
-    height:1px!important;
-    overflow:hidden!important;
-    clip:rect(0 0 0 0)!important;
-    clip-path:inset(50%)!important;
-    white-space:nowrap!important;
-    padding:0!important;
-    border:0!important;
-    margin:-1px!important;
+  .hero--full-bleed .hero-grid {
+    min-height:max(580px,72svh);
+    padding-top:clamp(60px,9vw,85px);
+    padding-bottom:clamp(70px,11vw,110px);
   }
-  .mp-demo .mp-desktop-checklist {
-    display:flex;
-    flex-direction:column;
-    gap:clamp(.65rem,1.5vh,1.1rem);
-    padding:0;
-    margin:0;
-    list-style:none;
-    max-width:440px;
+  .hero--full-bleed .hero-copy {max-width:660px}
+}
+@media (max-width:600px) {
+  .hero--full-bleed .hero-background img {
+    right:-57%;
+    width:max(740px,170vw);
   }
-  .mp-demo .mp-desktop-checklist li {
-    display:grid;
-    grid-template-columns:2.45rem minmax(0,1fr);
-    align-items:center;
-    column-gap:clamp(.7rem,1.3vw,1rem);
-    padding:clamp(.75rem,1.1vw,1.05rem);
-    border-radius:16px;
-    border:1px solid transparent;
-    color:#738991;
-    opacity:.76;
-    transition:background-color .25s,border-color .25s,color .25s,opacity .25s;
+  .hero--full-bleed .hero-grid {
+    min-height:max(600px,78svh);
+    padding-top:clamp(58px,10vw,78px);
+    padding-bottom:78px;
   }
-  .mp-demo .mp-check-index {
-    display:flex;
-    width:2.45rem;
-    height:2.45rem;
-    align-items:center;
-    justify-content:center;
-    border:1px solid #d5e3e8;
-    border-radius:50%;
-    font:750 .91rem/1 'Manrope',sans-serif;
-    color:#718895;
-    background:#fff;
-    transition:inherit;
-  }
-  .mp-demo .mp-check-label {
-    font:650 clamp(1.04rem,1.44vw,1.28rem)/1.28 'Manrope',sans-serif;
-    letter-spacing:-.035em;
-  }
-  .mp-demo .mp-desktop-checklist li.is-active {
-    border-color:#cce5e1;
-    background:linear-gradient(110deg,#edf8f5 0%,#f7fbfa 100%);
-    color:#153c50;
-    opacity:1;
-  }
-  .mp-demo .mp-desktop-checklist li.is-active .mp-check-index {
-    color:#fff;
-    border-color:#137c75;
-    background:#137c75;
-    box-shadow:0 5px 14px rgb(19 124 117 / .16);
-  }
-  .mp-demo .mp-desktop-checklist li.is-complete {
-    color:#386861;
-    opacity:1;
-  }
-  .mp-demo .mp-desktop-checklist li.is-complete .mp-check-index {
-    color:#12846e;
-    background:#e8f8f3;
-    border-color:#9bd8c9;
-  }
-  .mp-demo .mp-editorial > .mp-actions {
-    margin-top:auto!important;
-    padding-top:clamp(1.1rem,3vw,2rem);
-    padding-bottom:0;
-    display:flex;
-    flex-wrap:wrap;
-    gap:.7rem;
-    align-self:flex-start;
-  }
+  .hero--full-bleed .hero-copy {max-width:480px}
+}
+@media (max-width:379px) {
+  .hero--full-bleed .hero-grid {min-height:610px}
 }
