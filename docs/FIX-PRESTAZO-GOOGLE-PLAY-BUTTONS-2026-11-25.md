@@ -4,7 +4,7 @@
 - Fuente de recuperación: despliegue Vercel `dpl_GCeQMtE4D929pjjhTvVBiW7JRNKC`, HTML ES/EN y CSS compilado; no se pudo recuperar el fuente Astro íntegro desde la API.
 - Se reconstruye el componente a partir de la salida publicada, conservando contenido, paleta, foto, distribución y efectos; se integra antes de CobroRuta en inicio y catálogo, en ambos idiomas.
 - CTA de descarga: insignia oficial localizada de Google Play, sin deformación ni recoloración. Ambos CTA usan el mismo ancho de columna y relación de aspecto del área visible de la insignia (565/170); las dimensiones reales de los PNG ES/EN deben comprobarse en navegador. En móvil se apilan y conservan dimensiones iguales. El margen transparente del recurso se mantiene.
-- Se mantiene el destino original de descarga y la landing existente. No se modifican archivos de la demo ni otros productos. La imagen principal usa las dimensiones declaradas por la landing existente.
+- Se mantiene el destino original de descarga y la landing existente. No se modifican archivos de la demo ni otros productos. Se conservan las dimensiones declaradas de la imagen principal del HTML desplegado.
 
 ## Integración con Codex
 
