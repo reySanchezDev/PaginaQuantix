@@ -50,10 +50,10 @@
       text('[data-mp-customer-initial]', (state.customer.name || 'P').trim().charAt(0).toUpperCase());
       text('[data-mp-customer-display]', state.customer.name || (en ? 'New customer' : 'Nuevo cliente')); text('[data-mp-customer-dni]', state.customer.dni || (en ? 'Identification pending' : 'Identificación pendiente'));
       text('[data-mp-payment-customer]', state.customer.name || (en ? 'New customer' : 'Nuevo cliente')); text('[data-mp-payment-dni]', state.customer.dni || '');
-      text('[data-mp-payment-loan]', state.loan.created ? `${money(state.loan.principal)} · ${en ? 'Active loan' : 'Préstamo activo'}` : (en ? 'Loan pending' : 'Préstamo pendiente'));
+      text('[data-mp-payment-loan]', state.loan.created ? `${money(state.loan.principal)} · ${en ? 'Active loan' : 'Préstamo activo'}` : '—');
       text('[data-mp-loan-summary-amount]', money(state.loan.principal)); text('[data-mp-loan-summary-rate]', `${state.loan.monthlyRate || 0}%`); text('[data-mp-loan-summary-due]', state.loan.nextDueDate || '—');
       text('[data-mp-collection-name]', state.customer.name || (en ? 'New customer' : 'Nuevo cliente'));
-      text('[data-mp-collection-detail]', state.loan.created ? `${money(state.loan.cycles[0]?.expected || 0)} · ${state.payment.registered ? (en ? 'Paid today' : 'Pagado hoy') : (en ? 'Due today' : 'Vence hoy')}` : (en ? 'Customer ready for a loan' : 'Cliente listo para préstamo'));
+      text('[data-mp-collection-detail]', state.loan.created ? `${money(state.loan.cycles[0]?.expected || 0)} · ${state.payment.registered ? (en ? 'Paid today' : 'Pagado hoy') : (en ? 'Due today' : 'Vence hoy')}` : '—');
       text('[data-mp-history-receipt]', state.payment.registered ? (en ? 'Receipt #R-025' : 'Recibo #R-025') : (en ? 'Receipt pending' : 'Recibo pendiente')); text('[data-mp-history-amount]', money(state.payment.amount));
       text('[data-mp-history-detail]', `${state.customer.name || 'Juan Pérez'} · ${state.payment.registered ? (en ? 'Mixed payment · Today' : 'Pago mixto · Hoy') : (en ? 'No payment registered' : 'Sin pago registrado')}`);
       text('[data-mp-payment-interest]', money(state.payment.interest)); text('[data-mp-payment-principal]', money(state.payment.principal)); text('[data-mp-payment-balance]', money(totals.balance));
@@ -85,9 +85,9 @@
     demo.querySelector('[data-mp-action="createLoan"]')?.addEventListener('click', () => { state.loan.created = true; state.loan.disbursementDate ||= addDays(today(), -30); state.loan.nextDueDate = today(); update(); });
     demo.querySelector('[data-mp-action="registerPayment"]')?.addEventListener('click', () => { state.payment.registered = true; state.payment.date ||= today(); feedback('[data-mp-payment-feedback]', en ? 'Payment registered successfully.' : 'Pago registrado exitosamente.'); update(); });
     demo.querySelector('[data-mp-customer-search]')?.addEventListener('input', update);
-    demo.querySelector('[data-mp-backup-action="create"]')?.addEventListener('click', () => { state.backup.created = true; feedback('[data-mp-backup-feedback]', en ? 'Demo state: backup created successfully. The installed app writes a local SQLite file.' : 'Estado demo: respaldo creado exitosamente. La app instalada escribe un archivo SQLite local.'); update(); });
+    demo.querySelector('[data-mp-backup-action="create"]')?.addEventListener('click', () => { state.backup.created = true; feedback('[data-mp-backup-feedback]', en ? 'Backup created successfully.' : 'Respaldo creado exitosamente.'); update(); });
     demo.querySelector('[data-mp-backup-action="save-settings"]')?.addEventListener('click', () => { feedback('[data-mp-backup-feedback]', en ? 'Backup settings saved successfully.' : 'Configuración de respaldo guardada.'); update(); });
-    demo.querySelector('[data-mp-backup-action="restore"]')?.addEventListener('click', () => { state.backup.restored = true; feedback('[data-mp-backup-feedback]', en ? 'Demo state: restore confirmation shown. The installed app restores the selected local backup and restarts.' : 'Estado demo: confirmación de restauración mostrada. La app instalada restaura el respaldo local y reinicia.'); update(); });
+    demo.querySelector('[data-mp-backup-action="restore"]')?.addEventListener('click', () => { state.backup.restored = true; feedback('[data-mp-backup-feedback]', en ? 'Backup restored. Please restart the app.' : 'Respaldo restaurado. Por favor reinicie la app.'); update(); });
     update();
   }
 })();

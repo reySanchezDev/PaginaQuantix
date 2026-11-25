@@ -28,11 +28,11 @@
         if (!feedback) return;
         feedback.textContent = button.dataset.mpBackupAction === 'restore'
           ? (demo.dataset.locale === 'en'
-            ? 'The real app asks for confirmation before restoring a local backup and requires a restart.'
-            : 'La app real pide confirmación antes de restaurar un respaldo local y requiere reiniciar.')
+            ? 'Backup restored. Please restart the app.'
+            : 'Respaldo restaurado. Por favor reinicie la app.')
           : (demo.dataset.locale === 'en'
-            ? 'Demo state: Prestazo would create a local SQLite backup and return its file information.'
-            : 'Estado de demo: Prestazo crearía un respaldo SQLite local y devolvería la información del archivo.');
+            ? 'Backup created successfully.'
+            : 'Respaldo creado exitosamente.');
       });
     });
 

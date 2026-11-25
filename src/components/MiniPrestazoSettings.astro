@@ -412,31 +412,29 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
             <div class="mp-field"><label for="mp-paymentNotes">{flowLabels.notes}</label>
               <input id="mp-paymentNotes" data-mp-field="paymentNotes" autocomplete="off"/>
             </div>
-            <div class="mp-card mp-payment-breakdown"><strong>{en?'Payment application':'Aplicación del pago'}</strong><div><span>{en?'Interest':'Interés'}</span><b data-mp-payment-interest>C$ 0</b></div><div><span>{en?'Principal':'Capital'}</span><b data-mp-payment-principal>C$ 0</b></div><div><span>{en?'Remaining balance':'Saldo restante'}</span><b data-mp-payment-balance>C$ 0</b></div><small>{en?'The real app confirms this allocation before saving the receipt.':'La app real confirma esta distribución antes de guardar el recibo.'}</small></div>
+            <div class="mp-card mp-payment-breakdown"><strong>{en?'Payment application':'Aplicación del pago'}</strong><div><span>{en?'Interest':'Interés'}</span><b data-mp-payment-interest>C$ 0</b></div><div><span>{en?'Principal':'Capital'}</span><b data-mp-payment-principal>C$ 0</b></div><div><span>{en?'Remaining balance':'Saldo restante'}</span><b data-mp-payment-balance>C$ 0</b></div></div>
             <button class="mp-save-button" type="button" data-mp-action="registerPayment">{flowLabels.registerPayment}</button>
             <p class="mp-inline-feedback" data-mp-payment-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="dashboard" aria-label={modeLabels.dashboard}>
-            <div class="mp-info"><strong>{en?'Your portfolio at a glance':'Tu cartera de un vistazo'}</strong><br/>{en?'This sample dashboard uses the same entities created in the demo flow.':'Este tablero usa las mismas entidades creadas en el flujo de demostración.'}</div>
             <div class="mp-dashboard-grid">
               <div class="mp-metric-card"><small>{en?'Active customers':'Clientes activos'}</small><strong data-mp-metric="customers">24</strong><span>{en?'+3 this month':'+3 este mes'}</span></div>
               <div class="mp-metric-card"><small>{en?'Active loans':'Préstamos activos'}</small><strong data-mp-metric="loans">18</strong><span>{en?'2 overdue':'2 en mora'}</span></div>
               <div class="mp-metric-card"><small>{en?'Payments today':'Pagos de hoy'}</small><strong data-mp-metric="payments">C$ 4,850</strong><span>{en?'6 receipts':'6 recibos'}</span></div>
               <div class="mp-metric-card"><small>{en?'Available capital':'Capital disponible'}</small><strong data-mp-metric="capital">C$ 32,400</strong><span>{en?'Capital control on':'Control de capital activo'}</span></div>
-              <div class="mp-metric-card"><small>{en?'Placed capital':'Capital colocado'}</small><strong data-mp-metric="placed">C$ 0</strong><span>{en?'From this demo loan':'De este préstamo demo'}</span></div>
-              <div class="mp-metric-card"><small>{en?'Overdue':'Vencidos'}</small><strong data-mp-metric="overdue">0</strong><span>{en?'Pending cycles':'Ciclos pendientes'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Placed capital':'Capital colocado'}</small><strong data-mp-metric="placed">C$ 0</strong></div>
+              <div class="mp-metric-card"><small>{en?'Overdue':'Vencidos'}</small><strong data-mp-metric="overdue">0</strong></div>
             </div>
             <div class="mp-section-title">{en?'Quick actions':'Acciones rápidas'}</div>
             <div class="mp-card mp-quick-actions"><button type="button" data-mp-nav="customer">{en?'New customer':'Nuevo cliente'}</button><button type="button" data-mp-nav="loan">{en?'New loan':'Nuevo préstamo'}</button><button type="button" data-mp-nav="payment">{en?'Register payment':'Registrar pago'}</button></div>
           </section>
 
           <section class="mp-screen" data-mp-screen="backup" aria-label={modeLabels.backup} hidden>
-            <div class="mp-info"><strong>{en?'Real app capability':'Capacidad real de la app'}</strong><br/>{en?'Prestazo creates and restores local SQLite backups. This web view explains the same flow; it does not access the installed app database.':'Prestazo crea y restaura respaldos SQLite locales. Esta vista web explica el mismo flujo; no accede a la base instalada.'}</div>
             <div class="mp-section-title">{en?'Backup and maintenance':'Respaldo y mantenimiento'}</div>
             <div class="mp-card">
               <div class="mp-list-tile"><strong>{en?'Create backup':'Crear respaldo'}</strong><small>{en?'Export the local database or share it with another app.':'Exportar la base local o compartirla con otra aplicación.'}</small></div>
-              <button class="mp-save-button" type="button" data-mp-backup-action="create">{en?'Create sample backup':'Crear respaldo de muestra'}</button>
+              <button class="mp-save-button" type="button" data-mp-backup-action="create">{en?'Create backup':'Crear respaldo'}</button>
               <div class="mp-divider"></div>
               <div class="mp-list-tile"><strong>{en?'Scheduled backups':'Respaldos programados'}</strong><small>{en?'Daily, weekly or monthly, with retention and retries.':'Diarios, semanales o mensuales, con retención y reintentos.'}</small></div>
               <label class="mp-switch-tile"><span>{en?'Backup on loan creation':'Respaldar al crear préstamo'}</span><input type="checkbox" data-mp-backup-setting="loan"/><span class="mp-switch" aria-hidden="true"></span></label>
@@ -448,12 +446,11 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <div class="mp-field"><label for="mp-backup-name">{en?'Custom file name':'Nombre personalizado'}</label><input id="mp-backup-name" value="prestazo_backup"/></div>
               <button class="mp-control mp-control-outline" type="button" data-mp-backup-action="save-settings">{en?'Save backup settings':'Guardar configuración de respaldo'}</button>
             </div>
-            <div class="mp-card"><div class="mp-list-tile"><strong>{en?'Restore or manage backups':'Restaurar o administrar respaldos'}</strong><small>{en?'The real app lists, shares, deletes and restores local backup files.':'La app real lista, comparte, elimina y restaura archivos locales.'}</small></div><button class="mp-control mp-control-outline" type="button" data-mp-backup-action="restore">{en?'Show restore flow':'Mostrar flujo de restauración'}</button></div>
+            <div class="mp-card"><div class="mp-list-tile"><strong>{en?'Restore or manage backups':'Restaurar o administrar respaldos'}</strong></div><button class="mp-control mp-control-outline" type="button" data-mp-backup-action="restore">{en?'Restore backup':'Restaurar respaldo'}</button></div>
             <p class="mp-inline-feedback" data-mp-backup-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="collection" aria-label={modeLabels.collection} hidden>
-            <div class="mp-info"><strong>{en?'Collection route':'Ruta de cobro'}</strong><br/>{en?'The real app surfaces customers with pending or overdue cycles.':'La app real muestra clientes con ciclos pendientes o vencidos.'}</div>
             <div class="mp-section-title">{en?'Today’s collection':'Cobranza de hoy'}</div>
             <div class="mp-card mp-status-list"><div><strong data-mp-collection-name>María López</strong><span class="mp-status mp-status-warning">{en?'Overdue':'En mora'}</span><small data-mp-collection-detail>C$ 1,250 · {en?'3 days late':'3 días de atraso'}</small></div><div><strong>José Martínez</strong><span class="mp-status mp-status-success">{en?'Due today':'Vence hoy'}</span><small>C$ 800 · {en?'Monthly cycle':'Ciclo mensual'}</small></div><div><strong>Ana Rodríguez</strong><span class="mp-status mp-status-neutral">{en?'Upcoming':'Próximo'}</span><small>C$ 650 · {en?'In 2 days':'En 2 días'}</small></div></div>
           </section>
@@ -466,7 +463,6 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
           </section>
 
           <section class="mp-screen" data-mp-screen="reports" aria-label={modeLabels.reports} hidden>
-            <div class="mp-info"><strong>{en?'Reports use the same demo data':'Los reportes usan los mismos datos de la demo'}</strong><br/>{en?'The app has realized earnings, projected earnings and currency differential reports.':'La app tiene reportes realizados, proyectados y de diferencial cambiario.'}</div>
             <div class="mp-section-title">{en?'Report center':'Centro de reportes'}</div>
             <div class="mp-card mp-report-card"><div><strong>{en?'Realized earnings':'Ganancias realizadas'}</strong><span data-mp-report="realized">C$ 8,420</span><small>{en?'Payments already registered':'Pagos ya registrados'}</small></div><div><strong>{en?'Projected earnings':'Ganancias proyectadas'}</strong><span data-mp-report="projected">C$ 14,680</span><small>{en?'From active loan cycles':'De ciclos activos'}</small></div><div><strong>{en?'Currency differential':'Diferencial cambiario'}</strong><span data-mp-report="fx">C$ 1,240</span><small>{en?'Exchange-rate gains':'Ganancia por tipo de cambio'}</small></div></div>
           </section>
