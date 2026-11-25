@@ -128,10 +128,10 @@
       return step >= 0 ? step : 0;
     };
 
-    const visibleBelowHeader = (element, headerBottom) => {
+    const visibleBelowHeader = (element, headerBottom, measureHiddenElement = false) => {
       if (!element || demo.classList.contains('mp-story-active')) return false;
       const style = getComputedStyle(element);
-      if (style.display === 'none' || style.visibility === 'hidden' ||
+      if (style.display === 'none' || (!measureHiddenElement && style.visibility === 'hidden') ||
           Number(style.opacity) < 0.02) return false;
       const rect = element.getBoundingClientRect();
       return rect.bottom > headerBottom + 4 && rect.top < innerHeight - 4;
@@ -146,7 +146,7 @@
         tourRect.bottom > headerBottom + 5;
       const inDownload = downloadRect.top <= headerBottom + 5;
       const step = stepForScreen();
-      const orderVisible = visibleBelowHeader(orderTitle, headerBottom);
+      const orderVisible = visibleBelowHeader(orderTitle, headerBottom, true);
       const titleVisible = visibleBelowHeader(stepTitle, headerBottom);
       const orderTitleInMobileHeader = innerWidth <= 600 && inTour && orderVisible;
       orderTitle?.classList.toggle('mp-order-title-in-header', orderTitleInMobileHeader);
