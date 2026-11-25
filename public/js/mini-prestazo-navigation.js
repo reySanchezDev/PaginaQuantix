@@ -20,6 +20,7 @@
     demo.querySelectorAll('[data-mp-nav]').forEach((button) => {
       button.addEventListener('click', () => showScreen(button.dataset.mpNav));
     });
+    demo.addEventListener('mp-checklist-select', (event) => showScreen(event.detail.screen));
 
     demo.querySelectorAll('[data-mp-backup-action]').forEach((button) => {
       button.addEventListener('click', () => {
@@ -39,6 +40,6 @@
     syncMode();
     window.addEventListener('resize', syncMode, { passive: true });
     demo.querySelector('[data-mp-field]')?.dispatchEvent(new Event('input', { bubbles: true }));
-    showScreen('dashboard');
+    showScreen('company');
   }
 })();

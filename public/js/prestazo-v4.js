@@ -608,12 +608,18 @@
       const order=demo.closest('.mp-tour')?.querySelector('[data-mp-order-title]');
       const local=demo.querySelector('[data-mp-i18n]')?.dataset||{};
       if(!editorial||!title||!order)return;
-      const names=[
-        local.settingsHeading||'Configurar tu empresa.',
-        local.customerHeading||'Crear tu primer cliente.',
-        local.loanHeading||'Gestionarle un préstamo.',
-        local.paymentHeading||'Registrar un pago.'
-      ];
+       const names=[
+         local.settingsHeading||'Configurar tu empresa.',
+         demo.dataset.locale==='en'?'Review your portfolio.':'Revisar tu cartera.',
+         local.customerHeading||'Crear tu primer cliente.',
+         local.loanHeading||'Gestionarle un préstamo.',
+         local.paymentHeading||'Registrar un pago.',
+         demo.dataset.locale==='en'?'Review collections.':'Revisar cobranza.',
+         demo.dataset.locale==='en'?'Check the history.':'Consultar historial.',
+         demo.dataset.locale==='en'?'Read your reports.':'Revisar reportes.',
+         demo.dataset.locale==='en'?'Manage backups.':'Gestionar respaldos.'
+       ];
+       const screens=['company','dashboard','customer','loan','payment','collection','history','reports','backup'];
       const list=document.createElement('ol');
       list.className='mp-desktop-checklist';
       list.setAttribute('aria-label',demo.dataset.locale==='en'?'Demo progress':'Progreso de la demostración');
@@ -626,6 +632,9 @@
         const label=document.createElement('span');
         label.className='mp-check-label';
         label.textContent=name.replace(/\.$/,'');
+         li.tabIndex=0;
+         li.addEventListener('click',()=>demo.dispatchEvent(new CustomEvent('mp-checklist-select',{detail:{screen:screens[i]}})));
+         li.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();li.click();}});
         li.append(number,label);
         list.append(li);
         return li;
@@ -633,7 +642,14 @@
       editorial.insertBefore(list,editorial.querySelector('.mp-actions'));
       let last=-1;
       const update=()=>{
-        const normalized=order.textContent.trim().toLowerCase();
+         const normalized=order.textContent.trim().toLowerCase();
+         const visibleScreen=screens.find(screen=>!demo.querySelector(`[data-mp-screen="${screen}"]`)?.hidden);
+         const screenIndex=screens.indexOf(visibleScreen);
+         if(screenIndex>=0){
+           last=screenIndex;
+           rows.forEach((row,i)=>{row.classList.toggle('is-active',i===screenIndex);row.classList.toggle('is-complete',i<screenIndex);if(i===screenIndex)row.setAttribute('aria-current','step');else row.removeAttribute('aria-current');});
+           return;
+         }
         const headings=demo.dataset.locale==='en'
           ?['first','second','third','fourth']
           :['lo primero','lo segundo','lo tercero','lo cuarto'];
