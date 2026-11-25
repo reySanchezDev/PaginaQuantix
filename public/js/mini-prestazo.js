@@ -207,6 +207,13 @@
           finish(t) {
             this.settled || (this.halt(), (this.settled = !0), b === this && (b = null), a(t));
           },
+          seekBy(delta) {
+            if (this.settled) return;
+            this.halt();
+            this.remaining = Math.max(0, this.remaining - delta);
+            if (this.remaining === 0) this.finish(v && e === x);
+            else if (!C) this.start();
+          },
         };
         ((b = n), n.start());
       });
@@ -676,6 +683,12 @@
               ((C = !1), e.classList.remove("mp-playback-paused"), $(!0), b?.start())
             : H()
           : K();
+      }),
+      e.querySelector("[data-mp-back]")?.addEventListener("click", () => {
+        v && b?.seekBy(-3000);
+      }),
+      e.querySelector("[data-mp-next]")?.addEventListener("click", () => {
+        v && b?.seekBy(3000);
       }),
       l?.addEventListener("click", () => {
         (z(), K());
