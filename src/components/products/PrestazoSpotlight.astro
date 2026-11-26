@@ -18,11 +18,11 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=com.prestam
     <article class="prestazo-featured__panel" data-reveal>
       <div class="prestazo-featured__content">
         <div class="prestazo-featured__eyebrow">{es ? "Nuevo producto" : "New product"}</div>
-        <h2 id={`prestazo-featured-${variant}`}>{es ? "Tu cartera, bajo control." : "Your portfolio, under control."}</h2>
+        <h2 id={`prestazo-featured-${variant}`}>{es ? "Concéntrate en lo que realmente importa" : "Focus on what truly matters"}</h2>
         <p class="prestazo-featured__description">
           {es
-            ? "Gestioná clientes, préstamos, cobros y ganancias desde una app hecha para quienes prestan dinero todos los días."
-            : "Manage customers, loans, collections, and earnings from an app built for people who lend every day."}
+            ? "Y deja que Prestazo se encargue de facilitarte la gestión de tu cartera."
+            : "And let Prestazo make managing your loan portfolio easier."}
         </p>
         <div class="prestazo-featured__proof" aria-label={es ? "Beneficios de Prestazo" : "Prestazo benefits"}>
           <span>{es ? "Clientes" : "Customers"}</span>
@@ -58,7 +58,7 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=com.prestam
   .prestazo-featured__panel::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 14% 8%,#49f0b439,transparent 32%),linear-gradient(90deg,#061d2d 0%,#061d2db8 39%,transparent 72%)}
   .prestazo-featured__content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;min-width:0;padding:clamp(2rem,4vw,4.25rem)}
   .prestazo-featured__eyebrow{margin-bottom:1.2rem;color:#8af4ce;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-  .prestazo-featured h2{max-width:12ch;margin:0;color:inherit;font-size:clamp(2.25rem,4vw,4.1rem);font-weight:650;letter-spacing:-.055em;line-height:1.03;text-wrap:balance}
+  .prestazo-featured h2{max-width:16ch;margin:0;color:inherit;font-size:clamp(2.25rem,4vw,4.1rem);font-weight:650;letter-spacing:-.055em;line-height:1.03;text-wrap:balance}
   .prestazo-featured__description{max-width:41ch;margin:1.4rem 0 0;color:#d7efea;font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.6}
   .prestazo-featured__proof{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.35rem}
   .prestazo-featured__proof span{padding:.42rem .7rem;border:1px solid #70e7c34d;border-radius:999px;color:#d9fff1;background:#75e7c314;font-size:.78rem;font-weight:650}
