@@ -78,6 +78,12 @@ main#content::before {
     min-height:0;
     padding:clamp(.35rem,1.2vw,1rem) 0 0;
   }
+  .mp-demo .mp-editorial > .mp-step-heading {
+    margin:0 0 clamp(1rem,2vw,1.8rem);
+    color:#123955;
+    font:750 clamp(51px,5.9vw,88px)/1.08 'Manrope',sans-serif;
+    letter-spacing:-.065em;
+  }
   .mp-demo .mp-editorial > [data-mp-story-title] {
     /* The same four step labels are presented by the checklist. */
     position:absolute!important;
@@ -167,4 +173,8 @@ main#content::before {
     flex:1 1 0;
     min-width:0;
   }
+}
+
+@media (max-width:900px) {
+  .mp-demo .mp-editorial > .mp-step-heading { display:none; }
 }

@@ -50,6 +50,7 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
 ---
 <section class="mp-demo" data-miniprestazo data-locale={en?'en':'es'} data-mp-phase-screens="company,monetary,policy,sequences,dashboard,customer,loan,payment,collection,history,reports,backup" aria-label={en?'Interactive Prestazo settings preview':'Vista interactiva de Prestazo'}>
   <div class="mp-editorial">
+    <h2 class="mp-step-heading" data-mp-order-title aria-live="polite">{en?'First,':'Lo primero es'}</h2>
     <h3 data-mp-story-title aria-live="polite">{journey.settingsHeading}</h3>
     <ol class="mp-phase-list" data-mp-phase-list aria-label={en?'Demo phases':'Fases de la demostración'}>
       {(en ? ['Company data','Monetary management','Financial policy','Sequences','Dashboard','New customer','New loan','Register payment','To Collect','Payment History','Reports','Scheduled Backup'] : ['Configurar tu empresa','Gestión monetaria','Política financiera','Consecutivos','Revisar tu cartera','Crear tu primer cliente','Gestionarle un préstamo','Registrar un pago','A cobrar','Historial de pagos','Reportes','Respaldo programado']).map((label, index) => (
