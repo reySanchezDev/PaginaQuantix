@@ -84,11 +84,11 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell
 
   @media(min-width:40.001rem){
     .cr-featured__actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
-    .cr-featured__cta{min-width:0;height:3.25rem;gap:.5rem;padding:.65rem;font-size:.8125rem;white-space:nowrap}
+    .cr-featured__cta{min-width:0;width:var(--product-card-action-width);height:var(--product-card-action-height);gap:.5rem;padding:.65rem;font-size:.8125rem;white-space:normal;text-align:center;text-wrap:balance}
   }
 
   @media(max-width:76rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
-  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:stretch;gap:.65rem}.cr-featured__cta{width:100%;min-height:3.5rem}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
+  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:stretch;gap:.65rem}.cr-featured__cta{width:100%;min-height:var(--product-card-action-height-mobile)}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
   @media(prefers-reduced-motion:reduce){
     .cr-featured__cta,.cr-featured__phone{transition:none}
     .cr-featured__phone,.cr-featured__halo{animation:none!important}

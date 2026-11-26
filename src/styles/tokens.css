@@ -67,6 +67,11 @@
   --text-5xl: 3.25rem;
   --text-6xl: 4.5rem;
 
+  /* Estándar único para acciones dentro de cards de productos. */
+  --product-card-action-width: 10.5rem;
+  --product-card-action-height: 3.25rem;
+  --product-card-action-height-mobile: 3.5rem;
+
   --leading-tight: 1.08;
   --leading-snug: 1.28;
   --leading-normal: 1.6;
