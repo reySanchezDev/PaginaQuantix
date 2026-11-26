@@ -55,7 +55,7 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell
   .cr-featured__brand img{display:block;width:3rem;height:3rem;flex-shrink:0;border-radius:.8rem;object-fit:contain;box-shadow:0 .5rem 1rem #092c214d}
   .cr-featured h2{margin:0;max-width:14ch;color:inherit;font-size:clamp(2rem,3.5vw,3.6rem);font-weight:650;letter-spacing:-.045em;line-height:1.08;text-wrap:balance}
   .cr-featured__description{max-width:43ch;margin:1.4rem 0 0;color:#e3eee7;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6}
-  .cr-featured__actions{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem 1rem;margin-top:1.75rem}
+  .cr-featured__actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.7rem 1rem;margin-top:1.75rem}
   .cr-featured__cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:var(--product-card-action-width);height:var(--product-card-action-height);box-sizing:border-box;padding:.45rem .65rem;border-radius:.55rem;color:#164331;background:#fffefa;font-size:var(--text-base);font-weight:700;text-decoration:none;white-space:nowrap;transition:transform 180ms ease,background 180ms ease}
   .cr-featured__button-icon{display:block;width:1.25rem;height:1.25rem;flex-shrink:0;border-radius:.3rem;object-fit:contain}
   .cr-featured__cta-label{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.08rem;min-width:0;text-align:center;line-height:1.08}
@@ -91,7 +91,7 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell
   }
 
   @media(max-width:76rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
-  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:flex-start;gap:.65rem}.cr-featured__cta{width:var(--product-card-action-width);max-width:100%;height:var(--product-card-action-height)}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
+  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:center;gap:.65rem}.cr-featured__cta{width:var(--product-card-action-width);max-width:100%;height:var(--product-card-action-height)}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
   @media(prefers-reduced-motion:reduce){
     .cr-featured__cta,.cr-featured__phone{transition:none}
     .cr-featured__phone,.cr-featured__halo{animation:none!important}
