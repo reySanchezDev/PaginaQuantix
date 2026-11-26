@@ -132,6 +132,8 @@ const siteSchema = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">{labels.skip}</a>
+    <SiteHeader navItems={navigation} locale={locale} labels={labels} />
+
     <aside
       class="seasonal-awareness"
       data-seasonal-banner="octubre-rosa"
@@ -210,7 +212,6 @@ const siteSchema = {
       </div>
     </aside>
     <NewYear locale={locale} />
-    <SiteHeader navItems={navigation} locale={locale} labels={labels} />
 
     <main id="main-content" tabindex="-1">
       <slot />
