@@ -1,0 +1,10 @@
+.git
+.astro
+dist
+node_modules
+artifacts
+NUEVO_PRODUCTO
+capturasViggo
+public/images/viggo/viggo-caja-gestion.png
+public/images/viggo/viggo-caja-historial-transacciones.png
+public/images/viggo/viggo-kardex.png

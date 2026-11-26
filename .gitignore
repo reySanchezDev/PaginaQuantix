@@ -26,3 +26,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Repositories and local QA captures kept outside the Quantix website source
+NUEVO_PRODUCTO/
