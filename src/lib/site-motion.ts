@@ -81,6 +81,55 @@ export function initializeSiteMotion() {
     { threshold: 0.08, rootMargin: "0px 0px -24px 0px" },
   );
 
+  const parallaxTargets = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-scroll-parallax]"),
+  );
+  let parallaxFrame = 0;
+
+  function updateParallax() {
+    parallaxFrame = 0;
+    if (preference.matches) {
+      parallaxTargets.forEach((element) => element.style.removeProperty("--scroll-parallax-y"));
+      return;
+    }
+
+    const scrollSpan = 760;
+    parallaxTargets.forEach((element) => {
+      const distance = Number(element.dataset.scrollParallax) || 0;
+      const progress = Math.min(
+        1,
+        Math.max(0, -element.getBoundingClientRect().top / scrollSpan),
+      );
+      element.style.setProperty("--scroll-parallax-y", `${(distance * progress).toFixed(2)}px`);
+    });
+  }
+
+  function scheduleParallax() {
+    if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateParallax);
+  }
+
+  if (parallaxTargets.length) {
+    window.addEventListener("scroll", scheduleParallax, { passive: true });
+    window.addEventListener("resize", scheduleParallax);
+    preference.addEventListener("change", scheduleParallax);
+    scheduleParallax();
+  }
+
+  const touchTimers = new WeakMap<HTMLElement, number>();
+  document.querySelectorAll<HTMLElement>("[data-motion-touch]").forEach((element) => {
+    element.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "touch" || preference.matches) return;
+      const previousTimer = touchTimers.get(element);
+      if (previousTimer) window.clearTimeout(previousTimer);
+      element.classList.add("is-touch-activated");
+      const timer = window.setTimeout(() => {
+        element.classList.remove("is-touch-activated");
+        touchTimers.delete(element);
+      }, 900);
+      touchTimers.set(element, timer);
+    }, { passive: true });
+  });
+
   function start() {
     if (preference.matches) {
       observer.disconnect();

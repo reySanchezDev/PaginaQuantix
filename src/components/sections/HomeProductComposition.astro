@@ -11,7 +11,7 @@ const es = locale === "es";
 ---
 
 <figure class="product-composition" data-enter="stage" data-motion-delay="160">
-  <div class="product-stage">
+  <div class="product-stage" data-scroll-parallax="-22" data-motion-touch>
     <div class="desktop-product">
       <MacBookFrame
         src="/images/viggo/viggo-dashboard.webp"
@@ -53,6 +53,7 @@ const es = locale === "es";
     top: 10%;
     right: 0;
     transform: rotate(-4deg);
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
   }
   .mobile-product {
     position: absolute;
@@ -60,6 +61,29 @@ const es = locale === "es";
     bottom: 4%;
     left: 2%;
     transform: rotate(5deg);
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .product-stage.is-touch-activated .desktop-product {
+      transform: rotate(-2.5deg) translate3d(0, -0.55rem, 0);
+      filter: drop-shadow(0 1.25rem 1.2rem rgb(3 17 13 / 18%));
+    }
+    .product-stage.is-touch-activated .mobile-product {
+      transform: rotate(3deg) translate3d(0.15rem, -0.35rem, 0);
+      filter: drop-shadow(0 1rem 1rem rgb(3 17 13 / 18%));
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .product-stage:hover .desktop-product {
+      transform: rotate(-2.5deg) translate3d(0, -0.55rem, 0);
+      filter: drop-shadow(0 1.25rem 1.2rem rgb(3 17 13 / 18%));
+    }
+    .product-stage:hover .mobile-product {
+      transform: rotate(3deg) translate3d(0.15rem, -0.35rem, 0);
+      filter: drop-shadow(0 1rem 1rem rgb(3 17 13 / 18%));
+    }
   }
   :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::before,
   :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::after {
@@ -135,6 +159,12 @@ const es = locale === "es";
   @media (max-width: 23.999rem) {
     .product-stage {
       aspect-ratio: 1.1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .desktop-product,
+    .mobile-product {
+      transition: none;
     }
   }
 </style>

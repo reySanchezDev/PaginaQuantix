@@ -7,6 +7,17 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  [data-scroll-parallax] {
+    translate: 0 var(--scroll-parallax-y, 0px);
+    transition: translate 120ms linear;
+  }
+
+  [data-motion-touch].is-touch-activated {
+    filter: drop-shadow(0 1.75rem 2.2rem rgb(18 52 46 / 22%));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
   :where(
       .hero-work-link,
       .case-link,
