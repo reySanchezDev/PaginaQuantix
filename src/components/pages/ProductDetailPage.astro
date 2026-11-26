@@ -69,7 +69,7 @@ const caseStudy =
       ...content.cta,
       secondary: {
         label: locale === "es" ? `Consultar sobre ${product.name}` : `Ask about ${product.name}`,
-        href: getContactHref(locale, productId),
+        href: getContactHref(locale, productId === "prestazo" ? "proyecto" : productId),
       },
     }}
   />

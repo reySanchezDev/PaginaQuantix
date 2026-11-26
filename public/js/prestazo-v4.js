@@ -614,7 +614,7 @@
   'use strict';
   const initialize=()=>{
     for(const demo of document.querySelectorAll('[data-miniprestazo]')) {
-      if(demo.querySelector('.mp-desktop-checklist'))continue;
+      if(demo.querySelector('.mp-desktop-checklist') || demo.querySelector('.mp-phase-list'))continue;
       const editorial=demo.querySelector('.mp-editorial');
       const title=demo.querySelector('[data-mp-story-title]');
       const order=demo.closest('.mp-tour')?.querySelector('[data-mp-order-title]');

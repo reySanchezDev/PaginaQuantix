@@ -15,6 +15,7 @@ const routeMap = {
   oktara: { es: "/es/productos/oktara/", en: "/en/products/oktara/" },
   tentrix: { es: "/es/productos/tentrix/", en: "/en/products/tentrix/" },
   lendly: { es: "/es/productos/lendly/", en: "/en/products/lendly/" },
+  prestazo: { es: "/es/productos/prestazo/", en: "/en/products/prestazo/" },
   "hen-screenshots": {
     es: "/es/productos/hen-screenshots/",
     en: "/en/products/hen-screenshots/",

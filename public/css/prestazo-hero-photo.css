@@ -153,12 +153,18 @@ main#content::before {
     border-color:#9bd8c9;
   }
   .mp-demo .mp-editorial > .mp-actions {
-     margin-top:clamp(.7rem,1.4vh,1rem)!important;
+     margin-top:auto!important;
      padding-top:0;
     padding-bottom:0;
     display:flex;
     flex-wrap:wrap;
     gap:.7rem;
     align-self:flex-start;
+    width:100%;
+  }
+  .mp-demo .mp-editorial > .mp-actions > .mp-control {
+    width:auto;
+    flex:1 1 0;
+    min-width:0;
   }
 }

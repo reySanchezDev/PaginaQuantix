@@ -126,12 +126,17 @@
         const e = t.dataset.mpPaymentChoice === d.paymentType?.value;
         (t.classList.toggle("is-selected", e), t.setAttribute("aria-pressed", String(e)));
       }
+      const selectedPlan = e.querySelector("[data-mp-selected-plan-detail]");
+      if (selectedPlan) selectedPlan.textContent = "WEEKLY_STANDARD" === d.loanPlan?.value ? ("en" === e.dataset.locale ? "12 installments · Weekly · 10% monthly" : "12 cuotas · Semanal · 10% mensual") : ("en" === e.dataset.locale ? "12 installments · Monthly · 10% monthly" : "12 cuotas · Mensual · 10% mensual");
       syncOnboardingViews();
+      localizeEnglishDemo();
     }
-    function syncOnboardingViews() {
+    function syncOnboardingViewsLegacy() {
       const customerName = d.customerName?.value || ("en" === e.dataset.locale ? "New customer" : "Nuevo cliente");
       const loanAmount = Number(d.loanAmount?.value || 0);
       const paymentAmount = Number(d.paymentAmount?.value || 0);
+      const monthlyRate = Number(d.monthlyRate?.value || 0);
+      const paymentType = d.paymentType?.value || "mixed";
       const currency = "USD" === d.loanCurrency?.value ? "$" : "C$";
       const money = (value) => `${currency} ${Number(value || 0).toLocaleString("en-US")}`;
       const screenTitles = {
@@ -148,10 +153,14 @@
       const loanCount = e.querySelector('[data-mp-metric="loans"]');
       const placed = e.querySelector('[data-mp-metric="placed"]');
       const payments = e.querySelector('[data-mp-metric="payments"]');
+      const capital = e.querySelector('[data-mp-metric="capital"]');
+      const overdue = e.querySelector('[data-mp-metric="overdue"]');
       customerCount && (customerCount.textContent = d.customerName?.value ? "1" : "0");
       loanCount && (loanCount.textContent = loanAmount ? "1" : "0");
       placed && (placed.textContent = money(loanAmount));
       payments && (payments.textContent = money(paymentAmount));
+      capital && (capital.textContent = money(Math.max(0, Number(d.capital?.value || 0) - loanAmount)));
+      overdue && (overdue.textContent = "0");
       const collection = e.querySelectorAll(".mp-status-list")[0];
       if (collection) {
         collection.replaceChildren();
@@ -179,11 +188,76 @@
       projected && (projected.textContent = money(loanAmount * (Number(d.monthlyRate?.value || 0) / 100)));
       fx && (fx.textContent = money(0));
       const statementName = e.querySelector("[data-mp-statement-name]");
+      const statementId = e.querySelector("[data-mp-statement-id]");
       const statementBalance = e.querySelector("[data-mp-statement-balance]");
       const statementApplication = e.querySelector("[data-mp-statement-application]");
       statementName && (statementName.textContent = customerName);
       statementBalance && (statementBalance.textContent = money(Math.max(0, loanAmount - paymentAmount)));
       statementApplication && (statementApplication.textContent = money(paymentAmount));
+    }
+    function syncOnboardingViews() {
+      const customerName = d.customerName?.value || "";
+      const loanAmount = Number(d.loanAmount?.value || 0);
+      const paymentAmount = Number(d.paymentAmount?.value || 0);
+      const monthlyRate = Number(d.monthlyRate?.value || 0);
+      const paymentType = d.paymentType?.value || "mixed";
+      const currency = "USD" === d.loanCurrency?.value ? "$" : "C$";
+      const money = (value) => `${currency} ${Number(value || 0).toLocaleString("en-US")}`;
+      const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"})[char]);
+      const empty = "en" === e.dataset.locale ? "No data in this demo yet." : "Aún no hay datos en esta demostración.";
+      const collection = e.querySelector("[data-mp-collection-list]");
+      if (collection) {
+        collection.replaceChildren();
+        if (!customerName || !loanAmount) collection.innerHTML = `<small class="mp-empty-state">${empty}</small>`;
+        else {
+          const item = document.createElement("div");
+          item.innerHTML = `<strong>${esc(customerName)}</strong><span class="mp-status mp-status-success">${"en" === e.dataset.locale ? "Due today" : "Vence hoy"}</span><small>${"en" === e.dataset.locale ? "Loan A-001 · Due today" : "Préstamo A-001 · Vence hoy"}</small><small>${"en" === e.dataset.locale ? "Installment" : "Cuota"}: ${money(paymentAmount || loanAmount)} · ${"en" === e.dataset.locale ? "Principal" : "Capital"}: ${money(Math.max(0, loanAmount - paymentAmount))}</small><small>${"en" === e.dataset.locale ? "Last payment" : "Último pago"}: ${paymentAmount ? money(paymentAmount) : "—"} · 1 ${"en" === e.dataset.locale ? "active loan" : "préstamo activo"}</small>`;
+          collection.append(item);
+          const action = document.createElement("button");
+          action.className = "mp-save-button";
+          action.type = "button";
+          action.dataset.mpNav = "payment";
+          action.textContent = "en" === e.dataset.locale ? "Register payment" : "Registrar Pago";
+          collection.append(action);
+        }
+      }
+      const history = e.querySelector("[data-mp-history-list]");
+      if (history) {
+        history.replaceChildren();
+        if (!customerName || !paymentAmount) history.innerHTML = `<small class="mp-empty-state">${"en" === e.dataset.locale ? "No payments registered." : "No hay pagos registrados."}</small>`;
+        else {
+          const item = document.createElement("div");
+          const receipt = d.lastReceipt?.value || "R-000";
+          item.innerHTML = `<strong>${"en" === e.dataset.locale ? "Receipt" : "Recibo"} #${esc(receipt)}</strong><span class="mp-status mp-status-success">${money(paymentAmount)}</span><small>${esc(customerName)} · ${"en" === e.dataset.locale ? "Mixed payment · Today" : "Pago mixto · Hoy"}</small><small>${"en" === e.dataset.locale ? "Interest and principal applied" : "Interés y capital aplicados"}</small>`;
+          history.append(item);
+        }
+      }
+      const report = e.querySelector('[data-mp-report="realized"]');
+      const projected = e.querySelector('[data-mp-report="projected"]');
+      const fx = e.querySelector('[data-mp-report="fx"]');
+      report && (report.textContent = money(paymentAmount));
+      projected && (projected.textContent = money(loanAmount * (Number(d.monthlyRate?.value || 0) / 100)));
+      fx && (fx.textContent = money(0));
+      const statementName = e.querySelector("[data-mp-statement-name]");
+      const statementId = e.querySelector("[data-mp-statement-id]");
+      const statementBalance = e.querySelector("[data-mp-statement-balance]");
+      const statementApplication = e.querySelector("[data-mp-statement-application]");
+      const paymentInterest = e.querySelector("[data-mp-payment-interest]");
+      const paymentPrincipal = e.querySelector("[data-mp-payment-principal]");
+      const paymentBalance = e.querySelector("[data-mp-payment-balance]");
+      const loanSummaryAmount = e.querySelector("[data-mp-loan-summary-amount]");
+      const loanSummaryRate = e.querySelector("[data-mp-loan-summary-rate]");
+      const interest = paymentType === "principal" ? 0 : Math.min(paymentAmount, loanAmount * monthlyRate / 100);
+      const principal = paymentType === "interest" ? 0 : Math.max(0, paymentAmount - interest);
+      statementName && (statementName.textContent = customerName || empty);
+      statementId && (statementId.textContent = customerName ? `DNI ${d.customerDni?.value || "—"}` : "");
+      statementBalance && (statementBalance.textContent = money(Math.max(0, loanAmount - paymentAmount)));
+      statementApplication && (statementApplication.textContent = money(paymentAmount));
+      paymentInterest && (paymentInterest.textContent = money(interest));
+      paymentPrincipal && (paymentPrincipal.textContent = money(principal));
+      paymentBalance && (paymentBalance.textContent = money(Math.max(0, loanAmount - principal)));
+      loanSummaryAmount && (loanSummaryAmount.textContent = loanAmount ? money(loanAmount) : "—");
+      loanSummaryRate && (loanSummaryRate.textContent = monthlyRate ? `${monthlyRate}%` : "—");
     }
     const M =
       "en" === e.dataset.locale
@@ -197,6 +271,9 @@
             "Seventh,",
             "Eighth,",
             "Ninth,",
+            "Tenth,",
+            "Eleventh,",
+            "Twelfth,",
           ]
         : [
             "Lo primero es",
@@ -208,6 +285,9 @@
             "Lo séptimo es",
             "Lo octavo es",
             "Lo noveno es",
+            "Lo décimo es",
+            "Lo undécimo es",
+            "Lo duodécimo es",
           ];
     const playbackTiming = { readablePhase: 4200, dashboard: 4200, backup: 5000 };
     let N = -1;
@@ -231,6 +311,11 @@
     };
     function O(t) {
       const e = Math.max(0, Math.min(M.length - 1, t));
+      for (const item of document.querySelectorAll("[data-mp-phase-item]")) {
+        const index = Number(item.dataset.mpPhaseIndex);
+        item.classList.toggle("is-active", index === e);
+        item.classList.toggle("is-complete", index < e);
+      }
       e !== N &&
         h &&
         ((N = e),
@@ -427,6 +512,150 @@
         s && ((s.hidden = 1 !== w), (s.textContent = (1 === w && m.monetarySubtitle) || "")),
         n && (n.scrollTop = 0));
     }
+    e.addEventListener("click", (event) => {
+      const nav = event.target.closest("[data-mp-nav]");
+      if (!nav || !e.contains(nav)) return;
+      const target = nav.dataset.mpNav;
+      const index = screenNames.indexOf(target);
+      if (index < 0) return;
+      if (v) j();
+      L = true;
+      U(index);
+      e.querySelectorAll("[data-mp-nav]").forEach((button) => button.classList.toggle("is-active", button.dataset.mpNav === target));
+    });
+    const feedback = (selector, message, ok = true) => {
+      const node = e.querySelector(selector);
+      if (!node) return;
+      node.textContent = localizeMessage(message);
+      node.classList.toggle("is-error", !ok);
+      node.classList.toggle("is-success", ok);
+    };
+    const localizeMessage = (message) => {
+      if ("en" !== e.dataset.locale) return message;
+      const value = String(message || "");
+      const lower = value.toLowerCase();
+      if (lower.includes("campo") && lower.includes("requer")) return "This field is required";
+      if (lower.includes("cliente creado")) return "Customer created successfully";
+      if (lower.includes("detalle del cliente")) return "Customer details displayed";
+      if (lower.includes("stamo creado")) return "Loan created successfully";
+      if (lower.includes("seleccione un") && lower.includes("stamo")) return "Select a loan";
+      if (lower.includes("pago registrado")) return "Payment registered successfully";
+      if (lower.includes("configur") && lower.includes("guard")) return "Configuration saved";
+      if (lower.includes("configuraci") && lower.includes("actualiz")) return "Configuration updated";
+      if (lower.includes("respaldo creado")) return "Backup created successfully";
+      if (lower.includes("respaldo restaurado")) return "Backup restored. Please restart the app.";
+      if (lower.includes("no hay respaldos")) return "No backups available";
+      if (lower.includes("detalle de cuenta")) return "Account details displayed";
+      if (lower.includes("reporte generado")) return "Report generated successfully";
+      return value;
+    };
+    function localizeEnglishDemo() {
+      if ("en" !== e.dataset.locale) return;
+      const replacements = [
+        ["Tasa Mensual", "Monthly rate"], ["Tasa Diaria", "Daily rate"], ["InterÃ©s Calculado", "Calculated interest"], ["DÃ­as:", "Days:"], ["Capital:", "Principal:"],
+        ["DÃ­as Exactos", "Exact days"], ["ProporciÃ³n del Ciclo", "Cycle proportion"], ["EstÃ¡ndar Comercial", "Commercial standard"],
+        ["Medio Arriba", "Round half up"], ["Bancario", "Banker's rounding"], ["Truncar", "Round down"], ["Hacia Arriba", "Round up"],
+        ["Nombre completo", "Full name"], ["DNI (CÃ©dula)", "ID number"], ["Apodo / Alias", "Nickname / Alias"],
+        ["TelÃ©fono", "Phone"], ["DirecciÃ³n / Referencia", "Address / Reference"], ["PIN (Coordenadas)", "PIN (Coordinates)"],
+        ["DÃ­a preferido de pago", "Preferred payment day"], ["Observaciones sobre el cliente", "Customer notes"],
+        ["Resumen del PrÃ©stamo", "Loan summary"], ["Tasa mensual", "Monthly rate"], ["AplicaciÃ³n del pago", "Payment application"],
+        ["Saldo restante", "Remaining balance"], ["Capital colocado", "Placed capital"], ["Acciones rÃ¡pidas", "Quick actions"],
+        ["Cobraza de hoy", "Today's collection"], ["Cobranza de hoy", "Today's collection"], ["Estado de cuenta del cliente", "Customer statement"],
+        ["ConfiguraciÃ³n de respaldo", "Backup settings"], ["Exportar Backup", "Export backup"], ["Restaurar Respaldo", "Restore backup"],
+        ["No hay clientes atrasados en esta demostraciÃ³n.", "No overdue customers in this demo."],
+      ];
+      e.querySelectorAll("*").forEach((node) => {
+        if (node.matches("input") && node.dataset.mpField === "customerNotes" && node.value) node.value = "Demo customer";
+        if (node.matches("input") && node.dataset.mpField === "loanNotes" && node.value) node.value = "Initial loan";
+        if (node.matches("input") && node.dataset.mpField === "paymentNotes" && node.value) node.value = "Installment payment";
+        if (node.children.length === 0 && node.textContent) {
+          let text = node.textContent;
+          for (const [from, to] of replacements) text = text.replaceAll(from, to);
+          if (text !== node.textContent) node.textContent = text;
+        }
+        for (const attr of ["placeholder", "aria-label", "title"]) {
+          const value = node.getAttribute(attr);
+          if (!value) continue;
+          let translated = value;
+          for (const [from, to] of replacements) translated = translated.replaceAll(from, to);
+          if (translated !== value) node.setAttribute(attr, translated);
+        }
+      });
+    }
+    e.addEventListener("click", (event) => {
+      const action = event.target.closest("[data-mp-action], [data-mp-backup-action], [data-mp-statement-action], [data-mp-customer-detail]");
+      if (!action || !e.contains(action) || v) return;
+      const name = action.dataset.mpAction;
+      if (name === "createCustomer") {
+        const required = ["customerName", "customerDni", "customerPhone", "customerAddress"];
+        const missing = required.find((field) => !d[field]?.value.trim());
+        if (missing) return feedback("[data-mp-customer-feedback]", "Este campo es requerido", false);
+        feedback("[data-mp-customer-feedback]", "Cliente creado exitosamente");
+        const directory = e.querySelector("[data-mp-customer-directory]");
+        const form = e.querySelector("[data-mp-customer-form]");
+        directory && (directory.hidden = false);
+        form && (form.hidden = true);
+        const directoryName = e.querySelector("[data-mp-directory-name]");
+        const directoryDetail = e.querySelector("[data-mp-directory-detail]");
+        directoryName && (directoryName.textContent = d.customerName.value);
+        directoryDetail && (directoryDetail.textContent = `${d.customerDni.value} · ${d.customerPhone.value}`);
+        return;
+      }
+      if (action.matches("[data-mp-customer-detail]")) {
+        U(screenNames.indexOf("customer"));
+        feedback("[data-mp-customer-feedback]", "Detalle del cliente mostrado");
+        return;
+      }
+      if (name === "createLoan") {
+        const required = ["loanPlan", "loanAmount", "monthlyRate", "loanFrequency"];
+        const missing = required.find((field) => !d[field]?.value);
+        if (missing || Number(d.loanAmount?.value) <= 0) return feedback("[data-mp-loan-feedback]", "Este campo es requerido", false);
+        feedback("[data-mp-loan-feedback]", "Préstamo creado exitosamente");
+        return;
+      }
+      if (name === "registerPayment") {
+        if (!d.customerName?.value || !d.loanAmount?.value) return feedback("[data-mp-payment-feedback]", "Seleccione un préstamo", false);
+        if (!d.paymentAmount?.value || Number(d.paymentAmount.value) <= 0) return feedback("[data-mp-payment-feedback]", "Este campo es requerido", false);
+        feedback("[data-mp-payment-feedback]", "Pago registrado exitosamente");
+        T();
+        return;
+      }
+      if (["saveCompany", "saveCapital", "savePolicy", "saveLoan", "saveReceipt"].includes(name)) {
+        const target = name === "savePolicy" ? "[data-mp-policy-feedback]" : "[data-mp-settings-feedback]";
+        feedback(target, name === "savePolicy" ? "Configuración guardada" : "Configuración actualizada");
+        return;
+      }
+      const backupAction = action.dataset.mpBackupAction;
+      if (backupAction === "create") return feedback("[data-mp-backup-feedback]", "Respaldo creado exitosamente");
+      if (backupAction === "restore") return feedback("[data-mp-backup-feedback]", "Respaldo restaurado. Por favor reinicie la app.");
+      if (backupAction === "manage") return feedback("[data-mp-backup-feedback]", "No hay respaldos disponibles");
+      if (backupAction === "save-settings") return feedback("[data-mp-backup-feedback]", "Configuración de respaldo guardada");
+      if (action.dataset.mpStatementAction !== undefined) return feedback("[data-mp-statement-feedback]", "Detalle de cuenta mostrado");
+    });
+    e.addEventListener("click", (event) => {
+      const tab = event.target.closest("[data-mp-report-tab]");
+      if (!tab || !e.contains(tab)) return;
+      e.querySelectorAll("[data-mp-report-tab]").forEach((button) => button.classList.toggle("is-selected", button === tab));
+      const report = tab.dataset.mpReportTab;
+      const card = e.querySelector("[data-mp-report-active]");
+      if (card) card.textContent = report === "projected" ? ("en" === e.dataset.locale ? "Active loan projection" : "Proyección de préstamos activos") : report === "fx" ? ("en" === e.dataset.locale ? "Currency differential" : "Diferencial cambiario") : ("en" === e.dataset.locale ? "Payments in selected date range" : "Pagos dentro del rango seleccionado");
+    });
+    e.addEventListener("click", (event) => {
+      const tab = event.target.closest("[data-mp-collection-tab]");
+      if (!tab || !e.contains(tab)) return;
+      e.querySelectorAll("[data-mp-collection-tab]").forEach((button) => button.classList.toggle("is-selected", button === tab));
+      const list = e.querySelector("[data-mp-collection-list]");
+      if (list && tab.dataset.mpCollectionTab === "overdue") {
+        list.innerHTML = `<small class="mp-empty-state">${"en" === e.dataset.locale ? "No overdue customers in this demo." : "No hay clientes atrasados en esta demostración."}</small>`;
+      } else {
+        T();
+      }
+    });
+    e.addEventListener("click", (event) => {
+      const action = event.target.closest("[data-mp-report-action]");
+      if (!action || !e.contains(action)) return;
+      feedback("[data-mp-report-feedback]", "Reporte generado correctamente");
+    });
     function $(t) {
       (r && r.setAttribute("aria-pressed", String(t)),
         playIcon && (playIcon.style.display = t ? "none" : ""),
@@ -498,6 +727,9 @@
         T(),
         (S = !1),
         (L = !1),
+        e.querySelector("[data-mp-customer-directory]") && (e.querySelector("[data-mp-customer-directory]").hidden = true),
+        e.querySelector("[data-mp-customer-form]") && (e.querySelector("[data-mp-customer-form]").hidden = false),
+        localizeEnglishDemo(),
         e.dispatchEvent(new CustomEvent("mp-demo-reset")));
     }
     function Y(e, a) {
@@ -595,7 +827,14 @@
       if (!n || !(await W(n, a))) return !1;
       n.classList.add("mp-button-pressed");
       const o = await Y(880, a);
-      return (n.classList.remove("mp-button-pressed"), o);
+      n.classList.remove("mp-button-pressed");
+      if (o && t === "createCustomer") {
+        const directory = e.querySelector("[data-mp-customer-directory]");
+        const form = e.querySelector("[data-mp-customer-form]");
+        directory && (directory.hidden = false);
+        form && (form.hidden = true);
+      }
+      return o;
     }
     async function K() {
       if (v) return;
@@ -660,8 +899,12 @@
         !(await Y(470, a)) ||
         !(await V("customerName", "Juan Pérez García", a)) ||
         !(await V("customerDni", "001-010100-0000A", a)) ||
+        !(await G("customerCategory", "GENERAL", a)) ||
+        !(await V("customerAlias", "Juanito", a)) ||
         !(await V("customerPhone", "8888-8888", a)) ||
         !(await V("customerAddress", "Del mercado 2c al norte", a)) ||
+        !(await V("customerPayDay", "15", a)) ||
+        !(await V("customerNotes", "Cliente de demostración", a)) ||
         !(await X("createCustomer", a)) ||
         !(await D(m.storyCustomerSaved, a))
       )
@@ -672,9 +915,11 @@
         !(await Y(550, a)) ||
         !(await G("loanPlan", "MONTHLY_STANDARD", a)) ||
         !(await G("loanCurrency", "NIO", a)) ||
+        !(await V("exchangeRate", "1.0", a)) ||
         !(await V("loanAmount", "10000", a)) ||
         !(await V("monthlyRate", "10", a)) ||
         !(await G("loanFrequency", "monthly", a)) ||
+        !(await V("loanNotes", "Préstamo inicial", a)) ||
         !(await X("createLoan", a)) ||
         !(await D(m.storyLoanCreated, a))
       )
@@ -686,6 +931,7 @@
         !(await G("paymentCurrency", "NIO", a)) ||
         !(await V("paymentAmount", "1500", a)) ||
         !(await G("paymentType", "mixed", a)) ||
+        !(await V("paymentNotes", "Pago de cuota", a)) ||
         !(await X("registerPayment", a)) ||
         !(await D(m.storyCompleted, a))
       )

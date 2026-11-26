@@ -8,7 +8,7 @@ import { getTakofyPage } from "./takofy";
 import { getTentrixPage } from "./tentrix";
 import { getViggoPage } from "./viggo";
 
-const factories: Record<ProductId, (locale: Locale) => ProductPageContent> = {
+const factories: Partial<Record<ProductId, (locale: Locale) => ProductPageContent>> = {
   viggo: getViggoPage,
   takofy: getTakofyPage,
   oktara: getOktaraPage,
@@ -19,4 +19,8 @@ const factories: Record<ProductId, (locale: Locale) => ProductPageContent> = {
   qavision: getQavisionPage,
 };
 
-export const getProductPage = (id: ProductId, locale: Locale) => factories[id](locale);
+export const getProductPage = (id: ProductId, locale: Locale) => {
+  const factory = factories[id];
+  if (!factory) throw new Error(`Product page not found: ${id}`);
+  return factory(locale);
+};

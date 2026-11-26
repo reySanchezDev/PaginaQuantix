@@ -1,6 +1,7 @@
 ---
 interface Props { en?: boolean }
 const {en=false}=Astro.props;
+const policyText = en ? { financialTitle:'Financial Convention', financialInfo:'This setting defines how interest is calculated. Existing loans keep their original policy.', dayConvention:'Day Count Convention', daysMonth:'Days per Month', daysYear:'Days per Year', proration:'Proration Rule', roundPolicy:'Rounding Policy', roundDecimals:'Decimals', roundMode:'Mode', calcTitle:'Calculation preview', savePolicy:'Save configuration' } : { financialTitle:'ConvenciÃ³n Financiera', financialInfo:'Esta configuraciÃ³n define cÃ³mo se calculan los intereses. Los prÃ©stamos existentes mantienen su polÃ­tica original.', dayConvention:'ConvenciÃ³n de Conteo de DÃ­as', daysMonth:'DÃ­as por Mes', daysYear:'DÃ­as por AÃ±o', proration:'Regla de Prorrateo', roundPolicy:'PolÃ­tica de Redondeo', roundDecimals:'Decimales', roundMode:'Modo', calcTitle:'Vista Previa del CÃ¡lculo', savePolicy:'Guardar ConfiguraciÃ³n' };
 const locale= en ? {"settings":"Settings","companyData":"Company Data","identity":"Identity","countryOfOperation":"Country of Operation","selectCountry":"Select a country","companyName":"Company Name","rucId":"TAX ID / Identification","contact":"Contact","phoneFixed":"Landline","cellPhone":"Mobile","whatsapp":"WhatsApp","location":"Location","address":"Address","branding":"Branding","logoPath":"Logo Path (PNG)","selectFile":"Select file...","visible":"Visible","hidden":"Hidden","companyInfoHelp":"Toggle the switch to show this data on receipts and reports.","saveChanges":"Save Changes","monetaryManagement":"Monetary Management","monetarySubtitle":"Currencies, Capital & Exchange Rates","baseConfiguration":"Base Configuration","baseCurrency":"Base Currency","baseCurrencyDesc":"Main currency for calculations and reports","availableCapital":"Capital available for lending","availableCapitalDesc":"Maximum amount available for lending","capitalSaved":"Capital saved","validateCapital":"Validate working capital","validateCapitalDesc":"Loan amount will be validated against available limits","recoveryPriority":"Recovery Priority","prioritizeCapital":"Prioritize Principal (Recommended)","prioritizeInterest":"Prioritize Overdue Interest","currencyCenter":"Currency Center","manageExchangeRates":"Manage exchange rates","currencyMaster":"Exchange Rate Master","contractRatePolicy":"Contract Rate Policy","contractRatePolicyDesc":"Allow manual exchange rate modification when creating a loan","reportConsolidation":"Report Consolidation","presentationCurrency":"Presentation Currency","sequencesTitle":"Sequences","lastLoanGenerated":"Last Loan Generated","nextLoanSequenceDesc":"The next loan will follow this sequence","lastReceiptGenerated":"Last Receipt Generated","nextReceiptSequenceDesc":"The next receipt will follow this sequence","sequenceUpdated":"Sequence updated","receiptSequenceUpdated":"Receipt sequence updated"} : {"settings":"Configuraciones","companyData":"Datos de la Empresa","identity":"Identidad","countryOfOperation":"País de Operación","selectCountry":"Seleccione un país","companyName":"Nombre de la Empresa","rucId":"RUC / Identificación","contact":"Contacto","phoneFixed":"Teléfono Fijo","cellPhone":"Celular","whatsapp":"WhatsApp","location":"Ubicación","address":"Dirección","branding":"Branding","logoPath":"Ruta del Logo (PNG)","selectFile":"Seleccione archivo...","visible":"Visible","hidden":"Oculto","companyInfoHelp":"Activa el interruptor para mostrar el dato en los recibos y reportes.","saveChanges":"Guardar Cambios","monetaryManagement":"Gestión Monetaria","monetarySubtitle":"Monedas, Capital y Tasas de Cambio","baseConfiguration":"Configuración Base","baseCurrency":"Moneda Base","baseCurrencyDesc":"Moneda principal para cálculos y reportes","availableCapital":"Capital disponible para prestar","availableCapitalDesc":"Monto máximo que tienes disponible para préstamos","capitalSaved":"Capital guardado","validateCapital":"Validar capital de trabajo","validateCapitalDesc":"Se validará que el monto del préstamo no exceda el saldo disponible","recoveryPriority":"Prioridad en Recuperación","prioritizeCapital":"Priorizar Capital (Recomendado)","prioritizeInterest":"Priorizar Interés Vencido","currencyCenter":"Centro de Divisas","manageExchangeRates":"Gestionar tasas de cambio","currencyMaster":"Maestro de tasas de compra y venta","contractRatePolicy":"Política de Tasa en Contrato","contractRatePolicyDesc":"Permitir modificar la tasa de cambio al crear un préstamo","reportConsolidation":"Consolidación de Reportes","presentationCurrency":"Moneda de Visualización","sequencesTitle":"Consecutivos","lastLoanGenerated":"Último Préstamo Generado","nextLoanSequenceDesc":"El próximo préstamo será el siguiente en la secuencia","lastReceiptGenerated":"Último Recibo Generado","nextReceiptSequenceDesc":"El próximo recibo será el siguiente en la secuencia","sequenceUpdated":"Consecutivo actualizado","receiptSequenceUpdated":"Consecutivo de recibos actualizado"};
 const t = {
  ...locale,
@@ -47,9 +48,14 @@ const journey = en ? {
 };
 const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.05a15 15 0 0 0-1.38-5.17A8.03 8.03 0 0 1 18.92 11ZM12 4.05c.9 1.3 1.54 3.45 1.73 6.95h-3.46C10.46 7.5 11.1 5.35 12 4.05ZM4.08 13h3.05c.12 2 .63 3.8 1.38 5.17A8.03 8.03 0 0 1 4.08 13Zm3.05-2H4.08a8.03 8.03 0 0 1 4.43-5.17A15 15 0 0 0 7.13 11ZM12 19.95c-.9-1.3-1.54-3.45-1.73-6.95h3.46c-.19 3.5-.83 5.65-1.73 6.95ZM10.18 11c.12-2.28.54-4.14 1.2-5.5-.48 1.3-.78 3.13-.88 5.5h-.32Zm-.03 2h3.7c-.16 2.58-.74 4.43-1.85 6.5-1.11-2.07-1.69-3.92-1.85-6.5Zm4.34 5.17c.75-1.37 1.26-3.17 1.38-5.17h3.05a8.03 8.03 0 0 1-4.43 5.17Z","business":"M3 21V3h11v5h7v13H3Zm2-2h3v-3H5v3Zm5 0h2v-3h-2v3Zm4 0h5v-3h-5v3ZM5 6v2h2V6H5Zm4 0v2h2V6H9Zm-4 4v2h2v-2H5Zm4 0v2h2v-2H9Zm5 1v2h2v-2h-2Z","confirmation_number":"M21 5H3c-1.1 0-2 .9-2 2v3a2 2 0 0 1 0 4v3c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-3a2 2 0 0 1 0-4V7c0-1.1-.9-2-2-2Zm0 4.17a4 4 0 0 0 0 5.66V17H3v-2.17a4 4 0 0 0 0-5.66V7h18v2.17ZM11 9h2v6h-2V9Z","phone":"M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.13.38 2.35.58 3.56.58.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.21.2 2.43.58 3.56a1 1 0 0 1-.24 1.03l-2.22 2.2Z","smartphone":"M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2Zm0 18H7V5h10v14Zm-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z","chat":"M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7l-5 3V5a2 2 0 0 1 2-2Zm0 2v13l2.3-1H20V5H4Z","location_on":"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z","image":"M21 3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM3 19l5-6 3 3 4-5 6 8H3ZM8 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z","chevron_right":"m9 6-1.4 1.4L12.2 12l-4.6 4.6L9 18l6-6-6-6Z","save":"M17 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4Zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm3-10H5V5h10v4Z","person":"M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z","badge":"M20 5h-4.18C15.4 3.84 14.3 3 13 3h-2c-1.3 0-2.4.84-2.82 2H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm-9 0h2v2h-2V5ZM5 10h14v9H5v-9Zm4 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm4 1h4v1h-4v-1Zm0 2h4v1h-4v-1Z","face":"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-3 7a1.2 1.2 0 1 1 0 2.4A1.2 1.2 0 0 1 9 9Zm6 0a1.2 1.2 0 1 1 0 2.4A1.2 1.2 0 0 1 15 9Zm-3 8c-2.4 0-4.5-1.3-5.5-3.4h11c-1 2.1-3.1 3.4-5.5 3.4Z","pin_drop":"M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z","calendar_today":"M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H5V9h14v11Z","note":"M19 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10l6-6V4a2 2 0 0 0-2-2ZM7 7h10v2H7V7Zm0 4h10v2H7v-2Zm0 4h6v2H7v-2Zm9 4v-4h4l-4 4Z","percent":"M6 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm12 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM5 21 19 3l-1.5-1.2-14 18L5 21Z"};
 ---
-<section class="mp-demo" data-miniprestazo data-locale={en?'en':'es'} data-mp-phase-screens="company,dashboard,customer,loan,payment,collection,history,reports,backup" aria-label={en?'Interactive Prestazo settings preview':'Vista interactiva de configuraciones de Prestazo'}>
+<section class="mp-demo" data-miniprestazo data-locale={en?'en':'es'} data-mp-phase-screens="company,monetary,policy,sequences,dashboard,customer,loan,payment,collection,history,reports,backup" aria-label={en?'Interactive Prestazo settings preview':'Vista interactiva de Prestazo'}>
   <div class="mp-editorial">
     <h3 data-mp-story-title aria-live="polite">{journey.settingsHeading}</h3>
+    <ol class="mp-phase-list" data-mp-phase-list aria-label={en?'Demo phases':'Fases de la demostración'}>
+      {(en ? ['Company data','Monetary management','Financial policy','Sequences','Dashboard','New customer','New loan','Register payment','To Collect','Payment History','Reports','Scheduled Backup'] : ['Configurar tu empresa','Gestión monetaria','Política financiera','Consecutivos','Revisar tu cartera','Crear tu primer cliente','Gestionarle un préstamo','Registrar un pago','A cobrar','Historial de pagos','Reportes','Respaldo programado']).map((label, index) => (
+        <li data-mp-phase-item data-mp-phase-index={index}><span>{String(index + 1).padStart(2, '0')}</span><strong>{label}</strong></li>
+      ))}
+    </ol>
     <div class="mp-actions">
       <button class="mp-control mp-control-primary" type="button" data-mp-play aria-pressed="false">
         <svg data-mp-play-icon aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
@@ -140,6 +146,7 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               </label>
             </div>
             <button class="mp-save-button" data-mp-action="saveCompany" type="button">{t.saveChanges}</button>
+            <p class="mp-inline-feedback" data-mp-settings-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="monetary" aria-label={t.monetaryManagement} hidden>
@@ -198,9 +205,13 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <div class="mp-list-tile"><strong>{en?'Plan semanal estándar':'Plan semanal estándar'}</strong><small>{en?'Weekly · 12 installments · 10% monthly':'Semanal · 12 cuotas · 10% mensual'}</small></div>
               <div class="mp-divider"></div>
               <div class="mp-plan-settings-grid">
-                <div><span>{en?'Plan name':'Nombre del plan'}</span><b>{en?'Configured in the app':'Se configura en la app'}</b></div>
+                <div><span>{en?'Plan name':'Nombre del plan'}</span><b>{en?'Monthly plan':'Plan mensual'}</b></div>
+                <div><span>{en?'Frequency':'Frecuencia'}</span><b>{en?'Monthly':'Mensual'}</b></div>
+                <div><span>{en?'Term':'Plazo'}</span><b>12 {en?'months':'meses'}</b></div>
+                <div><span>{en?'Installments':'Cuotas'}</span><b>12</b></div>
+                <div><span>{en?'Monthly rate':'Tasa mensual'}</span><b>10%</b></div>
                 <div><span>{en?'Currency':'Moneda'}</span><b>NIO</b></div>
-                <div><span>{en?'Term':'Plazo'}</span><b>12 meses</b></div>
+                <div><span>{en?'Amount limits':'Límites de monto'}</span><b>{en?'Not set':'Sin definir'}</b></div>
                 <div><span>{en?'Status':'Estado'}</span><b>{en?'Active':'Activo'}</b></div>
               </div>
             </div>
@@ -213,10 +224,10 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
             </div>
           </section>
 
-          <section class="mp-screen" data-mp-screen="policy" aria-label={t.financialTitle} hidden>
-            <div class="mp-info mp-policy-info"><svg class="mp-info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6"/><path d="M12 7h.01"/></svg><span>{t.financialInfo}</span></div>
+          <section class="mp-screen" data-mp-screen="policy" aria-label={policyText.financialTitle} hidden>
+            <div class="mp-info mp-policy-info"><svg class="mp-info-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6"/><path d="M12 7h.01"/></svg><span>{policyText.financialInfo}</span></div>
             <div class="mp-field">
-              <label for="mp-convention">{t.dayConvention}</label>
+              <label for="mp-convention">{policyText.dayConvention}</label>
               <select id="mp-convention" data-mp-field="convention">
                 <option value="30/360">30/360 (Estándar Comercial)</option>
                 <option value="ACTUAL/360">Actual/360</option>
@@ -224,32 +235,33 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
                 <option value="30/365">30/365</option>
               </select>
             </div>
-            <div class="mp-field-pair">
-              <div class="mp-field"><label for="mp-daysMonth">{t.daysMonth}</label><input id="mp-daysMonth" data-mp-field="daysMonth" type="number" min="1" max="31" value="30"/></div>
-              <div class="mp-field"><label for="mp-daysYear">{t.daysYear}</label><input id="mp-daysYear" data-mp-field="daysYear" type="number" min="360" max="366" value="360"/></div>
+              <div class="mp-field-pair">
+              <div class="mp-field"><label for="mp-daysMonth">{policyText.daysMonth}</label><input id="mp-daysMonth" data-mp-field="daysMonth" type="number" min="1" max="31" value="30"/></div>
+              <div class="mp-field"><label for="mp-daysYear">{policyText.daysYear}</label><input id="mp-daysYear" data-mp-field="daysYear" type="number" min="360" max="366" value="360"/></div>
             </div>
             <div class="mp-field">
-              <label for="mp-proration">{t.proration}</label>
+              <label for="mp-proration">{policyText.proration}</label>
               <select id="mp-proration" data-mp-field="proration"><option value="EXACT_DAYS">Días Exactos</option><option value="CYCLE_PROPORTION">Proporción del Ciclo</option></select>
             </div>
-            <div class="mp-section-title">{t.roundPolicy}</div>
+            <div class="mp-section-title">{policyText.roundPolicy}</div>
             <div class="mp-field-pair">
-              <div class="mp-field"><label for="mp-decimals">{t.roundDecimals}</label><select id="mp-decimals" data-mp-field="decimals"><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-              <div class="mp-field"><label for="mp-roundMode">{t.roundMode}</label><select id="mp-roundMode" data-mp-field="roundMode">
+              <div class="mp-field"><label for="mp-decimals">{policyText.roundDecimals}</label><select id="mp-decimals" data-mp-field="decimals"><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+              <div class="mp-field"><label for="mp-roundMode">{policyText.roundMode}</label><select id="mp-roundMode" data-mp-field="roundMode">
                 <option value="HALF_UP">Medio Arriba</option><option value="HALF_EVEN">Bancario</option><option value="DOWN">Truncar</option><option value="UP">Hacia Arriba</option>
               </select></div>
             </div>
             <div class="mp-calc-preview">
-              <strong>{t.calcTitle}</strong>
+              <strong>{policyText.calcTitle}</strong>
               <div>Capital: C$ 10000.00</div>
-              <div>Tasa Mensual: 10%</div>
+              <div>{en?'Monthly rate: 10%':'Tasa Mensual: 10%'}</div>
               <div>Días: 15</div>
               <div data-mp-daily-rate>Tasa Diaria: 0.3333%</div>
               <b data-mp-calc-interest>Interés Calculado: C$ 500.00</b>
             </div>
             <button class="mp-save-button" type="button" data-mp-action="savePolicy">
-              <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.save} /></svg>{t.savePolicy}
+              <svg class="mp-svg-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d={iconPaths.save} /></svg>{policyText.savePolicy}
             </button>
+            <p class="mp-inline-feedback" data-mp-policy-feedback aria-live="polite"></p>
           </section>
 
           <!-- Campos exactos customer_form_screen.dart (en Flutter algunos labels están hardcoded ES) -->
@@ -318,6 +330,7 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <div class="mp-field"><label for="mp-loanPlan">{flowLabels.selectPlan}</label>
                 <select id="mp-loanPlan" data-mp-field="loanPlan"><option value="MONTHLY_STANDARD">{en?'Standard monthly plan':'Plan mensual estándar'}</option><option value="WEEKLY_STANDARD">{en?'Standard weekly plan':'Plan semanal estándar'}</option></select>
               </div>
+              <div class="mp-plan-selected-detail"><span>{en?'Plan details':'Detalle del plan'}</span><strong data-mp-selected-plan-detail>{en?'12 installments · 10% monthly':'12 cuotas · 10% mensual'}</strong><small>{en?'Term and limits are applied from the selected plan.':'El plazo y los límites se aplican desde el plan seleccionado.'}</small></div>
             </div>
             <div class="mp-section-title">{flowLabels.loanCurrencyLabel}</div>
             <div class="mp-card mp-currency-selector-card">
@@ -377,6 +390,7 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <div><span>Tasa mensual</span><b data-mp-loan-summary-rate>—</b></div>
             </div>
             <button class="mp-save-button" type="button" data-mp-action="createLoan">{flowLabels.createLoanAction}</button>
+            <p class="mp-inline-feedback" data-mp-loan-feedback aria-live="polite"></p>
           </section>
 
 
@@ -439,10 +453,10 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
 
           <section class="mp-screen" data-mp-screen="dashboard" aria-label={modeLabels.dashboard}>
             <div class="mp-dashboard-grid">
-              <div class="mp-metric-card"><small>{en?'Active customers':'Clientes activos'}</small><strong data-mp-metric="customers">24</strong><span>{en?'+3 this month':'+3 este mes'}</span></div>
-              <div class="mp-metric-card"><small>{en?'Active loans':'Préstamos activos'}</small><strong data-mp-metric="loans">18</strong><span>{en?'2 overdue':'2 en mora'}</span></div>
-              <div class="mp-metric-card"><small>{en?'Payments today':'Pagos de hoy'}</small><strong data-mp-metric="payments">C$ 4,850</strong><span>{en?'6 receipts':'6 recibos'}</span></div>
-              <div class="mp-metric-card"><small>{en?'Available capital':'Capital disponible'}</small><strong data-mp-metric="capital">C$ 32,400</strong><span>{en?'Capital control on':'Control de capital activo'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Active customers':'Clientes activos'}</small><strong data-mp-metric="customers">0</strong><span data-mp-metric-meta="customers">{en?'Created in this flow':'Creados en este flujo'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Active loans':'Préstamos activos'}</small><strong data-mp-metric="loans">0</strong><span data-mp-metric-meta="loans">{en?'Created in this flow':'Creados en este flujo'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Payments today':'Pagos de hoy'}</small><strong data-mp-metric="payments">C$ 0</strong><span data-mp-metric-meta="payments">{en?'Registered in this flow':'Registrados en este flujo'}</span></div>
+              <div class="mp-metric-card"><small>{en?'Available capital':'Capital disponible'}</small><strong data-mp-metric="capital">C$ 0</strong><span data-mp-metric-meta="capital">{en?'Configured lending capital':'Capital configurado para prestar'}</span></div>
               <div class="mp-metric-card"><small>{en?'Placed capital':'Capital colocado'}</small><strong data-mp-metric="placed">C$ 0</strong></div>
               <div class="mp-metric-card"><small>{en?'Overdue':'Vencidos'}</small><strong data-mp-metric="overdue">0</strong></div>
             </div>
@@ -453,8 +467,9 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
           <section class="mp-screen" data-mp-screen="backup" aria-label={modeLabels.backup} hidden>
             <div class="mp-section-title">{en?'Backup and maintenance':'Respaldo y mantenimiento'}</div>
             <div class="mp-card">
-              <div class="mp-list-tile"><strong>{en?'Create backup':'Crear respaldo'}</strong><small>{en?'Export the local database or share it with another app.':'Exportar la base local o compartirla con otra aplicación.'}</small></div>
+              <div class="mp-list-tile"><strong>{en?'Export backup':'Exportar Backup'}</strong><small>{en?'Save a copy of the database or share it with another app.':'Guardar copia de la base de datos o compartirla con otra aplicación.'}</small></div>
               <button class="mp-save-button" type="button" data-mp-backup-action="create">{en?'Create backup':'Crear respaldo'}</button>
+              <div class="mp-field"><label for="mp-backup-destination">{en?'Destination folder':'Carpeta destino'}</label><input id="mp-backup-destination" value={en?'Default internal folder':'Carpeta por defecto (Interna)'} readonly /></div>
               <div class="mp-divider"></div>
               <div class="mp-list-tile"><strong>{en?'Scheduled backups':'Respaldos programados'}</strong><small>{en?'Daily, weekly or monthly, with retention and retries.':'Diarios, semanales o mensuales, con retención y reintentos.'}</small></div>
               <label class="mp-switch-tile"><span>{en?'Backup on loan creation':'Respaldar al crear préstamo'}</span><input type="checkbox" data-mp-backup-setting="loan"/><span class="mp-switch" aria-hidden="true"></span></label>
@@ -462,29 +477,35 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
               <div class="mp-field"><label for="mp-backup-frequency">{en?'Frequency':'Frecuencia'}</label><select id="mp-backup-frequency"><option>{en?'Disabled':'Deshabilitado'}</option><option>{en?'Daily':'Diaria'}</option><option>{en?'Weekly':'Semanal'}</option><option>{en?'Monthly':'Mensual'}</option></select></div>
               <div class="mp-field"><label for="mp-backup-time">{en?'Preferred time':'Hora preferida'}</label><input id="mp-backup-time" type="time" value="02:00"/></div>
               <div class="mp-field"><label for="mp-backup-retention">{en?'Keep backups for (days)':'Conservar respaldos (días)'}</label><input id="mp-backup-retention" type="number" value="30" min="1"/></div>
-              <div class="mp-field"><label for="mp-backup-retries">{en?'Retries':'Reintentos'}</label><input id="mp-backup-retries" type="number" value="3" min="0" max="10"/></div>
               <div class="mp-field"><label for="mp-backup-name">{en?'Custom file name':'Nombre personalizado'}</label><input id="mp-backup-name" value="prestazo_backup"/></div>
               <button class="mp-control mp-control-outline" type="button" data-mp-backup-action="save-settings">{en?'Save backup settings':'Guardar configuración de respaldo'}</button>
             </div>
-            <div class="mp-card"><div class="mp-list-tile"><strong>{en?'Restore or manage backups':'Restaurar o administrar respaldos'}</strong></div><button class="mp-control mp-control-outline" type="button" data-mp-backup-action="restore">{en?'Restore backup':'Restaurar respaldo'}</button></div>
+            <div class="mp-card"><div class="mp-list-tile"><strong>{en?'Restore backup':'Restaurar Respaldo'}</strong><small>{en?'Load the database from a backup file.':'Cargar la base de datos desde un archivo.'}</small></div><button class="mp-control mp-control-outline" type="button" data-mp-backup-action="restore">{en?'Restore backup':'Restaurar respaldo'}</button></div>
+            <div class="mp-card"><div class="mp-list-tile"><strong>{en?'Local backups':'Respaldos locales'}</strong><small data-mp-local-backups>{en?'No backups available':'No hay respaldos disponibles'}</small></div><button class="mp-control mp-control-outline" type="button" data-mp-backup-action="manage">{en?'View backups':'Ver respaldos'}</button></div>
             <p class="mp-inline-feedback" data-mp-backup-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="collection" aria-label={modeLabels.collection} hidden>
             <div class="mp-section-title">{en?'Today’s collection':'Cobranza de hoy'}</div>
-            <div class="mp-card mp-status-list"><div><strong data-mp-collection-name>María López</strong><span class="mp-status mp-status-warning">{en?'Overdue':'En mora'}</span><small data-mp-collection-detail>C$ 1,250 · {en?'3 days late':'3 días de atraso'}</small></div><div><strong>José Martínez</strong><span class="mp-status mp-status-success">{en?'Due today':'Vence hoy'}</span><small>C$ 800 · {en?'Monthly cycle':'Ciclo mensual'}</small></div><div><strong>Ana Rodríguez</strong><span class="mp-status mp-status-neutral">{en?'Upcoming':'Próximo'}</span><small>C$ 650 · {en?'In 2 days':'En 2 días'}</small></div></div>
+            <div class="mp-collection-tabs" role="tablist"><button type="button" class="is-selected" role="tab" data-mp-collection-tab="upcoming">{en?'Up to date':'Al Día'}</button><button type="button" role="tab" data-mp-collection-tab="overdue">{en?'Overdue':'Atrasados'}</button></div>
+            <label class="mp-search-field"><span class="mp-sr-only">{en?'Search collection':'Buscar cobranza'}</span><input type="search" placeholder={en?'Search by name or amount...':'Buscar por nombre o monto...'} /></label>
+            <div class="mp-card mp-status-list" data-mp-collection-list></div>
           </section>
 
           <section class="mp-screen" data-mp-screen="history" aria-label={modeLabels.history} hidden>
             <div class="mp-section-title">{en?'Payment history':'Historial de pagos'}</div>
-            <div class="mp-card mp-status-list"><div><strong data-mp-history-receipt>Receipt #R-024</strong><span class="mp-status mp-status-success" data-mp-history-amount>C$ 1,500</span><small data-mp-history-detail>Juan Pérez · {en?'Mixed payment · Today':'Pago mixto · Hoy'}</small></div><div><strong>Receipt #R-023</strong><span class="mp-status mp-status-success">C$ 900</span><small>María López · {en?'Interest and principal':'Interés y capital'}</small></div><div><strong>Receipt #R-022</strong><span class="mp-status mp-status-success">C$ 750</span><small>José Martínez · {en?'Interest only':'Solo interés'}</small></div></div>
+            <div class="mp-card mp-status-list" data-mp-history-list></div>
             <div class="mp-section-title">{en?'Customer statement':'Estado de cuenta del cliente'}</div>
             <div class="mp-card mp-statement-card"><div><strong data-mp-statement-name>{en?'New customer':'Nuevo cliente'}</strong><small data-mp-statement-id></small></div><div><span>{en?'Loan balance':'Saldo del préstamo'}</span><b data-mp-statement-balance>C$ 0</b></div><div><span>{en?'Payment application':'Aplicación del pago'}</span><b data-mp-statement-application>C$ 0</b></div><button type="button" class="mp-control mp-control-outline" data-mp-statement-action>{en?'View account details':'Ver detalle de cuenta'}</button></div>
+            <p class="mp-inline-feedback" data-mp-statement-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="reports" aria-label={modeLabels.reports} hidden>
             <div class="mp-section-title">{en?'Report center':'Centro de reportes'}</div>
-            <div class="mp-card mp-report-card"><div><strong>{en?'Realized earnings':'Ganancias realizadas'}</strong><span data-mp-report="realized">C$ 8,420</span><small>{en?'Payments already registered':'Pagos ya registrados'}</small></div><div><strong>{en?'Projected earnings':'Ganancias proyectadas'}</strong><span data-mp-report="projected">C$ 14,680</span><small>{en?'From active loan cycles':'De ciclos activos'}</small></div><div><strong>{en?'Currency differential':'Diferencial cambiario'}</strong><span data-mp-report="fx">C$ 1,240</span><small>{en?'Exchange-rate gains':'Ganancia por tipo de cambio'}</small></div></div>
+            <div class="mp-report-tabs"><button type="button" class="is-selected" data-mp-report-tab="realized">{en?'Realized earnings':'Ganancias Reales'}</button><button type="button" data-mp-report-tab="projected">{en?'Projection':'Proyección'}</button><button type="button" data-mp-report-tab="fx">{en?'Currency differential':'Diferencial Cambiario'}</button></div>
+            <div class="mp-card mp-report-card"><div><strong>{en?'Realized earnings':'Ganancias Reales'}</strong><span data-mp-report="realized">C$ 0</span><small data-mp-report-active>{en?'Payments in selected date range':'Pagos dentro del rango seleccionado'}</small></div><div><strong>{en?'Projection':'Proyección'}</strong><span data-mp-report="projected">C$ 0</span><small>{en?'Based on active loans':'Basada en préstamos activos'}</small></div><div><strong>{en?'Currency differential':'Diferencial Cambiario'}</strong><span data-mp-report="fx">C$ 0</span><small>{en?'Exchange-rate difference':'Diferencia por tipo de cambio'}</small></div></div>
+            <div class="mp-report-range"><span>{en?'Date range':'Rango de fechas'}</span><input type="date" aria-label={en?'Start date':'Fecha inicial'} data-mp-report-start /><span>—</span><input type="date" aria-label={en?'End date':'Fecha final'} data-mp-report-end /><button type="button" class="mp-control mp-control-outline" data-mp-report-action="export">{en?'Export report':'Exportar reporte'}</button></div>
+            <p class="mp-inline-feedback" data-mp-report-feedback aria-live="polite"></p>
           </section>
 
           <section class="mp-screen" data-mp-screen="sequences" aria-label={t.sequencesTitle} hidden>
@@ -522,5 +543,5 @@ const iconPaths = {"public":"M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm6.92 9h-3.
   <div class="mp-story-panel" data-mp-story-panel aria-hidden="true" role="status">
     <p class="mp-story-message" data-mp-story-message></p>
   </div>
-  <template data-mp-i18n data-play={t.play} data-pause={t.pause} data-company={t.companyData} data-monetary={t.monetaryManagement} data-monetary-subtitle={t.monetarySubtitle} data-policy={t.financialTitle} data-sequences={t.sequencesTitle} data-customer-title={flowLabels.newCustomer} data-loan-title={flowLabels.newLoan} data-payment-title={flowLabels.registerPayment} data-settings-heading={journey.settingsHeading} data-customer-heading={journey.customerHeading} data-loan-heading={journey.loanHeading} data-payment-heading={journey.paymentHeading} data-story-configured={journey.configured} data-story-customer-saved={journey.customerSaved} data-story-loan-created={journey.loanCreated} data-story-completed={journey.completed} data-visible={t.visible} data-hidden={t.hidden}></template>
+  <template data-mp-i18n data-play={t.play} data-pause={t.pause} data-company={t.companyData} data-monetary={t.monetaryManagement} data-monetary-subtitle={t.monetarySubtitle} data-policy={policyText.financialTitle} data-sequences={t.sequencesTitle} data-customer-title={flowLabels.newCustomer} data-loan-title={flowLabels.newLoan} data-payment-title={flowLabels.registerPayment} data-settings-heading={journey.settingsHeading} data-customer-heading={journey.customerHeading} data-loan-heading={journey.loanHeading} data-payment-heading={journey.paymentHeading} data-story-configured={journey.configured} data-story-customer-saved={journey.customerSaved} data-story-loan-created={journey.loanCreated} data-story-completed={journey.completed} data-visible={t.visible} data-hidden={t.hidden}></template>
 </section>

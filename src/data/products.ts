@@ -86,6 +86,23 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       },
     },
     {
+      id: "prestazo",
+      name: "Prestazo",
+      category: "Gestión de préstamos",
+      description: "Ordena clientes, préstamos, cobros y ganancias desde el teléfono, incluso sin conexión.",
+      status: "Android · Gratis",
+      preview: {
+        src: "/img/prestazo-hero-personas-crecimiento.png",
+        alt: "Prestazo ayudando a organizar una cartera de préstamos.",
+        width: 1680,
+        height: 1050,
+      },
+      external: {
+        label: "Visitar Prestazo",
+        href: "/es/productos/prestazo/",
+      },
+    },
+    {
       id: "hen-screenshots",
       name: "Hen Screenshots",
       category: "Herramientas para desarrolladores",
@@ -213,6 +230,23 @@ const content: Record<Locale, Omit<ProductSummary, "href">[]> = {
       external: {
         label: "Open Lendly",
         href: siteConfig.productUrls.lendly,
+      },
+    },
+    {
+      id: "prestazo",
+      name: "Prestazo",
+      category: "Loan management",
+      description: "Organize customers, loans, collections, and earnings from your phone, even offline.",
+      status: "Android · Free",
+      preview: {
+        src: "/img/prestazo-hero-personas-crecimiento.png",
+        alt: "Prestazo helping organize a loan portfolio.",
+        width: 1680,
+        height: 1050,
+      },
+      external: {
+        label: "Visit Prestazo",
+        href: "/en/products/prestazo/",
       },
     },
     {

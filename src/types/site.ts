@@ -99,6 +99,7 @@ export type ProductId =
   | "oktara"
   | "tentrix"
   | "lendly"
+  | "prestazo"
   | "hen-screenshots"
   | "nica-finanzas"
   | "qavision";
