@@ -33,10 +33,6 @@ const es = locale === "es";
       />
     </div>
   </div>
-  <figcaption class="composition-note">
-    {es ? "Interfaces reales." : "Real interfaces."}
-    <span>{es ? "Datos de ejemplo." : "Sample data."}</span>
-  </figcaption>
 </figure>
 
 <style>
@@ -64,19 +60,6 @@ const es = locale === "es";
     bottom: 4%;
     left: 2%;
     transform: rotate(5deg);
-  }
-  .composition-note {
-    position: absolute;
-    left: 39%;
-    right: 0;
-    bottom: 4%;
-    margin: 0;
-    font-size: var(--text-base);
-  }
-  .composition-note span {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: var(--text-xs);
   }
   :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::before,
   :global(html[data-seasonal-theme="navidad-premium"]) .product-stage::after {
@@ -147,11 +130,6 @@ const es = locale === "es";
     .mobile-product {
       width: 30%;
       bottom: 2%;
-    }
-    .composition-note {
-      left: 40%;
-      bottom: 5%;
-      font-size: var(--text-sm);
     }
   }
   @media (max-width: 23.999rem) {
