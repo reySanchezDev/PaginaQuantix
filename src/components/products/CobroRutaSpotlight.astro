@@ -24,7 +24,7 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell
         <div class="cr-featured__actions">
           <a class="cr-featured__cta" href="https://cobroruta.hensell.dev">
             <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
-            {es ? "Conocer CobroRuta" : "Explore CobroRuta"}
+            <span class="cr-featured__cta-label"><span class="cr-featured__cta-label-top">{es ? "Conocer" : "Explore"}</span><span class="cr-featured__cta-label-bottom">CobroRuta</span></span>
           </a>
           <a class="cr-featured__cta" href="https://cobroruta.hensell.dev/app/">
             <img class="cr-featured__button-icon" src="/cobroruta/icon.png" alt="" aria-hidden="true" width="20" height="20" decoding="async" />
@@ -56,8 +56,11 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell
   .cr-featured h2{margin:0;max-width:14ch;color:inherit;font-size:clamp(2rem,3.5vw,3.6rem);font-weight:650;letter-spacing:-.045em;line-height:1.08;text-wrap:balance}
   .cr-featured__description{max-width:43ch;margin:1.4rem 0 0;color:#e3eee7;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6}
   .cr-featured__actions{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem 1rem;margin-top:1.75rem}
-  .cr-featured__cta{display:inline-flex;align-items:center;justify-content:center;gap:1.2rem;min-height:3.25rem;padding:.85rem 1.2rem;border-radius:.55rem;color:#164331;background:#fffefa;font-size:var(--text-base);font-weight:700;text-decoration:none;transition:transform 180ms ease,background 180ms ease}
+  .cr-featured__cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:var(--product-card-action-width);height:var(--product-card-action-height);box-sizing:border-box;padding:.45rem .65rem;border-radius:.55rem;color:#164331;background:#fffefa;font-size:var(--text-base);font-weight:700;text-decoration:none;white-space:nowrap;transition:transform 180ms ease,background 180ms ease}
   .cr-featured__button-icon{display:block;width:1.25rem;height:1.25rem;flex-shrink:0;border-radius:.3rem;object-fit:contain}
+  .cr-featured__cta-label{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.08rem;min-width:0;text-align:center;line-height:1.08}
+  .cr-featured__cta-label-top{font-size:.68em;font-weight:650;letter-spacing:.02em}
+  .cr-featured__cta-label-bottom{font-size:1em;font-weight:800}
   .cr-featured__cta:is(:hover,:focus-visible){color:#123a2e;background:#e6eee7;transform:translateY(-2px)}
   .cr-featured__cta:focus-visible{outline:3px solid #f4dc8b;outline-offset:4px}
   .cr-featured__visual{position:relative;isolation:isolate;align-self:stretch;display:flex;align-items:center;justify-content:center;gap:clamp(.9rem,2vw,1.75rem);min-width:0;min-height:35rem;padding:2.5rem clamp(1.5rem,3vw,3rem);overflow:visible}
@@ -84,11 +87,11 @@ const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.hensell
 
   @media(min-width:40.001rem){
     .cr-featured__actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
-    .cr-featured__cta{min-width:0;width:var(--product-card-action-width);height:var(--product-card-action-height);gap:.5rem;padding:.65rem;font-size:.8125rem;white-space:normal;text-align:center;text-wrap:balance}
+    .cr-featured__cta{min-width:0;width:var(--product-card-action-width);height:var(--product-card-action-height);gap:.5rem;padding:.45rem .65rem;font-size:.8125rem;white-space:nowrap;text-align:center;text-wrap:balance}
   }
 
   @media(max-width:76rem){.cr-featured__panel{grid-template-columns:1fr}.cr-featured__content{padding:2rem 2rem 1rem}.cr-featured__visual{min-height:0;padding:1.5rem 2rem 2.5rem}.cr-featured__phone{flex-basis:13rem;width:min(13rem,39%)}}
-  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:flex-start;gap:.65rem}.cr-featured__cta{width:var(--product-card-action-width);max-width:100%;min-height:var(--product-card-action-height-mobile)}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
+  @media(max-width:40rem){.cr-featured__content{padding:2rem 1.4rem 1rem}.cr-featured h2{max-width:16ch}.cr-featured__actions{flex-direction:column;align-items:flex-start;gap:.65rem}.cr-featured__cta{width:var(--product-card-action-width);max-width:100%;height:var(--product-card-action-height)}.cr-featured__visual{gap:.85rem;padding:1rem 1.1rem 2rem}.cr-featured__phone{flex-basis:11.3rem;width:min(11.3rem,43%);padding:.3rem;border-width:3px;border-radius:1.4rem}.cr-featured__phone img{border-radius:1rem}}
   @media(prefers-reduced-motion:reduce){
     .cr-featured__cta,.cr-featured__phone{transition:none}
     .cr-featured__phone,.cr-featured__halo{animation:none!important}
