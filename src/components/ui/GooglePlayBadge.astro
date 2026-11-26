@@ -1,0 +1,46 @@
+---
+import type { Locale } from "../../types/site";
+
+interface Props {
+  locale: Locale;
+  href: string;
+  productName: string;
+  class?: string;
+}
+
+const { locale, href, productName, class: className = "" } = Astro.props as Props;
+const es = locale === "es";
+const badge = es
+  ? "https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
+  : "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+---
+
+<a
+  class={`google-play-badge ${className}`.trim()}
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={es ? `Disponible en Google Play: abrir ficha de ${productName}` : `Get it on Google Play: open ${productName} listing`}
+>
+  <img
+    src={badge}
+    alt={es ? "Disponible en Google Play" : "Get it on Google Play"}
+    width="215"
+    height="83"
+    loading="lazy"
+    decoding="async"
+  />
+</a>
+
+<style>
+  .google-play-badge{display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;max-width:100%;border-radius:.55rem;text-decoration:none;transition:transform 180ms ease;cursor:pointer}
+  .google-play-badge img{display:block;width:auto;height:4.35rem;max-width:100%;object-fit:contain}
+  .google-play-badge:hover{transform:translateY(-2px)}
+  .google-play-badge:focus-visible{outline:3px solid #f4dc8b;outline-offset:4px}
+  @media(min-width:40.001rem){
+    .google-play-badge{position:relative;min-width:0;height:3.25rem;overflow:hidden}
+    .google-play-badge img{position:absolute;left:50%;top:50%;width:100%;height:auto;max-width:none;max-height:none;transform:translate(-50%,-50%)}
+  }
+  @media(max-width:40rem){.google-play-badge{width:100%;min-height:3.5rem}.google-play-badge img{height:4.2rem}}
+  @media(prefers-reduced-motion:reduce){.google-play-badge{transition:none}}
+</style>

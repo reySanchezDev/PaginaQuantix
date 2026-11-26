@@ -1,6 +1,7 @@
 ---
 import type { Locale } from "../../types/site";
 import Container from "../ui/Container.astro";
+import GooglePlayBadge from "../ui/GooglePlayBadge.astro";
 
 interface Props {
   locale: Locale;
@@ -60,15 +61,7 @@ const initialMobile = es
         </div>
         <div class="prestazo-featured__actions">
           <a class="prestazo-featured__cta" href={landingUrl}>{es ? "Conocer Prestazo" : "Explore Prestazo"}</a>
-          <a class="prestazo-featured__secondary" href={googlePlayUrl} target="_blank" rel="noopener noreferrer">
-            <svg class="prestazo-featured__play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path fill="#00c1ff" d="M3.4 2.6c-.25.28-.4.72-.4 1.28v16.24c0 .56.15 1 .4 1.28L13 12 3.4 2.6Z" />
-              <path fill="#00f076" d="m14.05 13.05-2.7-2.64L3.4 2.6c.32-.34.84-.38 1.48-.02l11.02 6.26-1.85 4.21Z" />
-              <path fill="#ffcf00" d="m14.05 13.05 1.85 4.21L4.88 19.02c-.64.36-1.16.32-1.48-.02l7.95-8.59 2.7 2.64Z" />
-              <path fill="#ff3b57" d="m17.9 10.86 2.44 1.39c.88.5.88 1.32 0 1.82l-4.44 2.52-1.85-4.21 3.85-1.52Z" />
-            </svg>
-            <span>{es ? "Descargar en Google Play" : "Download on Google Play"}</span>
-          </a>
+          <GooglePlayBadge class="prestazo-featured__google-play" locale={locale} href={googlePlayUrl} productName="Prestazo" />
         </div>
       </div>
       <a class="prestazo-featured__visual" href={landingUrl} aria-label={es ? "Abrir la landing page de Prestazo" : "Open the Prestazo product page"}>
@@ -96,18 +89,13 @@ const initialMobile = es
   .prestazo-featured__actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem 1rem;margin-top:1.7rem}
   .prestazo-featured__cta{display:inline-flex;align-items:center;justify-content:center;height:4rem;padding:.8rem 1.25rem;border-radius:.6rem;color:#062c2a;background:#b8ffe2;font-size:var(--text-base);font-weight:750;line-height:1;text-decoration:none;white-space:nowrap;transition:transform 180ms ease,background 180ms ease}
   .prestazo-featured__cta:hover{color:#062c2a;background:#e1fff3;transform:translateY(-2px)}
-  .prestazo-featured__secondary{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;height:4rem;min-width:0;padding:.8rem .7rem;border-radius:.6rem;color:#062c2a;background:#b8ffe2;font-size:clamp(.68rem,.85vw,.9rem);font-weight:750;line-height:1;text-align:center;text-decoration:none;white-space:nowrap;transition:transform 180ms ease,background 180ms ease}
-  .prestazo-featured__secondary span{white-space:nowrap}
-  .prestazo-featured__play-icon{display:block;flex:0 0 1.15rem;width:1.15rem;height:1.15rem}
-  .prestazo-featured__secondary:hover{color:#062c2a;background:#e1fff3}
-  .prestazo-featured__secondary:hover{transform:translateY(-2px)}
-  .prestazo-featured__cta:focus-visible,.prestazo-featured__secondary:focus-visible,.prestazo-featured__visual:focus-visible{outline:3px solid #f3d878;outline-offset:4px}
+  .prestazo-featured__cta:focus-visible,.prestazo-featured__visual:focus-visible{outline:3px solid #f3d878;outline-offset:4px}
   .prestazo-featured__visual{position:relative;display:block;min-height:34rem;overflow:hidden;text-decoration:none}
   .prestazo-featured__visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#061d2d 0%,transparent 30%),linear-gradient(0deg,#061d2d66,transparent 30%);pointer-events:none}
   .prestazo-featured__visual img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 700ms cubic-bezier(.2,.7,.2,1),filter 300ms ease}
   .prestazo-featured__visual:hover img{transform:scale(1.035);filter:saturate(1.08)}
   .prestazo-featured__visual-glow{position:absolute;inset:15% 12%;z-index:1;border-radius:50%;background:#5dffd65c;filter:blur(5rem);pointer-events:none}
   @media(max-width:64rem){.prestazo-featured__panel{grid-template-columns:1fr}.prestazo-featured__content{padding-bottom:2rem}.prestazo-featured__visual{min-height:24rem}.prestazo-featured__visual::after{background:linear-gradient(0deg,#061d2d 0%,transparent 38%)}}
-  @media(max-width:40rem){.prestazo-featured__content{padding:2rem 1.4rem 1.5rem}.prestazo-featured__lettering{width:100%;margin:-.5rem 0 0}.prestazo-featured__actions{grid-template-columns:1fr}.prestazo-featured__cta,.prestazo-featured__secondary{width:100%}.prestazo-featured__secondary{font-size:var(--text-base);padding-inline:1.25rem}.prestazo-featured__play-icon{width:1.35rem;height:1.35rem;flex-basis:1.35rem}.prestazo-featured__visual{min-height:19rem}.prestazo-featured__visual img{object-position:58% center}}
-  @media(prefers-reduced-motion:reduce){.prestazo-featured__visual img,.prestazo-featured__cta,.prestazo-featured__secondary{transition:none}}
+  @media(max-width:40rem){.prestazo-featured__content{padding:2rem 1.4rem 1.5rem}.prestazo-featured__lettering{width:100%;margin:-.5rem 0 0}.prestazo-featured__actions{grid-template-columns:1fr}.prestazo-featured__cta{width:100%}.prestazo-featured__visual{min-height:19rem}.prestazo-featured__visual img{object-position:58% center}}
+  @media(prefers-reduced-motion:reduce){.prestazo-featured__visual img,.prestazo-featured__cta{transition:none}}
 </style>
